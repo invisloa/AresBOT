@@ -2,9 +2,126 @@ namespace AresTrainerV3
 {
     public partial class Form1 : Form
     {
+        static Thread healbotThread;
+        static Thread animbotThread = new Thread(ProgramHandle.StartAnimBot);
+        static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
+
         public Form1()
         {
             InitializeComponent();
+            ProgramHandle.InitializeProgram();
+
         }
+
+        static void Heal()
+        {
+            ProgramHandle.RequestStopHeal();
+            Thread.Sleep(500);
+            if (healbotThread == null)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbot);
+            }
+
+            if (!healbotThread.IsAlive)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbot);
+                healbotThread.Start();
+            }
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void StartHealbotBTN_Click(object sender, EventArgs e)
+        {
+            Heal();
+        }
+
+        private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (ClassChangeComboBox.SelectedIndex == 0)
+            {
+                PointersAndValues.skill1AnimValue = PointersAndValues.arcerAnim1;
+                PointersAndValues.skill2AnimValue = PointersAndValues.arcerAnim2;
+                PointersAndValues.skillValue = PointersAndValues.arcerFirstSkill;
+                PointersAndValues.normal1AnimValue = PointersAndValues.arcerAnim1;
+                PointersAndValues.normal2AnimValue = PointersAndValues.arcerAnim2;
+
+            }
+
+            if (ClassChangeComboBox.SelectedIndex == 1)
+            {
+                PointersAndValues.skill1AnimValue = PointersAndValues.spearSkillAnim1;
+                PointersAndValues.skill2AnimValue = PointersAndValues.spearSkillAnim2;
+                PointersAndValues.skillValue = PointersAndValues.spearFirstSkill;
+            }
+            if (ClassChangeComboBox.SelectedIndex == 2)
+            {
+                PointersAndValues.skill1AnimValue = PointersAndValues.mageAnim1;
+                PointersAndValues.skill2AnimValue = PointersAndValues.mageAnim2;
+                PointersAndValues.skillValue = PointersAndValues.mageStoneBulletSkill;
+            }
+
+
+        }
+
+        private void StartSkillBtn_Click(object sender, EventArgs e)
+        {
+            StartSkillAttack();
+        }
+        static void StartSkillAttack()
+        {
+            ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
+            ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
+            ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
+
+            if (normalAttackThread.IsAlive)
+            {
+                ProgramHandle.RequestStopAnim();
+            }
+            Thread.Sleep(50);
+            ProgramHandle.RequestStopAnim();
+            Thread.Sleep(50);
+            if (animbotThread == null)
+            {
+                animbotThread = new Thread(ProgramHandle.StartAnimBot);
+            }
+            if (!animbotThread.IsAlive)
+            {
+                animbotThread = new Thread(ProgramHandle.StartAnimBot);
+                animbotThread.Start();
+            }
+        }
+
+        private void StartNormalBtn_Click(object sender, EventArgs e)
+        {
+            StartNormalAttack();
+        }
+        static void StartNormalAttack()
+        {
+            ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
+            ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
+            ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
+
+
+            if (animbotThread.IsAlive)
+            {
+                ProgramHandle.RequestStopAnim();
+            }
+            Thread.Sleep(50);
+            ProgramHandle.RequestStopAnim();
+            Thread.Sleep(50);
+            if (!normalAttackThread.IsAlive)
+            {
+                normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
+                normalAttackThread.Start();
+            }
+
+
+        }
+
     }
 }

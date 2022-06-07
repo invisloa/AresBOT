@@ -18,8 +18,15 @@ public static class PointersAndValues
     public const int fogOffset = 0x2B03CC;
     public const int cameraBaseOffset = 0x2AC578;
 
+    public static int skill1AnimValue = 0;
+    public static int skill2AnimValue = 0;
+    public static int normal1AnimValue = 0;
+    public static int normal2AnimValue = 0;
+    public static int skillValue = 0;
+
+
     public static int arcerAnim1 = 1153775900;
-    public static int arcerAnim2 = 1161337300;
+    public static int arcerAnim2 = 0;                         // nie widac roznicy po zmianie na 0 NIE TESTOWANO!!!!!!!    1161337300;
     public static int arcerFirstSkill = 111504;
 
 
