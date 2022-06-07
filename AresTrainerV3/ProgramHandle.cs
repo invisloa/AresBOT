@@ -131,7 +131,7 @@ namespace AresTrainerV3
             else
                 _stopAnim = true;
         }
-        static void Heal()
+        static void HealKeyPress()
         {
             if (BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstOffset), 4)), 0) > 16777220) // if less then 5 use key 6 which is teleport
             {
@@ -152,7 +152,7 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.Sleep(20000);
             }
         }
-        static void MannaRestore()
+        static void MannaKeyPress()
         {
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
             inputSimulator.Keyboard.Sleep(200);
@@ -174,13 +174,11 @@ namespace AresTrainerV3
 
                 if (hpValue < hpHealValue)
                 {
-                    Heal();
-                    Console.WriteLine(hpValue);
+                    HealKeyPress();
                 }
                 if (mannaValue < 15)
                 {
-                    MannaRestore();
-                    Console.WriteLine(mannaValue);
+                    MannaKeyPress();
                 }
             }
             return;
@@ -201,7 +199,6 @@ namespace AresTrainerV3
             }
             return;
         }
-
         public static void StartNormalAttack()
         {
             while (_stopAnim)
