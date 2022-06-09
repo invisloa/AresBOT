@@ -33,6 +33,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.StartSkillBtn = new System.Windows.Forms.Button();
             this.StartNormalBtn = new System.Windows.Forms.Button();
+            this.AddAnimValue = new System.Windows.Forms.Button();
+            this.SubstractAnimValue = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ValuesTextBox = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -87,11 +91,52 @@
             this.StartNormalBtn.UseVisualStyleBackColor = true;
             this.StartNormalBtn.Click += new System.EventHandler(this.StartNormalBtn_Click);
             // 
+            // AddAnimValue
+            // 
+            this.AddAnimValue.Location = new System.Drawing.Point(467, 176);
+            this.AddAnimValue.Name = "AddAnimValue";
+            this.AddAnimValue.Size = new System.Drawing.Size(98, 52);
+            this.AddAnimValue.TabIndex = 7;
+            this.AddAnimValue.Text = "AddAnimValue";
+            this.AddAnimValue.UseVisualStyleBackColor = true;
+            this.AddAnimValue.Click += new System.EventHandler(this.AddAnimValue_Click);
+            // 
+            // SubstractAnimValue
+            // 
+            this.SubstractAnimValue.Location = new System.Drawing.Point(589, 176);
+            this.SubstractAnimValue.Name = "SubstractAnimValue";
+            this.SubstractAnimValue.Size = new System.Drawing.Size(134, 52);
+            this.SubstractAnimValue.TabIndex = 8;
+            this.SubstractAnimValue.Text = "SubstractAnimValue";
+            this.SubstractAnimValue.UseVisualStyleBackColor = true;
+            this.SubstractAnimValue.Click += new System.EventHandler(this.SubstractAnimValue_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(527, 137);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 23);
+            this.textBox1.TabIndex = 9;
+            this.textBox1.Text = "1000";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // ValuesTextBox
+            // 
+            this.ValuesTextBox.Location = new System.Drawing.Point(60, 61);
+            this.ValuesTextBox.Name = "ValuesTextBox";
+            this.ValuesTextBox.Size = new System.Drawing.Size(220, 108);
+            this.ValuesTextBox.TabIndex = 10;
+            this.ValuesTextBox.Text = "";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.ValuesTextBox);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.SubstractAnimValue);
+            this.Controls.Add(this.AddAnimValue);
             this.Controls.Add(this.StartNormalBtn);
             this.Controls.Add(this.StartSkillBtn);
             this.Controls.Add(this.label1);
@@ -112,5 +157,9 @@
         private Label label1;
         private Button StartSkillBtn;
         private Button StartNormalBtn;
+        private Button AddAnimValue;
+        private Button SubstractAnimValue;
+        private TextBox textBox1;
+        private RichTextBox ValuesTextBox;
     }
 }

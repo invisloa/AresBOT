@@ -30,17 +30,23 @@ public static class PointersAndValues
     public static int arcerFirstSkill = 111504;
 
 
-    public static int spearSkillAnim1 = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
+    public static int spearSkillAnim1FirstSkill = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
+    public static int spearSkillAnim1ThirdSkill = 1154085000;           
+    public static int spearSkillAnim1FiestAoE = 1154502000;           
     public static int spearSkillAnim2 = 0;                                  // na 0 nie widac wiekszych zmian 1153712127;             // anim max value 1153712127
     public static int spearFirstSkill = 131500;
+    public static int spearThirdSkill = 131704;
+    public static int spearFirstAoESkill = 31801;
+
     public static int spearNormalAnim1 = 1152700000;
 
 
 
-    public static int mageAnim1 = 1162885990;
-    public static int mageAnim2 = 1162724965;
+    public static int mageAnim1 = 1162765990;
+    public static int mageAnim2 = 0;
     public static int mageDealBrandSkill = 60219;
     public static int mageStoneBulletSkill = 60219;
+    public static int mageFirstAoeSkill = 60309;
 
     public static IntPtr baseAddress = IntPtr.Zero;
     public static IntPtr client = IntPtr.Zero;

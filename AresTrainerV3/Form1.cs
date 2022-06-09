@@ -1,3 +1,5 @@
+using Utilities;
+
 namespace AresTrainerV3
 {
     public partial class Form1 : Form
@@ -5,15 +7,41 @@ namespace AresTrainerV3
         static Thread healbotThread;
         static Thread animbotThread = new Thread(ProgramHandle.StartAnimBot);
         static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
+        globalKeyboardHook gkh = new globalKeyboardHook();
+
+        static int ValueForAddSubstract = 1000;
 
         public Form1()
         {
+
             InitializeComponent();
             ProgramHandle.InitializeProgram();
 
         }
 
-        static void Heal()
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            gkh.HookedKeys.Add(Keys.F2);
+            gkh.HookedKeys.Add(Keys.F3);
+            gkh.HookedKeys.Add(Keys.F4);
+            gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
+            gkh.KeyF3Down += StartSkillAttack;
+            gkh.KeyF4Down += new globalKeyboardHook.KeyFXxXPressed(StartNormalAttack); //JUST ANOTHER WAY TO SUBSCRIBE DELEGATE with new...
+        }
+
+/*        void gkh_KeyUp(object sender, KeyEventArgs e)
+        {
+            lstLog.Items.Add("Up\t" + e.KeyCode.ToString());
+            e.Handled = true;
+        }
+
+        void gkh_KeyDown(object sender, KeyEventArgs e)
+        {
+            lstLog.Items.Add("Down\t" + e.KeyCode.ToString());
+            e.Handled = true;
+        }
+*/
+        static void StartHealBot()
         {
             ProgramHandle.RequestStopHeal();
             Thread.Sleep(500);
@@ -30,14 +58,10 @@ namespace AresTrainerV3
 
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
 
         private void StartHealbotBTN_Click(object sender, EventArgs e)
         {
-            Heal();
+            StartHealBot();
         }
 
         private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -54,15 +78,15 @@ namespace AresTrainerV3
 
             if (ClassChangeComboBox.SelectedIndex == 1)
             {
-                PointersAndValues.skill1AnimValue = PointersAndValues.spearSkillAnim1;
+                PointersAndValues.skill1AnimValue = PointersAndValues.spearSkillAnim1FiestAoE;
                 PointersAndValues.skill2AnimValue = PointersAndValues.spearSkillAnim2;
-                PointersAndValues.skillValue = PointersAndValues.spearFirstSkill;
+                PointersAndValues.skillValue = PointersAndValues.spearFirstAoESkill;
             }
             if (ClassChangeComboBox.SelectedIndex == 2)
             {
                 PointersAndValues.skill1AnimValue = PointersAndValues.mageAnim1;
                 PointersAndValues.skill2AnimValue = PointersAndValues.mageAnim2;
-                PointersAndValues.skillValue = PointersAndValues.mageStoneBulletSkill;
+                PointersAndValues.skillValue = PointersAndValues.mageFirstAoeSkill;
             }
 
 
@@ -123,5 +147,29 @@ namespace AresTrainerV3
 
         }
 
+/*        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+*/
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            int tempValue = 1000;
+            int.TryParse(textBox1.Text,out tempValue);
+            ValueForAddSubstract = tempValue;
+        }
+
+        private void AddAnimValue_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetAnim1Value += ValueForAddSubstract;
+            ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+        }
+
+        private void SubstractAnimValue_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetAnim1Value -= ValueForAddSubstract;
+            ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+
+        }
     }
 }

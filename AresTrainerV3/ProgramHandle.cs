@@ -45,7 +45,7 @@ namespace AresTrainerV3
         private static volatile int _anim2 = 0;
         private static volatile int _skillValue = 0;
 
-        public static int hpHealValue = 150;
+        public static int hpHealValue = 100;
         public static void InitializeProgram()
         {
 
@@ -138,7 +138,7 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
-                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.Sleep(150);
             }
             else
             {
