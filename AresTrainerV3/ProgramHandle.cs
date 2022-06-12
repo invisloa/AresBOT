@@ -14,6 +14,10 @@ namespace AresTrainerV3
 {
     public class ProgramHandle
     {
+       // public static temporaryAnimAddress = 
+
+
+
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
@@ -29,6 +33,7 @@ namespace AresTrainerV3
 
         static Process proc = Process.GetProcessesByName("Nostalgia")[0];
         static IntPtr baseNormalOffset;
+        // static IntPtr anim1AddressPointer;
         static IntPtr cameraBaseOffset;
         static IntPtr cameraFogOffset;
         static InputSimulator inputSimulator = new InputSimulator();
@@ -41,11 +46,15 @@ namespace AresTrainerV3
         private static volatile bool _stopHeal = false;
         private static volatile bool _stopAnim = false;
 
+       
+
         private static volatile int _anim1 = 0;
         private static volatile int _anim2 = 0;
         private static volatile int _skillValue = 0;
 
         public static int hpHealValue = 100;
+        public static int MannaRestoreValue = 20;
+
         public static void InitializeProgram()
         {
 
@@ -63,7 +72,19 @@ namespace AresTrainerV3
 
             }
 
+
+            /*            // KOMBINACJE ZEBY POKAZAC ANIM1 Address ale caly czas base offset pokazywalo
+
+                        IntPtr anim1AddressPointer = mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc));
+                        Debug.WriteLine("anim1 Pointer");
+                        Debug.WriteLine(mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc)));
+            */
+
+
             baseNormalOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc));
+            Debug.WriteLine("baseWithOffsetAddress2");
+            Debug.WriteLine(baseNormalOffset);
+
 
             cameraBaseOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.cameraBaseOffset));
 
@@ -75,7 +96,10 @@ namespace AresTrainerV3
 
             skill1Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), 4);
 
+
             anim1Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), 4);
+            Debug.WriteLine("anim1");
+            Debug.WriteLine(BitConverter.ToInt32(anim1Address, 0));
 
             anim2Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
@@ -189,13 +213,13 @@ namespace AresTrainerV3
             {
 
                 // anim 1 
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x3a8), BitConverter.GetBytes(_anim1));
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
 
                 //anim 2 
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x3ac), BitConverter.GetBytes(_anim2));
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), BitConverter.GetBytes(_anim2));
 
                 // skill   
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x05c), BitConverter.GetBytes(_skillValue));
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(_skillValue));
             }
             return;
         }
@@ -204,12 +228,20 @@ namespace AresTrainerV3
             while (_stopAnim)
             {
                 // anim 1 
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x3a8), BitConverter.GetBytes(_anim1));
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
 
                 //anim 2 
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x3ac), BitConverter.GetBytes(_anim2));
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), BitConverter.GetBytes(_anim2));
             }
             return;
         }
+
+        public static void SetCamera()
+        {
+            mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceValue));
+            mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAnglePointer), BitConverter.GetBytes(PointersAndValues.cameraAngleValue));
+            mem.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+        }
+
     }
 }

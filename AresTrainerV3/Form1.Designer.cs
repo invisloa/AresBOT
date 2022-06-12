@@ -37,11 +37,13 @@
             this.SubstractAnimValue = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.ValuesTextBox = new System.Windows.Forms.RichTextBox();
+            this.HPValueTextBox = new System.Windows.Forms.TextBox();
+            this.MannaValueTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
             // 
-            this.StartHealbotBTN.Location = new System.Drawing.Point(162, 246);
+            this.StartHealbotBTN.Location = new System.Drawing.Point(166, 328);
             this.StartHealbotBTN.Name = "StartHealbotBTN";
             this.StartHealbotBTN.Size = new System.Drawing.Size(93, 50);
             this.StartHealbotBTN.TabIndex = 0;
@@ -56,7 +58,7 @@
             "Arcer",
             "Spearman",
             "Mage"});
-            this.ClassChangeComboBox.Location = new System.Drawing.Point(509, 82);
+            this.ClassChangeComboBox.Location = new System.Drawing.Point(527, 106);
             this.ClassChangeComboBox.Name = "ClassChangeComboBox";
             this.ClassChangeComboBox.Size = new System.Drawing.Size(121, 23);
             this.ClassChangeComboBox.TabIndex = 1;
@@ -65,7 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(509, 64);
+            this.label1.Location = new System.Drawing.Point(527, 88);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 15);
             this.label1.TabIndex = 2;
@@ -73,7 +75,7 @@
             // 
             // StartSkillBtn
             // 
-            this.StartSkillBtn.Location = new System.Drawing.Point(314, 247);
+            this.StartSkillBtn.Location = new System.Drawing.Point(318, 329);
             this.StartSkillBtn.Name = "StartSkillBtn";
             this.StartSkillBtn.Size = new System.Drawing.Size(91, 49);
             this.StartSkillBtn.TabIndex = 3;
@@ -83,7 +85,7 @@
             // 
             // StartNormalBtn
             // 
-            this.StartNormalBtn.Location = new System.Drawing.Point(463, 247);
+            this.StartNormalBtn.Location = new System.Drawing.Point(467, 329);
             this.StartNormalBtn.Name = "StartNormalBtn";
             this.StartNormalBtn.Size = new System.Drawing.Size(102, 49);
             this.StartNormalBtn.TabIndex = 4;
@@ -97,7 +99,7 @@
             this.AddAnimValue.Name = "AddAnimValue";
             this.AddAnimValue.Size = new System.Drawing.Size(98, 52);
             this.AddAnimValue.TabIndex = 7;
-            this.AddAnimValue.Text = "AddAnimValue";
+            this.AddAnimValue.Text = "Add";
             this.AddAnimValue.UseVisualStyleBackColor = true;
             this.AddAnimValue.Click += new System.EventHandler(this.AddAnimValue_Click);
             // 
@@ -107,7 +109,7 @@
             this.SubstractAnimValue.Name = "SubstractAnimValue";
             this.SubstractAnimValue.Size = new System.Drawing.Size(134, 52);
             this.SubstractAnimValue.TabIndex = 8;
-            this.SubstractAnimValue.Text = "SubstractAnimValue";
+            this.SubstractAnimValue.Text = "Substract";
             this.SubstractAnimValue.UseVisualStyleBackColor = true;
             this.SubstractAnimValue.Click += new System.EventHandler(this.SubstractAnimValue_Click);
             // 
@@ -122,17 +124,35 @@
             // 
             // ValuesTextBox
             // 
-            this.ValuesTextBox.Location = new System.Drawing.Point(60, 61);
+            this.ValuesTextBox.Location = new System.Drawing.Point(60, 88);
             this.ValuesTextBox.Name = "ValuesTextBox";
             this.ValuesTextBox.Size = new System.Drawing.Size(220, 108);
             this.ValuesTextBox.TabIndex = 10;
             this.ValuesTextBox.Text = "";
+            // 
+            // HPValueTextBox
+            // 
+            this.HPValueTextBox.Location = new System.Drawing.Point(477, 266);
+            this.HPValueTextBox.Name = "HPValueTextBox";
+            this.HPValueTextBox.Size = new System.Drawing.Size(100, 23);
+            this.HPValueTextBox.TabIndex = 11;
+            this.HPValueTextBox.TextChanged += new System.EventHandler(this.HPValueTextBox_TextChanged);
+            // 
+            // MannaValueTextBox
+            // 
+            this.MannaValueTextBox.Location = new System.Drawing.Point(606, 268);
+            this.MannaValueTextBox.Name = "MannaValueTextBox";
+            this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
+            this.MannaValueTextBox.TabIndex = 12;
+            this.MannaValueTextBox.TextChanged += new System.EventHandler(this.MannaValueTextBox_TextChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MannaValueTextBox);
+            this.Controls.Add(this.HPValueTextBox);
             this.Controls.Add(this.ValuesTextBox);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.SubstractAnimValue);
@@ -143,7 +163,7 @@
             this.Controls.Add(this.ClassChangeComboBox);
             this.Controls.Add(this.StartHealbotBTN);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Ares V3.1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -161,5 +181,7 @@
         private Button SubstractAnimValue;
         private TextBox textBox1;
         private RichTextBox ValuesTextBox;
+        private TextBox HPValueTextBox;
+        private TextBox MannaValueTextBox;
     }
 }

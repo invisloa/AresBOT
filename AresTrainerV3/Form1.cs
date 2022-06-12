@@ -86,7 +86,7 @@ namespace AresTrainerV3
             {
                 PointersAndValues.skill1AnimValue = PointersAndValues.mageAnim1;
                 PointersAndValues.skill2AnimValue = PointersAndValues.mageAnim2;
-                PointersAndValues.skillValue = PointersAndValues.mageFirstAoeSkill;
+                PointersAndValues.skillValue = PointersAndValues.mageStriking;
             }
 
 
@@ -94,6 +94,7 @@ namespace AresTrainerV3
 
         private void StartSkillBtn_Click(object sender, EventArgs e)
         {
+            ProgramHandle.SetCamera();
             StartSkillAttack();
         }
         static void StartSkillAttack()
@@ -162,13 +163,28 @@ namespace AresTrainerV3
         private void AddAnimValue_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetAnim1Value += ValueForAddSubstract;
-            ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+            // ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
         }
 
         private void SubstractAnimValue_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetAnim1Value -= ValueForAddSubstract;
             ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+
+        }
+
+        private void HPValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int i = 100;
+            int.TryParse(HPValueTextBox.Text,out i);
+            ProgramHandle.hpHealValue = i;
+        }
+
+        private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int i = 10;
+            int.TryParse(MannaValueTextBox.Text, out i);
+            ProgramHandle.MannaRestoreValue = i;
 
         }
     }

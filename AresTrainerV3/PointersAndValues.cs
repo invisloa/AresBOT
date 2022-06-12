@@ -15,8 +15,17 @@ public static class PointersAndValues
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;
     public const int slotFirstOffset = 0xbb2;
+    public const int cameraDistancePointer = 0x19e;
+    public const int cameraFogPointer = 0xca6;
+    public const int cameraAnglePointer = 0x1b6;
+
+    
     public const int fogOffset = 0x2B03CC;
     public const int cameraBaseOffset = 0x2AC578;
+
+    public const int cameraDistanceValue = 1764311846;
+    public const int cameraFogValue = 83536;
+    public const int cameraAngleValue = 81853;
 
     public static int skill1AnimValue = 0;
     public static int skill2AnimValue = 0;
@@ -25,7 +34,7 @@ public static class PointersAndValues
     public static int skillValue = 0;
 
 
-    public static int arcerAnim1 = 1153775900;
+    public static int arcerAnim1 = 1161436900;
     public static int arcerAnim2 = 0;                         // nie widac roznicy po zmianie na 0 NIE TESTOWANO!!!!!!!    1161337300;
     public static int arcerFirstSkill = 111504;
 
@@ -47,6 +56,8 @@ public static class PointersAndValues
     public static int mageDealBrandSkill = 60219;
     public static int mageStoneBulletSkill = 60219;
     public static int mageFirstAoeSkill = 60309;
+    public static int mageDealBrand = 60204;
+    public static int mageStriking = 60403;
 
     public static IntPtr baseAddress = IntPtr.Zero;
     public static IntPtr client = IntPtr.Zero;
