@@ -16,7 +16,7 @@ public static class PointersAndValues
     public const int anim2Offset = 0x3ac;
     public const int slotFirstOffset = 0xbb2;
     public const int cameraDistancePointer = 0x19e;
-    public const int cameraFogPointer = 0xca6;
+    public const int cameraFogPointer = 0xd16;
     public const int cameraAnglePointer = 0x1b6;
 
     
@@ -24,7 +24,7 @@ public static class PointersAndValues
     public const int cameraBaseOffset = 0x2AC578;
 
     public const int cameraDistanceValue = 1764311846;
-    public const int cameraFogValue = 83536;
+    public const int cameraFogValue = 18000;
     public const int cameraAngleValue = 81853;
 
     public static int skill1AnimValue = 0;
@@ -40,8 +40,8 @@ public static class PointersAndValues
 
 
     public static int spearSkillAnim1FirstSkill = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
-    public static int spearSkillAnim1ThirdSkill = 1154085000;           
-    public static int spearSkillAnim1FiestAoE = 1154502000;           
+    public static int spearSkillAnim1ThirdSkill = 1154085000;
+    public static int spearSkillAnim1FiestAoE = 1154553000;  //1154502000;           
     public static int spearSkillAnim2 = 0;                                  // na 0 nie widac wiekszych zmian 1153712127;             // anim max value 1153712127
     public static int spearFirstSkill = 131500;
     public static int spearThirdSkill = 131704;
@@ -51,7 +51,7 @@ public static class PointersAndValues
 
 
 
-    public static int mageAnim1 = 1162765990;
+    public static int mageAnim1 = 1162783990; // 15.06.22 1162765990;
     public static int mageAnim2 = 0;
     public static int mageDealBrandSkill = 60219;
     public static int mageStoneBulletSkill = 60219;

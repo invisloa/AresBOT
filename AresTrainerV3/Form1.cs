@@ -94,11 +94,12 @@ namespace AresTrainerV3
 
         private void StartSkillBtn_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetCamera();
             StartSkillAttack();
         }
         static void StartSkillAttack()
         {
+            ProgramHandle.SetCamera();
+
             ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
             ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
             ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
@@ -163,7 +164,7 @@ namespace AresTrainerV3
         private void AddAnimValue_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetAnim1Value += ValueForAddSubstract;
-            // ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+            ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
         }
 
         private void SubstractAnimValue_Click(object sender, EventArgs e)
