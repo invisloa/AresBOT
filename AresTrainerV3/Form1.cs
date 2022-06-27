@@ -78,15 +78,24 @@ namespace AresTrainerV3
 
             if (ClassChangeComboBox.SelectedIndex == 1)
             {
-                PointersAndValues.skill1AnimValue = PointersAndValues.spearSkillAnim1FiestAoE;
+                PointersAndValues.skill1AnimValue = PointersAndValues.spearSkillAnim1FirstSkill;
                 PointersAndValues.skill2AnimValue = PointersAndValues.spearSkillAnim2;
-                PointersAndValues.skillValue = PointersAndValues.spearFirstAoESkill;
+                PointersAndValues.skillValue = PointersAndValues.spearFirstSkill;
             }
             if (ClassChangeComboBox.SelectedIndex == 2)
             {
                 PointersAndValues.skill1AnimValue = PointersAndValues.mageAnim1;
                 PointersAndValues.skill2AnimValue = PointersAndValues.mageAnim2;
                 PointersAndValues.skillValue = PointersAndValues.mageStriking;
+            }
+            if (ClassChangeComboBox.SelectedIndex == 3)
+            {
+                PointersAndValues.skill1AnimValue = PointersAndValues.knightskilllAnim1;
+                PointersAndValues.skill2AnimValue = PointersAndValues.knightskilllAnim2;
+                PointersAndValues.skillValue = PointersAndValues.knightFirstBlunt;
+                PointersAndValues.normal1AnimValue = PointersAndValues.knightNormalAnim1;
+                PointersAndValues.normal2AnimValue = PointersAndValues.knightskilllAnim2;
+
             }
 
 

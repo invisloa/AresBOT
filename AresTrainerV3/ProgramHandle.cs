@@ -212,6 +212,7 @@ namespace AresTrainerV3
             while (_stopAnim)
             {
 
+
                 // anim 1 
                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
 
@@ -219,20 +220,81 @@ namespace AresTrainerV3
                  mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), BitConverter.GetBytes(_anim2));
 
                 // skill   
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(_skillValue));
+                // mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(_skillValue));
+
+                // click Delay ?? not checked
+               mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
+
+
+                
+                
+                //skill Delay ?? not checked
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skillDelayPointer), BitConverter.GetBytes(0));
+
+
+
+
+                // dont know if it works at all
+                //
+                /*                // ToCheckMicroTick Delay ?? not checked
+                                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.toCheckTicksForAMicrosecond), BitConverter.GetBytes(1120927744));
+                                // toCheckSkillVsNormal Delay ?? not checked
+                                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.toCheckSkillVsNormal), BitConverter.GetBytes(0));
+                */
+
+
+
+
             }
             return;
         }
         public static void StartNormalAttack()
         {
-            while (_stopAnim)
-            {
-                // anim 1 
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
 
-                //anim 2 
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), BitConverter.GetBytes(_anim2));
+            /*            // COMENTED FOR TESTING MICROTICK,
+                        //
+                        //
+                        //
+                        //
+
+                        while (_stopAnim)
+                        {
+                            // anim 1 
+                            mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
+
+                            //anim 2 
+                            mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), BitConverter.GetBytes(_anim2));
+                        }
+
+                        //
+                        //
+                        //
+                        //
+                        // COMENTED FOR TESTING MICROTICK,
+            */
+
+
+
+
+            // TESTING MICROTICK,
+            // TESTING MICROTICK,
+            // TESTING MICROTICK,
+            // TESTING MICROTICK,
+
+            while (true)
+            {
+                // first part of changable value
+                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(0));
+                Thread.Sleep(1);
+
+                // second part of changable value
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
+                Thread.Sleep(1);
             }
+            // TESTING MICROTICK,
+            // TESTING MICROTICK,
+            // TESTING MICROTICK,
+
             return;
         }
 

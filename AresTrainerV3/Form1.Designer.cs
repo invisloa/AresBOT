@@ -57,7 +57,8 @@
             this.ClassChangeComboBox.Items.AddRange(new object[] {
             "Arcer",
             "Spearman",
-            "Mage"});
+            "Mage",
+            "Knight"});
             this.ClassChangeComboBox.Location = new System.Drawing.Point(527, 106);
             this.ClassChangeComboBox.Name = "ClassChangeComboBox";
             this.ClassChangeComboBox.Size = new System.Drawing.Size(121, 23);
