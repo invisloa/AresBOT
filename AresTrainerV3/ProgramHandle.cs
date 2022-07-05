@@ -88,8 +88,6 @@ namespace AresTrainerV3
 
 
             baseNormalOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc));
-            Debug.WriteLine("baseWithOffsetAddress2");
-            Debug.WriteLine(baseNormalOffset);
 
             cameraBaseOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.cameraBaseOffset));
 
@@ -102,8 +100,6 @@ namespace AresTrainerV3
             skill1Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), 4);
 
             anim1Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), 4);
-            Debug.WriteLine("anim1");
-            Debug.WriteLine(BitConverter.ToInt32(anim1Address, 0));
 
             anim2Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
@@ -200,9 +196,11 @@ namespace AresTrainerV3
                 hpValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
                 mannaValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
 
+
                 if (hpValue < hpHealValue)
                 {
                     HealKeyPress();
+
                 }
                 if (mannaValue < MannaRestoreValue)
                 {
@@ -314,7 +312,7 @@ namespace AresTrainerV3
 
 
         // Teleporter try
-        public static void Teleporter()
+        public static void Teleporting()
         {
             int _currentMap = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0);
 
