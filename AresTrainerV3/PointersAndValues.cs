@@ -25,7 +25,7 @@ public static class PointersAndValues
     public const int skillDelayPointer = 0x802;
     public const int clickDelayPointer = 0xb2e;
     public const int runSpeedOffset = 0xb8e;
-    public const int cityNumberOffset = 0x5a8;
+    public const int mapNumberOffset = 0x5a8;
     public const int positionXOffset = 0x244;
     public const int positionYOffset = 0x23c;
     public const int positionZOffset = 0x240;

@@ -26,12 +26,14 @@ namespace AresTrainerV3
         {
             gkh.HookedKeys.Add(Keys.F2);
             gkh.HookedKeys.Add(Keys.F4);
+            gkh.HookedKeys.Add(Keys.F5);
 
             // gkh.HookedKeys.Add(Keys.F4);
-            
+
             gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
             gkh.KeyF4Down += StartSkillAttack;
             gkh.KeyF4Down += ShowIfOnOrOff; // SUBSCRIBE function to chane button visibility according to state of speed
+            gkh.KeyF5Down += ProgramHandle.Teleporter;
 
 
             // gkh.KeyF4Down += new globalKeyboardHook.KeyFXxXPressed(StartNormalAttack); //JUST ANOTHER WAY TO SUBSCRIBE DELEGATE with new...

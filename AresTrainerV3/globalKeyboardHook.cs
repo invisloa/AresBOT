@@ -55,29 +55,26 @@ namespace Utilities {
 					if (_keyEventArgs.Handled)
 						return 1;
 				}
-
-				// KEY F3 is not needed for now
-				// KEY F3 is not needed for now
-				/*				// IF KEY F3 IS Pressed
-												if (key == Keys.F3)
-												{
-
-													KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
-													if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF3Down != null))
-													{
-														KeyF3Down();
-													}
-													if (_keyEventArgs.Handled)
-														return 1;
-												}
-								*/                // IF KEY F4 IS Pressed
-				if (key == Keys.F4)
+                // IF KEY F4 IS Pressed
+                if (key == Keys.F4)
 				{
 
 					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
 					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF4Down != null))
 					{
 						KeyF4Down();
+					}
+					if (_keyEventArgs.Handled)
+						return 1;
+				}
+				// IF KEY F5 IS Pressed
+				if (key == Keys.F5)
+				{
+
+					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
+					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF5Down != null))
+					{
+						KeyF5Down();
 					}
 					if (_keyEventArgs.Handled)
 						return 1;
@@ -135,13 +132,14 @@ namespace Utilities {
 		/// </summary>
 		public event KeyFXxXPressedDelegate KeyF2Down;
 		/// <summary>
-		/// Occurs when F3 is down
-		/// </summary>
-		public event KeyFXxXPressedDelegate KeyF3Down;
-		/// <summary>
 		/// Occurs when F4 is down
 		/// </summary>
 		public event KeyFXxXPressedDelegate KeyF4Down;
+		/// <summary>
+		/// Occurs when F5 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF5Down;
+
 		#endregion
 
 		#region Constructors and Destructors
