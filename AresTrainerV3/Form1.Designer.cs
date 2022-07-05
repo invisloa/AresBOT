@@ -39,6 +39,9 @@
             this.ValuesTextBox = new System.Windows.Forms.RichTextBox();
             this.HPValueTextBox = new System.Windows.Forms.TextBox();
             this.MannaValueTextBox = new System.Windows.Forms.TextBox();
+            this.OnOffButton = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -125,7 +128,7 @@
             // 
             // ValuesTextBox
             // 
-            this.ValuesTextBox.Location = new System.Drawing.Point(60, 88);
+            this.ValuesTextBox.Location = new System.Drawing.Point(189, 88);
             this.ValuesTextBox.Name = "ValuesTextBox";
             this.ValuesTextBox.Size = new System.Drawing.Size(220, 108);
             this.ValuesTextBox.TabIndex = 10;
@@ -147,11 +150,43 @@
             this.MannaValueTextBox.TabIndex = 12;
             this.MannaValueTextBox.TextChanged += new System.EventHandler(this.MannaValueTextBox_TextChanged);
             // 
+            // OnOffButton
+            // 
+            this.OnOffButton.BackColor = System.Drawing.SystemColors.GrayText;
+            this.OnOffButton.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.OnOffButton.Location = new System.Drawing.Point(27, 80);
+            this.OnOffButton.Name = "OnOffButton";
+            this.OnOffButton.Size = new System.Drawing.Size(135, 116);
+            this.OnOffButton.TabIndex = 13;
+            this.OnOffButton.Text = "OFF";
+            this.OnOffButton.UseVisualStyleBackColor = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(477, 248);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 15);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Heal value";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(606, 248);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 15);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Manna value";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.OnOffButton);
             this.Controls.Add(this.MannaValueTextBox);
             this.Controls.Add(this.HPValueTextBox);
             this.Controls.Add(this.ValuesTextBox);
@@ -184,5 +219,8 @@
         private RichTextBox ValuesTextBox;
         private TextBox HPValueTextBox;
         private TextBox MannaValueTextBox;
+        private Button OnOffButton;
+        private Label label2;
+        private Label label3;
     }
 }

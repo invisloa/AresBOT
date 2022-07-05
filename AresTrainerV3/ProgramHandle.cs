@@ -46,6 +46,12 @@ namespace AresTrainerV3
         private static volatile bool _stopHeal = false;
         private static volatile bool _stopAnim = false;
 
+        public static bool StopAnim
+        {
+            get { return _stopAnim; }
+        }
+
+
        
 
         private static volatile int _anim1 = 0;
@@ -85,7 +91,6 @@ namespace AresTrainerV3
             Debug.WriteLine("baseWithOffsetAddress2");
             Debug.WriteLine(baseNormalOffset);
 
-
             cameraBaseOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.cameraBaseOffset));
 
             cameraFogOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogOffset));
@@ -95,7 +100,6 @@ namespace AresTrainerV3
             MannaAddress = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4);
 
             skill1Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), 4);
-
 
             anim1Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), 4);
             Debug.WriteLine("anim1");
@@ -193,27 +197,31 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
-                hpValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x148), 4)), 0);
-                mannaValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, 0x980), 4)), 0);
+                hpValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                mannaValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
 
                 if (hpValue < hpHealValue)
                 {
                     HealKeyPress();
                 }
-                if (mannaValue < 15)
+                if (mannaValue < MannaRestoreValue)
                 {
                     MannaKeyPress();
                 }
             }
             return;
         }
-        public static void StartAnimBot()
+        public static void Start1HitKO()
         {
             while (_stopAnim)
             {
 
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
 
-                // anim 1 
+                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
+
+                #region OldAnimFunction
+                /*                // anim 1 
                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
 
                 //anim 2 
@@ -222,14 +230,13 @@ namespace AresTrainerV3
                 // skill   
                 // mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(_skillValue));
 
-                // click Delay ?? not checked
-               mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
-
-
-                
-                
                 //skill Delay ?? not checked
                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skillDelayPointer), BitConverter.GetBytes(0));
+
+                */
+                // click Delay ?? not checked
+
+
 
 
 
@@ -242,9 +249,7 @@ namespace AresTrainerV3
                                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.toCheckSkillVsNormal), BitConverter.GetBytes(0));
                 */
 
-
-
-
+                #endregion
             }
             return;
         }
@@ -271,7 +276,7 @@ namespace AresTrainerV3
                         //
                         //
                         // COMENTED FOR TESTING MICROTICK,
-            */
+            *//*
 
 
 
@@ -281,20 +286,19 @@ namespace AresTrainerV3
             // TESTING MICROTICK,
             // TESTING MICROTICK,
 
-            while (true)
+            while (_stopAnim)
             {
-                // first part of changable value
-                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(0));
-                Thread.Sleep(1);
+             
+                    // first part of changable value
+                    // mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(0));
 
-                // second part of changable value
-                mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
-                Thread.Sleep(1);
+                    // second part of changable value
+              //      mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
             }
             // TESTING MICROTICK,
             // TESTING MICROTICK,
             // TESTING MICROTICK,
-
+*/
             return;
         }
 
@@ -303,7 +307,22 @@ namespace AresTrainerV3
             mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceValue));
             mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAnglePointer), BitConverter.GetBytes(PointersAndValues.cameraAngleValue));
             mem.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+            mem.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+          // rining speed   mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), BitConverter.GetBytes(PointersAndValues.runSpeedValue4));
         }
 
+
+
+        // Teleporter try
+        public static void Teleporter()
+        {
+            int _currentLocation = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.cityNumberOffset), 4)), 0);
+            
+            if(_currentLocation == TeleportValues.SacredLand)
+            {
+
+            }
+
+        }
     }
 }

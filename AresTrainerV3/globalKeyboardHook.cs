@@ -16,7 +16,7 @@ namespace Utilities {
 		public delegate int LowLevelKeyboardProc(int code, int wParam, ref keyboardHookStruct lParam);
 
 		//test delegate do key fXxX event
-		public delegate void KeyFXxXPressed();
+		public delegate void KeyFXxXPressedDelegate();
 
 		private LowLevelKeyboardProc _handlerHookPrpcedure;
 		private GCHandle _gcHandler;
@@ -55,19 +55,22 @@ namespace Utilities {
 					if (_keyEventArgs.Handled)
 						return 1;
 				}
-				// IF KEY F3 IS Pressed
-				if (key == Keys.F3)
-				{
 
-					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
-					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF3Down != null))
-					{
-						KeyF3Down();
-					}
-					if (_keyEventArgs.Handled)
-						return 1;
-				}
-				// IF KEY F4 IS Pressed
+				// KEY F3 is not needed for now
+				// KEY F3 is not needed for now
+				/*				// IF KEY F3 IS Pressed
+												if (key == Keys.F3)
+												{
+
+													KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
+													if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF3Down != null))
+													{
+														KeyF3Down();
+													}
+													if (_keyEventArgs.Handled)
+														return 1;
+												}
+								*/                // IF KEY F4 IS Pressed
 				if (key == Keys.F4)
 				{
 
@@ -123,21 +126,22 @@ namespace Utilities {
 		/// </summary>
 		public event KeyEventHandler KeyDown;
 		/// <summary>
-		/// Occurs when F2 is down
-		/// </summary>
-		public event KeyFXxXPressed KeyF2Down;
-		/// <summary>
-		/// Occurs when F3 is down
-		/// </summary>
-		public event KeyFXxXPressed KeyF3Down;
-		/// <summary>
-		/// Occurs when F4 is down
-		/// </summary>
-		public event KeyFXxXPressed KeyF4Down;
-		/// <summary>
 		/// Occurs when one of the hooked keys is released
 		/// </summary>
 		public event KeyEventHandler KeyUp;
+
+		/// <summary>
+		/// Occurs when F2 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF2Down;
+		/// <summary>
+		/// Occurs when F3 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF3Down;
+		/// <summary>
+		/// Occurs when F4 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF4Down;
 		#endregion
 
 		#region Constructors and Destructors

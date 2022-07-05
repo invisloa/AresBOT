@@ -5,7 +5,7 @@ namespace AresTrainerV3
     public partial class Form1 : Form
     {
         static Thread healbotThread;
-        static Thread animbotThread = new Thread(ProgramHandle.StartAnimBot);
+        static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
         static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
         globalKeyboardHook gkh = new globalKeyboardHook();
 
@@ -13,34 +13,42 @@ namespace AresTrainerV3
 
         public Form1()
         {
-
             InitializeComponent();
+
             ProgramHandle.InitializeProgram();
+            MannaValueTextBox.Text = ProgramHandle.MannaRestoreValue.ToString();
+            HPValueTextBox.Text = ProgramHandle.hpHealValue.ToString();
+
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             gkh.HookedKeys.Add(Keys.F2);
-            gkh.HookedKeys.Add(Keys.F3);
             gkh.HookedKeys.Add(Keys.F4);
+
+            // gkh.HookedKeys.Add(Keys.F4);
+            
             gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
-            gkh.KeyF3Down += StartSkillAttack;
-            gkh.KeyF4Down += new globalKeyboardHook.KeyFXxXPressed(StartNormalAttack); //JUST ANOTHER WAY TO SUBSCRIBE DELEGATE with new...
+            gkh.KeyF4Down += StartSkillAttack;
+            gkh.KeyF4Down += ShowIfOnOrOff; // SUBSCRIBE function to chane button visibility according to state of speed
+
+
+            // gkh.KeyF4Down += new globalKeyboardHook.KeyFXxXPressed(StartNormalAttack); //JUST ANOTHER WAY TO SUBSCRIBE DELEGATE with new...
         }
 
-/*        void gkh_KeyUp(object sender, KeyEventArgs e)
-        {
-            lstLog.Items.Add("Up\t" + e.KeyCode.ToString());
-            e.Handled = true;
-        }
+        /*        void gkh_KeyUp(object sender, KeyEventArgs e)
+                {
+                    lstLog.Items.Add("Up\t" + e.KeyCode.ToString());
+                    e.Handled = true;
+                }
 
-        void gkh_KeyDown(object sender, KeyEventArgs e)
-        {
-            lstLog.Items.Add("Down\t" + e.KeyCode.ToString());
-            e.Handled = true;
-        }
-*/
+                void gkh_KeyDown(object sender, KeyEventArgs e)
+                {
+                    lstLog.Items.Add("Down\t" + e.KeyCode.ToString());
+                    e.Handled = true;
+                }
+        */
         static void StartHealBot()
         {
             ProgramHandle.RequestStopHeal();
@@ -113,20 +121,27 @@ namespace AresTrainerV3
             ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
             ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
 
-            if (normalAttackThread.IsAlive)
-            {
-                ProgramHandle.RequestStopAnim();
-            }
+
+            //
+            // THERE IS NOT NORMALATACKTHREAD now so dont need to check for it
+            //  
+            /*            if (normalAttackThread.IsAlive)
+                                        {
+                                            ProgramHandle.RequestStopAnim();
+                                        }
+                            */
             Thread.Sleep(50);
             ProgramHandle.RequestStopAnim();
             Thread.Sleep(50);
+
+
             if (animbotThread == null)
             {
-                animbotThread = new Thread(ProgramHandle.StartAnimBot);
+                animbotThread = new Thread(ProgramHandle.Start1HitKO);
             }
             if (!animbotThread.IsAlive)
             {
-                animbotThread = new Thread(ProgramHandle.StartAnimBot);
+                animbotThread = new Thread(ProgramHandle.Start1HitKO);
                 animbotThread.Start();
             }
         }
@@ -158,11 +173,6 @@ namespace AresTrainerV3
 
         }
 
-/*        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-*/
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             int tempValue = 1000;
@@ -192,10 +202,26 @@ namespace AresTrainerV3
 
         private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
         {
-            int i = 10;
+            int i = ProgramHandle.MannaRestoreValue;
             int.TryParse(MannaValueTextBox.Text, out i);
             ProgramHandle.MannaRestoreValue = i;
 
+        }
+
+        void ShowIfOnOrOff()
+
+        {
+            if (!ProgramHandle.StopAnim)
+            {
+                OnOffButton.Text = "OFF";
+                OnOffButton.BackColor = Color.Gray;
+            }
+            else
+            {
+                OnOffButton.Text = "ON";
+                OnOffButton.BackColor = Color.Yellow;
+
+            }
         }
     }
 }
