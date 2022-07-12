@@ -37,7 +37,7 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosBaldorTempleSecontloor = new ValueTuple<int, int, int>(1128864384, 1124166595, 0);
 
 
-        public static ValueTuple<int, int, int> PosHollinaSiros = new ValueTuple<int, int, int>(1134911994, 1115018006, 0);
+        public static ValueTuple<int, int, int> PosHollinaSiros = new ValueTuple<int, int, int>(1134911994, 1115018006, 1106469888);
         public static ValueTuple<int, int, int> PosHollinaTunnel = new ValueTuple<int, int, int>(1120233092, 1137152155, 1091370351);
         public static ValueTuple<int, int, int> PosSiros1stFloor = new ValueTuple<int, int, int>(1129909568, 1123683631, 1077936122);
         public static ValueTuple<int, int, int> PosSiros2thFloor = new ValueTuple<int, int, int>(1131430000, 1124022917, 1091567612);

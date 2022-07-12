@@ -6,7 +6,6 @@ namespace AresTrainerV3
     {
         static Thread healbotThread;
         static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
-        static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
         globalKeyboardHook gkh = new globalKeyboardHook();
 
         static int ValueForAddSubstract = 1000;
@@ -28,7 +27,6 @@ namespace AresTrainerV3
             gkh.HookedKeys.Add(Keys.F4);
             gkh.HookedKeys.Add(Keys.F5);
 
-            // gkh.HookedKeys.Add(Keys.F4);
 
             gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
             gkh.KeyF4Down += StartSkillAttack;
@@ -150,32 +148,13 @@ namespace AresTrainerV3
 
         private void StartNormalBtn_Click(object sender, EventArgs e)
         {
-            StartNormalAttack();
-        }
-        static void StartNormalAttack()
-        {
-            ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
-            ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
-            ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
-
-
-            if (animbotThread.IsAlive)
-            {
-                ProgramHandle.RequestStopAnim();
-            }
-            Thread.Sleep(50);
-            ProgramHandle.RequestStopAnim();
-            Thread.Sleep(50);
-            if (!normalAttackThread.IsAlive)
-            {
-                normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
-                normalAttackThread.Start();
-            }
-
-
+           // StartNormalAttack();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+
+
+
+       private void textBox1_TextChanged(object sender, EventArgs e)
         {
             int tempValue = 1000;
             int.TryParse(textBox1.Text,out tempValue);
@@ -225,5 +204,45 @@ namespace AresTrainerV3
 
             }
         }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            gkh = null;
+            ProgramHandle.RequestStopAnim();
+            ProgramHandle.RequestStopHeal();
+
+        }
+
+
+
+
+
+        #region OLD NORMAL ATTACK THREAD and Functuiobn
+        // static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
+
+        /*        static void StartNormalAttack()
+        {
+            ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
+            ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
+            ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
+
+
+            if (animbotThread.IsAlive)
+            {
+                ProgramHandle.RequestStopAnim();
+            }
+            Thread.Sleep(50);
+            ProgramHandle.RequestStopAnim();
+            Thread.Sleep(50);
+            if (!normalAttackThread.IsAlive)
+            {
+                normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
+                normalAttackThread.Start();
+            }
+        }
+
+*/
+        #endregion
+
     }
 }
