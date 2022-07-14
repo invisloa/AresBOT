@@ -217,6 +217,19 @@ namespace AresTrainerV3
 
 
 
+
+        private void MouseScannerBtn_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                MouseCircleScanner.DrawMultipleCircles(7, 30, 5, 962, 528);
+            }
+
+        }
+
+
+
+
         #region OLD NORMAL ATTACK THREAD and Functuiobn
         // static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
 

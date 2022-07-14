@@ -42,6 +42,7 @@
             this.OnOffButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.MouseScannerBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -179,11 +180,22 @@
             this.label3.TabIndex = 15;
             this.label3.Text = "Manna value";
             // 
+            // MouseScannerBtn
+            // 
+            this.MouseScannerBtn.Location = new System.Drawing.Point(589, 328);
+            this.MouseScannerBtn.Name = "MouseScannerBtn";
+            this.MouseScannerBtn.Size = new System.Drawing.Size(134, 49);
+            this.MouseScannerBtn.TabIndex = 16;
+            this.MouseScannerBtn.Text = "MouseScannerBtn";
+            this.MouseScannerBtn.UseVisualStyleBackColor = true;
+            this.MouseScannerBtn.Click += new System.EventHandler(this.MouseScannerBtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.MouseScannerBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.OnOffButton);
@@ -223,5 +235,6 @@
         private Button OnOffButton;
         private Label label2;
         private Label label3;
+        private Button MouseScannerBtn;
     }
 }

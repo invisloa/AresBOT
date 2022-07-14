@@ -79,5 +79,5 @@ public static class PointersAndValues
     public static IntPtr baseAddress = IntPtr.Zero;
     public static IntPtr client = IntPtr.Zero;
     public static Memory mem = new Memory();
-    public static InputSimulator inputSimulator = new InputSimulator();
+    //  CHyba nie potrzebne public static InputSimulator inputSimulator = new InputSimulator();
 }
