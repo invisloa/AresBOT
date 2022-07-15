@@ -10,14 +10,14 @@ namespace AresTrainerV3
     {
         public static Tuple<int, int>[] GenerateCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int radiusIncrementation, int centerX, int centerY)
         {
-            int numberOfTupples = 0;
-            int pointsToCountTupples = pointsInACircle;
+            double numberOfTupples = 0;
+            double pointsToCountTupples = pointsInACircle;
             for (int i = 0; i < numberOfCircles; i++)
             {
                 numberOfTupples += pointsToCountTupples;
-                pointsToCountTupples *= (int)1.5;
+                pointsToCountTupples = (int)(pointsToCountTupples *1.2);
             }
-            Tuple<int, int>[] tuplePoints = new Tuple<int, int>[numberOfTupples];
+            Tuple<int, int>[] tuplePoints = new Tuple<int, int>[(int)numberOfTupples];
             int currentPoint = 0;
             for (int ix = 0; ix < numberOfCircles; ix++)
             {
@@ -32,7 +32,7 @@ namespace AresTrainerV3
                     tuplePoints[currentPoint] = new Tuple<int, int>(newX, newY);
                     currentPoint++;
                 }
-                pointsInACircle *= (int)1.5;
+                pointsInACircle = (int)(pointsInACircle *1.2);
                 startingRadius += radiusIncrementation;
 
 

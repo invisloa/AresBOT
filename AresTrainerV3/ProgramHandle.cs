@@ -273,7 +273,9 @@ namespace AresTrainerV3
             foreach (Tuple<int, int> point in GeneratedCircles)
             {
                 if (_stopBot)
-                { 
+                {
+                    mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
+
                     if (mobSelected == 0)
                     {
                         MouseOperations.SetCursorPosition(point.Item1, point.Item2);
@@ -320,7 +322,7 @@ namespace AresTrainerV3
         public static void StartExpBot()
         {
             // SetForegroundWindow(FindWindow(null, "Nostalgia"));
-            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(10, 100, 30, 30, 930, 500);
+            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(30, 300, 10, 10, 930, 500);
 
 
             while (_stopBot)
