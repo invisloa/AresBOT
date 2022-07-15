@@ -80,6 +80,18 @@ namespace Utilities {
 					if (_keyEventArgs.Handled)
 						return 1;
 				}
+				if (key == Keys.F6)
+				{
+
+					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
+					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF6Down != null))
+					{
+						KeyF6Down();
+					}
+					if (_keyEventArgs.Handled)
+						return 1;
+				}
+
 			}
 			return CallNextHookEx(hhook, code, wParam, ref lParam);
 		}
@@ -140,6 +152,10 @@ namespace Utilities {
 		/// Occurs when F5 is down
 		/// </summary>
 		public event KeyFXxXPressedDelegate KeyF5Down;
+		/// <summary>
+		/// Occurs when F5 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF6Down;
 
 		#endregion
 

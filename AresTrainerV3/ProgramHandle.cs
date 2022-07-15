@@ -25,8 +25,10 @@ namespace AresTrainerV3
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
         static volatile int hpValue = 0;
+        static volatile int mannaValue = 0; // Changed to volatile 
+        static volatile int mobSelected = 0;
+
         static int _currentMap = 0;
-        static int mannaValue = 0;
 
 
         static IntPtr baseAddress = IntPtr.Zero;
@@ -38,6 +40,7 @@ namespace AresTrainerV3
         // static IntPtr anim1AddressPointer;
         static IntPtr cameraBaseOffset;
         static IntPtr cameraFogOffset;
+        static IntPtr mobSelectedOffset;
         static InputSimulator inputSimulator = new InputSimulator();
         static byte[] hpAddress;
         static byte[] MannaAddress;
@@ -45,8 +48,10 @@ namespace AresTrainerV3
         static byte[] anim1Address;
         static byte[] anim2Address;
         static byte[] slotFirstAddress;
+        static byte[] mobSelectedAddress;
         private static volatile bool _stopHeal = false;
         private static volatile bool _stopAnim = false;
+        private static volatile bool _stopBot = false;
 
         public static bool StopAnim
         {
@@ -88,18 +93,20 @@ namespace AresTrainerV3
 
 
             /*            // KOMBINACJE ZEBY POKAZAC ANIM1 Address ale caly czas base offset pokazywalo
-
+            
                         IntPtr anim1AddressPointer = mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc));
                         Debug.WriteLine("anim1 Pointer");
                         Debug.WriteLine(mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc)));
             */
 
 
-            baseNormalOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, 0x2ad1fc));
+            baseNormalOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.baseNormalOffset));
 
             cameraBaseOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.cameraBaseOffset));
 
             cameraFogOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogOffset));
+
+            mobSelectedOffset = mem.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.mobSelectedOffset));
 
             hpAddress = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4);
 
@@ -112,6 +119,8 @@ namespace AresTrainerV3
             anim2Address = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
             slotFirstAddress = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstOffset), 4);
+
+            mobSelectedAddress = mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mobSelected), 4);
 
 
             int myMaxHp = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
@@ -130,6 +139,9 @@ namespace AresTrainerV3
             }
 
         }
+
+
+
         public static int SetAnim1Value
         {
             get
@@ -179,6 +191,15 @@ namespace AresTrainerV3
             else
                 _stopAnim = true;
         }
+
+        public static void RequestStopBot()
+        {
+            if (_stopBot)
+                _stopBot = false;
+            else
+                _stopBot = true;
+        }
+
         static void HealKeyPress()
         {
             if (BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstOffset), 4)), 0) > 16777220) // if less then 5 use key 6 which is teleport
@@ -217,21 +238,95 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
+                Thread.Sleep(35);
                 hpValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                Thread.Sleep(35);
                 mannaValue = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                Thread.Sleep(35);
 
 
                 if (hpValue < hpHealValue)
                 {
                     HealKeyPress();
                 }
-                if (mannaValue < MannaRestoreValue)
+                if (BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0) < MannaRestoreValue)
                 {
                     MannaKeyPress();
                 }
             }
             return;
         }
+
+        public static void DrawCirclePoints(Tuple<int, int>[] GeneratedCircles)
+        {
+                foreach (Tuple<int, int> point in GeneratedCircles)
+                {
+                mobSelected = 0; //BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
+
+                if (mobSelected == 0)
+                    {
+
+                        MouseOperations.SetCursorPosition(point.Item1, point.Item2);
+                        Thread.Sleep(1);
+                    }
+                    else
+                    {
+                        SkillAttackBot();
+                    }
+                }
+                return ;
+        }
+        static void SkillAttackBot()
+        {
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+            Thread.Sleep(1);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+            Thread.Sleep(1);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+            Thread.Sleep(1);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+            Thread.Sleep(1);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+
+            while (mobSelected!=0)
+            {
+                Thread.Sleep(5);
+                mobSelected = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
+                Thread.Sleep(5);
+
+            }
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+
+            return;
+
+        }
+        public static string MobSelectedText()
+        {
+            mobSelected = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
+            return mobSelected.ToString();
+        }
+
+
+        public static void StartExpBot()
+        {
+            // SetForegroundWindow(FindWindow(null, "Nostalgia"));
+            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(10, 20, 30, 30, 962, 528);
+
+
+            while (_stopBot)
+            {
+                DrawCirclePoints(GeneratedCircles);
+            }
+            return;
+        }
+
+
+
+
+
+
+
+
         public static void Start1HitKO()
         {
             while (_stopAnim)
@@ -325,7 +420,7 @@ namespace AresTrainerV3
 
         public static void SetCamera()
         {
-            mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceValue));
+            mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceAnimValue));
             mem.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAnglePointer), BitConverter.GetBytes(PointersAndValues.cameraAngleValue));
             mem.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
             mem.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
@@ -334,7 +429,8 @@ namespace AresTrainerV3
 
 
 
-        // Teleporter try
+
+        #region teleport// Teleporter try
         public static void Teleporting()
         {
             _currentMap = BitConverter.ToInt32((mem.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0);
@@ -471,5 +567,6 @@ namespace AresTrainerV3
                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item3));
             }
         }
+        #endregion
     }
 }

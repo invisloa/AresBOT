@@ -9,8 +9,12 @@ namespace AresTrainerV3;
 
 public static class PointersAndValues
 {
+    public const int baseNormalOffset = 0x2ad1fc;
     public const int fogOffset = 0x2B03CC;
     public const int cameraBaseOffset = 0x2AC578;
+    public const int mobSelectedOffset = 0x2A9648;
+
+    
 
     // offsets
     public const int hpOffset = 0x148;
@@ -29,11 +33,15 @@ public static class PointersAndValues
     public const int positionXOffset = 0x244;
     public const int positionYOffset = 0x23c;
     public const int positionZOffset = 0x240;
-
+    public const int mobSelected = 0xfd;
+    public const int clickPositionXOffset = 0x544;
+    public const int clickPositionYOffset = 0x53c;
+    
 
     // values
     public const int runSpeedValue4 = 16859340;
-    public const int cameraDistanceValue = 1764311826;
+    public const int cameraDistanceAnimValue = 1764311826;
+    public const int cameraDistanceBotValue = 1764311750;
     public const int cameraFogValue = 18000;
     public const int cameraAngleValue = 81853;
     public static int skill1AnimValue = 0;

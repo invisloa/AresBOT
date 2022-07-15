@@ -8,44 +8,78 @@ namespace AresTrainerV3
 {
     public static class MouseCircleScanner
     {
-        static Tuple<int, int>[] GenerateCirclePoints(int points, int radius, int centerX, int centerY)
+        public static Tuple<int, int>[] GenerateCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int radiusIncrementation, int centerX, int centerY)
         {
-            Tuple<int, int>[] tuplePoints = new Tuple<int, int>[points];
-            int currentPoint = 0;
-            double slice = 2 * Math.PI / points;
-            for (int i = 0; i < points; i++)
+            int numberOfTupples = 0;
+            int pointsToCountTupples = pointsInACircle;
+            for (int i = 0; i < numberOfCircles; i++)
             {
-                double angle = slice * i;
-                int newX = (int)(centerX + radius * Math.Cos(angle));
-                int newY = (int)(centerY + radius * Math.Sin(angle));
+                numberOfTupples += pointsToCountTupples;
+                pointsToCountTupples *= (int)1.5;
+            }
+            Tuple<int, int>[] tuplePoints = new Tuple<int, int>[numberOfTupples];
+            int currentPoint = 0;
+            for (int ix = 0; ix < numberOfCircles; ix++)
+            {
+                double slice = 2 * Math.PI / pointsInACircle;
 
-                tuplePoints[currentPoint] = new Tuple<int, int>(newX, newY);
-                currentPoint++;
+                for (int i = 0; i < pointsInACircle; i++)
+                {
+                    double angle = slice * i;
+                    int newX = (int)(centerX + startingRadius * Math.Cos(angle));
+                    int newY = (int)(centerY + startingRadius * Math.Sin(angle));
+
+                    tuplePoints[currentPoint] = new Tuple<int, int>(newX, newY);
+                    currentPoint++;
+                }
+                pointsInACircle *= (int)1.5;
+                startingRadius += radiusIncrementation;
+
+
             }
             return tuplePoints;
         }
 
-        static void DrawCirclePoints(int points, int radius, int centerX, int centerY)
-        {
-            Tuple<int, int>[] searchPoints = GenerateCirclePoints(points, radius, centerX, centerY);
-            foreach (Tuple<int, int> point in searchPoints)
-            {
-                MouseOperations.SetCursorPosition(point.Item1, point.Item2);
-                Thread.Sleep(5);
-            }
-        }
 
-        public static void DrawMultipleCircles(int numberOfCircles, int howManyPoints, int radius, int ceterX, int CenterY)
-        {
-            int currentCircle = 1;
-            for (int i = 0; i < numberOfCircles; i++)
-            {
-                DrawCirclePoints(howManyPoints, radius, ceterX, CenterY);
-                currentCircle++;
-                howManyPoints *= (int)1.5;
-                radius += 10;
-            }
 
-        }
+        /*        static Tuple<int, int>[] GenerateMultipleCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int centerX, int centerY)
+                {
+                    Tuple<int, int>[] tuplePoints = new Tuple<int, int>[pointsInACircle * numberOfCircles *2];
+
+                    for (int i = 0; i < numberOfCircles; i++)
+                    {
+                        tuplePoints = GenerateCirclePoints(pointsInACircle, startingRadius, centerX, centerY);
+                        pointsInACircle *= (int)2;
+                        startingRadius += 10;
+                    }
+                    ret
+
+                }
+        */
+
+
+
+
+
+        /*        
+
+                public static void DrawMultipleCircles(int numberOfCircles, int howManyPoints, int radius, int ceterX, int CenterY,int mobSelected)
+                {
+                    for (int i = 0; i < numberOfCircles; i++)
+                    {
+                        if (mobSelected == 0)
+                        {
+                            DrawCirclePoints(howManyPoints, radius, ceterX, CenterY,mobSelected);
+                            howManyPoints *= (int)1.5;
+                            radius += 10;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
+                }
+        */
     }
 }

@@ -4,8 +4,10 @@ namespace AresTrainerV3
 {
     public partial class Form1 : Form
     {
-        static Thread healbotThread;
+        static Thread healbotThread = new Thread(ProgramHandle.StartHealbot);
         static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
+        static Thread expbotThread = new Thread(ProgramHandle.StartExpBot);
+
         globalKeyboardHook gkh = new globalKeyboardHook();
 
         static int ValueForAddSubstract = 1000;
@@ -26,12 +28,15 @@ namespace AresTrainerV3
             gkh.HookedKeys.Add(Keys.F2);
             gkh.HookedKeys.Add(Keys.F4);
             gkh.HookedKeys.Add(Keys.F5);
+            gkh.HookedKeys.Add(Keys.F6);
 
 
             gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
             gkh.KeyF4Down += StartSkillAttack;
             gkh.KeyF4Down += ShowIfOnOrOff; // SUBSCRIBE function to chane button visibility according to state of speed
             gkh.KeyF5Down += ProgramHandle.Teleporting;
+            gkh.KeyF6Down += StartExpBot;
+
 
 
             // gkh.KeyF4Down += new globalKeyboardHook.KeyFXxXPressed(StartNormalAttack); //JUST ANOTHER WAY TO SUBSCRIBE DELEGATE with new...
@@ -65,6 +70,26 @@ namespace AresTrainerV3
             }
 
         }
+
+        static void StartExpBot()
+        {
+            Thread.Sleep(50);
+            ProgramHandle.RequestStopBot();
+            Thread.Sleep(50);
+
+
+            if (expbotThread == null)
+            {
+                expbotThread = new Thread(ProgramHandle.StartExpBot);
+            }
+            if (!expbotThread.IsAlive)
+            {
+                expbotThread = new Thread(ProgramHandle.StartExpBot);
+                expbotThread.Start();
+            }
+
+        }
+
 
 
         private void StartHealbotBTN_Click(object sender, EventArgs e)
@@ -192,6 +217,7 @@ namespace AresTrainerV3
         void ShowIfOnOrOff()
 
         {
+
             if (!ProgramHandle.StopAnim)
             {
                 OnOffButton.Text = "OFF";
@@ -203,6 +229,7 @@ namespace AresTrainerV3
                 OnOffButton.BackColor = Color.Yellow;
 
             }
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -220,11 +247,7 @@ namespace AresTrainerV3
 
         private void MouseScannerBtn_Click(object sender, EventArgs e)
         {
-            while (true)
-            {
-                MouseCircleScanner.DrawMultipleCircles(7, 30, 5, 962, 528);
-            }
-
+            StartExpBot();
         }
 
 
