@@ -73,6 +73,8 @@ namespace AresTrainerV3
 
         static void StartExpBot()
         {
+            ProgramHandle.SetCameraForExpBot();
+
             Thread.Sleep(50);
             ProgramHandle.RequestStopBot();
             Thread.Sleep(50);
@@ -140,7 +142,7 @@ namespace AresTrainerV3
         }
         static void StartSkillAttack()
         {
-            ProgramHandle.SetCamera();
+            ProgramHandle.SetCameraForSpeed();
 
             ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
             ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;

@@ -13,8 +13,11 @@ public static class PointersAndValues
     public const int fogOffset = 0x2B03CC;
     public const int cameraBaseOffset = 0x2AC578;
     public const int mobSelectedOffset = 0x2A9648;
+    public const int mobBeingAttackedOffset = 0x2AD1FC;
 
     
+
+
 
     // offsets
     public const int hpOffset = 0x148;
@@ -23,7 +26,7 @@ public static class PointersAndValues
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;
     public const int slotFirstOffset = 0xbb2;
-    public const int cameraDistancePointer = 0x19e;
+    public const int cameraDistancePointer = 0x19c;
     public const int cameraFogPointer = 0xd16;
     public const int cameraAnglePointer = 0x1b6;
     public const int skillDelayPointer = 0x802;
@@ -33,15 +36,17 @@ public static class PointersAndValues
     public const int positionXOffset = 0x244;
     public const int positionYOffset = 0x23c;
     public const int positionZOffset = 0x240;
-    public const int mobSelected = 0xfd;
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
+    public const int mobSelected = 0xfd;
+    public const int mobBeingAttacked = 0x050;
+    
     
 
     // values
     public const int runSpeedValue4 = 16859340;
-    public const int cameraDistanceAnimValue = 1764311826;
-    public const int cameraDistanceBotValue = 1764311750;
+    public const int cameraDistanceAnimValue = 1125253120;
+    public const int cameraDistanceBotValue = 1107898680;
     public const int cameraFogValue = 18000;
     public const int cameraAngleValue = 81853;
     public static int skill1AnimValue = 0;
