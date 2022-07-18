@@ -135,6 +135,8 @@ namespace AresTrainerV3
             mobBeingAttackedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingAttacked), 4);
 
 
+
+
             int myMaxHp = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
             if(myMaxHp <200)
             {
@@ -240,8 +242,20 @@ namespace AresTrainerV3
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
             inputSimulator.Keyboard.Sleep(200);
         }
+        static void UsePotionsKeyPress()
+        {
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_8);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_8);
+            inputSimulator.Keyboard.Sleep(200);
+        }
 
-      
+
+
 
         public static void StartHealbot()
         {
@@ -263,6 +277,12 @@ namespace AresTrainerV3
                 if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0) < MannaRestoreValue)
                 {
                     MannaKeyPress();
+
+                    // if running speed is normal use red and white potion
+                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    {
+                        UsePotionsKeyPress();
+                    }    
                 }
             }
             return;
@@ -317,27 +337,6 @@ namespace AresTrainerV3
             mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
             return mobSelected.ToString();
         }
-
-
-        public static void StartExpBot()
-        {
-            // SetForegroundWindow(FindWindow(null, "Nostalgia"));
-            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(40, 5000, 2, 10, 930, 500);
-
-
-            while (_stopBot)
-            {
-                DrawCirclePoints(GeneratedCircles);
-            }
-            return;
-        }
-
-
-
-
-
-
-
 
         public static void Start1HitKO()
         {
@@ -590,5 +589,32 @@ namespace AresTrainerV3
             }
         }
         #endregion
+
+
+
+
+
+
+        public static void StartExpBot()
+        {
+            // SetForegroundWindow(FindWindow(null, "Nostalgia"));
+            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(40, 5000, 2, 10, 930, 500);
+
+
+            while (_stopBot)
+            {
+                DrawCirclePoints(GeneratedCircles);
+            }
+            return;
+        }
+
+
+
+        public static void MoveToPosition()
+        {
+            memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
+
+        }
+
     }
 }

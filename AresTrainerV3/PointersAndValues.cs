@@ -15,10 +15,6 @@ public static class PointersAndValues
     public const int mobSelectedOffset = 0x2A9648;
     public const int mobBeingAttackedOffset = 0x2AD1FC;
 
-    
-
-
-
     // offsets
     public const int hpOffset = 0x148;
     public const int MannaOffset = 0x980;
@@ -40,11 +36,13 @@ public static class PointersAndValues
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
     public const int mobBeingAttacked = 0x050;
+
+
     
-    1431715797
+    
 
     // values
-    public const int runSpeedValue4 = 16859340;
+    public const int runSpeedNormalValue = 16859264;
     public const int cameraDistanceAnimValue = 1125253120;
     public const int cameraDistanceBotValue = 1112099680;
     public const int cameraFogValue = 18000;
@@ -57,6 +55,10 @@ public static class PointersAndValues
     public static int skillDelayValue = 0;
     public static int clickDelayValue = 0;
     public static int ToCheckValue0 = 0;
+    public static int MovingSpeed = 0;
+    public static int AttackSpeed = 1431715797;
+
+
     // arcer
     public static int arcerAnim1 = 1161436900;
     public static int arcerAnim2 = 0;                         // nie widac roznicy po zmianie na 0 NIE TESTOWANO!!!!!!!    1161337300;
