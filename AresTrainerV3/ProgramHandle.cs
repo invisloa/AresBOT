@@ -608,13 +608,51 @@ namespace AresTrainerV3
             return;
         }
 
-
-
-        public static void MoveToPosition()
+        static void WriteClickPositionX(int posX)
         {
-            memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
-
+            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickPositionXOffset), BitConverter.GetBytes(posX));
         }
+        static void WriteClickPositionY(int posY)
+        {
+            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickPositionYOffset), BitConverter.GetBytes(posY));
+        }
+        static int ReadPositionX()
+        {
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);
+        }
+        static int ReadPositionY()
+        {
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0);
+        }
+
+
+        public static bool MoveToPosition(int destinedPosX,int destinedPosY)
+        {
+
+            /*            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                        Thread.Sleep(1);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            */
+            /*            WriteClickPositionX(destinedPosX);
+                        WriteClickPositionY(destinedPosY);
+                        memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickToMove), BitConverter.GetBytes(2));
+
+
+                        if (ReadPositionX() == destinedPosX && ReadPositionY() == destinedPosY)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+            */
+
+
+
+            return true;
+        }
+
 
     }
 }

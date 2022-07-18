@@ -55,8 +55,20 @@ namespace Utilities {
 					if (_keyEventArgs.Handled)
 						return 1;
 				}
-                // IF KEY F4 IS Pressed
-                if (key == Keys.F4)
+				// IF KEY F3 IS Pressed
+				if (key == Keys.F3)
+				{
+
+					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
+					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF3Down != null))
+					{
+						KeyF3Down();
+					}
+					if (_keyEventArgs.Handled)
+						return 1;
+				}
+				// IF KEY F4 IS Pressed
+				if (key == Keys.F4)
 				{
 
 					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
@@ -144,6 +156,10 @@ namespace Utilities {
 		/// Occurs when F2 is down
 		/// </summary>
 		public event KeyFXxXPressedDelegate KeyF2Down;
+		/// <summary>
+		/// Occurs when F3 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF3Down;
 		/// <summary>
 		/// Occurs when F4 is down
 		/// </summary>

@@ -36,10 +36,11 @@ public static class PointersAndValues
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
     public const int mobBeingAttacked = 0x050;
+    public const int clickToMove = 0x438;
 
 
-    
-    
+
+
 
     // values
     public const int runSpeedNormalValue = 16859264;
@@ -95,4 +96,14 @@ public static class PointersAndValues
     public static IntPtr client = IntPtr.Zero;
     public static Memory mem = new Memory();
     //  CHyba nie potrzebne public static InputSimulator inputSimulator = new InputSimulator();
+
+
+
+    public static Tuple<int, int>[] PositionsArray =
+    {
+        new Tuple<int, int>(5, 78),
+        new Tuple<int, int>(5, 78),
+        new Tuple<int, int>(5, 78),
+        new Tuple<int, int>(5, 78),
+    };
 }

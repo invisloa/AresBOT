@@ -26,12 +26,14 @@ namespace AresTrainerV3
         private void Form1_Load(object sender, EventArgs e)
         {
             gkh.HookedKeys.Add(Keys.F2);
+            gkh.HookedKeys.Add(Keys.F3);
             gkh.HookedKeys.Add(Keys.F4);
             gkh.HookedKeys.Add(Keys.F5);
             gkh.HookedKeys.Add(Keys.F6);
 
 
             gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
+            gkh.KeyF3Down += StartMoveBot;
             gkh.KeyF4Down += StartSkillAttack;
             gkh.KeyF4Down += ShowIfOnOrOff; // SUBSCRIBE function to chane button visibility according to state of speed
             gkh.KeyF5Down += ProgramHandle.Teleporting;
@@ -252,6 +254,10 @@ namespace AresTrainerV3
             StartExpBot();
         }
 
+        void StartMoveBot()
+        {
+            ProgramHandle.MoveToPosition(1147303303, 1124479960);
+        }
 
 
 
