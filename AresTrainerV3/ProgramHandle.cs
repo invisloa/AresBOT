@@ -276,7 +276,7 @@ namespace AresTrainerV3
                 {
                     mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
 
-                    if (mobSelected == 0)
+                    if (mobSelected == 0 || mobSelected > 8300000)
                     {
                         MouseOperations.SetCursorPosition(point.Item1, point.Item2);
                         mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
@@ -322,7 +322,7 @@ namespace AresTrainerV3
         public static void StartExpBot()
         {
             // SetForegroundWindow(FindWindow(null, "Nostalgia"));
-            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(30, 300, 10, 10, 930, 500);
+            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(40, 5000, 2, 10, 930, 500);
 
 
             while (_stopBot)

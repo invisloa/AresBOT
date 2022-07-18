@@ -15,7 +15,7 @@ namespace AresTrainerV3
             for (int i = 0; i < numberOfCircles; i++)
             {
                 numberOfTupples += pointsToCountTupples;
-                pointsToCountTupples = (int)(pointsToCountTupples *1.2);
+                pointsToCountTupples = (int)(pointsToCountTupples *1);
             }
             Tuple<int, int>[] tuplePoints = new Tuple<int, int>[(int)numberOfTupples];
             int currentPoint = 0;
@@ -32,7 +32,7 @@ namespace AresTrainerV3
                     tuplePoints[currentPoint] = new Tuple<int, int>(newX, newY);
                     currentPoint++;
                 }
-                pointsInACircle = (int)(pointsInACircle *1.2);
+                pointsInACircle = (int)(pointsInACircle *1);
                 startingRadius += radiusIncrementation;
 
 

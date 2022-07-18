@@ -41,12 +41,12 @@ public static class PointersAndValues
     public const int mobSelected = 0xfd;
     public const int mobBeingAttacked = 0x050;
     
-    
+    1431715797
 
     // values
     public const int runSpeedValue4 = 16859340;
     public const int cameraDistanceAnimValue = 1125253120;
-    public const int cameraDistanceBotValue = 1107898680;
+    public const int cameraDistanceBotValue = 1112099680;
     public const int cameraFogValue = 18000;
     public const int cameraAngleValue = 81853;
     public static int skill1AnimValue = 0;
