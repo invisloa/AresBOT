@@ -7,6 +7,7 @@ namespace AresTrainerV3
         static Thread healbotThread = new Thread(ProgramHandle.StartHealbot);
         static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
         static Thread expbotThread = new Thread(ProgramHandle.StartExpBot);
+        static Thread pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
 
         globalKeyboardHook gkh = new globalKeyboardHook();
 
@@ -30,6 +31,7 @@ namespace AresTrainerV3
             gkh.HookedKeys.Add(Keys.F4);
             gkh.HookedKeys.Add(Keys.F5);
             gkh.HookedKeys.Add(Keys.F6);
+            gkh.HookedKeys.Add(Keys.F9);
 
 
             gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
@@ -38,6 +40,7 @@ namespace AresTrainerV3
             gkh.KeyF4Down += ShowIfOnOrOff; // SUBSCRIBE function to chane button visibility according to state of speed
             gkh.KeyF5Down += ProgramHandle.Teleporting;
             gkh.KeyF6Down += StartExpBot;
+            gkh.KeyF9Down += StartPixelBot;
 
 
 
@@ -70,7 +73,21 @@ namespace AresTrainerV3
                 healbotThread = new Thread(ProgramHandle.StartHealbot);
                 healbotThread.Start();
             }
+        }
+        static void StartPixelBot()
+        {
+            PixelBotSearcher.RequestStopPixel();
+            Thread.Sleep(500);
+            if (pixelBotThread == null)
+            {
+                pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
+            }
 
+            if (!pixelBotThread.IsAlive)
+            {
+                pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
+                pixelBotThread.Start();
+            }
         }
 
         static void StartExpBot()
@@ -244,11 +261,6 @@ namespace AresTrainerV3
 
         }
 
-
-
-
-
-
         private void MouseScannerBtn_Click(object sender, EventArgs e)
         {
             StartExpBot();
@@ -257,6 +269,12 @@ namespace AresTrainerV3
         void StartMoveBot()
         {
             ProgramHandle.MoveToPosition(1147303303, 1124479960);
+        }
+        void SetExpBotStartingPos()
+        {
+            MouseOperations.MousePoint mouseCurrentPosition = new MouseOperations.MousePoint();
+            mouseCurrentPosition = MouseOperations.GetCursorPosition();
+            PointersAndValues.expBotMouseStartingPos = new Tuple<int,int>(mouseCurrentPosition.X,mouseCurrentPosition.Y);
         }
 
 
@@ -288,5 +306,13 @@ namespace AresTrainerV3
 */
         #endregion
 
+        private void Tester_Click(object sender, EventArgs e)
+        {
+/*            PixelBotSearcher pix = new PixelBotSearcher();
+
+            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+            pix.SearchPixel("#433B00");
+            GC.Collect();
+*/        }
     }
 }

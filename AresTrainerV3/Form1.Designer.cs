@@ -43,6 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.MouseScannerBtn = new System.Windows.Forms.Button();
+            this.Tester = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -190,11 +191,22 @@
             this.MouseScannerBtn.UseVisualStyleBackColor = true;
             this.MouseScannerBtn.Click += new System.EventHandler(this.MouseScannerBtn_Click);
             // 
+            // Tester
+            // 
+            this.Tester.Location = new System.Drawing.Point(308, 278);
+            this.Tester.Name = "Tester";
+            this.Tester.Size = new System.Drawing.Size(75, 23);
+            this.Tester.TabIndex = 17;
+            this.Tester.Text = "Tester";
+            this.Tester.UseVisualStyleBackColor = true;
+            this.Tester.Click += new System.EventHandler(this.Tester_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Tester);
             this.Controls.Add(this.MouseScannerBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -236,5 +248,6 @@
         private Label label2;
         private Label label3;
         private Button MouseScannerBtn;
+        private Button Tester;
     }
 }

@@ -40,6 +40,28 @@ namespace AresTrainerV3
             return tuplePoints;
         }
 
+        public static Tuple<int, int>[] GenerateLinearPoints(int startingX,int startingY, int lengthX, int heightY, int distanceBetweenPoints)
+        {
+            int numberOfTuples = lengthX * heightY;
+            int currentPoint = 0;
+            int currentIterationY = startingY;
+            Tuple<int, int>[] tuplePoints = new Tuple<int, int>[numberOfTuples];
+            for (int i = 0; i < lengthX; i++)
+            {
+                tuplePoints[currentPoint] = new Tuple<int, int>(startingX, startingY);
+                currentPoint++;
+                currentIterationY = startingY;
+                for (int y = 1; y < heightY; y++)
+                {
+                    tuplePoints[currentPoint] = new Tuple<int, int>(startingX, currentIterationY + 1);
+                    currentPoint++;
+                    currentIterationY += distanceBetweenPoints;
+                }
+                startingX += distanceBetweenPoints;
+            }
+            return tuplePoints;
+        }
+
 
 
         /*        static Tuple<int, int>[] GenerateMultipleCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int centerX, int centerY)

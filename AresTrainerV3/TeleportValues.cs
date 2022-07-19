@@ -9,11 +9,11 @@ namespace AresTrainerV3
     public static class TeleportValues
     {
         public const int Etana = 35;
-        public const int SacredLand = 2;
+        public const int AllianceSacredLand = 2;
 
 
         public const int BaldorTempleFirstFloor = 4;
-        public const int BaldorTempleSecontloor = 32;
+        public const int BaldorTempleSecondFloor = 32;
         public const int Hollina = 7;
         public const int EmpireSacred = 1;
         public const int Ogre1stFloor = 3;

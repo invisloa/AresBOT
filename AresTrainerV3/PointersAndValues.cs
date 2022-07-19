@@ -22,22 +22,36 @@ public static class PointersAndValues
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;
     public const int slotFirstOffset = 0xbb2;
+    public const int slotSecondOffset = 0xbce;
+    public const int slotThirdOffset = 0xbea;
+    public const int slotForthOffset = 0xc06;
+
+    
     public const int cameraDistancePointer = 0x19c;
     public const int cameraFogPointer = 0xd16;
-    public const int cameraAnglePointer = 0x1b6;
+    public const int cameraAngleYPointer = 0x1b6;
+    public const int cameraAngleXPointer = 0x1a0;
     public const int skillDelayPointer = 0x802;
     public const int clickDelayPointer = 0xb2e;
     public const int runSpeedOffset = 0xb8e;
     public const int mapNumberOffset = 0x5a8;
-    public const int positionXOffset = 0x244;
-    public const int positionYOffset = 0x23c;
+    public const int positionYOffset = 0x244;
+    public const int positionXOffset = 0x23c;
     public const int positionZOffset = 0x240;
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
     public const int mobBeingAttacked = 0x050;
-    public const int clickToMove = 0x438;
+    public const int isStillRunningToPosition = 0x438;
 
+    /*  
+     *  
+     *  minPosY = 1145899483
+        maxPosY = 1146086822
+    
+        minPosX = 1119676532
+        maxPosX = 1126508151
+    */
 
 
 
@@ -45,9 +59,9 @@ public static class PointersAndValues
     // values
     public const int runSpeedNormalValue = 16859264;
     public const int cameraDistanceAnimValue = 1125253120;
-    public const int cameraDistanceBotValue = 1112099680;
+    public const int cameraDistanceBotValue = 1112599680;
     public const int cameraFogValue = 18000;
-    public const int cameraAngleValue = 81853;
+    public const int cameraAngleYValue = 81853;
     public static int skill1AnimValue = 0;
     public static int skill2AnimValue = 0;
     public static int normal1AnimValue = 0;
@@ -56,8 +70,16 @@ public static class PointersAndValues
     public static int skillDelayValue = 0;
     public static int clickDelayValue = 0;
     public static int ToCheckValue0 = 0;
-    public static int MovingSpeed = 0;
+    public static int cameraAngleXValue = 0;
     public static int AttackSpeed = 1431715797;
+    public static Tuple<int,int> expBotMouseStartingPos = new Tuple<int, int>(930, 500);
+
+
+    public static int mannaPotionsCountValue = 16777257;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
+    public static int whitePotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
+    public static int redPotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
+
+
 
 
     // arcer

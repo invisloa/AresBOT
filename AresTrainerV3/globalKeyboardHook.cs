@@ -103,6 +103,17 @@ namespace Utilities {
 					if (_keyEventArgs.Handled)
 						return 1;
 				}
+				if (key == Keys.F9) // starting point HEAD
+				{
+
+					KeyEventArgs _keyEventArgs = new KeyEventArgs(key);
+					if ((wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN) && (KeyF9Down != null))
+					{
+						KeyF9Down();
+					}
+					if (_keyEventArgs.Handled)
+						return 1;
+				}
 
 			}
 			return CallNextHookEx(hhook, code, wParam, ref lParam);
@@ -172,6 +183,10 @@ namespace Utilities {
 		/// Occurs when F5 is down
 		/// </summary>
 		public event KeyFXxXPressedDelegate KeyF6Down;
+		/// <summary>
+		/// Occurs when F5 is down
+		/// </summary>
+		public event KeyFXxXPressedDelegate KeyF9Down;
 
 		#endregion
 
