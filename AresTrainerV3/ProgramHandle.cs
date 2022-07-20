@@ -56,9 +56,13 @@ namespace AresTrainerV3
         private static volatile bool _stopHeal = false;
         private static volatile bool _stopAnim = false;
         private static volatile bool _stopBot = false;
-        public static bool StopAnim
+        public static bool isStopAnim
         {
             get { return _stopAnim; }
+        }
+        public static bool isStopBot
+        {
+            get { return _stopBot; }
         }
 
 
@@ -194,14 +198,14 @@ namespace AresTrainerV3
             }
         }
 
-        public static void RequestStopHeal()
+        public static void RequestStopHealBot()
         {
             if (_stopHeal)
                 _stopHeal = false;
             else
                 _stopHeal = true;
         }
-        public static void RequestStopAnim()
+        public static void Request1hitKOBot()
         {
             if (_stopAnim)
                 _stopAnim = false;
@@ -209,7 +213,7 @@ namespace AresTrainerV3
                 _stopAnim = true;
         }
 
-        public static void RequestStopBot()
+        public static void RequestStopExpBot()
         {
             if (_stopBot)
                 _stopBot = false;
@@ -219,7 +223,7 @@ namespace AresTrainerV3
 
         static void HealKeyPress()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstOffset), 4)) > 16777220) // if less then 5 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstOffset), 4)) > 16777222) // if less then 7 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
@@ -235,7 +239,16 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(20000);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
+                inputSimulator.Keyboard.Sleep(150);
+
+                inputSimulator.Keyboard.Sleep(2000);
+
+                ExpBotClass.Repot(GetCurrentMap);
+
             }
         }
         static void MannaKeyPress()
@@ -291,26 +304,12 @@ namespace AresTrainerV3
             return;
         }
 
-        public static void DrawCirclePoints(Tuple<int, int>[] GeneratedCircles)
+        public static void AttackMobWhenSelected()
         {
-            foreach (Tuple<int, int> point in GeneratedCircles)
-            {
-                if (_stopBot)
-                {
-                    //mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
-
-                    if (isMobSelected == 0 || isMobSelected > 8300000)
-                    {
-                        MouseOperations.SetCursorPosition(point.Item1, point.Item2);
-                       // mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
-                    }
-                    else
-                    {
+                    if (isMobSelected != 0 || isMobSelected < 8300000)
+                    { 
                        SkillAttackBot();
                     }
-                }
-            }
-                return ;
         }
         public static void SkillAttackBot()
         {
@@ -331,12 +330,6 @@ namespace AresTrainerV3
             return;
 
         }
-/*        public static string MobSelectedText()
-        {
-            mobSelected = BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0);
-            return mobSelected.ToString();
-        }
-*/
         public static void Start1HitKO()
         {
             while (_stopAnim)
@@ -473,9 +466,9 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotForthOffset), 4)); }
         }
-        public static int isStillRunningValue
+        public static int isWhatAnimationRunning
         {
-            get { return BitConverter.ToInt32(memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.isStillRunningToPosition), 4)); }
+            get { return BitConverter.ToInt32(memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4)); }
         }
 
 
@@ -631,21 +624,10 @@ namespace AresTrainerV3
 
         public static void StartExpBot()
         {
-            // SetForegroundWindow(FindWindow(null, "Nostalgia"));
-
-
-
-            //  COMMENTED TO TRY LINEAR SCANNER
-            //
-            //Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateCirclePoints(34, 7000, 2, 10, PointersAndValues.expBotMouseStartingPos.Item1, PointersAndValues.expBotMouseStartingPos.Item2);
-            //
-            //
-            //
-            Tuple<int, int>[] GeneratedCircles = MouseCircleScanner.GenerateLinearPoints(550, 220, 700, 600, 1);
 
             while (_stopBot)
             {
-                DrawCirclePoints(GeneratedCircles);
+                AttackMobWhenSelected();
             }
             return;
         }
@@ -660,42 +642,26 @@ namespace AresTrainerV3
         }
         static int ReadPositionX()
         {
-            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0);
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);
         }
         static int ReadPositionY()
         {
-            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0);
         }
-
-
-        public static bool MoveToPosition(int destinedPosX,int destinedPosY)
+        public static int GetPositionX
         {
-
-            /*            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                        Thread.Sleep(1);
-                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            */
-            /*            WriteClickPositionX(destinedPosX);
-                        WriteClickPositionY(destinedPosY);
-                        memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickToMove), BitConverter.GetBytes(2));
-
-
-                        if (ReadPositionX() == destinedPosX && ReadPositionY() == destinedPosY)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
-            */
-
-
-
-            return true;
+            get
+            {
+                return ReadPositionX();
+            }
         }
-
-
+        public static int GetPositionY
+        {
+            get
+            {
+                return ReadPositionY();
+            }
+        }
 
     }
 }

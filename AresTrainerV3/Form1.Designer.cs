@@ -44,6 +44,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.MouseScannerBtn = new System.Windows.Forms.Button();
             this.Tester = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -156,7 +159,7 @@
             // 
             this.OnOffButton.BackColor = System.Drawing.SystemColors.GrayText;
             this.OnOffButton.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OnOffButton.Location = new System.Drawing.Point(27, 80);
+            this.OnOffButton.Location = new System.Drawing.Point(25, 12);
             this.OnOffButton.Name = "OnOffButton";
             this.OnOffButton.Size = new System.Drawing.Size(135, 116);
             this.OnOffButton.TabIndex = 13;
@@ -201,11 +204,47 @@
             this.Tester.UseVisualStyleBackColor = true;
             this.Tester.Click += new System.EventHandler(this.Tester_Click);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.GrayText;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.Location = new System.Drawing.Point(47, 153);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(94, 61);
+            this.button1.TabIndex = 18;
+            this.button1.Text = "OFF";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.GrayText;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button2.Location = new System.Drawing.Point(47, 228);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 61);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "OFF";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.SystemColors.GrayText;
+            this.button3.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button3.Location = new System.Drawing.Point(47, 353);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(94, 61);
+            this.button3.TabIndex = 20;
+            this.button3.Text = "OFF";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.Tester);
             this.Controls.Add(this.MouseScannerBtn);
             this.Controls.Add(this.label3);
@@ -249,5 +288,8 @@
         private Label label3;
         private Button MouseScannerBtn;
         private Button Tester;
+        private Button button1;
+        private Button button2;
+        private Button button3;
     }
 }

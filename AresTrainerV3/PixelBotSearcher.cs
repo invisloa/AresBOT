@@ -9,6 +9,10 @@ namespace AresTrainerV3
     public class PixelBotSearcher
     {
         private static volatile bool _stopPixel = false;
+        public static bool isStopPixel
+        {
+            get { return _stopPixel; }
+        }
 
         public static void RequestStopPixel()
         {
@@ -25,18 +29,11 @@ namespace AresTrainerV3
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             Color desiredPixelColor = ColorTranslator.FromHtml("#000000");
-            //
-            //
-            //
             // X and Y probbably set to start search only for LOA window
-            //
-            //
-            //
-
-            for (int x = 470; x < 1320; x++)
+            for (int x = 487; x < 1360; x++)
             {
 
-                for (int y = 225; y < 830; y++)
+                for (int y = 237; y < 835; y++)
                 {
 
                         //MouseOperations.SetCursorPosition(x, y);
@@ -45,7 +42,7 @@ namespace AresTrainerV3
 
                         if (desiredPixelColor == currentPixelColor)
                         {
-                            if (x < 900 || x > 925 || y < 497 || y > 521)
+                            if (x < 938 || x > 976 || y < 502 || y > 540)
                             {
 
                                 MouseOperations.SetCursorPosition(x, y);
@@ -53,19 +50,20 @@ namespace AresTrainerV3
                         }
                 }
             }
-            bitmap = null;
-            graphics = null;
-            Thread.Sleep(100);
-            GC.Collect();
 
+/*            Point kazdym skanie rusz sie w danym kierunku
+            zzzzz
+*/          
+
+            GC.Collect();
         }
-        //888 935  486 530
 
 
     public static void SearchPixel()
         {
             while (_stopPixel)
-            {
+            { 
+            
 
                 if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
                 {
@@ -82,7 +80,8 @@ namespace AresTrainerV3
 
 
                 GC.Collect();
-                }
+            }
         }
     }
 }
+

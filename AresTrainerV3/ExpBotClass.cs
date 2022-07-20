@@ -15,35 +15,47 @@ namespace AresTrainerV3
     {
         static InputSimulator inputSimulator = new InputSimulator();
 
-        public static bool ExpBotRepot(Tuple<int, int>[] MainCityRepotPositions)
+        /*        public static bool ExpBotRepot(Tuple<int, int>[] MainCityRepotPositions)
+                {
+
+                    ProgramHandle.SetCameraForExpBot();
+                    MoveToPotionSuplier(MainCityRepotPositions);
+
+                    return true;
+                }
+
+        *//*        static void MoveToPotionSuplier(Tuple<int, int>[] MainCityRepotPositions)
+                {
+                    foreach (var item in MainCityRepotPositions)
+                    {
+                        MouseOperations.SetCursorPosition(item.Item1, item.Item2);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                        Thread.Sleep(100);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    }
+                }
+        */
+        /*        static void BuyFromSuplier(int whichCity)
+                {
+                    if(ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+                    {
+                        BuyPotionsFromShop(whichCity);
+                    }
+                }
+        */
+        private static volatile bool _stopMoveExpBot = false;
+        public static bool isStopMoveExpBot
         {
-
-            ProgramHandle.SetCameraForExpBot();
-            MoveToPotionSuplier(MainCityRepotPositions);
-
-            return true;
+            get { return _stopMoveExpBot; }
+        }
+        public static void RequestStopMoveExpBot()
+        {
+            if (_stopMoveExpBot)
+                _stopMoveExpBot = false;
+            else
+                _stopMoveExpBot = true;
         }
 
-        static void MoveToPotionSuplier(Tuple<int, int>[] MainCityRepotPositions)
-        {
-            foreach (var item in MainCityRepotPositions)
-            {
-                MouseOperations.SetCursorPosition(item.Item1, item.Item2);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            }
-        }
-
-/*        static void BuyFromSuplier(int whichCity)
-        {
-            if(ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
-            {
-                BuyPotionsFromShop(whichCity);
-            }
-        }
-*/
-        
         static void MoveMouseForBuyingOperation(int xPos,int yPos)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);
@@ -53,7 +65,7 @@ namespace AresTrainerV3
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(100);
         }
-        static void MoveAndLeftCliokOperation(int xPos, int yPos)
+        static void MoveAndLeftClickOperation(int xPos, int yPos)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);
             Thread.Sleep(100);
@@ -63,11 +75,11 @@ namespace AresTrainerV3
             Thread.Sleep(100);
         }
 
-        static void BuyPotionsFromShop(Tuple<int,int> [] whereAreYouBuyingPositions)
+        public static void BuyPotionsFromShop(Tuple<int,int> [] whereAreYouBuyingPositions)
         {
 
             Thread.Sleep(1000);
-            MoveAndLeftCliokOperation(577, 551);
+            MoveAndLeftClickOperation(580, 565);
 
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
             {
@@ -83,7 +95,7 @@ namespace AresTrainerV3
                     MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     BuyingPotions(i);
                 }
-                else if (i == 2 && ProgramHandle.getSecondSlotValue < 16777255)
+                else if (i == 2 && ProgramHandle.getSecondSlotValue < 16777275)
                 {
                     MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     BuyingPotions(i); }
@@ -95,20 +107,6 @@ namespace AresTrainerV3
 
         }
 
-        public static Tuple<int, int>[] mousePositionsForHershalBuying = new Tuple<int, int>[]
-        {
-            new Tuple<int, int>(945, 415),  //white pot
-            new Tuple<int, int>(947, 451),  //red pot
-            new Tuple<int, int>(945, 375),  //mana pot
-            new Tuple<int, int>(947, 215)   //hp yarrow pot
-        };
-        public static Tuple<int, int>[] HershalMovePositions = new Tuple<int, int>[]
-{
-            new Tuple<int, int>(433, 464),  
-            new Tuple<int, int>(438, 678),  
-            new Tuple<int, int>(569, 791),
-            new Tuple<int, int>(800, 747),
-};
 
         static void BuyingPotions(int numberOfPotionToBuy)
         {
@@ -149,9 +147,9 @@ namespace AresTrainerV3
             else if (numberOfPotionToBuy == 2) // manna potion
             {
                 inputSimulator.Keyboard.Sleep(500);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
                 inputSimulator.Keyboard.Sleep(500);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
@@ -180,14 +178,14 @@ namespace AresTrainerV3
             Thread.Sleep(300);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(500);
-            MouseOperations.SetCursorPosition(520, 500);
+            MouseOperations.SetCursorPosition(560, 520);
             Thread.Sleep(500);
 
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(500);
-            MouseOperations.SetCursorPosition(518, 554);
+            MouseOperations.SetCursorPosition(560, 570);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
@@ -197,12 +195,12 @@ namespace AresTrainerV3
         static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (ProgramHandle.isStillRunningValue != 2)
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimation)
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
-                    MoveAndLeftCliokOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
-                    while (ProgramHandle.isStillRunningValue == 2)
+                    MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
+                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimation)
                     {
                         Thread.Sleep(2);
                     }
@@ -210,25 +208,9 @@ namespace AresTrainerV3
             }
 
         }
-        static void SetWindowInPropperPosition()
-        {
-            ProgramHandle.SetNostalgiaMainWindow();
 
-            Thread.Sleep(1000);
-            MouseOperations.SetCursorPosition(1, 1);
-            Thread.Sleep(1000);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(1000);
-            MouseOperations.SetCursorPosition(400, 120);
-            Thread.Sleep(1000);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            MouseOperations.SetCursorPosition(500, 200);
-            Thread.Sleep(1000);
-
-        }
         public static void Repot(int currentCity)
         {
-            SetWindowInPropperPosition();
 
             Thread.Sleep(1000);
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
@@ -248,8 +230,8 @@ namespace AresTrainerV3
 
             if (currentCity == TeleportValues.Hershal)
             {
-                MoveToRepot(HershalMovePositions);
-                BuyPotionsFromShop(mousePositionsForHershalBuying);
+                MoveToRepot(ExpBotMovePositions.HershalMovePositions);
+                BuyPotionsFromShop(ExpBotMovePositions.mousePositionsForHershalBuying);
             }
 
         }
@@ -282,32 +264,149 @@ namespace AresTrainerV3
             }
         }
 
-        static void BotUWC1stFloor()
+        static void MoveToPositionWhenNotAttacking( int x,int y)
         {
-            if (ProgramHandle.isStillRunningValue == 0 && ProgramHandle.isMobBeingAttacked !=-1 )
-            Thread.Sleep(50);
-            MouseOperations.SetCursorPosition(600, 505);
-            Thread.Sleep(50);
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimation)
+            {
+                Thread.Sleep(5);
+                MouseOperations.SetCursorPosition(x, y);
+                Thread.Sleep(5);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                Thread.Sleep(50);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                Thread.Sleep(50);
+            }
+        }
+
+        static void MoveAndScan(int x,int y)
+        {
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimation)
+            {
+                moveToPosition(x,y);
+            }
+            else if( ScanAndAttack)
+
+        }
+
+        static void moveToPosition(int x, int y)
+        {
+            Thread.Sleep(5);
+            MouseOperations.SetCursorPosition(x, y);
+            Thread.Sleep(5);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             Thread.Sleep(50);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(50);
+        }
 
+
+
+        static void MoveAndAttack(int currentMap)
+        {
+            currentMap = ProgramHandle.GetCurrentMap;
+
+            if(currentMap== TeleportValues.UWC1stFloor)
+            {
+
+
+            }
         }
 
         static void GoExp(int currentCity)
         {
-            SetWindowInPropperPosition();
 
             if (currentCity == TeleportValues.Hershal)
             {
                 PressF5ForTeleport();
+                WalkIntoUWC();
             }
-            WalkIntoUWC();
 
 
 
         }
 
+        const int moveBuffor = 99000000;
+
+        public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit)
+        {
+                while (ProgramHandle.GetPositionX > leftLimit && isStopMoveExpBot)
+                {
+                    if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
+                    {
+                        MoveToPositionWhenNotAttacking(x, y);
+                    }
+                    else if (ProgramHandle.GetPositionY > upLimit)
+                    {
+                        goDown(960, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    }
+                    else if (ProgramHandle.GetPositionY < downLimit)
+                    {
+                        goUp(960, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    }
+
+                }
+                return true;
+
+        }
+        public static bool goRight(int x, int y, int rightLimit, int upLimit, int downLimit)
+        {
+                while (ProgramHandle.GetPositionX < rightLimit && isStopMoveExpBot)
+                {
+                    if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
+                    {
+                        MoveToPositionWhenNotAttacking(x, y);
+                    }
+                    else if (ProgramHandle.GetPositionY > upLimit)
+                    {
+                        goDown(960, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    }
+                    else if (ProgramHandle.GetPositionY < downLimit)
+                    {
+                        goUp(960, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    }
+
+                }
+                return true;
+        }
+        public static bool goUp(int x, int y, int upLimit, int leftLimit,int rightLimit)
+        {
+                while (ProgramHandle.GetPositionY < upLimit && isStopMoveExpBot)
+                {
+                    if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
+                    {
+                        MoveToPositionWhenNotAttacking(x, y);
+                    }
+                    else if (ProgramHandle.GetPositionX > rightLimit)
+                    {
+                        goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                    }
+                    else if (ProgramHandle.GetPositionX < leftLimit)
+                    {
+                        goRight(1100, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                    }
+
+                }
+                return true;
+        }
+        public static bool goDown(int x, int y, int downLimit, int leftLimit, int rightLimit)
+        {
+                while (ProgramHandle.GetPositionY > downLimit && isStopMoveExpBot)
+                {
+                    if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
+                    {
+                        MoveToPositionWhenNotAttacking(x, y);
+                    }
+                    else if (ProgramHandle.GetPositionX > rightLimit)
+                    {
+                        goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                    }
+                    else if (ProgramHandle.GetPositionX < leftLimit)
+                    {
+                        goRight(1100, 520, leftLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                    }
+
+                }
+                return true;
+        }
     }
 }

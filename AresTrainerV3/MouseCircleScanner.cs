@@ -8,7 +8,7 @@ namespace AresTrainerV3
 {
     public static class MouseCircleScanner
     {
-        public static Tuple<int, int>[] GenerateCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int radiusIncrementation, int centerX, int centerY)
+/*        public static Tuple<int, int>[] GenerateCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int radiusIncrementation, int centerX, int centerY)
         {
             double numberOfTupples = 0;
             double pointsToCountTupples = pointsInACircle;
@@ -40,7 +40,7 @@ namespace AresTrainerV3
             return tuplePoints;
         }
 
-        public static Tuple<int, int>[] GenerateLinearPoints(int startingX,int startingY, int lengthX, int heightY, int distanceBetweenPoints)
+*//*        public static Tuple<int, int>[] GenerateLinearPoints(int startingX,int startingY, int lengthX, int heightY, int distanceBetweenPoints)
         {
             int numberOfTuples = lengthX * heightY;
             int currentPoint = 0;
@@ -62,7 +62,7 @@ namespace AresTrainerV3
             return tuplePoints;
         }
 
-
+*/
 
         /*        static Tuple<int, int>[] GenerateMultipleCirclePoints(int numberOfCircles, int pointsInACircle, int startingRadius, int centerX, int centerY)
                 {

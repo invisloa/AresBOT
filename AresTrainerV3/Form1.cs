@@ -9,6 +9,9 @@ namespace AresTrainerV3
         static Thread expbotThread = new Thread(ProgramHandle.StartExpBot);
         static Thread pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
 
+        static Thread expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+
+
         globalKeyboardHook gkh = new globalKeyboardHook();
 
         static int ValueForAddSubstract = 1000;
@@ -33,14 +36,20 @@ namespace AresTrainerV3
             gkh.HookedKeys.Add(Keys.F6);
             gkh.HookedKeys.Add(Keys.F9);
 
-
-            gkh.KeyF2Down += StartHealBot; // SUBSCRIBE globalKeyboardHook.KeyFXxXPressed to KeyF2DownEvent
-            gkh.KeyF3Down += StartMoveBot;
+           //
+           //SUBSCRIBE globalKeyboardHook.
+           //
+            gkh.KeyF2Down += StartHealBotThread; 
+            gkh.KeyF3Down += TemporaryThreadStartMoveMethod; // START TEMPORATY MO
+            gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += StartSkillAttack;
-            gkh.KeyF4Down += ShowIfOnOrOff; // SUBSCRIBE function to chane button visibility according to state of speed
+            gkh.KeyF4Down += ShowIfOnOrOff; 
             gkh.KeyF5Down += ProgramHandle.Teleporting;
-            gkh.KeyF6Down += StartExpBot;
-            gkh.KeyF9Down += StartPixelBot;
+            gkh.KeyF6Down += StartExpBotThread;
+            gkh.KeyF6Down += ShowIfOnOrOff;
+            gkh.KeyF9Down += StartPixelBotThread;
+            gkh.KeyF9Down += ShowIfOnOrOff;
+
 
 
 
@@ -59,9 +68,9 @@ namespace AresTrainerV3
                     e.Handled = true;
                 }
         */
-        static void StartHealBot()
+        static void StartHealBotThread()
         {
-            ProgramHandle.RequestStopHeal();
+            ProgramHandle.RequestStopHealBot();
             Thread.Sleep(500);
             if (healbotThread == null)
             {
@@ -74,7 +83,7 @@ namespace AresTrainerV3
                 healbotThread.Start();
             }
         }
-        static void StartPixelBot()
+        static void StartPixelBotThread()
         {
             PixelBotSearcher.RequestStopPixel();
             Thread.Sleep(500);
@@ -89,13 +98,31 @@ namespace AresTrainerV3
                 pixelBotThread.Start();
             }
         }
+        static void TemporaryThreadStartMoveMethod()
+        {
+            ExpBotClass.RequestStopMoveExpBot();
+            Thread.Sleep(500);
 
-        static void StartExpBot()
+            if (expBotMoveThread == null)
+            {
+                expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+            }
+
+            if (!expBotMoveThread.IsAlive)
+            {
+                expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+                expBotMoveThread.Start();
+            }
+
+        }
+
+
+        static void StartExpBotThread()
         {
             ProgramHandle.SetCameraForExpBot();
 
             Thread.Sleep(50);
-            ProgramHandle.RequestStopBot();
+            ProgramHandle.RequestStopExpBot();
             Thread.Sleep(50);
 
 
@@ -115,7 +142,7 @@ namespace AresTrainerV3
 
         private void StartHealbotBTN_Click(object sender, EventArgs e)
         {
-            StartHealBot();
+            StartHealBotThread();
         }
 
         private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -177,7 +204,7 @@ namespace AresTrainerV3
                                         }
                             */
             Thread.Sleep(50);
-            ProgramHandle.RequestStopAnim();
+            ProgramHandle.Request1hitKOBot();
             Thread.Sleep(50);
 
 
@@ -239,7 +266,7 @@ namespace AresTrainerV3
 
         {
 
-            if (!ProgramHandle.StopAnim)
+            if (!ProgramHandle.isStopAnim)
             {
                 OnOffButton.Text = "OFF";
                 OnOffButton.BackColor = Color.Gray;
@@ -251,33 +278,56 @@ namespace AresTrainerV3
 
             }
 
+            if (!ProgramHandle.isStopBot)
+            {
+                button1.Text = "OFF";
+                button1.BackColor = Color.Gray;
+            }
+            else
+            {
+                button1.Text = "ON";
+                button1.BackColor = Color.Yellow;
+
+            }
+
+            if (!PixelBotSearcher.isStopPixel)
+            {
+                button2.Text = "OFF";
+                button2.BackColor = Color.Gray;
+            }
+            else
+            {
+                button2.Text = "ON";
+                button2.BackColor = Color.Yellow;
+
+            }
+            if (!ExpBotClass.isStopMoveExpBot)
+            {
+                button3.Text = "OFF";
+                button3.BackColor = Color.Gray;
+            }
+            else
+            {
+                button3.Text = "ON";
+                button3.BackColor = Color.Yellow;
+
+            }
+
+
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             gkh = null;
-            ProgramHandle.RequestStopAnim();
-            ProgramHandle.RequestStopHeal();
+            ProgramHandle.Request1hitKOBot();
+            ProgramHandle.RequestStopHealBot();
 
         }
 
         private void MouseScannerBtn_Click(object sender, EventArgs e)
         {
-            StartExpBot();
+            StartExpBotThread();
         }
-
-        void StartMoveBot()
-        {
-            ProgramHandle.MoveToPosition(1147303303, 1124479960);
-        }
-        void SetExpBotStartingPos()
-        {
-            MouseOperations.MousePoint mouseCurrentPosition = new MouseOperations.MousePoint();
-            mouseCurrentPosition = MouseOperations.GetCursorPosition();
-            PointersAndValues.expBotMouseStartingPos = new Tuple<int,int>(mouseCurrentPosition.X,mouseCurrentPosition.Y);
-        }
-
-
 
         #region OLD NORMAL ATTACK THREAD and Functuiobn
         // static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
@@ -304,15 +354,34 @@ namespace AresTrainerV3
         }
 
 */
+
+
+        static void TemporatyThreadMoveMethod()
+        {
+           // uwc ExpBotClass.goLeft(600, 520, 1109300565, 1110599230, 1109794945);
+            ExpBotClass.goLeft(600, 520, 1120742008, 1144212271, 1144065573);  // thieves
+
+        }
+
+
         #endregion
 
         private void Tester_Click(object sender, EventArgs e)
         {
-/*            PixelBotSearcher pix = new PixelBotSearcher();
+            Thread.Sleep(5000);
+            TemporaryThreadStartMoveMethod();
 
-            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-            pix.SearchPixel("#433B00");
-            GC.Collect();
-*/        }
+
+            // ExpBotClass.goLeft(600, 520, 1109300565, 1110599230, 10);
+
+
+            //    ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+            /*            PixelBotSearcher pix = new PixelBotSearcher();
+
+                        // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+                        pix.SearchPixel("#433B00");
+                        GC.Collect();
+            */
+          }
     }
 }

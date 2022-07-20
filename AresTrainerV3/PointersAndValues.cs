@@ -42,7 +42,7 @@ public static class PointersAndValues
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
     public const int mobBeingAttacked = 0x050;
-    public const int isStillRunningToPosition = 0x438;
+    public const int typeOfAnimationIsRunning = 0x3b5;
 
     /*  
      *  
@@ -79,7 +79,10 @@ public static class PointersAndValues
     public static int whitePotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
     public static int redPotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
 
-
+    public const int isRunningAnimation = 4535616;
+    public const int isStandingAnimation = 4534400;
+    public const int isBeingHitAnimation = 4536960;
+    public const int isAttackingBowAnimation = 4536096;
 
 
     // arcer
