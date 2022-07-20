@@ -133,9 +133,9 @@
             // 
             // ValuesTextBox
             // 
-            this.ValuesTextBox.Location = new System.Drawing.Point(189, 88);
+            this.ValuesTextBox.Location = new System.Drawing.Point(154, 12);
             this.ValuesTextBox.Name = "ValuesTextBox";
-            this.ValuesTextBox.Size = new System.Drawing.Size(220, 108);
+            this.ValuesTextBox.Size = new System.Drawing.Size(307, 251);
             this.ValuesTextBox.TabIndex = 10;
             this.ValuesTextBox.Text = "";
             // 

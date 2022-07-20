@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Microsoft.VisualBasic.Devices;
 using System.Diagnostics;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using WindowsInput;
-using System.Windows.Input;
-using System.Threading;
-using System;
 
 namespace AresTrainerV3
 {
@@ -26,8 +19,8 @@ namespace AresTrainerV3
 
         static volatile int hpValue = 0;
         static volatile int mannaValue = 0; // Changed to volatile 
-       // static volatile int mobSelected = 0;
-      //  static volatile int mobBeingAttacked = 0;
+                                            // static volatile int mobSelected = 0;
+                                            //  static volatile int mobBeingAttacked = 0;
 
 
 
@@ -56,6 +49,8 @@ namespace AresTrainerV3
         private static volatile bool _stopHeal = false;
         private static volatile bool _stopAnim = false;
         private static volatile bool _stopBot = false;
+        private static volatile bool _isRightMouseButtonPressed = false;
+
         public static bool isStopAnim
         {
             get { return _stopAnim; }
@@ -88,7 +83,7 @@ namespace AresTrainerV3
                 return;
             }
 
-                if (proc != null)
+            if (proc != null)
             {
                 baseAddress = proc.MainModule.BaseAddress;
             }
@@ -136,19 +131,19 @@ namespace AresTrainerV3
 
             slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstOffset), 4);
 
-           // mobSelectedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4);
+            // mobSelectedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4);
 
-           // mobBeingAttackedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingAttacked), 4);
+            // mobBeingAttackedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingAttacked), 4);
 
 
 
 
             int myMaxHp = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
-            if(myMaxHp <200)
+            if (myMaxHp < 200)
             {
                 hpHealValue = 100;
-            }   
-            else if (myMaxHp <400 && myMaxHp>200)
+            }
+            else if (myMaxHp < 400 && myMaxHp > 200)
             {
                 hpHealValue = 300;
 
@@ -245,9 +240,22 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(150);
 
+                // STOP EXP BOT 
+                //
+                // STOP EXP BOT 
+                //
+                // STOP EXP BOT 
+                //
+                if (ExpBotClass.isStopMoveExpBot)
+                {
+                    ExpBotClass.RequestStopMoveExpBot();
+                }
+
                 inputSimulator.Keyboard.Sleep(2000);
 
                 ExpBotClass.Repot(GetCurrentMap);
+               ExpBotClass.WalkIntoUWC();
+                Form1.TemporaryThreadStartMoveMethod();
 
             }
         }
@@ -286,7 +294,7 @@ namespace AresTrainerV3
                 Thread.Sleep(50);
 
 
-                if (hpValue < hpHealValue && hpValue!=0)
+                if (hpValue < hpHealValue && hpValue != 0)
                 {
                     HealKeyPress();
                 }
@@ -298,7 +306,7 @@ namespace AresTrainerV3
                     if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
                     {
                         UsePotionsKeyPress();
-                    }    
+                    }
                 }
             }
             return;
@@ -306,29 +314,48 @@ namespace AresTrainerV3
 
         public static void AttackMobWhenSelected()
         {
-                    if (isMobSelected != 0 || isMobSelected < 8300000)
-                    { 
-                       SkillAttackBot();
-                    }
+            if (isMobSelected != 0 && isMobSelected < 8300000)
+            {
+                SkillAttackBot();
+            }
         }
         public static void SkillAttackBot()
         {
-            Thread.Sleep(1);
-
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-
-            Thread.Sleep(1);
-
-
-            while (isMobBeingAttacked!=-1)
+            Thread.Sleep(500);
+            while(isMobBeingTargeted != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
+            {
+                Thread.Sleep(1000);
+            }
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+            /*Thread.Sleep(10);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+            _isRightMouseButtonPressed = true;
+            while (isMobBeingTargeted != -1)
             {
                 Thread.Sleep(10);
 
+                if (isWhatAnimationRunning == PointersAndValues.isStandingAnimation)
+                {
+                    Thread.Sleep(10);
+
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                    Thread.Sleep(10);
+                    _isRightMouseButtonPressed = false;
+                }
+                else
+                {
+                    Thread.Sleep(10);
+                }
+
             }
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 
-            return;
+            if (_isRightMouseButtonPressed)
+            {
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 
+            }
+*/
         }
         public static void Start1HitKO()
         {
@@ -476,9 +503,9 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4)), 0); }
         }
-        public static int isMobBeingAttacked
+        public static int isMobBeingTargeted
         {
-            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingAttacked), 4)), 0);}
+            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingTargeted), 4)), 0);}
         }
 
 
@@ -622,7 +649,7 @@ namespace AresTrainerV3
 
 
 
-        public static void StartExpBot()
+        public static void StartAttackBot()
         {
 
             while (_stopBot)

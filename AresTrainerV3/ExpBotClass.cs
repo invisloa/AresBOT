@@ -43,7 +43,10 @@ namespace AresTrainerV3
                     }
                 }
         */
-        private static volatile bool _stopMoveExpBot = false;
+        static volatile bool _stopMoveExpBot = false;
+
+        public static string PositionLog;
+
         public static bool isStopMoveExpBot
         {
             get { return _stopMoveExpBot; }
@@ -195,12 +198,12 @@ namespace AresTrainerV3
         static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimation)
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationInCity)
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                     MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
-                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimation)
+                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationInCity)
                     {
                         Thread.Sleep(2);
                     }
@@ -232,10 +235,15 @@ namespace AresTrainerV3
             {
                 MoveToRepot(ExpBotMovePositions.HershalMovePositions);
                 BuyPotionsFromShop(ExpBotMovePositions.mousePositionsForHershalBuying);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
+                inputSimulator.Keyboard.Sleep(500);
+
             }
 
         }
-
         static void PressF5ForTeleport()
         {
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.F5);
@@ -244,12 +252,15 @@ namespace AresTrainerV3
             inputSimulator.Keyboard.Sleep(500);
         }
 
-        static void WalkIntoUWC()
+
+        public static void WalkIntoUWC()
         {
-            while(ProgramHandle.GetCurrentMap != TeleportValues.UWC1stFloor)
+            Thread.Sleep(500);
+            PressF5ForTeleport();
+            while (ProgramHandle.GetCurrentMap != TeleportValues.UWC1stFloor)
             {
                 Thread.Sleep(500);
-                MouseOperations.SetCursorPosition(1000, 400);
+                MouseOperations.SetCursorPosition(1110, 380);
                 Thread.Sleep(100);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                 Thread.Sleep(100);
@@ -266,7 +277,7 @@ namespace AresTrainerV3
 
         static void MoveToPositionWhenNotAttacking( int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimation)
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationOutside)
             {
                 Thread.Sleep(5);
                 MouseOperations.SetCursorPosition(x, y);
@@ -278,13 +289,14 @@ namespace AresTrainerV3
             }
         }
 
-        static void MoveAndScan(int x,int y)
+        static void MoveScanAndAttack(int x,int y)
         {
             if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimation)
             {
-                moveToPosition(x,y);
+                moveToPosition(x, y);
             }
-            else if( ScanAndAttack)
+            // even was standing and moved make a scan;
+            PixelBotSearcher.ScanAndAttack();
 
         }
 
@@ -312,57 +324,58 @@ namespace AresTrainerV3
             }
         }
 
-        static void GoExp(int currentCity)
-        {
 
-            if (currentCity == TeleportValues.Hershal)
-            {
-                PressF5ForTeleport();
-                WalkIntoUWC();
-            }
-
-
-
-        }
-
-        const int moveBuffor = 99000000;
+        const int moveBuffor = 99000000;  /// when it was lower bot was moving up and down all the time - around (10000)
 
         public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit)
         {
-                while (ProgramHandle.GetPositionX > leftLimit && isStopMoveExpBot)
+                while (ProgramHandle.GetPositionX > leftLimit && _stopMoveExpBot)
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
-                        MoveToPositionWhenNotAttacking(x, y);
-                    }
-                    else if (ProgramHandle.GetPositionY > upLimit)
+                        MoveScanAndAttack(x, y);
+                    PositionLog += $"goLeft \n";
+
+                }
+                else if (ProgramHandle.GetPositionY > upLimit)
                     {
-                        goDown(960, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                        goDown(961, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+
+                    PositionLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                    
                     }
                     else if (ProgramHandle.GetPositionY < downLimit)
                     {
-                        goUp(960, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-                    }
+                        goUp(962, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    PositionLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                 }
+
+            }
                 return true;
 
         }
         public static bool goRight(int x, int y, int rightLimit, int upLimit, int downLimit)
         {
-                while (ProgramHandle.GetPositionX < rightLimit && isStopMoveExpBot)
+                while (ProgramHandle.GetPositionX < rightLimit && _stopMoveExpBot)
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
-                        MoveToPositionWhenNotAttacking(x, y);
+                    MoveScanAndAttack(x, y);
+                    PositionLog += $"goRight \n";
+
                     }
                     else if (ProgramHandle.GetPositionY > upLimit)
                     {
-                        goDown(960, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                            goDown(963, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                        PositionLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
                     }
                     else if (ProgramHandle.GetPositionY < downLimit)
                     {
-                        goUp(960, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                            goUp(964, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                        PositionLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
                     }
 
                 }
@@ -370,43 +383,114 @@ namespace AresTrainerV3
         }
         public static bool goUp(int x, int y, int upLimit, int leftLimit,int rightLimit)
         {
-                while (ProgramHandle.GetPositionY < upLimit && isStopMoveExpBot)
+                while (ProgramHandle.GetPositionY < upLimit && _stopMoveExpBot)
                 {
                     if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                     {
-                        MoveToPositionWhenNotAttacking(x, y);
-                    }
-                    else if (ProgramHandle.GetPositionX > rightLimit)
+                    MoveScanAndAttack(x, y);
+                    PositionLog += $"goUp \n";
+
+                }
+                else if (ProgramHandle.GetPositionX > rightLimit)
                     {
                         goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
-                    }
-                    else if (ProgramHandle.GetPositionX < leftLimit)
+                    PositionLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                }
+                else if (ProgramHandle.GetPositionX < leftLimit)
                     {
                         goRight(1100, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
-                    }
+                    PositionLog += $"goUp-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                 }
+
+            }
                 return true;
         }
-        public static bool goDown(int x, int y, int downLimit, int leftLimit, int rightLimit)
+        public static bool goDown(int x, int y, int upLimit, int leftLimit, int rightLimit)
         {
-                while (ProgramHandle.GetPositionY > downLimit && isStopMoveExpBot)
+            while (ProgramHandle.GetPositionY > upLimit && _stopMoveExpBot)
+            {
+                if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                 {
-                    if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
+                    MoveScanAndAttack(x, y);
+                    PositionLog += $"goDown currentY {ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
+
+                }
+                else if (ProgramHandle.GetPositionX > rightLimit)
+                {
+                    goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+                    PositionLog += $"goDown-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                }
+                else if (ProgramHandle.GetPositionX < leftLimit)
+                {
+                    goRight(1100, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+                    PositionLog += $"goDown-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                }
+
+            }
+            return true;
+        }
+
+
+        public static void RunAndExpSquare()
+        {
+            int howManyForLoops = 0;
+            while(_stopMoveExpBot)
+            {
+                PositionLog += $"Starting new While \n";
+
+                for (int i = 0; i < 3; i++)
+                {
+                    PositionLog += $"starting new for \n";
+
+                    Thread.Sleep(100);
+                    if (i == 0)
                     {
-                        MoveToPositionWhenNotAttacking(x, y);
+                        PositionLog += $"current i {i}\n";
+                        Thread.Sleep(100);
+
+                        while (!goLeft(600, 520, 1109300565, 1111239992, 1109794945)) ;
+                        PositionLog += $"goLeft Ended current i {i}\n";
+
                     }
-                    else if (ProgramHandle.GetPositionX > rightLimit)
+
+                    else if (i == 1)
                     {
-                        goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                        PositionLog += $"current i {i}\n";
+
+                        Thread.Sleep(100);
+
+                        while (!goUp(960, 300, 1114565081, 1107050535, ProgramHandle.GetPositionX + 800000)) ;
+                        PositionLog += $"goUp Ended current i {i}\n";
+
                     }
-                    else if (ProgramHandle.GetPositionX < leftLimit)
+                    else if (i == 2)
                     {
-                        goRight(1100, 520, leftLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                        PositionLog += $"current i {i}\n";
+
+                        Thread.Sleep(100);
+                    while (!goRight(1250, 520, 1122188392, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000)) ;
+                        PositionLog += $"GoRight Ended current i {i}\n";
+
+                    }
+                    else if (i == 3)
+                    {
+                        PositionLog += $"current i {i}\n";
+
+                        Thread.Sleep(100);
+                    while (!goDown(965, 650, 1110537017, 1120835756, 1122982731)) ;
+                        PositionLog += $"GoDown Ended current i {i}\n";
+
                     }
 
                 }
-                return true;
+                howManyForLoops++;
+                PositionLog += $"while end {howManyForLoops} \n";
+
+            }
         }
     }
 }

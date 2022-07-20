@@ -6,7 +6,7 @@ namespace AresTrainerV3
     {
         static Thread healbotThread = new Thread(ProgramHandle.StartHealbot);
         static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
-        static Thread expbotThread = new Thread(ProgramHandle.StartExpBot);
+        static Thread expbotThread = new Thread(ProgramHandle.StartAttackBot);
         static Thread pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
 
         static Thread expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
@@ -98,7 +98,7 @@ namespace AresTrainerV3
                 pixelBotThread.Start();
             }
         }
-        static void TemporaryThreadStartMoveMethod()
+        public static void TemporaryThreadStartMoveMethod()
         {
             ExpBotClass.RequestStopMoveExpBot();
             Thread.Sleep(500);
@@ -128,11 +128,11 @@ namespace AresTrainerV3
 
             if (expbotThread == null)
             {
-                expbotThread = new Thread(ProgramHandle.StartExpBot);
+                expbotThread = new Thread(ProgramHandle.StartAttackBot);
             }
             if (!expbotThread.IsAlive)
             {
-                expbotThread = new Thread(ProgramHandle.StartExpBot);
+                expbotThread = new Thread(ProgramHandle.StartAttackBot);
                 expbotThread.Start();
             }
 
@@ -358,8 +358,11 @@ namespace AresTrainerV3
 
         static void TemporatyThreadMoveMethod()
         {
-           // uwc ExpBotClass.goLeft(600, 520, 1109300565, 1110599230, 1109794945);
-            ExpBotClass.goLeft(600, 520, 1120742008, 1144212271, 1144065573);  // thieves
+            //ExpBotClass.goDown(1250, 520, 1110746260 , ProgramHandle.GetPositionX - 500000, ProgramHandle.GetPositionX + 500000);
+
+
+               ExpBotClass.RunAndExpSquare();  // uwc values
+            // ExpBotClass.goLeft(600, 520, 1120742008, 1144212271, 1144065573);  // thieves
 
         }
 
@@ -368,8 +371,9 @@ namespace AresTrainerV3
 
         private void Tester_Click(object sender, EventArgs e)
         {
-            Thread.Sleep(5000);
-            TemporaryThreadStartMoveMethod();
+            ValuesTextBox.Text = ExpBotClass.PositionLog;
+           // Thread.Sleep(5000);
+           // TemporaryThreadStartMoveMethod();
 
 
             // ExpBotClass.goLeft(600, 520, 1109300565, 1110599230, 10);
