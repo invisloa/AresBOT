@@ -87,22 +87,22 @@ namespace AresTrainerV3
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
             {
                 Thread.Sleep(1000);
-                if(i==0 && ProgramHandle.getForthSlotValue < 16777221)
+                if(i==0 && ProgramHandle.getSecondSlotValue < 16777285) // Manna Potion
                 {
                     MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
 
                     BuyingPotions(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < 16777221)
+                else if (i == 1 && ProgramHandle.getThirdSlotValue < 16777223) // Red Potions
                 {
                     MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     BuyingPotions(i);
                 }
-                else if (i == 2 && ProgramHandle.getSecondSlotValue < 16777275)
+                else if (i == 2 && ProgramHandle.getForthSlotValue < 16777223) // White Potions
                 {
                     MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     BuyingPotions(i); }
-                else if (i == 3)
+                else if (i == 3)      // HP Potions
                 {
                     MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     BuyingPotions(i); }
@@ -113,46 +113,19 @@ namespace AresTrainerV3
 
         static void BuyingPotions(int numberOfPotionToBuy)
         {
-            MouseOperations.SetCursorPosition(1300,550);
+            MouseOperations.SetCursorPosition(1295,530);
             Thread.Sleep(1000);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             Thread.Sleep(500);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(1000);
 
-            if (numberOfPotionToBuy == 0) // white potion
-            {
-                    inputSimulator.Keyboard.Sleep(1000);
-                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
-                    inputSimulator.Keyboard.Sleep(500);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
-                    inputSimulator.Keyboard.Sleep(500);
-
-            }
-            if (numberOfPotionToBuy == 1) //red potion
-            {
-                    inputSimulator.Keyboard.Sleep(500);
-                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
-                    inputSimulator.Keyboard.Sleep(500);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
-                    inputSimulator.Keyboard.Sleep(500);
-            }
-            else if (numberOfPotionToBuy == 2) // manna potion
+            if (numberOfPotionToBuy == 0) // Manna Potion
             {
                 inputSimulator.Keyboard.Sleep(500);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_8);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_8);
                 inputSimulator.Keyboard.Sleep(500);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
@@ -165,6 +138,35 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
                 inputSimulator.Keyboard.Sleep(500);
+
+
+            }
+            if (numberOfPotionToBuy == 1) //red potion
+            {
+                    inputSimulator.Keyboard.Sleep(500);
+                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
+                    inputSimulator.Keyboard.Sleep(200);
+                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
+                    inputSimulator.Keyboard.Sleep(500);
+                    inputSimulator.Keyboard.Sleep(200);
+                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
+                    inputSimulator.Keyboard.Sleep(200);
+                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
+                    inputSimulator.Keyboard.Sleep(500);
+            }
+            else if (numberOfPotionToBuy == 2) // White Potion
+            {
+                inputSimulator.Keyboard.Sleep(1000);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
+                inputSimulator.Keyboard.Sleep(500);
+
             }
             else if (numberOfPotionToBuy == 3) // HP potion
             {

@@ -10,9 +10,9 @@ namespace AresTrainerV3
     {
         public static Tuple<int, int>[] mousePositionsForHershalBuying = new Tuple<int, int>[]
         {
-                    new Tuple<int, int>(995, 415),  //white pot
-                    new Tuple<int, int>(995, 450),  //red pot
                     new Tuple<int, int>(995, 375),  //mana pot
+                    new Tuple<int, int>(995, 450),  //red pot
+                    new Tuple<int, int>(995, 415),  //white pot
                     new Tuple<int, int>(995, 225)   //hp yarrow pot
         };
                 public static Tuple<int, int>[] HershalMovePositions = new Tuple<int, int>[]

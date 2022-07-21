@@ -371,9 +371,12 @@ namespace AresTrainerV3
 
         private void Tester_Click(object sender, EventArgs e)
         {
-            ValuesTextBox.Text = ExpBotClass.PositionLog;
-           // Thread.Sleep(5000);
-           // TemporaryThreadStartMoveMethod();
+            // Thread.Sleep(5000);
+
+            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+            // ValuesTextBox.Text = ExpBotClass.PositionLog; // show log for moveandattackbot
+            // Thread.Sleep(5000);
+            // TemporaryThreadStartMoveMethod();
 
 
             // ExpBotClass.goLeft(600, 520, 1109300565, 1110599230, 10);
