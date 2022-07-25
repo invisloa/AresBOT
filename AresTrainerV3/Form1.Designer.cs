@@ -36,10 +36,10 @@
             this.AddAnimValue = new System.Windows.Forms.Button();
             this.SubstractAnimValue = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.ValuesTextBox = new System.Windows.Forms.RichTextBox();
+            this.TextBoxLog = new System.Windows.Forms.RichTextBox();
             this.HPValueTextBox = new System.Windows.Forms.TextBox();
             this.MannaValueTextBox = new System.Windows.Forms.TextBox();
-            this.OnOffButton = new System.Windows.Forms.Button();
+            this.BtnHitKO = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.MouseScannerBtn = new System.Windows.Forms.Button();
@@ -47,6 +47,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.BtnHealbotOnOff = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -131,13 +136,13 @@
             this.textBox1.Text = "1000";
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // ValuesTextBox
+            // TextBoxLog
             // 
-            this.ValuesTextBox.Location = new System.Drawing.Point(154, 12);
-            this.ValuesTextBox.Name = "ValuesTextBox";
-            this.ValuesTextBox.Size = new System.Drawing.Size(307, 251);
-            this.ValuesTextBox.TabIndex = 10;
-            this.ValuesTextBox.Text = "";
+            this.TextBoxLog.Location = new System.Drawing.Point(154, 12);
+            this.TextBoxLog.Name = "TextBoxLog";
+            this.TextBoxLog.Size = new System.Drawing.Size(307, 251);
+            this.TextBoxLog.TabIndex = 10;
+            this.TextBoxLog.Text = "";
             // 
             // HPValueTextBox
             // 
@@ -155,16 +160,16 @@
             this.MannaValueTextBox.TabIndex = 12;
             this.MannaValueTextBox.TextChanged += new System.EventHandler(this.MannaValueTextBox_TextChanged);
             // 
-            // OnOffButton
+            // BtnHitKO
             // 
-            this.OnOffButton.BackColor = System.Drawing.SystemColors.GrayText;
-            this.OnOffButton.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.OnOffButton.Location = new System.Drawing.Point(25, 12);
-            this.OnOffButton.Name = "OnOffButton";
-            this.OnOffButton.Size = new System.Drawing.Size(135, 116);
-            this.OnOffButton.TabIndex = 13;
-            this.OnOffButton.Text = "OFF";
-            this.OnOffButton.UseVisualStyleBackColor = false;
+            this.BtnHitKO.BackColor = System.Drawing.SystemColors.GrayText;
+            this.BtnHitKO.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnHitKO.Location = new System.Drawing.Point(47, 50);
+            this.BtnHitKO.Name = "BtnHitKO";
+            this.BtnHitKO.Size = new System.Drawing.Size(95, 79);
+            this.BtnHitKO.TabIndex = 13;
+            this.BtnHitKO.Text = "OFF";
+            this.BtnHitKO.UseVisualStyleBackColor = false;
             // 
             // label2
             // 
@@ -230,18 +235,70 @@
             // 
             this.button3.BackColor = System.Drawing.SystemColors.GrayText;
             this.button3.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.button3.Location = new System.Drawing.Point(47, 353);
+            this.button3.Location = new System.Drawing.Point(48, 316);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(94, 61);
             this.button3.TabIndex = 20;
             this.button3.Text = "OFF";
             this.button3.UseVisualStyleBackColor = false;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(77, 32);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(29, 15);
+            this.label4.TabIndex = 21;
+            this.label4.Text = "1Hit";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(47, 140);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(101, 15);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Right Click Attack";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(67, 213);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(58, 15);
+            this.label6.TabIndex = 23;
+            this.label6.Text = "UWC BOT";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(60, 298);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 15);
+            this.label7.TabIndex = 24;
+            this.label7.Text = "GolemsBot";
+            // 
+            // BtnHealbotOnOff
+            // 
+            this.BtnHealbotOnOff.BackColor = System.Drawing.SystemColors.GrayText;
+            this.BtnHealbotOnOff.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.BtnHealbotOnOff.Location = new System.Drawing.Point(166, 384);
+            this.BtnHealbotOnOff.Name = "BtnHealbotOnOff";
+            this.BtnHealbotOnOff.Size = new System.Drawing.Size(94, 61);
+            this.BtnHealbotOnOff.TabIndex = 25;
+            this.BtnHealbotOnOff.Text = "OFF";
+            this.BtnHealbotOnOff.UseVisualStyleBackColor = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.BtnHealbotOnOff);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -249,10 +306,10 @@
             this.Controls.Add(this.MouseScannerBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.OnOffButton);
+            this.Controls.Add(this.BtnHitKO);
             this.Controls.Add(this.MannaValueTextBox);
             this.Controls.Add(this.HPValueTextBox);
-            this.Controls.Add(this.ValuesTextBox);
+            this.Controls.Add(this.TextBoxLog);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.SubstractAnimValue);
             this.Controls.Add(this.AddAnimValue);
@@ -280,10 +337,10 @@
         private Button AddAnimValue;
         private Button SubstractAnimValue;
         private TextBox textBox1;
-        private RichTextBox ValuesTextBox;
+        private RichTextBox TextBoxLog;
         private TextBox HPValueTextBox;
         private TextBox MannaValueTextBox;
-        private Button OnOffButton;
+        private Button BtnHitKO;
         private Label label2;
         private Label label3;
         private Button MouseScannerBtn;
@@ -291,5 +348,10 @@
         private Button button1;
         private Button button2;
         private Button button3;
+        private Label label4;
+        private Label label5;
+        private Label label6;
+        private Label label7;
+        private Button BtnHealbotOnOff;
     }
 }

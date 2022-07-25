@@ -14,6 +14,15 @@ namespace AresTrainerV3
     public static class ExpBotClass
     {
         static InputSimulator inputSimulator = new InputSimulator();
+        static int moveRandomizer
+        {
+            get
+            {
+                Random randomInt = new Random();
+
+                return randomInt.Next(-75, 75);
+            }
+        }
 
         /*        public static bool ExpBotRepot(Tuple<int, int>[] MainCityRepotPositions)
                 {
@@ -45,7 +54,7 @@ namespace AresTrainerV3
         */
         static volatile bool _stopMoveExpBot = false;
 
-        public static string PositionLog;
+        public static string ExpBotLog;
 
         public static bool isStopMoveExpBot
         {
@@ -59,15 +68,6 @@ namespace AresTrainerV3
                 _stopMoveExpBot = true;
         }
 
-        static void MoveMouseForBuyingOperation(int xPos,int yPos)
-        {
-            MouseOperations.SetCursorPosition(xPos, yPos);
-            Thread.Sleep(100);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(50);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(100);
-        }
         static void MoveAndLeftClickOperation(int xPos, int yPos)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);
@@ -87,33 +87,43 @@ namespace AresTrainerV3
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
             {
                 Thread.Sleep(1000);
-                if(i==0 && ProgramHandle.getSecondSlotValue < 16777285) // Manna Potion
+                if(i==0 && ProgramHandle.getSecondSlotValue < 16777270) // Manna Potion
                 {
-                    MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
 
-                    BuyingPotions(i);
+                    HowManyPotionsToBuy(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < 16777223) // Red Potions
+                else if (i == 1 && ProgramHandle.getThirdSlotValue < 16777224) // Red Potions
                 {
-                    MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
-                    BuyingPotions(i);
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    HowManyPotionsToBuy(i);
                 }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < 16777223) // White Potions
+                else if (i == 2 && ProgramHandle.getForthSlotValue < 16777224) // White Potions
                 {
-                    MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
-                    BuyingPotions(i); }
-                else if (i == 3)      // HP Potions
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    HowManyPotionsToBuy(i); }
+                else if (i == 3 && ProgramHandle.getFirstSlotValue < 16777416)      // HP Potions 16777416== 200
                 {
-                    MoveMouseForBuyingOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
-                    BuyingPotions(i); }
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    HowManyPotionsToBuy(i); }
             }
+
+        }
+        static void ClickOkWhenBuying()
+        {
+            Thread.Sleep(300);
+            MouseOperations.SetCursorPosition(560, 570);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(100);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(500);
 
         }
 
 
-        static void BuyingPotions(int numberOfPotionToBuy)
+        static void HowManyPotionsToBuy(int numberOfPotionToBuy)
         {
-            MouseOperations.SetCursorPosition(1295,530);
+            MouseOperations.SetCursorPosition(1295,530);  // Position for second slot item
             Thread.Sleep(1000);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             Thread.Sleep(500);
@@ -123,9 +133,10 @@ namespace AresTrainerV3
             if (numberOfPotionToBuy == 0) // Manna Potion
             {
                 inputSimulator.Keyboard.Sleep(500);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_8);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_8);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
                 inputSimulator.Keyboard.Sleep(500);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
@@ -133,39 +144,27 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_0);
                 inputSimulator.Keyboard.Sleep(500);
 
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
-                inputSimulator.Keyboard.Sleep(500);
+                ClickOkWhenBuying();
 
 
             }
             if (numberOfPotionToBuy == 1) //red potion
             {
                     inputSimulator.Keyboard.Sleep(500);
-                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
+                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
                     inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
+                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
                     inputSimulator.Keyboard.Sleep(500);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
-                    inputSimulator.Keyboard.Sleep(200);
-                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
-                    inputSimulator.Keyboard.Sleep(500);
+                ClickOkWhenBuying();
             }
             else if (numberOfPotionToBuy == 2) // White Potion
             {
                 inputSimulator.Keyboard.Sleep(1000);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_7);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_7);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
                 inputSimulator.Keyboard.Sleep(500);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
-                inputSimulator.Keyboard.Sleep(500);
+                ClickOkWhenBuying();
 
             }
             else if (numberOfPotionToBuy == 3) // HP potion
@@ -190,11 +189,7 @@ namespace AresTrainerV3
             Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(500);
-            MouseOperations.SetCursorPosition(560, 570);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(100);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(500);
+            ClickOkWhenBuying();
         }
 
         static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
@@ -314,19 +309,6 @@ namespace AresTrainerV3
         }
 
 
-
-        static void MoveAndAttack(int currentMap)
-        {
-            currentMap = ProgramHandle.GetCurrentMap;
-
-            if(currentMap== TeleportValues.UWC1stFloor)
-            {
-
-
-            }
-        }
-
-
         const int moveBuffor = 99000000;  /// when it was lower bot was moving up and down all the time - around (10000)
 
         public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit)
@@ -335,22 +317,22 @@ namespace AresTrainerV3
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
-                        MoveScanAndAttack(x, y);
-                    PositionLog += $"goLeft \n";
+                        MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    ExpBotLog += $"goLeft \n";
 
                 }
                 else if (ProgramHandle.GetPositionY > upLimit)
                     {
-                        goDown(961, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                        goDown(900+ moveRandomizer, 640+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
 
-                    PositionLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                    ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                     
                     }
                     else if (ProgramHandle.GetPositionY < downLimit)
                     {
-                        goUp(962, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-                    PositionLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                        goUp(962+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                 }
 
@@ -364,20 +346,20 @@ namespace AresTrainerV3
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
-                    MoveScanAndAttack(x, y);
-                    PositionLog += $"goRight \n";
+                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    ExpBotLog += $"goRight \n";
 
                     }
                     else if (ProgramHandle.GetPositionY > upLimit)
                     {
-                            goDown(963, 600, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-                        PositionLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                            goDown(963+ moveRandomizer, 600+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                        ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                     }
                     else if (ProgramHandle.GetPositionY < downLimit)
                     {
-                            goUp(964, 430, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-                        PositionLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                            goUp(964+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                        ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
                     }
 
                 }
@@ -389,20 +371,20 @@ namespace AresTrainerV3
                 {
                     if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                     {
-                    MoveScanAndAttack(x, y);
-                    PositionLog += $"goUp \n";
+                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    ExpBotLog += $"goUp \n";
 
                 }
                 else if (ProgramHandle.GetPositionX > rightLimit)
                     {
-                        goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
-                    PositionLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                        goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                    ExpBotLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                 }
                 else if (ProgramHandle.GetPositionX < leftLimit)
                     {
-                        goRight(1100, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
-                    PositionLog += $"goUp-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                        goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                    ExpBotLog += $"goUp-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                 }
 
@@ -415,21 +397,20 @@ namespace AresTrainerV3
             {
                 if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                 {
-                    MoveScanAndAttack(x, y);
-                    PositionLog += $"goDown currentY {ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
+                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    ExpBotLog += $"goDown currentY {ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
 
                 }
                 else if (ProgramHandle.GetPositionX > rightLimit)
                 {
-                    goLeft(800, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
-                    PositionLog += $"goDown-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                    goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+                    ExpBotLog += $"goDown-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
                 }
                 else if (ProgramHandle.GetPositionX < leftLimit)
                 {
-                    goRight(1100, 520, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
-                    PositionLog += $"goDown-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-
+                    goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+                    ExpBotLog += $"goDown-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
                 }
 
             }
@@ -442,57 +423,63 @@ namespace AresTrainerV3
             int howManyForLoops = 0;
             while(_stopMoveExpBot)
             {
-                PositionLog += $"Starting new While \n";
+                ExpBotLog += $"Starting new While \n";
 
                 for (int i = 0; i < 3; i++)
                 {
-                    PositionLog += $"starting new for \n";
+                    ExpBotLog += $"starting new for \n";
 
                     Thread.Sleep(100);
                     if (i == 0)
                     {
-                        PositionLog += $"current i {i}\n";
+                        ExpBotLog += $"current i {i}\n";
                         Thread.Sleep(100);
 
-                        while (!goLeft(600, 520, 1109300565, 1111239992, 1109794945)) ;
-                        PositionLog += $"goLeft Ended current i {i}\n";
+                        while (!goLeft(600, 520, 1110719243, 1111239992, 1109794945)) ;
+                        ExpBotLog += $"goLeft Ended current i {i}\n";
 
                     }
 
                     else if (i == 1)
                     {
-                        PositionLog += $"current i {i}\n";
+                        ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
 
-                        while (!goUp(960, 300, 1114565081, 1107050535, ProgramHandle.GetPositionX + 800000)) ;
-                        PositionLog += $"goUp Ended current i {i}\n";
+                        while (!goUp(960, 300, 1114565081, 1107050535, ProgramHandle.GetPositionX + 80000000)) ;
+                        ExpBotLog += $"goUp Ended current i {i}\n";
 
                     }
                     else if (i == 2)
                     {
-                        PositionLog += $"current i {i}\n";
+                        ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
-                    while (!goRight(1250, 520, 1122188392, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000)) ;
-                        PositionLog += $"GoRight Ended current i {i}\n";
+                    while (!goRight(1250, 520, 1128331398, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000)) ;
+                        ExpBotLog += $"GoRight Ended current i {i}\n";
 
                     }
                     else if (i == 3)
                     {
-                        PositionLog += $"current i {i}\n";
+                        ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
                     while (!goDown(965, 650, 1110537017, 1120835756, 1122982731)) ;
-                        PositionLog += $"GoDown Ended current i {i}\n";
+                        ExpBotLog += $"GoDown Ended current i {i}\n";
 
                     }
 
                 }
                 howManyForLoops++;
-                PositionLog += $"while end {howManyForLoops} \n";
+                ExpBotLog += $"while end {howManyForLoops} \n";
 
             }
+        }
+        public static void TeleportSScroll()
+        {
+            Thread.Sleep(1000);
+            MoveAndLeftClickOperation(920, 155);
+            Thread.Sleep(1000);
         }
     }
 }

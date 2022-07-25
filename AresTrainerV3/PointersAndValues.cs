@@ -9,24 +9,46 @@ namespace AresTrainerV3;
 
 public static class PointersAndValues
 {
-    public const int baseNormalOffset = 0x2ad1fc;
-    public const int fogOffset = 0x2B03CC;
-    public const int cameraBaseOffset = 0x2AC578;
-    public const int mobSelectedOffset = 0x2A9648;
-    public const int mobBeingAttackedOffset = 0x2AD1FC;
+    public const int baseNormalMOffset = 0x2ad1fc;
+    public const int fogMOffset = 0x2B03CC;
+    public const int cameraBaseMOffset = 0x2AC578;
+    public const int mobSelectedMOffset = 0x2A9648;
+    public const int mobBeingAttackedMOffset = 0x2AD1FC;
+    public const int MouseoverHighlightedMOffset = 0x2AAE68;
+
 
     // offsets
     public const int hpOffset = 0x148;
     public const int MannaOffset = 0x980;
+    public const int WeightOffset = 0x980;
     public const int skill1Offset = 0x05c;
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;
-    public const int slotFirstOffset = 0xbb2;
-    public const int slotSecondOffset = 0xbce;
-    public const int slotThirdOffset = 0xbea;
-    public const int slotForthOffset = 0xc06;
+    public const int slotHPOffset = 0xbb2;
+    public const int slotMannaOffset = 0xbce;
+    public const int slotRedPotOffset = 0xbea;
+    public const int slotWhitePotOffset = 0xc06;
+    public const int slotCandleOffset = 0xc22;
+    public const int slotScrollOffset = 0xc3e;
+    public const int MouseoverHighlightedOffset = 0xc;
 
-    
+
+
+    // d02 chyba slot 3/1
+    public static int[] inventoryArray = new int[60];
+    public static void initializeInventoryArray()
+    {
+        int tempOffsetValue = 0;
+        for (int i = 0; i<60; i++)
+			{
+                inventoryArray[i] = 0xd02+tempOffsetValue;
+                tempOffsetValue += 0x1c;
+			}
+    }
+
+
+
+
     public const int cameraDistancePointer = 0x19c;
     public const int cameraFogPointer = 0xd16;
     public const int cameraAngleYPointer = 0x1b6;
@@ -74,6 +96,11 @@ public static class PointersAndValues
     public static int AttackSpeed = 1431715797;
     public static Tuple<int,int> expBotMouseStartingPos = new Tuple<int, int>(930, 500);
 
+    public static int MouseoverItemValue = 43880704;
+    public static int MouseoverMobValue = 43881072;
+
+    
+
 
     public static int mannaPotionsCountValue = 16777257;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
     public static int whitePotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
@@ -84,7 +111,8 @@ public static class PointersAndValues
 
     public const int isStandingAnimation = 4534400;
     public const int isBeingHitAnimation = 4536960;
-    public const int isAttackingBowAnimation = 4536096;
+    public const int isAttackingBowAlliAnimation = 4536096;
+    public const int isAttackingBowEmpAnimation = 4536832;
 
 
     // arcer
@@ -132,5 +160,42 @@ public static class PointersAndValues
         new Tuple<int, int>(5, 78),
         new Tuple<int, int>(5, 78),
         new Tuple<int, int>(5, 78),
+    };
+
+    public static List<int> KoValuesToTestList = new List<int>()
+    {
+
+        12001,
+        12106,
+        12210,
+        12312,
+        12409,
+        12410,
+        12515,
+        12720,
+        38319,
+        40002,
+        40003,
+        51268,
+        64778,
+        78309,
+        91818,
+        105428,
+        110119,
+        110309,
+        110501,
+        110604,
+        110708,
+        110779,
+        110812,
+        110908,
+        111011,
+        111215,
+        111505,
+        111619,
+        111808,
+        111916,
+        112020,
+        112119
     };
 }

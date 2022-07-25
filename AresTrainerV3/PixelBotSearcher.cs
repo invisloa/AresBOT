@@ -8,18 +8,18 @@ namespace AresTrainerV3
 {
     public class PixelBotSearcher
     {
-        private static volatile bool _stopPixel = false;
+        private static volatile bool _stopPixelAttack = false;
         public static bool isStopPixel
         {
-            get { return _stopPixel; }
+            get { return _stopPixelAttack; }
         }
 
         public static void RequestStopPixel()
         {
-            if (_stopPixel)
-                _stopPixel = false;
+            if (_stopPixelAttack)
+                _stopPixelAttack = false;
             else
-                _stopPixel = true;
+                _stopPixelAttack = true;
         }
 
 /*        static void ScanForPixels()
@@ -83,22 +83,18 @@ namespace AresTrainerV3
             GC.Collect();
         }
 
-        public static void SearchPixel()
+        public static void PixelOnlyScanAndAttack()
         {
-            while (_stopPixel)
-            { 
-                if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
+            ProgramHandle.SetCameraForExpBot();
+
+            while (_stopPixelAttack)
+            {
+                if (!ProgramHandle.isStopHeal)
                 {
-                    ScanAndAttack();
+                    Form1.StartHealBotThreadKoHit();
                 }
-                if (ProgramHandle.GetCurrentMap == TeleportValues.Etana)
-                {
-                    ScanAndAttack();
-                }
-                if (ProgramHandle.GetCurrentMap == TeleportValues.AllianceSacredLand)
-                {
-                    ScanAndAttack();
-                }
+
+                ScanAndAttack();
                 GC.Collect();
             }
         }

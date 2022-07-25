@@ -31,6 +31,9 @@ namespace AresTrainerV3
                     new Tuple<int, int>(960, 620),
         };
 
+        public const int firstColumnInventory  = 1260; // every next row is +35
+        public const int firstRowInventory = 530; // every next column is +35;
+        public static Tuple<int, int>[] itemSellPositions = new Tuple<int, int>[72];
 
-}
+    }
 }

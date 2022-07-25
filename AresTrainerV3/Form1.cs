@@ -4,10 +4,14 @@ namespace AresTrainerV3
 {
     public partial class Form1 : Form
     {
-        static Thread healbotThread = new Thread(ProgramHandle.StartHealbot);
+        static Thread healbotThread = new Thread(ProgramHandle.StartHealbotGolems);
         static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
-        static Thread expbotThread = new Thread(ProgramHandle.StartAttackBot);
-        static Thread pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
+        static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
+        static Thread pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
+
+       static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
+        // static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.TestFoundValues);
+
 
         static Thread expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
 
@@ -39,66 +43,113 @@ namespace AresTrainerV3
            //
            //SUBSCRIBE globalKeyboardHook.
            //
-            gkh.KeyF2Down += StartHealBotThread; 
-            gkh.KeyF3Down += TemporaryThreadStartMoveMethod; // START TEMPORATY MO
+            gkh.KeyF2Down += StartHealBotThreadKoHit; 
+            gkh.KeyF3Down += StartMoveAndExpThread; // START TEMPORATY MO
             gkh.KeyF3Down += ShowIfOnOrOff;
-            gkh.KeyF4Down += StartSkillAttack;
+            gkh.KeyF4Down += Start1HitKoThread;
             gkh.KeyF4Down += ShowIfOnOrOff; 
             gkh.KeyF5Down += ProgramHandle.Teleporting;
-            gkh.KeyF6Down += StartExpBotThread;
+            gkh.KeyF6Down += AttackWhenMobSelectedThread;
             gkh.KeyF6Down += ShowIfOnOrOff;
-            gkh.KeyF9Down += StartPixelBotThread;
+            gkh.KeyF9Down += StartKoHitThread;
+            gkh.KeyF9Down += StartChangeValuesKoHitThread;
+
             gkh.KeyF9Down += ShowIfOnOrOff;
-
-
-
-
-            // gkh.KeyF4Down += new globalKeyboardHook.KeyFXxXPressed(StartNormalAttack); //JUST ANOTHER WAY TO SUBSCRIBE DELEGATE with new...
         }
 
-        /*        void gkh_KeyUp(object sender, KeyEventArgs e)
-                {
-                    lstLog.Items.Add("Up\t" + e.KeyCode.ToString());
-                    e.Handled = true;
-                }
-
-                void gkh_KeyDown(object sender, KeyEventArgs e)
-                {
-                    lstLog.Items.Add("Down\t" + e.KeyCode.ToString());
-                    e.Handled = true;
-                }
-        */
-        static void StartHealBotThread()
+        public static void StartHealBotThread()
         {
             ProgramHandle.RequestStopHealBot();
             Thread.Sleep(500);
             if (healbotThread == null)
             {
-                healbotThread = new Thread(ProgramHandle.StartHealbot);
+                healbotThread = new Thread(ProgramHandle.StartHealbotGolems);
             }
 
             if (!healbotThread.IsAlive)
             {
-                healbotThread = new Thread(ProgramHandle.StartHealbot);
+                healbotThread = new Thread(ProgramHandle.StartHealbotGolems);
                 healbotThread.Start();
             }
         }
-        static void StartPixelBotThread()
+        public static void StartHealBotThreadKoHit()
+        {
+            ProgramHandle.RequestStopHealBot();
+            Thread.Sleep(500);
+            if (healbotThread == null)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbotKoHitTest);
+            }
+
+            if (!healbotThread.IsAlive)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbotKoHitTest);
+                healbotThread.Start();
+            }
+        }
+        public static void StartPixelGolemsThread()
         {
             PixelBotSearcher.RequestStopPixel();
             Thread.Sleep(500);
-            if (pixelBotThread == null)
+            if (pixelExpBotGolemsPlatform == null)
             {
-                pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
+                pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
             }
 
-            if (!pixelBotThread.IsAlive)
+            if (!pixelExpBotGolemsPlatform.IsAlive)
             {
-                pixelBotThread = new Thread(PixelBotSearcher.SearchPixel);
-                pixelBotThread.Start();
+                pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
+                pixelExpBotGolemsPlatform.Start();
             }
         }
-        public static void TemporaryThreadStartMoveMethod()
+
+        public static void StartOnlyPixelScanThread()
+        {
+            PixelBotSearcher.RequestStopPixel();
+            Thread.Sleep(500);
+            if (pixelExpBotGolemsPlatform == null)
+            {
+                pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
+            }
+
+            if (!pixelExpBotGolemsPlatform.IsAlive)
+            {
+                pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
+                pixelExpBotGolemsPlatform.Start();
+            }
+        }
+        public static void StartKoHitThread()
+        {
+            PixelBotSearcher.RequestStopPixel();
+            Thread.Sleep(500);
+            if (pixelExpBotGolemsPlatform == null)
+            {
+                pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
+            }
+
+            if (!pixelExpBotGolemsPlatform.IsAlive)
+            {
+                pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
+                pixelExpBotGolemsPlatform.Start();
+            }
+        }
+        public static void StartChangeValuesKoHitThread()
+        {
+            ProgramHandle.RequestStopKoChangeValue();
+            Thread.Sleep(500);
+            if (ChangeKoHitValueThread == null)
+            {
+                ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
+            }
+
+            if (!ChangeKoHitValueThread.IsAlive)
+            {
+                ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
+                ChangeKoHitValueThread.Start();
+            }
+        }
+
+        public static void StartMoveAndExpThread()
         {
             ExpBotClass.RequestStopMoveExpBot();
             Thread.Sleep(500);
@@ -117,7 +168,7 @@ namespace AresTrainerV3
         }
 
 
-        static void StartExpBotThread()
+        static void AttackWhenMobSelectedThread()
         {
             ProgramHandle.SetCameraForExpBot();
 
@@ -128,11 +179,11 @@ namespace AresTrainerV3
 
             if (expbotThread == null)
             {
-                expbotThread = new Thread(ProgramHandle.StartAttackBot);
+                expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
             }
             if (!expbotThread.IsAlive)
             {
-                expbotThread = new Thread(ProgramHandle.StartAttackBot);
+                expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
                 expbotThread.Start();
             }
 
@@ -184,27 +235,19 @@ namespace AresTrainerV3
 
         private void StartSkillBtn_Click(object sender, EventArgs e)
         {
-            StartSkillAttack();
+            Start1HitKoThread();
         }
-        static void StartSkillAttack()
+        static void Start1HitKoThread()
         {
-            ProgramHandle.SetCameraForSpeed();
+            ProgramHandle.SetCameraLong();
 
-            ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
-            ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
-            ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
+           // ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
+           // ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
+           // ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
 
 
-            //
-            // THERE IS NOT NORMALATACKTHREAD now so dont need to check for it
-            //  
-            /*            if (normalAttackThread.IsAlive)
-                                        {
-                                            ProgramHandle.RequestStopAnim();
-                                        }
-                            */
             Thread.Sleep(50);
-            ProgramHandle.Request1hitKOBot();
+            ProgramHandle.RequestStopAnim();
             Thread.Sleep(50);
 
 
@@ -237,13 +280,13 @@ namespace AresTrainerV3
         private void AddAnimValue_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetAnim1Value += ValueForAddSubstract;
-            ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+            TextBoxLog.Text = ProgramHandle.SetAnim1Value.ToString();
         }
 
         private void SubstractAnimValue_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetAnim1Value -= ValueForAddSubstract;
-            ValuesTextBox.Text = ProgramHandle.SetAnim1Value.ToString();
+            TextBoxLog.Text = ProgramHandle.SetAnim1Value.ToString();
 
         }
 
@@ -268,14 +311,13 @@ namespace AresTrainerV3
 
             if (!ProgramHandle.isStopAnim)
             {
-                OnOffButton.Text = "OFF";
-                OnOffButton.BackColor = Color.Gray;
+                BtnHitKO.Text = "OFF";
+                BtnHitKO.BackColor = Color.Gray;
             }
             else
             {
-                OnOffButton.Text = "ON";
-                OnOffButton.BackColor = Color.Yellow;
-
+                BtnHitKO.Text = "ON";
+                BtnHitKO.BackColor = Color.Yellow;
             }
 
             if (!ProgramHandle.isStopBot)
@@ -312,21 +354,38 @@ namespace AresTrainerV3
                 button3.BackColor = Color.Yellow;
 
             }
-
-
+            if (!ProgramHandle.isStopHeal)
+            {
+                BtnHealbotOnOff.Text = "OFF";
+                BtnHealbotOnOff.BackColor = Color.Gray;
+            }
+            else
+            {
+                BtnHealbotOnOff.Text = "ON";
+                BtnHealbotOnOff.BackColor = Color.Yellow;
+            }
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            gkh = null;
-            ProgramHandle.Request1hitKOBot();
-            ProgramHandle.RequestStopHealBot();
+            System.Environment.Exit(1); // terminate all procesess when closing the form
+/*            gkh = null;
+            if (ProgramHandle.isStopHeal)
+            {
+                ProgramHandle.RequestStopHealBot();
+            }
 
-        }
+            ProgramHandle.Request1hitKOBot();
+
+            if (ProgramHandle.isStopHeal)
+            {
+                ProgramHandle.RequestStopHealBot();
+            }
+*/        }
 
         private void MouseScannerBtn_Click(object sender, EventArgs e)
         {
-            StartExpBotThread();
+            AttackWhenMobSelectedThread();
         }
 
         #region OLD NORMAL ATTACK THREAD and Functuiobn
@@ -358,11 +417,14 @@ namespace AresTrainerV3
 
         static void TemporatyThreadMoveMethod()
         {
-            //ExpBotClass.goDown(1250, 520, 1110746260 , ProgramHandle.GetPositionX - 500000, ProgramHandle.GetPositionX + 500000);
 
+            ProgramHandle.SetCameraForExpBot();
+            if(!ProgramHandle.isStopHeal)
+            {
+                StartHealBotThread();
+            }
 
-               ExpBotClass.RunAndExpSquare();  // uwc values
-            // ExpBotClass.goLeft(600, 520, 1120742008, 1144212271, 1144065573);  // thieves
+            ExpBotClass.RunAndExpSquare();  // uwc values
 
         }
 
@@ -371,24 +433,13 @@ namespace AresTrainerV3
 
         private void Tester_Click(object sender, EventArgs e)
         {
+
+            // ProgramHandle.TeleportKoHitTest();
+            TextBoxLog.Text = ExpBotClass.ExpBotLog;
             // Thread.Sleep(5000);
 
-            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-            // ValuesTextBox.Text = ExpBotClass.PositionLog; // show log for moveandattackbot
-            // Thread.Sleep(5000);
-            // TemporaryThreadStartMoveMethod();
 
-
-            // ExpBotClass.goLeft(600, 520, 1109300565, 1110599230, 10);
-
-
-            //    ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-            /*            PixelBotSearcher pix = new PixelBotSearcher();
-
-                        // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-                        pix.SearchPixel("#433B00");
-                        GC.Collect();
-            */
+            //ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
           }
     }
 }

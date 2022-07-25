@@ -30,6 +30,7 @@ namespace AresTrainerV3
         public const int Siros3thFloor = 14;
         public const int Siros4thFloor = 15;
 
+        public static ValueTuple<int, int, int> PosKoHitSearch = new ValueTuple<int, int, int>(1145550603,  1147449870, 1065554544);
 
 
         public static ValueTuple<int, int, int> PosSacredLandsOgre = new ValueTuple<int, int, int>(1145125639, 1127039556, 0);
