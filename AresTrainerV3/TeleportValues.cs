@@ -30,6 +30,27 @@ namespace AresTrainerV3
         public const int Siros3thFloor = 14;
         public const int Siros4thFloor = 15;
 
+        public const int COT1stFloor = 36;
+        public const int COT2ndFloor = 37;
+        public const int COT3rdFloor = 38;
+        public const int COT4thFloor = 39;
+        public const int COT5thFloor = 40;
+        public const int COT6thfloor = 51;
+        public const int COT7thloor = 52;
+        public const int COT8thFloor = 53;
+        public const int COT9thFloor = 54;
+
+
+        public static ValueTuple<int, int, int> PosCOT1stFloor = new ValueTuple<int, int, int>(1128417296, 1116105934, 0);
+        public static ValueTuple<int, int, int> PosCOT2ndFloor = new ValueTuple<int, int, int>(1116794988, 1127562415, 0);
+        public static ValueTuple<int, int, int> PosCOT3rdFloor = new ValueTuple<int, int, int>(1120975278, 1121030657, 0);
+        public static ValueTuple<int, int, int> PosCOT4thFloor = new ValueTuple<int, int, int>(1112263688, 1129068496, 0);
+        public static ValueTuple<int, int, int> PosCOT5thFloor = new ValueTuple<int, int, int>(1113779148, 1118233577, 0);
+        public static ValueTuple<int, int, int> PosCOT6thFloor = new ValueTuple<int, int, int>(1105277565, 1127882124, 0);
+        public static ValueTuple<int, int, int> PosCOT7thFloor = new ValueTuple<int, int, int>(1128401601, 1111832658, 0);
+        public static ValueTuple<int, int, int> PosCOT8thFloor = new ValueTuple<int, int, int>(1126366899, 1124319439, 0);
+        public static ValueTuple<int, int, int> PosCOT9thFloor = new ValueTuple<int, int, int>(1125556564, 1124629964, 0);
+
         public static ValueTuple<int, int, int> PosKoHitSearch = new ValueTuple<int, int, int>(1145550603,  1147449870, 1065554544);
 
 
@@ -57,6 +78,9 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosUWC2ndFloor = new ValueTuple<int, int, int>(1139386835, 1132316057, 0);
         public static ValueTuple<int, int, int> PosUWC3rdFloor = new ValueTuple<int, int, int>(1137683001, 1132497408, 0);
         public static ValueTuple<int, int, int> PosUWC4rdFloor = new ValueTuple<int, int, int>(1113550000, 1132055267, 0);
+
+        // TO DO
+        public static ValueTuple<int, int, int> PosUWC4rdPlant = new ValueTuple<int, int, int>(1136310857, 1135108780, 1095210496);
 
 
 

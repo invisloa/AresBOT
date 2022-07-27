@@ -18,15 +18,13 @@ namespace AresTrainerV3
         public static extern bool SetForegroundWindow(IntPtr hWnd);
 
         static volatile int hpValue = 0;
-        static volatile int mannaValue = 0; // Changed to volatile 
-                                            // static volatile int mobSelected = 0;
-                                            //  static volatile int mobBeingAttacked = 0;
+        static volatile int mannaValue = 0; 
 
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
-        static volatile int Test1HitChangableValue = 116300;
+        static volatile int Test1HitChangableValue = 0;
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
@@ -44,6 +42,8 @@ namespace AresTrainerV3
         static IntPtr cameraFogOffset;
         static IntPtr mobSelectedOffset;
         static IntPtr mobBeingAttackedOffset;
+        static IntPtr itemMouseoverHighlightedOffset;
+
         static InputSimulator inputSimulator = new InputSimulator();
         static volatile byte[] hpAddress;
         static volatile byte[] MannaAddress;
@@ -59,6 +59,8 @@ namespace AresTrainerV3
         private static volatile bool _isRightMouseButtonPressed = false;
 
         private static volatile bool _stopKoChangeValue = false;
+
+
 
 
         public static bool isStopAnim
@@ -136,6 +138,8 @@ namespace AresTrainerV3
             mobSelectedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.mobSelectedMOffset));
 
             mobBeingAttackedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.mobBeingAttackedMOffset));
+
+            itemMouseoverHighlightedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.MouseoverHighlightedMOffset));
 
 
 
@@ -245,9 +249,9 @@ namespace AresTrainerV3
 
         static void HealBotRepotSSGolems()
         {
-            if (PixelBotSearcher.isStopPixel)
+            if (PixelBotSearcher.isStopPixelAttack)
             {
-                PixelBotSearcher.RequestStopPixel();
+                PixelBotSearcher.RequestStopPixelAttack();
             }
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
@@ -281,9 +285,9 @@ namespace AresTrainerV3
 
         static void HealBotRepotKoHitTest()
         {
-            if (PixelBotSearcher.isStopPixel)
+            if (PixelBotSearcher.isStopPixelAttack)
             {
-                PixelBotSearcher.RequestStopPixel();
+                PixelBotSearcher.RequestStopPixelAttack();
             }
             inputSimulator.Keyboard.Sleep(2000);
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
@@ -577,20 +581,46 @@ namespace AresTrainerV3
                 SkillAttackBot();
             }
         }
+        public static void CollectItemWhenSelected()
+        {
+            while (true) // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX TO DO WHILE SOMETHING ELSE
+            {
+                if (isItemHighlighted == PointersAndValues.MouseoverItemValue)
+                {
+                    ClickAndCollectItem();
+                }
+            }
+        }
         public static void SkillAttackBot()
         {
 
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            Thread.Sleep(50);
-            while(isMobBeingAttacked != -1 && 11 != PointersAndValues.isStandingAnimation)
+            Thread.Sleep(10);
+            while (isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
             {
-                Thread.Sleep(300);
+                Thread.Sleep(100);
             }
 
             //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
             Thread.Sleep(5);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+        }
+
+        public static void ClickAndCollectItem()
+        {
+
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(50);
+/*            while(isWhatAnimationRunning != PointersAndValues.isStandingAnimation)          USUNIETE BO SIE ZACINALO NACISNIECIE PRZYCISKU I KLIKAL LEWY DO BIEGANIA CIAGLE
+            {
+                Thread.Sleep(300);
+            }
+*/
+            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(5);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
         }
         public static void Start1HitKO()
         {
@@ -632,19 +662,70 @@ namespace AresTrainerV3
             return;
         }
 
-/*        public static void TestFoundValues()
+        /*        public static void TestFoundValues()
+                {
+                    while (isKoChangeValue)
+                    {
+
+                        int currentSavedChangableValue = Test1HitChangableValue;
+                        foreach (var item in PointersAndValues.KoValuesToTestList)
+                        {
+                            if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
+                            {
+                                Test1HitChangableValue = item-1;
+                                Debug.WriteLine($"{Test1HitChangableValue}");
+                                Thread.Sleep(2000);
+                            }
+                            if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
+                            {
+                                memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
+
+                                ExpBotClass.ExpBotLog += $"{Test1HitChangableValue}\n";
+                                // Debug.WriteLine($"Killed mob {Test1HitChangableValue}");
+                                currentSavedChangableValue = Test1HitChangableValue;
+                            }
+                        }
+                    }
+                }
+        */
+/*        public static void Change1HitKoValue()
+        {
+            while (isKoChangeValue)
+            {
+                int currentSavedChangableValue = Test1HitChangableValue;
+                if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
+                {
+                    Debug.WriteLine($"{Test1HitChangableValue}");
+                    Test1HitChangableValue++;
+                    Thread.Sleep(750);
+                }
+                if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
+                {
+                    memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
+
+                    ExpBotClass.ExpBotLog += $"{Test1HitChangableValue}\n";
+                    // Debug.WriteLine($"Killed mob {Test1HitChangableValue}");
+                    currentSavedChangableValue = Test1HitChangableValue;
+                }
+            }
+
+        }
+*/        public static void Change1HitKoValue()
         {
             while (isKoChangeValue)
             {
 
                 int currentSavedChangableValue = Test1HitChangableValue;
-                foreach (var item in PointersAndValues.KoValuesToTestList)
+                for (int i = 0; i < PointersAndValues.KoValuesToTestList.Count;)
                 {
+
+
                     if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
                     {
-                        Test1HitChangableValue = item-1;
+                        Test1HitChangableValue = PointersAndValues.KoValuesToTestList[i]-1;
                         Debug.WriteLine($"{Test1HitChangableValue}");
-                        Thread.Sleep(2000);
+                        i++;
+                        Thread.Sleep(800);
                     }
                     if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
                     {
@@ -656,32 +737,10 @@ namespace AresTrainerV3
                     }
                 }
             }
-        }
-*/        
-        public static void Change1HitKoValue()
-        {
-            while (isKoChangeValue)
-            {
-                int currentSavedChangableValue = Test1HitChangableValue;
-                if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
-                {
-                    Debug.WriteLine($"{Test1HitChangableValue}");
-                    Test1HitChangableValue++;
-                    Thread.Sleep(250);
-                }
-                if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
-                {
-                    memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
-
-                    ExpBotClass.ExpBotLog += $"{Test1HitChangableValue}\n";
-                   // Debug.WriteLine($"Killed mob {Test1HitChangableValue}");
-                    currentSavedChangableValue = Test1HitChangableValue;
-                }
-            }
 
         }
 
-        
+
 
         public static void StartNormalAttack()
         {
@@ -790,7 +849,11 @@ namespace AresTrainerV3
         }
         public static int isMobBeingAttacked
         {
-            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingTargeted), 4)), 0);}
+            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingTargeted), 4)), 0); }
+        }
+        public static int isItemHighlighted
+        {
+            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(itemMouseoverHighlightedOffset, PointersAndValues.MouseoverHighlightedOffset), 4)), 0); }
         }
         public static void TeleportKoHitTest()
         {
@@ -930,10 +993,79 @@ namespace AresTrainerV3
             }
             else if (GetCurrentMap == TeleportValues.UWC4rdFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item1));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item2));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item3));
+                if (_variableForChangablePosition == 0)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item3));
+                    _variableForChangablePosition = 1;
+                }
+                else if (_variableForChangablePosition == 1)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item3));
+                    _variableForChangablePosition = 0;
+
+                }
+
             }
+            else if (GetCurrentMap == TeleportValues.COT1stFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT2ndFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT3rdFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT4thFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT5thFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT6thfloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT7thloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT8thFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item3));
+            }
+            else if (GetCurrentMap == TeleportValues.COT9thFloor)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item3));
+            }
+
+
         }
         #endregion
 

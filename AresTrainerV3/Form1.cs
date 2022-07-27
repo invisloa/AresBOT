@@ -1,5 +1,44 @@
 using Utilities;
 
+
+//TODO List
+//TODO List
+//TODO List
+//TODO List
+/*
+ * 
+ *          IF weight is lowet then x-200 and pixel attack returned 0 run collect items
+ *          
+            Sell items from inventory propably has to sell last slot item all the time so that bot knows whether there is full storage to go to Sell and Repot
+            
+            Try to change black To maybe Red or Something so it wont scan after walls in uwc
+            if it doesnt work need to go for wolves
+
+
+            
+
+
+
+
+
+*/
+//TODO List
+//TODO List
+//TODO List
+//TODO List
+//TODO List
+//TODO List
+//TODO List
+
+
+
+
+
+
+
+
+
+
 namespace AresTrainerV3
 {
     public partial class Form1 : Form
@@ -14,6 +53,33 @@ namespace AresTrainerV3
 
 
         static Thread expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+
+
+
+        static Thread threadForTesting = new Thread(ProgramHandle.CollectItemWhenSelected);
+
+
+        static bool isThreadForTesting = false;
+
+        public static void StartThreadForTesting()
+        {
+            isThreadForTesting = !isThreadForTesting;
+            Thread.Sleep(500);
+            if (threadForTesting == null)
+            {
+                threadForTesting = new Thread(ProgramHandle.CollectItemWhenSelected);
+            }
+
+            if (!healbotThread.IsAlive)
+            {
+                threadForTesting = new Thread(ProgramHandle.CollectItemWhenSelected);
+                threadForTesting.Start();
+            }
+        }
+
+
+
+
 
 
         globalKeyboardHook gkh = new globalKeyboardHook();
@@ -51,7 +117,7 @@ namespace AresTrainerV3
             gkh.KeyF5Down += ProgramHandle.Teleporting;
             gkh.KeyF6Down += AttackWhenMobSelectedThread;
             gkh.KeyF6Down += ShowIfOnOrOff;
-            gkh.KeyF9Down += StartKoHitThread;
+            //gkh.KeyF9Down += StartKoHitThread;
             gkh.KeyF9Down += StartChangeValuesKoHitThread;
 
             gkh.KeyF9Down += ShowIfOnOrOff;
@@ -89,7 +155,7 @@ namespace AresTrainerV3
         }
         public static void StartPixelGolemsThread()
         {
-            PixelBotSearcher.RequestStopPixel();
+            PixelBotSearcher.RequestStopPixelAttack();
             Thread.Sleep(500);
             if (pixelExpBotGolemsPlatform == null)
             {
@@ -105,7 +171,7 @@ namespace AresTrainerV3
 
         public static void StartOnlyPixelScanThread()
         {
-            PixelBotSearcher.RequestStopPixel();
+            PixelBotSearcher.RequestStopPixelAttack();
             Thread.Sleep(500);
             if (pixelExpBotGolemsPlatform == null)
             {
@@ -120,7 +186,7 @@ namespace AresTrainerV3
         }
         public static void StartKoHitThread()
         {
-            PixelBotSearcher.RequestStopPixel();
+            PixelBotSearcher.RequestStopPixelAttack();
             Thread.Sleep(500);
             if (pixelExpBotGolemsPlatform == null)
             {
@@ -332,7 +398,7 @@ namespace AresTrainerV3
 
             }
 
-            if (!PixelBotSearcher.isStopPixel)
+            if (!PixelBotSearcher.isStopPixelAttack)
             {
                 button2.Text = "OFF";
                 button2.BackColor = Color.Gray;
@@ -441,5 +507,17 @@ namespace AresTrainerV3
 
             //ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
           }
+
+        private void TestingThread_Click(object sender, EventArgs e)
+        {
+            StartThreadForTesting();
+        }
+
+        private void FastTestBTN_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetNostalgiaMainWindow();
+            Thread.Sleep(500);
+            PixelBotSearcher.ScanAndCollectItems();
+        }
     }
 }

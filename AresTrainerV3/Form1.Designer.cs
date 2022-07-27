@@ -43,7 +43,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.MouseScannerBtn = new System.Windows.Forms.Button();
-            this.Tester = new System.Windows.Forms.Button();
+            this.Log = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -52,6 +52,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnHealbotOnOff = new System.Windows.Forms.Button();
+            this.TestingThread = new System.Windows.Forms.Button();
+            this.FastTestBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -199,15 +201,15 @@
             this.MouseScannerBtn.UseVisualStyleBackColor = true;
             this.MouseScannerBtn.Click += new System.EventHandler(this.MouseScannerBtn_Click);
             // 
-            // Tester
+            // Log
             // 
-            this.Tester.Location = new System.Drawing.Point(308, 278);
-            this.Tester.Name = "Tester";
-            this.Tester.Size = new System.Drawing.Size(75, 23);
-            this.Tester.TabIndex = 17;
-            this.Tester.Text = "Tester";
-            this.Tester.UseVisualStyleBackColor = true;
-            this.Tester.Click += new System.EventHandler(this.Tester_Click);
+            this.Log.Location = new System.Drawing.Point(159, 269);
+            this.Log.Name = "Log";
+            this.Log.Size = new System.Drawing.Size(101, 23);
+            this.Log.TabIndex = 17;
+            this.Log.Text = "GenerateLog";
+            this.Log.UseVisualStyleBackColor = true;
+            this.Log.Click += new System.EventHandler(this.Tester_Click);
             // 
             // button1
             // 
@@ -289,11 +291,33 @@
             this.BtnHealbotOnOff.Text = "OFF";
             this.BtnHealbotOnOff.UseVisualStyleBackColor = false;
             // 
+            // TestingThread
+            // 
+            this.TestingThread.Location = new System.Drawing.Point(606, 404);
+            this.TestingThread.Name = "TestingThread";
+            this.TestingThread.Size = new System.Drawing.Size(101, 23);
+            this.TestingThread.TabIndex = 26;
+            this.TestingThread.Text = "TestingThread";
+            this.TestingThread.UseVisualStyleBackColor = true;
+            this.TestingThread.Click += new System.EventHandler(this.TestingThread_Click);
+            // 
+            // FastTestBTN
+            // 
+            this.FastTestBTN.Location = new System.Drawing.Point(357, 396);
+            this.FastTestBTN.Name = "FastTestBTN";
+            this.FastTestBTN.Size = new System.Drawing.Size(75, 23);
+            this.FastTestBTN.TabIndex = 27;
+            this.FastTestBTN.Text = "FastTestBTN";
+            this.FastTestBTN.UseVisualStyleBackColor = true;
+            this.FastTestBTN.Click += new System.EventHandler(this.FastTestBTN_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.FastTestBTN);
+            this.Controls.Add(this.TestingThread);
             this.Controls.Add(this.BtnHealbotOnOff);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -302,7 +326,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.Tester);
+            this.Controls.Add(this.Log);
             this.Controls.Add(this.MouseScannerBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -344,7 +368,7 @@
         private Label label2;
         private Label label3;
         private Button MouseScannerBtn;
-        private Button Tester;
+        private Button Log;
         private Button button1;
         private Button button2;
         private Button button3;
@@ -353,5 +377,7 @@
         private Label label6;
         private Label label7;
         private Button BtnHealbotOnOff;
+        private Button TestingThread;
+        private Button FastTestBTN;
     }
 }
