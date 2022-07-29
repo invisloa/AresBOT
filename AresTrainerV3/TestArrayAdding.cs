@@ -8,7 +8,10 @@ namespace AresTrainerV3
 {
     internal class TestArrayAdding
     {
-        static void itemArrayPositionsInitialize()
+
+
+
+        public static void itemArrayPositionsInitialize()
         {
 
             int spaceMultiplyer = 0;
@@ -22,7 +25,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 12)
                 {
-                    if(spaceMultiplyer >6)
+                    if(spaceMultiplyer >5)
                     { 
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -33,7 +36,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 18)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -44,7 +47,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 24)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -54,7 +57,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 30)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -64,7 +67,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 36)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -74,17 +77,19 @@ namespace AresTrainerV3
                 }
                 else if (i < 42)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
+                        spaceBetweenRows = 0;   // 0 Because it starts from start again
+                        spaceBetweenRows = 0;   // 0 Because it starts from start again
                         spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
+
 
                     }
                     ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 48)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -94,7 +99,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 54)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -104,7 +109,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 60)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -114,7 +119,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 66)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;
@@ -124,7 +129,7 @@ namespace AresTrainerV3
                 }
                 else if (i < 72)
                 {
-                    if (spaceMultiplyer > 6)
+                    if (spaceMultiplyer > 5)
                     {
                         spaceMultiplyer = 0;
                         spaceBetweenRows += 35;

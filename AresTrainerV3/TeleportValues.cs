@@ -41,6 +41,11 @@ namespace AresTrainerV3
         public const int COT9thFloor = 54;
 
 
+        public const int Kharon = 44;
+        public const int KharonPlateau = 45;
+
+
+
         public static ValueTuple<int, int, int> PosCOT1stFloor = new ValueTuple<int, int, int>(1128417296, 1116105934, 0);
         public static ValueTuple<int, int, int> PosCOT2ndFloor = new ValueTuple<int, int, int>(1116794988, 1127562415, 0);
         public static ValueTuple<int, int, int> PosCOT3rdFloor = new ValueTuple<int, int, int>(1120975278, 1121030657, 0);
@@ -79,7 +84,10 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosUWC3rdFloor = new ValueTuple<int, int, int>(1137683001, 1132497408, 0);
         public static ValueTuple<int, int, int> PosUWC4rdFloor = new ValueTuple<int, int, int>(1113550000, 1132055267, 0);
 
-        // TO DO
+
+
+        public static ValueTuple<int, int, int> KharonPlateuSellExp = new ValueTuple<int, int, int>(1134659696, 1141877335, 1084227584);
+
         public static ValueTuple<int, int, int> PosUWC4rdPlant = new ValueTuple<int, int, int>(1136310857, 1135108780, 1095210496);
 
 

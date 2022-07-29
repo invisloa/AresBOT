@@ -14,17 +14,17 @@ public static class PointersAndValues
     public const int cameraBaseMOffset = 0x2AC578;
     public const int mobSelectedMOffset = 0x2A9648;
     public const int mobBeingAttackedMOffset = 0x2AD1FC;
-    public const int MouseoverHighlightedMOffset = 0x2AAE68;
+    public const int MouseoverHighlightedMOffset = 0x2AAA14;
 
 
     // TODO SELL WINDOW
-    public const int SellWindowOffset = 0x2AD208;
+    public const int SellWindowMOffset = 0x2AD208;
 
     
     // offsets
     public const int hpOffset = 0x148;
     public const int MannaOffset = 0x980;
-    public const int WeightOffset = 0x980;
+    public const int WeightOffset = 0x998;
     public const int skill1Offset = 0x05c;
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;
@@ -34,25 +34,7 @@ public static class PointersAndValues
     public const int slotWhitePotOffset = 0xc06;
     public const int slotCandleOffset = 0xc22;
     public const int slotScrollOffset = 0xc3e;
-    public const int MouseoverHighlightedOffset = 0xc;
-
-
-
-    // d02 chyba slot 3/1
-    public static int[] inventoryArray = new int[60];
-    public static void initializeInventoryArray()
-    {
-        int tempOffsetValue = 0;
-        for (int i = 0; i<60; i++)
-			{
-                inventoryArray[i] = 0xd02+tempOffsetValue;
-                tempOffsetValue += 0x1c;
-			}
-    }
-
-
-
-
+    public const int MouseoverHighlightedOffset = 0x7c;
     public const int cameraDistancePointer = 0x19c;
     public const int cameraFogPointer = 0xd16;
     public const int cameraAngleYPointer = 0x1b6;
@@ -67,8 +49,31 @@ public static class PointersAndValues
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
-    public const int mobBeingTargeted= 0x050;
+    public const int AttackSpeedOffset = 0x470;     // Not Used
+    public const int mobBeingTargeted = 0x050;
     public const int typeOfAnimationIsRunning = 0x3b5;
+
+
+    public const int SellWindowOffset = 0xc0;       // TODO 
+
+
+
+
+
+    public static int[] inventoryArray = new int[60];
+    public static void initializeInventoryArray()
+    {
+        int tempOffsetValue = 0;
+        for (int i = 0; i<60; i++)
+			{
+                inventoryArray[i] = 0xd02+tempOffsetValue;
+                tempOffsetValue += 0x1c;
+			}
+    }
+
+
+
+
 
     /*  
      *  
@@ -97,13 +102,23 @@ public static class PointersAndValues
     public static int clickDelayValue = 0;
     public static int ToCheckValue0 = 0;
     public static int cameraAngleXValue = 0;
-    public static int AttackSpeed = 1431715797;
+   // public static int AttackSpeed = 1431715797;
     public static Tuple<int,int> expBotMouseStartingPos = new Tuple<int, int>(930, 500);
 
     public static int MouseoverItemValue = 43880704;
     public static int MouseoverMobValue = 43881072;
+    public static int ItemCount1 = 16777217;
+    public static int MouseoverMobValueNoItem = 42106960;
+    public static int MouseoverMobValueKharon = 41980528;
+    public static int MouseoverItemValueKharon = 43028736;
+   // public static int MouseoverItemValueKharon = 42766592;
+   // public static int MouseoverItemValueKharon = 42963200;
 
     
+
+
+    
+
 
 
     public static int mannaPotionsCountValue = 16777257;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
@@ -120,9 +135,9 @@ public static class PointersAndValues
 
 
     // arcer
-    public static int arcerAnim1 = 1161436900;
-    public static int arcerAnim2 = 0;                         // nie widac roznicy po zmianie na 0 NIE TESTOWANO!!!!!!!    1161337300;
-    public static int arcerFirstSkill = 111504;
+    public const int arcerAnim1 = 1161436900;
+    public const int arcerAnim2 = 0;                         // nie widac roznicy po zmianie na 0 NIE TESTOWANO!!!!!!!    1161337300;
+    public const int arcerFirstSkill = 111504;
     // spear
     public static int spearSkillAnim1FirstSkill = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
     public static int spearSkillAnim1ThirdSkill = 1154085000;

@@ -19,8 +19,9 @@ using Utilities;
 
 
 
-
-
+WINDOW POSITION
+                    446
+                    133
 */
 //TODO List
 //TODO List
@@ -43,39 +44,56 @@ namespace AresTrainerV3
 {
     public partial class Form1 : Form
     {
-        static Thread healbotThread = new Thread(ProgramHandle.StartHealbotGolems);
+        static Thread healbotThread;
         static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
         static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
         static Thread pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
-
-       static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
+        static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
         // static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.TestFoundValues);
-
-
         static Thread expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
 
 
 
-        static Thread threadForTesting = new Thread(ProgramHandle.CollectItemWhenSelected);
+        static Thread threadForTesting = new Thread(StartScanAndAttackAndCollect);
 
 
-        static bool isThreadForTesting = false;
+
 
         public static void StartThreadForTesting()
         {
-            isThreadForTesting = !isThreadForTesting;
+            ExpBotClass.RequestisExpBotSell();
             Thread.Sleep(500);
             if (threadForTesting == null)
             {
-                threadForTesting = new Thread(ProgramHandle.CollectItemWhenSelected);
+                threadForTesting = new Thread(StartScanAndAttackAndCollect);
             }
 
-            if (!healbotThread.IsAlive)
+            if (!threadForTesting.IsAlive)
             {
-                threadForTesting = new Thread(ProgramHandle.CollectItemWhenSelected);
+                threadForTesting = new Thread(StartScanAndAttackAndCollect);
                 threadForTesting.Start();
             }
+
+            // also starts healbot automaticalyy
+
+            StartHealBotThreadSellKharon();
         }
+
+        static void StartScanAndAttackAndCollect()
+        {
+            ProgramHandle.SetCameraForExpBot();
+
+            while (ExpBotClass.isExpBotSell)
+            {
+                PixelBotSearcher.ScanAndAttackAndCollect();
+            }    
+        }
+
+
+
+
+
+
 
 
 
@@ -109,8 +127,9 @@ namespace AresTrainerV3
            //
            //SUBSCRIBE globalKeyboardHook.
            //
-            gkh.KeyF2Down += StartHealBotThreadKoHit; 
-            gkh.KeyF3Down += StartMoveAndExpThread; // START TEMPORATY MO
+            gkh.KeyF2Down += StartHealBotThreadNormal;
+            // gkh.KeyF3Down += StartMoveAndExpThread; // START TEMPORATY MO
+            gkh.KeyF3Down += StartThreadForTesting;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
             gkh.KeyF4Down += ShowIfOnOrOff; 
@@ -123,7 +142,47 @@ namespace AresTrainerV3
             gkh.KeyF9Down += ShowIfOnOrOff;
         }
 
-        public static void StartHealBotThread()
+        public static void StartHealBotThreadNormal()
+        {
+            ProgramHandle.RequestStopHealBot();
+            Thread.Sleep(500);
+            if (healbotThread == null)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbotNormal);
+            }
+
+            if (!healbotThread.IsAlive)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbotNormal);
+                healbotThread.Start();
+            }
+        }
+        public static void StartHealBotThreadSellKharon()
+        {
+            // !!!!!!!!!!!!!!!!!!!!!!  TODO if some other healbot is on  turn it off;
+            if (!ProgramHandle.isStopHeal)
+            {
+                ProgramHandle.RequestStopHealBot();
+            }
+
+            Thread.Sleep(500);
+            if (healbotThread == null)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbotSellKharon);
+                healbotThread.Start();
+
+            }
+
+            if (!healbotThread.IsAlive)
+            {
+                healbotThread = new Thread(ProgramHandle.StartHealbotSellKharon);
+                healbotThread.Start();
+            }
+        }
+
+
+
+        public static void StartHealBotThreadGolems()
         {
             ProgramHandle.RequestStopHealBot();
             Thread.Sleep(500);
@@ -259,7 +318,7 @@ namespace AresTrainerV3
 
         private void StartHealbotBTN_Click(object sender, EventArgs e)
         {
-            StartHealBotThread();
+            StartHealBotThreadNormal();
         }
 
         private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -487,7 +546,7 @@ namespace AresTrainerV3
             ProgramHandle.SetCameraForExpBot();
             if(!ProgramHandle.isStopHeal)
             {
-                StartHealBotThread();
+                StartHealBotThreadNormal();
             }
 
             ExpBotClass.RunAndExpSquare();  // uwc values
@@ -517,7 +576,12 @@ namespace AresTrainerV3
         {
             ProgramHandle.SetNostalgiaMainWindow();
             Thread.Sleep(500);
-            PixelBotSearcher.ScanAndCollectItems();
+            //ProgramHandle.SetCameraForExpBot();
+            //ProgramHandle.MannaKeyPressKharonSell();
+            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+
+
+            /// ExpBotClass.SellItems();
         }
     }
 }

@@ -24,7 +24,7 @@ namespace AresTrainerV3
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
-        static volatile int Test1HitChangableValue = 0;
+        static volatile int Test1HitChangableValue = 40003;
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
@@ -43,6 +43,7 @@ namespace AresTrainerV3
         static IntPtr mobSelectedOffset;
         static IntPtr mobBeingAttackedOffset;
         static IntPtr itemMouseoverHighlightedOffset;
+        static IntPtr sellWindowStillOpenOffset;
 
         static InputSimulator inputSimulator = new InputSimulator();
         static volatile byte[] hpAddress;
@@ -141,6 +142,8 @@ namespace AresTrainerV3
 
             itemMouseoverHighlightedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.MouseoverHighlightedMOffset));
 
+            sellWindowStillOpenOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.SellWindowMOffset));
+
 
 
             hpAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4);
@@ -174,7 +177,7 @@ namespace AresTrainerV3
             }
             else
             {
-                hpHealValue = myMaxHp - 350;
+              hpHealValue = myMaxHp - 350;
             }
 
         }
@@ -279,25 +282,45 @@ namespace AresTrainerV3
             ExpBotClass.TeleportSScroll();
             SetCameraForExpBot();
             Form1.StartPixelGolemsThread();
-
-
         }
-
-        static void HealBotRepotKoHitTest()
+        public static void HealBotRepotKharonSell()
         {
-            if (PixelBotSearcher.isStopPixelAttack)
+            if (ExpBotClass.isExpBotSell)
             {
-                PixelBotSearcher.RequestStopPixelAttack();
+                ExpBotClass.RequestisExpBotSell();
             }
-            inputSimulator.Keyboard.Sleep(2000);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
             inputSimulator.Keyboard.Sleep(150);
+
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
+            inputSimulator.Keyboard.Sleep(150);
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+            inputSimulator.Keyboard.Sleep(150);
+
+            ExpBotClass.Repot(GetCurrentMap);
+            // ExpBotClass.TeleportSScroll();
+            ExpBotClass.ExpBotSellKharonGoBackToSpot();
+
+            Form1.StartThreadForTesting();
+
+
+        }
+
+
+        static void HealBotRepotKoHitTest()
+        {
+            
+            if (ExpBotClass.isExpBotSell)
+            {
+                ExpBotClass.RequestisExpBotSell();
+            }
+            ExpBotClass.scrollToCity();
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
@@ -306,6 +329,8 @@ namespace AresTrainerV3
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
             inputSimulator.Keyboard.Sleep(1500);
+            Thread.Sleep(10000);
+
 
             ExpBotClass.Repot(GetCurrentMap);
             Thread.Sleep(1000);
@@ -324,14 +349,7 @@ namespace AresTrainerV3
                 ExpBotClass.RequestStopMoveExpBot();
             }
 
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
+            ExpBotClass.scrollToCity();
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
@@ -349,7 +367,7 @@ namespace AresTrainerV3
 
         static void HealKeyPressGolems()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > 16777222) // if less then 7 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 15) // if less then 7 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
@@ -362,9 +380,9 @@ namespace AresTrainerV3
                 HealBotRepotSSGolems();
             }
         }
-        static void HealKeyPressKoHitTest()
+        static void HealKeyPressSellKharon()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > 16777222) // if less then 7 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 10) // if less then 7 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
@@ -374,13 +392,29 @@ namespace AresTrainerV3
             else
             {
                 // HealBotTeleportRepotGoUWC(); 
+                HealBotRepotKharonSell();
+            }
+        }
+        static void HealKeyPressKoHitTest()
+        {
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 15) // if less then 7 use key 6 which is teleport
+            {
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
+                inputSimulator.Keyboard.Sleep(150);
+            }
+
+            else
+            {
+                // HealBotTeleportRepotGoUWC(); 
                 HealBotRepotKoHitTest();
             }
         }
         
         static void HealKeyPress()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > 16777222) // if less then 7 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 15) // if less then 7 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
@@ -389,16 +423,13 @@ namespace AresTrainerV3
             }
             else
             {
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(150);
+                ExpBotClass.scrollToCity();
             }
         }
 
         static void MannaKeyPress()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > 16777219) // if less then 4 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -407,15 +438,26 @@ namespace AresTrainerV3
             }
             else
             {
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
+                ExpBotClass.scrollToCity();
+            }
+        }
+        public static void MannaKeyPressKharonSell()
+        {
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 2) // if less then 4 use key 6 which is teleport
+            {
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(150);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(200);
+            }
+            else
+            {
+                HealBotRepotKharonSell();
             }
         }
         static void MannaKeyPressGolems()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > 16777219) // if less then 4 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 +5) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -430,7 +472,7 @@ namespace AresTrainerV3
         }
         static void MannaKeyPressKoHitTest()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > 16777219) // if less then 4 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 10) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -457,8 +499,6 @@ namespace AresTrainerV3
         }
 
 
-
-
         public static void StartHealbotGolems()
         {
             SetForegroundWindow(FindWindow(null, "Nostalgia"));
@@ -483,6 +523,87 @@ namespace AresTrainerV3
                     // HealBotTeleportRepotGoUWC();  // GO EXP IN UWC
                     // HealBotRepotSSGolems();  // cant go golems cause threre is no SS scroll used
                 }
+                if (mannaValue < MannaRestoreValue)
+                {
+                    MannaKeyPress();
+
+                    // if running speed is normal use red and white potion
+                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    {
+                        WhiteRedPotionsKeyPress();
+                    }
+                }
+
+            }
+            return;
+        }
+        public static void StartHealbotSellKharon()
+        {
+            SetForegroundWindow(FindWindow(null, "Nostalgia"));
+
+
+            while (_stopHeal)
+            {
+                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                Thread.Sleep(50);
+                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                Thread.Sleep(50);
+
+
+                if (hpValue < hpHealValue && hpValue != 0)
+                {
+                    HealKeyPressSellKharon();
+                }
+                if (hpValue == 0)
+                {
+                    if (ExpBotClass.isExpBotSell)
+                    {
+                        ExpBotClass.RequestisExpBotSell();
+                    }
+
+                    Thread.Sleep(180000);
+                    HealBotRepotKharonSell();
+
+
+                    // HealBotTeleportRepotGoUWC();  // GO EXP IN UWC
+                    // HealBotRepotSSGolems();  // cant go golems cause threre is no SS scroll used
+                }
+                if (mannaValue < MannaRestoreValue)
+                {
+                    MannaKeyPressKharonSell();
+
+                    // if running speed is normal use red and white potion
+                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    {
+                        WhiteRedPotionsKeyPress();
+                    }
+                }
+
+            }
+            return;
+        }
+
+
+
+
+        public static void StartHealbotNormal()
+        {
+            SetForegroundWindow(FindWindow(null, "Nostalgia"));
+
+
+            while (_stopHeal)
+            {
+                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                Thread.Sleep(50);
+                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                Thread.Sleep(50);
+
+                if (hpValue < hpHealValue && hpValue != 0)
+                {
+                    HealKeyPress();
+                }
+
+
                 if (mannaValue < MannaRestoreValue)
                 {
                     MannaKeyPress();
@@ -551,6 +672,12 @@ namespace AresTrainerV3
                 if (hpValue < hpHealValue && hpValue != 0)
                 {
                     HealKeyPress();
+                    // if running speed is normal use red and white potion
+                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    {
+                        WhiteRedPotionsKeyPress();
+                    }
+
                 }
                 if (hpValue == 0)
                 {
@@ -562,66 +689,52 @@ namespace AresTrainerV3
                 if (mannaValue < MannaRestoreValue)
                 {
                     MannaKeyPress();
-
-                    // if running speed is normal use red and white potion
-                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
-                    {
-                        WhiteRedPotionsKeyPress();
-                    }
                 }
 
             }
             return;
         }
+        static void checkIfIsStandingAnimation()
+        {
+            while (isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
+            {
+                Debug.WriteLine($"!isStandingAnimation");
+                Thread.Sleep(100);
+            }
+            Thread.Sleep(10);
+            if(isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
+            {
+                checkIfIsStandingAnimation();
+            }
 
-        public static void AttackMobWhenSelected()
+        }
+        public static bool AttackMobWhenSelected()
         {
             if (isMobSelected != 0 && isMobSelected < 8300000)
             {
-                SkillAttackBot();
+                if(SkillAttackBot())
+                { return true; }
             }
+            return false;
         }
-        public static void CollectItemWhenSelected()
+        public static bool SkillAttackBot()
         {
-            while (true) // XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX TO DO WHILE SOMETHING ELSE
+            if (isMobSelected != 0 && isMobSelected < 8300000)
             {
-                if (isItemHighlighted == PointersAndValues.MouseoverItemValue)
-                {
-                    ClickAndCollectItem();
-                }
-            }
-        }
-        public static void SkillAttackBot()
-        {
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+                Thread.Sleep(10);
 
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            Thread.Sleep(10);
-            while (isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
-            {
-                Thread.Sleep(100);
-            }
+                checkIfIsStandingAnimation();
 
-            //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(5);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                Thread.Sleep(5);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                return true;
+            }
+            return false;
         }
 
-        public static void ClickAndCollectItem()
-        {
-
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(50);
-/*            while(isWhatAnimationRunning != PointersAndValues.isStandingAnimation)          USUNIETE BO SIE ZACINALO NACISNIECIE PRZYCISKU I KLIKAL LEWY DO BIEGANIA CIAGLE
-            {
-                Thread.Sleep(300);
-            }
-*/
-            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(5);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-        }
         public static void Start1HitKO()
         {
 
@@ -797,17 +910,16 @@ namespace AresTrainerV3
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-          // rining speed   mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), BitConverter.GetBytes(PointersAndValues.runSpeedValue4));
         }
 
         public static void SetCameraForExpBot()
         {
+            MouseOperations.SetCursorPosition(900, 500);
             SetNostalgiaMainWindow();
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceBotValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleXPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleXValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-            // rining speed   mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), BitConverter.GetBytes(PointersAndValues.runSpeedValue4));
         }
 
 
@@ -817,9 +929,7 @@ namespace AresTrainerV3
         public static int GetCurrentMap
         {
             get
-            {
-                return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0);
-            }
+            {   return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0);   }
         }
         public static int getFirstSlotValue
         {
@@ -836,6 +946,10 @@ namespace AresTrainerV3
         public static int getForthSlotValue
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotWhitePotOffset), 4)); }
+        }
+        public static int getCurrentWeight
+        {
+            get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
         }
         public static int isWhatAnimationRunning
         {
@@ -854,6 +968,10 @@ namespace AresTrainerV3
         public static int isItemHighlighted
         {
             get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(itemMouseoverHighlightedOffset, PointersAndValues.MouseoverHighlightedOffset), 4)), 0); }
+        }
+        public static int isSellWindowStillOpen
+        {
+            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(sellWindowStillOpenOffset, PointersAndValues.SellWindowOffset), 4)), 0); }
         }
         public static void TeleportKoHitTest()
         {
@@ -1063,6 +1181,13 @@ namespace AresTrainerV3
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item3));
+            }
+
+            else if (GetCurrentMap == TeleportValues.KharonPlateau)
+            {
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item3));
             }
 
 

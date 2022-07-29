@@ -24,6 +24,24 @@ namespace AresTrainerV3
             }
         }
 
+
+
+        static volatile bool _isExpBotSell = false;
+
+        public static bool isExpBotSell
+        {
+            get { return _isExpBotSell; }
+        }
+
+        public static void RequestisExpBotSell()
+        {
+            if (_isExpBotSell)
+                _isExpBotSell = false;
+            else
+                _isExpBotSell = true;
+        }
+
+
         /*        public static bool ExpBotRepot(Tuple<int, int>[] MainCityRepotPositions)
                 {
 
@@ -68,7 +86,7 @@ namespace AresTrainerV3
                 _stopMoveExpBot = true;
         }
 
-        static void MoveAndLeftClickOperation(int xPos, int yPos)
+        public static void MoveAndLeftClickOperation(int xPos, int yPos)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);
             Thread.Sleep(100);
@@ -78,34 +96,70 @@ namespace AresTrainerV3
             Thread.Sleep(100);
         }
 
-        public static void BuyPotionsFromShop(Tuple<int,int> [] whereAreYouBuyingPositions)
+        static void OpenShop()
         {
-
             Thread.Sleep(1000);
             MoveAndLeftClickOperation(580, 565);
+
+        }
+        public static void BuyPotionsFromShopNormal(Tuple<int, int>[] whereAreYouBuyingPositions)
+        {
+
 
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
             {
                 Thread.Sleep(1000);
-                if(i==0 && ProgramHandle.getSecondSlotValue < 16777270) // Manna Potion
+                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 50) // Manna Potion
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
 
-                    HowManyPotionsToBuy(i);
+                    HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < 16777224) // Red Potions
+                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 4) // Red Potions
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
-                    HowManyPotionsToBuy(i);
+                    HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < 16777224) // White Potions
+                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 4) // White Potions
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
-                    HowManyPotionsToBuy(i); }
-                else if (i == 3 && ProgramHandle.getFirstSlotValue < 16777416)      // HP Potions 16777416== 200
+                    HowManyPotionsToBuyExp(i);
+                }
+                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 200)      // HP Potions 
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
-                    HowManyPotionsToBuy(i); }
+                    HowManyPotionsToBuyExp(i);
+                }
+            }
+
+        }
+        public static void BuyPotionsFromShopSellKharon(Tuple<int, int>[] whereAreYouBuyingPositions)
+        {
+
+            for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
+            {
+                Thread.Sleep(1000);
+                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 20) // Manna Potion
+                {
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+
+                    HowManyPotionsToBuySell(i);
+                }
+                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 1) // Red Potions
+                {
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    HowManyPotionsToBuySell(i);
+                }
+                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 1) // White Potions
+                {
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    HowManyPotionsToBuySell(i);
+                }
+                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 20)      // HP Potions 
+                {
+                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    HowManyPotionsToBuySell(i);
+                }
             }
 
         }
@@ -121,7 +175,7 @@ namespace AresTrainerV3
         }
 
 
-        static void HowManyPotionsToBuy(int numberOfPotionToBuy)
+        static void HowManyPotionsToBuyExp(int numberOfPotionToBuy)
         {
             MouseOperations.SetCursorPosition(1295,530);  // Position for second slot item
             Thread.Sleep(1000);
@@ -132,12 +186,10 @@ namespace AresTrainerV3
 
             if (numberOfPotionToBuy == 0) // Manna Potion
             {
-                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
+
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
                 inputSimulator.Keyboard.Sleep(200);
@@ -145,8 +197,6 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.Sleep(500);
 
                 ClickOkWhenBuying();
-
-
             }
             if (numberOfPotionToBuy == 1) //red potion
             {
@@ -171,10 +221,66 @@ namespace AresTrainerV3
             {
                 BuyingHpPotions();
             }
-
-
-
         }
+        static void HowManyPotionsToBuySell(int numberOfPotionToBuy)
+        {
+            MouseOperations.SetCursorPosition(1295, 530);  // Position for second slot item
+            Thread.Sleep(1000);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(500);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(1000);
+
+            if (numberOfPotionToBuy == 0) // Manna Potion
+            {
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_0);
+                inputSimulator.Keyboard.Sleep(500);
+
+                ClickOkWhenBuying();
+            }
+            if (numberOfPotionToBuy == 1) //red potion
+            {
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(500);
+                ClickOkWhenBuying();
+            }
+            else if (numberOfPotionToBuy == 2) // White Potion
+            {
+                inputSimulator.Keyboard.Sleep(1000);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.Sleep(500);
+                ClickOkWhenBuying();
+
+            }
+            else if (numberOfPotionToBuy == 3) // HP potion
+            {
+                inputSimulator.Keyboard.Sleep(1000);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_3);
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_3);
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
+                inputSimulator.Keyboard.Sleep(500);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_0);
+                inputSimulator.Keyboard.Sleep(500);
+                ClickOkWhenBuying();
+            }
+        }
+
         static void BuyingHpPotions()
         {
             MouseOperations.SetCursorPosition(1300, 550);
@@ -221,17 +327,36 @@ namespace AresTrainerV3
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
             inputSimulator.Keyboard.Sleep(500);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
-            inputSimulator.Keyboard.Sleep(500);
 
             ProgramHandle.SetCameraForExpBot();
 
             if (currentCity == TeleportValues.Hershal)
             {
-                MoveToRepot(ExpBotMovePositions.HershalMovePositions);
-                BuyPotionsFromShop(ExpBotMovePositions.mousePositionsForHershalBuying);
+                MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
+                OpenShop();
+                BuyPotionsFromShopNormal(ExpBotMovePositions.mousePositionsForHershalBuying);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
+                inputSimulator.Keyboard.Sleep(500);
+
+            }
+            
+            if (currentCity == TeleportValues.Kharon)
+            {
+
+                MoveToRepot(ExpBotMovePositions.KharonRepotMovePositions);
+                inputSimulator.Keyboard.Sleep(500);
+
+                OpenShop();
+
+                inputSimulator.Keyboard.Sleep(500);
+
+                SellItems();
+
+                inputSimulator.Keyboard.Sleep(500);
+                BuyPotionsFromShopSellKharon(ExpBotMovePositions.mousePositionsForKharonBuying);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
                 inputSimulator.Keyboard.Sleep(200);
@@ -240,6 +365,29 @@ namespace AresTrainerV3
 
             }
 
+
+        }
+        public static void scrollToCity()
+        {
+            inputSimulator.Keyboard.Sleep(2000);
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
+            inputSimulator.Keyboard.Sleep(5000);
+        }
+        public static void ExpBotSellKharonGoBackToSpot()
+        {
+            scrollToCity();
+            ProgramHandle.SetCameraForExpBot();
+            while(ProgramHandle.GetCurrentMap != TeleportValues.KharonPlateau)
+            {
+                MoveAndLeftClickOperation(955, 160);
+                Thread.Sleep(1000);
+            }
+            Thread.Sleep(10000);
+            ProgramHandle.SetCameraForExpBot();
+            PressF5ForTeleport();
+            Thread.Sleep(2000);
         }
         static void PressF5ForTeleport()
         {
@@ -481,5 +629,111 @@ namespace AresTrainerV3
             MoveAndLeftClickOperation(920, 155);
             Thread.Sleep(1000);
         }
+
+
+        static void MoveAndRightClickOperation(int xPos, int yPos)
+        {
+            MouseOperations.SetCursorPosition(xPos, yPos);
+            Thread.Sleep(100);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+            Thread.Sleep(100);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+            Thread.Sleep(100);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+            Thread.Sleep(100);
+        }
+        static void MoveAndLeftClickToSellAll()
+        {
+            if (ProgramHandle.isSellWindowStillOpen == 1)
+            {
+                MouseOperations.SetCursorPosition(560, 570);
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                Thread.Sleep(100);
+
+            }
+            if (ProgramHandle.isSellWindowStillOpen == 1)
+            {
+                MouseOperations.SetCursorPosition(560, 570);
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                Thread.Sleep(100);
+
+            }
+        }
+
+        #region TrySellItems
+
+        public static void SellItems()
+        {
+            TestArrayAdding.itemArrayPositionsInitialize();
+            Thread.Sleep(500);
+            MoveAndLeftClickOperation(1235, 570);
+            Thread.Sleep(500);
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SELL ONLY FIRST ROW OF SECOND TAB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+           // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
+                for (int i = 12; i < 42; i++) // START FROM 3 Row 1st Column - its 12 and end on first row second tab
+                {
+                    if (i == 36)
+                {
+                    Thread.Sleep(300);
+
+                    ExpBotClass.MoveAndLeftClickOperation(1235, 670); // Open Second Tab
+                    Thread.Sleep(300);
+                }
+                MoveAndRightClickOperation(ExpBotMovePositions.itemSellPositions[i].Item1, ExpBotMovePositions.itemSellPositions[i].Item2);
+                Thread.Sleep(100);
+                MoveAndLeftClickToSellAll();
+
+
+            }
+        }
+
+
+
+        #endregion
+
+
+        #region Collecting Items
+
+
+        public static bool ClickAndCollectItem()
+        {
+            Thread.Sleep(2);
+
+            if (ProgramHandle.isItemHighlighted != 0)
+            {
+
+                if (ProgramHandle.isItemHighlighted != 0)
+                {
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    Thread.Sleep(100);
+                    //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    Thread.Sleep(5);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationOutside)
+                    {
+                        Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
+                    }
+                    Thread.Sleep(500); 
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        #endregion
+
+
     }
 }
