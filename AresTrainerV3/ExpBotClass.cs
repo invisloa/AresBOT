@@ -436,7 +436,7 @@ namespace AresTrainerV3
 
         static void MoveScanAndAttack(int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerOut)
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerOut || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcOut)
             {
                 moveToPosition(x, y);
             }
@@ -465,26 +465,22 @@ namespace AresTrainerV3
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
-                        MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
                     ExpBotLog += $"goLeft \n";
 
-                }
-                else if (ProgramHandle.GetPositionY > upLimit)
-                    {
-                        goDown(900+ moveRandomizer, 640+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-
-                    ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-
-                    
+                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
                     }
-                    else if (ProgramHandle.GetPositionY < downLimit)
+                    if (ProgramHandle.GetPositionY > upLimit)
                     {
-                        goUp(962+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                    goDown(900+ moveRandomizer, 640+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    }
+                    if (ProgramHandle.GetPositionY < downLimit)
+                    {
                     ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                    goUp(962+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    }
 
                 }
-
-            }
                 return true;
 
         }
@@ -494,20 +490,23 @@ namespace AresTrainerV3
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
-                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
                     ExpBotLog += $"goRight \n";
 
-                    }
-                    else if (ProgramHandle.GetPositionY > upLimit)
-                    {
-                            goDown(963+ moveRandomizer, 600+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-                        ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
 
                     }
-                    else if (ProgramHandle.GetPositionY < downLimit)
-                    {
-                            goUp(964+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
-                        ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                    if (ProgramHandle.GetPositionY > upLimit)
+                {
+                    ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                    goDown(963+ moveRandomizer, 600+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+
+                    }
+                    if (ProgramHandle.GetPositionY < downLimit)
+                {
+                    ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                    goUp(964+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
                     }
 
                 }
@@ -518,25 +517,28 @@ namespace AresTrainerV3
                 while (ProgramHandle.GetPositionY < upLimit && _stopMoveExpBot)
                 {
                     if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
-                    {
-                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
-                    ExpBotLog += $"goUp \n";
+                        {
+                        ExpBotLog += $"goUp \n";
 
-                }
-                else if (ProgramHandle.GetPositionX > rightLimit)
-                    {
-                        goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
-                    ExpBotLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+                        MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
 
-                }
-                else if (ProgramHandle.GetPositionX < leftLimit)
-                    {
+                        }
+                    if (ProgramHandle.GetPositionX > rightLimit)
+                        {
+                            ExpBotLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                            goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+
+                        }
+                    if (ProgramHandle.GetPositionX < leftLimit)
+                        {
+                        ExpBotLog += $"goUp-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
                         goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
-                    ExpBotLog += $"goUp-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                        }
 
                 }
-
-            }
                 return true;
         }
         public static bool goDown(int x, int y, int upLimit, int leftLimit, int rightLimit)
@@ -545,20 +547,23 @@ namespace AresTrainerV3
             {
                 if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                 {
+                    ExpBotLog += $"goDown currentY xyz{ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
+
                     MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
-                    ExpBotLog += $"goDown currentY {ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
 
                 }
-                else if (ProgramHandle.GetPositionX > rightLimit)
+                if (ProgramHandle.GetPositionX > rightLimit)
                 {
-                    goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
                     ExpBotLog += $"goDown-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
+                    goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+
                 }
-                else if (ProgramHandle.GetPositionX < leftLimit)
+                if (ProgramHandle.GetPositionX < leftLimit)
                 {
-                    goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
                     ExpBotLog += $"goDown-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
+
+                    goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
                 }
 
             }
@@ -640,12 +645,12 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
                         Thread.Sleep(100);
 
-                        while (!goLeft(600, 520, 1121245593, 1111239992, 1145850486)) ;
+                        while (!goLeft(600, 520, 1121245593, 1146928281, 1145928281)) ;
                         ExpBotLog += $"goLeft Ended current i {i}\n";
 
                     }
 
-                    else if (i == 1)
+                    if (i == 1)
                     {
                         ExpBotLog += $"current i {i}\n";
 
@@ -655,7 +660,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"goUp Ended current i {i}\n";
 
                     }
-                    else if (i == 2)
+                    if (i == 2)
                     {
                         ExpBotLog += $"current i {i}\n";
 
@@ -664,7 +669,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"GoRight Ended current i {i}\n";
 
                     }
-                    else if (i == 3)
+                    if (i == 3)
                     {
                         ExpBotLog += $"current i {i}\n";
 
@@ -743,13 +748,13 @@ namespace AresTrainerV3
                 {
                     if (i == 36)
                 {
-                    Thread.Sleep(300);
+                    Thread.Sleep(500);
 
                     ExpBotClass.MoveAndLeftClickOperation(1235, 670); // Open Second Tab
-                    Thread.Sleep(300);
+                    Thread.Sleep(500);
                 }
                 MoveAndRightClickOperation(ExpBotMovePositions.itemSellPositions[i].Item1, ExpBotMovePositions.itemSellPositions[i].Item2);
-                Thread.Sleep(100);
+                Thread.Sleep(200);
                 MoveAndLeftClickToSellAll();
 
 
@@ -766,20 +771,21 @@ namespace AresTrainerV3
 
         public static bool ClickAndCollectItem()
         {
-            Thread.Sleep(2);
 
             if (ProgramHandle.isItemHighlighted != 0)
             {
 
                 if (ProgramHandle.isItemHighlighted != 0)
                 {
+                    Debug.WriteLine("Collect");
+
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                     Thread.Sleep(100);
                     //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                     Thread.Sleep(5);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcOutside)
+                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcOutside)
                     {
                         Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
                     }

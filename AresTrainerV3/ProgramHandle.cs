@@ -172,7 +172,7 @@ namespace AresTrainerV3
             }
             else if (myMaxHp < 400 && myMaxHp > 200)
             {
-                hpHealValue = 300;
+                hpHealValue = 200;
 
             }
             else
@@ -712,7 +712,9 @@ namespace AresTrainerV3
         {
             if (isMobSelected != 0 && isMobSelected < 8300000)
             {
-                if(SkillAttackBot())
+                Debug.WriteLine("Attack");
+
+                if (SkillAttackBot())
                 { return true; }
             }
             return false;
@@ -721,6 +723,8 @@ namespace AresTrainerV3
         {
             if (isMobSelected != 0 && isMobSelected < 8300000)
             {
+                Debug.WriteLine("Attack2");
+
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Thread.Sleep(10);
 

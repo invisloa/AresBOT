@@ -73,7 +73,7 @@ namespace AresTrainerV3
                         }
                 */
 
-        public static void ScanAndAttack()
+        public static bool ScanAndAttack()
         {
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
             Color desiredPixelColor = ColorTranslator.FromHtml("#000000");
@@ -90,7 +90,7 @@ namespace AresTrainerV3
                     if ((x < 938 || x > 976 || y < 502 || y > 540) && desiredPixelColor == currentPixelColor)
 
                     {
-                        Debug.WriteLine("Attack");
+                        Debug.WriteLine("pixel attack");
 
                         MouseOperations.SetCursorPosition(x, y);
                         if (ProgramHandle.AttackMobWhenSelected())
@@ -98,86 +98,56 @@ namespace AresTrainerV3
                             Debug.WriteLine("EndAttack");
 
                             GC.Collect();
+                            return true;
 
-                            return;
                         };
                     }
                 }
             }
             GC.Collect();
+            return false;
         }
 
-        public static void ScanAndAttackAndCollect()
+        static bool ScanAndCollect()
         {
-            Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-            Graphics graphics = Graphics.FromImage(bitmap as Image);
-            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-            bool isScanSuccessfull = false;
-
-            Color desiredPixelColor = ColorTranslator.FromHtml("#000000");
-            // X and Y  set to start search only for LOA window
+            Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
             for (int x = 527; x < 1360; x++)
             {
-
                 for (int y = 237; y < 835; y++)
                 {
-
-                    //MouseOperations.SetCursorPosition(x, y);
-
                     Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 938 || x > 976 || y < 502 || y > 540) && desiredPixelColor == currentPixelColor)
-
+                    if ((x < 928 || x > 985 || y < 490 || y > 550) && desiredPixelColor == currentPixelColor)
                     {
-                        Debug.WriteLine("Attack");
+                        Debug.WriteLine("pixel Collect");
 
-                        isScanSuccessfull = true;                                   //   TODO FIRST MAKE SCAN AND COLLECT WORKING
                         MouseOperations.SetCursorPosition(x, y);
-                        if (ProgramHandle.AttackMobWhenSelected())
+                        if (ExpBotClass.ClickAndCollectItem())
                         {
-                            Debug.WriteLine("EndAttack");
+                            Debug.WriteLine("EndCollect");
 
                             GC.Collect();
 
-                            return;
-                        };
+                            return true;
+                        }
                     }
                 }
             }
-            /*            if (!isScanSuccessfull) // TOCHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                        {
-                            desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
-                            for (int x = 527; x < 1360; x++)
-                            {
-                                for (int y = 237; y < 835; y++)
-                                {
-                                    Color currentPixelColor = bitmap.GetPixel(x, y);
-                                    if ((x < 928 || x > 985 || y < 490 || y > 550) && desiredPixelColor == currentPixelColor)
-                                    {2
-                                        Debug.WriteLine("Collect");
-
-                                        MouseOperations.SetCursorPosition(x, y);
-                                        if (ExpBotClass.ClickAndCollectItem())
-                                        {
-                                            Debug.WriteLine("EndCollect");
-
-                                            GC.Collect();
-
-                                            return;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+            return false;
+        }
 
 
-                        GC.Collect();
-                        Debug.WriteLine("Check weight");
+        public static void ScanAndAttackAndCollect()
+        {
+            if (!ScanAndAttack()) // TOCHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            {
+                ScanAndCollect();
+            }
+            Debug.WriteLine("Check weight");
+            if (ProgramHandle.getCurrentWeight > 1800)
+            {
+                ProgramHandle.HealBotRepotKharonSell();
+            }
 
-                        if (ProgramHandle.getCurrentWeight > 1800)
-                        {
-                            ProgramHandle.HealBotRepotKharonSell();
-                        }
-            */
             GC.Collect();
         }
 

@@ -129,7 +129,8 @@ namespace AresTrainerV3
            //
             gkh.KeyF2Down += StartHealBotThreadNormal;
             // gkh.KeyF3Down += StartMoveAndExpThread; // START TEMPORATY MO
-            gkh.KeyF3Down += StartThreadForTesting;
+            gkh.KeyF3Down += StartThreadForTesting; // KHARON COLLECT
+            //gkh.KeyF3Down += StartMoveAndExpThread;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
             gkh.KeyF4Down += ShowIfOnOrOff; 
