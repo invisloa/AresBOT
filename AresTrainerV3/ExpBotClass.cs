@@ -422,7 +422,7 @@ namespace AresTrainerV3
 
         static void MoveToPositionWhenNotAttacking( int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationOutside)
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationArcOutside)
             {
                 Thread.Sleep(5);
                 MouseOperations.SetCursorPosition(x, y);
@@ -436,7 +436,7 @@ namespace AresTrainerV3
 
         static void MoveScanAndAttack(int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimation)
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerOut)
             {
                 moveToPosition(x, y);
             }
@@ -566,7 +566,7 @@ namespace AresTrainerV3
         }
 
 
-        public static void RunAndExpSquare()
+        public static void RunAndExpSquareUWC()
         {
             int howManyForLoops = 0;
             while(_stopMoveExpBot)
@@ -623,6 +623,64 @@ namespace AresTrainerV3
 
             }
         }
+        public static void RunAndExpSquareSacred()
+        {
+            int howManyForLoops = 0;
+            while (_stopMoveExpBot)
+            {
+                ExpBotLog += $"Starting new While \n";
+
+                for (int i = 0; i < 3; i++)
+                {
+                    ExpBotLog += $"starting new for \n";
+
+                    Thread.Sleep(100);
+                    if (i == 0)
+                    {
+                        ExpBotLog += $"current i {i}\n";
+                        Thread.Sleep(100);
+
+                        while (!goLeft(600, 520, 1121245593, 1111239992, 1145850486)) ;
+                        ExpBotLog += $"goLeft Ended current i {i}\n";
+
+                    }
+
+                    else if (i == 1)
+                    {
+                        ExpBotLog += $"current i {i}\n";
+
+                        Thread.Sleep(100);
+
+                        while (!goUp(960, 300, 1146075590, 1120772620, ProgramHandle.GetPositionX + 80000000)) ;
+                        ExpBotLog += $"goUp Ended current i {i}\n";
+
+                    }
+                    else if (i == 2)
+                    {
+                        ExpBotLog += $"current i {i}\n";
+
+                        Thread.Sleep(100);
+                        while (!goRight(1250, 520, 1125340770, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000)) ;
+                        ExpBotLog += $"GoRight Ended current i {i}\n";
+
+                    }
+                    else if (i == 3)
+                    {
+                        ExpBotLog += $"current i {i}\n";
+
+                        Thread.Sleep(100);
+                        while (!goDown(965, 650, 1110537017, 1120835756, 1122982731)) ;
+                        ExpBotLog += $"GoDown Ended current i {i}\n";
+
+                    }
+
+                }
+                howManyForLoops++;
+                ExpBotLog += $"while end {howManyForLoops} \n";
+
+            }
+        }
+
         public static void TeleportSScroll()
         {
             Thread.Sleep(1000);
@@ -721,7 +779,7 @@ namespace AresTrainerV3
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                     Thread.Sleep(5);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationOutside)
+                    if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcOutside)
                     {
                         Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
                     }

@@ -125,10 +125,14 @@ public static class PointersAndValues
     public static int whitePotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
     public static int redPotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
 
-    public const int isRunningAnimationOutside = 4535616;
+    public const int isRunningAnimationArcOutside = 4535616;
+    public const int isRunningAnimationSorcOutside = 4523712;
     public const int isRunningAnimationInCity = 4545808;
+    
+    public const int isStandingAnimationArcerOut = 4534400;
+    public const int isStandingAnimationSorcOut = 4522496;
 
-    public const int isStandingAnimation = 4534400;
+    
     public const int isBeingHitAnimation = 4536960;
     public const int isAttackingBowAlliAnimation = 4536096;
     public const int isAttackingBowEmpAnimation = 4536832;

@@ -696,13 +696,13 @@ namespace AresTrainerV3
         }
         static void checkIfIsStandingAnimation()
         {
-            while (isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
+            while (isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerOut)
             {
                 Debug.WriteLine($"!isStandingAnimation");
                 Thread.Sleep(100);
             }
             Thread.Sleep(10);
-            if(isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimation)
+            if(isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerOut)
             {
                 checkIfIsStandingAnimation();
             }

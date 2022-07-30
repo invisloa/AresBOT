@@ -23,7 +23,7 @@ WINDOW POSITION
                     446
                     133
 */
-//TODO List
+//TODO List1111
 //TODO List
 //TODO List
 //TODO List
@@ -137,6 +137,9 @@ namespace AresTrainerV3
             gkh.KeyF6Down += AttackWhenMobSelectedThread;
             gkh.KeyF6Down += ShowIfOnOrOff;
             //gkh.KeyF9Down += StartKoHitThread;
+           // gkh.KeyF3Down += TemporatyThreadMoveMethod;
+
+            
             gkh.KeyF9Down += StartChangeValuesKoHitThread;
 
             gkh.KeyF9Down += ShowIfOnOrOff;
@@ -549,7 +552,7 @@ namespace AresTrainerV3
                 StartHealBotThreadNormal();
             }
 
-            ExpBotClass.RunAndExpSquare();  // uwc values
+            ExpBotClass.RunAndExpSquareSacred();  // uwc values
 
         }
 
