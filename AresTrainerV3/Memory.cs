@@ -18,19 +18,25 @@ namespace AresTrainerV3
 
         int read, write;
         byte[] ptr = new byte[8];
-        byte[] buffer = new byte[1024];
+        byte[] bytesBuffer = new byte[1024];
         public IntPtr readpointer(IntPtr proc, IntPtr address)
         {
-            ReadProcessMemory(proc, address, buffer, 4, ref read);
+            ReadProcessMemory(proc, address, bytesBuffer, 4, ref read);
 
-            return (IntPtr)BitConverter.ToInt32(buffer, 0);
+            return (IntPtr)BitConverter.ToInt32(bytesBuffer, 0);
 
         }
         public byte[] readbytes(IntPtr proc, IntPtr address, int size)
         {
-            ReadProcessMemory(proc, address, buffer, size, ref read);
+            ReadProcessMemory(proc, address, bytesBuffer, size, ref read);
 
-            return buffer;
+            return bytesBuffer;
+        }
+        public byte readByte(IntPtr address)
+        {
+            byte[] buffer = new byte[1];
+            ReadProcessMemory(processHandle, address, buffer, (uint)size, ref read);
+            return buffer[0];
         }
 
         public void writebytes(IntPtr proc, IntPtr address, byte[] newbytes)

@@ -44,6 +44,7 @@ namespace AresTrainerV3
         static IntPtr mobBeingAttackedOffset;
         static IntPtr itemMouseoverHighlightedOffset;
         static IntPtr sellWindowStillOpenOffset;
+        static IntPtr firstSellItemAddres;
 
         static InputSimulator inputSimulator = new InputSimulator();
         static volatile byte[] hpAddress;
@@ -143,6 +144,8 @@ namespace AresTrainerV3
             itemMouseoverHighlightedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.MouseoverHighlightedMOffset));
 
             sellWindowStillOpenOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.SellWindowMOffset));
+
+            firstSellItemAddres = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.SellWindowMOffset));
 
 
 
@@ -696,13 +699,13 @@ namespace AresTrainerV3
         }
         static void checkIfIsStandingAnimation()
         {
-            while (isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerOut)
+            while (isMobBeingAttacked != -1 && (isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerAlliOut || isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerEmpOut))
             {
-                Debug.WriteLine($"!isStandingAnimation");
+               // Debug.WriteLine($"!isStandingAnimation");
                 Thread.Sleep(100);
             }
             Thread.Sleep(10);
-            if(isMobBeingAttacked != -1 && isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerOut)
+            if(isMobBeingAttacked != -1 && (isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerAlliOut || isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerEmpOut))
             {
                 checkIfIsStandingAnimation();
             }
@@ -712,10 +715,20 @@ namespace AresTrainerV3
         {
             if (isMobSelected != 0 && isMobSelected < 8300000)
             {
-                Debug.WriteLine("Attack");
 
                 if (SkillAttackBot())
                 { return true; }
+            }
+            else if(isMobSelected > 8300000)
+            {
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
+                inputSimulator.Keyboard.Sleep(15000);
+                HealBotRepotKharonSell();
+
+                return true;
             }
             return false;
         }
@@ -723,7 +736,6 @@ namespace AresTrainerV3
         {
             if (isMobSelected != 0 && isMobSelected < 8300000)
             {
-                Debug.WriteLine("Attack2");
 
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Thread.Sleep(10);
@@ -833,16 +845,12 @@ namespace AresTrainerV3
             {
 
                 int currentSavedChangableValue = Test1HitChangableValue;
-                for (int i = 0; i < PointersAndValues.KoValuesToTestList.Count;)
-                {
 
-
-                    if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
+                    if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingSpearAlliAnimation || isWhatAnimationRunning==PointersAndValues.isAttackingKnightAlliAnimation || isWhatAnimationRunning==PointersAndValues.isAttackingSorcAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
                     {
-                        Test1HitChangableValue = PointersAndValues.KoValuesToTestList[i]-1;
                         Debug.WriteLine($"{Test1HitChangableValue}");
-                        i++;
-                        Thread.Sleep(800);
+                    Test1HitChangableValue++;
+                    Thread.Sleep(800);
                     }
                     if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
                     {
@@ -852,7 +860,6 @@ namespace AresTrainerV3
                         // Debug.WriteLine($"Killed mob {Test1HitChangableValue}");
                         currentSavedChangableValue = Test1HitChangableValue;
                     }
-                }
             }
 
         }
@@ -1189,9 +1196,9 @@ namespace AresTrainerV3
 
             else if (GetCurrentMap == TeleportValues.KharonPlateau)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item1));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item2));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item3));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExpHidden.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExpHidden.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExpHidden.Item3));
             }
 
 

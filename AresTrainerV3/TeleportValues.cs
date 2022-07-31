@@ -87,7 +87,8 @@ namespace AresTrainerV3
 
 
         public static ValueTuple<int, int, int> KharonPlateuSellExp = new ValueTuple<int, int, int>(1134659696, 1141877335, 1084227584);
-
+        public static ValueTuple<int, int, int> KharonPlateuSellExpHidden = new ValueTuple<int, int, int>(1115123685, 1146608269, 1089385337);
+        
         public static ValueTuple<int, int, int> PosUWC4rdPlant = new ValueTuple<int, int, int>(1136310857, 1135108780, 1095210496);
 
 

@@ -73,7 +73,38 @@ namespace AresTrainerV3
                         }
                 */
 
-        public static bool ScanAndAttack()
+        public static bool ScanAndAttackNoDebug()
+        {
+            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+            Color desiredPixelColor = ColorTranslator.FromHtml("#000000");
+            // X and Y  set to start search only for LOA window
+            for (int x = 527; x < 1360; x++)
+            {
+
+                for (int y = 237; y < 835; y++)
+                {
+
+
+                    Color currentPixelColor = bitmap.GetPixel(x, y);
+                    if ((x < 938 || x > 976 || y < 502 || y > 540) && desiredPixelColor == currentPixelColor)
+
+                    {
+
+                        MouseOperations.SetCursorPosition(x, y);
+                        if (ProgramHandle.AttackMobWhenSelected())
+                        {
+                            Debug.WriteLine("attack");
+                            GC.Collect();
+                            return true;
+
+                        };
+                    }
+                }
+            }
+            GC.Collect();
+            return false;
+        }
+        public static bool ScanAndAttackWithDebug()
         {
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
             Color desiredPixelColor = ColorTranslator.FromHtml("#000000");
@@ -108,6 +139,7 @@ namespace AresTrainerV3
             return false;
         }
 
+
         static bool ScanAndCollect()
         {
             Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
@@ -138,7 +170,7 @@ namespace AresTrainerV3
 
         public static void ScanAndAttackAndCollect()
         {
-            if (!ScanAndAttack()) // TOCHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (!ScanAndAttackNoDebug()) // TOCHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 ScanAndCollect();
             }
@@ -157,14 +189,14 @@ namespace AresTrainerV3
             ProgramHandle.SetCameraForExpBot();
             if (!ProgramHandle.isStopHeal)
             {
-                Form1.StartHealBotThreadKoHit();
+                Form1.StartHealBotThreadNormal();
             }
 
 
             while (_stopPixelAttack)
             {
 
-                ScanAndAttack();
+                ScanAndAttackNoDebug();
                 GC.Collect();
             }
         }

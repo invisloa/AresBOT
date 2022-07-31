@@ -34,6 +34,7 @@ public static class PointersAndValues
     public const int slotWhitePotOffset = 0xc06;
     public const int slotCandleOffset = 0xc22;
     public const int slotScrollOffset = 0xc3e;
+    public const int slotFirstSell = 0xc5a;
     public const int MouseoverHighlightedOffset = 0x7c;
     public const int cameraDistancePointer = 0x19c;
     public const int cameraFogPointer = 0xd16;
@@ -89,7 +90,7 @@ public static class PointersAndValues
 
     // values
     public const int runSpeedNormalValue = 16859264;
-    public const int cameraDistanceAnimValue = 1125253120;
+    public const int cameraDistanceAnimValue =   1125253120;
     public const int cameraDistanceBotValue = 1112599680;
     public const int cameraFogValue = 18000;
     public const int cameraAngleYValue = 81853;
@@ -127,15 +128,24 @@ public static class PointersAndValues
 
     public const int isRunningAnimationArcOutside = 4535616;
     public const int isRunningAnimationSorcOutside = 4523712;
-    public const int isRunningAnimationInCity = 4545808;
-    
-    public const int isStandingAnimationArcerOut = 4534400;
+    public const int isRunningAnimationArcAlliInCity = 4545808;
+    public const int isRunningAnimationArcEmpInCity = 4546528;
+
+
+
+    public const int isStandingAnimationArcerAlliOut = 4534400;
+    public const int isStandingAnimationArcerEmpOut = 4535136;
     public const int isStandingAnimationSorcOut = 4522496;
 
     
     public const int isBeingHitAnimation = 4536960;
     public const int isAttackingBowAlliAnimation = 4536096;
     public const int isAttackingBowEmpAnimation = 4536832;
+    public const int isAttackingSorcAlliAnimation = 4541440;
+    public const int isAttackingKnightAlliAnimation = 4425728;
+    public const int isAttackingSpearAlliAnimation = 4505728;
+    
+    
 
 
     // arcer

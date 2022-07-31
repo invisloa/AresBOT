@@ -301,14 +301,14 @@ namespace AresTrainerV3
         static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationInCity)
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationArcEmpInCity)
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                     MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
-                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationInCity)
+                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcEmpInCity)
                     {
-                        Thread.Sleep(2);
+                        Thread.Sleep(10);
                     }
                 }
             }
@@ -436,12 +436,12 @@ namespace AresTrainerV3
 
         static void MoveScanAndAttack(int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerOut || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcOut)
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcOut)
             {
                 moveToPosition(x, y);
             }
             // even was standing and moved make a scan;
-            PixelBotSearcher.ScanAndAttack();
+            PixelBotSearcher.ScanAndAttackNoDebug();
 
         }
 
@@ -774,6 +774,7 @@ namespace AresTrainerV3
 
             if (ProgramHandle.isItemHighlighted != 0)
             {
+                Thread.Sleep(100);
 
                 if (ProgramHandle.isItemHighlighted != 0)
                 {
