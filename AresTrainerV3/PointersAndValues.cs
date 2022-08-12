@@ -9,19 +9,22 @@ namespace AresTrainerV3;
 
 public static class PointersAndValues
 {
+
+
+
+    // MAIN OFFSETS
     public const int baseNormalMOffset = 0x2ad1fc;
     public const int fogMOffset = 0x2B03CC;
     public const int cameraBaseMOffset = 0x2AC578;
     public const int mobSelectedMOffset = 0x2A9648;
-    public const int mobBeingAttackedMOffset = 0x2AD1FC;
     public const int MouseoverHighlightedMOffset = 0x2AAA14;
-
-
-    // TODO SELL WINDOW
+    public const int inventoryCurrentTabMOffset = 0x2AD1EC;
     public const int SellWindowMOffset = 0x2AD208;
+    public const int UiWindowMOffset = 0x2AD218;
 
-    
-    // offsets
+
+
+    // OFF offsets
     public const int hpOffset = 0x148;
     public const int MannaOffset = 0x980;
     public const int WeightOffset = 0x998;
@@ -34,7 +37,7 @@ public static class PointersAndValues
     public const int slotWhitePotOffset = 0xc06;
     public const int slotCandleOffset = 0xc22;
     public const int slotScrollOffset = 0xc3e;
-    public const int slotFirstSell = 0xc5a;
+    public const int slotFirstSellOffset = 0xd02;
     public const int MouseoverHighlightedOffset = 0x7c;
     public const int cameraDistancePointer = 0x19c;
     public const int cameraFogPointer = 0xd16;
@@ -44,6 +47,7 @@ public static class PointersAndValues
     public const int clickDelayPointer = 0xb2e;
     public const int runSpeedOffset = 0xb8e;
     public const int mapNumberOffset = 0x5a8;
+    public const int isInCityOffset = 0x5a4;
     public const int positionYOffset = 0x244;
     public const int positionXOffset = 0x23c;
     public const int positionZOffset = 0x240;
@@ -53,44 +57,31 @@ public static class PointersAndValues
     public const int AttackSpeedOffset = 0x470;     // Not Used
     public const int mobBeingTargeted = 0x050;
     public const int typeOfAnimationIsRunning = 0x3b5;
+    public const int lastSlotItemStat1 = 0xf84;
 
+    public const int ShopWindow2MOffset = 0x90;
+    public const int StorageWindow2MOffset = 0x94;
+    public const int InventoryWindow2MOffset = 0x60;
 
-    public const int SellWindowOffset = 0xc0;       // TODO 
-
-
-
-
-
-    public static int[] inventoryArray = new int[60];
-    public static void initializeInventoryArray()
-    {
-        int tempOffsetValue = 0;
-        for (int i = 0; i<60; i++)
-			{
-                inventoryArray[i] = 0xd02+tempOffsetValue;
-                tempOffsetValue += 0x1c;
-			}
-    }
+    public const int ShopWindowOffset1 = 0xc0;
+    public const int ShopWindowOffset2 = 0xd8;
+    public const int StorageWindowOffset1 = 0xc0;
+    public const int StorageWindowOffset2 = 0xd8;
+    public const int inventoryWindowOffset1 = 0xc0;
+    public const int inventoryWindowOffset2 = 0xd8;
+    public const int inventoryCurrentTabOffset = 0x110;
+    public const int SellWindowOffset = 0xc0;
+    public const int SellItemSelectedOffset = 0x12e;
 
 
 
-
-
-    /*  
-     *  
-     *  minPosY = 1145899483
-        maxPosY = 1146086822
-    
-        minPosX = 1119676532
-        maxPosX = 1126508151
-    */
 
 
 
 
     // values
     public const int runSpeedNormalValue = 16859264;
-    public const int cameraDistanceAnimValue =   1125253120;
+    public const int cameraDistanceAnimValue =   1127253120;
     public const int cameraDistanceBotValue = 1112599680;
     public const int cameraFogValue = 18000;
     public const int cameraAngleYValue = 81853;
@@ -126,7 +117,10 @@ public static class PointersAndValues
     public static int whitePotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
     public static int redPotionsCountValue = 16777222;  ///to jest jedna potka jak jest 0 to == 0 jak 1 to 16777217
 
-    public const int isRunningAnimationArcOutside = 4535616;
+    public const int isRunningAnimationArcALLIOutside = 4535616;
+    public const int isRunningAnimationArcEMPOutside = 4536352;
+
+    
     public const int isRunningAnimationSorcOutside = 4523712;
     public const int isRunningAnimationArcAlliInCity = 4545808;
     public const int isRunningAnimationArcEmpInCity = 4546528;
@@ -150,8 +144,10 @@ public static class PointersAndValues
 
     // arcer
     public const int arcerAnim1 = 1161436900;
-    public const int arcerAnim2 = 0;                         // nie widac roznicy po zmianie na 0 NIE TESTOWANO!!!!!!!    1161337300;
+    public const int arcerAnim2 = 0;
     public const int arcerFirstSkill = 111504;
+    public const int arcerEmpBlasting = 110919;
+    public const int arcerEmpExplosion = 110719;
     // spear
     public static int spearSkillAnim1FirstSkill = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
     public static int spearSkillAnim1ThirdSkill = 1154085000;

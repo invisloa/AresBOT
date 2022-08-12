@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Utilities;
 
 
@@ -586,6 +587,29 @@ namespace AresTrainerV3
 
 
             /// ExpBotClass.SellItems();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetNostalgiaMainWindow();
+            //ProgramHandle.OpenShopWindow();
+            Thread.Sleep(1000);
+
+            ItemSeller.SellItemsMouseMove();
+
+
+/*            foreach (var item in ItemSeller.itemsForSaleList)
+            {
+                Debug.WriteLine($"{item.ToString()}");
+            }
+*/
+
+
+        }
+
+        private void OpenStorageBTN_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.OpenStorageWindow();
         }
     }
 }

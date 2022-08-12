@@ -301,12 +301,12 @@ namespace AresTrainerV3
         static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationArcEmpInCity)
+            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcAlliInCity && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEmpInCity)
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                     MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
-                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcEmpInCity)
+                    while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
                     {
                         Thread.Sleep(10);
                     }
@@ -353,7 +353,7 @@ namespace AresTrainerV3
 
                 inputSimulator.Keyboard.Sleep(500);
 
-                SellItems();
+                ItemSeller.SellItemsMouseMove();
 
                 inputSimulator.Keyboard.Sleep(500);
                 BuyPotionsFromShopSellKharon(ExpBotMovePositions.mousePositionsForKharonBuying);
@@ -422,7 +422,7 @@ namespace AresTrainerV3
 
         static void MoveToPositionWhenNotAttacking( int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isRunningAnimationArcOutside)
+            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcALLIOutside && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEMPOutside)
             {
                 Thread.Sleep(5);
                 MouseOperations.SetCursorPosition(x, y);
@@ -436,7 +436,7 @@ namespace AresTrainerV3
 
         static void MoveScanAndAttack(int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcOut)
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut)
             {
                 moveToPosition(x, y);
             }
@@ -694,76 +694,19 @@ namespace AresTrainerV3
         }
 
 
-        static void MoveAndRightClickOperation(int xPos, int yPos)
+        public static void MoveAndRightClickOperation(int xPos, int yPos)
         {
+            Thread.Sleep(50);
             MouseOperations.SetCursorPosition(xPos, yPos);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(100);
-        }
-        static void MoveAndLeftClickToSellAll()
-        {
-            if (ProgramHandle.isSellWindowStillOpen == 1)
-            {
-                MouseOperations.SetCursorPosition(560, 570);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100);
-
-            }
-            if (ProgramHandle.isSellWindowStillOpen == 1)
-            {
-                MouseOperations.SetCursorPosition(560, 570);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100);
-
-            }
+            Thread.Sleep(50);
         }
 
-        #region TrySellItems
-
-        public static void SellItems()
-        {
-            TestArrayAdding.itemArrayPositionsInitialize();
-            Thread.Sleep(500);
-            MoveAndLeftClickOperation(1235, 570);
-            Thread.Sleep(500);
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SELL ONLY FIRST ROW OF SECOND TAB!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-           // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
-                for (int i = 12; i < 42; i++) // START FROM 3 Row 1st Column - its 12 and end on first row second tab
-                {
-                    if (i == 36)
-                {
-                    Thread.Sleep(500);
-
-                    ExpBotClass.MoveAndLeftClickOperation(1235, 670); // Open Second Tab
-                    Thread.Sleep(500);
-                }
-                MoveAndRightClickOperation(ExpBotMovePositions.itemSellPositions[i].Item1, ExpBotMovePositions.itemSellPositions[i].Item2);
-                Thread.Sleep(200);
-                MoveAndLeftClickToSellAll();
-
-
-            }
-        }
-
-
-
-        #endregion
 
 
         #region Collecting Items
@@ -774,19 +717,20 @@ namespace AresTrainerV3
 
             if (ProgramHandle.isItemHighlighted != 0)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(200);
 
                 if (ProgramHandle.isItemHighlighted != 0)
                 {
                     Debug.WriteLine("Collect");
+                    Thread.Sleep(200);
 
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                    Thread.Sleep(100);
+                    Thread.Sleep(200);
                     //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                     Thread.Sleep(5);
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    while (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcOutside)
+                    while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcALLIOutside || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEMPOutside)
                     {
                         Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
                     }

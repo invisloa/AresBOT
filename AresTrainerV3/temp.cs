@@ -28,7 +28,8 @@ namespace AresTrainerV3
                     //MouseOperations.SetCursorPosition(x, y);
 
                     Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 938 || x > 976 || y < 502 || y > 540) && desiredPixelColor == currentPixelColor)
+                    if ((x < 938 
+x > 976 || y < 502 || y > 540) && desiredPixelColor == currentPixelColor)
 
                     {
                         isScanSuccessfull = true;                                   //   TODO FIRST MAKE SCAN AND COLLECT WORKING

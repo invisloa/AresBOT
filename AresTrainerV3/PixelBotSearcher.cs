@@ -170,7 +170,7 @@ namespace AresTrainerV3
 
         public static void ScanAndAttackAndCollect()
         {
-            if (!ScanAndAttackNoDebug()) // TOCHANGE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (!ScanAndAttackNoDebug()) 
             {
                 ScanAndCollect();
             }

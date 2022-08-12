@@ -24,7 +24,7 @@ namespace AresTrainerV3
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
-        static volatile int Test1HitChangableValue = 40003;
+        static volatile int Test1HitChangableValue = 40002;
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
         // FOR 1HITKO TESTING
@@ -43,24 +43,49 @@ namespace AresTrainerV3
         static IntPtr mobSelectedOffset;
         static IntPtr mobBeingAttackedOffset;
         static IntPtr itemMouseoverHighlightedOffset;
-        static IntPtr sellWindowStillOpenOffset;
-        static IntPtr firstSellItemAddres;
+        static IntPtr sellAdressMOffset;
+        static IntPtr inventoryCurrentTabOffset;
+
+
+        static IntPtr UIWindowMOffset;
+        static IntPtr shopWindowMOffset;
+        static IntPtr inventoryWindowMOffset;
+        static IntPtr storageWindowMOffset;
+
 
         static InputSimulator inputSimulator = new InputSimulator();
-        static volatile byte[] hpAddress;
+        public static volatile byte[] hpAddress;
         static volatile byte[] MannaAddress;
         static byte[] skill1Address;
         static byte[] anim1Address;
         static byte[] anim2Address;
-        static volatile byte[] slotFirstAddress;
+
+        static IntPtr shopWindowAddress1;
+        static IntPtr shopWindowAddress2;
+
+        // !!!
+        // TESTING
+        // TESTING
+        static byte lastSlotStat1;
+
+        static byte[] slotFirstAddress;
+
+
+        //!!!
+
+
+        static byte[] slotFirstSellAddress;
+
         static volatile byte[] mobSelectedAddress;
         static volatile byte[] mobBeingAttackedAddress;
+
         private static volatile bool _stopHeal = false;
         private static volatile bool _stopAnim = false;
         private static volatile bool _stopBot = false;
         private static volatile bool _isRightMouseButtonPressed = false;
 
         private static volatile bool _stopKoChangeValue = false;
+
 
 
 
@@ -80,6 +105,11 @@ namespace AresTrainerV3
         public static bool isKoChangeValue
         {
             get { return _stopKoChangeValue; }
+        }
+        public static byte isCurrentInventoryTabOppened()
+        {
+
+            return memExpbot.readByte(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryCurrentTabOffset)); 
         }
 
 
@@ -139,13 +169,19 @@ namespace AresTrainerV3
 
             mobSelectedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.mobSelectedMOffset));
 
-            mobBeingAttackedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.mobBeingAttackedMOffset));
+            mobBeingAttackedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.baseNormalMOffset));
 
             itemMouseoverHighlightedOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.MouseoverHighlightedMOffset));
 
-            sellWindowStillOpenOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.SellWindowMOffset));
+            sellAdressMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.SellWindowMOffset));
 
-            firstSellItemAddres = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.SellWindowMOffset));
+            inventoryCurrentTabOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.inventoryCurrentTabMOffset));
+
+            UIWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.UiWindowMOffset));
+            shopWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.ShopWindow2MOffset));
+            inventoryWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.InventoryWindow2MOffset));
+            storageWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.StorageWindow2MOffset));
+
 
 
 
@@ -160,6 +196,15 @@ namespace AresTrainerV3
             anim2Address = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
             slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
+
+
+
+
+
+/*            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            lastSlotStat1 = memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.lastSlotItemStat1));
+*/
+
 
             // mobSelectedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4);
 
@@ -184,7 +229,6 @@ namespace AresTrainerV3
             }
 
         }
-
 
 
         public static int SetAnim1Value
@@ -417,7 +461,7 @@ namespace AresTrainerV3
         
         static void HealKeyPress()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 15) // if less then 7 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 7 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
@@ -509,7 +553,7 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
-                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                hpValue = BitConverter.ToInt32(hpAddress, 0);
                 Thread.Sleep(50);
                 mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
                 Thread.Sleep(50);
@@ -699,43 +743,47 @@ namespace AresTrainerV3
         }
         static void checkIfIsStandingAnimation()
         {
-            while (isMobBeingAttacked != -1 && (isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerAlliOut || isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerEmpOut))
+            while (isMobBeingAttacked != -1 && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut)
             {
-               // Debug.WriteLine($"!isStandingAnimation");
+               Debug.WriteLine($"!isStandingAnimation");
                 Thread.Sleep(100);
+                isWhatAnimationRunning();
             }
-            Thread.Sleep(10);
-            if(isMobBeingAttacked != -1 && (isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerAlliOut || isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerEmpOut))
+            Thread.Sleep(30);
+            if(isMobBeingAttacked != -1 && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut)
             {
+                Debug.WriteLine($"!Checked 2 IS STANDING111");
+
                 checkIfIsStandingAnimation();
             }
 
         }
         public static bool AttackMobWhenSelected()
         {
-            if (isMobSelected != 0 && isMobSelected < 8300000)
+            if (isMobSelected != 0 && isMobSelected < 8300000 && isInCity != 1)
             {
 
                 if (SkillAttackBot())
                 { return true; }
             }
-            else if(isMobSelected > 8300000)
+/*            else if(isMobSelected > 8300000)
             {
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
                 inputSimulator.Keyboard.Sleep(15000);
-                HealBotRepotKharonSell();
+               // HealBotRepotKharonSell();
 
                 return true;
             }
-            return false;
+*/            return false;
         }
         public static bool SkillAttackBot()
         {
             if (isMobSelected != 0 && isMobSelected < 8300000)
             {
+                Debug.WriteLine($"Mouse Down");
 
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Thread.Sleep(10);
@@ -746,6 +794,8 @@ namespace AresTrainerV3
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 Thread.Sleep(5);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                Debug.WriteLine($"Mouse UP");
+
                 return true;
             }
             return false;
@@ -757,6 +807,7 @@ namespace AresTrainerV3
             while (_stopAnim)
             {
                 memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
+                memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
                 #region OldAnimFunction
                 /*                // anim 1 
                 mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
@@ -846,7 +897,7 @@ namespace AresTrainerV3
 
                 int currentSavedChangableValue = Test1HitChangableValue;
 
-                    if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingSpearAlliAnimation || isWhatAnimationRunning==PointersAndValues.isAttackingKnightAlliAnimation || isWhatAnimationRunning==PointersAndValues.isAttackingSorcAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
+                    if (isWhatAnimationRunning() == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning() == PointersAndValues.isAttackingSpearAlliAnimation || isWhatAnimationRunning() ==PointersAndValues.isAttackingKnightAlliAnimation || isWhatAnimationRunning() ==PointersAndValues.isAttackingSorcAlliAnimation || isWhatAnimationRunning() == PointersAndValues.isAttackingBowEmpAnimation)
                     {
                         Debug.WriteLine($"{Test1HitChangableValue}");
                     Test1HitChangableValue++;
@@ -933,6 +984,13 @@ namespace AresTrainerV3
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
         }
 
+        public static int isInCity
+        {
+            get
+            {
+                return memExpbot.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.isInCityOffset));
+            }
+        }
 
 
 
@@ -940,9 +998,9 @@ namespace AresTrainerV3
         public static int GetCurrentMap
         {
             get
-            {   return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0);   }
+            { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0); }
         }
-        public static int getFirstSlotValue
+    public static int getFirstSlotValue
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)); }
         }
@@ -962,9 +1020,9 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
         }
-        public static int isWhatAnimationRunning
+        public static int isWhatAnimationRunning()
         {
-            get { return BitConverter.ToInt32(memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4)); }
+             return BitConverter.ToInt32(memExpbot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4));
         }
 
 
@@ -980,9 +1038,16 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(itemMouseoverHighlightedOffset, PointersAndValues.MouseoverHighlightedOffset), 4)), 0); }
         }
-        public static int isSellWindowStillOpen
+        public static int isSellWindowStillOpen()
         {
-            get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(sellWindowStillOpenOffset, PointersAndValues.SellWindowOffset), 4)), 0); }
+            memExpbot.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset)); // first read then return because it didnt get propper values in time
+            return memExpbot.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset));
+        }
+
+        public static void OpenSellConfirmationUI()
+        {
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset), BitConverter.GetBytes(1));
+
         }
         public static void TeleportKoHitTest()
         {
@@ -1196,9 +1261,9 @@ namespace AresTrainerV3
 
             else if (GetCurrentMap == TeleportValues.KharonPlateau)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExpHidden.Item1));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExpHidden.Item2));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExpHidden.Item3));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item1));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item2));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonPlateuSellExp.Item3));
             }
 
 
@@ -1249,6 +1314,62 @@ namespace AresTrainerV3
                 return ReadPositionY();
             }
         }
+
+
+
+        public static void SetItemForSaleSelected(int itemforSaleNumber)
+        {
+            // ADD +27 - FIRST SALE INVENTORY ITEM STARTS FROM 27
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellItemSelectedOffset), BitConverter.GetBytes(itemforSaleNumber+27));
+        }
+
+        public static byte ReadSellItemsByteValue(int offset)
+        {
+            return memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + (offset * 0x1c)));
+        }
+
+        public static byte ReadSellItemsStat1(int offset)
+        {
+            return memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 2)));
+        }
+
+        public static byte ReadSellItemsStat2(int offset)
+        {
+            return memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 1)));
+        }
+        public static byte isShopWindowStillOpen()
+        {
+            return memExpbot.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1));
+        }
+
+
+        public static void OpenShopWindow()
+        {
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset2), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset1), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset2), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+        }
+        public static void OpenStorageWindow()
+        {
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset1), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset2), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.StorageWindowOffset1), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memExpbot.writebytes(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.StorageWindowOffset2), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+
+        }
+
+
 
     }
 }

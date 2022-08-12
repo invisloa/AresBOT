@@ -54,6 +54,8 @@
             this.BtnHealbotOnOff = new System.Windows.Forms.Button();
             this.TestingThread = new System.Windows.Forms.Button();
             this.FastTestBTN = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.OpenStorageBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -311,11 +313,33 @@
             this.FastTestBTN.UseVisualStyleBackColor = true;
             this.FastTestBTN.Click += new System.EventHandler(this.FastTestBTN_Click);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(495, 405);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 28;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // OpenStorageBTN
+            // 
+            this.OpenStorageBTN.Location = new System.Drawing.Point(8, 6);
+            this.OpenStorageBTN.Name = "OpenStorageBTN";
+            this.OpenStorageBTN.Size = new System.Drawing.Size(98, 23);
+            this.OpenStorageBTN.TabIndex = 29;
+            this.OpenStorageBTN.Text = "OpenStorage";
+            this.OpenStorageBTN.UseVisualStyleBackColor = true;
+            this.OpenStorageBTN.Click += new System.EventHandler(this.OpenStorageBTN_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.OpenStorageBTN);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.FastTestBTN);
             this.Controls.Add(this.TestingThread);
             this.Controls.Add(this.BtnHealbotOnOff);
@@ -379,5 +403,7 @@
         private Button BtnHealbotOnOff;
         private Button TestingThread;
         private Button FastTestBTN;
+        private Button button4;
+        private Button OpenStorageBTN;
     }
 }

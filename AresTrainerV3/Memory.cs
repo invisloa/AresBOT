@@ -32,10 +32,10 @@ namespace AresTrainerV3
 
             return bytesBuffer;
         }
-        public byte readByte(IntPtr address)
+        public byte readByte(IntPtr proc, IntPtr address)
         {
             byte[] buffer = new byte[1];
-            ReadProcessMemory(processHandle, address, buffer, (uint)size, ref read);
+            ReadProcessMemory(proc, address, buffer, 1, ref read);
             return buffer[0];
         }
 
