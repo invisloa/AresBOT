@@ -586,7 +586,7 @@ namespace AresTrainerV3
         {
             Debug.WriteLine("Check if selll window is open");
             Thread.Sleep(150);
-
+            ProgramHandle.isSellWindowStillOpen();
             if (ProgramHandle.isSellWindowStillOpen() == 1)
             {
                 Debug.WriteLine("window open sell item left click");
@@ -604,7 +604,7 @@ namespace AresTrainerV3
 
             Debug.WriteLine("Check if high value");
             Thread.Sleep(150);
-
+            ProgramHandle.isSellWindowStillOpen();
             if (ProgramHandle.isSellWindowStillOpen() == 1)
             {
                 Debug.WriteLine("high value item click once more");

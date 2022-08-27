@@ -51,7 +51,7 @@ namespace AresTrainerV3
         static Thread pixelExpBotGolemsPlatform = new Thread(PixelBotSearcher.PixelOnlyScanAndAttack);
         static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
         // static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.TestFoundValues);
-        static Thread expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+        static Thread expBotMoveThread = new Thread(ThreadExpBotUWC);
 
 
 
@@ -129,8 +129,8 @@ namespace AresTrainerV3
            //SUBSCRIBE globalKeyboardHook.
            //
             gkh.KeyF2Down += StartHealBotThreadNormal;
-            // gkh.KeyF3Down += StartMoveAndExpThread; // START TEMPORATY MO
-            gkh.KeyF3Down += StartThreadForTesting; // KHARON COLLECT
+            gkh.KeyF3Down += StartExpBotUWCThread; // START TEMPORATY MO
+           // gkh.KeyF3Down += StartThreadForTesting; // KHARON COLLECT
            // gkh.KeyF3Down += StartMoveAndExpThread;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
@@ -202,20 +202,22 @@ namespace AresTrainerV3
                 healbotThread.Start();
             }
         }
-        public static void StartHealBotThreadKoHit()
+        public static void StartHealBotThreadExpBoTUWC()
         {
             ProgramHandle.RequestStopHealBot();
             Thread.Sleep(500);
             if (healbotThread == null)
             {
-                healbotThread = new Thread(ProgramHandle.StartHealbotKoHitTest);
+                healbotThread = new Thread(ProgramHandle.StartHealbotExpBotUWC);
             }
 
             if (!healbotThread.IsAlive)
             {
-                healbotThread = new Thread(ProgramHandle.StartHealbotKoHitTest);
+                healbotThread = new Thread(ProgramHandle.StartHealbotExpBotUWC);
                 healbotThread.Start();
             }
+            // DOUBLE RUN EXPBORT UWC Form1.StartExpBotUWCThread();
+
         }
         public static void StartPixelGolemsThread()
         {
@@ -279,19 +281,19 @@ namespace AresTrainerV3
             }
         }
 
-        public static void StartMoveAndExpThread()
+        public static void StartExpBotUWCThread()
         {
             ExpBotClass.RequestStopMoveExpBot();
             Thread.Sleep(500);
 
             if (expBotMoveThread == null)
             {
-                expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+                expBotMoveThread = new Thread(ThreadExpBotUWC);
             }
 
             if (!expBotMoveThread.IsAlive)
             {
-                expBotMoveThread = new Thread(TemporatyThreadMoveMethod);
+                expBotMoveThread = new Thread(ThreadExpBotUWC);
                 expBotMoveThread.Start();
             }
 
@@ -545,16 +547,16 @@ namespace AresTrainerV3
 */
 
 
-        static void TemporatyThreadMoveMethod()
+        static void ThreadExpBotUWC()
         {
 
             ProgramHandle.SetCameraForExpBot();
             if(!ProgramHandle.isStopHeal)
             {
-                StartHealBotThreadNormal();
+                StartHealBotThreadExpBoTUWC();
             }
 
-            ExpBotClass.RunAndExpSquareSacred();  // uwc values
+            ExpBotClass.RunAndExpSquareUWC();  // uwc values
 
         }
 
@@ -583,8 +585,8 @@ namespace AresTrainerV3
             Thread.Sleep(500);
             //ProgramHandle.SetCameraForExpBot();
             //ProgramHandle.MannaKeyPressKharonSell();
-            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-
+            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+            ExpBotClass.WalkIntoUWC();
 
             /// ExpBotClass.SellItems();
         }
@@ -610,6 +612,11 @@ namespace AresTrainerV3
         private void OpenStorageBTN_Click(object sender, EventArgs e)
         {
             ProgramHandle.OpenStorageWindow();
+        }
+
+        private void Tester_Click_1(object sender, EventArgs e)
+        {
+            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
         }
     }
 }

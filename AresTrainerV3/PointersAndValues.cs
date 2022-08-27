@@ -10,10 +10,10 @@ namespace AresTrainerV3;
 public static class PointersAndValues
 {
 
-
+    //  x 1126112223        1119396195
 
     // MAIN OFFSETS
-    public const int baseNormalMOffset = 0x2ad1fc;
+    public const int baseNormalMOffset = /*0x2ad2fc;                   // NOSTALGIA*/ 0x2ad1fc;
     public const int fogMOffset = 0x2B03CC;
     public const int cameraBaseMOffset = 0x2AC578;
     public const int mobSelectedMOffset = 0x2A9648;
@@ -165,6 +165,15 @@ public static class PointersAndValues
     public static int mageFirstAoeSkill = 60309;
     public static int mageDealBrand = 60204;
     public static int mageStriking = 60403;
+    public static int mageFireSingleLast = 61819;
+    public static int mageFireAOEleLast = 61919;
+    public static int mageSupportFireBarrier = 62719;
+    public static int mageSupportRapid = 62519;
+    public static int mageSupportEnergyShield = 63019;
+    public static int mageSupportBlastArmor = 62619;
+
+
+
     // KNIGHT
     public static int knightskilllAnim1 = 1135783990;
     public static int knightskilllAnim2 = 0;

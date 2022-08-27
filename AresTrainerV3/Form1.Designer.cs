@@ -54,8 +54,9 @@
             this.BtnHealbotOnOff = new System.Windows.Forms.Button();
             this.TestingThread = new System.Windows.Forms.Button();
             this.FastTestBTN = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.ItemsSell = new System.Windows.Forms.Button();
             this.OpenStorageBTN = new System.Windows.Forms.Button();
+            this.Tester = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -313,15 +314,15 @@
             this.FastTestBTN.UseVisualStyleBackColor = true;
             this.FastTestBTN.Click += new System.EventHandler(this.FastTestBTN_Click);
             // 
-            // button4
+            // ItemsSell
             // 
-            this.button4.Location = new System.Drawing.Point(495, 405);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 28;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.ItemsSell.Location = new System.Drawing.Point(520, 62);
+            this.ItemsSell.Name = "ItemsSell";
+            this.ItemsSell.Size = new System.Drawing.Size(75, 23);
+            this.ItemsSell.TabIndex = 28;
+            this.ItemsSell.Text = "SellItems";
+            this.ItemsSell.UseVisualStyleBackColor = true;
+            this.ItemsSell.Click += new System.EventHandler(this.button4_Click);
             // 
             // OpenStorageBTN
             // 
@@ -333,13 +334,24 @@
             this.OpenStorageBTN.UseVisualStyleBackColor = true;
             this.OpenStorageBTN.Click += new System.EventHandler(this.OpenStorageBTN_Click);
             // 
+            // Tester
+            // 
+            this.Tester.Location = new System.Drawing.Point(44, 407);
+            this.Tester.Name = "Tester";
+            this.Tester.Size = new System.Drawing.Size(75, 23);
+            this.Tester.TabIndex = 30;
+            this.Tester.Text = "Tester";
+            this.Tester.UseVisualStyleBackColor = true;
+            this.Tester.Click += new System.EventHandler(this.Tester_Click_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.Tester);
             this.Controls.Add(this.OpenStorageBTN);
-            this.Controls.Add(this.button4);
+            this.Controls.Add(this.ItemsSell);
             this.Controls.Add(this.FastTestBTN);
             this.Controls.Add(this.TestingThread);
             this.Controls.Add(this.BtnHealbotOnOff);
@@ -403,7 +415,8 @@
         private Button BtnHealbotOnOff;
         private Button TestingThread;
         private Button FastTestBTN;
-        private Button button4;
+        private Button ItemsSell;
         private Button OpenStorageBTN;
+        private Button Tester;
     }
 }

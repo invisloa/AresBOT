@@ -89,27 +89,27 @@ namespace AresTrainerV3
         public static void MoveAndLeftClickOperation(int xPos, int yPos)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             Thread.Sleep(50);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(100);
+            Thread.Sleep(50);
         }
 
-        static void OpenShop()
+        static void MouseClickOpenShop()
         {
             Thread.Sleep(1000);
             MoveAndLeftClickOperation(580, 565);
 
         }
-        public static void BuyPotionsFromShopNormal(Tuple<int, int>[] whereAreYouBuyingPositions)
+        public static void BuyPotionsFromShopNormalEXP(Tuple<int, int>[] whereAreYouBuyingPositions)
         {
 
 
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
             {
                 Thread.Sleep(1000);
-                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 50) // Manna Potion
+                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 80) // Manna Potion
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
 
@@ -133,7 +133,7 @@ namespace AresTrainerV3
             }
 
         }
-        public static void BuyPotionsFromShopSellKharon(Tuple<int, int>[] whereAreYouBuyingPositions)
+        public static void BuyPotionsFromShopSell(Tuple<int, int>[] whereAreYouBuyingPositions)
         {
 
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
@@ -145,17 +145,17 @@ namespace AresTrainerV3
 
                     HowManyPotionsToBuySell(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 1) // Red Potions
+                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 4) // Red Potions
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuySell(i);
                 }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 1) // White Potions
+                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 4) // White Potions
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuySell(i);
                 }
-                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 20)      // HP Potions 
+                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 30)      // HP Potions 
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuySell(i);
@@ -186,14 +186,14 @@ namespace AresTrainerV3
 
             if (numberOfPotionToBuy == 0) // Manna Potion
             {
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_9);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_9);
 
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_9);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_0);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_9);
                 inputSimulator.Keyboard.Sleep(500);
 
                 ClickOkWhenBuying();
@@ -219,7 +219,7 @@ namespace AresTrainerV3
             }
             else if (numberOfPotionToBuy == 3) // HP potion
             {
-                BuyingHpPotions();
+                BuyingHpPotionsMax();
             }
         }
         static void HowManyPotionsToBuySell(int numberOfPotionToBuy)
@@ -235,9 +235,9 @@ namespace AresTrainerV3
             {
                 inputSimulator.Keyboard.Sleep(500);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_3);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_3);
                 inputSimulator.Keyboard.Sleep(500);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_0);
@@ -281,7 +281,7 @@ namespace AresTrainerV3
             }
         }
 
-        static void BuyingHpPotions()
+        static void BuyingHpPotionsMax()
         {
             MouseOperations.SetCursorPosition(1300, 550);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
@@ -308,7 +308,7 @@ namespace AresTrainerV3
                     MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
                     while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
                     {
-                        Thread.Sleep(10);
+                        Thread.Sleep(1);
                     }
                 }
             }
@@ -319,22 +319,15 @@ namespace AresTrainerV3
         {
 
             Thread.Sleep(1000);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
-            inputSimulator.Keyboard.Sleep(500);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
-            inputSimulator.Keyboard.Sleep(500);
 
             ProgramHandle.SetCameraForExpBot();
 
             if (currentCity == TeleportValues.Hershal)
             {
                 MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
-                OpenShop();
-                BuyPotionsFromShopNormal(ExpBotMovePositions.mousePositionsForHershalBuying);
+                MouseClickOpenShop();
+                if (ProgramHandle.isShopWindowStillOpen() == 1)
+                BuyPotionsFromShopNormalEXP(ExpBotMovePositions.mousePositionsForHershalBuying);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
                 inputSimulator.Keyboard.Sleep(200);
@@ -349,14 +342,14 @@ namespace AresTrainerV3
                 MoveToRepot(ExpBotMovePositions.KharonRepotMovePositions);
                 inputSimulator.Keyboard.Sleep(500);
 
-                OpenShop();
+                MouseClickOpenShop();
 
                 inputSimulator.Keyboard.Sleep(500);
 
                 ItemSeller.SellItemsMouseMove();
 
                 inputSimulator.Keyboard.Sleep(500);
-                BuyPotionsFromShopSellKharon(ExpBotMovePositions.mousePositionsForKharonBuying);
+                BuyPotionsFromShopSell(ExpBotMovePositions.mousePositionsForKharonBuying);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
                 inputSimulator.Keyboard.Sleep(200);
@@ -369,7 +362,7 @@ namespace AresTrainerV3
         }
         public static void scrollToCity()
         {
-            inputSimulator.Keyboard.Sleep(2000);
+            inputSimulator.Keyboard.Sleep(500);
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
@@ -400,23 +393,36 @@ namespace AresTrainerV3
 
         public static void WalkIntoUWC()
         {
+            ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(500);
-            PressF5ForTeleport();
-            while (ProgramHandle.GetCurrentMap != TeleportValues.UWC1stFloor)
+            if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
             {
-                Thread.Sleep(500);
-                MouseOperations.SetCursorPosition(1110, 380);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(1000);
+                PressF5ForTeleport();
+                ProgramHandle.SetCameraForExpBot();
+                for (int i = 0; i < 10; i++)
+                {
+
+                    if (ProgramHandle.GetCurrentMap != TeleportValues.UWC1stFloor)
+                    {
+                        Thread.Sleep(500);
+                        MouseOperations.SetCursorPosition(1110, 380);
+                        Thread.Sleep(100);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                        Thread.Sleep(100);
+                        MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                        Thread.Sleep(1000);
+                    }
+                }
             }
             if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
             {
                 Thread.Sleep(1000);
                 ProgramHandle.SetCameraForExpBot();
                 Thread.Sleep(100);
+            }
+            else
+            {
+                ProgramHandle.HealBotTeleportRepotGoUWC();
             }
         }
 
