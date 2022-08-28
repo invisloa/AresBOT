@@ -48,9 +48,15 @@ namespace AresTrainerV3
         static IntPtr itemMouseoverHighlightedOffset;
         static IntPtr sellAdressMOffset;
         static IntPtr inventoryCurrentTabOffset;
-
+        static IntPtr isCurrentSkillTabMOffset;
 
         static IntPtr UIWindowMOffset;
+        static IntPtr isCurrentSkillBar1Value;
+        static IntPtr isCurrentSkillBar2Value;
+        static IntPtr isCurrentSkillBar3Value;
+
+
+
         static IntPtr shopWindowMOffset;
         static IntPtr inventoryWindowMOffset;
         static IntPtr storageWindowMOffset;
@@ -188,8 +194,17 @@ namespace AresTrainerV3
             inventoryCurrentTabOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.inventoryCurrentTabMOffset));
 
             UIWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.UiWindowMOffset));
+
+            isCurrentSkillTabMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.CurrentSkillTabMOffset));
+
             shopWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.ShopWindow2MOffset));
+
+            isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
+            isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
+            isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
+
             inventoryWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.InventoryWindow2MOffset));
+            
             storageWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.StorageWindow2MOffset));
 
 
@@ -512,7 +527,7 @@ namespace AresTrainerV3
         }
         static void MannaKeyPressUWC()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 3) // if less then 4 use key 6 which is teleport
+            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -757,8 +772,8 @@ namespace AresTrainerV3
             if (isMobSelected != 0 && isMobSelected < 8300000 && isInCity != 1)
             {
 
-                if (SkillAttackBot())
-                { return true; }
+                SkillAttackBot();
+                return true;
             }
 /*            else if(isMobSelected > 8300000)
             {
@@ -775,9 +790,7 @@ namespace AresTrainerV3
         }
         public static bool SkillAttackBot()
         {
-            if (isMobSelected != 0 && isMobSelected < 8300000)
-            {
-                Debug.WriteLine($"Mouse Down");
+                Debug.WriteLine($"Mouse R Down");
 
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Thread.Sleep(10);
@@ -788,11 +801,9 @@ namespace AresTrainerV3
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 Thread.Sleep(5);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-                Debug.WriteLine($"Mouse UP");
+                Debug.WriteLine($"Mouse R UP");
 
                 return true;
-            }
-            return false;
         }
 
         public static void Start1HitKO()
@@ -800,6 +811,23 @@ namespace AresTrainerV3
 
             while (_stopAnim)
             {
+                if (ProgramHandle.isCurrentSkill() == 2)
+                {
+                    Test1HitChangableValue = PointersAndValues.arcerEmpBlasting;
+                }
+                else if (ProgramHandle.isCurrentSkill() == 3)
+                {
+                    Test1HitChangableValue = PointersAndValues.arcerSpeedUpSkill;
+                }
+                else if (ProgramHandle.isCurrentSkill() == 4)
+                {
+                    Test1HitChangableValue = 40002;
+                }
+                else if (ProgramHandle.isCurrentSkill() == 12)
+                {
+                    Test1HitChangableValue = PointersAndValues.arcerEmpBlasting;
+                }
+
                 memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
                 memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
                 #region OldAnimFunction
@@ -1354,7 +1382,26 @@ namespace AresTrainerV3
         {
             return memExpbot.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1));
         }
-
+        public static byte isCurrentSkillTabNr()
+        {
+            return memExpbot.readByte(proc.Handle, IntPtr.Add(isCurrentSkillTabMOffset, PointersAndValues.CurrentSkillTabOffOffset));
+        }
+        public static byte isCurrentSkill()
+        {
+            if (isCurrentSkillTabNr() == 0)
+            {
+                return memExpbot.readByte(proc.Handle, IntPtr.Add(isCurrentSkillBar1Value, 0));
+            }
+            else if (isCurrentSkillTabNr() == 1)
+            {
+                return memExpbot.readByte(proc.Handle, IntPtr.Add(isCurrentSkillBar2Value, 0));
+            }
+            else if (isCurrentSkillTabNr() == 2)
+            {
+                return memExpbot.readByte(proc.Handle, IntPtr.Add(isCurrentSkillBar3Value, 0));
+            }
+            else return 5;
+        }
 
         public static void OpenShopWindow()
         {

@@ -9,36 +9,14 @@ namespace AresTrainerV3
 {
     public class PixelBotSearcher
     {
-        private static volatile bool _stopPixelAttack = false;
 
         static Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
         static Graphics graphics = Graphics.FromImage(bitmap as Image);
 
-        public static bool isStopPixelAttack
+        public Bitmap getScreenBitmap()
         {
-            get { return _stopPixelAttack; }
-        }
-
-        public static void RequestStopPixelAttack()
-        {
-            if (_stopPixelAttack)
-                _stopPixelAttack = false;
-            else
-                _stopPixelAttack = true;
-        }
-
-        private static volatile bool _stopPixelItemDrop = false;
-        public static bool isStopPixelItemDrop
-        {
-            get { return _stopPixelItemDrop; }
-        }
-
-        public static void RequestStopPixelPixelItemDrop()
-        {
-            if (_stopPixelItemDrop)
-                _stopPixelItemDrop = false;
-            else
-                _stopPixelItemDrop = true;
+            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+            return bitmap;
         }
 
         /*        static void ScanForPixels()
@@ -230,6 +208,35 @@ namespace AresTrainerV3
             }
             GC.Collect();
         }
+        private static volatile bool _stopPixelAttack = false;
+
+        public static bool isStopPixelAttack
+        {
+            get { return _stopPixelAttack; }
+        }
+
+        public static void RequestStopPixelAttack()
+        {
+            if (_stopPixelAttack)
+                _stopPixelAttack = false;
+            else
+                _stopPixelAttack = true;
+        }
+
+        private static volatile bool _stopPixelItemDrop = false;
+        public static bool isStopPixelItemDrop
+        {
+            get { return _stopPixelItemDrop; }
+        }
+
+        public static void RequestStopPixelPixelItemDrop()
+        {
+            if (_stopPixelItemDrop)
+                _stopPixelItemDrop = false;
+            else
+                _stopPixelItemDrop = true;
+        }
+
 
     }
 }

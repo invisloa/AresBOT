@@ -21,6 +21,9 @@ public static class PointersAndValues
     public const int inventoryCurrentTabMOffset = 0x2AD1EC;
     public const int SellWindowMOffset = 0x2AD208;
     public const int UiWindowMOffset = 0x2AD218;
+    public const int CurrentSkillBar1Address = 0x6A9A3C;
+    public const int CurrentSkillBar2Address = 0x6A9A40;
+    public const int CurrentSkillBar3Address = 0x6A9A44;
 
 
 
@@ -60,9 +63,12 @@ public static class PointersAndValues
     public const int lastSlotItemStat1 = 0xf84;
 
     public const int ShopWindow2MOffset = 0x90;
+    public const int CurrentSkillTabMOffset = 0x58;
     public const int StorageWindow2MOffset = 0x94;
     public const int InventoryWindow2MOffset = 0x60;
 
+    public const int CurrentSkillTabOffOffset = 0x174;
+    
     public const int ShopWindowOffset1 = 0xc0;
     public const int ShopWindowOffset2 = 0xd8;
     public const int StorageWindowOffset1 = 0xc0;
@@ -148,6 +154,7 @@ public static class PointersAndValues
     public const int arcerFirstSkill = 111504;
     public const int arcerEmpBlasting = 110919;
     public const int arcerEmpExplosion = 110719;
+    public const int arcerSpeedUpSkill = 12619;
     // spear
     public static int spearSkillAnim1FirstSkill = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
     public static int spearSkillAnim1ThirdSkill = 1154085000;

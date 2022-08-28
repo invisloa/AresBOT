@@ -109,7 +109,7 @@ namespace AresTrainerV3
             for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
             {
                 Thread.Sleep(1000);
-                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 80) // Manna Potion
+                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 99) // Manna Potion
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
 
@@ -125,7 +125,7 @@ namespace AresTrainerV3
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 200)      // HP Potions 
+                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 120)      // HP Potions 
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuyExp(i);
@@ -186,14 +186,18 @@ namespace AresTrainerV3
 
             if (numberOfPotionToBuy == 0) // Manna Potion
             {
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_9);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_9);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
 
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_9);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
                 inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_9);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
+                inputSimulator.Keyboard.Sleep(200);
+                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
                 inputSimulator.Keyboard.Sleep(500);
 
                 ClickOkWhenBuying();
@@ -326,14 +330,17 @@ namespace AresTrainerV3
             {
                 MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
                 MouseClickOpenShop();
-                if (ProgramHandle.isShopWindowStillOpen() == 1)
-                BuyPotionsFromShopNormalEXP(ExpBotMovePositions.mousePositionsForHershalBuying);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
-                inputSimulator.Keyboard.Sleep(500);
+                ItemSeller.SellItemsMouseMove();
 
+                if (ProgramHandle.isShopWindowStillOpen() == 1)
+                {
+                    BuyPotionsFromShopNormalEXP(ExpBotMovePositions.mousePositionsForHershalBuying);
+                    inputSimulator.Keyboard.Sleep(200);
+                    inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
+                    inputSimulator.Keyboard.Sleep(200);
+                    inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
+                    inputSimulator.Keyboard.Sleep(500);
+                }
             }
             
             if (currentCity == TeleportValues.Kharon)
@@ -465,9 +472,9 @@ namespace AresTrainerV3
 
         const int moveBuffor = 99000000;  /// when it was lower bot was moving up and down all the time - around (10000)
 
-        public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit)
+        public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit, int moveOnlyOnMapX)
         {
-                while (ProgramHandle.GetPositionX > leftLimit && _stopMoveExpBot)
+                while (ProgramHandle.GetPositionX > leftLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
@@ -478,21 +485,21 @@ namespace AresTrainerV3
                     if (ProgramHandle.GetPositionY > upLimit)
                     {
                     ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                    goDown(900+ moveRandomizer, 640+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    goDown(900+ moveRandomizer, 640+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, moveOnlyOnMapX);
                     }
                     if (ProgramHandle.GetPositionY < downLimit)
                     {
                     ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                    goUp(962+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    goUp(962+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, moveOnlyOnMapX);
                     }
 
                 }
                 return true;
 
         }
-        public static bool goRight(int x, int y, int rightLimit, int upLimit, int downLimit)
+        public static bool goRight(int x, int y, int rightLimit, int upLimit, int downLimit, int moveOnlyOnMapX)
         {
-                while (ProgramHandle.GetPositionX < rightLimit && _stopMoveExpBot)
+                while (ProgramHandle.GetPositionX < rightLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                 {
                     if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
@@ -505,22 +512,22 @@ namespace AresTrainerV3
                 {
                     ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
-                    goDown(963+ moveRandomizer, 600+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    goDown(963+ moveRandomizer, 600+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, moveOnlyOnMapX);
 
                     }
                     if (ProgramHandle.GetPositionY < downLimit)
                 {
                     ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
-                    goUp(964+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor);
+                    goUp(964+ moveRandomizer, 430+ moveRandomizer, downLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, moveOnlyOnMapX);
                     }
 
                 }
                 return true;
         }
-        public static bool goUp(int x, int y, int upLimit, int leftLimit,int rightLimit)
+        public static bool goUp(int x, int y, int upLimit, int leftLimit,int rightLimit, int moveOnlyOnMapX)
         {
-                while (ProgramHandle.GetPositionY < upLimit && _stopMoveExpBot)
+                while (ProgramHandle.GetPositionY < upLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                 {
                     if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                         {
@@ -533,23 +540,23 @@ namespace AresTrainerV3
                         {
                             ExpBotLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
-                            goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                            goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, moveOnlyOnMapX);
 
                         }
                     if (ProgramHandle.GetPositionX < leftLimit)
                         {
                         ExpBotLog += $"goUp-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
-                        goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor );
+                        goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, moveOnlyOnMapX);
 
                         }
 
                 }
                 return true;
         }
-        public static bool goDown(int x, int y, int upLimit, int leftLimit, int rightLimit)
+        public static bool goDown(int x, int y, int upLimit, int leftLimit, int rightLimit, int moveOnlyOnMapX)
         {
-            while (ProgramHandle.GetPositionY > upLimit && _stopMoveExpBot)
+            while (ProgramHandle.GetPositionY > upLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
             {
                 if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                 {
@@ -562,14 +569,14 @@ namespace AresTrainerV3
                 {
                     ExpBotLog += $"goDown-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
-                    goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+                    goLeft(800+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, moveOnlyOnMapX);
 
                 }
                 if (ProgramHandle.GetPositionX < leftLimit)
                 {
                     ExpBotLog += $"goDown-goRight currentX {ProgramHandle.GetPositionX} leftLimit {leftLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
-                    goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor);
+                    goRight(1100+ moveRandomizer, 520+ moveRandomizer, rightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, moveOnlyOnMapX);
                 }
 
             }
@@ -580,7 +587,7 @@ namespace AresTrainerV3
         public static void RunAndExpSquareUWC()
         {
             int howManyForLoops = 0;
-            while(_stopMoveExpBot)
+            while(_stopMoveExpBot )
             {
                 ExpBotLog += $"Starting new While \n";
 
@@ -594,7 +601,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
                         Thread.Sleep(100);
 
-                        while (!goLeft(600, 520, 1110719243, 1111239992, 1109794945)) ;
+                        while (!goLeft(600, 520, 1110719243, 1111239992, 1109794945,TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"goLeft Ended current i {i}\n";
 
                     }
@@ -605,7 +612,7 @@ namespace AresTrainerV3
 
                         Thread.Sleep(100);
 
-                        while (!goUp(960, 300, 1114565081, 1107050535, ProgramHandle.GetPositionX + 80000000)) ;
+                        while (!goUp(960, 300, 1114565081, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"goUp Ended current i {i}\n";
 
                     }
@@ -614,7 +621,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
-                    while (!goRight(1250, 520, 1128331398, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000)) ;
+                    while (!goRight(1250, 520, 1128331398, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"GoRight Ended current i {i}\n";
 
                     }
@@ -623,7 +630,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
-                    while (!goDown(965, 650, 1110537017, 1120835756, 1122982731)) ;
+                    while (!goDown(965, 650, 1110537017, 1120835756, 1122982731, TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"GoDown Ended current i {i}\n";
 
                     }
@@ -651,7 +658,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
                         Thread.Sleep(100);
 
-                        while (!goLeft(600, 520, 1121245593, 1146928281, 1145928281)) ;
+                        while (!goLeft(600, 520, 1121245593, 1146928281, 1145928281, TeleportValues.AllianceSacredLand)) ;
                         ExpBotLog += $"goLeft Ended current i {i}\n";
 
                     }
@@ -662,7 +669,7 @@ namespace AresTrainerV3
 
                         Thread.Sleep(100);
 
-                        while (!goUp(960, 300, 1146075590, 1120772620, ProgramHandle.GetPositionX + 80000000)) ;
+                        while (!goUp(960, 300, 1146075590, 1120772620, ProgramHandle.GetPositionX + 80000000, TeleportValues.AllianceSacredLand)) ;
                         ExpBotLog += $"goUp Ended current i {i}\n";
 
                     }
@@ -671,7 +678,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
-                        while (!goRight(1250, 520, 1125340770, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000)) ;
+                        while (!goRight(1250, 520, 1125340770, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.AllianceSacredLand)) ;
                         ExpBotLog += $"GoRight Ended current i {i}\n";
 
                     }
@@ -680,7 +687,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
-                        while (!goDown(965, 650, 1110537017, 1120835756, 1122982731)) ;
+                        while (!goDown(965, 650, 1110537017, 1120835756, 1122982731, TeleportValues.AllianceSacredLand)) ;
                         ExpBotLog += $"GoDown Ended current i {i}\n";
 
                     }

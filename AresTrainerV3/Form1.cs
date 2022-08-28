@@ -583,10 +583,19 @@ namespace AresTrainerV3
         {
             ProgramHandle.SetNostalgiaMainWindow();
             Thread.Sleep(500);
+            if(ProgramHandle.isCurrentSkill() == 3)
+            {
+                Debug.WriteLine("jest");
+            }
+            if (ProgramHandle.isCurrentSkillTabNr() == 1)
+            {
+                Debug.WriteLine("jest2");
+            }
+
             //ProgramHandle.SetCameraForExpBot();
             //ProgramHandle.MannaKeyPressKharonSell();
             // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-            ExpBotClass.WalkIntoUWC();
+            // ExpBotClass.WalkIntoUWC();
 
             /// ExpBotClass.SellItems();
         }
