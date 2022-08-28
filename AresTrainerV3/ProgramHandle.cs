@@ -322,33 +322,6 @@ namespace AresTrainerV3
                 _stopBot = true;
         }
 
-        static void HealBotRepotSSGolems()
-        {
-            if (PixelBotSearcher.isStopPixelAttack)
-            {
-                PixelBotSearcher.RequestStopPixelAttack();
-            }
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_5);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_5);
-            inputSimulator.Keyboard.Sleep(2000);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            PressKey1();
-            PressKey1();
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(150);
-
-            ExpBotClass.Repot(GetCurrentMap);
-            ExpBotClass.TeleportSScroll();
-            SetCameraForExpBot();
-            Form1.StartPixelGolemsThread();
-        }
         public static void HealBotRepotKharonSell()
         {
             if (ExpBotClass.isExpBotSell)
@@ -370,34 +343,12 @@ namespace AresTrainerV3
             // ExpBotClass.TeleportSScroll();
             ExpBotClass.ExpBotSellKharonGoBackToSpot();
 
-            Form1.StartThreadForTesting();
+           // TODO         I DELETED STARTTHEREADFORTESTING WIITH KINDA NO INTENTIONS TO MAKE THIS STOP WORKING  Form1.StartThreadForTesting();
 
 
         }
 
 
-        static void HealBotRepotKoHitTest()
-        {
-            
-            if (ExpBotClass.isExpBotSell)
-            {
-                ExpBotClass.RequestisExpBotSell();
-            }
-            ExpBotClass.scrollToCity();
-            PressKey1();
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(1500);
-            Thread.Sleep(10000);
-
-
-            ExpBotClass.Repot(GetCurrentMap);
-            Thread.Sleep(1000);
-            TeleportKoHitTest();
-            SetCameraForExpBot();
-            Form1.StartOnlyPixelScanThread();
-        }
 
         public static void HealBotTeleportRepotGoUWC()
         {
@@ -432,18 +383,6 @@ namespace AresTrainerV3
 
         }
 
-        static void HealKeyPressGolems()
-        {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 15) // if less then 7 use key 6 which is teleport
-            {
-                PressKey1();
-            }
-            else
-            {
-                // HealBotTeleportRepotGoUWC(); 
-                HealBotRepotSSGolems();
-            }
-        }
         static void HealKeyPressSellKharon()
         {
             if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 10) // if less then 7 use key 6 which is teleport
@@ -510,21 +449,6 @@ namespace AresTrainerV3
                 HealBotRepotKharonSell();
             }
         }
-        static void MannaKeyPressGolems()
-        {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 +5) // if less then 4 use key 6 which is teleport
-            {
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
-                inputSimulator.Keyboard.Sleep(200);
-            }
-            else
-            {
-                // HealBotTeleportRepotGoUWC(); 
-                HealBotRepotSSGolems();
-            }
-        }
         static void MannaKeyPressUWC()
         {
             if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
@@ -554,44 +478,6 @@ namespace AresTrainerV3
         }
 
 
-        public static void StartHealbotGolems()
-        {
-            SetForegroundWindow(FindWindow(null, foregroundWindowName));
-
-
-            while (_stopHeal)
-            {
-                hpValue = BitConverter.ToInt32(hpAddress, 0);
-                Thread.Sleep(50);
-                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
-                Thread.Sleep(50);
-
-
-                if (hpValue < hpHealValue && hpValue != 0)
-                {
-                    HealKeyPressGolems();
-                }
-                if (hpValue == 0)
-                {
-                    Thread.Sleep(180000);
-
-                    // HealBotTeleportRepotGoUWC();  // GO EXP IN UWC
-                    // HealBotRepotSSGolems();  // cant go golems cause threre is no SS scroll used
-                }
-                if (mannaValue < MannaRestoreValue)
-                {
-                    MannaKeyPress();
-
-                    // if running speed is normal use red and white potion
-                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
-                    {
-                        WhiteRedPotionsKeyPress();
-                    }
-                }
-
-            }
-            return;
-        }
         public static void StartHealbotSellKharon()
         {
             SetForegroundWindow(FindWindow(null, foregroundWindowName));

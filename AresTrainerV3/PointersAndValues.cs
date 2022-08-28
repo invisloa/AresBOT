@@ -197,7 +197,7 @@ public static class PointersAndValues
     public static Memory mem = new Memory();
     //  CHyba nie potrzebne public static InputSimulator inputSimulator = new InputSimulator();
 
-
+    public static Color blackPixelColor = ColorTranslator.FromHtml("#000000");
 
     public static Tuple<int, int>[] PositionsArray =
     {

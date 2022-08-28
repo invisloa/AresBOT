@@ -102,6 +102,28 @@ namespace AresTrainerV3
             MoveAndLeftClickOperation(580, 565);
 
         }
+        static bool isNowRunningCity()
+        {
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        static bool isNowStandingOut()
+        {
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut)
+            {
+               return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         public static void BuyPotionsFromShopNormalEXP(Tuple<int, int>[] whereAreYouBuyingPositions)
         {
 
@@ -115,12 +137,12 @@ namespace AresTrainerV3
 
                     HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 4) // Red Potions
+                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 3) // Red Potions
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 4) // White Potions
+                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 3) // White Potions
                 {
                     MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
                     HowManyPotionsToBuyExp(i);
@@ -305,12 +327,15 @@ namespace AresTrainerV3
         static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcAlliInCity && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEmpInCity)
+           // if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcAlliInCity && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEmpInCity)
+            if (!isNowRunningCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                     MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
-                    while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
+                    Thread.Sleep(500);
+                    // while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
+                    while (isNowRunningCity())
                     {
                         Thread.Sleep(1);
                     }
@@ -449,12 +474,15 @@ namespace AresTrainerV3
 
         static void MoveScanAndAttack(int x,int y)
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut)
+            if (isNowStandingOut())
             {
                 moveToPosition(x, y);
             }
             // even was standing and moved make a scan;
-            PixelBotSearcher.ScanAndAttackNoDebug();
+            if(PixelMobAttack.AttackSkillMobWhenSelected())
+            {
+                PixelMobAttack.AttackSkillMobWhenSelected();
+            }
 
         }
 
