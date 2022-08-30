@@ -21,10 +21,13 @@ public static class PointersAndValues
     public const int inventoryCurrentTabMOffset = 0x2AD1EC;
     public const int SellWindowMOffset = 0x2AD208;
     public const int UiWindowMOffset = 0x2AD218;
+
     public const int CurrentSkillBar1Address = 0x6A9A3C;
     public const int CurrentSkillBar2Address = 0x6A9A40;
     public const int CurrentSkillBar3Address = 0x6A9A44;
 
+    public const int CurrentItemHighlightedType = 0x8C9EE0;
+    
 
 
     // OFF offsets
@@ -68,7 +71,7 @@ public static class PointersAndValues
     public const int InventoryWindow2MOffset = 0x60;
 
     public const int CurrentSkillTabOffOffset = 0x174;
-    
+
     public const int ShopWindowOffset1 = 0xc0;
     public const int ShopWindowOffset2 = 0xd8;
     public const int StorageWindowOffset1 = 0xc0;
@@ -87,7 +90,7 @@ public static class PointersAndValues
 
     // values
     public const int runSpeedNormalValue = 16859264;
-    public const int cameraDistanceAnimValue =   1127253120;
+    public const int cameraDistanceAnimValue = 1127253120;
     public const int cameraDistanceBotValue = 1112599680;
     public const int cameraFogValue = 18000;
     public const int cameraAngleYValue = 81853;
@@ -100,8 +103,8 @@ public static class PointersAndValues
     public static int clickDelayValue = 0;
     public static int ToCheckValue0 = 0;
     public static int cameraAngleXValue = 0;
-   // public static int AttackSpeed = 1431715797;
-    public static Tuple<int,int> expBotMouseStartingPos = new Tuple<int, int>(930, 500);
+    // public static int AttackSpeed = 1431715797;
+    public static Tuple<int, int> expBotMouseStartingPos = new Tuple<int, int>(930, 500);
 
     public static int MouseoverItemValue = 43880704;
     public static int MouseoverMobValue = 43881072;
@@ -109,13 +112,13 @@ public static class PointersAndValues
     public static int MouseoverMobValueNoItem = 42106960;
     public static int MouseoverMobValueKharon = 41980528;
     public static int MouseoverItemValueKharon = 43028736;
-   // public static int MouseoverItemValueKharon = 42766592;
-   // public static int MouseoverItemValueKharon = 42963200;
-
-    
+    // public static int MouseoverItemValueKharon = 42766592;
+    // public static int MouseoverItemValueKharon = 42963200;
 
 
-    
+
+
+
 
 
 
@@ -126,7 +129,7 @@ public static class PointersAndValues
     public const int isRunningAnimationArcALLIOutside = 4535616;
     public const int isRunningAnimationArcEMPOutside = 4536352;
 
-    
+
     public const int isRunningAnimationSorcOutside = 4523712;
     public const int isRunningAnimationArcAlliInCity = 4545808;
     public const int isRunningAnimationArcEmpInCity = 4546528;
@@ -134,18 +137,25 @@ public static class PointersAndValues
 
 
     public const int isStandingAnimationArcerAlliOut = 4534400;
+    public const int isStandingAnimationArcerAlliCity = 4550176;
     public const int isStandingAnimationArcerEmpOut = 4535136;
+    public const int isStandingAnimationArcerEmpCity = 4550976;
     public const int isStandingAnimationSorcOut = 4522496;
+    public const int isStandingAnimationSorcCity = 4550976;
+    public const int isStandingAnimationSorcEmpCityF = 4552960;
+    public const int isStandingAnimationSorcEmpOutF = 4522944;
 
-    
+
+
+
     public const int isBeingHitAnimation = 4536960;
     public const int isAttackingBowAlliAnimation = 4536096;
     public const int isAttackingBowEmpAnimation = 4536832;
     public const int isAttackingSorcAlliAnimation = 4541440;
     public const int isAttackingKnightAlliAnimation = 4425728;
     public const int isAttackingSpearAlliAnimation = 4505728;
-    
-    
+
+
 
 
     // arcer
@@ -190,6 +200,8 @@ public static class PointersAndValues
     public static int knightFirstBlunt = 20501;
 
 
+    // item values
+    public static int ItemHighlightedSod = 25;
 
 
     public static IntPtr baseAddress = IntPtr.Zero;
@@ -207,97 +219,4 @@ public static class PointersAndValues
         new Tuple<int, int>(5, 78),
     };
 
-    public static List<int> KoValuesToTestList = new List<int>()
-    {
-
-       10006,
-10014,
-10101,
-10116,
-10204,
-10210,
-10218,
-10306,
-10312,
-10403,
-10411,
-10412,
-10501,
-10509,
-10515,
-10601,
-10607,
-10613,
-10620,
-10653,
-10705,
-10711,
-10716,
-10801,
-10806,
-10812,
-10819,
-10904,
-10905,
-10910,
-10917,
-11005,
-11012,
-11103,
-11110,
-11118,
-11206,
-11213,
-11219,
-11307,
-11314,
-11402,
-11409,
-11417,
-11505,
-11512,
-11601,
-11602,
-11609,
-11615,
-11701,
-11708,
-11800,
-11807,
-11818,
-11907,
-11917,
-12004,
-12009,
-12016,
-12102,
-12109,
-12115,
-12202,
-12208,
-12214,
-12220,
-12305,
-12312,
-12318,
-12405,
-12411,
-12415,
-12502,
-12509,
-12518,
-12606,
-12613,
-12701,
-12708,
-12716,
-12804,
-12817,
-12905,
-12906,
-12915,
-23070,
-23103,
-23136,
-    };
 }

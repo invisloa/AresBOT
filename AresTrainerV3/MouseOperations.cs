@@ -79,5 +79,29 @@ namespace AresTrainerV3
                 Y = y;
             }
         }
+        public static void MoveAndLeftClickOperation(int xPos, int yPos,int delay)
+        {
+            Thread.Sleep(delay);
+            MouseOperations.SetCursorPosition(xPos, yPos);
+            Thread.Sleep(delay);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(delay);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(delay);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(delay);
+        }
+
+        public static void ClickMaxPotionsToBuy()
+        {
+            MouseOperations.MoveAndLeftClickOperation(570, 520, 400);
+        }
+        public static void ClickFirstSlotInventoryLeft()
+        {
+            MouseOperations.MoveAndLeftClickOperation(1265, 550, 400);
+        }
+
+
+
     }
 }

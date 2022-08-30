@@ -8,6 +8,7 @@ using WindowsInput;
 using System.Windows.Input;
 using System.Threading;
 using System;
+using AresTrainerV3.Buyer;
 
 namespace AresTrainerV3
 {
@@ -86,20 +87,11 @@ namespace AresTrainerV3
                 _stopMoveExpBot = true;
         }
 
-        public static void MoveAndLeftClickOperation(int xPos, int yPos)
-        {
-            MouseOperations.SetCursorPosition(xPos, yPos);
-            Thread.Sleep(50);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(50);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(50);
-        }
 
         static void MouseClickOpenShop()
         {
             Thread.Sleep(1000);
-            MoveAndLeftClickOperation(580, 565);
+            MouseOperations.MoveAndLeftClickOperation(580, 565,200);
 
         }
         static bool isNowRunningCity()
@@ -115,41 +107,52 @@ namespace AresTrainerV3
         }
         static bool isNowStandingOut()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut)
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpOutF)
             {
-               return true;
+                return true;
             }
             else
             {
                 return false;
             }
         }
-        public static void BuyPotionsFromShopNormalEXP(Tuple<int, int>[] whereAreYouBuyingPositions)
+        static bool isNowStandingCity()
+        {
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static void BuyPotionsFromShopNormalEXP(Tuple<int, int>[] buyPotionsMouseMovePos)
         {
 
 
-            for (int i = 0; i < whereAreYouBuyingPositions.Length; i++)
+            for (int i = 0; i < buyPotionsMouseMovePos.Length; i++)
             {
                 Thread.Sleep(1000);
                 if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 99) // Manna Potion
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
 
                     HowManyPotionsToBuyExp(i);
                 }
                 else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 3) // Red Potions
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
                 }
                 else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 3) // White Potions
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
                 }
                 else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 120)      // HP Potions 
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
                 }
             }
@@ -163,23 +166,23 @@ namespace AresTrainerV3
                 Thread.Sleep(1000);
                 if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + 20) // Manna Potion
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2,200);
 
                     HowManyPotionsToBuySell(i);
                 }
                 else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 4) // Red Potions
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);
                 }
                 else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 4) // White Potions
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);
                 }
                 else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 30)      // HP Potions 
                 {
-                    MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2);
+                    MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);
                 }
             }
@@ -324,7 +327,7 @@ namespace AresTrainerV3
             ClickOkWhenBuying();
         }
 
-        static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
+        public static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
            // if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcAlliInCity && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEmpInCity)
@@ -332,13 +335,13 @@ namespace AresTrainerV3
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
-                    MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2);
-                    Thread.Sleep(500);
-                    // while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
-                    while (isNowRunningCity())
-                    {
+                        MouseOperations.MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2, 10);
+                        Thread.Sleep(1000);
+                        // while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
+                        while (!isNowStandingCity())
+                        {
                         Thread.Sleep(1);
-                    }
+                        }
                 }
             }
 
@@ -355,11 +358,15 @@ namespace AresTrainerV3
             {
                 MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
                 MouseClickOpenShop();
-                ItemSeller.SellItemsMouseMove();
 
                 if (ProgramHandle.isShopWindowStillOpen() == 1)
                 {
-                    BuyPotionsFromShopNormalEXP(ExpBotMovePositions.mousePositionsForHershalBuying);
+                    ItemSeller.SellItemsMouseMove();
+
+                    BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
+                    buyerPotionsHershalExp.BuyPotions();
+
+                   // BuyPotionsFromShopNormalEXP(ExpBotMovePositions.mousePositionsForHershalBuying);
                     inputSimulator.Keyboard.Sleep(200);
                     inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
                     inputSimulator.Keyboard.Sleep(200);
@@ -406,7 +413,7 @@ namespace AresTrainerV3
             ProgramHandle.SetCameraForExpBot();
             while(ProgramHandle.GetCurrentMap != TeleportValues.KharonPlateau)
             {
-                MoveAndLeftClickOperation(955, 160);
+                MouseOperations.MoveAndLeftClickOperation(955, 160, 200);
                 Thread.Sleep(1000);
             }
             Thread.Sleep(10000);
@@ -431,18 +438,18 @@ namespace AresTrainerV3
             {
                 PressF5ForTeleport();
                 ProgramHandle.SetCameraForExpBot();
-                for (int i = 0; i < 10; i++)
+                for (int i = 0; i < 70; i++)
                 {
 
                     if (ProgramHandle.GetCurrentMap != TeleportValues.UWC1stFloor)
                     {
-                        Thread.Sleep(500);
-                        MouseOperations.SetCursorPosition(1110, 380);
-                        Thread.Sleep(100);
+                        Thread.Sleep(50);
+                        MouseOperations.SetCursorPosition(1110+i, 380+i);
+                        Thread.Sleep(50);
                         MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                        Thread.Sleep(100);
+                        Thread.Sleep(50);
                         MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(50);
                     }
                 }
             }
@@ -452,10 +459,11 @@ namespace AresTrainerV3
                 ProgramHandle.SetCameraForExpBot();
                 Thread.Sleep(100);
             }
-            else
+/*            else
             {
                 ProgramHandle.HealBotTeleportRepotGoUWC();
             }
+*/     
         }
 
         static void MoveToPositionWhenNotAttacking( int x,int y)
@@ -471,19 +479,47 @@ namespace AresTrainerV3
                 Thread.Sleep(50);
             }
         }
-
-        static void MoveScanAndAttack(int x,int y)
+/*
+        static void MoveScanAndAttack(int x, int y)
         {
             if (isNowStandingOut())
             {
                 moveToPosition(x, y);
             }
-            // even was standing and moved make a scan;
-            if(PixelMobAttack.AttackSkillMobWhenSelected())
+
+            PixelMobAttack.AttackSkillMobWhenSelected();
+        }
+*/        static void MoveScanAndAttackAncCollect(int x, int y)
+        {
+            PixelMobAttack.AttackSkillMobWhenSelected();
+            ScanAndCollectClickLeftOnhighlightedForNow();
+
+            if (isNowStandingOut())
             {
-                PixelMobAttack.AttackSkillMobWhenSelected();
+
+                moveToPosition(x, y);
+
             }
 
+            /*            if (!PixelMobAttack.AttackSkillMobWhenSelected())
+                        {
+                            ScanAndCollectClickLeftOnhighlightedForNow();
+                        }
+
+            */
+        }
+
+        static void MoveScanAndAttackAndCollectSOD(int x, int y)
+        {
+            if (isNowStandingOut())
+            {
+                moveToPosition(x, y);
+            }
+
+            if(!PixelMobAttack.AttackSkillMobWhenSelected())
+            {
+                ClickAndCollectAllForNow();
+            }
         }
 
         static void moveToPosition(int x, int y)
@@ -508,7 +544,7 @@ namespace AresTrainerV3
                     {
                     ExpBotLog += $"goLeft \n";
 
-                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
                     }
                     if (ProgramHandle.GetPositionY > upLimit)
                     {
@@ -533,7 +569,7 @@ namespace AresTrainerV3
                     {
                     ExpBotLog += $"goRight \n";
 
-                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
 
                     }
                     if (ProgramHandle.GetPositionY > upLimit)
@@ -561,7 +597,7 @@ namespace AresTrainerV3
                         {
                         ExpBotLog += $"goUp \n";
 
-                        MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                        MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
 
                         }
                     if (ProgramHandle.GetPositionX > rightLimit)
@@ -590,7 +626,7 @@ namespace AresTrainerV3
                 {
                     ExpBotLog += $"goDown currentY xyz{ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
 
-                    MoveScanAndAttack(x+ moveRandomizer, y+ moveRandomizer);
+                    MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
 
                 }
                 if (ProgramHandle.GetPositionX > rightLimit)
@@ -629,7 +665,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
                         Thread.Sleep(100);
 
-                        while (!goLeft(600, 520, 1110719243, 1111239992, 1109794945,TeleportValues.UWC1stFloor)) ;
+                        while (!goLeft(600, 520, 1112000000, 1111239992, 1109794945,TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"goLeft Ended current i {i}\n";
 
                     }
@@ -730,7 +766,7 @@ namespace AresTrainerV3
         public static void TeleportSScroll()
         {
             Thread.Sleep(1000);
-            MoveAndLeftClickOperation(920, 155);
+            MouseOperations.MoveAndLeftClickOperation(920, 155, 200);
             Thread.Sleep(1000);
         }
 
@@ -775,7 +811,81 @@ namespace AresTrainerV3
                     {
                         Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
                     }
-                    Thread.Sleep(500); 
+                    Thread.Sleep(500);
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static bool ScanAndCollectClickLeftOnhighlightedForNow()
+        {
+            if (ProgramHandle.getCurrentWeight < 1770)
+            {
+
+                //if not running animation
+                if (isNowStandingOut())
+                {
+                    Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+                    Graphics graphics = Graphics.FromImage(bitmap as Image);
+                    graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+
+                    Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
+
+                    // Increased for collecting so it dont scan mob window top left
+                    for (int x = 550; x < 1360; x++)
+                    {
+                        for (int y = 290; y < 835; y++)
+                        {
+                            Color currentPixelColor = bitmap.GetPixel(x, y);
+                            if ((x < 928 || x > 985 || y < 490 || y > 550) && desiredPixelColor == currentPixelColor)
+                            {
+                                Debug.WriteLine("pixel Collect");
+                                for (int i = -10; i < 10; i++)
+                                {
+                                    for (int z = -10; z < 10; z++)
+                                    {
+                                        MouseOperations.SetCursorPosition(x + i, y + z);
+                                        if (ExpBotClass.ClickAndCollectAllForNow())
+                                        {
+                                            Debug.WriteLine("EndCollect");
+                                            GC.Collect();
+                                            return true;
+                                        }
+
+                                    }
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
+        }
+
+        public static bool ClickAndCollectAllForNow()
+        {
+            if (ProgramHandle.isCurrentItemHighlightedType() != 0)
+            {
+                //for now its here but when number above will be sod then it has to be changed
+                AttackMob.CheckIfSelectedAndAttackSkill();
+
+                Thread.Sleep(50);
+                if (ProgramHandle.isCurrentItemHighlightedType() != 0)
+                {
+                    Debug.WriteLine("Collect SOD");
+
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    Thread.Sleep(30);
+                    //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    Thread.Sleep(5);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    while (!isNowStandingOut())
+                    {
+                        Thread.Sleep(50); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
+                    }
+                    Thread.Sleep(300);
                     return true;
                 }
             }

@@ -54,6 +54,7 @@ namespace AresTrainerV3
         static IntPtr isCurrentSkillBar1Value;
         static IntPtr isCurrentSkillBar2Value;
         static IntPtr isCurrentSkillBar3Value;
+        static IntPtr isItemHighlightedType;
 
 
 
@@ -95,13 +96,22 @@ namespace AresTrainerV3
 
         private static volatile bool _stopKoChangeValue = false;
 
-        public static void PressKey1()
+        public static void PressKey1Heal()
         {
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
             inputSimulator.Keyboard.Sleep(50);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
             inputSimulator.Keyboard.Sleep(50);
         }
+        public static void PressKey2Heal()
+        {
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
+            inputSimulator.Keyboard.Sleep(200);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
+            inputSimulator.Keyboard.Sleep(200);
+        }
+
 
 
 
@@ -128,6 +138,15 @@ namespace AresTrainerV3
             return memExpbot.readByte(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryCurrentTabOffset)); 
         }
 
+        public static int GetCurrentPositionX()
+        {
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);
+        }
+
+        public static int GetCurrentPositionY()
+        {
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0);
+        }
 
 
 
@@ -198,11 +217,6 @@ namespace AresTrainerV3
             isCurrentSkillTabMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.CurrentSkillTabMOffset));
 
             shopWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.ShopWindow2MOffset));
-
-            isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
-            isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
-            isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
-
             inventoryWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.InventoryWindow2MOffset));
             
             storageWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.StorageWindow2MOffset));
@@ -223,12 +237,17 @@ namespace AresTrainerV3
             slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
 
 
+            isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
+            isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
+            isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
+            isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
 
 
 
-/*            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            lastSlotStat1 = memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.lastSlotItemStat1));
-*/
+
+            /*            //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                        lastSlotStat1 = memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.lastSlotItemStat1));
+            */
 
 
             // mobSelectedAddress = memExpbot.readbytes(proc.Handle, IntPtr.Add(mobSelectedOffset, PointersAndValues.mobSelected), 4);
@@ -238,7 +257,7 @@ namespace AresTrainerV3
 
 
 
-            int myMaxHp = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+            int myMaxHp = getCurrentHp;
             if (myMaxHp < 200)
             {
                 hpHealValue = 100;
@@ -333,7 +352,7 @@ namespace AresTrainerV3
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
             inputSimulator.Keyboard.Sleep(150);
 
-            PressKey1();
+            PressKey1Heal();
             inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
             inputSimulator.Keyboard.Sleep(200);
             inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
@@ -364,18 +383,23 @@ namespace AresTrainerV3
             ExpBotClass.scrollToCity();
 
             // TODO IF CITY && COORDS == XXX THEN DO XXX ELSE GO AGAIN
-            PressKey1();
-            PressKey1();
-            inputSimulator.Keyboard.Sleep(500);
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(500);
+
+            if (getCurrentHp < hpHealValue)
+                PressKey1Heal();
+            if (getCurrentHp < hpHealValue)
+                PressKey1Heal();
+            if (getCurrentHp < hpHealValue)
+                PressKey1Heal();
+            if (getCurrentManna() < MannaRestoreValue)
+                PressKey2Heal();
+            if (getCurrentManna() < MannaRestoreValue)
+                PressKey2Heal();
+            if (getCurrentManna() < MannaRestoreValue)
+                PressKey2Heal();
 
 
 
-            inputSimulator.Keyboard.Sleep(2000);
-
+            Thread.Sleep(3000);
             ExpBotClass.Repot(GetCurrentMap);
             ExpBotClass.WalkIntoUWC();
             Form1.StartExpBotUWCThread();
@@ -387,7 +411,7 @@ namespace AresTrainerV3
         {
             if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 10) // if less then 7 use key 6 which is teleport
             {
-                PressKey1();
+                PressKey1Heal();
             }
             else
             {
@@ -399,7 +423,7 @@ namespace AresTrainerV3
         {
             if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 7 use key 6 which is teleport
             {
-                PressKey1();
+                PressKey1Heal();
             }
 
             else
@@ -413,7 +437,7 @@ namespace AresTrainerV3
         {
             if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 7 use key 6 which is teleport
             {
-                PressKey1();
+                PressKey1Heal();
             }
             else
             {
@@ -485,9 +509,9 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
-                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                hpValue = getCurrentHp;
                 Thread.Sleep(50);
-                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                mannaValue = getCurrentManna();
                 Thread.Sleep(50);
 
 
@@ -534,9 +558,9 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
-                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                hpValue = getCurrentHp;
                 Thread.Sleep(50);
-                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                mannaValue = getCurrentManna();
                 Thread.Sleep(50);
 
                 if (hpValue < hpHealValue && hpValue != 0)
@@ -566,9 +590,9 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
-                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                hpValue = getCurrentHp;
                 Thread.Sleep(20);
-                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                mannaValue = getCurrentManna();
                 Thread.Sleep(20);
 
 
@@ -605,9 +629,9 @@ namespace AresTrainerV3
 
             while (_stopHeal)
             {
-                hpValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0);
+                hpValue = getCurrentHp;
                 Thread.Sleep(50);
-                mannaValue = BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+                mannaValue = getCurrentManna();
                 Thread.Sleep(50);
 
 
@@ -928,6 +952,16 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
         }
+        public static int getCurrentHp
+        {
+            get { return BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0); }
+        }
+        public static int getCurrentManna()
+        {
+            return BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+        }
+
+
         public static int isWhatAnimationRunning()
         {
              return BitConverter.ToInt32(memExpbot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4));
@@ -1287,6 +1321,10 @@ namespace AresTrainerV3
                 return memExpbot.readByte(proc.Handle, IntPtr.Add(isCurrentSkillBar3Value, 0));
             }
             else return 5;
+        }
+        public static byte isCurrentItemHighlightedType()
+        {
+            return memExpbot.readByte(proc.Handle, IntPtr.Add(isItemHighlightedType, 0));
         }
 
         public static void OpenShopWindow()

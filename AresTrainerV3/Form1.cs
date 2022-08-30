@@ -1,3 +1,4 @@
+using AresTrainerV3.Buyer;
 using System.Diagnostics;
 using Utilities;
 
@@ -443,26 +444,6 @@ namespace AresTrainerV3
 
         }
 
-        private void FastTestBTN_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetNostalgiaMainWindow();
-            Thread.Sleep(500);
-/*            if(ProgramHandle.isCurrentSkill() == 3)
-            {
-                Debug.WriteLine("jest");
-            }
-            if (ProgramHandle.isCurrentSkillTabNr() == 1)
-            {
-                Debug.WriteLine("jest2");
-            }
-*/
-            //ProgramHandle.SetCameraForExpBot();
-            //ProgramHandle.MannaKeyPressKharonSell();
-            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-            // ExpBotClass.WalkIntoUWC();
-
-            /// ExpBotClass.SellItems();
-        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -489,7 +470,41 @@ namespace AresTrainerV3
 
         private void Tester_Click_1(object sender, EventArgs e)
         {
-            ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+            ProgramHandle.SetNostalgiaMainWindow();
+            Thread.Sleep(500);
+            ProgramHandle.SetCameraForExpBot();
+
+            ExpBotClass.MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
+
+            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
         }
+        private void FastTestBTN_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetNostalgiaMainWindow();
+
+
+            //ExpBotClass.ScanAndCollectClickLeftOnhighlightedForNow();
+            /*            BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
+                        buyerPotionsHershalExp.BuyPotions();
+            */
+            /*            if(ProgramHandle.isCurrentSkill() == 3)
+                        {
+                            Debug.WriteLine("jest");
+                        }
+                        if (ProgramHandle.isCurrentSkillTabNr() == 1)
+                        {
+                            Debug.WriteLine("jest2");
+                        }
+            */
+            //ProgramHandle.SetCameraForExpBot();
+            //ProgramHandle.MannaKeyPressKharonSell();
+            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+            // ExpBotClass.WalkIntoUWC();
+
+            /// ExpBotClass.SellItems();
+            /// 
+
+        }
+
     }
 }

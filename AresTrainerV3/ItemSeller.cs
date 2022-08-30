@@ -632,7 +632,7 @@ namespace AresTrainerV3
             ProgramHandle.OpenShopWindow();
             Thread.Sleep(1000);
 
-            ExpBotClass.MoveAndLeftClickOperation(1235, 570);  // Open Inventory Tab 1
+            MouseOperations.MoveAndLeftClickOperation(1235, 570, 100);  // Open Inventory Tab 1
             Thread.Sleep(300);
 
             //  SELL ONLY FIRST ROW OF SECOND TAB  
@@ -648,7 +648,7 @@ namespace AresTrainerV3
                     {
                         Thread.Sleep(500);
 
-                        ExpBotClass.MoveAndLeftClickOperation(1235, 670); // Open Inventory Tab 2
+                        MouseOperations.MoveAndLeftClickOperation(1235, 670, 200); // Open Inventory Tab 2
                         Thread.Sleep(500);
                     }
                     ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositions.itemSellPositions[firstSellItem].Item1, ExpBotMovePositions.itemSellPositions[firstSellItem].Item2);
