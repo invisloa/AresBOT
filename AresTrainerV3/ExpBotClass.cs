@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Threading;
 using System;
 using AresTrainerV3.Buyer;
+using AresTrainerV3.Unstuck;
 
 namespace AresTrainerV3
 {
@@ -105,7 +106,7 @@ namespace AresTrainerV3
                 return false;
             }
         }
-        static bool isNowStandingOut()
+        public static bool isNowStandingOut()
         {
             if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpOutF)
             {
@@ -116,7 +117,7 @@ namespace AresTrainerV3
                 return false;
             }
         }
-        static bool isNowStandingCity()
+        public static bool isNowStandingCity()
         {
             if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
             {
@@ -489,9 +490,9 @@ namespace AresTrainerV3
 
             PixelMobAttack.AttackSkillMobWhenSelected();
         }
-*/        static void MoveScanAndAttackAncCollect(int x, int y)
+*/       public static void MoveScanAndAttackAncCollect(int x, int y)
         {
-            PixelMobAttack.AttackSkillMobWhenSelected();
+            while (PixelMobAttack.AttackSkillMobWhenSelected()) ;
             ScanAndCollectClickLeftOnhighlightedForNow();
 
             if (isNowStandingOut())
@@ -540,7 +541,8 @@ namespace AresTrainerV3
         {
                 while (ProgramHandle.GetPositionX > leftLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                 {
-                    if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
+
+                if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
                     ExpBotLog += $"goLeft \n";
 
@@ -565,7 +567,8 @@ namespace AresTrainerV3
         {
                 while (ProgramHandle.GetPositionX < rightLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                 {
-                    if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
+
+                if (ProgramHandle.GetPositionY < upLimit && ProgramHandle.GetPositionY > downLimit)
                     {
                     ExpBotLog += $"goRight \n";
 
@@ -593,7 +596,8 @@ namespace AresTrainerV3
         {
                 while (ProgramHandle.GetPositionY < upLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                 {
-                    if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
+
+                if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                         {
                         ExpBotLog += $"goUp \n";
 
@@ -622,6 +626,7 @@ namespace AresTrainerV3
         {
             while (ProgramHandle.GetPositionY > upLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
             {
+
                 if (ProgramHandle.GetPositionX > leftLimit && ProgramHandle.GetPositionX < rightLimit)
                 {
                     ExpBotLog += $"goDown currentY xyz{ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
@@ -676,7 +681,7 @@ namespace AresTrainerV3
 
                         Thread.Sleep(100);
 
-                        while (!goUp(960, 300, 1114565081, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
+                        while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"goUp Ended current i {i}\n";
 
                     }
@@ -685,7 +690,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"current i {i}\n";
 
                         Thread.Sleep(100);
-                    while (!goRight(1250, 520, 1128331398, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                    while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotLog += $"GoRight Ended current i {i}\n";
 
                     }

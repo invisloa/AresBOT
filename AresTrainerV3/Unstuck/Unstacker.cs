@@ -3,36 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace AresTrainerV3.Unstuck
 {
-    public abstract class Unstacker : IUnstuckPosition
+    public abstract class Unstacker
     {
-        Tuple<int, int, int, int>[] StuckLockationAssigner()
+        Random random = new Random();
+
+        Tuple<int, int>[] tempUnstuckMousePositions = new Tuple<int, int>[]
         {
-            if (ProgramHandle.GetCurrentMap == TeleportValues.EmpireSacred)
-            {
-                return StuckPositionValues.EmpireSacredStuckLockations;
-            }
-            if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
-            {
-                return StuckPositionValues.UWC1stFloorObstacles;
-            }
-
-
-            /// ADD OTHER MAPS
-
-
-            else return null;
-        }
-
-
-        protected bool isInStuckPosition()
+            
+            new Tuple<int, int>(955+100,515+100),
+            new Tuple<int, int>(955+100,515-100),
+            new Tuple<int, int>(955-100,515+100),
+            new Tuple<int, int>(955-100,515-100)
+        };
+        bool isInStuckPosition(Tuple<int, int, int, int>[] stuckLockations)
         {
-            Tuple<int, int, int, int>[] stuckLockations = StuckLockationAssigner();
             foreach (var stuckLockat in stuckLockations)
             {
-                if (ProgramHandle.GetCurrentPositionX() > stuckLockat.Item1 && ProgramHandle.GetCurrentPositionX() < stuckLockat.Item3 && ProgramHandle.GetCurrentPositionY() > stuckLockat.Item2 && ProgramHandle.GetCurrentPositionY() < stuckLockat.Item4)
+                if (ProgramHandle.GetCurrentPositionX > stuckLockat.Item1 && ProgramHandle.GetCurrentPositionX < stuckLockat.Item3 && ProgramHandle.GetCurrentPositionY > stuckLockat.Item2 && ProgramHandle.GetCurrentPositionY < stuckLockat.Item4)
                 {
                     return true;
                 }
@@ -40,20 +31,26 @@ namespace AresTrainerV3.Unstuck
             return false;
         }
 
-        void MoveFromPosition()
+        void MouseClickFromPosition()
         {
-
+            if (ExpBotClass.isNowStandingOut())
+            {
+                int movefromPositionRandomizer = random.Next(tempUnstuckMousePositions.Length);
+                MouseOperations.MoveAndLeftClickOperation(tempUnstuckMousePositions[movefromPositionRandomizer].Item1, tempUnstuckMousePositions[movefromPositionRandomizer].Item2, 15);
+            }
         }
 
-        protected bool UnstuckMoveAbstract()
+        protected bool UnstuckMoveBase(Tuple<int, int, int, int>[] stuckLockations)
         {
-            if(isInStuckPosition)
+            Debug.WriteLine("Check if is in stuck lockation");
+            while (isInStuckPosition(stuckLockations))
             {
-
+                Debug.WriteLine("stuck lockation WHILE");
+                MouseClickFromPosition();
             }
+            Debug.WriteLine($"Not Stuck");
 
-
-            return false
+            return false;
         }
 
         public abstract bool UnstuckMove();

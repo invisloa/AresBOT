@@ -1,4 +1,6 @@
 using AresTrainerV3.Buyer;
+using AresTrainerV3.SkillSelection;
+using AresTrainerV3.Unstuck;
 using System.Diagnostics;
 using Utilities;
 
@@ -47,11 +49,14 @@ namespace AresTrainerV3
     public partial class Form1 : Form
     {
         static Thread healbotThread;
-        static Thread animbotThread = new Thread(ProgramHandle.Start1HitKO);
+        static Thread animbotThread;
         static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
         static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
         // static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.TestFoundValues);
         static Thread expBotMoveThread = new Thread(ThreadExpBotUWC);
+
+        public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
+
 
         globalKeyboardHook gkh = new globalKeyboardHook();
 
@@ -68,13 +73,14 @@ namespace AresTrainerV3
 
         private void Form1_Load(object sender, EventArgs e)
         {
+
+
             gkh.HookedKeys.Add(Keys.F2);
             gkh.HookedKeys.Add(Keys.F3);
             gkh.HookedKeys.Add(Keys.F4);
             gkh.HookedKeys.Add(Keys.F5);
             gkh.HookedKeys.Add(Keys.F6);
             gkh.HookedKeys.Add(Keys.F9);
-
            //
            //SUBSCRIBE globalKeyboardHook.
            //
@@ -96,6 +102,7 @@ namespace AresTrainerV3
 
         public static void StartHealBotThreadNormal()
         {
+
             ProgramHandle.RequestStopHealBot();
             Thread.Sleep(500);
             if (healbotThread == null)
@@ -173,6 +180,7 @@ namespace AresTrainerV3
 
         static void AttackWhenMobSelectedThread()
         {
+
             ProgramHandle.SetCameraForExpBot();
 
             Thread.Sleep(50);
@@ -201,6 +209,7 @@ namespace AresTrainerV3
 
         private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+
             if (ClassChangeComboBox.SelectedIndex == 0)
             {
                 PointersAndValues.skill1AnimValue = PointersAndValues.arcerAnim1;
@@ -221,7 +230,6 @@ namespace AresTrainerV3
             {
                 PointersAndValues.skill1AnimValue = PointersAndValues.mageAnim1;
                 PointersAndValues.skill2AnimValue = PointersAndValues.mageAnim2;
-                PointersAndValues.skillValue = PointersAndValues.mageStriking;
             }
             if (ClassChangeComboBox.SelectedIndex == 3)
             {
@@ -240,14 +248,14 @@ namespace AresTrainerV3
         {
             Start1HitKoThread();
         }
-        static void Start1HitKoThread()
+        void Start1HitKoThread()
         {
             ProgramHandle.SetCameraLong();
+            CurrentlySelectedClass = SkillSelector.SelectPropperClass();
 
-           // ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
-           // ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
-           // ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
-
+            // ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
+            // ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
+            // ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
 
             Thread.Sleep(50);
             ProgramHandle.RequestStopAnim();
@@ -256,11 +264,11 @@ namespace AresTrainerV3
 
             if (animbotThread == null)
             {
-                animbotThread = new Thread(ProgramHandle.Start1HitKO);
+                animbotThread = new Thread(() => ProgramHandle.Start1HitKO(CurrentlySelectedClass));
             }
             if (!animbotThread.IsAlive)
             {
-                animbotThread = new Thread(ProgramHandle.Start1HitKO);
+                animbotThread = new Thread(() => ProgramHandle.Start1HitKO(CurrentlySelectedClass));
                 animbotThread.Start();
             }
         }
@@ -480,9 +488,13 @@ namespace AresTrainerV3
         }
         private void FastTestBTN_Click(object sender, EventArgs e)
         {
+            UnstuckerEtana unstuckerEtana = new UnstuckerEtana();
             ProgramHandle.SetNostalgiaMainWindow();
-
-
+            Thread.Sleep(599);
+            while (true)
+            {
+                unstuckerEtana.UnstuckMove();
+            }
             //ExpBotClass.ScanAndCollectClickLeftOnhighlightedForNow();
             /*            BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
                         buyerPotionsHershalExp.BuyPotions();

@@ -64,6 +64,7 @@ public static class PointersAndValues
     public const int mobBeingTargeted = 0x050;
     public const int typeOfAnimationIsRunning = 0x3b5;
     public const int lastSlotItemStat1 = 0xf84;
+    public const int classSelected = 0x7d4;
 
     public const int ShopWindow2MOffset = 0x90;
     public const int CurrentSkillTabMOffset = 0x58;
@@ -165,6 +166,7 @@ public static class PointersAndValues
     public const int arcerEmpBlasting = 110919;
     public const int arcerEmpExplosion = 110719;
     public const int arcerSpeedUpSkill = 12619;
+    public const int arcerAlliLastSingle = 12419;
     // spear
     public static int spearSkillAnim1FirstSkill = 1153814902;           //1153712127 anim value    // 1153814902; poprzednia wartosc testowana nie widac widocznej roznicy
     public static int spearSkillAnim1ThirdSkill = 1154085000;
@@ -177,14 +179,12 @@ public static class PointersAndValues
     // mage
     public static int mageAnim1 = 1162783990; // 15.06.22 1162765990;
     public static int mageAnim2 = 0;
-    public static int mageDealBrandSkill = 60219;
-    public static int mageStoneBulletSkill = 60219;
-    public static int mageFirstAoeSkill = 60309;
-    public static int mageDealBrand = 60204;
-    public static int mageStriking = 60403;
     public static int mageFireSingleLast = 61819;
+    public static int mageWaterSingleLast = 51819;
     public static int mageFireAOEleLast = 61919;
+    public static int mageWaterAOEleLast = 51919;
     public static int mageSupportFireBarrier = 62719;
+    public static int mageSupportLightningBarrier = 52719;
     public static int mageSupportRapid = 62519;
     public static int mageSupportEnergyShield = 63019;
     public static int mageSupportBlastArmor = 62619;
