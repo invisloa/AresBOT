@@ -1,4 +1,6 @@
 using AresTrainerV3.Buyer;
+using AresTrainerV3.MovePositions;
+using AresTrainerV3.PixelScanOperations;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
 using System.Diagnostics;
@@ -482,19 +484,25 @@ namespace AresTrainerV3
             Thread.Sleep(500);
             ProgramHandle.SetCameraForExpBot();
 
-            ExpBotClass.MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
+            ExpBotClass.MoveToRepot(ExpBotMovePositionsValues.HershalRepotMovePositions);
 
             // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
         }
         private void FastTestBTN_Click(object sender, EventArgs e)
         {
-            UnstuckerEtana unstuckerEtana = new UnstuckerEtana();
             ProgramHandle.SetNostalgiaMainWindow();
             Thread.Sleep(599);
-            while (true)
-            {
-                unstuckerEtana.UnstuckMove();
-            }
+
+            PixelCollectDrop PixelTest = new PixelCollectDrop();
+            PixelTest.ScanAndCollect(0, true, true, new UnstackerEmpSacred() as IUnstuckPosition);
+           // empSacredGoLeft.MoveToPosition();
+
+
+
+
+
+
+
             //ExpBotClass.ScanAndCollectClickLeftOnhighlightedForNow();
             /*            BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
                         buyerPotionsHershalExp.BuyPotions();

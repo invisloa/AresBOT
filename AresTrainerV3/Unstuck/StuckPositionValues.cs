@@ -12,7 +12,7 @@ namespace AresTrainerV3.Unstuck
         {
             if (ProgramHandle.GetCurrentMap == TeleportValues.EmpireSacred)
             {
-                return StuckPositionValues.EmpireSacredObstacles;
+                return StuckPositionValues.EmpireSacredLandsExpObstacles;
             }
             if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
             {
@@ -21,7 +21,7 @@ namespace AresTrainerV3.Unstuck
             /// ADD OTHER MAPS
 
 
-            else return StuckPositionValues.EmpireSacredObstacles;
+            else return StuckPositionValues.EmpireSacredLandsExpObstacles;
             
 
         }
@@ -37,17 +37,20 @@ namespace AresTrainerV3.Unstuck
 
         // list of obstacles
 
-        // Empire Sacred Lands last cave
+        // Empire Sacred Lands near last cave enterace 
         public static Tuple<int, int, int, int>[] EmpireSacredLandsExpObstacles = new Tuple<int, int, int, int>[]
     {
                 ObstacleCreator(1142063436, 1144631190, 1142157393, 1144743620),
                 ObstacleCreator(1142292770, 1144713626, 1142445732, 1144856856),
                 ObstacleCreator(1141823976, 1144860277, 1141962887, 1145083133)
-        /*        go left limit 1141807769
-            go up limit 1145602512
-            go tight 1143144766
-*/
+    };
 
+        // Holina Goblins exp 
+        public static Tuple<int, int, int, int>[] HolinaGoblinsExpObstacles = new Tuple<int, int, int, int>[]
+    {
+                ObstacleCreator(1142063436, 1144631190, 1142157393, 1144743620),
+                ObstacleCreator(1142292770, 1144713626, 1142445732, 1144856856),
+                ObstacleCreator(1141823976, 1144860277, 1141962887, 1145083133)
     };
 
 
@@ -60,16 +63,14 @@ namespace AresTrainerV3.Unstuck
 
 
             };
-
-        public static Tuple<int, int, int, int>[] EmpireSacredObstacles = new Tuple<int, int, int, int>[]
-            {
-                ObstacleCreator(1117622968, 1147304172, 1120078719, 1147581659)
-            };
-
+        // Etana For testing
         public static Tuple<int, int, int, int>[] EtanaObstacles = new Tuple<int, int, int, int>[]
             {
-                ObstacleCreator(1131997533, 1132998859, 1132435568, 1133242851)
+                ObstacleCreator(1113168276, 1110655170, 1114290348, 1111837250)
+
+
             };
+
 
 
 

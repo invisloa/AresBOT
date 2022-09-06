@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3
 {
-    public static class ExpBotMovePositions
+    public static class ExpBotMovePositionsValues
     {
         public static Tuple<int, int>[] mousePositionsForHershalBuying = new Tuple<int, int>[]
         {

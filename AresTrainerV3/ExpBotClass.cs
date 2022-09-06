@@ -72,7 +72,7 @@ namespace AresTrainerV3
                     }
                 }
         */
-        static volatile bool _stopMoveExpBot = false;
+        public static volatile bool _stopMoveExpBot = false;
 
         public static string ExpBotLog;
 
@@ -357,7 +357,7 @@ namespace AresTrainerV3
 
             if (currentCity == TeleportValues.Hershal)
             {
-                MoveToRepot(ExpBotMovePositions.HershalRepotMovePositions);
+                MoveToRepot(ExpBotMovePositionsValues.HershalRepotMovePositions);
                 MouseClickOpenShop();
 
                 if (ProgramHandle.isShopWindowStillOpen() == 1)
@@ -379,7 +379,7 @@ namespace AresTrainerV3
             if (currentCity == TeleportValues.Kharon)
             {
 
-                MoveToRepot(ExpBotMovePositions.KharonRepotMovePositions);
+                MoveToRepot(ExpBotMovePositionsValues.KharonRepotMovePositions);
                 inputSimulator.Keyboard.Sleep(500);
 
                 MouseClickOpenShop();
@@ -389,7 +389,7 @@ namespace AresTrainerV3
                 ItemSeller.SellItemsMouseMove();
 
                 inputSimulator.Keyboard.Sleep(500);
-                BuyPotionsFromShopSell(ExpBotMovePositions.mousePositionsForKharonBuying);
+                BuyPotionsFromShopSell(ExpBotMovePositionsValues.mousePositionsForKharonBuying);
                 inputSimulator.Keyboard.Sleep(200);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
                 inputSimulator.Keyboard.Sleep(200);
@@ -845,9 +845,9 @@ namespace AresTrainerV3
                             if ((x < 928 || x > 985 || y < 490 || y > 550) && desiredPixelColor == currentPixelColor)
                             {
                                 Debug.WriteLine("pixel Collect");
-                                for (int i = -10; i < 10; i++)
+                                for (int i = -5; i < 5; i++)
                                 {
-                                    for (int z = -10; z < 10; z++)
+                                    for (int z = -5; z < 5; z++)
                                     {
                                         MouseOperations.SetCursorPosition(x + i, y + z);
                                         if (ExpBotClass.ClickAndCollectAllForNow())
@@ -868,34 +868,6 @@ namespace AresTrainerV3
             return false;
         }
 
-        public static bool ClickAndCollectAllForNow()
-        {
-            if (ProgramHandle.isCurrentItemHighlightedType() != 0)
-            {
-                //for now its here but when number above will be sod then it has to be changed
-                AttackMob.CheckIfSelectedAndAttackSkill();
-
-                Thread.Sleep(50);
-                if (ProgramHandle.isCurrentItemHighlightedType() != 0)
-                {
-                    Debug.WriteLine("Collect SOD");
-
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                    Thread.Sleep(30);
-                    //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    Thread.Sleep(5);
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    while (!isNowStandingOut())
-                    {
-                        Thread.Sleep(50); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
-                    }
-                    Thread.Sleep(300);
-                    return true;
-                }
-            }
-            return false;
-        }
 
         #endregion
 

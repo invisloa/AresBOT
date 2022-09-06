@@ -10,19 +10,19 @@ namespace AresTrainerV3.MovePositions
     {
             public Tuple<int, int> MoveDown
             {
-                get { return new Tuple<int, int>(0, 0); }
+                get { return new Tuple<int, int>(960, 730); }
             }
             public Tuple<int, int> MoveUp
             {
-                get { return new Tuple<int, int>(0, 0); }
+                get { return new Tuple<int, int>(960, 310); }
             }
             public Tuple<int, int> MoveLeft
             {
-                get { return new Tuple<int, int>(0, 0); }
+                get { return new Tuple<int, int>(670, 520); }
             }
             public Tuple<int, int> MoveRight
             {
-                get { return new Tuple<int, int>(0, 0); }
+                get { return new Tuple<int, int>(1220, 520); }
             }
 
             public Tuple<int, int> sideMoveDownGoLeft

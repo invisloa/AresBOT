@@ -49,6 +49,7 @@ namespace AresTrainerV3
 
         public const int Kharon = 44;
         public const int KharonPlateau = 45;
+        public const int SlothFloor1 = 48;
 
 
 
@@ -71,9 +72,6 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosSacredLandsOgre = new ValueTuple<int, int, int>(1127039556, 1145125639, 0);
         public static ValueTuple<int, int, int> PosSacredLandsExpBot = new ValueTuple<int, int, int>(1143323406, 1145180323, 1091659175);
 
-                
-        
-        
 
 
         public static ValueTuple<int, int, int> PosBaldorTempleFirstFloor = new ValueTuple<int, int, int>( 1131435506, 1135950304, 0);
@@ -102,9 +100,15 @@ namespace AresTrainerV3
 
 
 
-        public static ValueTuple<int, int, int> KharonPlateuSellExp = new ValueTuple<int, int, int>( 1141877335, 1134659696, 1084227584);
-        public static ValueTuple<int, int, int> KharonPlateuSellExpHidden = new ValueTuple<int, int, int>( 1146608269, 1115123685, 1089385337);
-        public static ValueTuple<int, int, int> KharonPlateuSlothEntrace = new ValueTuple<int, int, int>(1147968991, 1148469361, 1097859072);
+        public static ValueTuple<int, int, int> PosKharonPlateuSellExp = new ValueTuple<int, int, int>( 1141877335, 1134659696, 1084227584);
+        public static ValueTuple<int, int, int> PosKharonPlateuSellExpHidden = new ValueTuple<int, int, int>( 1146608269, 1115123685, 1089385337);
+        public static ValueTuple<int, int, int> PosKharonPlateuSlothEntrace = new ValueTuple<int, int, int>(1147968991, 1148469361, 1097859072);
+        public static ValueTuple<int, int, int> PosSlothFloor1 = new ValueTuple<int, int, int>(1136295936, 1118437376, 1097859072);
+
+
+        
+
+
 
         public static ValueTuple<int, int, int> PosUWC4rdPlant = new ValueTuple<int, int, int>(1136310857, 1135108780, 1095210496);
 

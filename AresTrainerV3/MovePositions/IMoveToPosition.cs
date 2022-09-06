@@ -8,6 +8,6 @@ namespace AresTrainerV3.MovePositions
 {
     internal interface IMoveToPosition
     {
-        bool MoveToPosition();
+        bool MoveToPosition(bool isMoveOnXAxis, bool isPosIcreasing, int directionLimit, int sideUpOrRightLimit, int sideDownOrLeftLimit);
     }
 }

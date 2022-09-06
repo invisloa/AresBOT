@@ -19,7 +19,7 @@ namespace AresTrainerV3
             {
                 if (i < 6)
                 {
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 12)
                 {
@@ -29,7 +29,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
 
                 }
                 else if (i < 18)
@@ -40,7 +40,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
 
                 }
                 else if (i < 24)
@@ -51,7 +51,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 30)
                 {
@@ -61,7 +61,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 36)
                 {
@@ -71,7 +71,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 42)
                 {
@@ -83,7 +83,7 @@ namespace AresTrainerV3
 
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 48)
                 {
@@ -93,7 +93,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 54)
                 {
@@ -103,7 +103,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 60)
                 {
@@ -113,7 +113,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 66)
                 {
@@ -123,7 +123,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 else if (i < 72)
                 {
@@ -133,7 +133,7 @@ namespace AresTrainerV3
                         spaceBetweenRows += 35;
 
                     }
-                    ExpBotMovePositions.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositions.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositions.firstRowInventory + spaceBetweenRows);
+                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
                 }
                 spaceMultiplyer++;
             }
@@ -651,7 +651,7 @@ namespace AresTrainerV3
                         MouseOperations.MoveAndLeftClickOperation(1235, 670, 200); // Open Inventory Tab 2
                         Thread.Sleep(500);
                     }
-                    ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositions.itemSellPositions[firstSellItem].Item1, ExpBotMovePositions.itemSellPositions[firstSellItem].Item2);
+                    ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[firstSellItem].Item1, ExpBotMovePositionsValues.itemSellPositions[firstSellItem].Item2);
                     Thread.Sleep(100);
                     ItemSeller.MoveAndLeftClickToSellAll();
                 }

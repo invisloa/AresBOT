@@ -10,7 +10,7 @@ namespace AresTrainerV3.Buyer
     {
         public override void BuyPotions()
         {
-            base.BuyPotionsAbstract(150, true, 190, 5, ExpBotMovePositions.mousePositionsForHershalBuying);
+            base.BuyPotionsAbstract(100, true, 220, 5, ExpBotMovePositionsValues.mousePositionsForHershalBuying);
         }
 
     }
