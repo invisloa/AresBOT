@@ -29,7 +29,7 @@ namespace AresTrainerV3
         {
             while (isAttacking())
             {
-                Debug.WriteLine($"!isStandingAnimation");
+                Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
                 ProgramHandle.isWhatAnimationRunning();
             }

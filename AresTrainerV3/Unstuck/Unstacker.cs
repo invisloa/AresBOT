@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace AresTrainerV3.Unstuck
 {
-    public abstract class Unstacker
+    public abstract class Unstacker : IUnstuckPosition
     {
         Random random = new Random();
 

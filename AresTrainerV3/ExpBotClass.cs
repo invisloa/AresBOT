@@ -490,7 +490,7 @@ namespace AresTrainerV3
 
             PixelMobAttack.AttackSkillMobWhenSelected();
         }
-*/       public static void MoveScanAndAttackAncCollect(int x, int y)
+*/       public static void MoveScanAndAttackAncCollect(int x,int y)
         {
             while (PixelMobAttack.AttackSkillMobWhenSelected()) ;
             ScanAndCollectClickLeftOnhighlightedForNow();
@@ -517,11 +517,11 @@ namespace AresTrainerV3
                 moveToPosition(x, y);
             }
 
-            if(!PixelMobAttack.AttackSkillMobWhenSelected())
+/*            if(!PixelMobAttack.AttackSkillMobWhenSelected())
             {
                 ClickAndCollectAllForNow();
             }
-        }
+*/        }
 
         static void moveToPosition(int x, int y)
         {
@@ -850,13 +850,13 @@ namespace AresTrainerV3
                                     for (int z = -5; z < 5; z++)
                                     {
                                         MouseOperations.SetCursorPosition(x + i, y + z);
-                                        if (ExpBotClass.ClickAndCollectAllForNow())
+/*                                        if (ExpBotClass.ClickAndCollectAllForNow())
                                         {
                                             Debug.WriteLine("EndCollect");
                                             GC.Collect();
                                             return true;
                                         }
-
+*/
                                     }
 
                                 }

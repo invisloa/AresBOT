@@ -15,6 +15,7 @@ namespace AresTrainerV3
 
         public static bool AttackSkillMobWhenSelected()
         {
+
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             for (int x = 527; x < 1360; x++)

@@ -493,9 +493,14 @@ namespace AresTrainerV3
             ProgramHandle.SetNostalgiaMainWindow();
             Thread.Sleep(599);
 
-            PixelCollectDrop PixelTest = new PixelCollectDrop();
-            PixelTest.ScanAndCollect(0, true, true, new UnstackerEmpSacred() as IUnstuckPosition);
-           // empSacredGoLeft.MoveToPosition();
+            MoveToPosAnywhereTest moveToPosAnywhereTest = new MoveToPosAnywhereTest();
+            moveToPosAnywhereTest.RequestStopMoveToPosition();
+            moveToPosAnywhereTest.MoveToPosition(DirectionsEnum.Left, 1134528093, 1126844462 + 500000, 1126844462 - 500000);
+
+
+/*            PixelCollectDrop PixelTest = new PixelCollectDrop();
+            PixelTest.ScanAndCollect(2000, true, true, testUnstucker as IUnstuckPosition);
+*/           // empSacredGoLeft.MoveToPosition();
 
 
 

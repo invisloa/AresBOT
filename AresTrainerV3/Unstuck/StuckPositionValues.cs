@@ -37,6 +37,13 @@ namespace AresTrainerV3.Unstuck
 
         // list of obstacles
 
+        // ANYWHERE TEST OBSTACLES
+        public static Tuple<int, int, int, int>[] AnywhereTestObstacles = new Tuple<int, int, int, int>[]
+{
+                ObstacleCreator(1, 1, 1, 1),
+};
+
+
         // Empire Sacred Lands near last cave enterace 
         public static Tuple<int, int, int, int>[] EmpireSacredLandsExpObstacles = new Tuple<int, int, int, int>[]
     {

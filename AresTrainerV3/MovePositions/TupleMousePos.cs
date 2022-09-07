@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MovePositions
 {
-    public struct TupleMousePos
+    public static class TupleMousePos
     {
-            public Tuple<int, int> MoveDown
+            public static Tuple<int, int> MoveDown
             {
                 get { return new Tuple<int, int>(960, 730); }
             }
-            public Tuple<int, int> MoveUp
+            public static Tuple<int, int> MoveUp
             {
                 get { return new Tuple<int, int>(960, 310); }
             }
-            public Tuple<int, int> MoveLeft
+            public static Tuple<int, int> MoveLeft
             {
                 get { return new Tuple<int, int>(670, 520); }
             }
-            public Tuple<int, int> MoveRight
+            public static Tuple<int, int> MoveRight
             {
                 get { return new Tuple<int, int>(1220, 520); }
             }
 
-            public Tuple<int, int> sideMoveDownGoLeft
+/*            public Tuple<int, int> sideMoveDownGoLeft
             {
                 get { return new Tuple<int, int>(0, 0); }
             }
@@ -57,7 +57,7 @@ namespace AresTrainerV3.MovePositions
             {
                 get { return new Tuple<int, int>(0, 0); }
             }
-
+*/
     }
 }
 
