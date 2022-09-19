@@ -42,6 +42,10 @@ namespace AresTrainerV3
         static IntPtr baseAddress = IntPtr.Zero;
         static IntPtr client = IntPtr.Zero;
         static Memory memNormal = new Memory();
+        static Memory memSkill = new Memory();
+        static Memory memRebuff = new Memory();
+        static Memory memHealBot = new Memory();
+        static Memory memWeight = new Memory();
         static Memory memTeleport = new Memory();
         static Memory memExpbot = new Memory();
 
@@ -58,10 +62,11 @@ namespace AresTrainerV3
         static IntPtr isCurrentSkillTabMOffset;
 
         static IntPtr UIWindowMOffset;
+        static IntPtr BuffWindowMOffset;
         static IntPtr isCurrentSkillBar1Value;
         static IntPtr isCurrentSkillBar2Value;
         static IntPtr isCurrentSkillBar3Value;
-        static IntPtr isItemHighlightedType;
+        public static IntPtr isItemHighlightedType;
 
 
 
@@ -148,9 +153,8 @@ namespace AresTrainerV3
         public static int GetCurrentPositionX
         {
             get { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);  }
-
-            
         }
+
 
         public static int GetCurrentPositionY
         {
@@ -164,6 +168,16 @@ namespace AresTrainerV3
                 return memExpbot.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.classSelected));
             }
         }
+        public static byte getBuff1Informations
+        {
+            get
+            {
+                return memRebuff.readByte(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1ActiveOffOffset));
+            }
+
+        }
+
+
 
 
 
@@ -232,6 +246,9 @@ namespace AresTrainerV3
 
             UIWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.UiWindowMOffset));
 
+            BuffWindowMOffset = memRebuff.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.UiWindowMOffset));
+            BuffWindowMOffset = memRebuff.readpointer(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1Active2MOffset));
+
             isCurrentSkillTabMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.CurrentSkillTabMOffset));
 
             shopWindowMOffset = memExpbot.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.ShopWindow2MOffset));
@@ -247,11 +264,11 @@ namespace AresTrainerV3
 
             MannaAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4);
 
-            skill1Address = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), 4);
+            skill1Address = memSkill.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), 4);
 
-            anim1Address = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), 4);
+            anim1Address = memSkill.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), 4);
 
-            anim2Address = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
+            anim2Address = memSkill.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
             slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
 
@@ -396,11 +413,11 @@ namespace AresTrainerV3
                 PressKey1Heal();
             if (getCurrentHp < hpHealValue)
                 PressKey1Heal();
-            if (getCurrentManna() < MannaRestoreValue)
+            if (getCurrentManna < MannaRestoreValue)
                 PressKey2Heal();
-            if (getCurrentManna() < MannaRestoreValue)
+            if (getCurrentManna < MannaRestoreValue)
                 PressKey2Heal();
-            if (getCurrentManna() < MannaRestoreValue)
+            if (getCurrentManna < MannaRestoreValue)
                 PressKey2Heal();
 
 
@@ -441,7 +458,7 @@ namespace AresTrainerV3
         
         static void HealKeyPress()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 7 use key 6 which is teleport
+            if (getFirstSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 7 use key 6 which is teleport
             {
                 PressKey1Heal();
             }
@@ -453,7 +470,7 @@ namespace AresTrainerV3
 
         static void MannaKeyPress()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
+            if (getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -467,7 +484,7 @@ namespace AresTrainerV3
         }
         public static void MannaKeyPressKharonSell()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 2) // if less then 4 use key 6 which is teleport
+            if (getSecondSlotValue > PointersAndValues.ItemCount1 + 2) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -481,7 +498,7 @@ namespace AresTrainerV3
         }
         static void MannaKeyPressUWC()
         {
-            if (BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)) > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
+            if (getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 4 use key 6 which is teleport
             {
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(200);
@@ -517,7 +534,7 @@ namespace AresTrainerV3
             {
                 hpValue = getCurrentHp;
                 Thread.Sleep(50);
-                mannaValue = getCurrentManna();
+                mannaValue = getCurrentManna;
                 Thread.Sleep(50);
 
 
@@ -544,7 +561,7 @@ namespace AresTrainerV3
                     MannaKeyPressKharonSell();
 
                     // if running speed is normal use red and white potion
-                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    if (getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                     {
                         WhiteRedPotionsKeyPress();
                     }
@@ -566,7 +583,7 @@ namespace AresTrainerV3
             {
                 hpValue = getCurrentHp;
                 Thread.Sleep(50);
-                mannaValue = getCurrentManna();
+                mannaValue = getCurrentManna;
                 Thread.Sleep(50);
 
                 if (hpValue < hpHealValue && hpValue != 0)
@@ -580,7 +597,7 @@ namespace AresTrainerV3
                     MannaKeyPress();
 
                     // if running speed is normal use red and white potion
-                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    if (getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                     {
                         WhiteRedPotionsKeyPress();
                     }
@@ -598,7 +615,7 @@ namespace AresTrainerV3
             {
                 hpValue = getCurrentHp;
                 Thread.Sleep(20);
-                mannaValue = getCurrentManna();
+                mannaValue = getCurrentManna;
                 Thread.Sleep(20);
 
 
@@ -619,7 +636,7 @@ namespace AresTrainerV3
                   MannaKeyPressUWC();
 
                     // if running speed is normal use red and white potion
-                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    if (getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                     {
                         WhiteRedPotionsKeyPress();
                     }
@@ -637,7 +654,7 @@ namespace AresTrainerV3
             {
                 hpValue = getCurrentHp;
                 Thread.Sleep(50);
-                mannaValue = getCurrentManna();
+                mannaValue = getCurrentManna;
                 Thread.Sleep(50);
 
 
@@ -645,7 +662,7 @@ namespace AresTrainerV3
                 {
                     HealKeyPress();
                     // if running speed is normal use red and white potion
-                    if (BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0) == PointersAndValues.runSpeedNormalValue)
+                    if (getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                     {
                         WhiteRedPotionsKeyPress();
                     }
@@ -665,23 +682,6 @@ namespace AresTrainerV3
 
             }
             return;
-        }
-        static void checkIfIsStandingAnimation()
-        {
-            while (isMobBeingAttacked != -1 && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut)
-            {
-               Debug.WriteLine($"!isStandingAnimation");
-                Thread.Sleep(100);
-                isWhatAnimationRunning();
-            }
-            Thread.Sleep(30);
-            if(isMobBeingAttacked != -1 && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut)
-            {
-                Debug.WriteLine($"!Checked 2 IS STANDING111");
-
-                checkIfIsStandingAnimation();
-            }
-
         }
         public static bool AttackMobWhenSelected()
         {
@@ -711,7 +711,7 @@ namespace AresTrainerV3
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Thread.Sleep(10);
 
-                checkIfIsStandingAnimation();
+            AttackMob.AttackMob.isAttacking();
 
                 //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
@@ -727,10 +727,16 @@ namespace AresTrainerV3
 
             while (_stopAnim)
             {
+                if(ProgramHandle.isInCity != 1)
+                {
                 skillSelector.SkillAssign();
+                    memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(SkillToOverride));
+                    memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.visualSkillAttack), BitConverter.GetBytes(0));
 
-                memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(SkillToOverride));
-                memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
+                    skillSelector.Rebuff();
+                }
+
+                // memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
 
 
 
@@ -920,16 +926,7 @@ namespace AresTrainerV3
                 return memExpbot.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.isInCityOffset));
             }
         }
-
-
-
-        #region teleport// Teleporter try
-        public static int GetCurrentMap
-        {
-            get
-            { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0); }
-        }
-    public static int getFirstSlotValue
+        public static int getFirstSlotValue
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)); }
         }
@@ -947,21 +944,32 @@ namespace AresTrainerV3
         }
         public static int getCurrentWeight
         {
-            get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
+            get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
         }
         public static int getCurrentHp
         {
-            get { return BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0); }
+            get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0); }
         }
-        public static int getCurrentManna()
+        public static int getCurrentManna
         {
-            return BitConverter.ToInt32((memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);
+            get{return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4)), 0);}
         }
+        public static int getCurrentRunningSpeed
+        {
+            get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.runSpeedOffset), 4)), 0); }
+        }
+        public static int getCurrentAttackSpeed
+        {
+            get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.AttackSpeedOffset), 4)), 0); }
+        }
+
+
+
 
 
         public static int isWhatAnimationRunning()
         {
-             return BitConverter.ToInt32(memExpbot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4));
+            return BitConverter.ToInt32(memExpbot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4));
         }
 
 
@@ -977,27 +985,33 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(itemMouseoverHighlightedOffset, PointersAndValues.MouseoverHighlightedOffset), 4)), 0); }
         }
-        public static int isSellWindowStillOpen()
+        public static int isSellWindowStillOpen
         {
-            memExpbot.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset)); // first read then return because it didnt get propper values in time
-            return memExpbot.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset));
+            get { return memExpbot.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset)); }
         }
 
         public static void OpenSellConfirmationUI()
         {
             memExpbot.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset), BitConverter.GetBytes(1));
-
         }
-        public static void TeleportKoHitTest()
+
+
+
+        #region teleport// Teleporter try
+        public static int GetCurrentMap
         {
-            
-            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item1));
-            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item2));
-            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item3));
+            get
+            { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0); }
         }
+        /*        public static void TeleportKoHitTest()
+                {
 
-
-            public static void Teleporting()
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item3));
+                }
+        */
+        public static void Teleporting()
         {
 
             if (GetCurrentMap == TeleportValues.AllianceSacredLand)
@@ -1024,14 +1038,14 @@ namespace AresTrainerV3
             {
                 if (_variableForChangablePosition == 0)
                 {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHollinaSiros.Item1 ));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHollinaSiros.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosHollinaSiros.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosHollinaSiros.Item3));
                     _variableForChangablePosition = 1;
                 }
                 else if (_variableForChangablePosition == 1)
                 {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHollinaTunnel.Item1 ));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHollinaTunnel.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosHollinaTunnel.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosHollinaTunnel.Item3));
                     _variableForChangablePosition = 0;
@@ -1042,14 +1056,14 @@ namespace AresTrainerV3
             {
                 if (_variableForChangablePosition == 0)
                 {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelExit.Item1 ));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelExit.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelExit.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelExit.Item3));
                     _variableForChangablePosition = 1;
                 }
                 else if (_variableForChangablePosition == 1)
                 {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelEntrace.Item1 ));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelEntrace.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelEntrace.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosEasternMiningTunnelEntrace.Item3));
                     _variableForChangablePosition = 0;
@@ -1058,69 +1072,69 @@ namespace AresTrainerV3
             }
             else if (GetCurrentMap == TeleportValues.Siros1stFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros1stFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros1stFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSiros1stFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSiros1stFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.Siros2thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros2thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros2thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSiros2thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSiros2thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.Siros3thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros3thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros3thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSiros3thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSiros3thFloor.Item3));
             }
 
             else if (GetCurrentMap == TeleportValues.Siros4thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros4thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSiros4thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSiros4thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSiros4thFloor.Item3));
             }
 
             else if (GetCurrentMap == TeleportValues.EmpireSacred)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosEmpireSacred.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosEmpireSacred.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosEmpireSacred.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosEmpireSacred.Item3));
             }
             else if (GetCurrentMap == TeleportValues.Ogre1stFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosOgre1stFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosOgre1stFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosOgre1stFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosOgre1stFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.Ogre2ndFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosOgre2ndFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosOgre2ndFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosOgre2ndFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosOgre2ndFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.Hershal)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item3));
             }
             else if (GetCurrentMap == TeleportValues.UWC1stFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC1stFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC1stFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC1stFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC1stFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.UWC2ndFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC2ndFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC2ndFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC2ndFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC2ndFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.UWC3rdFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC3rdFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC3rdFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC3rdFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC3rdFloor.Item3));
             }
@@ -1128,14 +1142,14 @@ namespace AresTrainerV3
             {
                 if (_variableForChangablePosition == 0)
                 {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item1 ));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdPlant.Item3));
                     _variableForChangablePosition = 1;
                 }
                 else if (_variableForChangablePosition == 1)
                 {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item1 ));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC4rdFloor.Item3));
                     _variableForChangablePosition = 0;
@@ -1145,75 +1159,74 @@ namespace AresTrainerV3
             }
             else if (GetCurrentMap == TeleportValues.COT1stFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT1stFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT2ndFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT2ndFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT3rdFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT3rdFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT4thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT4thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT5thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT5thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT6thfloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT6thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT7thloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT7thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT8thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT8thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT9thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT9thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT10thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT10thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT10thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT10thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT10thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT11thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT11thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT11thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT11thFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT11thFloor.Item3));
             }
             else if (GetCurrentMap == TeleportValues.COT12thFloor)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT12thFloor.Item1 ));
+                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosCOT12thFloor.Item1));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosCOT12thFloor.Item2));
-
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosCOT12thFloor.Item3));
             }
 
@@ -1226,19 +1239,58 @@ namespace AresTrainerV3
             }
             else if (GetCurrentMap == TeleportValues.SlothFloor1)
             {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item1));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item2));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item3));
+                if (_variableForChangablePosition == 0)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item3));
+                    _variableForChangablePosition++;
+                }
+                else if (_variableForChangablePosition == 1)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar1.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar1.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar1.Item3));
+                    _variableForChangablePosition++;
+                }
+                else if (_variableForChangablePosition == 2)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar2.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar2.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar2.Item3));
+                    _variableForChangablePosition++;
+                }
+                else if (_variableForChangablePosition == 3)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar3.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar3.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1BossBulgar3.Item3));
+                    _variableForChangablePosition = 0;
+                }
+            }
+
+            else if (GetCurrentMap == TeleportValues.SlothFloor2)
+            {
+                if (_variableForChangablePosition == 0)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2.Item3));
+                    _variableForChangablePosition = 1;
+                }
+                else if (_variableForChangablePosition == 1)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2IceCube.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2IceCube.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2IceCube.Item3));
+                    _variableForChangablePosition = 0;
+                }
             }
 
 
         }
+
         #endregion
-
-
-
-
-
         public static void StartAttackWhenMobSelectedBot()
         {
 
@@ -1328,9 +1380,9 @@ namespace AresTrainerV3
         }
 
 
-        public static byte isCurrentItemHighlightedType()
+        public static byte getCurrentItemHighlightedType
         {
-            return memExpbot.readByte(proc.Handle, IntPtr.Add(isItemHighlightedType, 0));
+            get { return memExpbot.readByte(proc.Handle, IntPtr.Add(isItemHighlightedType, 0)); }
         }
 
         public static void OpenShopWindow()

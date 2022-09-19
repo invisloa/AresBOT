@@ -95,9 +95,20 @@ namespace AresTrainerV3
             MouseOperations.MoveAndLeftClickOperation(580, 565,200);
 
         }
-        static bool isNowRunningCity()
+        public static bool isNowRunningCity()
         {
             if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public static bool isNowRunningOut()
+        {
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcALLIOutside || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEMPOutside)
             {
                 return true;
             }
@@ -331,21 +342,18 @@ namespace AresTrainerV3
         public static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-           // if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcAlliInCity && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEmpInCity)
             if (!isNowRunningCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                         MouseOperations.MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2, 10);
                         Thread.Sleep(1000);
-                        // while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcAlliInCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEmpInCity)
                         while (!isNowStandingCity())
                         {
                         Thread.Sleep(1);
                         }
                 }
             }
-
         }
 
         public static void Repot(int currentCity)
@@ -490,10 +498,8 @@ namespace AresTrainerV3
 
             PixelMobAttack.AttackSkillMobWhenSelected();
         }
-*/       public static void MoveScanAndAttackAncCollect(int x,int y)
+*/       public static void MoveIfStandingOut(int x,int y)
         {
-            while (PixelMobAttack.AttackSkillMobWhenSelected()) ;
-            ScanAndCollectClickLeftOnhighlightedForNow();
 
             if (isNowStandingOut())
             {
@@ -510,18 +516,6 @@ namespace AresTrainerV3
             */
         }
 
-        static void MoveScanAndAttackAndCollectSOD(int x, int y)
-        {
-            if (isNowStandingOut())
-            {
-                moveToPosition(x, y);
-            }
-
-/*            if(!PixelMobAttack.AttackSkillMobWhenSelected())
-            {
-                ClickAndCollectAllForNow();
-            }
-*/        }
 
         static void moveToPosition(int x, int y)
         {
@@ -546,7 +540,7 @@ namespace AresTrainerV3
                     {
                     ExpBotLog += $"goLeft \n";
 
-                    MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
+                    MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
                     }
                     if (ProgramHandle.GetPositionY > upLimit)
                     {
@@ -572,7 +566,7 @@ namespace AresTrainerV3
                     {
                     ExpBotLog += $"goRight \n";
 
-                    MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
+                    MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
 
                     }
                     if (ProgramHandle.GetPositionY > upLimit)
@@ -601,7 +595,7 @@ namespace AresTrainerV3
                         {
                         ExpBotLog += $"goUp \n";
 
-                        MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
+                        MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
 
                         }
                     if (ProgramHandle.GetPositionX > rightLimit)
@@ -631,7 +625,7 @@ namespace AresTrainerV3
                 {
                     ExpBotLog += $"goDown currentY xyz{ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
 
-                    MoveScanAndAttackAncCollect(x+ moveRandomizer, y+ moveRandomizer);
+                    MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
 
                 }
                 if (ProgramHandle.GetPositionX > rightLimit)
@@ -732,7 +726,7 @@ namespace AresTrainerV3
 
                     }
 
-                    if (i == 1)
+                    else if (i == 1)
                     {
                         ExpBotLog += $"current i {i}\n";
 
@@ -742,7 +736,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"goUp Ended current i {i}\n";
 
                     }
-                    if (i == 2)
+                    else if (i == 2)
                     {
                         ExpBotLog += $"current i {i}\n";
 
@@ -751,7 +745,7 @@ namespace AresTrainerV3
                         ExpBotLog += $"GoRight Ended current i {i}\n";
 
                     }
-                    if (i == 3)
+                    else if (i == 3)
                     {
                         ExpBotLog += $"current i {i}\n";
 
@@ -780,96 +774,15 @@ namespace AresTrainerV3
         {
             Thread.Sleep(50);
             MouseOperations.SetCursorPosition(xPos, yPos);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
             Thread.Sleep(50);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(50);
         }
 
 
 
-        #region Collecting Items
-
-
-        public static bool ClickAndCollectItem()
-        {
-
-            if (ProgramHandle.isItemHighlighted != 0)
-            {
-                Thread.Sleep(200);
-
-                if (ProgramHandle.isItemHighlighted != 0)
-                {
-                    Debug.WriteLine("Collect");
-                    Thread.Sleep(200);
-
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                    Thread.Sleep(200);
-                    //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    Thread.Sleep(5);
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    while (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcALLIOutside || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEMPOutside)
-                    {
-                        Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
-                    }
-                    Thread.Sleep(500);
-                    return true;
-                }
-            }
-            return false;
-        }
-        public static bool ScanAndCollectClickLeftOnhighlightedForNow()
-        {
-            if (ProgramHandle.getCurrentWeight < 1770)
-            {
-
-                //if not running animation
-                if (isNowStandingOut())
-                {
-                    Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-                    Graphics graphics = Graphics.FromImage(bitmap as Image);
-                    graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-
-                    Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
-
-                    // Increased for collecting so it dont scan mob window top left
-                    for (int x = 550; x < 1360; x++)
-                    {
-                        for (int y = 290; y < 835; y++)
-                        {
-                            Color currentPixelColor = bitmap.GetPixel(x, y);
-                            if ((x < 928 || x > 985 || y < 490 || y > 550) && desiredPixelColor == currentPixelColor)
-                            {
-                                Debug.WriteLine("pixel Collect");
-                                for (int i = -5; i < 5; i++)
-                                {
-                                    for (int z = -5; z < 5; z++)
-                                    {
-                                        MouseOperations.SetCursorPosition(x + i, y + z);
-/*                                        if (ExpBotClass.ClickAndCollectAllForNow())
-                                        {
-                                            Debug.WriteLine("EndCollect");
-                                            GC.Collect();
-                                            return true;
-                                        }
-*/
-                                    }
-
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-
-
-        #endregion
 
 
     }

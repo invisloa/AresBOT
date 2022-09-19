@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,3 +11,4 @@ namespace AresTrainerV3.PixelScanOperations
         bool CollectWhenPointed(bool collectAll,bool collectOnlySod);
     }
 }
+*/

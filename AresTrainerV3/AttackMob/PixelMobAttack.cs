@@ -1,11 +1,13 @@
-﻿using AresTrainerV3.Unstuck;
+﻿using AresTrainerV3.HealBot;
+using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.Unstuck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3
+namespace AresTrainerV3.AttackMob
 {
     public static class PixelMobAttack
     {
@@ -15,7 +17,7 @@ namespace AresTrainerV3
 
         public static bool AttackSkillMobWhenSelected()
         {
-
+            HealBotAbstract.IsScanRunning = true;
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             for (int x = 527; x < 1360; x++)
@@ -26,19 +28,21 @@ namespace AresTrainerV3
 
 
                     Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 938 || x > 976 || y < 502 || y > 540) &&  currentPixelColor == PointersAndValues.blackPixelColor)
+                    if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                     {
                         MouseOperations.SetCursorPosition(x, y);
                         if (AttackMob.CheckIfSelectedAndAttackSkill())
                         {
-                          GC.Collect();
-                          return true;
+                            HealBotAbstract.IsScanRunning = false;
+                            GC.Collect();
+                            return true;
                         }
                     }
 
                 }
             }
+            HealBotAbstract.IsScanRunning = false;
             GC.Collect();
             return false;
 

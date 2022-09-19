@@ -88,8 +88,6 @@ namespace AresTrainerV3
             Thread.Sleep(delay);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(delay);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(delay);
         }
 
         public static void ClickMaxPotionsToBuy()

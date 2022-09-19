@@ -50,6 +50,7 @@ namespace AresTrainerV3
         public const int Kharon = 44;
         public const int KharonPlateau = 45;
         public const int SlothFloor1 = 48;
+        public const int SlothFloor2 = 49;
 
 
 
@@ -104,12 +105,16 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosKharonPlateuSellExpHidden = new ValueTuple<int, int, int>( 1146608269, 1115123685, 1089385337);
         public static ValueTuple<int, int, int> PosKharonPlateuSlothEntrace = new ValueTuple<int, int, int>(1147968991, 1148469361, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor1 = new ValueTuple<int, int, int>(1136295936, 1118437376, 1097859072);
+        public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar1 = new ValueTuple<int, int, int>(1129762520, 1134509410, 1101089181);
+        public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar2 = new ValueTuple<int, int, int>(1132962719, 1131670265, 1102053376);
+        public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar3 = new ValueTuple<int, int, int>(1134395149, 1135955773, 1097859072);
+        public static ValueTuple<int, int, int> PosSlothFloor2 = new ValueTuple<int, int, int>(1134407858, 1138126219, 1097859072);
+        public static ValueTuple<int, int, int> PosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
 
 
         
-
-
-
+        
+        
         public static ValueTuple<int, int, int> PosUWC4rdPlant = new ValueTuple<int, int, int>(1136310857, 1135108780, 1095210496);
 
 

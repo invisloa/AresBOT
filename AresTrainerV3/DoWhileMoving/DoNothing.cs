@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.DoWhileMoving
 {
-    public interface IDoWhileMoving
+    public class DoNothing : IDoWhileMoving
     {
-        bool DoThisWhileMoving();
+        public bool DoThisWhileMoving()
+        {
+            return false; // does nothing while moving
+        }
     }
 }

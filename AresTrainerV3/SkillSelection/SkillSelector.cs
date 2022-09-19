@@ -18,12 +18,15 @@ namespace AresTrainerV3.SkillSelection
             {
                 return new SkillSelectorMageAlliance();
             }
-            else
+            else if (ProgramHandle.isCurrentClassSelected == 3)
             {
-                return new SkillSelectorArcerAli();
+                return new SkillSelectorSpearAlli();
             }
+            else
+                return new SkillSelectorArcerAli();
         }
         public abstract void SkillAssign();
+        public abstract void Rebuff();
 
     }
 }

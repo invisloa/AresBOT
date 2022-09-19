@@ -1,18 +1,22 @@
-﻿using System;
+﻿using AresTrainerV3.ItemCollect;
+using AresTrainerV3.Unstuck;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3
+namespace AresTrainerV3.AttackMob
 {
     public static class AttackMob
     {
-        static bool isAttacking()
+        public static bool isAttacking()
         {
-            if (ProgramHandle.isMobBeingAttacked != -1 && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut)
-            { return true; }
+            if (ProgramHandle.isMobBeingAttacked != -1 && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliOut)
+            {
+                return true;
+            }
             else
             { return false; }
         }
@@ -27,17 +31,29 @@ namespace AresTrainerV3
         }
         static void WaitForAttackEnd()
         {
+            UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
+
             while (isAttacking())
             {
+                IWhatToCollect _SodCollector = new CollectSodItems();
+
+                anywhereUnstucker.UnstuckMove();
+                PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
+                pixelSodCollect.ClickAndCollectItem();
+                // check if not attacking in stuck position
                 Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
-                ProgramHandle.isWhatAnimationRunning();
             }
-            Thread.Sleep(30);
+            Thread.Sleep(50);
             if (isAttacking())
             {
                 Debug.WriteLine($"!Checked 2 IS STANDING");
-
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(50);
+            if (isAttacking())
+            {
+                Debug.WriteLine($"!Checked 3 IS STANDING");
                 WaitForAttackEnd();
             }
 

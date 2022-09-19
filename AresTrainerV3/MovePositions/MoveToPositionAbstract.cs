@@ -1,4 +1,6 @@
-﻿using AresTrainerV3.Unstuck;
+﻿using AresTrainerV3.DoWhileMoving;
+using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.Unstuck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,7 @@ namespace AresTrainerV3.MovePositions
 {
     public abstract class MoveToPositionAbstract : IMoveToPositon
     {
-        const int moveBuffor = 99000000;  /// when it was lower bot was moving up and down all the time - around (10000)
+        const int moveBuffor = 999900000;  /// when it was lower bot was moving up and down all the time - around (10000)
         int moveRandomizer
         {
             get
@@ -18,52 +20,81 @@ namespace AresTrainerV3.MovePositions
                 return randomInt.Next(-75, 75);
             }
         }
+        protected DoWhileMoving.IDoWhileMoving _attackAndCollectItems;
+        protected abstract DoWhileMoving.IDoWhileMoving AttackAndCollectItems { get; }
 
-        bool _isMoveToPositonRunning = false;
-        public bool isMoveToPositionRunning
+        void MoveMouseClickNoCheckStanding(int x, int y)
         {
-            get { return _isMoveToPositonRunning; }
+            mouseClickToMove(x, y);
+            // Bot Moved only when standing now it moves just so even when not standing
+/*            if (ExpBotClass.isNowStandingOut())
+            {
+
+                mouseClickToMove(x, y);
+
+            }
+*/        }
+        static void mouseClickToMove(int x, int y)
+        {
+            Thread.Sleep(5);
+            MouseOperations.SetCursorPosition(x, y);
+            Thread.Sleep(5);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(50);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(50);
         }
-        Tuple<int, int> MouseClickDirection;
+
+
+
+
+        //  Tuple<int, int> MouseClickDirection;
 
         bool isMoveOnXAxis { get; set; }
         bool isPosIncreasing { get; set; }
-        protected abstract IUnstuckPosition unstuckPlace { get; }
+        protected IUnstuckPosition unstuckPlace
+        {
+            get
+            {
+                return new UnstuckFromAnywhere();
+            }
+        }
         protected abstract int moveOnlyOnMapX { get; }
 
-        public void RequestStopMoveToPosition()
-        {
-            if (_isMoveToPositonRunning)
-                _isMoveToPositonRunning = false;
-            else
-                _isMoveToPositonRunning = true;
-        }
+        bool sideMove = false;
 
-        bool MoveToPosMouse(int directionLimit,  int sideUpOrRightLimit, int sideDownOrLeftLimit)
+
+
+        bool MoveToPosMouse(int directionLimit, int sideUpOrRightLimit, int sideDownOrLeftLimit,bool isMainDirection)
         {
             if (isMoveOnXAxis)   // moving left or right
             {
                 if (isPosIncreasing)// GO RIGHT
                 {
-                    while (ProgramHandle.GetPositionX < directionLimit && isMoveToPositionRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                    while (ProgramHandle.GetPositionX < directionLimit && ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                     {
                         unstuckPlace.UnstuckMove();
 
                         if (ProgramHandle.GetPositionY < sideUpOrRightLimit && ProgramHandle.GetPositionY > sideDownOrLeftLimit)
                         {
-                            MouseClickDirection = TupleMousePos.MoveRight;
-                            // ExpBotLog += $"goRight \n";
-                            ExpBotClass.MoveScanAndAttackAncCollect(MouseClickDirection.Item1 + moveRandomizer, MouseClickDirection.Item2 + moveRandomizer);
+                            while (AttackAndCollectItems.DoThisWhileMoving()) ;
+                            if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                            {
+                                if (isMainDirection)
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.MoveRight.Item1 + moveRandomizer, TupleMousePos.MoveRight.Item2 + moveRandomizer); }
+                                else
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.SideMoveRight.Item1 + moveRandomizer, TupleMousePos.SideMoveRight.Item2 + moveRandomizer); }
+                            }
                         }
                         else if (ProgramHandle.GetPositionY > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor,false);
                         }
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Up, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Up, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                     }
                     return true;
@@ -71,23 +102,32 @@ namespace AresTrainerV3.MovePositions
                 }
                 else // GO LEFT
                 {
-                    while (ProgramHandle.GetPositionX > directionLimit && isMoveToPositionRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                    while (ProgramHandle.GetPositionX > directionLimit && ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                     {
                         unstuckPlace.UnstuckMove();
                         if (ProgramHandle.GetPositionY < sideUpOrRightLimit && ProgramHandle.GetPositionY > sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goLeft \n";
-                            ExpBotClass.MoveScanAndAttackAncCollect(new TupleMousePos().MoveLeft.Item1 + moveRandomizer, new TupleMousePos().MoveLeft.Item2 + moveRandomizer);
+                            while (AttackAndCollectItems.DoThisWhileMoving()) ;
+                            if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                            {
+
+                                if (isMainDirection)
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.MoveLeft.Item1 + moveRandomizer, TupleMousePos.MoveLeft.Item2 + moveRandomizer); }
+                                else
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.SideMoveLeft.Item1 + moveRandomizer, TupleMousePos.SideMoveLeft.Item2 + moveRandomizer); }
+
+                            }
                         }
                         else if (ProgramHandle.GetPositionY > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Up, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Up, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                     }
                     return true;
@@ -97,24 +137,34 @@ namespace AresTrainerV3.MovePositions
             {
                 if (isPosIncreasing)// GO Up
                 {
-                    while (ProgramHandle.GetPositionY < directionLimit && isMoveToPositionRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                    while (ProgramHandle.GetPositionY < directionLimit && ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                     {
                         unstuckPlace.UnstuckMove();
 
                         if (ProgramHandle.GetPositionX < sideUpOrRightLimit && ProgramHandle.GetPositionX > sideDownOrLeftLimit)
                         {
+
                             // ExpBotLog += $"goRight \n";
-                            ExpBotClass.MoveScanAndAttackAncCollect(new TupleMousePos().MoveUp.Item1 + moveRandomizer, new TupleMousePos().MoveUp.Item2 + moveRandomizer);
+                            while (AttackAndCollectItems.DoThisWhileMoving()) ;
+                            if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                            {
+
+                                if (isMainDirection)
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.MoveUp.Item1 + moveRandomizer, TupleMousePos.MoveUp.Item2 + moveRandomizer); }
+                                else
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.SideMoveUp.Item1 + moveRandomizer, TupleMousePos.SideMoveUp.Item2 + moveRandomizer); }
+
+                            }
                         }
                         else if (ProgramHandle.GetPositionX > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Left, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Right, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                     }
                     return true;
@@ -123,24 +173,32 @@ namespace AresTrainerV3.MovePositions
 
                 else // GO Down
                 {
-                    while (ProgramHandle.GetPositionY > directionLimit && isMoveToPositionRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                    while (ProgramHandle.GetPositionY > directionLimit && ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                     {
                         unstuckPlace.UnstuckMove();
 
                         if (ProgramHandle.GetPositionX < sideUpOrRightLimit && ProgramHandle.GetPositionX > sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight \n";
-                            ExpBotClass.MoveScanAndAttackAncCollect(new TupleMousePos().MoveDown.Item1 + moveRandomizer, new TupleMousePos().MoveDown.Item2 + moveRandomizer);
+                            while (AttackAndCollectItems.DoThisWhileMoving()) ;
+                            if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                            {
+
+                                if (isMainDirection)
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.MoveDown.Item1 + moveRandomizer, TupleMousePos.MoveDown.Item2 + moveRandomizer); }
+                                else
+                                { MoveMouseClickNoCheckStanding(TupleMousePos.SideMoveDown.Item1 + moveRandomizer, TupleMousePos.SideMoveDown.Item2 + moveRandomizer); }
+                            }
                         }
                         else if (ProgramHandle.GetPositionX > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Left, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveToPosition(DirectionsEnum.Right, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor);
+                            MoveAttackCollect(DirectionsEnum.Right, sideUpOrRightLimit, ProgramHandle.GetPositionX + moveBuffor, ProgramHandle.GetPositionX - moveBuffor, false);
                         }
                     }
                     return true;
@@ -149,31 +207,31 @@ namespace AresTrainerV3.MovePositions
 
         }
 
-        public bool MoveToPosition(DirectionsEnum goDierction, int directionLimit, int sideUpOrRightLimit, int sideDownOrLeftLimit)
+        public bool MoveAttackCollect(DirectionsEnum goDierction, int directionLimit, int sideUpOrRightLimit, int sideDownOrLeftLimit, bool isMainDirection)
         {
             if (goDierction == DirectionsEnum.Left)
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit);
+                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit, isMainDirection);
             }
             else if (goDierction == DirectionsEnum.Right)
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit);
+                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit, isMainDirection);
             }
             else if (goDierction == DirectionsEnum.Up)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit);
+                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit, isMainDirection);
             }
             else // (goDierction == DirectionsEnum.Down)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit);
+                return MoveToPosMouse(directionLimit, sideUpOrRightLimit, sideDownOrLeftLimit, isMainDirection);
             }
         }
     }

@@ -255,7 +255,7 @@ namespace AresTrainerV3
             }
             #endregion
 
-            #region Concentration--
+            #region Concentration
             // Lhasha
             if (stat1 == 12)
             {
@@ -553,11 +553,19 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Justus > 14 && StrikingPower > 60)
+            else if (Justus > 10 && StrikingPower > 60)
+            {
+                return true;
+            }
+            else if (Justus > 10 && Td > 10)
             {
                 return true;
             }
             else if (Sihon>40)
+            {
+                return true;
+            }
+            else if (Con>11)
             {
                 return true;
             }
@@ -585,39 +593,30 @@ namespace AresTrainerV3
         public static void MoveAndLeftClickToSellAll()
         {
             Debug.WriteLine("Check if selll window is open");
-            Thread.Sleep(150);
-            ProgramHandle.isSellWindowStillOpen();
-            if (ProgramHandle.isSellWindowStillOpen() == 1)
+            Thread.Sleep(100);
+            if (ProgramHandle.isSellWindowStillOpen == 1)
             {
                 Debug.WriteLine("window open sell item left click");
-
                 MouseOperations.SetCursorPosition(560, 570);
                 Thread.Sleep(50);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                 Thread.Sleep(50);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(50);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(50);
+                Thread.Sleep(100);
 
             }
 
             Debug.WriteLine("Check if high value");
-            Thread.Sleep(150);
-            ProgramHandle.isSellWindowStillOpen();
-            if (ProgramHandle.isSellWindowStillOpen() == 1)
+            Thread.Sleep(50);
+            if (ProgramHandle.isSellWindowStillOpen == 1)
             {
                 Debug.WriteLine("high value item click once more");
-
-                Thread.Sleep(50);
                 MouseOperations.SetCursorPosition(560, 570);
                 Thread.Sleep(50);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
                 Thread.Sleep(50);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(50);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(50);
+                Thread.Sleep(100 );
 
             }
         }
@@ -629,6 +628,7 @@ namespace AresTrainerV3
             ItemSeller.itemArrayPositionsInitialize();
             Thread.Sleep(50);
             ItemsForSaleListGenerate();
+            Thread.Sleep(50);
             ProgramHandle.OpenShopWindow();
             Thread.Sleep(1000);
 
@@ -647,13 +647,12 @@ namespace AresTrainerV3
                     if (firstSellItem >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
                     {
                         Thread.Sleep(500);
-
                         MouseOperations.MoveAndLeftClickOperation(1235, 670, 200); // Open Inventory Tab 2
                         Thread.Sleep(500);
                     }
                     ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[firstSellItem].Item1, ExpBotMovePositionsValues.itemSellPositions[firstSellItem].Item2);
-                    Thread.Sleep(100);
-                    ItemSeller.MoveAndLeftClickToSellAll();
+                    Thread.Sleep(50);
+                    MoveAndLeftClickToSellAll();
                 }
             }
         }

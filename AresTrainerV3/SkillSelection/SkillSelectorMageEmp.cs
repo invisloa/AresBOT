@@ -8,6 +8,11 @@ namespace AresTrainerV3.SkillSelection
 {
     public class SkillSelectorMageEmp : SkillSelector
     {
+        public override void Rebuff()
+        {
+            throw new NotImplementedException();
+        }
+
         public override void SkillAssign()
         {
             if (ProgramHandle.isCurrentSkill() == 2)

@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.DoWhileMoving
+namespace AresTrainerV3.ItemCollect
 {
-    public interface IDoWhileMoving
+    public interface IWhatToCollect
     {
-        bool DoThisWhileMoving();
+        bool ClickAndCollectWhatItem();
     }
 }

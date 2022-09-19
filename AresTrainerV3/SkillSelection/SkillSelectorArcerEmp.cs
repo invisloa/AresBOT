@@ -35,6 +35,17 @@ namespace AresTrainerV3.SkillSelection
                 ProgramHandle.SkillToOverride = PointersAndValues.mageSupportLightningBarrier;
             }
         }
+        public override void Rebuff()
+        {
+            if (ProgramHandle.getBuff1Informations == 0)
+            {
+                KeyPresser.PressKey(4, 50, 50);
+                KeyPresser.PressKey(4, 50, 50);
+                KeyPresser.PressKey(3, 50, 50);
+            }
+
+        }
+
     }
 
 }

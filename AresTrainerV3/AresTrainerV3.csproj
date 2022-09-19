@@ -13,8 +13,4 @@
     <PackageReference Include="H.InputSimulator" Version="1.2.6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ItemCollect\" />
-  </ItemGroup>
-
 </Project>

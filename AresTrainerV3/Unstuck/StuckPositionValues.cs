@@ -14,7 +14,7 @@ namespace AresTrainerV3.Unstuck
             {
                 return StuckPositionValues.EmpireSacredLandsExpObstacles;
             }
-            if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
+            else if (ProgramHandle.GetCurrentMap == TeleportValues.UWC1stFloor)
             {
                 return StuckPositionValues.UWC1stFloorObstacles;
             }

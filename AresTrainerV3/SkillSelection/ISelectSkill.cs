@@ -9,6 +9,7 @@ namespace AresTrainerV3.SkillSelection
     internal interface ISelectSkill
     {
         public void SkillAssign();
+        public void Rebuff();
 
     }
 }

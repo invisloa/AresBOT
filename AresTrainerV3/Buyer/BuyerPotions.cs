@@ -12,8 +12,6 @@ namespace AresTrainerV3.Buyer
         void ClickOkWhenBuying()
         {
             MouseOperations.MoveAndLeftClickOperation(560, 570, 300);
-
-
         }
         void BuyingHpPotionsMax()
         {

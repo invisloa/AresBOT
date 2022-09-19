@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.DoWhileMoving
+namespace AresTrainerV3.ExpBotManagement
 {
-    public interface IDoWhileMoving
+    public interface IStartExpBotThread
     {
-        bool DoThisWhileMoving();
+        public void StartExpBotThread();
     }
 }

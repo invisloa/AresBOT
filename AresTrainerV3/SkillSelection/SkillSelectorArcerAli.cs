@@ -12,5 +12,8 @@ namespace AresTrainerV3.SkillSelection
         {
             throw new NotImplementedException();
         }
+        public override void Rebuff()
+        {
+        }
     }
 }

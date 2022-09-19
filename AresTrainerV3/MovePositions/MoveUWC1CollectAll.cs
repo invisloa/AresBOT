@@ -9,14 +9,13 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MovePositions
 {
-    public class MoveToPosAnywhereTest : MoveToPositionAbstract
+    public class MoveUWC1CollectAll : MoveToPositionAbstract
     {
-
         protected override int moveOnlyOnMapX
         {
             get
             {
-                return ProgramHandle.GetCurrentMap;
+                return TeleportValues.UWC1stFloor;
             }
 
         }

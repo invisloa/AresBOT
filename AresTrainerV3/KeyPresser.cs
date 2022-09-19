@@ -25,10 +25,7 @@ namespace AresTrainerV3
             }
             if (keyNumber == 1)
             {
-                inputSimulator.Keyboard.Sleep(startDelay);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_1);
-                inputSimulator.Keyboard.Sleep(startDelay);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(startDelay);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_1);
                 inputSimulator.Keyboard.Sleep(endDelay);
@@ -36,10 +33,7 @@ namespace AresTrainerV3
             }
             if (keyNumber == 2)
             {
-                inputSimulator.Keyboard.Sleep(startDelay);
                 inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
-                inputSimulator.Keyboard.Sleep(startDelay);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(startDelay);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
                 inputSimulator.Keyboard.Sleep(endDelay);

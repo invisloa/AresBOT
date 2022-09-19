@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.Unstuck
 {
-    public class UnstuckerAnywhereTest : Unstacker
+    public class UnstuckFromAnywhere : Unstacker
     {
         public override bool UnstuckMove()
         {
-            return base.UnstuckMoveBase(StuckPositionValues.AnywhereTestObstacles);
+            return base.UnstuckMoveBase(StuckPositionValues.StuckLockationAssigner());
         }
 
     }

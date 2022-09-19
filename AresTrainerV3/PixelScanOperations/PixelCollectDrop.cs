@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.Unstuck;
+﻿/*using AresTrainerV3.Unstuck;
+using AresTrainerV3.AttackMob;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -80,7 +81,7 @@ namespace AresTrainerV3.PixelScanOperations
                 if (ProgramHandle.isCurrentItemHighlightedType() != 0)
                 {
                     //for now its here but when number above will be sod then it has to be changed
-                    AttackMob.CheckIfSelectedAndAttackSkill();
+                   // AttackMob.CheckIfSelectedAndAttackSkill();
 
                     Thread.Sleep(50);
                     if (ProgramHandle.isCurrentItemHighlightedType() != 0)
@@ -96,7 +97,7 @@ namespace AresTrainerV3.PixelScanOperations
                 if (ProgramHandle.isCurrentItemHighlightedType() == 25)
                 {
                     //for now its here but when number above will be sod then it has to be changed
-                    AttackMob.CheckIfSelectedAndAttackSkill();
+                   // AttackMob.CheckIfSelectedAndAttackSkill();
 
                     Thread.Sleep(50);
                     if (ProgramHandle.isCurrentItemHighlightedType() == 25)
@@ -115,3 +116,4 @@ namespace AresTrainerV3.PixelScanOperations
         }
     }
 }
+*/

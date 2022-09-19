@@ -1,6 +1,10 @@
-using AresTrainerV3.Buyer;
+﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.ExpBotManagement;
+using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.HealBot;
+using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
-using AresTrainerV3.PixelScanOperations;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
 using System.Diagnostics;
@@ -255,10 +259,6 @@ namespace AresTrainerV3
             ProgramHandle.SetCameraLong();
             CurrentlySelectedClass = SkillSelector.SelectPropperClass();
 
-            // ProgramHandle.SetAnim1Value = PointersAndValues.skill1AnimValue;
-            // ProgramHandle.SetAnim2Value = PointersAndValues.skill2AnimValue;
-            // ProgramHandle.SetSkillValue = PointersAndValues.skillValue;
-
             Thread.Sleep(50);
             ProgramHandle.RequestStopAnim();
             Thread.Sleep(50);
@@ -469,46 +469,110 @@ namespace AresTrainerV3
                 Debug.WriteLine($"{item.ToString()}");
             }
 */
-
-
         }
-
         private void OpenStorageBTN_Click(object sender, EventArgs e)
         {
             ProgramHandle.OpenStorageWindow();
         }
 
+
+
+
+
         private void Tester_Click_1(object sender, EventArgs e)
-        {
-            ProgramHandle.SetNostalgiaMainWindow();
-            Thread.Sleep(500);
+        {       
+            Random randomizer = new Random();
+            ProgramHandle.SetCameraLong();
+            MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
+            while (!ExpBotClass.isNowRunningOut())
+            {
+                Thread.Sleep(1);
+            }
             ProgramHandle.SetCameraForExpBot();
 
-            ExpBotClass.MoveToRepot(ExpBotMovePositionsValues.HershalRepotMovePositions);
+            for (int i = 0; i <2+randomizer.Next(3); i++)
+            {
+                MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200+ randomizer.Next(100), 10);
+                while (ExpBotClass.isNowRunningOut())
+                {
+                    ExpBotClass.isNowRunningOut();
+                }
 
-            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
+
+            }
+            ProgramHandle.SetCameraForExpBot();
+            Debug.WriteLine("GoBackExp zakończone");
+
         }
+
         private void FastTestBTN_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetNostalgiaMainWindow();
             Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
 
-            MoveToPosAnywhereTest moveToPosAnywhereTest = new MoveToPosAnywhereTest();
-            moveToPosAnywhereTest.RequestStopMoveToPosition();
-            moveToPosAnywhereTest.MoveToPosition(DirectionsEnum.Left, 1134528093, 1126844462 + 500000, 1126844462 - 500000);
+            HealBotAbstract TestHealbotKharonExp = new HealBotKharonExp();
+            TestHealbotKharonExp.StartHealBotThread();
 
-
-/*            PixelCollectDrop PixelTest = new PixelCollectDrop();
-            PixelTest.ScanAndCollect(2000, true, true, testUnstucker as IUnstuckPosition);
-*/           // empSacredGoLeft.MoveToPosition();
+            ExpBotManagerAbstract KharonExpBotTest = new ExpBotKharonWolvesExp();
+            KharonExpBotTest.StartExpBotThread();
 
 
 
 
+/*            IGoRepot RepoterTest = new RepoterKharonExp();
+            RepoterTest.GoRepot();
+*/
+
+
+            /*            ExpBotHolinaSod HolinaBot1 = new ExpBotHolinaSod();
+                        ExpBotHolinaSod.RequestStopExpBot();
+
+                        HolinaBot1.RunAndExpSquare();
+
+            */
 
 
 
-            //ExpBotClass.ScanAndCollectClickLeftOnhighlightedForNow();
+            /*            ExpBotUWC UwcBot = new ExpBotUWC();
+                        UwcBot.RequestStopMoveExpBot();
+
+                        UwcBot.RunAndExpSquare();
+            */
+
+
+
+            /*            MoveToPosAnywhereTest positionTest = new MoveToPosAnywhereTest();
+                        positionTest.RequestStopMoveToPosition();
+
+                        positionTest.MoveToPosition(DirectionsEnum.Right, 1136854179, 1129911628, 1128386630);
+            */
+            /*            PixelItemCollector CollectAllTest = new PixelItemCollector(2000, new CollectAllItems());
+
+                        while (true)
+                        {              
+                            PixelMobAttack.AttackSkillMobWhenSelected();
+
+
+                            CollectAllTest.ScanAndCollect();
+                        }
+
+            */
+
+
+
+
+
+
+
+            /*            MoveToPosAnywhereTest moveToPosAnywhereTest = new MoveToPosAnywhereTest();
+                        moveToPosAnywhereTest.RequestStopMoveToPosition();
+                        moveToPosAnywhereTest.MoveToPosition(DirectionsEnum.Left, 1134528093, 1126844462 + 500000, 1126844462 - 500000);
+            */
+            /*            PixelCollectDrop PixelTest = new PixelCollectDrop();
+                        PixelTest.ScanAndCollect(2000, true, true, testUnstucker as IUnstuckPosition);
+            */           // empSacredGoLeft.MoveToPosition();
+                         //ExpBotClass.ScanAndCollectClickLeftOnhighlightedForNow();
             /*            BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
                         buyerPotionsHershalExp.BuyPotions();
             */

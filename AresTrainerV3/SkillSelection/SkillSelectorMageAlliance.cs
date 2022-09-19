@@ -8,6 +8,11 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorMageAlliance : SkillSelector
     {
+        public override void Rebuff()
+        {
+            
+        }
+
         public override void SkillAssign()
         {
             if (ProgramHandle.isCurrentSkill() == 2)

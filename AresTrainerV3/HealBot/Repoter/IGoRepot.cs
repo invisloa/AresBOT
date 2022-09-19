@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.DoWhileMoving
+namespace AresTrainerV3.HealBot.Repoter
 {
-    public interface IDoWhileMoving
+    public interface IGoRepot
     {
-        bool DoThisWhileMoving();
+        public void GoRepot();
     }
 }

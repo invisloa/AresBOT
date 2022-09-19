@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AresTrainerV3.AttackMob;
+using AresTrainerV3.ItemCollect;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,32 +8,32 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.DoWhileMoving
 {
-    internal class DoScanAttackCollect : IDoWhileMoving
+    public class DoScanAttackCollect : IDoWhileMoving
     {
-        public static void MoveScanAndAttackAncCollect(int x, int y)
+        ICollectItems ICollector;
+
+        public DoScanAttackCollect(ICollectItems iCollector)
         {
-            while (PixelMobAttack.AttackSkillMobWhenSelected()) ;
-            ScanAndCollectClickLeftOnhighlightedForNow();
+            ICollector = iCollector;
+        }
 
-            if (isNowStandingOut())
+        bool ScanAttackCollect()
+        {
+            if(PixelMobAttack.AttackSkillMobWhenSelected())
             {
-
-                moveToPosition(x, y);
-
+                return true;
             }
-
-            /*            if (!PixelMobAttack.AttackSkillMobWhenSelected())
-                        {
-                            ScanAndCollectClickLeftOnhighlightedForNow();
-                        }
-
-            */
+            if(ICollector.ClickAndCollectItem())
+            {
+                return true;
+            }
+            return false;
         }
 
 
-        public void DoWhileMoving()
+        public bool DoThisWhileMoving()
         {
-            throw new NotImplementedException();
+           return ScanAttackCollect();
         }
     }
 }

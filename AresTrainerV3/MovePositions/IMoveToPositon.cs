@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MovePositions
 {
-    internal interface IMoveToPositon
+    public interface IMoveToPositon
     {
-        public bool MoveToPosition( DirectionsEnum goDierction , int directionLimit, int sideUpOrRightLimit, int sideDownOrLeftLimit);
+        public bool MoveAttackCollect( DirectionsEnum goDierction , int directionLimit, int sideUpOrRightLimit, int sideDownOrLeftLimit,bool isMainDirection);
     }
 }

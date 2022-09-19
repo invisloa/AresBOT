@@ -60,16 +60,20 @@ public static class PointersAndValues
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
-    public const int AttackSpeedOffset = 0x470;     // Not Used
+    public const int AttackSpeedOffset = 0x470;     
     public const int mobBeingTargeted = 0x050;
     public const int typeOfAnimationIsRunning = 0x3b5;
     public const int lastSlotItemStat1 = 0xf84;
     public const int classSelected = 0x7d4;
+    public const int visualSkillAttack = 0x64;
 
+    
     public const int ShopWindow2MOffset = 0x90;
     public const int CurrentSkillTabMOffset = 0x58;
     public const int StorageWindow2MOffset = 0x94;
     public const int InventoryWindow2MOffset = 0x60;
+    public const int Buff1Active2MOffset = 0x15c;
+    public const int Buff1ActiveOffOffset = 0x114;
 
     public const int CurrentSkillTabOffOffset = 0x174;
 
@@ -91,6 +95,8 @@ public static class PointersAndValues
 
     // values
     public const int runSpeedNormalValue = 16859264;
+    public const int attackSpeednormalValueBow = 1070945622;
+    public const int attackSpeedKishValueBow= 1073741824;
     public const int cameraDistanceAnimValue = 1127253120;
     public const int cameraDistanceBotValue = 1112599680;
     public const int cameraFogValue = 18000;
@@ -129,15 +135,18 @@ public static class PointersAndValues
 
     public const int isRunningAnimationArcALLIOutside = 4535616;
     public const int isRunningAnimationArcEMPOutside = 4536352;
-
-
     public const int isRunningAnimationSorcOutside = 4523712;
+    public const int isRunningAnimationSpearALLIOutside = 4500992;
+
     public const int isRunningAnimationArcAlliInCity = 4545808;
     public const int isRunningAnimationArcEmpInCity = 4546528;
+    public const int isRunningAnimationSpearAlliInCity = 4545808;
+
 
 
 
     public const int isStandingAnimationArcerAlliOut = 4534400;
+    public const int isStandingAnimationSpearAlliOut = 4498752;
     public const int isStandingAnimationArcerAlliCity = 4550176;
     public const int isStandingAnimationArcerEmpOut = 4535136;
     public const int isStandingAnimationArcerEmpCity = 4550976;
@@ -145,7 +154,10 @@ public static class PointersAndValues
     public const int isStandingAnimationSorcCity = 4550976;
     public const int isStandingAnimationSorcEmpCityF = 4552960;
     public const int isStandingAnimationSorcEmpOutF = 4522944;
+    
+    public const int isStandingAnimationSpearAlliCity = 4550176;
 
+    
 
 
 
@@ -154,7 +166,8 @@ public static class PointersAndValues
     public const int isAttackingBowEmpAnimation = 4536832;
     public const int isAttackingSorcAlliAnimation = 4541440;
     public const int isAttackingKnightAlliAnimation = 4425728;
-    public const int isAttackingSpearAlliAnimation = 4505728;
+    public const int isAttackingSpearAlliAnimation = 4507200;
+
 
 
 
@@ -172,9 +185,14 @@ public static class PointersAndValues
     public static int spearSkillAnim1ThirdSkill = 1154085000;
     public static int spearSkillAnim1FiestAoE = 1154553000;  //1154502000;           
     public static int spearSkillAnim2 = 0;                                  // na 0 nie widac wiekszych zmian 1153712127;             // anim max value 1153712127
-    public static int spearFirstSkill = 131500;
-    public static int spearThirdSkill = 131704;
-    public static int spearFirstAoESkill = 31801;
+    public static int spearFirstSkill = 31519;
+    public static int spearThirdSkill = 31719;
+    public static int spearFirstAoESkill = 31819;
+    public static int spearBuffMeditation = 32519;
+    public static int spearBuffBawlShout = 32719;
+    public static int spearBuffStoneBody = 32919;
+    public static int spearBuffShout= 32619;
+    public static int spearAllianceFireFury = 32419;
     public static int spearNormalAnim1 = 1152700000;
     // mage
     public static int mageAnim1 = 1162783990; // 15.06.22 1162765990;
