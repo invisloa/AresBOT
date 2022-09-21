@@ -10,7 +10,7 @@ namespace AresTrainerV3.MovePositions
     {
         public static Tuple<int, int> MoveDown
         {
-            get { return new Tuple<int, int>(960, 525 + 270); }
+            get { return new Tuple<int, int>(960, 525 + 235); }
         }
         public static Tuple<int, int> MoveUp
         {

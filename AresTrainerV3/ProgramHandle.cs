@@ -683,44 +683,6 @@ namespace AresTrainerV3
             }
             return;
         }
-        public static bool AttackMobWhenSelected()
-        {
-            if (isMobSelected != 0 && isMobSelected < 8300000 && isInCity != 1)
-            {
-
-                SkillAttackBot();
-                return true;
-            }
-/*            else if(isMobSelected > 8300000)
-            {
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(200);
-                inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-                inputSimulator.Keyboard.Sleep(15000);
-               // HealBotRepotKharonSell();
-
-                return true;
-            }
-*/            return false;
-        }
-        public static bool SkillAttackBot()
-        {
-                Debug.WriteLine($"Mouse R Down");
-
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-                Thread.Sleep(10);
-
-            AttackMob.AttackMob.isAttacking();
-
-                //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-                Thread.Sleep(5);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-                Debug.WriteLine($"Mouse R UP");
-
-                return true;
-        }
 
         public static void Start1HitKO(SkillSelector skillSelector)
         {
@@ -777,55 +739,7 @@ namespace AresTrainerV3
             return;
         }
 
-        /*        public static void TestFoundValues()
-                {
-                    while (isKoChangeValue)
-                    {
-
-                        int currentSavedChangableValue = Test1HitChangableValue;
-                        foreach (var item in PointersAndValues.KoValuesToTestList)
-                        {
-                            if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
-                            {
-                                Test1HitChangableValue = item-1;
-                                Debug.WriteLine($"{Test1HitChangableValue}");
-                                Thread.Sleep(2000);
-                            }
-                            if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
-                            {
-                                memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
-
-                                ExpBotClass.ExpBotLog += $"{Test1HitChangableValue}\n";
-                                // Debug.WriteLine($"Killed mob {Test1HitChangableValue}");
-                                currentSavedChangableValue = Test1HitChangableValue;
-                            }
-                        }
-                    }
-                }
-        */
-/*        public static void Change1HitKoValue()
-        {
-            while (isKoChangeValue)
-            {
-                int currentSavedChangableValue = Test1HitChangableValue;
-                if (isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation || isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation)
-                {
-                    Debug.WriteLine($"{Test1HitChangableValue}");
-                    Test1HitChangableValue++;
-                    Thread.Sleep(750);
-                }
-                if (isMobBeingAttacked == -1 && currentSavedChangableValue != Test1HitChangableValue)
-                {
-                    memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(Test1HitChangableValue));
-
-                    ExpBotClass.ExpBotLog += $"{Test1HitChangableValue}\n";
-                    // Debug.WriteLine($"Killed mob {Test1HitChangableValue}");
-                    currentSavedChangableValue = Test1HitChangableValue;
-                }
-            }
-
-        }
-*/        public static void Change1HitKoValue()
+        public static void Change1HitKoValue()
         {
             while (isKoChangeValue)
             {
@@ -852,54 +766,6 @@ namespace AresTrainerV3
 
 
 
-        public static void StartNormalAttack()
-        {
-
-            /*            // COMENTED FOR TESTING MICROTICK,
-                        //
-                        //
-                        //
-                        //
-
-                        while (_stopAnim)
-                        {
-                            // anim 1 
-                            mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim1Offset), BitConverter.GetBytes(_anim1));
-
-                            //anim 2 
-                            mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), BitConverter.GetBytes(_anim2));
-                        }
-
-                        //
-                        //
-                        //
-                        //
-                        // COMENTED FOR TESTING MICROTICK,
-            *//*
-
-
-
-
-            // TESTING MICROTICK,
-            // TESTING MICROTICK,
-            // TESTING MICROTICK,
-            // TESTING MICROTICK,
-
-            while (_stopAnim)
-            {
-             
-                    // first part of changable value
-                    // mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(0));
-
-                    // second part of changable value
-              //      mem.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(40000));
-            }
-            // TESTING MICROTICK,
-            // TESTING MICROTICK,
-            // TESTING MICROTICK,
-*/
-            return;
-        }
 
         public static void SetCameraLong()
         {
@@ -963,15 +829,10 @@ namespace AresTrainerV3
             get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.AttackSpeedOffset), 4)), 0); }
         }
 
-
-
-
-
         public static int isWhatAnimationRunning()
         {
             return BitConverter.ToInt32(memExpbot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4));
         }
-
 
         public static int isMobSelected
         {
@@ -997,20 +858,12 @@ namespace AresTrainerV3
 
 
 
-        #region teleport// Teleporter try
+        #region Teleporter 
         public static int GetCurrentMap
         {
             get
             { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0); }
         }
-        /*        public static void TeleportKoHitTest()
-                {
-
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item1));
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item2));
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosKoHitSearch.Item3));
-                }
-        */
         public static void Teleporting()
         {
 
@@ -1296,19 +1149,11 @@ namespace AresTrainerV3
 
             while (_stopBot)
             {
-                AttackMobWhenSelected();
+                AttackMob.AttackMob.CheckIfSelectedAndAttackSkill();
             }
             return;
         }
 
-        static void WriteClickPositionX(int posX)
-        {
-            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickPositionXOffset), BitConverter.GetBytes(posX));
-        }
-        static void WriteClickPositionY(int posY)
-        {
-            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickPositionYOffset), BitConverter.GetBytes(posY));
-        }
         static int ReadPositionX()
         {
             return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);

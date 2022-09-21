@@ -1,5 +1,6 @@
 ﻿using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.SkillSelection;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -44,10 +45,15 @@ namespace AresTrainerV3.HealBot
             }
         }
         void setMannaRestoreValue()
-        {
-            if (myCurrentManna < 200)
+        {            
+            if (myCurrentManna < 100)
             {
                 MannaRestoreValue = 30;
+            }
+
+            else if (myCurrentManna < 200)
+            {
+                MannaRestoreValue = 40;
             }
             else if (myCurrentManna < 400 && myCurrentHp > 200)
             {
@@ -80,7 +86,7 @@ namespace AresTrainerV3.HealBot
         }
         protected bool isNowStandingCity()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
             {
                 return true;
             }
@@ -206,12 +212,33 @@ namespace AresTrainerV3.HealBot
 
         protected void WhiteRedPotionKeyPress()
         {
+
             // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
-            if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
+            if (ProgramHandle.isCurrentClassSelected == 1)
             {
-                KeyPresser.PressKey(8, 100, 100);
-                // for now using with red potion later to change for a sorcerer
-                KeyPresser.PressKey(7, 100, 100);
+                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
+                {
+                    KeyPresser.PressKey(8, 100, 100);
+                    // for now using with red potion later to change for a sorcerer
+                    KeyPresser.PressKey(7, 100, 100);
+                }
+            }
+            if (ProgramHandle.isCurrentClassSelected == 2)
+            {
+                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                {
+                    KeyPresser.PressKey(8, 100, 100);
+                }
+            }
+
+            else if (ProgramHandle.isCurrentClassSelected == 3)
+            {
+                if (ProgramHandle.getCurrentAttackSpeed < PointersAndValues.attackSpeedKishValueBow)
+                {
+                    KeyPresser.PressKey(8, 100, 100);
+                    // for now using with red potion later to change for a sorcerer
+                    KeyPresser.PressKey(7, 100, 100);
+                }
             }
         }
 

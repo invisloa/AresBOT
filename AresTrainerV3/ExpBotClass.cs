@@ -119,7 +119,7 @@ namespace AresTrainerV3
         }
         public static bool isNowStandingOut()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpOutF)
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpOutF)
             {
                 return true;
             }
@@ -130,7 +130,7 @@ namespace AresTrainerV3
         }
         public static bool isNowStandingCity()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
             {
                 return true;
             }

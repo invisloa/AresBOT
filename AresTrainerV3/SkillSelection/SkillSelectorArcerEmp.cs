@@ -37,13 +37,13 @@ namespace AresTrainerV3.SkillSelection
         }
         public override void Rebuff()
         {
-            if (ProgramHandle.getBuff1Informations == 0)
+/*            if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedWhitePotValue)
             {
                 KeyPresser.PressKey(4, 50, 50);
                 KeyPresser.PressKey(4, 50, 50);
                 KeyPresser.PressKey(3, 50, 50);
             }
-
+*/
         }
 
     }

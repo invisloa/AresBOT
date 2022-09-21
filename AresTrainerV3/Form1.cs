@@ -86,6 +86,7 @@ namespace AresTrainerV3
             gkh.HookedKeys.Add(Keys.F4);
             gkh.HookedKeys.Add(Keys.F5);
             gkh.HookedKeys.Add(Keys.F6);
+            gkh.HookedKeys.Add(Keys.F8);
             gkh.HookedKeys.Add(Keys.F9);
            //
            //SUBSCRIBE globalKeyboardHook.
@@ -480,28 +481,16 @@ namespace AresTrainerV3
 
 
         private void Tester_Click_1(object sender, EventArgs e)
-        {       
-            Random randomizer = new Random();
-            ProgramHandle.SetCameraLong();
-            MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
-            while (!ExpBotClass.isNowRunningOut())
-            {
-                Thread.Sleep(1);
-            }
+        {
+            ProgramHandle.SetNostalgiaMainWindow();
+            Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
 
-            for (int i = 0; i <2+randomizer.Next(3); i++)
-            {
-                MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200+ randomizer.Next(100), 10);
-                while (ExpBotClass.isNowRunningOut())
-                {
-                    ExpBotClass.isNowRunningOut();
-                }
+            HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
+            HealBotOnlyHeal.StartHealBotThread();
 
-
-            }
-            ProgramHandle.SetCameraForExpBot();
-            Debug.WriteLine("GoBackExp zakończone");
+            ExpBotManagerAbstract SacredExpBotTest = new ExpBotSacredAlliExp();
+            SacredExpBotTest.StartExpBotThread();
 
         }
 
@@ -519,10 +508,32 @@ namespace AresTrainerV3
 
 
 
+/*            Random randomizer = new Random();
+            ProgramHandle.SetCameraLong();
+            MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
+            while (!ExpBotClass.isNowRunningOut())
+            {
+                Thread.Sleep(1);
+            }
+            ProgramHandle.SetCameraForExpBot();
 
-/*            IGoRepot RepoterTest = new RepoterKharonExp();
-            RepoterTest.GoRepot();
+            for (int i = 0; i < 2 + randomizer.Next(3); i++)
+            {
+                MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(100), 10);
+                while (ExpBotClass.isNowRunningOut())
+                {
+                    ExpBotClass.isNowRunningOut();
+                }
+
+
+            }
+            ProgramHandle.SetCameraForExpBot();
+            Debug.WriteLine("GoBackExp zakończone");
 */
+
+            /*            IGoRepot RepoterTest = new RepoterKharonExp();
+                        RepoterTest.GoRepot();
+            */
 
 
             /*            ExpBotHolinaSod HolinaBot1 = new ExpBotHolinaSod();

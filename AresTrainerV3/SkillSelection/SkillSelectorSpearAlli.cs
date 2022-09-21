@@ -12,11 +12,16 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.getBuff1Informations == 0)
             {
-                KeyPresser.PressKey(4, 50, 50);
-                SkillAssign();
-                KeyPresser.PressKey(4, 50, 50);
-                KeyPresser.PressKey(3, 50, 50);
+                if (!AttackMob.AttackMob.isAttacking())
+                {
+                    KeyPresser.PressKey(4, 100, 100);
+                    SkillAssign();
+                    KeyPresser.PressKey(4, 100, 100);
+                    SkillAssign();
+                    KeyPresser.PressKey(4, 100, 100);
+                    KeyPresser.PressKey(3, 100, 100);
 
+                }
             }
         }
 
@@ -24,7 +29,7 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.isCurrentSkill() == 2)
             {
-                ProgramHandle.SkillToOverride = PointersAndValues.spearAllianceFireFury;
+                ProgramHandle.SkillToOverride = PointersAndValues.spearFirstAoESkill;
             }
             else if (ProgramHandle.isCurrentSkill() == 3)
             {

@@ -13,8 +13,39 @@ public static class PointersAndValues
     //  x 1126112223        1119396195
 
     // MAIN OFFSETS
-    public const int baseNormalMOffset = /*0x2ad2fc;                   // NOSTALGIA*/ 0x2ad1fc;
-    public const int fogMOffset = 0x2B03CC;
+    public static bool isNostalgia = false;
+    public static string whichGameToOpen
+    {
+        get
+        {
+            if (isNostalgia) { return "Nostalgia.exe"; }
+            else { return "Epic Of Ares.exe"; }
+        }
+    }
+    public static string whichGameWindowName
+    {
+        get
+        {
+            if (isNostalgia) { return "Nostalgia"; }
+            else { return "Epic Of Ares"; }
+        }
+    }
+    public static int baseNormalMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2ad1fc; }
+            else { return 0x2ad2fc; }
+        }
+    }
+    public static int fogMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2B03CC; }
+            else { return 0x2B04CC; }
+        }
+    }
     public const int cameraBaseMOffset = 0x2AC578;
     public const int mobSelectedMOffset = 0x2A9648;
     public const int MouseoverHighlightedMOffset = 0x2AAA14;
@@ -91,10 +122,13 @@ public static class PointersAndValues
 
 
 
-
-
+    
+    
     // values
     public const int runSpeedNormalValue = 16859264;
+    public const int runSpeedWhitePotValue = 16859315;
+    public const int attackSpeedSpearImp = 1070945622;
+    public const int attackSpeedSpearImpBos = 1073741824;
     public const int attackSpeednormalValueBow = 1070945622;
     public const int attackSpeedKishValueBow= 1073741824;
     public const int cameraDistanceAnimValue = 1127253120;
@@ -150,8 +184,8 @@ public static class PointersAndValues
     public const int isStandingAnimationArcerAlliCity = 4550176;
     public const int isStandingAnimationArcerEmpOut = 4535136;
     public const int isStandingAnimationArcerEmpCity = 4550976;
-    public const int isStandingAnimationSorcOut = 4522496;
-    public const int isStandingAnimationSorcCity = 4550976;
+    public const int isStandingAnimationSorcAlliOut = 4522496;
+    public const int isStandingAnimationSorcAlliCity = 4550976;
     public const int isStandingAnimationSorcEmpCityF = 4552960;
     public const int isStandingAnimationSorcEmpOutF = 4522944;
     
