@@ -458,7 +458,7 @@ namespace AresTrainerV3
 
         private void button4_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetNostalgiaMainWindow();
+            ProgramHandle.SetGameAsMainWindow();
             //ProgramHandle.OpenShopWindow();
             Thread.Sleep(1000);
 
@@ -482,21 +482,24 @@ namespace AresTrainerV3
 
         private void Tester_Click_1(object sender, EventArgs e)
         {
-            ProgramHandle.SetNostalgiaMainWindow();
+            ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
 
+
+            ProgramHandle.TeleportToPosition(1123628996, 1147452062, 0);
+/*
             HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
             HealBotOnlyHeal.StartHealBotThread();
-
-            ExpBotManagerAbstract SacredExpBotTest = new ExpBotSacredAlliExp();
-            SacredExpBotTest.StartExpBotThread();
-
+*//*
+            // ExpBotManagerAbstract SacredExpBotTest = new ExpBotSacredAlliExp();
+            ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
+            ExpBotTest.StartExpBotThread();
+*/
         }
-
         private void FastTestBTN_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetNostalgiaMainWindow();
+            ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
 

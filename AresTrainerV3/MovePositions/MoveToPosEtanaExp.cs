@@ -1,6 +1,5 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ItemCollect;
-using AresTrainerV3.Unstuck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +8,15 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MovePositions
 {
-    public class MoveToPosAnywhereTest : MoveToPositionAbstract
+    internal class MoveToPosEtanaExp : MoveToPositionAbstract
     {
+
 
         protected override int moveOnlyOnMapX
         {
             get
             {
-                return ProgramHandle.GetCurrentMap;
+                return TeleportValues.Etana;
             }
 
         }
@@ -27,12 +27,10 @@ namespace AresTrainerV3.MovePositions
             {
                 if (_attackAndCollectItems == null)
                 {
-                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(1550, new CollectAllItems()));
+                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(1600, new CollectSodItems()));
                 }
                 return _attackAndCollectItems;
             }
         }
     }
-
 }
-

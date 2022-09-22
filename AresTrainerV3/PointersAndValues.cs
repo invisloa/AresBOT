@@ -14,7 +14,7 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = false;
-    public static string whichGameToOpen
+    public static string GameProcessName
     {
         get
         {
@@ -22,12 +22,20 @@ public static class PointersAndValues
             else { return "Epic Of Ares.exe"; }
         }
     }
-    public static string whichGameWindowName
+    public static string GameWindowProcessName
     {
         get
         {
             if (isNostalgia) { return "Nostalgia"; }
             else { return "Epic Of Ares"; }
+        }
+    }
+    public static string GameWindowVisualName
+    {
+        get
+        {
+            if (isNostalgia) { return "Nostalgia"; }
+            else { return "Epic Of Ares Client"; }
         }
     }
     public static int baseNormalMOffset
@@ -43,23 +51,105 @@ public static class PointersAndValues
         get
         {
             if (isNostalgia) { return 0x2B03CC; }
-            else { return 0x2B04CC; }
+            else { return 0x2A9194; }
         }
     }
-    public const int cameraBaseMOffset = 0x2AC578;
-    public const int mobSelectedMOffset = 0x2A9648;
-    public const int MouseoverHighlightedMOffset = 0x2AAA14;
-    public const int inventoryCurrentTabMOffset = 0x2AD1EC;
-    public const int SellWindowMOffset = 0x2AD208;
-    public const int UiWindowMOffset = 0x2AD218;
+    public static int cameraFogPointer
+    {
+        get
+        {
+            if (isNostalgia) { return 0xd16; }
+            else { return 0xfb6; }
+        }
+    }
 
-    public const int CurrentSkillBar1Address = 0x6A9A3C;
-    public const int CurrentSkillBar2Address = 0x6A9A40;
-    public const int CurrentSkillBar3Address = 0x6A9A44;
 
-    public const int CurrentItemHighlightedType = 0x8C9EE0;
-    
+    public static int cameraBaseMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2AC578; }
+            else { return 0x2AC678; }
+        }
+    }
+    public static int mobSelectedMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2A9648; }
+            else { return 0x2A9748; }
+        }
+    }
+    public static int MouseoverHighlightedMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2AAA14; }
+            else { return 0x2AAB14; }
+        }
+    }
 
+    public static int inventoryCurrentTabMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2AD1EC; }
+            else { return 0x2AD2EC; }
+        }
+    }
+
+    public static int SellWindowMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2AD208; }
+            else { return 0x2AD308; }
+        }
+    }
+
+    public static int UiWindowMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2AD218; }
+            else { return 0x2AD318; }
+        }
+    }
+    public static int CurrentSkillBar1Address
+    {
+        get
+        {
+            if (isNostalgia) { return 0x6A9A3C; }
+            else { return 0x6A9B3C; }
+        }
+    }
+
+
+    public static int CurrentSkillBar2Address
+    {
+        get
+        {
+            if (isNostalgia) { return 0x6A9A40; }
+            else { return 0x6A9B40; }
+        }
+    }
+    public static int CurrentSkillBar3Address
+    {
+        get
+        {
+            if (isNostalgia) { return 0x6A9A44; }
+            else { return 0x6AB44; }
+        }
+    }
+
+    public static int CurrentItemHighlightedType
+    {
+        get
+        {
+            if (isNostalgia) { return 0x8C9EE1; }
+            else { return 0x8C9FE1; }
+        }
+    }
 
     // OFF offsets
     public const int hpOffset = 0x148;
@@ -77,7 +167,6 @@ public static class PointersAndValues
     public const int slotFirstSellOffset = 0xd02;
     public const int MouseoverHighlightedOffset = 0x7c;
     public const int cameraDistancePointer = 0x19c;
-    public const int cameraFogPointer = 0xd16;
     public const int cameraAngleYPointer = 0x1b6;
     public const int cameraAngleXPointer = 0x1a0;
     public const int skillDelayPointer = 0x802;

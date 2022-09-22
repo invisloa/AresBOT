@@ -10,11 +10,11 @@ namespace AresTrainerV3.ItemCollect
     {
         public override bool ClickAndCollectWhatItem()
         {
-            if (ProgramHandle.getCurrentItemHighlightedType == 25)
+            if (ProgramHandle.getCurrentItemHighlightedType == 202 || ProgramHandle.getCurrentItemHighlightedType == 183 || ProgramHandle.getCurrentItemHighlightedType == 167)// stones jewelery)
             {
-                Thread.Sleep(200);
+                 Thread.Sleep(50);
 
-                if (ProgramHandle.getCurrentItemHighlightedType == 25)
+                if (ProgramHandle.getCurrentItemHighlightedType == 202 || ProgramHandle.getCurrentItemHighlightedType == 183 || ProgramHandle.getCurrentItemHighlightedType == 167)// stones jewelery)
                 {
                     return CollectionClick();
                 }

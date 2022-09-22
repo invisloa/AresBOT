@@ -9,14 +9,12 @@ namespace AresTrainerV3
 
 
 
-    //Mage 5
-    // XXX 18
-    //arccer alli chyba 10??
     public class ProgramHandle
     {
 
-        public static string processName = "Nostalgia.exe";  // "Epic Of Ares.exe";
-        public static string foregroundWindowName = "Nostalgia"; // "Epic Of Ares";
+        public static string processName = PointersAndValues.GameProcessName;
+        public static string foregroundProcessName = PointersAndValues.GameWindowProcessName;
+        public static string foregroundWindowName = PointersAndValues.GameWindowVisualName;
 
         static int _variableForChangablePosition = 0;
 
@@ -49,7 +47,7 @@ namespace AresTrainerV3
         static Memory memTeleport = new Memory();
         static Memory memExpbot = new Memory();
 
-        static Process proc = Process.GetProcessesByName(foregroundWindowName)[0];
+        static Process proc = Process.GetProcessesByName(foregroundProcessName)[0];
         static IntPtr baseNormalOffset;
         // static IntPtr anim1AddressPointer;
         static IntPtr cameraBaseOffset;
@@ -190,7 +188,7 @@ namespace AresTrainerV3
         public static int MannaRestoreValue = 250;
 
 
-        public static void SetNostalgiaMainWindow()
+        public static void SetGameAsMainWindow()
         {
              SetForegroundWindow(FindWindow(null, foregroundWindowName));
         }
@@ -527,7 +525,7 @@ namespace AresTrainerV3
 
         public static void StartHealbotSellKharon()
         {
-            SetForegroundWindow(FindWindow(null, foregroundWindowName));
+            SetGameAsMainWindow();
 
 
             while (_stopHeal)
@@ -576,7 +574,7 @@ namespace AresTrainerV3
 
         public static void StartHealbotNormal()
         {
-            SetForegroundWindow(FindWindow(null, foregroundWindowName));
+            SetGameAsMainWindow();
 
 
             while (_stopHeal)
@@ -608,7 +606,7 @@ namespace AresTrainerV3
         }
         public static void StartHealbotExpBotUWC()
         {
-            SetForegroundWindow(FindWindow(null, foregroundWindowName));
+            SetGameAsMainWindow();
 
 
             while (_stopHeal)
@@ -647,7 +645,7 @@ namespace AresTrainerV3
         }
         public static void StartOnlyHealBot()
         {
-            SetForegroundWindow(FindWindow(null, foregroundWindowName));
+            SetGameAsMainWindow();
 
 
             while (_stopHeal)
@@ -778,7 +776,7 @@ namespace AresTrainerV3
         public static void SetCameraForExpBot()
         {
             MouseOperations.SetCursorPosition(900, 500);
-            SetNostalgiaMainWindow();
+            SetGameAsMainWindow();
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceBotValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleXPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleXValue));
@@ -856,7 +854,13 @@ namespace AresTrainerV3
             memExpbot.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset), BitConverter.GetBytes(1));
         }
 
+        public static void TeleportToPosition(int x, int y, int z)
+        {
+            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(x));
+            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(y));
+            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(z));
 
+        }
 
         #region Teleporter 
         public static int GetCurrentMap
