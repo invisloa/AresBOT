@@ -25,6 +25,25 @@ namespace AresTrainerV3.AttackMob
 
                 for (int y = 360; y < 680; y++)
                 {
+                    Color currentPixelColor = bitmap.GetPixel(x, y);
+                    if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+
+                    {
+                        MouseOperations.SetCursorPosition(x, y);
+                        if (AttackMob.CheckIfSelectedAndAttackSkill())
+                        {
+                            HealBotAbstract.IsScanRunning = false;
+                            GC.Collect();
+                            return true;
+                        }
+                    }
+                }
+            }
+            for (int x = 700; x < 1220; x++)
+            {
+
+                for (int y = 260; y < 780; y++)
+                {
 
 
                     Color currentPixelColor = bitmap.GetPixel(x, y);
@@ -32,13 +51,15 @@ namespace AresTrainerV3.AttackMob
 
                     {
                         MouseOperations.SetCursorPosition(x, y);
-                        GC.Collect();
+                        if (AttackMob.CheckIfSelectedAndAttackSkill())
+                        {
+                            HealBotAbstract.IsScanRunning = false;
+                            GC.Collect();
+                            return true;
+                        }
                     }
                 }
             }
-            GC.Collect();
-
-
             for (int x = 527; x < 1360; x++)
             {
 
