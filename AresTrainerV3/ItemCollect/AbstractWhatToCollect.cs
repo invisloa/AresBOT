@@ -23,7 +23,7 @@ namespace AresTrainerV3.ItemCollect
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             while (ExpBotClass.isNowRunningOut())
             {
-                Thread.Sleep(500); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
+                Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
             }
             return true;
         }

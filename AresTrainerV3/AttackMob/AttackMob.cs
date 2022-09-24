@@ -31,13 +31,17 @@ namespace AresTrainerV3.AttackMob
         }
         static void WaitForAttackEnd()
         {
+            Thread.Sleep(50);
+
             UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
+            Thread.Sleep(50);
 
             while (isAttacking())
             {
                 IWhatToCollect _SodCollector = new CollectSodItems();
 
                 anywhereUnstucker.UnstuckMove();
+
                 PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
                 pixelSodCollect.ClickAndCollectItem();
                 // check if not attacking in stuck position

@@ -477,6 +477,8 @@ namespace AresTrainerV3
 
         static void MoveToPositionWhenNotAttacking( int x,int y)
         {
+            Thread.Sleep(50);
+
             if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcALLIOutside && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEMPOutside)
             {
                 Thread.Sleep(5);
