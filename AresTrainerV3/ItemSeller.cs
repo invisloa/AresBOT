@@ -479,7 +479,6 @@ namespace AresTrainerV3
 
             #endregion
 
-
             #region Justus
             // Justus
             if (stat1 == 189)
@@ -524,6 +523,34 @@ namespace AresTrainerV3
             }
             #endregion
 
+            #region Luck
+            // Gedel
+            if (stat2 == 97)
+            {
+                Luck += 10;
+            }
+            else if (stat2 == 98)
+            {
+                Luck += 20;
+            }
+            else if (stat2 == 99)
+            {
+                Luck += 30;
+            }
+            else if (stat1 == 126)
+            {
+                Luck += 5;
+            }
+            else if (stat1 == 127)
+            {
+                Luck += 15;
+            }
+            else if (stat1 == 128)
+            {
+                Luck += 25;
+            }
+            #endregion
+
 
 
 
@@ -565,7 +592,11 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Con>11)
+            else if (Con > 10)
+            {
+                return true;
+            }
+            else if (Luck > 24)
             {
                 return true;
             }

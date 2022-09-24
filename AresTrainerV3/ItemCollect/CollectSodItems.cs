@@ -8,13 +8,27 @@ namespace AresTrainerV3.ItemCollect
 {
     public class CollectSodItems : AbstractWhatToCollect
     {
+        bool collectItemValues()
+        {
+            if(PointersAndValues.isNostalgia == true)
+            {
+                if (ProgramHandle.getCurrentItemHighlightedType == 202 || ProgramHandle.getCurrentItemHighlightedType == 167)//  jewelery)
+                    return true;
+            }
+            else 
+            {
+                if (ProgramHandle.getCurrentItemHighlightedType == 202 || ProgramHandle.getCurrentItemHighlightedType == 183 || ProgramHandle.getCurrentItemHighlightedType == 167)// stones jewelery)
+                    return true;
+            }
+            return false;
+        }
         public override bool ClickAndCollectWhatItem()
         {
-            if (ProgramHandle.getCurrentItemHighlightedType == 202 || ProgramHandle.getCurrentItemHighlightedType == 183 || ProgramHandle.getCurrentItemHighlightedType == 167)// stones jewelery)
+            if (collectItemValues())
             {
                  Thread.Sleep(50);
 
-                if (ProgramHandle.getCurrentItemHighlightedType == 202 || ProgramHandle.getCurrentItemHighlightedType == 183 || ProgramHandle.getCurrentItemHighlightedType == 167)// stones jewelery)
+                if (collectItemValues())
                 {
                     return CollectionClick();
                 }

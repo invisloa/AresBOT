@@ -1,5 +1,8 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
+using AresTrainerV3.ExpBotManagement.Etana;
+using AresTrainerV3.ExpBotManagement.Kharon;
+using AresTrainerV3.ExpBotManagement.Sacred;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
@@ -487,15 +490,15 @@ namespace AresTrainerV3
             ProgramHandle.SetCameraForExpBot();
 
 
-            ProgramHandle.TeleportToPosition(1123628996, 1147452062, 0);
-/*
+
+            ProgramHandle.TeleportToPosition(1121665964, 1147452062, 0);
+
             HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
             HealBotOnlyHeal.StartHealBotThread();
-*//*
-            // ExpBotManagerAbstract SacredExpBotTest = new ExpBotSacredAlliExp();
+
             ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
             ExpBotTest.StartExpBotThread();
-*/
+
         }
         private void FastTestBTN_Click(object sender, EventArgs e)
         {

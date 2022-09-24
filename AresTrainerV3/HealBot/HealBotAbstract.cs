@@ -32,25 +32,36 @@ namespace AresTrainerV3.HealBot
         {
             if (myCurrentHp < 100)
             {
-                hpHealValue = 40;
+                hpHealValue = 30;
             }
 
             else if (myCurrentHp < 120)
             {
-                hpHealValue = 60;
+                hpHealValue = 40;
             }
             else if (myCurrentHp < 150)
             {
-                hpHealValue = 70;
+                hpHealValue = 60;
             }
             else if (myCurrentHp < 200)
             {
-                hpHealValue = 100;
+                hpHealValue = 120;
             }
-            else if (myCurrentHp < 400 && myCurrentHp > 200)
+            else if (myCurrentHp < 250)
+            {
+                hpHealValue = 130;
+            }
+            else if (myCurrentHp < 300)
+            {
+                hpHealValue = 150;
+            }
+            else if (myCurrentHp < 350)
+            {
+                hpHealValue = 180;
+            }
+            else if (myCurrentHp < 400)
             {
                 hpHealValue = 200;
-
             }
             else
             {
@@ -59,7 +70,12 @@ namespace AresTrainerV3.HealBot
         }
         void setMannaRestoreValue()
         {
-            if (myCurrentManna < 30)
+            if (myCurrentManna < 20)
+            {
+                MannaRestoreValue = 6;
+            }
+
+            else if (myCurrentManna < 30)
             {
                 MannaRestoreValue = 8;
             }
@@ -82,12 +98,12 @@ namespace AresTrainerV3.HealBot
             {
                 MannaRestoreValue = 40;
             }
-            else if (myCurrentManna < 400 && myCurrentHp > 200)
+            else if (myCurrentManna < 300)
             {
                 MannaRestoreValue = 80;
 
             }
-            else if (myCurrentManna < 600 && myCurrentHp > 400)
+            else if (myCurrentManna < 400)
             {
                 MannaRestoreValue = 90;
 
@@ -162,7 +178,7 @@ namespace AresTrainerV3.HealBot
             }
 
                 // scrollToCityIfNotInCity();
-                while (press1IfLowHp()) ;
+            while (press1IfLowHp()) ;
             while (press2IfLowManna()) ;
         }
         protected void StartHealBot()
@@ -243,18 +259,18 @@ namespace AresTrainerV3.HealBot
             // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
             if (ProgramHandle.isCurrentClassSelected == 1)
             {
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
                 }
-/*
-                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
+
+*/                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
                 }
-*/            }
+            }
             if (ProgramHandle.isCurrentClassSelected == 2)
             {
                 if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
@@ -265,7 +281,7 @@ namespace AresTrainerV3.HealBot
 
             else if (ProgramHandle.isCurrentClassSelected == 3)
             {
-                if (ProgramHandle.getCurrentAttackSpeed < PointersAndValues.attackSpeedKishValueBow)
+                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     // for now using with red potion later to change for a sorcerer

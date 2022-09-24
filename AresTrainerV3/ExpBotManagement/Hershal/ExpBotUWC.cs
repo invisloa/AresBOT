@@ -1,19 +1,21 @@
-﻿using AresTrainerV3.MovePositions;
+﻿using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.ExpBotManager
+namespace AresTrainerV3.ExpBotManagement.Hershal
 {
-    internal class ExpBotHolinaSod : ExpBotManagerAbstract
+    public class ExpBotUWC : ExpBotManagerAbstract
     {
-        MoveHolinaCollectSod MoveHolinaSod = new MoveHolinaCollectSod();
+
+        MoveUWC1CollectAll MoveUwcCollector = new MoveUWC1CollectAll();
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get
-            { return MoveHolinaSod; }
+            { return MoveUwcCollector; }
         }
 
 
@@ -32,7 +34,7 @@ namespace AresTrainerV3.ExpBotManager
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1135065590, 1125740456, 1124920284, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1112000000, 1111239992, 1109794945, true);
 
 
 
@@ -45,7 +47,7 @@ namespace AresTrainerV3.ExpBotManager
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1126579915, 1135214592, 1134865772, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, true);
 
                         // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"goUp Ended current i {i}\n";
@@ -83,6 +85,19 @@ namespace AresTrainerV3.ExpBotManager
         }
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

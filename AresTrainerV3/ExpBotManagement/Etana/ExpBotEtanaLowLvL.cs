@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.ExpBotManagement
+namespace AresTrainerV3.ExpBotManagement.Etana
 {
     internal class ExpBotEtanaLowLvL : ExpBotManagerAbstract
     {
@@ -43,17 +43,18 @@ namespace AresTrainerV3.ExpBotManagement
 
                     }
 
-/*                    else if (i == 1)
-                    {
-                        ExpBotClass.ExpBotLog += $"current i {i}\n";
+                    /*                    else if (i == 1)
+                                        {
+                                            ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1123731931, 1133646625, 1135646625, true);
+                                            MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1123731931, 1133646625, 1135646625, true);
 
-                        // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
-                        ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
+                                            // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
+                                            ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
 
-                    }
-*/                    else if (i == 1)
+                                        }
+                    */
+                    else if (i == 1)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
