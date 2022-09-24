@@ -184,10 +184,8 @@ namespace AresTrainerV3.HealBot
         protected void StartHealBot()
         {
             ProgramHandle.SetGameAsMainWindow();
-            if (!IsHealBotRunning)
-            {
-                RequestStopHealBot();
-            }
+            RequestStopHealBot();
+            
             setHealValue();
             setMannaRestoreValue();
 

@@ -95,7 +95,7 @@ namespace AresTrainerV3
            //SUBSCRIBE globalKeyboardHook.
            //
             gkh.KeyF2Down += StartHealBotThreadNormal;
-            gkh.KeyF3Down += StartExpBotUWCThread; // START TEMPORATY MO
+            gkh.KeyF3Down += startSacredLandsBot; // START TEMPORATY MO
            // gkh.KeyF3Down += StartThreadForTesting; // KHARON COLLECT
            // gkh.KeyF3Down += StartMoveAndExpThread;
             gkh.KeyF3Down += ShowIfOnOrOff;
@@ -184,6 +184,25 @@ namespace AresTrainerV3
                 expBotMoveThread = new Thread(ThreadExpBotUWC);
                 expBotMoveThread.Start();
             }
+
+        }
+
+        public void startSacredLandsBot()
+        {
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+
+
+
+            ProgramHandle.TeleportToPosition(1121665964, 1147452062, 0);
+
+            HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
+            HealBotOnlyHeal.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
+            ExpBotTest.StartExpBotThread();
+
 
         }
 

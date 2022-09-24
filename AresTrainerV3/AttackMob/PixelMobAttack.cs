@@ -20,6 +20,25 @@ namespace AresTrainerV3.AttackMob
             HealBotAbstract.IsScanRunning = true;
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
+            for (int x = 800; x < 1120; x++)
+            {
+
+                for (int y = 360; y < 680; y++)
+                {
+
+
+                    Color currentPixelColor = bitmap.GetPixel(x, y);
+                    if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+
+                    {
+                        MouseOperations.SetCursorPosition(x, y);
+                        GC.Collect();
+                    }
+                }
+            }
+            GC.Collect();
+
+
             for (int x = 527; x < 1360; x++)
             {
 

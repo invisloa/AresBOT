@@ -13,7 +13,7 @@ public static class PointersAndValues
     //  x 1126112223        1119396195
 
     // MAIN OFFSETS
-    public static bool isNostalgia = true;
+    public static bool isNostalgia = false;
     public static string GameProcessName
     {
         get
