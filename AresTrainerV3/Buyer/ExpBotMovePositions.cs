@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3
+namespace AresTrainerV3.Buyer
 {
     public static class ExpBotMovePositionsValues
     {
@@ -17,6 +17,22 @@ namespace AresTrainerV3
                     new Tuple<int, int>(995, 185),  //hp pot Hysop
 
                     // new Tuple<int, int>(995, 225)   //hp yarrow pot
+        };
+        public static Tuple<int, int>[] mousePositionsForHolinaBuying = new Tuple<int, int>[]
+        {
+                    new Tuple<int, int>(995, 270),  //mana pot (S)
+                    new Tuple<int, int>(995, 425),  //red pot
+                    new Tuple<int, int>(995, 385),  //white pot
+                    new Tuple<int, int>(995, 185),  //hp pot Hysop
+
+        };
+        public static Tuple<int, int>[] mousePositionsForSacredLandsBuying = new Tuple<int, int>[]
+        {
+                    new Tuple<int, int>(995, 305),  //mana pot (S)
+                    new Tuple<int, int>(995, 425),  //red pot
+                    new Tuple<int, int>(995, 385),  //white pot
+                    new Tuple<int, int>(995, 185),  //hp pot Sage
+
         };
         public static Tuple<int, int>[] mousePositionsForKharonBuying = new Tuple<int, int>[]
         {
@@ -34,15 +50,15 @@ namespace AresTrainerV3
         };
 
         public static Tuple<int, int>[] KharonRepotMovePositions = new Tuple<int, int>[]
-{
+        {
                     new Tuple<int, int>(1250, 170),
                     new Tuple<int, int>(1250, 170),
                     new Tuple<int, int>(920, 345),
-};
+        };
 
 
 
-        public static Tuple<int, int>[] UWCFirstFloorMovement = new  Tuple<int, int>[]
+        public static Tuple<int, int>[] UWCFirstFloorMovement = new Tuple<int, int>[]
         {
                     new Tuple<int, int>(600, 520),
                     new Tuple<int, int>(960, 300),
@@ -50,7 +66,7 @@ namespace AresTrainerV3
                     new Tuple<int, int>(960, 620),
         };
 
-        public const int firstColumnInventory  = 1260; // every next row is +35
+        public const int firstColumnInventory = 1260; // every next row is +35
         public const int firstRowInventory = 530; // every next column is +35;
 
         public static Tuple<int, int>[] itemSellPositions = new Tuple<int, int>[72];

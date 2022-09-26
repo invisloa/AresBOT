@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AresTrainerV3.Buyer;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -674,14 +675,14 @@ namespace AresTrainerV3
                 {
                     Debug.WriteLine($"sell item {item}");
 
-                    int firstSellItem = item + 12; // START FROM 3 Row 1st Column -its 12
-                    if (firstSellItem >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                    int sellItemNumber = item + 12; // START FROM 3 Row 1st Column -its 12
+                    if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
                     {
                         Thread.Sleep(500);
                         MouseOperations.MoveAndLeftClickOperation(1235, 670, 200); // Open Inventory Tab 2
                         Thread.Sleep(500);
                     }
-                    ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[firstSellItem].Item1, ExpBotMovePositionsValues.itemSellPositions[firstSellItem].Item2);
+                    ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
                     Thread.Sleep(50);
                     MoveAndLeftClickToSellAll();
                 }

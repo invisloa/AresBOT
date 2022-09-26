@@ -19,6 +19,9 @@ namespace AresTrainerV3
         int read, write;
         byte[] ptr = new byte[8];
         byte[] bytesBuffer = new byte[1024];
+        byte[] bufferByte = new byte[1];
+        byte[] bytesShortBuffer = new byte[2];
+
         public IntPtr readpointer(IntPtr proc, IntPtr address)
         {
             ReadProcessMemory(proc, address, bytesBuffer, 4, ref read);
@@ -32,11 +35,16 @@ namespace AresTrainerV3
 
             return bytesBuffer;
         }
+        public byte[] readShort (IntPtr proc, IntPtr address)
+        {
+            ReadProcessMemory(proc, address, bytesBuffer, 2, ref read);
+
+            return bytesBuffer;
+        }
         public byte readByte(IntPtr proc, IntPtr address)
         {
-            byte[] buffer = new byte[1];
-            ReadProcessMemory(proc, address, buffer, 1, ref read);
-            return buffer[0];
+            ReadProcessMemory(proc, address, bufferByte, 1, ref read);
+            return bufferByte[0];
         }
 
         public void writebytes(IntPtr proc, IntPtr address, byte[] newbytes)

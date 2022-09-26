@@ -119,8 +119,11 @@ namespace AresTrainerV3
         }
         public static bool isNowStandingOut()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOut || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpOutF)
-            {
+            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut ||
+                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut ||
+                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
+                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOutOrb)
+            {            
                 return true;
             }
             else

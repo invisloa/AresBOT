@@ -95,9 +95,7 @@ namespace AresTrainerV3
            //SUBSCRIBE globalKeyboardHook.
            //
             gkh.KeyF2Down += StartHealBotThreadNormal;
-            gkh.KeyF3Down += startSacredLandsBot; // START TEMPORATY MO
-           // gkh.KeyF3Down += StartThreadForTesting; // KHARON COLLECT
-           // gkh.KeyF3Down += StartMoveAndExpThread;
+            gkh.KeyF3Down += startSacredLandsBot; 
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
             gkh.KeyF4Down += ShowIfOnOrOff; 
@@ -192,18 +190,11 @@ namespace AresTrainerV3
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
-
-
-
             ProgramHandle.TeleportToPosition(1121665964, 1147452062, 0);
-
             HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
             HealBotOnlyHeal.StartHealBotThread();
-
             ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
             ExpBotTest.StartExpBotThread();
-
-
         }
 
 
@@ -508,15 +499,11 @@ namespace AresTrainerV3
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
 
+            HealBotAbstract HealBotToStart = new HealBotSacredAlli();
+            HealBotToStart.StartHealBotThread();
 
-
-            ProgramHandle.TeleportToPosition(1121665964, 1147452062, 0);
-
-            HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
-            HealBotOnlyHeal.StartHealBotThread();
-
-            ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
-            ExpBotTest.StartExpBotThread();
+            ExpBotManagerAbstract ExpBotTostart = new ExpBotSacredAlliExp();
+            ExpBotTostart.StartExpBotThread();
 
         }
         private void FastTestBTN_Click(object sender, EventArgs e)

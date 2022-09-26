@@ -13,7 +13,11 @@ namespace AresTrainerV3.AttackMob
     {
         public static bool isAttacking()
         {
-            if (ProgramHandle.isMobBeingAttacked != -1 && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliOut && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOut)
+            if (ProgramHandle.isMobBeingAttacked != -1 && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut 
+                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut 
+                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliOut 
+                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOutStaff 
+                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOutOrb)
             {
                 return true;
             }

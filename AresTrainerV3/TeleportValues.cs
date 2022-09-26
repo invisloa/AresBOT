@@ -104,21 +104,28 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosKharonPlateuSellExp = new ValueTuple<int, int, int>( 1141877335, 1134659696, 1084227584);
         public static ValueTuple<int, int, int> PosKharonPlateuSellExpHidden = new ValueTuple<int, int, int>( 1146608269, 1115123685, 1089385337);
         public static ValueTuple<int, int, int> PosKharonPlateuSlothEntrace = new ValueTuple<int, int, int>(1147968991, 1148469361, 1097859072);
+        public static ValueTuple<int, int, int> PosKharonPlateuGardionEntrace = new ValueTuple<int, int, int>(1108850452, 1148542857, 1121408142);
         public static ValueTuple<int, int, int> PosSlothFloor1 = new ValueTuple<int, int, int>(1136295936, 1118437376, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar1 = new ValueTuple<int, int, int>(1129762520, 1134509410, 1101089181);
         public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar2 = new ValueTuple<int, int, int>(1132962719, 1131670265, 1102053376);
         public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar3 = new ValueTuple<int, int, int>(1134395149, 1135955773, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor2 = new ValueTuple<int, int, int>(1134407858, 1138126219, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
+        public static ValueTuple<int, int, int> PosSlothFloor2IceCubeMiddle = new ValueTuple<int, int, int>(1133621892, 1132091306, 0);
 
 
-        
-        
-        
+
+        public static Tuple<int, int, int> ShopHolinaPos = new Tuple<int, int, int>(1132844553, 1137813749, 0);
+        public static Tuple<int, int, int> SacredlandsAlliExp = new Tuple<int, int, int>(1121665964, 1147452062, 0);
+        public static Tuple<int, int, int> SacredlandsAlliShop = new Tuple<int, int, int>(1145707559, 1128361148, 0);
+
+
         public static ValueTuple<int, int, int> PosUWC4rdPlant = new ValueTuple<int, int, int>(1136310857, 1135108780, 1095210496);
 
 
-
+        
+        
+        
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
 
