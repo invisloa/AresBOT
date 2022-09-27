@@ -258,7 +258,10 @@ public static class PointersAndValues
 
     public const int isRunningAnimationArcALLIOutside = 4535616;
     public const int isRunningAnimationArcEMPOutside = 4536352;
-    public const int isRunningAnimationSorcOutside = 4523712;
+    public const int isRunningAnimationSorcAlliStaffOutside = 4523712;
+    public const int isRunningAnimationSorcAlliOrbOutside = 4363264;
+
+    
     public const int isRunningAnimationSpearALLIOutside = 4500992;
 
     public const int isRunningAnimationArcAlliInCity = 4545808;
@@ -269,7 +272,6 @@ public static class PointersAndValues
 
 
     public const int isStandingAnimationArcerAlliOut = 4534400;
-    public const int isStandingAnimationSpearAlliOut = 4498752;
     public const int isStandingAnimationArcerAlliCity = 4550176;
     public const int isStandingAnimationArcerEmpOut = 4535136;
     public const int isStandingAnimationArcerEmpCity = 4550976;
@@ -278,7 +280,7 @@ public static class PointersAndValues
     public const int isStandingAnimationSorcAlliCity = 4550976;
     public const int isStandingAnimationSorcEmpCityF = 4552960;
     public const int isStandingAnimationSorcEmpOutF = 4522944;
-    
+    public const int isStandingAnimationSpearAlliOut = 4498752;
     public const int isStandingAnimationSpearAlliCity = 4550176;
 
     
