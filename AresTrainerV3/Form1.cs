@@ -190,11 +190,13 @@ namespace AresTrainerV3
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPosition(1121665964, 1147452062, 0);
-            HealBotAbstract HealBotOnlyHeal = new HealBotOnlyHeal();
-            HealBotOnlyHeal.StartHealBotThread();
-            ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
-            ExpBotTest.StartExpBotThread();
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliExp);
+
+            HealBotAbstract HealBotToStart = new HealBotSacredAlli();
+            HealBotToStart.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTostart = new ExpBotSacredAlliExp();
+            ExpBotTostart.StartExpBotThread();
         }
 
 
@@ -497,14 +499,10 @@ namespace AresTrainerV3
         {
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
-            ProgramHandle.SetCameraForExpBot();
 
-            HealBotAbstract HealBotToStart = new HealBotSacredAlli();
-            HealBotToStart.StartHealBotThread();
-
-            ExpBotManagerAbstract ExpBotTostart = new ExpBotSacredAlliExp();
-            ExpBotTostart.StartExpBotThread();
-
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliExp);
+            UnstuckFromAnywhere unst = new UnstuckFromAnywhere();
+            unst.UnstuckMove();
         }
         private void FastTestBTN_Click(object sender, EventArgs e)
         {

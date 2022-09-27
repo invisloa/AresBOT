@@ -116,9 +116,20 @@ namespace AresTrainerV3
                 inputSimulator.Keyboard.Sleep(startDelay);
                 inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_9);
                 inputSimulator.Keyboard.Sleep(endDelay);
-
-
             }
+        }
+
+        public static void PressEscape()
+        {
+            Thread.Sleep(50);
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
+            Thread.Sleep(50);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
+            Thread.Sleep(50);
+            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.ESCAPE);
+            Thread.Sleep(50);
+            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.ESCAPE);
+            Thread.Sleep(50);
         }
     }
 }

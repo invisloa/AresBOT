@@ -144,9 +144,9 @@ namespace AresTrainerV3
 
 
 
-
         public static bool isItemHighValue(int stat1, int stat2)
         {
+            int hightValueMainStats = 8;
 
             int Mp = 0;
             int Agi = 0;
@@ -557,11 +557,15 @@ namespace AresTrainerV3
 
 
             // Check IF stats Are Higher
-            if (Agi > 10)
+            if (Agi > hightValueMainStats)
             {
                 return true;
             }
-            else if (Mp > 10)
+            else if (Mp > hightValueMainStats)
+            {
+                return true;
+            }
+            else if (Con > hightValueMainStats)
             {
                 return true;
             }
@@ -589,15 +593,11 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Sihon>40)
+            else if (Sihon>35)
             {
                 return true;
             }
-            else if (Con > 10)
-            {
-                return true;
-            }
-            else if (Luck > 24)
+            else if (Luck > 15)
             {
                 return true;
             }

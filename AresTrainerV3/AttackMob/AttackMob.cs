@@ -38,17 +38,17 @@ namespace AresTrainerV3.AttackMob
             Thread.Sleep(50);
 
             UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
+            // check if not attacking in stuck position
+
+            anywhereUnstucker.UnstuckMove();
+
             Thread.Sleep(50);
 
             while (isAttacking())
             {
                 IWhatToCollect _SodCollector = new CollectSodItems();
-
-                anywhereUnstucker.UnstuckMove();
-
                 PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
                 pixelSodCollect.ClickAndCollectItem();
-                // check if not attacking in stuck position
                 Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
             }
@@ -78,9 +78,6 @@ namespace AresTrainerV3.AttackMob
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
             Debug.WriteLine($"Mouse R UP");
         }
-
-
-
         public static bool CheckIfSelectedAndAttackSkill()
         {
             if (isMobTargeted())

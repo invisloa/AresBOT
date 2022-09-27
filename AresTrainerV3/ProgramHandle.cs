@@ -1169,7 +1169,7 @@ namespace AresTrainerV3
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2IceCube.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2IceCube.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor2IceCube.Item3));
-111111                    _variableForChangablePosition = 0;
+                    _variableForChangablePosition = 0;
                 }
             }
 

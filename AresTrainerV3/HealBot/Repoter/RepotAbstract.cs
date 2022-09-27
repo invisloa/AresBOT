@@ -54,14 +54,15 @@ namespace AresTrainerV3.HealBot.Repoter
                 Thread.Sleep(1000);
                     MoveToRepot();
                 Thread.Sleep(1000);
-                MouseClickOpenShop();
 
+                //MouseClickOpenShop();
+                ProgramHandle.OpenShopWindow();
                 if (ProgramHandle.isShopWindowStillOpen() == 1)
                 {
                     ItemSeller.SellItemsMouseMove();
                     BuyerPotionsCity.BuyPotions();
                 }
-
+                KeyPresser.PressEscape();
                 GoBackExpPlace.GoBackExp();
                 ExpBotToStart.StartExpBotThread();
             }
