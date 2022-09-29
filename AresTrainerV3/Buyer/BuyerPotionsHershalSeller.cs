@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.Buyer
 {
-    internal class BuyerPotionHolinaExp : BuyerPotions
+    internal class BuyerPotionsHershalSeller : BuyerPotions
     {
         public override void BuyPotions()
         {
-            base.BuyPotionsAbstract(250, false, 200, 15, ExpBotMovePositionsValues.mousePositionsForHershalBuying);
+            base.BuyPotionsAbstract(100, true, 100, 5, ExpBotMovePositionsValues.mousePositionsForHershalBuying);
         }
 
     }

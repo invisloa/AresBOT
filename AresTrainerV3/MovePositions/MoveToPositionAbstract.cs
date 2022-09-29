@@ -62,8 +62,9 @@ namespace AresTrainerV3.MovePositions
                 return new UnstuckFromAnywhere();
             }
         }
-        protected abstract int moveOnlyOnMapX { get; }
-
+        protected abstract int moveOnlyOnMapX
+        { get; }
+        
         bool sideMove = false;
 
 

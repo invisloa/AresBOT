@@ -146,8 +146,8 @@ public static class PointersAndValues
     {
         get
         {
-            if (isNostalgia) { return 0x8C9EE1; }
-            else { return 0x8C9FE1; }
+            if (isNostalgia) { return 0x8C9Ed0; }
+            else { return 0x8C9Fd0; }
         }
     }
 

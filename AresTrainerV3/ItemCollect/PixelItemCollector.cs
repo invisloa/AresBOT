@@ -12,7 +12,7 @@ namespace AresTrainerV3.ItemCollect
     public class PixelItemCollector : ICollectItems
     {
         IWhatToCollect _whatToCollect { get;}
-        IWhatToCollect _SodCollector = new CollectSodItems();
+        IWhatToCollect _SodCollector = new CollectSodStonesJewleryItems();
 
        int _weightLimit { get;}
         public PixelItemCollector(int weightLiftLimit, IWhatToCollect whatToCollect)

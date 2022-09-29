@@ -63,6 +63,18 @@ namespace AresTrainerV3.HealBot
             {
                 hpHealValue = 200;
             }
+            else if (myCurrentHp < 500)
+            {
+                hpHealValue = 300;
+            }
+            else if (myCurrentHp < 600)
+            {
+                hpHealValue = 340;
+            }
+            else if (myCurrentHp < 650)
+            {
+                hpHealValue = 380;
+            }
             else
             {
                 hpHealValue = myCurrentHp - 340;

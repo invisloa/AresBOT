@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -6,12 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.ExpBotManagement.Holina
+namespace AresTrainerV3.ExpBotManagement.Hershal
 {
-    internal class ExpBotHolinaSod : ExpBotManagerAbstract
+    internal class ExpBotHershalSellTurtles : ExpBotManagerAbstract
     {
 
-        MoveToPosHolinaSod _MoveToPosPlace = new MoveToPosHolinaSod();
+        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hershal,1990,new CollectAllItems());
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get
@@ -45,8 +46,8 @@ namespace AresTrainerV3.ExpBotManagement.Holina
 
                     else if (i == 1)
                     {
-                        
-        
+
+
 
 
                         ExpBotClass.ExpBotLog += $"current i {i}\n";

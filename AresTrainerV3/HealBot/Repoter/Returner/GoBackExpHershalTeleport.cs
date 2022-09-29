@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter.Returner
 {
-    internal class GoBackExpSacredAlliTeleport : GoBackExpAbstract
-
+    internal class GoBackExpHershalTeleport : GoBackExpAbstract
     {
         public override void GoBackExp()
         {
             ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliExp);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
             ProgramHandle.SetCameraForExpBot();
 
         }

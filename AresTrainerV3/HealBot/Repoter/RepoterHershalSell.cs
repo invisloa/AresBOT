@@ -1,6 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
-using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Holina;
+using AresTrainerV3.ExpBotManagement.Kharon;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
 using System.Collections.Generic;
@@ -10,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterHolinaTeleport : RepotAbstract
+    internal class RepoterHershalSell : RepotAbstract
     {
         protected override GoBackExpAbstract GoBackExpPlace
         {
@@ -18,7 +17,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_goBackExpPlace == null)
                 {
-                    _goBackExpPlace = new GoBackExpHolinaTeleport();
+                    _goBackExpPlace = new GoBackExpHershalTeleport();
                 }
                 return _goBackExpPlace;
             }
@@ -30,7 +29,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_buyerPotionsCity == null)
                 {
-                    _buyerPotionsCity = new BuyerPotionHolinaExp();
+                    _buyerPotionsCity = new BuyerPotionsHershalSeller();
                 }
                 return _buyerPotionsCity;
             }
@@ -39,7 +38,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             get
             {
-                _repotCityVerification = TeleportValues.Hollina;
+                _repotCityVerification = TeleportValues.Hershal;
                 return _repotCityVerification;
             }
         }
@@ -49,7 +48,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotHolinaSod();
+                    _expBotToStart = new ExpBotKharonWolvesExp();
                 }
                 return _expBotToStart;
             }
@@ -57,14 +56,22 @@ namespace AresTrainerV3.HealBot.Repoter
 
         protected override void MoveToRepot()
         {
-            Thread.Sleep(10);
+            Thread.Sleep(1000);
             CheckIfNotRunning();
-            ProgramHandle.SetCameraForExpBot();
             if (ExpBotClass.isNowStandingCity())
             {
-                ProgramHandle.TeleportToPositionTuple(TeleportValues.ShopHolinaPos);
-
+                for (int i = 0; i < 20; i++)
+                {
+                    if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+                    {
+                        if (ProgramHandle.GetCurrentPositionX != 1142172652 && ProgramHandle.GetCurrentPositionY != 1141596108)
+                        {
+                            KeyPresser.PressKey(6, 1000, 1000);
+                        }
+                    }
+                }
             }
+            MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
         }
     }
 }

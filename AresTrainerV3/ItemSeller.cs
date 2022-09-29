@@ -146,7 +146,7 @@ namespace AresTrainerV3
 
         public static bool isItemHighValue(int stat1, int stat2)
         {
-            int hightValueMainStats = 8;
+            int hightValueMainStats = 7;
 
             int Mp = 0;
             int Agi = 0;
@@ -602,10 +602,18 @@ namespace AresTrainerV3
                 return true;
             }
             else return false;
-
-
         }
-
+        public static bool isItemSaleType(int typeAdress)
+        {
+            if(typeAdress == 187)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         public static void ItemsForSaleListGenerate()
         {
             itemsForSaleList.Clear();
@@ -613,7 +621,7 @@ namespace AresTrainerV3
             {
                 if (ProgramHandle.ReadSellItemsByteValue(i) != 0)
                 {
-                    if (!isItemHighValue(ProgramHandle.ReadSellItemsStat1(i),ProgramHandle.ReadSellItemsStat2(i)))
+                    if (!isItemHighValue(ProgramHandle.ReadSellItemsStat1(i),ProgramHandle.ReadSellItemsStat2(i)) && isItemSaleType(ProgramHandle.ReadSellItemsType(i)))
                     {
                         itemsForSaleList.Add(i);
                     } 

@@ -188,7 +188,7 @@ namespace AresTrainerV3
 
         public static int hpHealValue;
 
-        public static int MannaRestoreValue = 250;
+        public static int MannaRestoreValue = 100;
 
 
         public static void SetGameAsMainWindow()
@@ -1182,7 +1182,7 @@ namespace AresTrainerV3
 
             while (_stopBot)
             {
-                AttackMob.AttackMob.CheckIfSelectedAndAttackSkill();
+                AttackMob.AttackMobCollectSod.CheckIfSelectedAndAttackSkill();
             }
             return;
         }
@@ -1232,6 +1232,10 @@ namespace AresTrainerV3
         {
             return memNormal.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 1)));
         }
+        public static int ReadSellItemsType(int offset)
+        {
+            return BitConverter.ToInt16(memNormal.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 4))));
+        }
         public static byte isShopWindowStillOpen()
         {
             return memExpbot.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1));
@@ -1258,9 +1262,14 @@ namespace AresTrainerV3
         }
 
 
-        public static byte getCurrentItemHighlightedType
+        public static int getCurrentItemHighlightedType
         {
-            get { return memExpbot.readByte(proc.Handle, IntPtr.Add(isItemHighlightedType, 0)); }
+           get { return BitConverter.ToInt32((memExpbot.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))), 0); }
+            /*            get { return BitConverter.ToInt32((memExpbot.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))),0); }
+            get { return memExpbot.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0)); }
+*/
+            //  get { return BitConverter.ToInt32((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset + 1))), 0); }
+
         }
 
         public static void OpenShopWindow()

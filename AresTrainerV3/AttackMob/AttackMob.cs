@@ -9,8 +9,42 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.AttackMob
 {
-    public static class AttackMob
+    public static class AttackMobCollectSod
     {
+        static void WaitForAttackEnd()
+        {
+            Thread.Sleep(50);
+
+            UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
+            // check if not attacking in stuck position
+
+            anywhereUnstucker.UnstuckMove();
+
+            Thread.Sleep(50);
+
+            while (isAttacking())
+            {
+                IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
+                PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
+                pixelSodCollect.ClickAndCollectItem();
+                Debug.WriteLine($"is not StandingAnimation");
+                Thread.Sleep(100);
+            }
+            Thread.Sleep(50);
+            if (isAttacking())
+            {
+                Debug.WriteLine($"!Checked 2 IS STANDING");
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(50);
+            if (isAttacking())
+            {
+                Debug.WriteLine($"!Checked 3 IS STANDING");
+                WaitForAttackEnd();
+            }
+
+        }
+
         public static bool isAttacking()
         {
             if (ProgramHandle.isMobBeingAttacked != -1 && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut 
@@ -32,39 +66,6 @@ namespace AresTrainerV3.AttackMob
             }
             else
                 return false;
-        }
-        static void WaitForAttackEnd()
-        {
-            Thread.Sleep(50);
-
-            UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
-            // check if not attacking in stuck position
-
-            anywhereUnstucker.UnstuckMove();
-
-            Thread.Sleep(50);
-
-            while (isAttacking())
-            {
-                IWhatToCollect _SodCollector = new CollectSodItems();
-                PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
-                pixelSodCollect.ClickAndCollectItem();
-                Debug.WriteLine($"is not StandingAnimation");
-                Thread.Sleep(100);
-            }
-            Thread.Sleep(50);
-            if (isAttacking())
-            {
-                Debug.WriteLine($"!Checked 2 IS STANDING");
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(50);
-            if (isAttacking())
-            {
-                Debug.WriteLine($"!Checked 3 IS STANDING");
-                WaitForAttackEnd();
-            }
-
         }
         static void SkillAttack()
         {

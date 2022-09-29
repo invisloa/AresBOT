@@ -12,7 +12,7 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.getBuff1Informations == 0)
             {
-                if (!AttackMob.AttackMob.isAttacking())
+                if (!AttackMob.AttackMobCollectSod.isAttacking())
                 {
                     KeyPresser.PressKey(4, 100, 100);
                     SkillAssign();

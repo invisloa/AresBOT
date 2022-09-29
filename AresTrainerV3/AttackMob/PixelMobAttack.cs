@@ -30,7 +30,7 @@ namespace AresTrainerV3.AttackMob
 
                     {
                         MouseOperations.SetCursorPosition(x, y);
-                        if (AttackMob.CheckIfSelectedAndAttackSkill())
+                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                         {
                             HealBotAbstract.IsScanRunning = false;
                             GC.Collect();
@@ -51,7 +51,7 @@ namespace AresTrainerV3.AttackMob
 
                     {
                         MouseOperations.SetCursorPosition(x, y);
-                        if (AttackMob.CheckIfSelectedAndAttackSkill())
+                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                         {
                             HealBotAbstract.IsScanRunning = false;
                             GC.Collect();
@@ -72,7 +72,7 @@ namespace AresTrainerV3.AttackMob
 
                     {
                         MouseOperations.SetCursorPosition(x, y);
-                        if (AttackMob.CheckIfSelectedAndAttackSkill())
+                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                         {
                             HealBotAbstract.IsScanRunning = false;
                             GC.Collect();

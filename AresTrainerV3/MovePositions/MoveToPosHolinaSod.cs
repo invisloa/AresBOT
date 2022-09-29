@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MovePositions
 {
-    internal class MoveToPosEtanaExp : MoveToPositionAbstract
+    internal class MoveToPosHolinaSod : MoveToPositionAbstract
     {
 
 
@@ -16,7 +16,7 @@ namespace AresTrainerV3.MovePositions
         {
             get
             {
-                return TeleportValues.Etana;
+                return TeleportValues.Hollina;
             }
 
         }
@@ -27,7 +27,7 @@ namespace AresTrainerV3.MovePositions
             {
                 if (_attackAndCollectItems == null)
                 {
-                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(1600, new CollectSodStonesJewleryItems()));
+                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(1990, new CollectSodJewelery()));
                 }
                 return _attackAndCollectItems;
             }

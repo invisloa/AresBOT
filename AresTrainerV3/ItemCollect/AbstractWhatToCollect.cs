@@ -9,7 +9,25 @@ namespace AresTrainerV3.ItemCollect
 {
     public abstract class AbstractWhatToCollect : IWhatToCollect
     {
-        public abstract bool ClickAndCollectWhatItem();
+        protected const int SOD = -13799;
+        protected const int jewelery = -19435;
+        protected const int stones = -18452;
+
+
+
+        protected abstract bool collectItemValues();
+        public bool ClickAndCollectWhatItem()
+        {
+            if (collectItemValues())
+            {
+
+                if (collectItemValues())
+                {
+                    return CollectionClick();
+                }
+            }
+            return false;
+        }
 
         protected bool CollectionClick()
         {

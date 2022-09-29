@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.ItemCollect
 {
-    public class CollectAllItems : AbstractWhatToCollect
+    internal class CollectSod : AbstractWhatToCollect
     {
         protected override bool collectItemValues()
         {
-            if (ProgramHandle.getCurrentItemHighlightedType != 0)
+            if (ProgramHandle.getCurrentItemHighlightedType == SOD)
+            {
                 return true;
-
+            }
             else
             {
                 return false;
