@@ -516,13 +516,13 @@ namespace AresTrainerV3
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaBuckertyLowExp);
 
 
             HealBotAbstract HealBotToStart = new HealBotHolinaExp();
             HealBotToStart.StartHealBotThread();
 
-            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaSod();
+            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaBuckLowSOD();
             ExpBotTostart.StartExpBotThread();
 
 
@@ -544,7 +544,7 @@ namespace AresTrainerV3
             HealBotAbstract TestHealbotKharonExp = new HealBotHershalSell();
             TestHealbotKharonExp.StartHealBotThread();
 
-            ExpBotManagerAbstract ExpBotTest = new ExpBotHershalSellTurtles();
+            ExpBotManagerAbstract ExpBotTest = new ExpBotHershalSellLeafMages();
             ExpBotTest.StartExpBotThread();
 
 

@@ -10,7 +10,7 @@ namespace AresTrainerV3.ItemCollect
     {
         protected override bool collectItemValues()
         {
-            if (ProgramHandle.getCurrentItemHighlightedType != 0)
+            if (ProgramHandle.isItemHighlightedAtAll != 0)
             {
                 return true;
             }

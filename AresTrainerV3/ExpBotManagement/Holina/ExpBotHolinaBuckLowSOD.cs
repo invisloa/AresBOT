@@ -7,18 +7,51 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.ExpBotManagement.Hershal
+namespace AresTrainerV3.ExpBotManagement.Holina
 {
-    internal class ExpBotHershalSellTurtles : ExpBotManagerAbstract
+    internal class ExpBotHolinaBuckLowSOD : ExpBotManagerAbstract
+    // last time stuck after scroll to city
     {
 
-        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hershal,1990,new CollectAllItems());
+        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hollina, 1990, new CollectSodJewelery());
+
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get
             { return _MoveToPosPlace; }
         }
 
+        /*
+                down max limit
+                    1124179514
+                    right max limit
+                    1135812375,
+
+
+                    right go to
+                    1135440265
+
+
+                    left go to
+                    1133855562
+
+
+                    left max
+                    1133625506
+
+                    DOWN GO TO 1124336732
+
+
+                    up go to 
+                    1125345069
+
+                    up max
+                    1125563371 
+
+
+        telep 1135812375, 1124261475
+
+        */
         public override void RunAndExpSquare()
         {
             int howManyForLoops = 0;
@@ -34,35 +67,26 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1128494225, 1131207739, 1132673292, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1133855562, 1124179514, 1125563371, true);
                         ExpBotClass.ExpBotLog += $"Up Ended current i {i}\n";
                     }
-
                     else if (i == 1)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1132673292, 1127580850, 1132749901, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1125345069, 1133625506, 1135440265, true);
                         ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
                     }
                     else if (i == 2)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1132749901, 1131207739, 1132991835, true);
-
-
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1135440265, 1124179514, 1125563371, true);
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
-
                     }
                     else if (i == 3)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1131662730, 1127580850, 1133161566, true);
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1124536732, 1133625506, 1135812375, true);
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
-
                     }
 
                 }
@@ -72,5 +96,3 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
         }
     }
 }
-
-

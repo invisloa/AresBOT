@@ -843,7 +843,7 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(mobBeingAttackedOffset, PointersAndValues.mobBeingTargeted), 4)), 0); }
         }
-        public static int isItemHighlighted
+        public static int isItemHighlightedAtAll
         {
             get { return BitConverter.ToInt32((memExpbot.readbytes(proc.Handle, IntPtr.Add(itemMouseoverHighlightedOffset, PointersAndValues.MouseoverHighlightedOffset), 4)), 0); }
         }
@@ -1265,10 +1265,6 @@ namespace AresTrainerV3
         public static int getCurrentItemHighlightedType
         {
            get { return BitConverter.ToInt16((memExpbot.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))), 0); }
-            /*            get { return BitConverter.ToInt32((memExpbot.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))),0); }
-            get { return memExpbot.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0)); }
-*/
-            //  get { return BitConverter.ToInt32((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset + 1))), 0); }
 
         }
 

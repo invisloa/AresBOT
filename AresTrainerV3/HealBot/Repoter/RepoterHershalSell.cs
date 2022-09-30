@@ -50,7 +50,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotHershalSellTurtles();
+                    _expBotToStart = new ExpBotHershalSellLeafMages();
                 }
                 return _expBotToStart;
             }

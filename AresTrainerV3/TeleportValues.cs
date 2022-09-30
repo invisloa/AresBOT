@@ -112,21 +112,21 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosSlothFloor2 = new ValueTuple<int, int, int>(1134407858, 1138126219, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
         public static ValueTuple<int, int, int> PosSlothFloor2IceCubeMiddle = new ValueTuple<int, int, int>(1133621892, 1132091306, 0);
-
+        public static Tuple<int, int, int> SacredLandsImpCave = new Tuple<int, int, int>(1129967491, 1142341254, 0);
 
         public static Tuple<int, int, int> ShopHolinaPos = new Tuple<int, int, int>(1132844553, 1137813749, 0);
         public static Tuple<int, int, int> HolinaGoblinsExp = new Tuple<int, int, int>(1128817291, 1130720477, 1090921371);
+        public static Tuple<int, int, int> HolinaBuckertyLowExp = new Tuple<int, int, int>(1135812375, 1124261475, 1090921371);
 
         public static Tuple<int, int, int> SacredlandsAlliExp = new Tuple<int, int, int>(1121665964, 1147452062, 0);
         public static Tuple<int, int, int> SacredlandsAlliShop = new Tuple<int, int, int>(1145707559, 1128361148, 0);
 
         public static Tuple<int, int, int> HershalMagicExp = new Tuple<int, int, int>(1133131594, 1131227739, 1092867852);
 
-
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
 
-
-
+           
+            
     }
 }
