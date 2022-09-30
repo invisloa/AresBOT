@@ -57,7 +57,6 @@ namespace AresTrainerV3.ItemCollect
                     Color currentPixelColor = bitmap.GetPixel(x, y);
                     if ((x < 940 || x > 975 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
-                        Debug.WriteLine("pixel Collect");
                         for (int i = -1; i < 2; i++)
                         {
                             for (int z = -1; z < 2; z++)

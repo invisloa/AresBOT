@@ -11,7 +11,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
         public override void GoBackExp()
         {
             ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
             ProgramHandle.SetCameraForExpBot();
 
         }

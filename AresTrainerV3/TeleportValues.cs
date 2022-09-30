@@ -120,6 +120,9 @@ namespace AresTrainerV3
         public static Tuple<int, int, int> SacredlandsAlliExp = new Tuple<int, int, int>(1121665964, 1147452062, 0);
         public static Tuple<int, int, int> SacredlandsAlliShop = new Tuple<int, int, int>(1145707559, 1128361148, 0);
 
+        public static Tuple<int, int, int> HershalMagicExp = new Tuple<int, int, int>(1133131594, 1131227739, 1092867852);
+
+
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
 

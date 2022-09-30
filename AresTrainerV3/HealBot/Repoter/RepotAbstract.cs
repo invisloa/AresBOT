@@ -28,36 +28,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {get;}
         protected abstract int repotCityCheck
         {get;}
-        bool isNowStandingCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        bool isNowRunningCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcEmpCityF
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliCity
-                )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
+
 
         protected void MouseClickOpenShop()
         {
@@ -67,7 +38,7 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         protected void CheckIfNotRunning()
         {
-            if (!isNowRunningCity())
+            if (!ProgramHandle.isNowRunningCity())
             {
                 Thread.Sleep(15000);
                 KeyPresser.PressKey(6, 200, 200);
@@ -101,14 +72,15 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         public void MoveToRepotWithPositions(Tuple<int, int>[] citySpecificPositions)
         {
+            ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(500);
-            if (!ExpBotClass.isNowRunningCity())
+            if (!ProgramHandle.isNowRunningCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                     MouseOperations.MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2, 10);
                     Thread.Sleep(1000);
-                    while (!isNowStandingCity())
+                    while (!ProgramHandle.isNowStandingCity())
                     {
                         Thread.Sleep(1);
                     }

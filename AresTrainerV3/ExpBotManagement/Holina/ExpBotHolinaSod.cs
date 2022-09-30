@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,12 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.ExpBotManagement.Holina
 {
-    internal class ExpBotHolinaSod : ExpBotManagerAbstract
+    internal class ExpBotHolinaSod : ExpBotManagerAbstract 
+        // last time stuck after scroll to city
     {
 
-        MoveToPosHolinaSod _MoveToPosPlace = new MoveToPosHolinaSod();
+        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hollina, 1990, new CollectSodJewelery());
+
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get

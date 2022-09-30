@@ -122,6 +122,8 @@ namespace AresTrainerV3.Buyer
                     }
                 }
             }
+            KeyPresser.PressEscape();
+            KeyPresser.PressEscape();
 
         }
         int PotionsToBuyCalculator(int howManyPotionsToBe, int HowManyPotionsThereIs)

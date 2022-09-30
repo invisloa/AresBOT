@@ -95,68 +95,6 @@ namespace AresTrainerV3
             MouseOperations.MoveAndLeftClickOperation(580, 565,200);
 
         }
-        public static bool isNowRunningCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcEmpCityF
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliCity
-                )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public static bool isNowRunningOut()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcALLIOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEMPOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationSpearALLIOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationSorcAlliStaffOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationSorcAlliOrbOutside                
-                )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public static bool isNowStandingOut()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOutOrb ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSpearAlliOut
-                )
-            {            
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public static bool isNowStandingCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity 
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity 
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliCity 
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         public static void BuyPotionsFromShopNormalEXP(Tuple<int, int>[] buyPotionsMouseMovePos)
         {
 
@@ -360,13 +298,13 @@ namespace AresTrainerV3
         public static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (!isNowRunningCity())
+            if (!ProgramHandle.isNowRunningCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
                         MouseOperations.MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2, 10);
                         Thread.Sleep(1000);
-                        while (!isNowStandingCity())
+                        while (!ProgramHandle.isNowStandingCity())
                         {
                         Thread.Sleep(1);
                         }
@@ -496,8 +434,7 @@ namespace AresTrainerV3
         static void MoveToPositionWhenNotAttacking( int x,int y)
         {
             Thread.Sleep(50);
-
-            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcALLIOutside && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isRunningAnimationArcEMPOutside)
+            if (!ProgramHandle.isNowRunningOut())
             {
                 Thread.Sleep(5);
                 MouseOperations.SetCursorPosition(x, y);
@@ -521,7 +458,7 @@ namespace AresTrainerV3
 */       public static void MoveIfStandingOut(int x,int y)
         {
 
-            if (isNowStandingOut())
+            if (ProgramHandle.isNowStandingOut())
             {
 
                 moveToPosition(x, y);

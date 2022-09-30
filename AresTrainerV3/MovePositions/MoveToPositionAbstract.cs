@@ -98,7 +98,7 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Up, sideUpOrRightLimit,  ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit,  ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
                         }
                     }
                     return true;
@@ -131,7 +131,7 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Up, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
                         }
                     }
                     return true;
@@ -202,7 +202,7 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Right, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, false);
                         }
                     }
                     return true;

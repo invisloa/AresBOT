@@ -59,7 +59,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             Thread.Sleep(10);
             CheckIfNotRunning();
-            if (ExpBotClass.isNowStandingCity())
+            if (ProgramHandle.isNowStandingCity())
             {
                 ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliShop);
 

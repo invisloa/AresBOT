@@ -22,7 +22,7 @@ namespace AresTrainerV3.AttackMob
 
             Thread.Sleep(50);
 
-            while (isAttacking())
+            while (ProgramHandle.isAttacking())
             {
                 IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
                 PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
@@ -31,13 +31,13 @@ namespace AresTrainerV3.AttackMob
                 Thread.Sleep(100);
             }
             Thread.Sleep(50);
-            if (isAttacking())
+            if (ProgramHandle.isAttacking())
             {
                 Debug.WriteLine($"!Checked 2 IS STANDING");
                 WaitForAttackEnd();
             }
             Thread.Sleep(50);
-            if (isAttacking())
+            if (ProgramHandle.isAttacking())
             {
                 Debug.WriteLine($"!Checked 3 IS STANDING");
                 WaitForAttackEnd();
@@ -45,23 +45,11 @@ namespace AresTrainerV3.AttackMob
 
         }
 
-        public static bool isAttacking()
-        {
-            if (ProgramHandle.isMobBeingAttacked != -1 && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut 
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut 
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliOut 
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOutStaff 
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOutOrb)
-            {
-                return true;
-            }
-            else
-            { return false; }
-        }
         static bool isMobTargeted()
         {
             if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000 && ProgramHandle.isInCity != 1)
             {
+                Debug.WriteLine($"MOB found ");
                 return true;
             }
             else

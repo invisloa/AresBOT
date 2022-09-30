@@ -23,7 +23,7 @@ namespace AresTrainerV3.DoWhileMoving
             {
                 return true;
             }
-            if(ICollector.ClickAndCollectItem())
+            else if(ICollector.ClickAndCollectItem())
             {
                 return true;
             }

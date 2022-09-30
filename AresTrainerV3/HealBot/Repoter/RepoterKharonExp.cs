@@ -60,7 +60,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             Thread.Sleep(1000);
             CheckIfNotRunning();
-            if (ExpBotClass.isNowStandingCity())
+            if (ProgramHandle.isNowStandingCity())
             {
                 Thread.Sleep(10000);
                 ProgramHandle.SetCameraLong();
@@ -69,7 +69,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 Thread.Sleep(1000);
 
                 MouseOperations.MoveAndLeftClickOperation(1125, 253, 500);
-                while (!ExpBotClass.isNowStandingCity())
+                while (!ProgramHandle.isNowStandingCity())
                 {
                     Thread.Sleep(1);
                 }

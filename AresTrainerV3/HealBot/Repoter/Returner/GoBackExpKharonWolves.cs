@@ -17,7 +17,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
             ProgramHandle.SetCameraForExpBot();
 
-            while (!ExpBotClass.isNowRunningOut())
+            while (!ProgramHandle.isNowRunningOut())
             {
                 Thread.Sleep(1);
             }
@@ -27,7 +27,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
         {
             ProgramHandle.SetCameraLong();
             MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
-            while (!ExpBotClass.isNowRunningOut())
+            while (!ProgramHandle.isNowRunningOut())
             {
                 Thread.Sleep(1);
             }
@@ -36,9 +36,9 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             for (int i = 0; i < 2 + randomizer.Next(3); i++)
             {
                 MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(100), 10);
-                while (ExpBotClass.isNowRunningOut())
+                while (ProgramHandle.isNowRunningOut())
                 {
-                    ExpBotClass.isNowRunningOut();
+                    ProgramHandle.isNowRunningOut();
                 }
 
 
@@ -50,7 +50,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
         public override void GoBackExp()
         {
             MouseOperations.MoveAndLeftClickOperation(800+randomizer.Next(-20,20), 295+randomizer.Next(-40,100), 400);
-            while (!ExpBotClass.isNowStandingCity())
+            while (!ProgramHandle.isNowStandingCity())
             {
                 Thread.Sleep(1);
             }

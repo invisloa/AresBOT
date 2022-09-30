@@ -1,4 +1,6 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.ExpBotManagement;
+using AresTrainerV3.ExpBotManagement.Hershal;
 using AresTrainerV3.ExpBotManagement.Kharon;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
@@ -48,7 +50,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotKharonWolvesExp();
+                    _expBotToStart = new ExpBotHershalSellTurtles();
                 }
                 return _expBotToStart;
             }
@@ -58,7 +60,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             Thread.Sleep(1000);
             CheckIfNotRunning();
-            if (ExpBotClass.isNowStandingCity())
+            if (ProgramHandle.isNowStandingCity())
             {
                 for (int i = 0; i < 20; i++)
                 {

@@ -77,7 +77,7 @@ namespace AresTrainerV3.HealBot
             }
             else
             {
-                hpHealValue = myCurrentHp - 340;
+                hpHealValue = myCurrentHp - 300;
             }
         }
         void setMannaRestoreValue()
@@ -137,17 +137,6 @@ namespace AresTrainerV3.HealBot
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
                 ExpBotManagerAbstract.RequestStartStopExpBot();
-            }
-        }
-        protected bool isNowStandingCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliCity || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
 

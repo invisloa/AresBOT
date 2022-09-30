@@ -33,7 +33,7 @@ namespace AresTrainerV3.Unstuck
 
         void MouseClickFromPosition()
         {
-            if (ExpBotClass.isNowStandingOut())
+            if (ProgramHandle.isNowStandingOut())
             {
                 int movefromPositionRandomizer = random.Next(tempUnstuckMousePositions.Length);
                 MouseOperations.MoveAndLeftClickOperation(tempUnstuckMousePositions[movefromPositionRandomizer].Item1, tempUnstuckMousePositions[movefromPositionRandomizer].Item2, 15);
