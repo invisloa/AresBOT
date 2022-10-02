@@ -57,7 +57,7 @@ namespace AresTrainerV3.HealBot.Repoter
 
         protected override void MoveToRepot()
         {
-            Thread.Sleep(10);
+            Thread.Sleep(100);
             CheckIfNotRunning();
             ProgramHandle.SetCameraForExpBot();
             if (ProgramHandle.isNowStandingCity())
