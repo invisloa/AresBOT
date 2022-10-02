@@ -57,6 +57,8 @@
             this.ItemsSell = new System.Windows.Forms.Button();
             this.OpenStorageBTN = new System.Windows.Forms.Button();
             this.Tester = new System.Windows.Forms.Button();
+            this.SetWindowPos = new System.Windows.Forms.Button();
+            this.teleport = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -296,7 +298,7 @@
             // 
             // TestingThread
             // 
-            this.TestingThread.Location = new System.Drawing.Point(606, 404);
+            this.TestingThread.Location = new System.Drawing.Point(308, 413);
             this.TestingThread.Name = "TestingThread";
             this.TestingThread.Size = new System.Drawing.Size(101, 23);
             this.TestingThread.TabIndex = 26;
@@ -306,7 +308,7 @@
             // 
             // FastTestBTN
             // 
-            this.FastTestBTN.Location = new System.Drawing.Point(357, 396);
+            this.FastTestBTN.Location = new System.Drawing.Point(47, 422);
             this.FastTestBTN.Name = "FastTestBTN";
             this.FastTestBTN.Size = new System.Drawing.Size(75, 23);
             this.FastTestBTN.TabIndex = 27;
@@ -336,7 +338,7 @@
             // 
             // Tester
             // 
-            this.Tester.Location = new System.Drawing.Point(44, 407);
+            this.Tester.Location = new System.Drawing.Point(47, 383);
             this.Tester.Name = "Tester";
             this.Tester.Size = new System.Drawing.Size(75, 23);
             this.Tester.TabIndex = 30;
@@ -344,11 +346,33 @@
             this.Tester.UseVisualStyleBackColor = true;
             this.Tester.Click += new System.EventHandler(this.Tester_Click_1);
             // 
+            // SetWindowPos
+            // 
+            this.SetWindowPos.Location = new System.Drawing.Point(683, 12);
+            this.SetWindowPos.Name = "SetWindowPos";
+            this.SetWindowPos.Size = new System.Drawing.Size(105, 23);
+            this.SetWindowPos.TabIndex = 31;
+            this.SetWindowPos.Text = "SetWindowPos";
+            this.SetWindowPos.UseVisualStyleBackColor = true;
+            this.SetWindowPos.Click += new System.EventHandler(this.SetWindowPos_Click);
+            // 
+            // teleport
+            // 
+            this.teleport.Location = new System.Drawing.Point(683, 62);
+            this.teleport.Name = "teleport";
+            this.teleport.Size = new System.Drawing.Size(75, 23);
+            this.teleport.TabIndex = 32;
+            this.teleport.Text = "teleport";
+            this.teleport.UseVisualStyleBackColor = true;
+            this.teleport.Click += new System.EventHandler(this.teleport_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.teleport);
+            this.Controls.Add(this.SetWindowPos);
             this.Controls.Add(this.Tester);
             this.Controls.Add(this.OpenStorageBTN);
             this.Controls.Add(this.ItemsSell);
@@ -418,5 +442,7 @@
         private Button ItemsSell;
         private Button OpenStorageBTN;
         private Button Tester;
+        private Button SetWindowPos;
+        private Button teleport;
     }
 }

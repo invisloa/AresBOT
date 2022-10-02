@@ -529,19 +529,12 @@ namespace AresTrainerV3
         }
         private void FastTestBTN_Click(object sender, EventArgs e)
         {
-
-
-
             ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
-
-
-
-
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
 
-            HealBotAbstract TestHealbotKharonExp = new HealBotHershalSell();
+            HealBotAbstract TestHealbotKharonExp = new HealBotHershalExp();
             TestHealbotKharonExp.StartHealBotThread();
 
             ExpBotManagerAbstract ExpBotTest = new ExpBotHershalSellLeafMages();
@@ -647,5 +640,19 @@ namespace AresTrainerV3
 
         }
 
+        private void SetWindowPos_Click(object sender, EventArgs e)
+        {
+            MouseOperations.SetCursorPosition(446, 129);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            MouseOperations.SetCursorPosition(446, 133);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+
+        }
+
+        private void teleport_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredLandsImpCave);
+
+        }
     }
 }

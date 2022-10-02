@@ -224,7 +224,7 @@ namespace AresTrainerV3.HealBot
         {
             if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 8) // if less then 5 use key 6 which is teleport
                 {
-                KeyPresser.PressKey(1, 200, 200);
+                KeyPresser.PressKey(1, 100, 100);
                 }
             else
                 {
@@ -240,7 +240,7 @@ namespace AresTrainerV3.HealBot
             {
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
-                    KeyPresser.PressKey(2, 200, 200);
+                    KeyPresser.PressKey(2, 100, 100);
                 }
                 else
                 {

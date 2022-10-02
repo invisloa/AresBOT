@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot
 {
-    internal class HealBotHershalSell : HealBotAbstract
+    internal class HealBotHershalExp : HealBotAbstract
     {
 
         protected override IGoRepot RepoterCity
@@ -15,7 +15,7 @@ namespace AresTrainerV3.HealBot
             get
             {
                 if (_repoterCity == null)
-                { _repoterCity = new RepoterHershalSell(); }
+                { _repoterCity = new RepoterHershalExp(); }
                 return _repoterCity;
             }
         }

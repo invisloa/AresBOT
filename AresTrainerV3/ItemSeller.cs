@@ -633,9 +633,10 @@ namespace AresTrainerV3
         public static void MoveAndLeftClickToSellAll()
         {
             Debug.WriteLine("Check if selll window is open");
-            Thread.Sleep(100);
+            Thread.Sleep(150);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
+                Thread.Sleep(100);
                 Debug.WriteLine("window open sell item left click");
                 MouseOperations.SetCursorPosition(560, 570);
                 Thread.Sleep(50);

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterHershalSell : RepotAbstract
+    internal class RepoterHershalExp : RepotAbstract
     {
         protected override GoBackExpAbstract GoBackExpPlace
         {
@@ -31,7 +31,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_buyerPotionsCity == null)
                 {
-                    _buyerPotionsCity = new BuyerPotionsHershalSeller();
+                    _buyerPotionsCity = new BuyerPotionsHershalExp();
                 }
                 return _buyerPotionsCity;
             }
