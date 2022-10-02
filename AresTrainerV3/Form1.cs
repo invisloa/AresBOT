@@ -642,9 +642,17 @@ namespace AresTrainerV3
 
         private void SetWindowPos_Click(object sender, EventArgs e)
         {
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(1000);
             MouseOperations.SetCursorPosition(446, 129);
+            Thread.Sleep(300);
+
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(300);
+
             MouseOperations.SetCursorPosition(446, 133);
+            Thread.Sleep(300);
+
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 
         }
