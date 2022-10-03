@@ -1327,12 +1327,7 @@ namespace AresTrainerV3
 
         public static bool isAttacking()
         {
-            if (ProgramHandle.isMobBeingAttacked != -1 &&
-                ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliOut
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpOut
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliOut
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOutStaff
-                && ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliOutOrb)
+            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
             {
                 return true;
             }

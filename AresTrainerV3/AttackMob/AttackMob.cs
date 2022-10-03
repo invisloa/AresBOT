@@ -14,6 +14,8 @@ namespace AresTrainerV3.AttackMob
         static void WaitForAttackEnd()
         {
             Thread.Sleep(50);
+            IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
+            PixelItemCollector pixelSodCollect = new PixelItemCollector(1900, _SodCollector);
 
             UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
             // check if not attacking in stuck position
@@ -24,8 +26,6 @@ namespace AresTrainerV3.AttackMob
 
             while (ProgramHandle.isAttacking())
             {
-                IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
-                PixelItemCollector pixelSodCollect = new PixelItemCollector(1895, _SodCollector);
                 pixelSodCollect.ClickAndCollectItem();
                 Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);

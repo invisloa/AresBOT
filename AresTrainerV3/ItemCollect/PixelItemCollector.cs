@@ -24,12 +24,13 @@ namespace AresTrainerV3.ItemCollect
         {
             if (ProgramHandle.getCurrentWeight < _weightLimit && ProgramHandle.isInCity != 1)
             {
-                PixelScan(_whatToCollect);
+                return PixelScan(_whatToCollect);
             }
             else if (ProgramHandle.isInCity != 1)
             {
-                PixelScan(_SodCollector);
+                return PixelScan(_SodCollector);
             }
+
             GC.Collect();
             HealBotAbstract.IsScanRunning = false;
             return false;
