@@ -27,7 +27,7 @@ namespace AresTrainerV3.MovePositions
             {
                 if (_attackAndCollectItems == null)
                 {
-                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(1990, new CollectSodStonesJewleryItems()));
+                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
                 }
                 return _attackAndCollectItems;
             }

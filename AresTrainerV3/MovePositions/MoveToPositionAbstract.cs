@@ -25,17 +25,18 @@ namespace AresTrainerV3.MovePositions
 
         void MoveMouseClickNoCheckStanding(int x, int y)
         {
+
+            // Moves When Standing
+            if (ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.isNowStandingOut())
+            {
+                mouseClickToMove(x, y);
+            }
+/*            // Moves  in a loop even when not standing
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
                 mouseClickToMove(x, y);
             }
-            // Bot Moved only when standing now it moves just so even when not standing
-/*            if (ExpBotClass.isNowStandingOut())
-            {
 
-                mouseClickToMove(x, y);
-
-            }
 */        }
         static void mouseClickToMove(int x, int y)
         {

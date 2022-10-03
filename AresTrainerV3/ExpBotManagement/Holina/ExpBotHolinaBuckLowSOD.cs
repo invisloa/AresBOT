@@ -13,7 +13,7 @@ namespace AresTrainerV3.ExpBotManagement.Holina
     // last time stuck after scroll to city
     {
 
-        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hollina, 1990, new CollectSodJewelery());
+        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hollina, new CollectSodJewelery());
 
         public override MoveToPositionAbstract MoveToPosPlace
         {

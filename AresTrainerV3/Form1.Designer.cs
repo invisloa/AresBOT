@@ -59,6 +59,7 @@
             this.Tester = new System.Windows.Forms.Button();
             this.SetWindowPos = new System.Windows.Forms.Button();
             this.teleport = new System.Windows.Forms.Button();
+            this.TestMethod = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -366,11 +367,22 @@
             this.teleport.UseVisualStyleBackColor = true;
             this.teleport.Click += new System.EventHandler(this.teleport_Click);
             // 
+            // TestMethod
+            // 
+            this.TestMethod.Location = new System.Drawing.Point(632, 401);
+            this.TestMethod.Name = "TestMethod";
+            this.TestMethod.Size = new System.Drawing.Size(91, 23);
+            this.TestMethod.TabIndex = 33;
+            this.TestMethod.Text = "TestMethod";
+            this.TestMethod.UseVisualStyleBackColor = true;
+            this.TestMethod.Click += new System.EventHandler(this.TestMethod_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.TestMethod);
             this.Controls.Add(this.teleport);
             this.Controls.Add(this.SetWindowPos);
             this.Controls.Add(this.Tester);
@@ -444,5 +456,6 @@
         private Button Tester;
         private Button SetWindowPos;
         private Button teleport;
+        private Button TestMethod;
     }
 }

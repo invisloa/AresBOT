@@ -12,7 +12,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
     internal class ExpBotHershalSellLeafMages : ExpBotManagerAbstract
     {
 
-        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hershal,1900,new CollectAllItems());
+        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hershal,new CollectAllItems());
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get

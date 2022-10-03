@@ -46,8 +46,10 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         public void GoRepot()
         {
-            Thread.Sleep(5000);
-
+            Thread.Sleep(2000);
+            // Set Weight limit back to the original state if player found changed it to not to collect items@
+            PixelItemCollector.weightLimitCollect = 1900;
+            Thread.Sleep(2000);
             ProgramHandle.SetCameraForExpBot();
 
             if (isCurrentCity == repotCityCheck)

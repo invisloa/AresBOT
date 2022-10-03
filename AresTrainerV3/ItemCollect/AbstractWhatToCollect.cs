@@ -12,15 +12,12 @@ namespace AresTrainerV3.ItemCollect
         protected const int SOD = -13799;
         protected const int jewelery = -19435;
         protected const int stones = -18452;
-
-
-
         protected abstract bool collectItemValues();
         public bool ClickAndCollectWhatItem()
         {
             if (collectItemValues())
             {
-                Thread.Sleep(200);
+                Thread.Sleep(10);
                 if (collectItemValues())
                 {
                     return CollectionClick();
@@ -34,7 +31,7 @@ namespace AresTrainerV3.ItemCollect
             Debug.WriteLine("Collect");
 
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(50);
+            Thread.Sleep(10);
             //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(5);

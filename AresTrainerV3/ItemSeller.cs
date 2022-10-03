@@ -146,7 +146,7 @@ namespace AresTrainerV3
 
         public static bool isItemHighValue(int stat1, int stat2)
         {
-            int hightValueMainStats = 7;
+            int hightValueMainStats = 10;
 
             int Mp = 0;
             int Agi = 0;
@@ -633,7 +633,7 @@ namespace AresTrainerV3
         public static void MoveAndLeftClickToSellAll()
         {
             Debug.WriteLine("Check if selll window is open");
-            Thread.Sleep(150);
+            Thread.Sleep(250);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
                 Thread.Sleep(100);
@@ -648,9 +648,10 @@ namespace AresTrainerV3
             }
 
             Debug.WriteLine("Check if high value");
-            Thread.Sleep(50);
+            Thread.Sleep(250);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
+                Thread.Sleep(100);
                 Debug.WriteLine("high value item click once more");
                 MouseOperations.SetCursorPosition(560, 570);
                 Thread.Sleep(50);
@@ -692,7 +693,6 @@ namespace AresTrainerV3
                         Thread.Sleep(500);
                     }
                     ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
-                    Thread.Sleep(50);
                     MoveAndLeftClickToSellAll();
                 }
             }

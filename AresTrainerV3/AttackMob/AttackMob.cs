@@ -13,9 +13,10 @@ namespace AresTrainerV3.AttackMob
     {
         static void WaitForAttackEnd()
         {
+
             Thread.Sleep(50);
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
-            PixelItemCollector pixelSodCollect = new PixelItemCollector(1900, _SodCollector);
+            PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 
             UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
             // check if not attacking in stuck position
@@ -47,6 +48,11 @@ namespace AresTrainerV3.AttackMob
 
         static bool isMobTargeted()
         {
+            if (ProgramHandle.isMobSelected > 8300000 && ProgramHandle.isInCity != 1)
+            {
+                PixelItemCollector.weightLimitCollect = 3000;
+                Debug.WriteLine($"Player Found");
+            }
             if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000 && ProgramHandle.isInCity != 1)
             {
                 Debug.WriteLine($"MOB found ");

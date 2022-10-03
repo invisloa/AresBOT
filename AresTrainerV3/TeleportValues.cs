@@ -106,13 +106,15 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosKharonPlateuSlothEntrace = new ValueTuple<int, int, int>(1147968991, 1148469361, 1097859072);
         public static ValueTuple<int, int, int> PosKharonPlateuGardionEntrace = new ValueTuple<int, int, int>(1108850452, 1148542857, 1121408142);
         public static ValueTuple<int, int, int> PosSlothFloor1 = new ValueTuple<int, int, int>(1136295936, 1118437376, 1097859072);
-        public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar1 = new ValueTuple<int, int, int>(1129762520, 1134509410, 1101089181);
-        public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar2 = new ValueTuple<int, int, int>(1132962719, 1131670265, 1102053376);
-        public static ValueTuple<int, int, int> PosSlothFloor1BossBulgar3 = new ValueTuple<int, int, int>(1134395149, 1135955773, 1097859072);
+        public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar1 = new ValueTuple<int, int, int>(1129762520, 1134509410, 1101089181);
+        public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar2 = new ValueTuple<int, int, int>(1132962719, 1131670265, 1102053376);
+        public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar3 = new ValueTuple<int, int, int>(1134395149, 1135955773, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor2 = new ValueTuple<int, int, int>(1134407858, 1138126219, 1097859072);
-        public static ValueTuple<int, int, int> PosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
-        public static ValueTuple<int, int, int> PosSlothFloor2IceCubeMiddle = new ValueTuple<int, int, int>(1133621892, 1132091306, 0);
-        public static Tuple<int, int, int> SacredLandsImpCave = new Tuple<int, int, int>(1129967491, 1142341254, 0);
+        public static ValueTuple<int, int, int> MiniPosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
+        public static ValueTuple<int, int, int> MiniPosSlothFloor2IceCubeMiddle = new ValueTuple<int, int, int>(1133621892, 1132091306, 0);
+
+        public static Tuple<int, int, int> MiniSacredLandsImpCave = new Tuple<int, int, int>(1129967491, 1142341254, 0);
+        public static Tuple<int, int, int> MiniHershalTurtle = new Tuple<int, int, int>(1144459024, 1142613273, 1065554544);
 
         public static Tuple<int, int, int> ShopHolinaPos = new Tuple<int, int, int>(1132844553, 1137813749, 0);
         public static Tuple<int, int, int> HolinaGoblinsExp = new Tuple<int, int, int>(1128817291, 1130720477, 1090921371);
@@ -123,6 +125,9 @@ namespace AresTrainerV3
 
         public static Tuple<int, int, int> HershalMagicExp = new Tuple<int, int, int>(1133131594, 1131227739, 1092867852);
 
+
+
+
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
 
@@ -130,3 +135,6 @@ namespace AresTrainerV3
             
     }
 }
+
+    
+    

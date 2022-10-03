@@ -11,24 +11,24 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
-        IWhatToCollect _whatToCollect { get;}
-        IWhatToCollect _SodCollector = new CollectSodStonesJewleryItems();
+        public static int weightLimitCollect = 1900;
 
-       int _weightLimit { get;}
-        public PixelItemCollector(int weightLiftLimit, IWhatToCollect whatToCollect)
+        IWhatToCollect _whatToCollect { get;}
+        IWhatToCollect _SodJeweleryCollector = new CollectSodJewelery();
+
+        public PixelItemCollector(IWhatToCollect whatToCollect)
         {
-            _weightLimit = weightLiftLimit;
             _whatToCollect = whatToCollect;
         }
         bool ScanAndCollect()
         {
-            if (ProgramHandle.getCurrentWeight < _weightLimit && ProgramHandle.isInCity != 1)
+            if (ProgramHandle.getCurrentWeight < weightLimitCollect && ProgramHandle.isInCity != 1)
             {
                 return PixelScan(_whatToCollect);
             }
             else if (ProgramHandle.isInCity != 1)
             {
-                return PixelScan(_SodCollector);
+                return PixelScan(_SodJeweleryCollector);
             }
 
             GC.Collect();
@@ -50,7 +50,31 @@ namespace AresTrainerV3.ItemCollect
 
             Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
 
-            // Increased for collecting so it dont scan mob window top left
+            for (int x = 800; x < 1120; x++)
+            {
+                for (int y = 360; y < 680; y++)
+                {
+                    Color currentPixelColor = bitmap.GetPixel(x, y);
+                    if ((x < 940 || x > 975 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
+                    {
+                        for (int i = -1; i < 2; i++)
+                        {
+                            for (int z = -1; z < 2; z++)
+                            {
+                                MouseOperations.SetCursorPosition(x + i, y + z);
+                                if (whatToCollect.ClickAndCollectWhatItem())
+                                {
+                                    HealBotAbstract.IsScanRunning = false;
+                                    Debug.WriteLine("EndCollect");
+                                    GC.Collect();
+                                    return true;
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
             for (int x = 550; x < 1360; x++)
             {
                 for (int y = 290; y < 835; y++)

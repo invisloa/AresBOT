@@ -542,102 +542,6 @@ namespace AresTrainerV3
 
 
 
-            /*            Random randomizer = new Random();
-                        ProgramHandle.SetCameraLong();
-                        MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
-                        while (!ExpBotClass.isNowRunningOut())
-                        {
-                            Thread.Sleep(1);
-                        }
-                        ProgramHandle.SetCameraForExpBot();
-
-                        for (int i = 0; i < 2 + randomizer.Next(3); i++)
-                        {
-                            MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(100), 10);
-                            while (ExpBotClass.isNowRunningOut())
-                            {
-                                ExpBotClass.isNowRunningOut();
-                            }
-
-
-                        }
-                        ProgramHandle.SetCameraForExpBot();
-                        Debug.WriteLine("GoBackExp zakończone");
-            */
-
-            /*            IGoRepot RepoterTest = new RepoterKharonExp();
-                        RepoterTest.GoRepot();
-            */
-
-
-            /*            ExpBotHolinaSod HolinaBot1 = new ExpBotHolinaSod();
-                        ExpBotHolinaSod.RequestStopExpBot();
-
-                        HolinaBot1.RunAndExpSquare();
-
-            */
-
-
-
-            /*            ExpBotUWC UwcBot = new ExpBotUWC();
-                        UwcBot.RequestStopMoveExpBot();
-
-                        UwcBot.RunAndExpSquare();
-            */
-
-
-
-            /*            MoveToPosAnywhereTest positionTest = new MoveToPosAnywhereTest();
-                        positionTest.RequestStopMoveToPosition();
-
-                        positionTest.MoveToPosition(DirectionsEnum.Right, 1136854179, 1129911628, 1128386630);
-            */
-            /*            PixelItemCollector CollectAllTest = new PixelItemCollector(2000, new CollectAllItems());
-
-                        while (true)
-                        {              
-                            PixelMobAttack.AttackSkillMobWhenSelected();
-
-
-                            CollectAllTest.ScanAndCollect();
-                        }
-
-            */
-
-
-
-
-
-
-
-            /*            MoveToPosAnywhereTest moveToPosAnywhereTest = new MoveToPosAnywhereTest();
-                        moveToPosAnywhereTest.RequestStopMoveToPosition();
-                        moveToPosAnywhereTest.MoveToPosition(DirectionsEnum.Left, 1134528093, 1126844462 + 500000, 1126844462 - 500000);
-            */
-            /*            PixelCollectDrop PixelTest = new PixelCollectDrop();
-                        PixelTest.ScanAndCollect(2000, true, true, testUnstucker as IUnstuckPosition);
-            */           // empSacredGoLeft.MoveToPosition();
-                         //ExpBotClass.ScanAndCollectClickLeftOnhighlightedForNow();
-            /*            BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
-                        buyerPotionsHershalExp.BuyPotions();
-            */
-            /*            if(ProgramHandle.isCurrentSkill() == 3)
-                        {
-                            Debug.WriteLine("jest");
-                        }
-                        if (ProgramHandle.isCurrentSkillTabNr() == 1)
-                        {
-                            Debug.WriteLine("jest2");
-                        }
-            */
-            //ProgramHandle.SetCameraForExpBot();
-            //ProgramHandle.MannaKeyPressKharonSell();
-            // ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-            // ExpBotClass.WalkIntoUWC();
-
-            /// ExpBotClass.SellItems();
-            /// 
-
         }
 
         private void SetWindowPos_Click(object sender, EventArgs e)
@@ -659,7 +563,16 @@ namespace AresTrainerV3
 
         private void teleport_Click(object sender, EventArgs e)
         {
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredLandsImpCave);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.MiniHershalTurtle);
+
+        }
+
+        private void TestMethod_Click(object sender, EventArgs e)
+        {
+            if (ProgramHandle.isItemHighlightedAtAll != 0)
+            {
+                int i = 0;
+            }
 
         }
     }

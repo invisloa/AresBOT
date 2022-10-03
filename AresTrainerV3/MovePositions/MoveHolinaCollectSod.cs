@@ -20,7 +20,7 @@ namespace AresTrainerV3.MovePositions
 
         }
 
-        protected override DoWhileMoving.IDoWhileMoving AttackAndCollectItems => new DoScanAttackCollect(new PixelItemCollector(1899, new CollectSodStonesJewleryItems()));
+        protected override DoWhileMoving.IDoWhileMoving AttackAndCollectItems => new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
 
     }
 }

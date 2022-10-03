@@ -729,13 +729,13 @@ namespace AresTrainerV3
 
         public static void MoveAndRightClickOperation(int xPos, int yPos)
         {
-            Thread.Sleep(50);
+            Thread.Sleep(150);
             MouseOperations.SetCursorPosition(xPos, yPos);
             Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
             Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(50);
+            Thread.Sleep(100);
         }
 
 

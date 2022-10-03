@@ -12,12 +12,10 @@ namespace AresTrainerV3.MovePositions
     {
         int _whereToMoveOnly;
 
-        int _collectFromWhatWeight;
         AbstractWhatToCollect _whatToCollect;
-        public MoveToPosALL(int CityToMove, int collectFromWhatWeight, AbstractWhatToCollect whatToCollect)
+        public MoveToPosALL(int CityToMove, AbstractWhatToCollect whatToCollect)
         {
             _whereToMoveOnly = CityToMove;
-            _collectFromWhatWeight = collectFromWhatWeight;
             _whatToCollect = whatToCollect;
 
         }
@@ -36,7 +34,7 @@ namespace AresTrainerV3.MovePositions
             {
                 if (_attackAndCollectItems == null)
                 {
-                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(_collectFromWhatWeight, _whatToCollect));
+                    _attackAndCollectItems = new DoScanAttackCollect(new PixelItemCollector(_whatToCollect));
                 }
                 return _attackAndCollectItems;
             }
