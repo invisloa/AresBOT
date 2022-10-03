@@ -569,11 +569,10 @@ namespace AresTrainerV3
 
         private void TestMethod_Click(object sender, EventArgs e)
         {
-            if (ProgramHandle.isItemHighlightedAtAll != 0)
+            if (ProgramHandle.getCurrentItemHighlightedType == AbstractWhatToCollect.SOD)
             {
                 int i = 0;
             }
-
         }
     }
 }
