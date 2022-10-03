@@ -164,6 +164,18 @@ namespace AresTrainerV3
             int MageEmpPower = 0;
             int MageAlliPower = 0;
             int Gedel = 0;
+            int Mizaph = 0;
+
+            #region Mizaph++
+            if (stat1 == 120)
+            {
+                Mizaph += 1;
+            }
+            else if (stat1 == 121)
+            {
+                Mizaph += 2;
+            }
+            #endregion
 
 
             #region Agility++
@@ -278,26 +290,26 @@ namespace AresTrainerV3
             {
                 Con += 9;
             }
-         // Dalphon
+            // Dalphon
             if (stat2 == 10)
             {
-            Con += 2;
+                Con += 2;
             }
             else if (stat2 == 11)
             {
-            Con += 4;
+                Con += 4;
             }
             else if (stat2 == 12)
             {
-            Con += 6;
+                Con += 6;
             }
             else if (stat2 == 13)
             {
-            Con += 8;
+                Con += 8;
             }
             else if (stat2 == 14)
             {
-            Con += 10;
+                Con += 10;
             }
             #endregion
 
@@ -453,7 +465,7 @@ namespace AresTrainerV3
                 MageEmpPower += 60;
             }
             // Fire
-            if ( stat1 == 35)
+            if (stat1 == 35)
             {
                 MageAlliPower += 10;
             }
@@ -569,7 +581,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Gedel > 8 && (Agi>7 || Mp>7 || Con >7))
+            else if (Gedel > 8 && (Agi > 7 || Mp > 7 || Con > 7))
             {
                 return true;
             }
@@ -577,7 +589,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (MageAlliPower > 80 || MageEmpPower >80)
+            else if (MageAlliPower > 80 || MageEmpPower > 80)
             {
                 return true;
             }
@@ -593,7 +605,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Sihon>35)
+            else if (Sihon > 35)
             {
                 return true;
             }
@@ -601,11 +613,23 @@ namespace AresTrainerV3
             {
                 return true;
             }
+            else if (Mizaph > 0 && (Mp > 3||Con>3||Agi>3))
+            {
+                return true;
+            }
+            else if (Mizaph>1)
+            {
+                return true;
+            }
             else return false;
         }
         public static bool isItemSaleType(int typeAdress)
         {
-            if(typeAdress == 187)
+            if(typeAdress == 187)// arrows
+            {
+                return false;
+            }
+            if (typeAdress == 544) // dolomite
             {
                 return false;
             }
@@ -633,7 +657,7 @@ namespace AresTrainerV3
         public static void MoveAndLeftClickToSellAll()
         {
             Debug.WriteLine("Check if selll window is open");
-            Thread.Sleep(250);
+            Thread.Sleep(100);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
                 Thread.Sleep(100);
@@ -648,7 +672,7 @@ namespace AresTrainerV3
             }
 
             Debug.WriteLine("Check if high value");
-            Thread.Sleep(250);
+            Thread.Sleep(350);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
                 Thread.Sleep(100);

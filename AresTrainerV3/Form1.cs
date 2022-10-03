@@ -516,13 +516,13 @@ namespace AresTrainerV3
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaBuckertyLowExp);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
 
 
             HealBotAbstract HealBotToStart = new HealBotHolinaExp();
             HealBotToStart.StartHealBotThread();
 
-            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaBuckLowSOD();
+            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaSod();
             ExpBotTostart.StartExpBotThread();
 
 
@@ -569,11 +569,12 @@ namespace AresTrainerV3
 
         private void TestMethod_Click(object sender, EventArgs e)
         {
-            if (ProgramHandle.isItemHighlightedAtAll != 0)
+            while (true)
             {
-                int i = 0;
+                ProgramHandle.SetGameAsMainWindow();
+                PixelItemCollector zzz = new PixelItemCollector(new CollectAllItems());
+                zzz.ClickAndCollectItem();
             }
-
         }
     }
 }

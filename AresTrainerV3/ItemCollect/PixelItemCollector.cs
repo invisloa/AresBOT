@@ -14,7 +14,7 @@ namespace AresTrainerV3.ItemCollect
         public static int weightLimitCollect = 1900;
 
         IWhatToCollect _whatToCollect { get;}
-        IWhatToCollect _SodJeweleryCollector = new CollectSodJewelery();
+        IWhatToCollect CollectIgnoringWeight = new CollectSodJewelery();
 
         public PixelItemCollector(IWhatToCollect whatToCollect)
         {
@@ -28,7 +28,7 @@ namespace AresTrainerV3.ItemCollect
             }
             else if (ProgramHandle.isInCity != 1)
             {
-                return PixelScan(_SodJeweleryCollector);
+                return PixelScan(CollectIgnoringWeight);
             }
 
             GC.Collect();
@@ -61,7 +61,7 @@ namespace AresTrainerV3.ItemCollect
                         {
                             for (int z = -1; z < 2; z++)
                             {
-                                MouseOperations.SetCursorPosition(x + i, y + z);
+                                MouseOperations.SetCursorPosition(x + 3*i, y + 3*z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     HealBotAbstract.IsScanRunning = false;
