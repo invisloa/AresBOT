@@ -36,6 +36,7 @@ namespace AresTrainerV3.ItemCollect
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(5);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(500);
             while (!ProgramHandle.isNowStandingOut())
             {
                 Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
