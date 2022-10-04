@@ -17,7 +17,6 @@ namespace AresTrainerV3.ItemCollect
         {
             if (collectItemValues())
             {
-                Thread.Sleep(10);
                 if (collectItemValues())
                 {
                     return CollectionClick();
@@ -29,19 +28,28 @@ namespace AresTrainerV3.ItemCollect
         protected bool CollectionClick()
         {
             Debug.WriteLine("Collect");
-
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(10);
-            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(5);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(500);
-            while (!ProgramHandle.isNowStandingOut())
+            if (collectItemValues())
             {
-                Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
+                Thread.Sleep(5);
+                if (collectItemValues())
+                {
+
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+                    Thread.Sleep(50);
+                    //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    Thread.Sleep(500);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+                    while (!ProgramHandle.isNowStandingOut())
+                    {
+                        Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
+                    }
+                    return true;
+                }
+                else return false;
+
             }
-            return true;
+            else return false;
         }
 
     }

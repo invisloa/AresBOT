@@ -22,15 +22,16 @@ namespace AresTrainerV3.Unstuck
             {
                 return StuckPositionValues.AllianceSacredLandsExpObstacles;
             }
+            else if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+            {
+                return StuckPositionValues.Hershal;
+            }
 
 
             else return StuckPositionValues.AnywhereTestObstacles;
-            
+
 
         }
-
-
-
         // CReator for making new Obstacles so it would be easier
         public static Tuple<int, int, int, int> ObstacleCreator(int XposStart, int YposStart, int XposEnd, int YposEnd)
         {
@@ -80,5 +81,17 @@ namespace AresTrainerV3.Unstuck
             {
                 ObstacleCreator(1113168276, 1110655170, 1114290348, 1111837250)
             };
-        }
+        public static Tuple<int, int, int, int>[] Hershal = new Tuple<int, int, int, int>[]
+            {
+                ObstacleCreator(1129282659, 1132719312, 1129570096, 1132866500),
+                ObstacleCreator(1130869378, 1132740366, 1131297197, 1132938008),
+            };
+    }
+
+
+
+
+            
+
+
 }

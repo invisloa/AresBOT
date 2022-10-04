@@ -245,7 +245,9 @@ namespace Utilities {
 
         #region DLL imports
         /// <summary>
-        /// Sets the windows hook, do the desired event, one of hInstance or threadId must be non-null
+        /// Sets the windows hook, do the 
+		/// 
+		/// event, one of hInstance or threadId must be non-null
         /// </summary>
         /// <param name="idHook">The id of the event you want to hook</param>
         /// <param name="callback">The callback.</param>

@@ -14,7 +14,7 @@ namespace AresTrainerV3.ItemCollect
         public static int weightLimitCollect = 1900;
 
         IWhatToCollect _whatToCollect { get;}
-        IWhatToCollect _SodJeweleryCollector = new CollectSodJewelery();
+        IWhatToCollect CollectIgnoringWeight = new CollectSodJewelery();
 
         public PixelItemCollector(IWhatToCollect whatToCollect)
         {
@@ -28,7 +28,7 @@ namespace AresTrainerV3.ItemCollect
             }
             else if (ProgramHandle.isInCity != 1)
             {
-                return PixelScan(_SodJeweleryCollector);
+                return PixelScan(CollectIgnoringWeight);
             }
 
             GC.Collect();
@@ -43,13 +43,14 @@ namespace AresTrainerV3.ItemCollect
 
         bool PixelScan(IWhatToCollect whatToCollect)
         {
+            Debug.WriteLine("Start PixelScan");
+
             HealBotAbstract.IsScanRunning = true;
             Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             Graphics graphics = Graphics.FromImage(bitmap as Image);
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
-
             for (int x = 800; x < 1120; x++)
             {
                 for (int y = 360; y < 680; y++)
@@ -61,12 +62,14 @@ namespace AresTrainerV3.ItemCollect
                         {
                             for (int z = -1; z < 2; z++)
                             {
-                                MouseOperations.SetCursorPosition(x + i, y + z);
+                                MouseOperations.SetCursorPosition(x + 3*i, y + 3*z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     HealBotAbstract.IsScanRunning = false;
                                     Debug.WriteLine("EndCollect");
                                     GC.Collect();
+                                    Debug.WriteLine("1 Pixel for");
+
                                     return true;
                                 }
                             }
@@ -74,7 +77,7 @@ namespace AresTrainerV3.ItemCollect
 
                     }
                 }
-            }
+            } 
             for (int x = 550; x < 1360; x++)
             {
                 for (int y = 290; y < 835; y++)
@@ -86,10 +89,12 @@ namespace AresTrainerV3.ItemCollect
                         {
                             for (int z = -1; z < 2; z++)
                             {
-                                MouseOperations.SetCursorPosition(x + i, y + z);
+                                MouseOperations.SetCursorPosition(x + 3 * i, y + 3 * z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     HealBotAbstract.IsScanRunning = false;
+                                    Debug.WriteLine("2 Pixel for");
+
                                     Debug.WriteLine("EndCollect");
                                     GC.Collect();
                                     return true;
@@ -100,6 +105,8 @@ namespace AresTrainerV3.ItemCollect
                     }
                 }
             }
+            Debug.WriteLine("Pixel False");
+
             GC.Collect();
             HealBotAbstract.IsScanRunning = false;
             return false;
