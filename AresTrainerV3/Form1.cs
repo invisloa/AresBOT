@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManagement.Etana;
 using AresTrainerV3.ExpBotManagement.Hershal;
@@ -516,13 +517,13 @@ namespace AresTrainerV3
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(599);
             ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaBuckertyLowExp);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
 
 
             HealBotAbstract HealBotToStart = new HealBotHolinaExp();
             HealBotToStart.StartHealBotThread();
 
-            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaBuckLowSOD();
+            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaSod();
             ExpBotTostart.StartExpBotThread();
 
 
@@ -569,7 +570,17 @@ namespace AresTrainerV3
 
         private void TestMethod_Click(object sender, EventArgs e)
         {
- 
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(500);
+            ProgramHandle.SetCameraForExpBot();
+            Thread.Sleep(500);
+
+            DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
+            while(true)
+            {
+                zzz.DoThisWhileMoving();
+            }
+
 
         }
     }
