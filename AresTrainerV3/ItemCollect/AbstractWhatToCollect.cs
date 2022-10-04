@@ -30,7 +30,7 @@ namespace AresTrainerV3.ItemCollect
             Debug.WriteLine("Collect");
             if (collectItemValues())
             {
-                Thread.Sleep(50);
+                Thread.Sleep(5);
                 if (collectItemValues())
                 {
 
