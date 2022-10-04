@@ -38,7 +38,7 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         protected void CheckIfNotRunning()
         {
-            if (!ProgramHandle.isNowRunningCity())
+            if (ProgramHandle.isNowRunningCity())
             {
                 Thread.Sleep(15000);
                 KeyPresser.PressKey(6, 200, 200);
@@ -46,10 +46,10 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         public void GoRepot()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
             // Set Weight limit back to the original state if player found changed it to not to collect items@
             PixelItemCollector.weightLimitCollect = 1900;
-            Thread.Sleep(2000);
+            Thread.Sleep(500);
             ProgramHandle.SetCameraForExpBot();
 
             if (isCurrentCity == repotCityCheck)

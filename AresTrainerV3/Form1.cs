@@ -576,7 +576,10 @@ namespace AresTrainerV3
             Thread.Sleep(500);
 
             DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
-            while(zzz.DoThisWhileMoving());
+            while(true)
+            {
+                zzz.DoThisWhileMoving();
+            }
 
 
         }

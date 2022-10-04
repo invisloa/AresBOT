@@ -688,7 +688,6 @@ namespace AresTrainerV3
         }
 
         #region OldSellItems
- 
         public static void SellItemsMouseMove()
         {
             ItemSeller.itemArrayPositionsInitialize();
@@ -696,7 +695,7 @@ namespace AresTrainerV3
             ItemsForSaleListGenerate();
             Thread.Sleep(50);
             ProgramHandle.OpenShopWindow();
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
 
             MouseOperations.MoveAndLeftClickOperation(1235, 570, 100);  // Open Inventory Tab 1
             Thread.Sleep(300);
@@ -721,10 +720,6 @@ namespace AresTrainerV3
                 }
             }
         }
-
-
-
-
         #endregion
 
         public static void NewSellItems()

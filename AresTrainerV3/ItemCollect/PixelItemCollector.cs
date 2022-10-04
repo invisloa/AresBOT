@@ -43,6 +43,8 @@ namespace AresTrainerV3.ItemCollect
 
         bool PixelScan(IWhatToCollect whatToCollect)
         {
+            Debug.WriteLine("Start PixelScan");
+
             HealBotAbstract.IsScanRunning = true;
             Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             Graphics graphics = Graphics.FromImage(bitmap as Image);
@@ -66,6 +68,8 @@ namespace AresTrainerV3.ItemCollect
                                     HealBotAbstract.IsScanRunning = false;
                                     Debug.WriteLine("EndCollect");
                                     GC.Collect();
+                                    Debug.WriteLine("1 Pixel for");
+
                                     return true;
                                 }
                             }
@@ -89,6 +93,8 @@ namespace AresTrainerV3.ItemCollect
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     HealBotAbstract.IsScanRunning = false;
+                                    Debug.WriteLine("2 Pixel for");
+
                                     Debug.WriteLine("EndCollect");
                                     GC.Collect();
                                     return true;
@@ -99,6 +105,8 @@ namespace AresTrainerV3.ItemCollect
                     }
                 }
             }
+            Debug.WriteLine("Pixel False");
+
             GC.Collect();
             HealBotAbstract.IsScanRunning = false;
             return false;
