@@ -89,7 +89,7 @@ namespace AresTrainerV3.ItemCollect
                         {
                             for (int z = -1; z < 2; z++)
                             {
-                                MouseOperations.SetCursorPosition(x + 3 * i, y + 3 * z);
+                                MouseOperations.SetCursorPosition(x + 2 * i, y + 2 * z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     HealBotAbstract.IsScanRunning = false;
