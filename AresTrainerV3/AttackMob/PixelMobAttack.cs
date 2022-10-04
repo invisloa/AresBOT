@@ -17,61 +17,61 @@ namespace AresTrainerV3.AttackMob
 
         public static bool AttackSkillMobWhenSelected()
         {
-            HealBotAbstract.IsScanRunning = true;
-            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-
-            for (int x = 800; x < 1120; x++)
+            if (ProgramHandle.isInCity != 1)
             {
+                HealBotAbstract.IsScanRunning = true;
+                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
-                for (int y = 360; y < 680; y++)
+                for (int x = 800; x < 1120; x++)
                 {
-                    Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
 
+                    for (int y = 360; y < 680; y++)
                     {
-                        MouseOperations.SetCursorPosition(x, y);
-                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                        Color currentPixelColor = bitmap.GetPixel(x, y);
+                        if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+
                         {
-                            HealBotAbstract.IsScanRunning = false;
-                            GC.Collect();
-                            return true;
+                            MouseOperations.SetCursorPosition(x, y);
+                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                            {
+                                HealBotAbstract.IsScanRunning = false;
+                                GC.Collect();
+                                return true;
+                            }
                         }
                     }
                 }
-            }
-            for (int x = 700; x < 1220; x++)
-            {
-
-                for (int y = 260; y < 780; y++)
+                for (int x = 700; x < 1220; x++)
                 {
 
-
-                    Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
-
+                    for (int y = 260; y < 780; y++)
                     {
-                        MouseOperations.SetCursorPosition(x, y);
-                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+
+
+                        Color currentPixelColor = bitmap.GetPixel(x, y);
+                        if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+
                         {
-                            HealBotAbstract.IsScanRunning = false;
-                            GC.Collect();
-                            return true;
+                            MouseOperations.SetCursorPosition(x, y);
+                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                            {
+                                HealBotAbstract.IsScanRunning = false;
+                                GC.Collect();
+                                return true;
+                            }
                         }
                     }
                 }
-            }
-            for (int x = 527; x < 1360; x++)
-            {
-
-                for (int y = 237; y < 835; y++)
+                for (int x = 527; x < 1360; x++)
                 {
 
-
-                    Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 938 || x > 976 || y < 502 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
-
+                    for (int y = 237; y < 835; y++)
                     {
-                        MouseOperations.SetCursorPosition(x, y);
+
+
+                        Color currentPixelColor = bitmap.GetPixel(x, y);
+                        if ((x < 938 || x > 976 || y < 502 || y > 540) && /*SAFE ZONE SIGN REMOVE FROM SCAN*/((x > 1450 && x < 1335) && (y < 285 && y > 305))/*SAFE ZONE SIGN REMOVE FROM SCAN*/&& currentPixelColor == PointersAndValues.blackPixelColor)
+                            MouseOperations.SetCursorPosition(x, y);
                         if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                         {
                             HealBotAbstract.IsScanRunning = false;

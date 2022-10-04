@@ -49,7 +49,6 @@ namespace AresTrainerV3.ItemCollect
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
-
             for (int x = 800; x < 1120; x++)
             {
                 for (int y = 360; y < 680; y++)
@@ -74,7 +73,7 @@ namespace AresTrainerV3.ItemCollect
 
                     }
                 }
-            }
+            } 
             for (int x = 550; x < 1360; x++)
             {
                 for (int y = 290; y < 835; y++)
@@ -86,7 +85,7 @@ namespace AresTrainerV3.ItemCollect
                         {
                             for (int z = -1; z < 2; z++)
                             {
-                                MouseOperations.SetCursorPosition(x + i, y + z);
+                                MouseOperations.SetCursorPosition(x + 3 * i, y + 3 * z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     HealBotAbstract.IsScanRunning = false;

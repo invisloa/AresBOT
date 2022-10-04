@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManagement.Etana;
 using AresTrainerV3.ExpBotManagement.Hershal;
@@ -569,12 +570,15 @@ namespace AresTrainerV3
 
         private void TestMethod_Click(object sender, EventArgs e)
         {
-            while (true)
-            {
-                ProgramHandle.SetGameAsMainWindow();
-                PixelItemCollector zzz = new PixelItemCollector(new CollectAllItems());
-                zzz.ClickAndCollectItem();
-            }
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(500);
+            ProgramHandle.SetCameraForExpBot();
+            Thread.Sleep(500);
+
+            DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
+            while(zzz.DoThisWhileMoving());
+
+
         }
     }
 }
