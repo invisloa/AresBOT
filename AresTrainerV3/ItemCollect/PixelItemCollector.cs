@@ -56,7 +56,7 @@ namespace AresTrainerV3.ItemCollect
                 for (int y = 360; y < 680; y++)
                 {
                     Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 940 || x > 975 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
+                    if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
                         for (int i = -1; i < 2; i++)
                         {
@@ -83,7 +83,7 @@ namespace AresTrainerV3.ItemCollect
                 for (int y = 290; y < 835; y++)
                 {
                     Color currentPixelColor = bitmap.GetPixel(x, y);
-                    if ((x < 940 || x > 975 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
+                    if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
                         for (int i = -1; i < 2; i++)
                         {

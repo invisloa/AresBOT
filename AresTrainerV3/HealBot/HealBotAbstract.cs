@@ -238,6 +238,12 @@ namespace AresTrainerV3.HealBot
         protected void MannaKeyPress()
         {
             {
+                if(ProgramHandle.getCurrentWeight>1900)
+                {
+                    teleportToCityAndStopExpBot();
+
+                    RepoterCity.GoRepot();
+                }
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 100);
