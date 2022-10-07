@@ -30,7 +30,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_buyerPotionsCity == null)
                 {
-                    _buyerPotionsCity = new BuyerPotionSacredLandsAlliance();
+                    _buyerPotionsCity = new BuyerFromForm();
                 }
                 return _buyerPotionsCity;
             }

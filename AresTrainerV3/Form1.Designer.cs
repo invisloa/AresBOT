@@ -64,9 +64,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.HpToBuy = new System.Windows.Forms.TextBox();
+            this.MpToBuy = new System.Windows.Forms.TextBox();
+            this.SpeedPot = new System.Windows.Forms.TextBox();
+            this.BuyMaxHp = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -420,38 +421,52 @@
             this.label11.TabIndex = 37;
             this.label11.Text = "BuyMax";
             // 
-            // textBox2
+            // HpToBuy
             // 
-            this.textBox2.Location = new System.Drawing.Point(461, 89);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(36, 23);
-            this.textBox2.TabIndex = 38;
-            this.textBox2.Text = "1000";
+            this.HpToBuy.Location = new System.Drawing.Point(461, 89);
+            this.HpToBuy.Name = "HpToBuy";
+            this.HpToBuy.Size = new System.Drawing.Size(36, 23);
+            this.HpToBuy.TabIndex = 38;
+            this.HpToBuy.Text = "0";
+            this.HpToBuy.TextChanged += new System.EventHandler(this.HpToBuy_TextChanged);
             // 
-            // textBox3
+            // MpToBuy
             // 
-            this.textBox3.Location = new System.Drawing.Point(503, 89);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(36, 23);
-            this.textBox3.TabIndex = 39;
-            this.textBox3.Text = "1000";
+            this.MpToBuy.Location = new System.Drawing.Point(503, 89);
+            this.MpToBuy.Name = "MpToBuy";
+            this.MpToBuy.Size = new System.Drawing.Size(36, 23);
+            this.MpToBuy.TabIndex = 39;
+            this.MpToBuy.Text = "0";
+            this.MpToBuy.TextChanged += new System.EventHandler(this.MpToBuy_TextChanged);
             // 
-            // textBox4
+            // SpeedPot
             // 
-            this.textBox4.Location = new System.Drawing.Point(559, 89);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(18, 23);
-            this.textBox4.TabIndex = 40;
-            this.textBox4.Text = "1000";
+            this.SpeedPot.Location = new System.Drawing.Point(559, 89);
+            this.SpeedPot.Name = "SpeedPot";
+            this.SpeedPot.Size = new System.Drawing.Size(18, 23);
+            this.SpeedPot.TabIndex = 40;
+            this.SpeedPot.Text = "0";
+            this.SpeedPot.TextChanged += new System.EventHandler(this.SpeedPot_TextChanged);
+            // 
+            // BuyMaxHp
+            // 
+            this.BuyMaxHp.AutoSize = true;
+            this.BuyMaxHp.Location = new System.Drawing.Point(622, 93);
+            this.BuyMaxHp.Name = "BuyMaxHp";
+            this.BuyMaxHp.Size = new System.Drawing.Size(15, 14);
+            this.BuyMaxHp.TabIndex = 41;
+            this.BuyMaxHp.UseVisualStyleBackColor = true;
+            this.BuyMaxHp.CheckedChanged += new System.EventHandler(this.BuyMaxHp_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.BuyMaxHp);
+            this.Controls.Add(this.SpeedPot);
+            this.Controls.Add(this.MpToBuy);
+            this.Controls.Add(this.HpToBuy);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
@@ -535,8 +550,9 @@
         private Label label9;
         private Label label10;
         private Label label11;
-        private TextBox textBox2;
-        private TextBox textBox3;
-        private TextBox textBox4;
+        private TextBox HpToBuy;
+        private TextBox MpToBuy;
+        private TextBox SpeedPot;
+        private CheckBox BuyMaxHp;
     }
 }

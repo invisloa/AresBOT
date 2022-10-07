@@ -9,6 +9,11 @@ namespace AresTrainerV3.Buyer
 {
     public abstract class BuyerPotions : IBuyerPotionsFromShop
     {
+        public static int HpPotionsToBuy = 100;
+        public static int MpPotionsToBuy = 100;
+        public static int SpeedPotionsToBuy = 10;
+        public static bool BuyMaxPotions = false;
+
         void ClickOkWhenBuying()
         {
             MouseOperations.MoveAndLeftClickOperation(560, 570, 300);

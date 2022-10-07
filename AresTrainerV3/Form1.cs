@@ -94,20 +94,20 @@ namespace AresTrainerV3
             gkh.HookedKeys.Add(Keys.F6);
             gkh.HookedKeys.Add(Keys.F8);
             gkh.HookedKeys.Add(Keys.F9);
-           //
-           //SUBSCRIBE globalKeyboardHook.
-           //
+            //
+            //SUBSCRIBE globalKeyboardHook.
+            //
             gkh.KeyF2Down += StartHealBotThreadNormal;
-            gkh.KeyF3Down += StartHolinaGoblinsBot; 
+            gkh.KeyF3Down += StartHolinaGoblinsBot;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
-            gkh.KeyF4Down += ShowIfOnOrOff; 
+            gkh.KeyF4Down += ShowIfOnOrOff;
             gkh.KeyF5Down += ProgramHandle.Teleporting;
             gkh.KeyF6Down += AttackWhenMobSelectedThread;
             gkh.KeyF6Down += ShowIfOnOrOff;
             //gkh.KeyF3Down += StartKoHitThread;
-           // gkh.KeyF3Down += TemporatyThreadMoveMethod;
-            
+            // gkh.KeyF3Down += TemporatyThreadMoveMethod;
+
             gkh.KeyF9Down += ShowIfOnOrOff;
         }
 
@@ -312,13 +312,13 @@ namespace AresTrainerV3
 
         private void StartNormalBtn_Click(object sender, EventArgs e)
         {
-           // StartNormalAttack();
+            // StartNormalAttack();
         }
 
 
 
 
-       private void textBox1_TextChanged(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
         }
 
@@ -334,7 +334,7 @@ namespace AresTrainerV3
         private void HPValueTextBox_TextChanged(object sender, EventArgs e)
         {
             int i = 100;
-            int.TryParse(HPValueTextBox.Text,out i);
+            int.TryParse(HPValueTextBox.Text, out i);
             ProgramHandle.hpHealValue = i;
         }
 
@@ -373,18 +373,18 @@ namespace AresTrainerV3
 
             }
 
-/*            if (!BitmapCreator.isStopPixelAttack)
-            {
-                button2.Text = "OFF";
-                button2.BackColor = Color.Gray;
-            }
-            else
-            {
-                button2.Text = "ON";
-                button2.BackColor = Color.Yellow;
+            /*            if (!BitmapCreator.isStopPixelAttack)
+                        {
+                            button2.Text = "OFF";
+                            button2.BackColor = Color.Gray;
+                        }
+                        else
+                        {
+                            button2.Text = "ON";
+                            button2.BackColor = Color.Yellow;
 
-            }
-*/
+                        }
+            */
             if (!ExpBotClass.isStopMoveExpBot)
             {
                 button3.Text = "OFF";
@@ -411,19 +411,20 @@ namespace AresTrainerV3
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             System.Environment.Exit(1); // terminate all procesess when closing the form
-/*            gkh = null;
-            if (ProgramHandle.isStopHeal)
-            {
-                ProgramHandle.RequestStopHealBot();
-            }
+            /*            gkh = null;
+                        if (ProgramHandle.isStopHeal)
+                        {
+                            ProgramHandle.RequestStopHealBot();
+                        }
 
-            ProgramHandle.Request1hitKOBot();
+                        ProgramHandle.Request1hitKOBot();
 
-            if (ProgramHandle.isStopHeal)
-            {
-                ProgramHandle.RequestStopHealBot();
-            }
-*/        }
+                        if (ProgramHandle.isStopHeal)
+                        {
+                            ProgramHandle.RequestStopHealBot();
+                        }
+            */
+        }
 
         private void MouseScannerBtn_Click(object sender, EventArgs e)
         {
@@ -461,7 +462,7 @@ namespace AresTrainerV3
         {
 
             ProgramHandle.SetCameraForExpBot();
-            if(!ProgramHandle.isStopHeal)
+            if (!ProgramHandle.isStopHeal)
             {
                 StartHealBotThreadExpBoTUWC();
             }
@@ -482,7 +483,7 @@ namespace AresTrainerV3
 
 
             //ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-          }
+        }
 
         private void TestingThread_Click(object sender, EventArgs e)
         {
@@ -499,11 +500,11 @@ namespace AresTrainerV3
             ItemSeller.SellItemsMouseMove();
 
 
-/*            foreach (var item in ItemSeller.itemsForSaleList)
-            {
-                Debug.WriteLine($"{item.ToString()}");
-            }
-*/
+            /*            foreach (var item in ItemSeller.itemsForSaleList)
+                        {
+                            Debug.WriteLine($"{item.ToString()}");
+                        }
+            */
         }
         private void OpenStorageBTN_Click(object sender, EventArgs e)
         {
@@ -576,12 +577,49 @@ namespace AresTrainerV3
             Thread.Sleep(500);
 
             DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
-            while(true)
+            while (true)
             {
                 zzz.DoThisWhileMoving();
             }
 
 
+        }
+
+        private void HpToBuy_TextChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            int.TryParse(HpToBuy.Text, out i);
+            BuyerPotions.HpPotionsToBuy = i;
+        }
+
+        private void MpToBuy_TextChanged(object sender, EventArgs e)
+        {
+            {
+                int i = 0;
+                int.TryParse(MpToBuy.Text, out i);
+                BuyerPotions.MpPotionsToBuy = i;
+
+            }
+        }
+
+        private void SpeedPot_TextChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            int.TryParse(SpeedPot.Text, out i);
+            BuyerPotions.SpeedPotionsToBuy = i;
+
+        }
+
+        private void BuyMaxHp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (BuyMaxHp.Checked)
+            {
+                BuyerPotions.BuyMaxPotions = true;
+            }
+            else
+            {
+                BuyerPotions.BuyMaxPotions = false;
+            }
         }
     }
 }

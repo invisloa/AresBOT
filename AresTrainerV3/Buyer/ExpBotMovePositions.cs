@@ -8,6 +8,34 @@ namespace AresTrainerV3.Buyer
 {
     public static class ExpBotMovePositionsValues
     {
+
+
+        public static Tuple<int, int>[] ShopBuyingPositionAssigner()
+        {
+            if (ProgramHandle.GetCurrentMap == TeleportValues.AllianceSacredLand)
+            {
+                return mousePositionsForSacredLandsBuying;
+            }
+            else if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+            {
+                if (PointersAndValues.isNostalgia == true)
+                { return mousePositionsForHershalBuying; }
+                else
+                {
+                    return mousePositionsForHershalBuyingEOA;
+                }
+            }
+            else if (ProgramHandle.GetCurrentMap == TeleportValues.Hollina)
+            {
+                return mousePositionsForHolinaBuying;
+            }
+            else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
+            {
+                return mousePositionsForKharonBuying;
+            }
+            else 
+                return new Tuple<int, int>[0];
+        }
         public static Tuple<int, int>[] mousePositionsForHershalBuying = new Tuple<int, int>[]
         {
                     new Tuple<int, int>(995, 270),  //mana pot (S)
