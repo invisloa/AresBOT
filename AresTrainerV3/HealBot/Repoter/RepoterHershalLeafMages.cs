@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterHershalExp : RepotAbstract
+    internal class RepoterHershalLeafMages : RepotAbstract
     {
         protected override GoBackExpAbstract GoBackExpPlace
         {

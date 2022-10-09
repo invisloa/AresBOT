@@ -146,7 +146,7 @@ namespace AresTrainerV3
 
         public static bool isItemHighValue(int stat1, int stat2)
         {
-            int hightValueMainStats = 10;
+            int hightValueMainStats = 12;
 
             int Mp = 0;
             int Agi = 0;
@@ -537,7 +537,7 @@ namespace AresTrainerV3
             #endregion
 
             #region Luck
-            // Gedel
+            // Luck
             if (stat2 == 97)
             {
                 Luck += 10;
@@ -593,11 +593,11 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Td > 10 && StrikingPower > 60)
+            else if (Td > 15 && StrikingPower > 60)
             {
                 return true;
             }
-            else if (Justus > 10 && StrikingPower > 60)
+            else if (Justus > 20 && StrikingPower > 60)
             {
                 return true;
             }
@@ -609,7 +609,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Luck > 15)
+            else if (Luck > 25)
             {
                 return true;
             }

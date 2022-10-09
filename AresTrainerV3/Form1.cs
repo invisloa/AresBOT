@@ -68,7 +68,7 @@ namespace AresTrainerV3
         static Thread expBotMoveThread = new Thread(ThreadExpBotUWC);
 
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
-
+        HealBotAbstract HealbotToRun;
 
         globalKeyboardHook gkh = new globalKeyboardHook();
 
@@ -150,6 +150,19 @@ namespace AresTrainerV3
             }
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                HealBotAbstract.SelfSetHealValue = true;
+            }
+            else
+            {
+                HealBotAbstract.SelfSetHealValue = false;
+
+            }
+
+        }
 
 
         public static void StartHealBotThreadExpBoTUWC()
@@ -317,6 +330,46 @@ namespace AresTrainerV3
 
 
 
+        private void HpToBuy_TextChanged(object sender, EventArgs e)
+        {
+            if (HpToBuy.Text != "0")
+            {
+                BuyerPotions.BuyFromForm = true;
+            }
+            int i = 0;
+            int.TryParse(HpToBuy.Text, out i);
+            BuyerPotions.HpPotionsToBuy = i;
+        }
+
+        private void MpToBuy_TextChanged(object sender, EventArgs e)
+        {
+            {
+                int i = 0;
+                int.TryParse(MpToBuy.Text, out i);
+                BuyerPotions.MpPotionsToBuy = i;
+
+            }
+        }
+
+        private void SpeedPot_TextChanged(object sender, EventArgs e)
+        {
+            int i = 0;
+            int.TryParse(SpeedPot.Text, out i);
+            BuyerPotions.SpeedPotionsToBuy = i;
+
+        }
+
+        private void BuyMaxHp_CheckedChanged(object sender, EventArgs e)
+        {
+            if (BuyMaxHp.Checked)
+            {
+                BuyerPotions.BuyMaxPotions = true;
+            }
+            else
+            {
+                BuyerPotions.BuyMaxPotions = false;
+            }
+        }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
@@ -333,17 +386,17 @@ namespace AresTrainerV3
 
         private void HPValueTextBox_TextChanged(object sender, EventArgs e)
         {
+
             int i = 100;
             int.TryParse(HPValueTextBox.Text, out i);
-            ProgramHandle.hpHealValue = i;
+            HealBotAbstract.HpHealValue = i;
         }
 
         private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
         {
             int i = ProgramHandle.MannaRestoreValue;
             int.TryParse(MannaValueTextBox.Text, out i);
-            ProgramHandle.MannaRestoreValue = i;
-
+            HealBotAbstract.MpRestoreValue = i;
         }
 
         void ShowIfOnOrOff()
@@ -510,42 +563,6 @@ namespace AresTrainerV3
         {
             ProgramHandle.OpenStorageWindow();
         }
-
-
-
-        private void Tester_Click_1(object sender, EventArgs e)
-        {
-            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(599);
-            ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
-
-
-            HealBotAbstract HealBotToStart = new HealBotHolinaExp();
-            HealBotToStart.StartHealBotThread();
-
-            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaSod();
-            ExpBotTostart.StartExpBotThread();
-
-
-        }
-        private void FastTestBTN_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
-            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(599);
-            ProgramHandle.SetCameraForExpBot();
-
-            HealBotAbstract TestHealbotKharonExp = new HealBotHershalExp();
-            TestHealbotKharonExp.StartHealBotThread();
-
-            ExpBotManagerAbstract ExpBotTest = new ExpBotHershalSellLeafMages();
-            ExpBotTest.StartExpBotThread();
-
-
-
-        }
-
         private void SetWindowPos_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetGameAsMainWindow();
@@ -573,6 +590,10 @@ namespace AresTrainerV3
         {
             ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(500);
+            ISelectSkill Rebuffer = SkillSelector.SelectPropperClass();
+            Rebuffer.Rebuff();
+/*            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(500);
             ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(500);
 
@@ -581,45 +602,92 @@ namespace AresTrainerV3
             {
                 zzz.DoThisWhileMoving();
             }
+*/
+
+        }
+
+
+
+        private void Tester_Click_1(object sender, EventArgs e)
+        {
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
+
+
+            HealbotToRun = new HealBotHolinaExp();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTostart = new ExpBotHolinaSod();
+            ExpBotTostart.StartExpBotThread();
+
+
+        }
+        private void FastTestBTN_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotHershalExp();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTest = new ExpBotHershalSellLeafMages();
+            ExpBotTest.StartExpBotThread();
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliExp);
+            //ProgramHandle.TeleportToPosition(1142406013, 1134435082, 0);
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotSacredAlli();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTest = new ExpBotSacredAlliExp();
+            ExpBotTest.StartExpBotThread();
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+            ExpBotClass.WalkIntoUWC();
+
+            HealbotToRun = new HealBotUWC();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTest = new ExpBotUWC();
+            ExpBotTest.StartExpBotThread();
 
 
         }
 
-        private void HpToBuy_TextChanged(object sender, EventArgs e)
+        private void SellItemsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            int i = 0;
-            int.TryParse(HpToBuy.Text, out i);
-            BuyerPotions.HpPotionsToBuy = i;
-        }
-
-        private void MpToBuy_TextChanged(object sender, EventArgs e)
-        {
+            if(SellItemsCheckBox.Checked)
             {
-                int i = 0;
-                int.TryParse(MpToBuy.Text, out i);
-                BuyerPotions.MpPotionsToBuy = i;
-
-            }
-        }
-
-        private void SpeedPot_TextChanged(object sender, EventArgs e)
-        {
-            int i = 0;
-            int.TryParse(SpeedPot.Text, out i);
-            BuyerPotions.SpeedPotionsToBuy = i;
-
-        }
-
-        private void BuyMaxHp_CheckedChanged(object sender, EventArgs e)
-        {
-            if (BuyMaxHp.Checked)
-            {
-                BuyerPotions.BuyMaxPotions = true;
+                HealBotAbstract.SellItems = true;
+                checkBox1.Checked = false;
             }
             else
             {
-                BuyerPotions.BuyMaxPotions = false;
+                HealBotAbstract.SellItems = false;
             }
+        }
+
+        private void NumberOfCollectScans_TextChanged(object sender, EventArgs e)
+        {
+            int i = 1;
+            int.TryParse(NumberOfCollectScans.Text, out i);
+            DoScanAttackCollect.NumberOfCollectScans = i;
         }
     }
 }

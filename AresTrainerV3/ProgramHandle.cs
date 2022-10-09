@@ -153,7 +153,7 @@ namespace AresTrainerV3
         }
         public static int GetCurrentPositionShort
         {
-            get { return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset+1))), 0); }
+            get { return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset + 1))), 0); }
         }
 
 
@@ -161,6 +161,11 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0); }
         }
+        public static int GetSkillDelay
+        {
+            get { return BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skillDelayShortPointer))), 0); }
+        }
+
 
         public static byte isCurrentClassSelected
         {

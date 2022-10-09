@@ -169,7 +169,7 @@ public static class PointersAndValues
     public const int cameraDistancePointer = 0x19c;
     public const int cameraAngleYPointer = 0x1b6;
     public const int cameraAngleXPointer = 0x1a0;
-    public const int skillDelayPointer = 0x802;
+    public const int skillDelayShortPointer = 0x806;
     public const int clickDelayPointer = 0xb2e;
     public const int runSpeedOffset = 0xb8e;
     public const int mapNumberOffset = 0x5a8;
@@ -211,15 +211,27 @@ public static class PointersAndValues
 
 
 
-    
-    
+    // Class
+    public const int ClassKnight = 0;
+    public const int ClassArcher = 1;
+    public const int ClassSorcerer = 2;
+    public const int ClassSpear= 3;
+
+
     // values
     public const int runSpeedNormalValue = 16859264;
     public const int runSpeedWhitePotValue = 16859315;
     public const int attackSpeedSpearImp = 1070945622;
     public const int attackSpeedSpearImpBos = 1073741824;
     public const int attackSpeednormalValueBow = 1070945622;
-    public const int attackSpeedKishValueBow= 1073741824;
+    public const int attackSpeedKishValueBow = 1073741824;
+    public const int castingSpeeDelaydZero = 16256;
+    public const int castingSpeedDelayPlus1 = 16230;
+    public const int castingSpeedDelayPlus2 = 16204;
+
+    
+    
+    
     public const int cameraDistanceAnimValue = 1127253120;
     public const int cameraDistanceBotValue = 1112599680;
     public const int cameraFogValue = 18000;

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter.Returner
 {
-    internal class GoBackExpHershalTeleport : GoBackExpAbstract
+    internal class GoBackExpUWC : GoBackExpAbstract
     {
         public override void GoBackExp()
         {
-            ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
-            ProgramHandle.SetCameraForExpBot();
+            ExpBotClass.WalkIntoUWC();
         }
+
     }
 }

@@ -68,11 +68,18 @@
             this.MpToBuy = new System.Windows.Forms.TextBox();
             this.SpeedPot = new System.Windows.Forms.TextBox();
             this.BuyMaxHp = new System.Windows.Forms.CheckBox();
+            this.button4 = new System.Windows.Forms.Button();
+            this.UWCThread = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.SellItemsCheckBox = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.NumberOfCollectScans = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
             // 
-            this.StartHealbotBTN.Location = new System.Drawing.Point(166, 328);
+            this.StartHealbotBTN.Location = new System.Drawing.Point(316, 273);
             this.StartHealbotBTN.Name = "StartHealbotBTN";
             this.StartHealbotBTN.Size = new System.Drawing.Size(93, 50);
             this.StartHealbotBTN.TabIndex = 0;
@@ -88,7 +95,7 @@
             "Spearman",
             "Mage",
             "Knight"});
-            this.ClassChangeComboBox.Location = new System.Drawing.Point(497, 24);
+            this.ClassChangeComboBox.Location = new System.Drawing.Point(738, 137);
             this.ClassChangeComboBox.Name = "ClassChangeComboBox";
             this.ClassChangeComboBox.Size = new System.Drawing.Size(121, 23);
             this.ClassChangeComboBox.TabIndex = 1;
@@ -97,7 +104,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(497, 6);
+            this.label1.Location = new System.Drawing.Point(738, 119);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 15);
             this.label1.TabIndex = 2;
@@ -162,7 +169,7 @@
             // 
             // HPValueTextBox
             // 
-            this.HPValueTextBox.Location = new System.Drawing.Point(477, 266);
+            this.HPValueTextBox.Location = new System.Drawing.Point(480, 295);
             this.HPValueTextBox.Name = "HPValueTextBox";
             this.HPValueTextBox.Size = new System.Drawing.Size(100, 23);
             this.HPValueTextBox.TabIndex = 11;
@@ -170,7 +177,7 @@
             // 
             // MannaValueTextBox
             // 
-            this.MannaValueTextBox.Location = new System.Drawing.Point(606, 268);
+            this.MannaValueTextBox.Location = new System.Drawing.Point(609, 297);
             this.MannaValueTextBox.Name = "MannaValueTextBox";
             this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
             this.MannaValueTextBox.TabIndex = 12;
@@ -190,7 +197,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(477, 248);
+            this.label2.Location = new System.Drawing.Point(503, 277);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 15);
             this.label2.TabIndex = 14;
@@ -199,7 +206,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(606, 248);
+            this.label3.Location = new System.Drawing.Point(632, 277);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 15);
             this.label3.TabIndex = 15;
@@ -298,7 +305,7 @@
             // 
             this.BtnHealbotOnOff.BackColor = System.Drawing.SystemColors.GrayText;
             this.BtnHealbotOnOff.Font = new System.Drawing.Font("Segoe UI", 26.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.BtnHealbotOnOff.Location = new System.Drawing.Point(166, 384);
+            this.BtnHealbotOnOff.Location = new System.Drawing.Point(159, 312);
             this.BtnHealbotOnOff.Name = "BtnHealbotOnOff";
             this.BtnHealbotOnOff.Size = new System.Drawing.Size(94, 61);
             this.BtnHealbotOnOff.TabIndex = 25;
@@ -321,13 +328,13 @@
             this.FastTestBTN.Name = "FastTestBTN";
             this.FastTestBTN.Size = new System.Drawing.Size(75, 23);
             this.FastTestBTN.TabIndex = 27;
-            this.FastTestBTN.Text = "FastTestBTN";
+            this.FastTestBTN.Text = "LeafMages";
             this.FastTestBTN.UseVisualStyleBackColor = true;
             this.FastTestBTN.Click += new System.EventHandler(this.FastTestBTN_Click);
             // 
             // ItemsSell
             // 
-            this.ItemsSell.Location = new System.Drawing.Point(683, 28);
+            this.ItemsSell.Location = new System.Drawing.Point(753, 3);
             this.ItemsSell.Name = "ItemsSell";
             this.ItemsSell.Size = new System.Drawing.Size(75, 23);
             this.ItemsSell.TabIndex = 28;
@@ -351,13 +358,13 @@
             this.Tester.Name = "Tester";
             this.Tester.Size = new System.Drawing.Size(75, 23);
             this.Tester.TabIndex = 30;
-            this.Tester.Text = "Tester";
+            this.Tester.Text = "Goblin";
             this.Tester.UseVisualStyleBackColor = true;
             this.Tester.Click += new System.EventHandler(this.Tester_Click_1);
             // 
             // SetWindowPos
             // 
-            this.SetWindowPos.Location = new System.Drawing.Point(683, 91);
+            this.SetWindowPos.Location = new System.Drawing.Point(753, 66);
             this.SetWindowPos.Name = "SetWindowPos";
             this.SetWindowPos.Size = new System.Drawing.Size(105, 23);
             this.SetWindowPos.TabIndex = 31;
@@ -367,7 +374,7 @@
             // 
             // teleport
             // 
-            this.teleport.Location = new System.Drawing.Point(683, 62);
+            this.teleport.Location = new System.Drawing.Point(753, 37);
             this.teleport.Name = "teleport";
             this.teleport.Size = new System.Drawing.Size(75, 23);
             this.teleport.TabIndex = 32;
@@ -388,7 +395,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(467, 70);
+            this.label8.Location = new System.Drawing.Point(461, 92);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(23, 15);
             this.label8.TabIndex = 34;
@@ -397,7 +404,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(501, 70);
+            this.label9.Location = new System.Drawing.Point(499, 92);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(44, 15);
             this.label9.TabIndex = 35;
@@ -406,7 +413,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(551, 70);
+            this.label10.Location = new System.Drawing.Point(541, 92);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(57, 15);
             this.label10.TabIndex = 36;
@@ -415,7 +422,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(609, 70);
+            this.label11.Location = new System.Drawing.Point(599, 92);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(50, 15);
             this.label11.TabIndex = 37;
@@ -423,7 +430,7 @@
             // 
             // HpToBuy
             // 
-            this.HpToBuy.Location = new System.Drawing.Point(461, 89);
+            this.HpToBuy.Location = new System.Drawing.Point(461, 110);
             this.HpToBuy.Name = "HpToBuy";
             this.HpToBuy.Size = new System.Drawing.Size(36, 23);
             this.HpToBuy.TabIndex = 38;
@@ -432,7 +439,7 @@
             // 
             // MpToBuy
             // 
-            this.MpToBuy.Location = new System.Drawing.Point(503, 89);
+            this.MpToBuy.Location = new System.Drawing.Point(499, 110);
             this.MpToBuy.Name = "MpToBuy";
             this.MpToBuy.Size = new System.Drawing.Size(36, 23);
             this.MpToBuy.TabIndex = 39;
@@ -441,7 +448,7 @@
             // 
             // SpeedPot
             // 
-            this.SpeedPot.Location = new System.Drawing.Point(559, 89);
+            this.SpeedPot.Location = new System.Drawing.Point(549, 111);
             this.SpeedPot.Name = "SpeedPot";
             this.SpeedPot.Size = new System.Drawing.Size(18, 23);
             this.SpeedPot.TabIndex = 40;
@@ -451,18 +458,92 @@
             // BuyMaxHp
             // 
             this.BuyMaxHp.AutoSize = true;
-            this.BuyMaxHp.Location = new System.Drawing.Point(622, 93);
+            this.BuyMaxHp.Location = new System.Drawing.Point(602, 115);
             this.BuyMaxHp.Name = "BuyMaxHp";
             this.BuyMaxHp.Size = new System.Drawing.Size(15, 14);
             this.BuyMaxHp.TabIndex = 41;
             this.BuyMaxHp.UseVisualStyleBackColor = true;
             this.BuyMaxHp.CheckedChanged += new System.EventHandler(this.BuyMaxHp_CheckedChanged);
             // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(154, 383);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 42;
+            this.button4.Text = "GikoCave";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // UWCThread
+            // 
+            this.UWCThread.Location = new System.Drawing.Point(154, 422);
+            this.UWCThread.Name = "UWCThread";
+            this.UWCThread.Size = new System.Drawing.Size(75, 23);
+            this.UWCThread.TabIndex = 43;
+            this.UWCThread.Text = "UWC";
+            this.UWCThread.UseVisualStyleBackColor = true;
+            this.UWCThread.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(482, 278);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 44;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // SellItemsCheckBox
+            // 
+            this.SellItemsCheckBox.AutoSize = true;
+            this.SellItemsCheckBox.Location = new System.Drawing.Point(658, 115);
+            this.SellItemsCheckBox.Name = "SellItemsCheckBox";
+            this.SellItemsCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.SellItemsCheckBox.TabIndex = 46;
+            this.SellItemsCheckBox.UseVisualStyleBackColor = true;
+            this.SellItemsCheckBox.CheckedChanged += new System.EventHandler(this.SellItemsCheckBox_CheckedChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(655, 92);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(54, 15);
+            this.label12.TabIndex = 45;
+            this.label12.Text = "SellItems";
+            // 
+            // NumberOfCollectScans
+            // 
+            this.NumberOfCollectScans.Location = new System.Drawing.Point(474, 50);
+            this.NumberOfCollectScans.Name = "NumberOfCollectScans";
+            this.NumberOfCollectScans.Size = new System.Drawing.Size(36, 23);
+            this.NumberOfCollectScans.TabIndex = 48;
+            this.NumberOfCollectScans.Text = "1";
+            this.NumberOfCollectScans.TextChanged += new System.EventHandler(this.NumberOfCollectScans_TextChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(474, 32);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(74, 15);
+            this.label13.TabIndex = 47;
+            this.label13.Text = "CollectScans";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.NumberOfCollectScans);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.SellItemsCheckBox);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.UWCThread);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.BuyMaxHp);
             this.Controls.Add(this.SpeedPot);
             this.Controls.Add(this.MpToBuy);
@@ -554,5 +635,12 @@
         private TextBox MpToBuy;
         private TextBox SpeedPot;
         private CheckBox BuyMaxHp;
+        private Button button4;
+        private Button UWCThread;
+        private CheckBox checkBox1;
+        private CheckBox SellItemsCheckBox;
+        private Label label12;
+        private TextBox NumberOfCollectScans;
+        private Label label13;
     }
 }

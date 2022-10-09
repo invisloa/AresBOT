@@ -10,7 +10,29 @@ namespace AresTrainerV3.SkillSelection
     {
         public override void Rebuff()
         {
-            
+            while (true)
+            {
+                if (ProgramHandle.isInCity != 1)
+                {
+
+                    if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
+                    {
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(3, 50, 50);
+                    }
+                    if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
+                    {
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(3, 50, 50);
+                    }
+                }
+                Thread.Sleep(5000);
+
+            }
         }
 
         public override void SkillAssign()

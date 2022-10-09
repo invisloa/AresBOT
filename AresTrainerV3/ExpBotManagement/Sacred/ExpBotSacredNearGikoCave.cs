@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
 
 
 
-        MoveToPosSacredAlli _MoveToPosSacredAlli = new MoveToPosSacredAlli();
+        MoveToPositionAbstract _MoveToPosSacredAlli = new MoveToPosALL(TeleportValues.AllianceSacredLand, new CollectSod());
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get

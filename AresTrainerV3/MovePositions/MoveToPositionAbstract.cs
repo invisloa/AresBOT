@@ -27,16 +27,16 @@ namespace AresTrainerV3.MovePositions
         {
 
             // Moves When Standing
-            if (ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.isNowStandingOut())
+/*            if (ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.isNowStandingOut())
             {
                 mouseClickToMove(x, y);
             }
-/*            // Moves  in a loop even when not standing
+*/            // Moves  in a loop even when not standing
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
                 mouseClickToMove(x, y);
             }
-*/
+
         }
         static void mouseClickToMove(int x, int y)
         {

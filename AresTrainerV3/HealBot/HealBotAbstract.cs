@@ -12,17 +12,39 @@ namespace AresTrainerV3.HealBot
 {
     public abstract class HealBotAbstract
     {
-        public static bool IsScanRunning = false;
+        public static bool SelfSetHealValue = false;
+        public static bool SellItems = false;
         protected static bool _isHealBotRunning = false;
         protected IGoRepot _repoterCity;
         public static bool IsHealBotRunning
         {
             get { return _isHealBotRunning; }
         }
-        protected int hpHealValue = 0;
-        protected int MannaRestoreValue = 0;
+        protected static int hpHealValue = 0;
+        protected static int MannaRestoreValue = 0;
         protected int myCurrentHp { get { return ProgramHandle.getCurrentHp; } }
         protected int myCurrentManna { get { return ProgramHandle.getCurrentManna; } }
+        protected void StopExpBot()
+        {
+            if (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                ExpBotManagerAbstract.RequestStartStopExpBot();
+            }
+        }
+        public static int HpHealValue
+        {
+            get
+            { return hpHealValue; }
+            set
+            { hpHealValue = value; }
+        }
+        public static int MpRestoreValue
+        {
+            get
+            { return MannaRestoreValue; }
+            set
+            { MannaRestoreValue = value; }
+        }
         abstract protected IGoRepot RepoterCity
         {
             get;
@@ -125,22 +147,7 @@ namespace AresTrainerV3.HealBot
                 MannaRestoreValue = 100;
             }
         }
-        public static void RequestStopHealBot()
-        {
-            if (_isHealBotRunning)
-                _isHealBotRunning = false;
-            else
-                _isHealBotRunning = true;
-        }
-        protected void StopExpBot()
-        {
-            if (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                ExpBotManagerAbstract.RequestStartStopExpBot();
-            }
-        }
-
-        protected bool press1IfLowHp()
+        public bool press1IfLowHp()
         {
             if (myCurrentHp < hpHealValue && myCurrentHp != 0)
             {
@@ -149,7 +156,7 @@ namespace AresTrainerV3.HealBot
             }
             return false;
         }
-        protected bool press2IfLowManna()
+        public bool press2IfLowManna()
         {
             if (myCurrentManna < MannaRestoreValue)
             {
@@ -157,39 +164,37 @@ namespace AresTrainerV3.HealBot
                 return true;
             }
             return false;
+        }
 
-        }
-/*        protected void scrollToCityIfNotInCity()
+        public static void RequestStopHealBot()
         {
-            if (ProgramHandle.isWhatAnimationRunning != isNowStandingCity)
-            {
-                KeyPresser.PressKey(6, 500, 500);
-                Debug.WriteLine("Not in city use scroll");
-            }
+            if (_isHealBotRunning)
+                _isHealBotRunning = false;
+            else
+                _isHealBotRunning = true;
         }
-*/
-        protected void teleportToCityAndStopExpBot()
-        {
-            StopExpBot();
-            KeyPresser.PressKey(6, 100, 100);
-            Thread.Sleep(1000);
-            while (IsScanRunning)
-            {
-                Thread.Sleep(20);
-            }
 
-                // scrollToCityIfNotInCity();
-            while (press1IfLowHp()) ;
-            while (press2IfLowManna()) ;
-        }
+        /*        protected void scrollToCityIfNotInCity()
+                {
+                    if (ProgramHandle.isWhatAnimationRunning != isNowStandingCity)
+                    {
+                        KeyPresser.PressKey(6, 500, 500);
+                        Debug.WriteLine("Not in city use scroll");
+                    }
+                }
+        */
         protected void StartHealBot()
         {
+            SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
             ProgramHandle.SetGameAsMainWindow();
-            RequestStopHealBot();
-            
-            setHealValue();
-            setMannaRestoreValue();
+            ClassRebuffer.StartRebuffThread();
 
+            RequestStopHealBot();
+            if (SelfSetHealValue)
+            {
+                setHealValue();
+                setMannaRestoreValue();
+            }
             while (_isHealBotRunning)
             {
                 if (myCurrentHp < hpHealValue && myCurrentHp != 0)
@@ -228,7 +233,6 @@ namespace AresTrainerV3.HealBot
                 }
             else
                 {
-                teleportToCityAndStopExpBot();
                 RepoterCity.GoRepot();
                 }
 
@@ -238,20 +242,16 @@ namespace AresTrainerV3.HealBot
         protected void MannaKeyPress()
         {
             {
-                if(ProgramHandle.getCurrentWeight>1900)
-                {
-                    teleportToCityAndStopExpBot();
-
-                    RepoterCity.GoRepot();
-                }
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 100);
+                    if (SellItems == true && ProgramHandle.getCurrentWeight > 1900)
+                    {
+                        RepoterCity.GoRepot();
+                    }
                 }
                 else
                 {
-                    teleportToCityAndStopExpBot();
-
                     RepoterCity.GoRepot();
                 }
             }

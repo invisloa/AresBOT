@@ -124,15 +124,17 @@ namespace AresTrainerV3
         public static Tuple<int, int, int> SacredlandsAlliShop = new Tuple<int, int, int>(1145707559, 1128361148, 0);
 
         public static Tuple<int, int, int> HershalMagicExp = new Tuple<int, int, int>(1133131594, 1131227739, 1092867852);
+        public static Tuple<int, int, int> HershalUWCEntrace = new Tuple<int, int, int>(1146093959, 1131233933, 1091297280);
 
-
+        // SafePositions
+        public static Tuple<int, int, int> SafePosBaldorTemple2Floor = new Tuple<int, int, int>(1, 1, 1);
 
 
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
 
-           
-            
+
+
     }
 }
 

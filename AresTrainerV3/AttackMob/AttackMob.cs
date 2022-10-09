@@ -47,14 +47,15 @@ namespace AresTrainerV3.AttackMob
         }
 
         static bool isMobTargeted()
-        {
-            if (ProgramHandle.isMobSelected > 8300000 && ProgramHandle.isInCity != 1)
+        { 
+            if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isInCity != 1)
             {
-                PixelItemCollector.weightLimitCollect = 3000;
-                Debug.WriteLine($"Player Found");
-            }
-            if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000 && ProgramHandle.isInCity != 1)
-            {
+                 if (ProgramHandle.isMobSelected > 8300000)
+                     {
+                     PixelItemCollector.weightLimitCollect = 3000;
+                     Debug.WriteLine($"Player Found");
+                     return false;
+                     }
                 Debug.WriteLine($"MOB found ");
                 return true;
             }
