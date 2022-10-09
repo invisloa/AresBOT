@@ -147,24 +147,6 @@ namespace AresTrainerV3.HealBot
                 MannaRestoreValue = 100;
             }
         }
-        public bool press1IfLowHp()
-        {
-            if (myCurrentHp < hpHealValue && myCurrentHp != 0)
-            {
-                KeyPresser.PressKey(1, 500, 500);
-                return true;
-            }
-            return false;
-        }
-        public bool press2IfLowManna()
-        {
-            if (myCurrentManna < MannaRestoreValue)
-            {
-                KeyPresser.PressKey(2, 500, 500);
-                return true;
-            }
-            return false;
-        }
 
         public static void RequestStopHealBot()
         {

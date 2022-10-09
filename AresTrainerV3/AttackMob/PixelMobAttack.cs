@@ -21,7 +21,7 @@ namespace AresTrainerV3.AttackMob
             Debug.WriteLine("Start AttackScan");
             if (ProgramHandle.isInCity != 1)
             {
-                HealBotAbstract.IsScanRunning = true;
+                RepotAbstract.IsScanRunning = true;
                 graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
                 for (int x = 800; x < 1120; x++)
@@ -38,7 +38,7 @@ namespace AresTrainerV3.AttackMob
                             {
                                 Debug.WriteLine("1 attack for");
 
-                                HealBotAbstract.IsScanRunning = false;
+                                RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
                                 return true;
                             }
@@ -47,7 +47,7 @@ namespace AresTrainerV3.AttackMob
                             {
                                 Debug.WriteLine("1 attack for");
 
-                                HealBotAbstract.IsScanRunning = false;
+                                RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
                                 return true;
                             }
@@ -56,7 +56,7 @@ namespace AresTrainerV3.AttackMob
                             {
                                 Debug.WriteLine("1 attack for");
 
-                                HealBotAbstract.IsScanRunning = false;
+                                RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
                                 return true;
                             }
@@ -65,7 +65,7 @@ namespace AresTrainerV3.AttackMob
                             {
                                 Debug.WriteLine("1 attack for");
 
-                                HealBotAbstract.IsScanRunning = false;
+                                RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
                                 return true;
                             }
@@ -88,7 +88,7 @@ namespace AresTrainerV3.AttackMob
                             {
                                 Debug.WriteLine("2 attack for");
 
-                                HealBotAbstract.IsScanRunning = false;
+                                RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
                                 return true;
                             }
@@ -110,7 +110,7 @@ namespace AresTrainerV3.AttackMob
                             {
                                 Debug.WriteLine("3 attack for");
 
-                                HealBotAbstract.IsScanRunning = false;
+                                RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
                                 return true;
                             }
@@ -121,7 +121,7 @@ namespace AresTrainerV3.AttackMob
             }
             Debug.WriteLine("attack false");
 
-            HealBotAbstract.IsScanRunning = false;
+            RepotAbstract.IsScanRunning = false;
             GC.Collect();
             return false;
 

@@ -66,9 +66,28 @@ namespace AresTrainerV3.HealBot.Repoter
             while (press1IfLowHp()) ;
             while (press2IfLowManna()) ;
         }
+        public bool press1IfLowHp()
+        {
+            if (ProgramHandle.getCurrentHp < HealBotAbstract.HpHealValue && ProgramHandle.getCurrentHp != 0)
+            {
+                KeyPresser.PressKey(1, 500, 500);
+                return true;
+            }
+            return false;
+        }
+        public bool press2IfLowManna()
+        {
+            if (ProgramHandle.getCurrentManna < HealBotAbstract.MpRestoreValue)
+            {
+                KeyPresser.PressKey(2, 500, 500);
+                return true;
+            }
+            return false;
+        }
 
         public void GoRepot()
         {
+            teleportToCityAndStopExpBot();
             Thread.Sleep(1000);
             // Set Weight limit back to the original state if player found changed it to not to collect items@
             PixelItemCollector.weightLimitCollect = 1900;

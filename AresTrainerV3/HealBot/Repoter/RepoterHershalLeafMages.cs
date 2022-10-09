@@ -66,7 +66,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 {
                     if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
                     {
-                        if (ProgramHandle.GetCurrentPositionX != 1142172652 && ProgramHandle.GetCurrentPositionY != 1141596108)
+                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108)
                         {
                             KeyPresser.PressKey(6, 1000, 1000);
                         }

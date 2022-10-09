@@ -32,7 +32,7 @@ namespace AresTrainerV3.ItemCollect
             }
 
             GC.Collect();
-            HealBotAbstract.IsScanRunning = false;
+            RepotAbstract.IsScanRunning = false;
             return false;
         }
 
@@ -45,7 +45,7 @@ namespace AresTrainerV3.ItemCollect
         {
             Debug.WriteLine("Start PixelScan");
 
-            HealBotAbstract.IsScanRunning = true;
+            RepotAbstract.IsScanRunning = true;
             Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
             Graphics graphics = Graphics.FromImage(bitmap as Image);
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
@@ -65,7 +65,7 @@ namespace AresTrainerV3.ItemCollect
                                 MouseOperations.SetCursorPosition(x + 3*i, y + 3*z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
-                                    HealBotAbstract.IsScanRunning = false;
+                                    RepotAbstract.IsScanRunning = false;
                                     Debug.WriteLine("EndCollect");
                                     GC.Collect();
                                     Debug.WriteLine("1 Pixel for");
@@ -92,7 +92,7 @@ namespace AresTrainerV3.ItemCollect
                                 MouseOperations.SetCursorPosition(x + 2 * i, y + 2 * z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
-                                    HealBotAbstract.IsScanRunning = false;
+                                    RepotAbstract.IsScanRunning = false;
                                     Debug.WriteLine("2 Pixel for");
 
                                     Debug.WriteLine("EndCollect");
@@ -108,7 +108,7 @@ namespace AresTrainerV3.ItemCollect
             Debug.WriteLine("Pixel False");
 
             GC.Collect();
-            HealBotAbstract.IsScanRunning = false;
+            RepotAbstract.IsScanRunning = false;
             return false;
         }
     }
