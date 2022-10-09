@@ -12,7 +12,7 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.isCurrentClassSelected == 1)
             {
-                return new SkillSelectorArcerEmp();
+                return new SkillSelectorArcerAli();
             }
             else if (ProgramHandle.isCurrentClassSelected == 2)
             {
@@ -27,6 +27,13 @@ namespace AresTrainerV3.SkillSelection
         }
         public abstract void SkillAssign();
         public abstract void Rebuff();
+
+        public void StartRebuffThread()
+        {
+                Thread SkillSelectorThread = new Thread(Rebuff);
+                SkillSelectorThread.Start();
+        }
+
 
     }
 }

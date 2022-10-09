@@ -147,20 +147,11 @@ namespace AresTrainerV3
             return memExpbot.readByte(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryCurrentTabOffset)); 
         }
 
-        public static int GetCurrentPositionX
+        public static int GetSkillDelay
         {
-            get { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);  }
-        }
-        public static int GetCurrentPositionShort
-        {
-            get { return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset+1))), 0); }
+            get { return BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skillDelayShortPointer))), 0); }
         }
 
-
-        public static int GetCurrentPositionY
-        {
-            get { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0); }
-        }
 
         public static byte isCurrentClassSelected
         {
@@ -1195,6 +1186,11 @@ namespace AresTrainerV3
         {
             return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), 4)), 0);
         }
+        static int ReadPositionZ()
+        {
+            return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), 4)), 0);
+        }
+
         public static int GetPositionX
         {
             get
@@ -1207,6 +1203,13 @@ namespace AresTrainerV3
             get
             {
                 return ReadPositionY();
+            }
+        }
+        public static int GetPositionZ
+        {
+            get
+            {
+                return ReadPositionZ();
             }
         }
 

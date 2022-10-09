@@ -23,7 +23,7 @@ namespace AresTrainerV3.Unstuck
         {
             foreach (var stuckLockat in stuckLockations)
             {
-                if (ProgramHandle.GetCurrentPositionX > stuckLockat.Item1 && ProgramHandle.GetCurrentPositionX < stuckLockat.Item3 && ProgramHandle.GetCurrentPositionY > stuckLockat.Item2 && ProgramHandle.GetCurrentPositionY < stuckLockat.Item4)
+                if (ProgramHandle.GetPositionX > stuckLockat.Item1 && ProgramHandle.GetPositionX < stuckLockat.Item3 && ProgramHandle.GetPositionY > stuckLockat.Item2 && ProgramHandle.GetPositionY < stuckLockat.Item4)
                 {
                     return true;
                 }

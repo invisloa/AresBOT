@@ -1,7 +1,6 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManagement.Hershal;
-using AresTrainerV3.ExpBotManagement.Kharon;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
 using System.Collections.Generic;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterHershalExp : RepotAbstract
+    internal class RepotUWC : RepotAbstract
     {
         protected override GoBackExpAbstract GoBackExpPlace
         {
@@ -19,7 +18,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_goBackExpPlace == null)
                 {
-                    _goBackExpPlace = new GoBackExpHershalTeleport();
+                    _goBackExpPlace = new GoBackExpUWC();
                 }
                 return _goBackExpPlace;
             }
@@ -50,7 +49,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotHershalSellLeafMages();
+                    _expBotToStart = new ExpBotUWC();
                 }
                 return _expBotToStart;
             }
@@ -66,7 +65,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 {
                     if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
                     {
-                        if (ProgramHandle.GetCurrentPositionX != 1142172652 && ProgramHandle.GetCurrentPositionY != 1141596108)
+                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108)
                         {
                             KeyPresser.PressKey(6, 1000, 1000);
                         }

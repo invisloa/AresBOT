@@ -10,7 +10,7 @@ namespace AresTrainerV3.SkillSelection
     {
         public override void Rebuff()
         {
-            if (ProgramHandle.getBuff1Informations == 0)
+/*            if (ProgramHandle.getBuff1Informations == 0)
             {
                 if (!ProgramHandle.isAttacking())
                 {
@@ -23,6 +23,7 @@ namespace AresTrainerV3.SkillSelection
 
                 }
             }
+*/  
         }
 
         public override void SkillAssign()

@@ -56,7 +56,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             }
             for (int i = 0; i < 10; i++)
             {
-                if(ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetCurrentPositionX < 1124331952 && ProgramHandle.GetCurrentPositionX > 1123556437)
+                if(ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetPositionX < 1124331952 && ProgramHandle.GetPositionX > 1123556437)
                 {
                         MouseOperations.MoveAndLeftClickOperation(960, 400, 10);
                         Thread.Sleep(500);

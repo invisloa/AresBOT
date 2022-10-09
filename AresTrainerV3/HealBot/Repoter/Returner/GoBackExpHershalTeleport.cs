@@ -13,7 +13,6 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             ProgramHandle.SetCameraForExpBot();
             ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
             ProgramHandle.SetCameraForExpBot();
-
         }
     }
 }

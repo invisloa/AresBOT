@@ -401,7 +401,7 @@ namespace AresTrainerV3
             Thread.Sleep(500);
             if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
             {
-                PressF5ForTeleport();
+                ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalUWCEntrace);
                 ProgramHandle.SetCameraForExpBot();
                 for (int i = 0; i < 70; i++)
                 {

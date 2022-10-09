@@ -6,9 +6,12 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter.Returner
 {
-    public abstract class GoBackExpAbstract : IGoBackExpAbstract
+    internal class GoBackExpUWC : GoBackExpAbstract
     {
-        protected Random randomizer = new Random();
-        public abstract void GoBackExp();
+        public override void GoBackExp()
+        {
+            ExpBotClass.WalkIntoUWC();
+        }
+
     }
 }

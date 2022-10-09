@@ -1,6 +1,7 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Sacred;
+using AresTrainerV3.ExpBotManagement.Hershal;
+using AresTrainerV3.ExpBotManagement.Kharon;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterSacredAlliance : RepotAbstract
+    internal class RepoterHershalLeafMages : RepotAbstract
     {
         protected override GoBackExpAbstract GoBackExpPlace
         {
@@ -18,7 +19,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_goBackExpPlace == null)
                 {
-                    _goBackExpPlace = new GoBackExpSacredAlliTeleport();
+                    _goBackExpPlace = new GoBackExpHershalTeleport();
                 }
                 return _goBackExpPlace;
             }
@@ -30,7 +31,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_buyerPotionsCity == null)
                 {
-                    _buyerPotionsCity = new BuyerFromForm();
+                    _buyerPotionsCity = new BuyerPotionsHershalExp();
                 }
                 return _buyerPotionsCity;
             }
@@ -39,7 +40,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             get
             {
-                _repotCityVerification = TeleportValues.AllianceSacredLand;
+                _repotCityVerification = TeleportValues.Hershal;
                 return _repotCityVerification;
             }
         }
@@ -49,7 +50,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotSacredAlliExp();
+                    _expBotToStart = new ExpBotHershalSellLeafMages();
                 }
                 return _expBotToStart;
             }
@@ -57,14 +58,22 @@ namespace AresTrainerV3.HealBot.Repoter
 
         protected override void MoveToRepot()
         {
-            Thread.Sleep(10);
+            Thread.Sleep(1000);
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
-                ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliShop);
-
+                for (int i = 0; i < 20; i++)
+                {
+                    if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+                    {
+                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108)
+                        {
+                            KeyPresser.PressKey(6, 1000, 1000);
+                        }
+                    }
+                }
             }
+            MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
         }
     }
 }
-

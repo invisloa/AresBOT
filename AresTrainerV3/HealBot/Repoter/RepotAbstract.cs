@@ -19,7 +19,15 @@ namespace AresTrainerV3.HealBot.Repoter
         protected BuyerPotions _buyerPotionsCity;
         protected int _repotCityVerification;
         protected IStartExpBotThread _expBotToStart;
+        public static bool IsScanRunning = false;
 
+        protected void StopExpBot()
+        {
+            if (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                ExpBotManagerAbstract.RequestStartStopExpBot();
+            }
+        }
         protected abstract GoBackExpAbstract GoBackExpPlace
         { get; }
         protected abstract IStartExpBotThread ExpBotToStart
@@ -44,8 +52,42 @@ namespace AresTrainerV3.HealBot.Repoter
                 KeyPresser.PressKey(6, 200, 200);
             }
         }
+        protected void teleportToCityAndStopExpBot()
+        {
+            StopExpBot();
+            KeyPresser.PressKey(6, 100, 100);
+            Thread.Sleep(1000);
+            while (IsScanRunning)
+            {
+                Thread.Sleep(20);
+            }
+
+            // scrollToCityIfNotInCity();
+            while (press1IfLowHp()) ;
+            while (press2IfLowManna()) ;
+        }
+        public bool press1IfLowHp()
+        {
+            if (ProgramHandle.getCurrentHp < HealBotAbstract.HpHealValue && ProgramHandle.getCurrentHp != 0)
+            {
+                KeyPresser.PressKey(1, 500, 500);
+                return true;
+            }
+            return false;
+        }
+        public bool press2IfLowManna()
+        {
+            if (ProgramHandle.getCurrentManna < HealBotAbstract.MpRestoreValue)
+            {
+                KeyPresser.PressKey(2, 500, 500);
+                return true;
+            }
+            return false;
+        }
+
         public void GoRepot()
         {
+            teleportToCityAndStopExpBot();
             Thread.Sleep(1000);
             // Set Weight limit back to the original state if player found changed it to not to collect items@
             PixelItemCollector.weightLimitCollect = 1900;
@@ -55,7 +97,7 @@ namespace AresTrainerV3.HealBot.Repoter
             if (isCurrentCity == repotCityCheck)
             {
                 Thread.Sleep(1000);
-                    MoveToRepot();
+                MoveToRepot();
                 Thread.Sleep(1000);
 
                 //MouseClickOpenShop();
