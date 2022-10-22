@@ -11,6 +11,7 @@ namespace AresTrainerV3.MovePositions
         Left,
         Right,
         Up,
-        Down
+        Down,
+        Around
     }
 }

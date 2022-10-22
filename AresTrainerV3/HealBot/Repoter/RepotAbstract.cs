@@ -13,7 +13,11 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     public abstract class RepotAbstract :IGoRepot
     {
-        protected int isCurrentCity = ProgramHandle.GetCurrentMap;
+        protected Random randomizer = new Random();
+        protected int isCurrentCity
+        {
+            get { return ProgramHandle.GetCurrentMap; }
+        }
 
         protected GoBackExpAbstract _goBackExpPlace;
         protected BuyerPotions _buyerPotionsCity;
@@ -25,7 +29,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
-                ExpBotManagerAbstract.RequestStartStopExpBot();
+                ExpBotManagerAbstract.RequestStopExpBot();
             }
         }
         protected abstract GoBackExpAbstract GoBackExpPlace
@@ -90,18 +94,19 @@ namespace AresTrainerV3.HealBot.Repoter
             teleportToCityAndStopExpBot();
             Thread.Sleep(1000);
             // Set Weight limit back to the original state if player found changed it to not to collect items@
-            PixelItemCollector.weightLimitCollect = 1900;
-            Thread.Sleep(500);
+            AbstractWhatToCollect.MaxCollectWeight = 1750;
             ProgramHandle.SetCameraForExpBot();
-
+            Thread.Sleep(500);
             if (isCurrentCity == repotCityCheck)
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(100+randomizer.Next(1,500));
                 MoveToRepot();
-                Thread.Sleep(1000);
+                Thread.Sleep(+randomizer.Next(1, 500));
 
                 //MouseClickOpenShop();
                 ProgramHandle.OpenShopWindow();
+                Thread.Sleep(500);
+
                 if (ProgramHandle.isShopWindowStillOpen() == 1)
                 {
                     ItemSeller.SellItemsMouseMove();

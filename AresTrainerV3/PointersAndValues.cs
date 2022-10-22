@@ -357,7 +357,10 @@ public static class PointersAndValues
 
 
     // item values
-    public static int ItemHighlightedSod = 25;
+
+
+    // cry items
+
 
 
     public static IntPtr baseAddress = IntPtr.Zero;

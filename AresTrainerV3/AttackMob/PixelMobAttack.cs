@@ -18,7 +18,7 @@ namespace AresTrainerV3.AttackMob
 
         public static bool AttackSkillMobWhenSelected()
         {
-            Debug.WriteLine("Start AttackScan");
+            //Debug.WriteLine("Start AttackScan");
             if (ProgramHandle.isInCity != 1)
             {
                 RepotAbstract.IsScanRunning = true;
@@ -36,7 +36,7 @@ namespace AresTrainerV3.AttackMob
                             MouseOperations.SetCursorPosition(x+5, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                Debug.WriteLine("1 attack for");
+                             //   Debug.WriteLine("1 attack for");
 
                                 RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
@@ -45,7 +45,7 @@ namespace AresTrainerV3.AttackMob
                             MouseOperations.SetCursorPosition(x-5, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                Debug.WriteLine("1 attack for");
+                              //  Debug.WriteLine("1 attack for");
 
                                 RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
@@ -54,7 +54,7 @@ namespace AresTrainerV3.AttackMob
                             MouseOperations.SetCursorPosition(x, y+5);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                Debug.WriteLine("1 attack for");
+                              //  Debug.WriteLine("1 attack for");
 
                                 RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
@@ -63,7 +63,7 @@ namespace AresTrainerV3.AttackMob
                             MouseOperations.SetCursorPosition(x, y-5);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                Debug.WriteLine("1 attack for");
+                              //  Debug.WriteLine("1 attack for");
 
                                 RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
@@ -86,7 +86,7 @@ namespace AresTrainerV3.AttackMob
                             MouseOperations.SetCursorPosition(x, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                Debug.WriteLine("2 attack for");
+                               // Debug.WriteLine("2 attack for");
 
                                 RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
@@ -108,7 +108,7 @@ namespace AresTrainerV3.AttackMob
                             MouseOperations.SetCursorPosition(x, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                Debug.WriteLine("3 attack for");
+                               // Debug.WriteLine("3 attack for");
 
                                 RepotAbstract.IsScanRunning = false;
                                 GC.Collect();
@@ -119,7 +119,7 @@ namespace AresTrainerV3.AttackMob
 
                 }
             }
-            Debug.WriteLine("attack false");
+           // Debug.WriteLine("attack false");
 
             RepotAbstract.IsScanRunning = false;
             GC.Collect();

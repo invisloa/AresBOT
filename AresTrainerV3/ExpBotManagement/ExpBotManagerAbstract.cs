@@ -11,18 +11,17 @@ namespace AresTrainerV3.ExpBotManager
     public abstract class ExpBotManagerAbstract : IStartExpBotThread
     {
         public abstract MoveToPositionAbstract MoveToPosPlace { get;}
-        public abstract void RunAndExpSquare();
+        public abstract void RunAndExp();
 
         public void StartExpBotThread()
         {
-            RequestStartStopExpBot();
+            RequestStartExpBot();
             if (isExpBotRunning)
             {
-                Thread ExpBotThread = new Thread(RunAndExpSquare);
+                Thread ExpBotThread = new Thread(RunAndExp);
                 ExpBotThread.Start();
             }
         }
-
 
 
         protected static bool _isExpBotRunning = false;
@@ -30,19 +29,20 @@ namespace AresTrainerV3.ExpBotManager
         {
             get { return _isExpBotRunning; }
         }
-        public static void RequestStartStopExpBot()
+        public static void RequestStopExpBot()
         {
             if (_isExpBotRunning)
             {
                 _isExpBotRunning = false;
             }
-            else
-            {
+        }
+        public static void RequestStartExpBot()
+        {
+            if (!_isExpBotRunning)
+          {
                 _isExpBotRunning = true;
             }
         }
-
-
 
     }
 }

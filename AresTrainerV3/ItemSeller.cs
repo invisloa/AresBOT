@@ -633,6 +633,15 @@ namespace AresTrainerV3
             {
                 return false;
             }
+            if (typeAdress == 3093) // LegacyPot
+            {
+                return false;
+            }
+            if (typeAdress == 9220) // EventBrew
+            {
+                return false;
+            }
+
             else
             {
                 return true;

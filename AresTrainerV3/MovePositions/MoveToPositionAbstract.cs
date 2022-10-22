@@ -94,12 +94,12 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionY > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
                         }
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit,  ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit,  ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
                         }
                     }
                     return true;
@@ -127,12 +127,12 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionY > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor,  false);
+                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor,  0);
                         }
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
                         }
                     }
                     return true;
@@ -164,12 +164,12 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionX > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
                         }
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
                         }
                     }
                     return true;
@@ -198,12 +198,12 @@ namespace AresTrainerV3.MovePositions
                         else if (ProgramHandle.GetPositionX > sideUpOrRightLimit)
                         {
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
                         }
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, false);
+                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
                         }
                     }
                     return true;
@@ -212,31 +212,36 @@ namespace AresTrainerV3.MovePositions
 
         }
 
-        public bool MoveAttackCollect(DirectionsEnum goDierction, int directionLimit, int sideDownOrLeftLimit, int sideUpOrRightLimit , bool isMainDirection)
+        public bool MoveAttackCollect(DirectionsEnum goDierction, int directionLimit, int sideDownOrLeftLimit, int sideUpOrRightLimit , int isMainDirection)
         {
+            bool mainDirectionBool = true;
+            if(isMainDirection==0)
+            {
+                mainDirectionBool = false;
+            }
             if (goDierction == DirectionsEnum.Left)
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, isMainDirection);
+                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
             }
             else if (goDierction == DirectionsEnum.Right)
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, isMainDirection);
+                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
             }
             else if (goDierction == DirectionsEnum.Up)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, isMainDirection);
+                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
             }
             else // (goDierction == DirectionsEnum.Down)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, isMainDirection);
+                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
             }
         }
     }

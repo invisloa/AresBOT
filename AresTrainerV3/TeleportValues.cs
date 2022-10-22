@@ -129,6 +129,7 @@ namespace AresTrainerV3
         // SafePositions
         public static Tuple<int, int, int> SafePosBaldorTemple2Floor = new Tuple<int, int, int>(1, 1, 1);
 
+        public static Tuple<int, int, int,int> moverRandomthievesUnder = new Tuple<int, int, int, int>(1120295809, 1144140242, 1126285252, 1143328515);  //Left,Up,Right,Down
 
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ

@@ -11,6 +11,7 @@ using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
+using AresTrainerV3.MoveRandom;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
 using System.Diagnostics;
@@ -63,13 +64,10 @@ namespace AresTrainerV3
         static Thread healbotThread;
         static Thread animbotThread;
         static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
-        static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.Change1HitKoValue);
         // static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.TestFoundValues);
-        static Thread expBotMoveThread = new Thread(ThreadExpBotUWC);
 
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
         HealBotAbstract HealbotToRun;
-
         globalKeyboardHook gkh = new globalKeyboardHook();
 
         public Form1()
@@ -79,7 +77,6 @@ namespace AresTrainerV3
             ProgramHandle.InitializeProgram();
             MannaValueTextBox.Text = ProgramHandle.MannaRestoreValue.ToString();
             HPValueTextBox.Text = ProgramHandle.hpHealValue.ToString();
-
 
         }
 
@@ -97,7 +94,6 @@ namespace AresTrainerV3
             //
             //SUBSCRIBE globalKeyboardHook.
             //
-            gkh.KeyF2Down += StartHealBotThreadNormal;
             gkh.KeyF3Down += StartHolinaGoblinsBot;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
@@ -111,44 +107,6 @@ namespace AresTrainerV3
             gkh.KeyF9Down += ShowIfOnOrOff;
         }
 
-        public static void StartHealBotThreadNormal()
-        {
-
-            ProgramHandle.RequestStopHealBot();
-            Thread.Sleep(500);
-            if (healbotThread == null)
-            {
-                healbotThread = new Thread(ProgramHandle.StartHealbotNormal);
-            }
-
-            if (!healbotThread.IsAlive)
-            {
-                healbotThread = new Thread(ProgramHandle.StartHealbotNormal);
-                healbotThread.Start();
-            }
-        }
-        public static void StartHealBotThreadSellKharon()
-        {
-            // !!!!!!!!!!!!!!!!!!!!!!  TODO if some other healbot is on  turn it off;
-            if (!ProgramHandle.isStopHeal)
-            {
-                ProgramHandle.RequestStopHealBot();
-            }
-
-            Thread.Sleep(500);
-            if (healbotThread == null)
-            {
-                healbotThread = new Thread(ProgramHandle.StartHealbotSellKharon);
-                healbotThread.Start();
-
-            }
-
-            if (!healbotThread.IsAlive)
-            {
-                healbotThread = new Thread(ProgramHandle.StartHealbotSellKharon);
-                healbotThread.Start();
-            }
-        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -165,41 +123,6 @@ namespace AresTrainerV3
         }
 
 
-        public static void StartHealBotThreadExpBoTUWC()
-        {
-            ProgramHandle.RequestStopHealBot();
-            Thread.Sleep(500);
-            if (healbotThread == null)
-            {
-                healbotThread = new Thread(ProgramHandle.StartHealbotExpBotUWC);
-            }
-
-            if (!healbotThread.IsAlive)
-            {
-                healbotThread = new Thread(ProgramHandle.StartHealbotExpBotUWC);
-                healbotThread.Start();
-            }
-            // DOUBLE RUN EXPBORT UWC Form1.StartExpBotUWCThread();
-
-        }
-
-        public static void StartExpBotUWCThread()
-        {
-            ExpBotClass.RequestStopMoveExpBot();
-            Thread.Sleep(500);
-
-            if (expBotMoveThread == null)
-            {
-                expBotMoveThread = new Thread(ThreadExpBotUWC);
-            }
-
-            if (!expBotMoveThread.IsAlive)
-            {
-                expBotMoveThread = new Thread(ThreadExpBotUWC);
-                expBotMoveThread.Start();
-            }
-
-        }
 
         public void startSacredLandsBot()
         {
@@ -255,11 +178,6 @@ namespace AresTrainerV3
         }
 
 
-
-        private void StartHealbotBTN_Click(object sender, EventArgs e)
-        {
-            StartHealBotThreadNormal();
-        }
 
         private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -509,22 +427,6 @@ namespace AresTrainerV3
         }
 
 */
-
-
-        static void ThreadExpBotUWC()
-        {
-
-            ProgramHandle.SetCameraForExpBot();
-            if (!ProgramHandle.isStopHeal)
-            {
-                StartHealBotThreadExpBoTUWC();
-            }
-
-            ExpBotClass.RunAndExpSquareUWC();  // uwc values
-
-        }
-
-
         #endregion
 
         private void Tester_Click(object sender, EventArgs e)
@@ -588,21 +490,36 @@ namespace AresTrainerV3
 
         private void TestMethod_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(500);
-            ISelectSkill Rebuffer = SkillSelector.SelectPropperClass();
-            Rebuffer.Rebuff();
-/*            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(500);
             ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(500);
 
-            DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
+            HealbotToRun = new HealBotHershalExp();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract.RequestStartExpBot();
+            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
+
+
+
+
             while (true)
             {
-                zzz.DoThisWhileMoving();
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomthievesUnder.Item1,
+                    TeleportValues.moverRandomthievesUnder.Item2, TeleportValues.moverRandomthievesUnder.Item3, TeleportValues.moverRandomthievesUnder.Item4);
             }
-*/
+
+
+
+            /*            ProgramHandle.SetGameAsMainWindow();
+                        Thread.Sleep(500);
+                        ProgramHandle.SetCameraForExpBot();
+                        Thread.Sleep(500);
+
+                        DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
+                        while (true)
+                        {
+                            zzz.DoThisWhileMoving();
+                        }
+            */
 
         }
 
@@ -688,6 +605,35 @@ namespace AresTrainerV3
             int i = 1;
             int.TryParse(NumberOfCollectScans.Text, out i);
             DoScanAttackCollect.NumberOfCollectScans = i;
+        }
+
+        private void button5_Click_1(object sender, EventArgs e)
+        {
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotKharonExp();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract ExpBotTest = new ExpBotKharonWolvesExp();
+            ExpBotTest.StartExpBotThread();
+
+        }
+private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            BuyerPotions.BuyFromForm = true;
+            BuyerPotions.HpPotionsToBuy = 70;
+            HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
+            BuyerPotions.MpPotionsToBuy = 45;
+            MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
+            BuyerPotions.SpeedPotionsToBuy = 4;
+            SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
+            HealBotAbstract.SellItems = true;
+            SellItemsCheckBox.Checked = true;
+            DoScanAttackCollect.NumberOfCollectScans = 3;
+            NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
+
         }
     }
 }

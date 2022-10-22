@@ -42,13 +42,13 @@ namespace AresTrainerV3.Unstuck
 
         protected bool UnstuckMoveBase(Tuple<int, int, int, int>[] stuckLockations)
         {
-            Debug.WriteLine("Check if is in stuck lockation");
+           // Debug.WriteLine("Check if is in stuck lockation");
             while (isInStuckPosition(stuckLockations))
             {
                 Debug.WriteLine("stuck lockation WHILE");
                 MouseClickFromPosition();
             }
-            Debug.WriteLine($"Not Stuck");
+           // Debug.WriteLine($"Not Stuck");
 
             return false;
         }

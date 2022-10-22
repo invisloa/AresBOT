@@ -10,20 +10,18 @@ namespace AresTrainerV3.SkillSelection
     {
         public override void Rebuff()
         {
-/*            if (ProgramHandle.getBuff1Informations == 0)
+            if (ProgramHandle.isInCity != 1)
             {
-                if (!ProgramHandle.isAttacking())
-                {
-                    KeyPresser.PressKey(4, 100, 100);
-                    SkillAssign();
-                    KeyPresser.PressKey(4, 100, 100);
-                    SkillAssign();
-                    KeyPresser.PressKey(4, 100, 100);
-                    KeyPresser.PressKey(3, 100, 100);
+                KeyPresser.PressKey(4, 100, 100);
+                SkillAssign();
+                KeyPresser.PressKey(4, 100, 100);
+                SkillAssign();
+                KeyPresser.PressKey(4, 100, 100);
+                KeyPresser.PressKey(3, 100, 100);
+                Thread.Sleep(150000);
 
-                }
             }
-*/  
+ 
         }
 
         public override void SkillAssign()

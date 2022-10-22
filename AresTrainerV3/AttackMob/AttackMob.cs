@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.ItemCollect;
+using AresTrainerV3.MoveRandom;
 using AresTrainerV3.Unstuck;
 using System;
 using System.Collections.Generic;
@@ -28,19 +29,19 @@ namespace AresTrainerV3.AttackMob
             while (ProgramHandle.isAttacking())
             {
                 pixelSodCollect.ClickAndCollectItem();
-                Debug.WriteLine($"is not StandingAnimation");
+                //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
             }
             Thread.Sleep(50);
             if (ProgramHandle.isAttacking())
             {
-                Debug.WriteLine($"!Checked 2 IS STANDING");
+               // Debug.WriteLine($"!Checked 2 IS STANDING");
                 WaitForAttackEnd();
             }
             Thread.Sleep(50);
             if (ProgramHandle.isAttacking())
             {
-                Debug.WriteLine($"!Checked 3 IS STANDING");
+               // Debug.WriteLine($"!Checked 3 IS STANDING");
                 WaitForAttackEnd();
             }
 
@@ -52,11 +53,11 @@ namespace AresTrainerV3.AttackMob
             {
                  if (ProgramHandle.isMobSelected > 8300000)
                      {
-                     PixelItemCollector.weightLimitCollect = 3000;
+                    AbstractWhatToCollect.MaxCollectWeight = 1;
                      Debug.WriteLine($"Player Found");
                      return false;
                      }
-                Debug.WriteLine($"MOB found ");
+              //  Debug.WriteLine($"MOB found ");
                 return true;
             }
             else
@@ -64,6 +65,7 @@ namespace AresTrainerV3.AttackMob
         }
         static void SkillAttack()
         {
+            MoverRandom.AttackedOrCollected = true;
             Debug.WriteLine($"Mouse R Down");
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
             Thread.Sleep(10);

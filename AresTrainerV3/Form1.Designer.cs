@@ -75,6 +75,9 @@
             this.label12 = new System.Windows.Forms.Label();
             this.NumberOfCollectScans = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.label14 = new System.Windows.Forms.Label();
+            this.RunSellerCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -85,7 +88,6 @@
             this.StartHealbotBTN.TabIndex = 0;
             this.StartHealbotBTN.Text = "Start Healbot";
             this.StartHealbotBTN.UseVisualStyleBackColor = true;
-            this.StartHealbotBTN.Click += new System.EventHandler(this.StartHealbotBTN_Click);
             // 
             // ClassChangeComboBox
             // 
@@ -354,7 +356,7 @@
             // 
             // Tester
             // 
-            this.Tester.Location = new System.Drawing.Point(47, 383);
+            this.Tester.Location = new System.Drawing.Point(145, 383);
             this.Tester.Name = "Tester";
             this.Tester.Size = new System.Drawing.Size(75, 23);
             this.Tester.TabIndex = 30;
@@ -467,7 +469,7 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(154, 383);
+            this.button4.Location = new System.Drawing.Point(48, 383);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 42;
@@ -477,7 +479,7 @@
             // 
             // UWCThread
             // 
-            this.UWCThread.Location = new System.Drawing.Point(154, 422);
+            this.UWCThread.Location = new System.Drawing.Point(145, 422);
             this.UWCThread.Name = "UWCThread";
             this.UWCThread.Size = new System.Drawing.Size(75, 23);
             this.UWCThread.TabIndex = 43;
@@ -498,7 +500,7 @@
             // SellItemsCheckBox
             // 
             this.SellItemsCheckBox.AutoSize = true;
-            this.SellItemsCheckBox.Location = new System.Drawing.Point(658, 115);
+            this.SellItemsCheckBox.Location = new System.Drawing.Point(656, 115);
             this.SellItemsCheckBox.Name = "SellItemsCheckBox";
             this.SellItemsCheckBox.Size = new System.Drawing.Size(15, 14);
             this.SellItemsCheckBox.TabIndex = 46;
@@ -508,7 +510,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(655, 92);
+            this.label12.Location = new System.Drawing.Point(653, 92);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(54, 15);
             this.label12.TabIndex = 45;
@@ -516,7 +518,7 @@
             // 
             // NumberOfCollectScans
             // 
-            this.NumberOfCollectScans.Location = new System.Drawing.Point(474, 50);
+            this.NumberOfCollectScans.Location = new System.Drawing.Point(704, 110);
             this.NumberOfCollectScans.Name = "NumberOfCollectScans";
             this.NumberOfCollectScans.Size = new System.Drawing.Size(36, 23);
             this.NumberOfCollectScans.TabIndex = 48;
@@ -526,17 +528,49 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(474, 32);
+            this.label13.Location = new System.Drawing.Point(704, 92);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(74, 15);
             this.label13.TabIndex = 47;
             this.label13.Text = "CollectScans";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(235, 383);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 49;
+            this.button5.Text = "Kharon";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click_1);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(499, 32);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(59, 15);
+            this.label14.TabIndex = 50;
+            this.label14.Text = "Run Seller";
+            // 
+            // RunSellerCheckBox
+            // 
+            this.RunSellerCheckBox.AutoSize = true;
+            this.RunSellerCheckBox.Location = new System.Drawing.Point(520, 50);
+            this.RunSellerCheckBox.Name = "RunSellerCheckBox";
+            this.RunSellerCheckBox.Size = new System.Drawing.Size(15, 14);
+            this.RunSellerCheckBox.TabIndex = 51;
+            this.RunSellerCheckBox.UseVisualStyleBackColor = true;
+            this.RunSellerCheckBox.CheckedChanged += new System.EventHandler(this.RunSellerCheckBox_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.RunSellerCheckBox);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.button5);
             this.Controls.Add(this.NumberOfCollectScans);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.SellItemsCheckBox);
@@ -642,5 +676,8 @@
         private Label label12;
         private TextBox NumberOfCollectScans;
         private Label label13;
+        private Button button5;
+        private Label label14;
+        private CheckBox RunSellerCheckBox;
     }
 }

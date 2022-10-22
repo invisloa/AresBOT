@@ -16,7 +16,7 @@ namespace AresTrainerV3.Buyer
             }
             else
             {
-                base.BuyPotionsAbstract(120, false, 250, 5, ExpBotMovePositionsValues.mousePositionsForHershalBuyingEOA);
+                base.BuyPotionsAbstract(100, false, 250, 5, ExpBotMovePositionsValues.mousePositionsForHershalBuyingEOA);
 
             }
         }

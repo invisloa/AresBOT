@@ -19,7 +19,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
         }
 
 
-        public override void RunAndExpSquare()
+        public override void RunAndExp()
         {
             int howManyForLoops = 0;
             while (_isExpBotRunning)
@@ -34,7 +34,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1112000000, 1109794945 , 1111239992, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1112000000, 1109794945 , 1111239992, 1);
 
 
 
@@ -47,7 +47,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1115828432, 1107997194, ProgramHandle.GetPositionX + 80000000, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1115828432, 1107997194, ProgramHandle.GetPositionX + 80000000, 1);
 
                         // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"goUp Ended current i {i}\n";
@@ -57,7 +57,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1128331398, ProgramHandle.GetPositionY - 800000, ProgramHandle.GetPositionY + 800000, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1128331398, ProgramHandle.GetPositionY - 800000, ProgramHandle.GetPositionY + 800000, 1);
 
 
                         //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
@@ -68,7 +68,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1110537017, ProgramHandle.GetPositionY - 800000, ProgramHandle.GetPositionY + 800000, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1110537017, ProgramHandle.GetPositionY - 800000, ProgramHandle.GetPositionY + 800000, 1);
 
 
 

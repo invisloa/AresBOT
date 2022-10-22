@@ -25,7 +25,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
         }
 
 
-        public override void RunAndExpSquare()
+        public override void RunAndExp()
         {
             int howManyForLoops = 0;
             while (_isExpBotRunning)
@@ -40,7 +40,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1142201685, 1132748429, 1133075278, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1142201685, 1132748429, 1133075278, 1);
 
 
 
@@ -54,7 +54,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
 
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1129224109, 1142020694, 1142201685, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1129224109, 1142020694, 1142201685, 1);
 
                         // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
@@ -64,7 +64,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1142307448, 1129224109, 1129980817, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1142307448, 1129224109, 1129980817, 1);
 
 
                         //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
