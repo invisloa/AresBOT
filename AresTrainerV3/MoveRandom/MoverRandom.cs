@@ -23,6 +23,7 @@ namespace AresTrainerV3.MoveRandom
         int _moveOnlyOnMapX = 999;
         int moveClickSlower = 0;
         int howMuchToSlowClickMove = 3;
+        int sideMoveCount = 30;
 
         int _posBeforeMoveX = 0;
         int _posBeforeMoveY = 0;
@@ -237,9 +238,9 @@ namespace AresTrainerV3.MoveRandom
                     leftLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
-                    for (int i = 0; i < 15; i++)
+                    for (int i = 0; i < sideMoveCount; i++)
                     {
-                        if (ProgramHandle.GetPositionX < maxLimitLeft)
+                        if (ProgramHandle.GetPositionX < maxLimitLeft && ExpBotManagerAbstract.isExpBotRunning)
                         {
                             AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                             MoveToPosRandom(_lastPositionAfterBounce);
@@ -266,9 +267,9 @@ namespace AresTrainerV3.MoveRandom
                     rightLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
-                    for (int i = 0; i < 15; i++)
+                    for (int i = 0; i < sideMoveCount; i++)
                     {
-                        if (ProgramHandle.GetPositionX > maxRightLimit)
+                        if (ProgramHandle.GetPositionX > maxRightLimit && ExpBotManagerAbstract.isExpBotRunning)
                         {
                             AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                             MoveToPosRandom(_lastPositionAfterBounce);
@@ -295,9 +296,9 @@ namespace AresTrainerV3.MoveRandom
                     downLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
-                    for (int i = 0; i < 15; i++)
+                    for (int i = 0; i < sideMoveCount; i++)
                     {
-                        if (ProgramHandle.GetPositionY < maxDownLimit)
+                        if (ProgramHandle.GetPositionY < maxDownLimit && ExpBotManagerAbstract.isExpBotRunning)
                         {
                             AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                             MoveToPosRandom(_lastPositionAfterBounce);
@@ -322,9 +323,9 @@ namespace AresTrainerV3.MoveRandom
                     upLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
-                    for (int i = 0; i < 15; i++)
+                    for (int i = 0; i < sideMoveCount; i++)
                     {
-                        if(ProgramHandle.GetPositionY > maxUpLimit)
+                        if(ProgramHandle.GetPositionY > maxUpLimit && ExpBotManagerAbstract.isExpBotRunning)
                         {
                             AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                             MoveToPosRandom(_lastPositionAfterBounce);

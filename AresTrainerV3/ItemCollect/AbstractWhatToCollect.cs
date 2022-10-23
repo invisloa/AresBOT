@@ -35,10 +35,15 @@ namespace AresTrainerV3.ItemCollect
         {
             if (collectItemValues())
             {
-                if (collectItemValues())
-                {
-                    return CollectionClick();
-                }
+                return CollectionClick();
+
+                /*                Thread.Sleep(1);
+
+                                if (collectItemValues())
+                                {
+                                    return CollectionClick();
+                                }
+                */
             }
             return false;
         }
@@ -48,29 +53,20 @@ namespace AresTrainerV3.ItemCollect
             PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
 
             Debug.WriteLine("Collect");
-            if (collectItemValues())
+            Thread.Sleep(100);
+            MoverRandom.AttackedOrCollected = true;
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(100);
+            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(500);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            while (!ProgramHandle.isNowStandingOut())
             {
-                Thread.Sleep(5);
-                if (collectItemValues())
-                {
-                    MoverRandom.AttackedOrCollected = true;
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                    Thread.Sleep(50);
-                    //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    Thread.Sleep(500);
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                    while (!ProgramHandle.isNowStandingOut())
-                    {
-                        Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
-                    }
-                    underCharPostScanner.PixelScanUnderChar(this);
-                    return true;
-                }
-                else return false;
-
+            Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
             }
-            else return false;
+            underCharPostScanner.PixelScanUnderChar(this);
+            return true;
         }
 
     }

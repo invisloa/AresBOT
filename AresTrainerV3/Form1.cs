@@ -503,8 +503,8 @@ namespace AresTrainerV3
 
             while (true)
             {
-                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomthievesUnder.Item1,
-                    TeleportValues.moverRandomthievesUnder.Item2, TeleportValues.moverRandomthievesUnder.Item3, TeleportValues.moverRandomthievesUnder.Item4);
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomthievesUp.Item1,
+                    TeleportValues.moverRandomthievesUp.Item2, TeleportValues.moverRandomthievesUp.Item3, TeleportValues.moverRandomthievesUp.Item4);
             }
 
 
