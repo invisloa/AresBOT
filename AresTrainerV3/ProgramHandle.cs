@@ -935,7 +935,7 @@ namespace AresTrainerV3
         {
            get { return BitConverter.ToInt16((memScanner.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))), 0); }
         }
-        public static int isAttackingMobNow
+        public static int isMouseClickedOnMob
         {
             get { return BitConverter.ToInt16((memAttacking.readShort(proc.Handle, IntPtr.Add(isAttackingMob, 0))), 0); }
         }
@@ -999,7 +999,7 @@ namespace AresTrainerV3
 
         public static bool isAttacking()
         {
-            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
+            if (ProgramHandle.isMobBeingAttacked != -1 && isMouseClickedOnMob==1)
             {
                 return true;
             }

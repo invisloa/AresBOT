@@ -24,7 +24,7 @@ namespace AresTrainerV3.AttackMob
             // check if not attacking in stuck position
             anywhereUnstucker.UnstuckMove();
 
-            while (!ProgramHandle.isNowStandingOut())
+            while (ProgramHandle.isAttacking())
             {
                 i++;
                 pixelSodCollect.ClickAndCollectItem();
@@ -37,13 +37,13 @@ namespace AresTrainerV3.AttackMob
                 }
             }
             Thread.Sleep(50);
-            if (!ProgramHandle.isNowStandingOut())
+            if (ProgramHandle.isAttacking())
             {
                // Debug.WriteLine($"!Checked 2 IS STANDING");
                 WaitForAttackEnd();
             }
             Thread.Sleep(50);
-            if (!ProgramHandle.isNowStandingOut())
+            if (ProgramHandle.isAttacking())
             {
                // Debug.WriteLine($"!Checked 3 IS STANDING");
                 WaitForAttackEnd();
@@ -68,18 +68,24 @@ namespace AresTrainerV3.AttackMob
         }
         static void SkillAttack()
         {
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            MoverRandom.AttackedOrCollected = true;
-            Debug.WriteLine($"Mouse R Down");
-            Thread.Sleep(200);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-           // WaitForAttackEnd();
-            //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-         //   Thread.Sleep(100);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-         //   Thread.Sleep(100);
-            Debug.WriteLine($"Mouse R UP");
+            if (ProgramHandle.isMobSelected != 0)
+            {
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+                MoverRandom.AttackedOrCollected = true;
+                Debug.WriteLine($"Mouse R Down");
+                Thread.Sleep(100);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+                if (ProgramHandle.isMouseClickedOnMob == 1)
+                {
+                    WaitForAttackEnd();
+                    //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                    //   Thread.Sleep(100);
+                }
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                //   Thread.Sleep(100);
+                Debug.WriteLine($"Mouse R UP");
+            }
         }
         public static bool CheckIfSelectedAndAttackSkill()
         {
