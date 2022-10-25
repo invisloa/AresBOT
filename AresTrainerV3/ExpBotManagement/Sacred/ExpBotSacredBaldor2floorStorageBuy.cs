@@ -18,7 +18,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
             { return _MoveToPosPlace; }
         }
 
-        public override void RunAndExpSquare()
+        public override void RunAndExp()
         {
             throw new NotImplementedException();
         }

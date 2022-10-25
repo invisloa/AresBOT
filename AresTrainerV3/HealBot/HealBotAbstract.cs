@@ -1,5 +1,6 @@
 ﻿using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.SkillSelection;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace AresTrainerV3.HealBot
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
-                ExpBotManagerAbstract.RequestStartStopExpBot();
+                ExpBotManagerAbstract.RequestStopExpBot();
             }
         }
         public static int HpHealValue
@@ -211,7 +212,7 @@ namespace AresTrainerV3.HealBot
         {
             if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 8) // if less then 5 use key 6 which is teleport
                 {
-                KeyPresser.PressKey(1, 100, 100);
+                KeyPresser.PressKey(1, 150, 150);
                 }
             else
                 {
@@ -227,7 +228,7 @@ namespace AresTrainerV3.HealBot
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 100);
-                    if (SellItems == true && ProgramHandle.getCurrentWeight > 1900)
+                    if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
                     {
                         RepoterCity.GoRepot();
                     }
@@ -246,18 +247,18 @@ namespace AresTrainerV3.HealBot
             // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
             if (ProgramHandle.isCurrentClassSelected == 1)
             {
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
                 }
-/*
+*/
                 if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
                 }
-*/            }
+            }
             if (ProgramHandle.isCurrentClassSelected == 2)
             {
                 if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)

@@ -58,15 +58,13 @@ namespace AresTrainerV3.HealBot.Repoter
 
         protected override void MoveToRepot()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(500+ randomizer.Next(1,3000));
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
-                Thread.Sleep(10000);
+                Thread.Sleep(200 + randomizer.Next(1, 1000));
                 ProgramHandle.SetCameraLong();
-                Thread.Sleep(1000);
-                ProgramHandle.SetCameraLong();
-                Thread.Sleep(1000);
+                Thread.Sleep(100 + randomizer.Next(1, 1000));
 
                 MouseOperations.MoveAndLeftClickOperation(1125, 253, 500);
                 while (!ProgramHandle.isNowStandingCity())

@@ -52,7 +52,7 @@ namespace AresTrainerV3.ExpBotManagement.Holina
         telep 1135812375, 1124261475
 
         */
-        public override void RunAndExpSquare()
+        public override void RunAndExp()
         {
             int howManyForLoops = 0;
             while (_isExpBotRunning)
@@ -67,25 +67,25 @@ namespace AresTrainerV3.ExpBotManagement.Holina
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1133855562, 1124179514, 1125563371, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1133855562, 1124179514, 1125563371, 1);
                         ExpBotClass.ExpBotLog += $"Up Ended current i {i}\n";
                     }
                     else if (i == 1)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1125345069, 1133625506, 1135440265, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1125345069, 1133625506, 1135440265, 1);
                         ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
                     }
                     else if (i == 2)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1135440265, 1124179514, 1125563371, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1135440265, 1124179514, 1125563371, 1);
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
                     }
                     else if (i == 3)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1124536732, 1133625506, 1135812375, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1124536732, 1133625506, 1135812375, 1);
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
                     }
 

@@ -53,7 +53,7 @@ namespace AresTrainerV3.StorageRepot
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
-                ExpBotManagerAbstract.RequestStartStopExpBot();
+                ExpBotManagerAbstract.RequestStopExpBot();
             }
             ProgramHandle.TeleportToPositionTuple(SafeTeleportPlace());
             Thread.Sleep(1000);

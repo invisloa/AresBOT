@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AresTrainerV3.HealBot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,29 +11,27 @@ namespace AresTrainerV3.SkillSelection
     {
         public override void Rebuff()
         {
-            while (true)
+            while (HealBotAbstract.IsHealBotRunning == true)
             {
                 if (ProgramHandle.isInCity != 1)
                 {
-
-                    if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
-                    {
-                        KeyPresser.PressKey(4, 50, 50);
-                        KeyPresser.PressKey(4, 50, 50);
-                        KeyPresser.PressKey(4, 50, 50);
-                        KeyPresser.PressKey(3, 50, 50);
-                    }
-                    if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
-                    {
-                        KeyPresser.PressKey(4, 50, 50);
-                        KeyPresser.PressKey(4, 50, 50);
-                        KeyPresser.PressKey(4, 50, 50);
-                        KeyPresser.PressKey(3, 50, 50);
-                    }
+                    UseRapidWhenLowSkillDelay();
+                    UseRapidWhenLowSkillDelay();
                 }
                 Thread.Sleep(5000);
 
             }
+        }
+        void UseRapidWhenLowSkillDelay()
+        {
+            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
+            {
+                KeyPresser.PressKey(4, 50, 50);
+                KeyPresser.PressKey(4, 50, 50);
+                KeyPresser.PressKey(4, 50, 50);
+                KeyPresser.PressKey(3, 50, 50);
+            }
+
         }
 
         public override void SkillAssign()

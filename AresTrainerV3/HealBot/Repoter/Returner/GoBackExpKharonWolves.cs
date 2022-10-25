@@ -13,16 +13,25 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
         IGoRepot _repoterCity = new RepoterKharonExp();
         void GoOutOfTheZagroda()
         {
+            int i = 1;
+            ProgramHandle.SetCameraForExpBot();
+            ProgramHandle.SetCameraLong();
             ProgramHandle.SetCameraLong();
             MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
             ProgramHandle.SetCameraForExpBot();
 
-            while (!ProgramHandle.isNowRunningOut())
+/*            while (ProgramHandle.isNowStandingCity())
             {
+                i++;
                 Thread.Sleep(1);
+                if(i >5000)
+                {
+                    Debug.WriteLine("go repot stuck zagroda");
+                    RepoterKharonExp repotWhenStuck = new RepoterKharonExp();
+                    repotWhenStuck.GoRepot();
+                }
             }
-
-        }
+*/        }
         void PassTheStuckMountain()
         {
             ProgramHandle.SetCameraLong();
@@ -33,15 +42,13 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             }
             ProgramHandle.SetCameraForExpBot();
 
-            for (int i = 0; i < 2 + randomizer.Next(3); i++)
+            for (int i = 0; i < 2 + randomizer.Next(4); i++)
             {
                 MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(100), 10);
                 while (ProgramHandle.isNowRunningOut())
                 {
                     ProgramHandle.isNowRunningOut();
                 }
-
-
             }
             ProgramHandle.SetCameraForExpBot();
 
@@ -56,13 +63,14 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             }
             for (int i = 0; i < 10; i++)
             {
-                if(ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetPositionX < 1124331952 && ProgramHandle.GetPositionX > 1123556437)
+                Thread.Sleep(1000);
+                if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetPositionX < 1124331952 && ProgramHandle.GetPositionX > 1123556437)
                 {
-                        MouseOperations.MoveAndLeftClickOperation(960, 400, 10);
+                        MouseOperations.MoveAndLeftClickOperation(960, 400, 50);
                         Thread.Sleep(500);
                 }
             }
-            Thread.Sleep(randomizer.Next(3000,15000));
+            Thread.Sleep(randomizer.Next(1000,5000));
             if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
             {
                 GoOutOfTheZagroda();

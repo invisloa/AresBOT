@@ -19,7 +19,7 @@ namespace AresTrainerV3.ExpBotManagement.Etana
         }
 
 
-        public override void RunAndExpSquare()
+        public override void RunAndExp()
         {
             int howManyForLoops = 0;
             while (_isExpBotRunning)
@@ -34,7 +34,7 @@ namespace AresTrainerV3.ExpBotManagement.Etana
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1129758111, 1121100155, 1123148846, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1129758111, 1121100155, 1123148846, 1);
 
 
 
@@ -58,7 +58,7 @@ namespace AresTrainerV3.ExpBotManagement.Etana
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1135103167, 1121100155, 1123148846, true);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1135103167, 1121100155, 1123148846, 1);
 
                         // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";

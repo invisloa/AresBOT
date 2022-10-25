@@ -81,57 +81,61 @@ namespace AresTrainerV3.Buyer
         }
 
         protected void BuyPotionsAbstract(int hpLimit, bool hpMaxBuy, int mannaLimit, int redWhiteLimit, Tuple<int, int>[] buyPotionsMouseMovePos)
-        { 
+        {
             for (int i = 0; i < 4; i++)
             {
-                if (BuyFromForm)
+                if (ProgramHandle.isShopWindowStillOpen() == 1)
                 {
-                    hpLimit = HpPotionsToBuy;
-                    mannaLimit = MpPotionsToBuy;
-                    redWhiteLimit = SpeedPotionsToBuy;
-                    hpMaxBuy = BuyMaxPotions;
-                }
-                
-                Thread.Sleep(1000);
-                if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + (mannaLimit - 1)) // Manna Potion
-                {
-                    // int howManyPotionsToBuy = PointersAndValues.ItemCount1 + (mannaLimit - 1) - ProgramHandle.getSecondSlotValue;
-                    MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                    MouseOperations.MoveAndLeftClickOperation(1295, 530, 800); //2slot inv
 
-                    HowManyPotionsToBuy(PotionsToBuyCalculator(mannaLimit, ProgramHandle.getSecondSlotValue));
-                }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // Red Potions
-                {
-                    if (ProgramHandle.isCurrentClassSelected != PointersAndValues.ClassSorcerer)
+                    if (BuyFromForm)
                     {
-                        MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                        MouseOperations.MoveAndLeftClickOperation(1330, 530, 800); // 3 slot inv
-                        HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getThirdSlotValue));
+                        hpLimit = HpPotionsToBuy;
+                        mannaLimit = MpPotionsToBuy;
+                        redWhiteLimit = SpeedPotionsToBuy;
+                        hpMaxBuy = BuyMaxPotions;
                     }
-                }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // White Potions
-                {
-                    MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                    MouseOperations.MoveAndLeftClickOperation(1365, 530, 800); // 4 slot inv
 
-                    HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getForthSlotValue));
-                }
-                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 - 1 + hpLimit)      // HP Potions 
-                {
-
-                    if (!hpMaxBuy)
+                    Thread.Sleep(1000);
+                    if (i == 0 && ProgramHandle.getSecondSlotValue < PointersAndValues.ItemCount1 + (mannaLimit - 1)) // Manna Potion
                     {
+                        // int howManyPotionsToBuy = PointersAndValues.ItemCount1 + (mannaLimit - 1) - ProgramHandle.getSecondSlotValue;
                         MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                        MouseOperations.MoveAndLeftClickOperation(1260, 530, 300); // 1 slot inv
+                        MouseOperations.MoveAndLeftClickOperation(1295, 530, 800); //2slot inv
 
-                        HowManyPotionsToBuy(PotionsToBuyCalculator(hpLimit, ProgramHandle.getFirstSlotValue));
-
+                        HowManyPotionsToBuy(PotionsToBuyCalculator(mannaLimit, ProgramHandle.getSecondSlotValue));
                     }
-                    else
+                    else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // Red Potions
+                    {
+                        if (ProgramHandle.isCurrentClassSelected != PointersAndValues.ClassSorcerer)
+                        {
+                            MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
+                            MouseOperations.MoveAndLeftClickOperation(1330, 530, 800); // 3 slot inv
+                            HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getThirdSlotValue));
+                        }
+                    }
+                    else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // White Potions
                     {
                         MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                        HowManyPotionsToBuy(999);
+                        MouseOperations.MoveAndLeftClickOperation(1365, 530, 800); // 4 slot inv
+
+                        HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getForthSlotValue));
+                    }
+                    else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 - 1 + hpLimit)      // HP Potions 
+                    {
+
+                        if (!hpMaxBuy)
+                        {
+                            MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
+                            MouseOperations.MoveAndLeftClickOperation(1260, 530, 300); // 1 slot inv
+
+                            HowManyPotionsToBuy(PotionsToBuyCalculator(hpLimit, ProgramHandle.getFirstSlotValue));
+
+                        }
+                        else
+                        {
+                            MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
+                            HowManyPotionsToBuy(999);
+                        }
                     }
                 }
             }

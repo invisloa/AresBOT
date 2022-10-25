@@ -9,6 +9,6 @@ namespace AresTrainerV3.MovePositions
 {
     public interface IMoveToPositon
     {
-        public bool MoveAttackCollect( DirectionsEnum goDierction , int directionLimit, int sideDownOrLeftLimit, int  sideUpOrRightLimit, bool isMainDirection);
+        public bool MoveAttackCollect( DirectionsEnum goDierction , int maxLimitOrLeft, int sideDownLeftOrUp, int  sideUpRightOrRight, int mainDirOrDown);
     }
 }
