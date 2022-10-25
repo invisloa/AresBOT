@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
 using System.Collections.Generic;
@@ -15,73 +16,79 @@ namespace AresTrainerV3.HealBot.Repoter
         public void GoRepot()
         {
             Console.WriteLine("noRepotInThis");
+            KeyPresser.PressKey(6, 200, 200);
+            KeyPresser.PressKey(6, 200, 200);
+            HealBotAbstract.RequestStopHealBot();   
+            ExpBotManagerAbstract.RequestStopExpBot();
+
         }
 
-/*        protected override GoBackExpAbstract GoBackExpPlace
-        {
-            get
-            {
-                if (_goBackExpPlace == null)
+        /*        protected override GoBackExpAbstract GoBackExpPlace
                 {
-                    _goBackExpPlace = new GoBackOnlyHealbot();
+                    get
+                    {
+                        if (_goBackExpPlace == null)
+                        {
+                            _goBackExpPlace = new GoBackOnlyHealbot();
+                        }
+                        return _goBackExpPlace;
+                    }
                 }
-                return _goBackExpPlace;
-            }
-        }
 
-        protected override BuyerPotions BuyerPotionsCity
-        {
-            get
-            {
-                if (_buyerPotionsCity == null)
+                protected override BuyerPotions BuyerPotionsCity
                 {
-                    _buyerPotionsCity = new BuyerPotionsKharonExp();
+                    get
+                    {
+                        if (_buyerPotionsCity == null)
+                        {
+                            _buyerPotionsCity = new BuyerPotionsKharonExp();
+                        }
+                        return _buyerPotionsCity;
+                    }
                 }
-                return _buyerPotionsCity;
-            }
-        }
 
 
-        protected override int repotCity
-        {
-            get
-            {
-                if (_repotCityVerification == null)
+                protected override int repotCity
                 {
-                    _repotCityVerification = TeleportValues.Kharon;
+                    get
+                    {
+                        if (_repotCityVerification == null)
+                        {
+                            _repotCityVerification = TeleportValues.Kharon;
+                        }
+                        return _repotCityVerification;
+                    }
                 }
-                return _repotCityVerification;
-            }
-        }
 
-        GoBackExpAbstract _GoBackExpPlace = new GoBackOnlyHealbot();
-        protected override GoBackExpAbstract GoBackExpPlace
-        {
-            get { return _GoBackExpPlace; }
-        }
+                GoBackExpAbstract _GoBackExpPlace = new GoBackOnlyHealbot();
+                protected override GoBackExpAbstract GoBackExpPlace
+                {
+                    get { return _GoBackExpPlace; }
+                }
 
-        protected override BuyerPotions BuyerPotionsCity => throw new NotImplementedException();
+                protected override BuyerPotions BuyerPotionsCity => throw new NotImplementedException();
 
-        protected override int repotCity => throw new NotImplementedException();
+                protected override int repotCity => throw new NotImplementedException();
 
 
 
 
 
 
-        protected override void GoBackToExpSpot()
-        {
-            
-        }
+                protected override void GoBackToExpSpot()
+                {
 
-        protected override void MoveToRepot()
-        {
-            
-        }
+                }
 
-        protected override void RestartExpBot()
-        {
-            
-        }
-*/    }
+                protected override void MoveToRepot()
+                {
+
+                }
+
+                protected override void RestartExpBot()
+                {
+
+                }
+        */
+    }
 }
