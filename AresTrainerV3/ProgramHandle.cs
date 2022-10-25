@@ -999,7 +999,7 @@ namespace AresTrainerV3
 
         public static bool isAttacking()
         {
-            if (ProgramHandle.isMobBeingAttacked != -1 && isMouseClickedOnMob==1)
+            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
             {
                 return true;
             }

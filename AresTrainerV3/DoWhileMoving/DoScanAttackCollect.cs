@@ -30,6 +30,7 @@ namespace AresTrainerV3.DoWhileMoving
                 {
                     return true;
                 }
+                
             }
             return false;
         }

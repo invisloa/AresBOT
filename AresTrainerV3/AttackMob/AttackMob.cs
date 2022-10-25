@@ -73,14 +73,10 @@ namespace AresTrainerV3.AttackMob
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 MoverRandom.AttackedOrCollected = true;
                 Debug.WriteLine($"Mouse R Down");
-                Thread.Sleep(100);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+                Thread.Sleep(200);
                 if (ProgramHandle.isMouseClickedOnMob == 1)
                 {
                     WaitForAttackEnd();
-                    //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
-                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-                    //   Thread.Sleep(100);
                 }
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 //   Thread.Sleep(100);
