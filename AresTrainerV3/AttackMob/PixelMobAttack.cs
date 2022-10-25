@@ -33,7 +33,7 @@ namespace AresTrainerV3.AttackMob
                         if ((x < 934 || x > 979 || y < 500 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
-                            MouseOperations.SetCursorPosition(x+5, y);
+                          //  MouseOperations.SetCursorPosition(x+5, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                              //   Debug.WriteLine("1 attack for");
@@ -42,7 +42,7 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                            MouseOperations.SetCursorPosition(x-5, y);
+/*                          //  MouseOperations.SetCursorPosition(x-5, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                               //  Debug.WriteLine("1 attack for");
@@ -52,6 +52,15 @@ namespace AresTrainerV3.AttackMob
                                 return true;
                             }
                             MouseOperations.SetCursorPosition(x, y+5);
+                          //  if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                            {
+                              //  Debug.WriteLine("1 attack for");
+
+                                RepotAbstract.IsScanRunning = false;
+                                GC.Collect();
+                                return true;
+                            }
+                          //  MouseOperations.SetCursorPosition(x, y-5);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                               //  Debug.WriteLine("1 attack for");
@@ -60,18 +69,11 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                            MouseOperations.SetCursorPosition(x, y-5);
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                            {
-                              //  Debug.WriteLine("1 attack for");
-
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
-                            }
-                        }
+*/                        }
                     }
                 }
+                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+
                 for (int x = 700; x < 1220; x++)
                 {
 
@@ -95,6 +97,8 @@ namespace AresTrainerV3.AttackMob
                         }
                     }
                 }
+                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+
                 for (int x = 527; x < 1332; x++)
                 {
 

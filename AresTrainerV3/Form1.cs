@@ -94,6 +94,8 @@ namespace AresTrainerV3
             //
             //SUBSCRIBE globalKeyboardHook.
             //
+            gkh.KeyF2Down += StartOnlyHealbotThread;
+            gkh.KeyF2Down += ShowIfOnOrOff;
             gkh.KeyF3Down += StartHolinaGoblinsBot;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
@@ -101,12 +103,15 @@ namespace AresTrainerV3
             gkh.KeyF5Down += ProgramHandle.Teleporting;
             gkh.KeyF6Down += AttackWhenMobSelectedThread;
             gkh.KeyF6Down += ShowIfOnOrOff;
-            //gkh.KeyF3Down += StartKoHitThread;
-            // gkh.KeyF3Down += TemporatyThreadMoveMethod;
-
             gkh.KeyF9Down += ShowIfOnOrOff;
         }
 
+        void StartOnlyHealbotThread()
+        {
+            HealbotToRun = new HealBotOnlyHeal();
+            HealbotToRun.StartHealBotThread();
+
+        }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
@@ -476,6 +481,8 @@ namespace AresTrainerV3
             Thread.Sleep(300);
 
             MouseOperations.SetCursorPosition(446, 133);
+            MouseOperations.SetCursorPosition(446, 133);
+            MouseOperations.SetCursorPosition(446, 133);
             Thread.Sleep(300);
 
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
@@ -620,7 +627,7 @@ namespace AresTrainerV3
             ExpBotTest.StartExpBotThread();
 
         }
-private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
             BuyerPotions.HpPotionsToBuy = 70;
@@ -633,6 +640,54 @@ private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
             SellItemsCheckBox.Checked = true;
             DoScanAttackCollect.NumberOfCollectScans = 3;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            ExpBotManagerAbstract.RequestStartExpBot();
+            AbstractWhatToCollect allCollect = new CollectAllItems();
+            PixelItemCollector pixelSodCollect = new PixelItemCollector(allCollect);
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(599);
+            ProgramHandle.SetCameraForExpBot();
+            int i = 0;
+
+            
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                while (!ProgramHandle.isNowStandingOut())
+                {
+                    Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
+                    //pixelSodCollect.ClickAndCollectItem();
+                }
+            }
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void MoverGoblins_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotOnlyHeal();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract.RequestStartExpBot();
+            MoverRandom mover = new MoverRandom(TeleportValues.Hollina);
+
+
+
+
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomHolinaGoblins.Item1,
+                    TeleportValues.moverRandomHolinaGoblins.Item2, TeleportValues.moverRandomHolinaGoblins.Item3, TeleportValues.moverRandomHolinaGoblins.Item4);
+            }
+
 
         }
     }

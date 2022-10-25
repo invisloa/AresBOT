@@ -35,15 +35,14 @@ namespace AresTrainerV3.ItemCollect
         {
             if (collectItemValues())
             {
-                return CollectionClick();
 
-                /*                Thread.Sleep(1);
+                Thread.Sleep(1);
 
-                                if (collectItemValues())
-                                {
-                                    return CollectionClick();
-                                }
-                */
+                if (collectItemValues())
+                {
+                    return CollectionClick();
+                }
+
             }
             return false;
         }
@@ -52,19 +51,20 @@ namespace AresTrainerV3.ItemCollect
         {
             PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
 
-            Debug.WriteLine("Collect");
-            Thread.Sleep(100);
             MoverRandom.AttackedOrCollected = true;
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Debug.WriteLine("Collect"+ ProgramHandle.getCurrentItemHighlightedType);
             Thread.Sleep(100);
             //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(500);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+            Thread.Sleep(500);
             while (!ProgramHandle.isNowStandingOut())
             {
             Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
             }
+            Thread.Sleep(50);
             underCharPostScanner.PixelScanUnderChar(this);
             return true;
         }

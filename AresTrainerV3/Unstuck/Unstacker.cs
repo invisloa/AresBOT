@@ -39,6 +39,14 @@ namespace AresTrainerV3.Unstuck
                 MouseOperations.MoveAndLeftClickOperation(tempUnstuckMousePositions[movefromPositionRandomizer].Item1, tempUnstuckMousePositions[movefromPositionRandomizer].Item2, 15);
             }
         }
+        public void AttackUnstacker()
+        {
+            {
+                int movefromPositionRandomizer = random.Next(tempUnstuckMousePositions.Length);
+                MouseOperations.MoveAndLeftClickOperation(tempUnstuckMousePositions[movefromPositionRandomizer].Item1, tempUnstuckMousePositions[movefromPositionRandomizer].Item2, 15);
+            }
+        }
+
 
         protected bool UnstuckMoveBase(Tuple<int, int, int, int>[] stuckLockations)
         {

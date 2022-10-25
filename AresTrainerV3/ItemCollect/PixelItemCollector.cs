@@ -11,8 +11,8 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
-        IWhatToCollect _whatToCollect { get;}
-        IWhatToCollect CollectIgnoringWeight = new CollectSodJewelery();
+        IWhatToCollect _whatToCollect { get; }
+        IWhatToCollect CollectIgnoringWeight = new CollectSod();
         public PixelItemCollector(IWhatToCollect whatToCollect)
         {
             _whatToCollect = whatToCollect;
@@ -59,7 +59,7 @@ namespace AresTrainerV3.ItemCollect
                         {
                             for (int z = -1; z < 2; z++)
                             {
-                                MouseOperations.SetCursorPosition(x + 3*i, y + 3*z);
+                                MouseOperations.SetCursorPosition(x + 3 * i, y + 3 * z);
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -74,7 +74,8 @@ namespace AresTrainerV3.ItemCollect
 
                     }
                 }
-            } 
+            }
+            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
             for (int x = 550; x < 1360; x++)
             {
                 for (int y = 290; y < 835; y++)
@@ -110,31 +111,36 @@ namespace AresTrainerV3.ItemCollect
         }
         public bool PixelScanUnderChar(IWhatToCollect whatToCollect)
         {
+
             RepotAbstract.IsScanRunning = true;
             // sleep 1ms didnt work it took too long
-            for (int i = 0; i < 5; i++)
-            {
-                for (int x = 938; x < 975; x++)
+                for (int x = 930; x < 980; x++)
                 {
-                    for (int y = 505; y < 538; y++)
+                    for (int y = 500; y < 545; y++)
                     {
-                        MouseOperations.SetCursorPosition(x, y);
-                        if (whatToCollect.ClickAndCollectWhatItem())
+                        for (int i = -1; i < 2; i++)
                         {
-                            RepotAbstract.IsScanRunning = false;
-                            Debug.WriteLine("Under Foot Scan PixelScanUnderChar");
-                            GC.Collect();
-                            return true;
+                            for (int z = -1; z < 2; z++)
+                            {
+                                MouseOperations.SetCursorPosition(x + 2 * i, y + 2 * z);
+
+                                if (whatToCollect.ClickAndCollectWhatItem())
+                                {
+                                    RepotAbstract.IsScanRunning = false;
+                                    Debug.WriteLine("Under Foot Scan PixelScanUnderChar");
+                                    GC.Collect();
+                                    return true;
+                                }
+                            }
                         }
                     }
-                }
-            }
 
+                }
             GC.Collect();
             RepotAbstract.IsScanRunning = false;
             return false;
+
         }
 
     }
-
 }

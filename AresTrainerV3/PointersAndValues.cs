@@ -150,6 +150,14 @@ public static class PointersAndValues
             else { return 0x8C9Fd0; }
         }
     }
+    public static int isAttackingMob
+    {
+        get
+        {
+            if (isNostalgia) { return 0x6aa9fc; }
+            else { return 0x6aaafc; }
+        }
+    }
 
     // OFF offsets
     public const int hpOffset = 0x148;

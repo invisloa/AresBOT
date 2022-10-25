@@ -47,6 +47,7 @@ namespace AresTrainerV3
         static Memory memWeight = new Memory();
         static Memory memTeleport = new Memory();
         static Memory memExpbot = new Memory();
+        static Memory memAttacking = new Memory();
         static Memory memAnimation = new Memory();
         static Memory memScanner = new Memory();
         static Memory memSeller = new Memory();
@@ -69,6 +70,7 @@ namespace AresTrainerV3
         static IntPtr isCurrentSkillBar2Value;
         static IntPtr isCurrentSkillBar3Value;
         public static IntPtr isItemHighlightedType;
+        public static IntPtr isAttackingMob;
 
 
 
@@ -270,7 +272,7 @@ namespace AresTrainerV3
             isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
             isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
             isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
-
+            isAttackingMob = (IntPtr)PointersAndValues.isAttackingMob;
 
             int myMaxHp = getCurrentHp;
             if (myMaxHp < 200)
@@ -485,9 +487,9 @@ namespace AresTrainerV3
             get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.AttackSpeedOffset), 4)), 0); }
         }
 
-        public static int isWhatAnimationRunning()
+        public static int isWhatAnimationRunning
         {
-            return BitConverter.ToInt32(memAnimation.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4));
+            get {return BitConverter.ToInt32(memAnimation.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.typeOfAnimationIsRunning), 4)); }
         }
 
         public static int isMobSelected
@@ -932,7 +934,10 @@ namespace AresTrainerV3
         public static int getCurrentItemHighlightedType
         {
            get { return BitConverter.ToInt16((memScanner.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))), 0); }
-
+        }
+        public static int isAttackingMobNow
+        {
+            get { return BitConverter.ToInt16((memAttacking.readShort(proc.Handle, IntPtr.Add(isAttackingMob, 0))), 0); }
         }
 
         public static void OpenShopWindow()
@@ -962,11 +967,11 @@ namespace AresTrainerV3
         }
         public static bool isNowStandingCity()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcEmpCityF
-                || ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSpearAlliCity)
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpCity
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliCity
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliCity
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpCityF
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliCity)
             {
                 return true;
             }
@@ -977,11 +982,11 @@ namespace AresTrainerV3
         }
         public static bool isNowRunningCity()
         {
-            if (ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSorcEmpCityF
-                || ProgramHandle.isWhatAnimationRunning() != PointersAndValues.isStandingAnimationSpearAlliCity
+            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerEmpCity
+                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerAlliCity
+                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationSorcAlliCity
+                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationSorcEmpCityF
+                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationSpearAlliCity
                 )
             {
                 return false;
@@ -1003,11 +1008,11 @@ namespace AresTrainerV3
         }
         public static bool isNowRunningOut()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcALLIOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationArcEMPOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationSpearALLIOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationSorcAlliStaffOutside ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isRunningAnimationSorcAlliOrbOutside
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcALLIOutside ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcEMPOutside ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSpearALLIOutside ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliStaffOutside ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliOrbOutside
                )
             {
                 return true;
@@ -1019,11 +1024,11 @@ namespace AresTrainerV3
         }
         public static bool isNowStandingOut()
         {
-            if (ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerEmpOut ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationArcerAlliOut ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSorcAlliOutOrb ||
-                ProgramHandle.isWhatAnimationRunning() == PointersAndValues.isStandingAnimationSpearAlliOut
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliOut ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutOrb ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliOut
                 )
             {
                 return true;

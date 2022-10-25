@@ -14,32 +14,36 @@ namespace AresTrainerV3.AttackMob
     {
         static void WaitForAttackEnd()
         {
+            Thread.Sleep(200);
 
-            Thread.Sleep(50);
+            int i = 0;
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 
             UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
             // check if not attacking in stuck position
-
             anywhereUnstucker.UnstuckMove();
 
-            Thread.Sleep(50);
-
-            while (ProgramHandle.isAttacking())
+            while (!ProgramHandle.isNowStandingOut())
             {
+                i++;
                 pixelSodCollect.ClickAndCollectItem();
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
+                Debug.WriteLine(i);
+                if (i== 30)
+                {
+                    anywhereUnstucker.AttackUnstacker();
+                }
             }
             Thread.Sleep(50);
-            if (ProgramHandle.isAttacking())
+            if (!ProgramHandle.isNowStandingOut())
             {
                // Debug.WriteLine($"!Checked 2 IS STANDING");
                 WaitForAttackEnd();
             }
             Thread.Sleep(50);
-            if (ProgramHandle.isAttacking())
+            if (!ProgramHandle.isNowStandingOut())
             {
                // Debug.WriteLine($"!Checked 3 IS STANDING");
                 WaitForAttackEnd();
@@ -49,31 +53,32 @@ namespace AresTrainerV3.AttackMob
 
         static bool isMobTargeted()
         { 
-            if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isInCity != 1)
+            if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000 && ProgramHandle.isInCity != 1)
             {
-                 if (ProgramHandle.isMobSelected > 8300000)
-                     {
-                    AbstractWhatToCollect.MaxCollectWeight = 1;
-                     Debug.WriteLine($"Player Found");
-                     return false;
-                     }
-              //  Debug.WriteLine($"MOB found ");
                 return true;
+            }
+            else if (ProgramHandle.isMobSelected > 8300000)
+            {
+                AbstractWhatToCollect.MaxCollectWeight = 1;
+                Debug.WriteLine($"Player Found");
+                return false;
             }
             else
                 return false;
         }
         static void SkillAttack()
         {
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
             MoverRandom.AttackedOrCollected = true;
             Debug.WriteLine($"Mouse R Down");
+            Thread.Sleep(200);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            Thread.Sleep(10);
-            WaitForAttackEnd();
+           // WaitForAttackEnd();
             //make double clickRightUp because somehow it didnt notice the click and bot bugged and stopped attacking
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(5);
+         //   Thread.Sleep(100);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+         //   Thread.Sleep(100);
             Debug.WriteLine($"Mouse R UP");
         }
         public static bool CheckIfSelectedAndAttackSkill()

@@ -23,7 +23,7 @@ namespace AresTrainerV3.MoveRandom
         int _moveOnlyOnMapX = 999;
         int moveClickSlower = 0;
         int howMuchToSlowClickMove = 3;
-        int sideMoveCount = 30;
+        int sideMoveCount = 50;
 
         int _posBeforeMoveX = 0;
         int _posBeforeMoveY = 0;
@@ -32,7 +32,7 @@ namespace AresTrainerV3.MoveRandom
         int _minimalDistanceToTraver = 50000;
         public static bool AttackedOrCollected = false;
 
-        DoScanAttackCollect attackAndCollectSODAndEvent = new DoScanAttackCollect(new PixelItemCollector(new CollectSodJewelery()));
+        DoScanAttackCollect attackAndCollectSODAndEvent = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
 
         int MoveOnlyOnMapX
         {
@@ -131,7 +131,7 @@ namespace AresTrainerV3.MoveRandom
                     _walkDistanceY = Math.Abs(_posBeforeMoveY - ProgramHandle.GetPositionY);
                     if (!AttackedOrCollected)
                     {
-                        if (_walkDistanceX < _minimalDistanceToTraver && _walkDistanceY < _minimalDistanceToTraver)
+                        if (ProgramHandle.isNowStandingOut())
                         {
                             Debug.WriteLine("!!!!!!!!!!!!!!!!!!! TOO LOW DISTANCE!!!!!!!!!!!!!!!!!!");
                             int a = randomizer.Next(3);
@@ -148,7 +148,6 @@ namespace AresTrainerV3.MoveRandom
                                 _lastMouseMovePosition -= 24;
                             }
                         }
-
                         _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
                         _posBeforeMoveX = ProgramHandle.GetPositionX;
                         _posBeforeMoveY = ProgramHandle.GetPositionY;
@@ -224,7 +223,7 @@ namespace AresTrainerV3.MoveRandom
             {
                 if (ProgramHandle.GetPositionX > maxLimitLeft && ProgramHandle.GetPositionX < maxRightLimit && ProgramHandle.GetPositionY < maxUpLimit && ProgramHandle.GetPositionY > maxDownLimit)
                 {
-                    unstuckPlace.UnstuckMove();
+                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODAndEvent.DoThisWhileMoving()) ;
                     Debug.WriteLine("MainMoveClick");
                     MoveToPosRandom();
@@ -233,7 +232,7 @@ namespace AresTrainerV3.MoveRandom
                 {
                     Debug.WriteLine("maxLimitLeft");
                     AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    unstuckPlace.UnstuckMove();
+                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODAndEvent.DoThisWhileMoving());
                     leftLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
@@ -262,7 +261,7 @@ namespace AresTrainerV3.MoveRandom
                 {
                     Debug.WriteLine("maxRightLimit");
                     AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    unstuckPlace.UnstuckMove();
+                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODAndEvent.DoThisWhileMoving());
                     rightLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
@@ -291,7 +290,7 @@ namespace AresTrainerV3.MoveRandom
                 {
                     Debug.WriteLine("maxDownLimit");
                     AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    unstuckPlace.UnstuckMove();
+                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODAndEvent.DoThisWhileMoving());
                     downLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
@@ -318,7 +317,7 @@ namespace AresTrainerV3.MoveRandom
                 {
                     Debug.WriteLine("maxUpLimit");
                     AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    unstuckPlace.UnstuckMove();
+                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODAndEvent.DoThisWhileMoving());
                     upLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;

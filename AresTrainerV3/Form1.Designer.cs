@@ -78,6 +78,8 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.RunSellerCheckBox = new System.Windows.Forms.CheckBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.MoverGoblins = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -316,7 +318,7 @@
             // 
             // TestingThread
             // 
-            this.TestingThread.Location = new System.Drawing.Point(308, 413);
+            this.TestingThread.Location = new System.Drawing.Point(360, 384);
             this.TestingThread.Name = "TestingThread";
             this.TestingThread.Size = new System.Drawing.Size(101, 23);
             this.TestingThread.TabIndex = 26;
@@ -386,11 +388,11 @@
             // 
             // TestMethod
             // 
-            this.TestMethod.Location = new System.Drawing.Point(632, 401);
+            this.TestMethod.Location = new System.Drawing.Point(235, 415);
             this.TestMethod.Name = "TestMethod";
             this.TestMethod.Size = new System.Drawing.Size(91, 23);
             this.TestMethod.TabIndex = 33;
-            this.TestMethod.Text = "TestMethod";
+            this.TestMethod.Text = "MoverThieves";
             this.TestMethod.UseVisualStyleBackColor = true;
             this.TestMethod.Click += new System.EventHandler(this.TestMethod_Click);
             // 
@@ -563,11 +565,33 @@
             this.RunSellerCheckBox.UseVisualStyleBackColor = true;
             this.RunSellerCheckBox.CheckedChanged += new System.EventHandler(this.RunSellerCheckBox_CheckedChanged);
             // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(580, 413);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(91, 23);
+            this.button6.TabIndex = 52;
+            this.button6.Text = "button6";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // MoverGoblins
+            // 
+            this.MoverGoblins.Location = new System.Drawing.Point(360, 413);
+            this.MoverGoblins.Name = "MoverGoblins";
+            this.MoverGoblins.Size = new System.Drawing.Size(91, 23);
+            this.MoverGoblins.TabIndex = 53;
+            this.MoverGoblins.Text = "MoverGoblins";
+            this.MoverGoblins.UseVisualStyleBackColor = true;
+            this.MoverGoblins.Click += new System.EventHandler(this.MoverGoblins_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.MoverGoblins);
+            this.Controls.Add(this.button6);
             this.Controls.Add(this.RunSellerCheckBox);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button5);
@@ -679,5 +703,7 @@
         private Button button5;
         private Label label14;
         private CheckBox RunSellerCheckBox;
+        private Button button6;
+        private Button MoverGoblins;
     }
 }
