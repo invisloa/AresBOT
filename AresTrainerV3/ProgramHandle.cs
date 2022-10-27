@@ -51,6 +51,8 @@ namespace AresTrainerV3
         static Memory memAnimation = new Memory();
         static Memory memScanner = new Memory();
         static Memory memSeller = new Memory();
+        static Memory memIsInCity = new Memory();
+
 
         static Process proc = Process.GetProcessesByName(foregroundProcessName)[0];
         static IntPtr baseNormalOffset;
@@ -447,7 +449,7 @@ namespace AresTrainerV3
         {
             get
             {
-                return memExpbot.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.isInCityOffset));
+                return memIsInCity.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.isInCityOffset));
             }
         }
         public static int getFirstSlotValue

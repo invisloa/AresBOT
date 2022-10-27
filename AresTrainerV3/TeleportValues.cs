@@ -129,16 +129,14 @@ namespace AresTrainerV3
         // SafePositions
         public static Tuple<int, int, int> SafePosBaldorTemple2Floor = new Tuple<int, int, int>(1, 1, 1);
 
+
+        public static Tuple<int, int, int, int> moverRandomEtanaBuckys = new Tuple<int, int, int, int>(1120531098, 1134986919, 1125090368, 1128186402);  //Left,Up,Right,Down
+        public static Tuple<int, int, int, int> moverRandomSacredGiko = new Tuple<int, int, int, int>(1141048739, 1132575491, 1142147534, 1128382486);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomThievesUnder = new Tuple<int, int, int, int>(1120295809, 1144140242, 1126285252, 1143328515);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomthievesUp = new Tuple<int, int, int, int>(1121716968, 1147515844, 1125986132, 1146748268);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomHolinaGoblins = new Tuple<int, int, int, int>(1128280657, 1134028880, 1131887172, 1131920903);  //Left,Up,Right,Down
-
-
-
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
-
-
 
     }
 }

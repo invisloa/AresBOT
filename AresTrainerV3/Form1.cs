@@ -649,5 +649,47 @@ namespace AresTrainerV3
 
         }
 
+        private void EtanaBot_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotOnlyHeal();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract.RequestStartExpBot();
+            MoverRandom mover = new MoverRandom(TeleportValues.Etana);
+
+
+
+            
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomEtanaBuckys.Item1,
+                    TeleportValues.moverRandomEtanaBuckys.Item2, TeleportValues.moverRandomEtanaBuckys.Item3, TeleportValues.moverRandomEtanaBuckys.Item4);
+            }
+
+        }
+
+        private void MoverGiko_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotOnlyHeal();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract.RequestStartExpBot();
+            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
+
+
+
+
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomSacredGiko.Item1,
+                    TeleportValues.moverRandomSacredGiko.Item2, TeleportValues.moverRandomSacredGiko.Item3,
+                    TeleportValues.moverRandomSacredGiko.Item4);
+            }
+
+        }
     }
 }
