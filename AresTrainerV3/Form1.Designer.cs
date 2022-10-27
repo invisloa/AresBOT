@@ -54,7 +54,6 @@
             this.BtnHealbotOnOff = new System.Windows.Forms.Button();
             this.TestingThread = new System.Windows.Forms.Button();
             this.FastTestBTN = new System.Windows.Forms.Button();
-            this.ItemsSell = new System.Windows.Forms.Button();
             this.OpenStorageBTN = new System.Windows.Forms.Button();
             this.Tester = new System.Windows.Forms.Button();
             this.SetWindowPos = new System.Windows.Forms.Button();
@@ -80,6 +79,7 @@
             this.RunSellerCheckBox = new System.Windows.Forms.CheckBox();
             this.button6 = new System.Windows.Forms.Button();
             this.MoverGoblins = new System.Windows.Forms.Button();
+            this.SellItems = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -336,16 +336,6 @@
             this.FastTestBTN.UseVisualStyleBackColor = true;
             this.FastTestBTN.Click += new System.EventHandler(this.FastTestBTN_Click);
             // 
-            // ItemsSell
-            // 
-            this.ItemsSell.Location = new System.Drawing.Point(753, 3);
-            this.ItemsSell.Name = "ItemsSell";
-            this.ItemsSell.Size = new System.Drawing.Size(75, 23);
-            this.ItemsSell.TabIndex = 28;
-            this.ItemsSell.Text = "SellItems";
-            this.ItemsSell.UseVisualStyleBackColor = true;
-            this.ItemsSell.Click += new System.EventHandler(this.button4_Click);
-            // 
             // OpenStorageBTN
             // 
             this.OpenStorageBTN.Location = new System.Drawing.Point(8, 6);
@@ -585,11 +575,22 @@
             this.MoverGoblins.UseVisualStyleBackColor = true;
             this.MoverGoblins.Click += new System.EventHandler(this.MoverGoblins_Click);
             // 
+            // SellItems
+            // 
+            this.SellItems.Location = new System.Drawing.Point(753, 8);
+            this.SellItems.Name = "SellItems";
+            this.SellItems.Size = new System.Drawing.Size(75, 23);
+            this.SellItems.TabIndex = 54;
+            this.SellItems.Text = "SellItems";
+            this.SellItems.UseVisualStyleBackColor = true;
+            this.SellItems.Click += new System.EventHandler(this.SellItems_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.SellItems);
             this.Controls.Add(this.MoverGoblins);
             this.Controls.Add(this.button6);
             this.Controls.Add(this.RunSellerCheckBox);
@@ -615,7 +616,6 @@
             this.Controls.Add(this.SetWindowPos);
             this.Controls.Add(this.Tester);
             this.Controls.Add(this.OpenStorageBTN);
-            this.Controls.Add(this.ItemsSell);
             this.Controls.Add(this.FastTestBTN);
             this.Controls.Add(this.TestingThread);
             this.Controls.Add(this.BtnHealbotOnOff);
@@ -679,7 +679,6 @@
         private Button BtnHealbotOnOff;
         private Button TestingThread;
         private Button FastTestBTN;
-        private Button ItemsSell;
         private Button OpenStorageBTN;
         private Button Tester;
         private Button SetWindowPos;
@@ -705,5 +704,6 @@
         private CheckBox RunSellerCheckBox;
         private Button button6;
         private Button MoverGoblins;
+        private Button SellItems;
     }
 }
