@@ -300,12 +300,7 @@ namespace AresTrainerV3.MoveRandom
                             MoveToPosRandom(_lastPositionAfterBounce);
                         }
                     } 
-                }
-                if(ProgramHandle.isInCity ==1)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-
-                }
+                 }
                 /*                else if (ProgramHandle.GetPositionY > maxUpLimit - closeToLimit)
                                 {
                                     Debug.WriteLine("closeToLimit Up");

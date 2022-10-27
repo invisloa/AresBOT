@@ -80,6 +80,8 @@
             this.button6 = new System.Windows.Forms.Button();
             this.MoverGoblins = new System.Windows.Forms.Button();
             this.SellItems = new System.Windows.Forms.Button();
+            this.EtanaBot = new System.Windows.Forms.Button();
+            this.MoverGiko = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -585,11 +587,33 @@
             this.SellItems.UseVisualStyleBackColor = true;
             this.SellItems.Click += new System.EventHandler(this.SellItems_Click);
             // 
+            // EtanaBot
+            // 
+            this.EtanaBot.Location = new System.Drawing.Point(474, 413);
+            this.EtanaBot.Name = "EtanaBot";
+            this.EtanaBot.Size = new System.Drawing.Size(91, 23);
+            this.EtanaBot.TabIndex = 55;
+            this.EtanaBot.Text = "EtanaBot";
+            this.EtanaBot.UseVisualStyleBackColor = true;
+            this.EtanaBot.Click += new System.EventHandler(this.EtanaBot_Click);
+            // 
+            // MoverGiko
+            // 
+            this.MoverGiko.Location = new System.Drawing.Point(474, 384);
+            this.MoverGiko.Name = "MoverGiko";
+            this.MoverGiko.Size = new System.Drawing.Size(91, 23);
+            this.MoverGiko.TabIndex = 56;
+            this.MoverGiko.Text = "MoverGiko";
+            this.MoverGiko.UseVisualStyleBackColor = true;
+            this.MoverGiko.Click += new System.EventHandler(this.MoverGiko_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.MoverGiko);
+            this.Controls.Add(this.EtanaBot);
             this.Controls.Add(this.SellItems);
             this.Controls.Add(this.MoverGoblins);
             this.Controls.Add(this.button6);
@@ -705,5 +729,7 @@
         private Button button6;
         private Button MoverGoblins;
         private Button SellItems;
+        private Button EtanaBot;
+        private Button MoverGiko;
     }
 }
