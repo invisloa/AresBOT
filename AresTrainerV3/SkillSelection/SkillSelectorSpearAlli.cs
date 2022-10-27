@@ -12,7 +12,7 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.isInCity != 1)
             {
-                KeyPresser.PressKey(4, 100, 100);
+/*                KeyPresser.PressKey(4, 100, 100);
                 SkillAssign();
                 KeyPresser.PressKey(4, 100, 100);
                 SkillAssign();
@@ -20,7 +20,7 @@ namespace AresTrainerV3.SkillSelection
                 KeyPresser.PressKey(3, 100, 100);
                 Thread.Sleep(150000);
 
-            }
+*/            }
  
         }
 
