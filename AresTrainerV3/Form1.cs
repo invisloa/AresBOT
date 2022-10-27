@@ -18,40 +18,6 @@ using System.Diagnostics;
 using Utilities;
 
 
-//TODO List
-//TODO List
-//TODO List
-//TODO List
-/*
- * 
- *          IF weight is lowet then x-200 and pixel attack returned 0 run collect items
- *          
-            Sell items from inventory propably has to sell last slot item all the time so that bot knows whether there is full storage to go to Sell and Repot
-            
-            Try to change black To maybe Red or Something so it wont scan after walls in uwc
-            if it doesnt work need to go for wolves
-
-
-            
-
-
-
-WINDOW POSITION
-                    446
-                    133
-*/
-//TODO List1111
-//TODO List
-//TODO List
-//TODO List
-//TODO List
-//TODO List
-//TODO List
-
-
-
-
-
 
 
 
@@ -61,11 +27,8 @@ namespace AresTrainerV3
 {
     public partial class Form1 : Form
     {
-        static Thread healbotThread;
         static Thread animbotThread;
         static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
-        // static Thread ChangeKoHitValueThread = new Thread(ProgramHandle.TestFoundValues);
-
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
         HealBotAbstract HealbotToRun;
         globalKeyboardHook gkh = new globalKeyboardHook();
@@ -73,17 +36,13 @@ namespace AresTrainerV3
         public Form1()
         {
             InitializeComponent();
-
             ProgramHandle.InitializeProgram();
             MannaValueTextBox.Text = ProgramHandle.MannaRestoreValue.ToString();
             HPValueTextBox.Text = ProgramHandle.hpHealValue.ToString();
-
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
-
             gkh.HookedKeys.Add(Keys.F2);
             gkh.HookedKeys.Add(Keys.F3);
             gkh.HookedKeys.Add(Keys.F4);
@@ -110,7 +69,6 @@ namespace AresTrainerV3
         {
             HealbotToRun = new HealBotOnlyHeal();
             HealbotToRun.StartHealBotThread();
-
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
@@ -124,7 +82,6 @@ namespace AresTrainerV3
                 HealBotAbstract.SelfSetHealValue = false;
 
             }
-
         }
 
 
@@ -449,9 +406,7 @@ namespace AresTrainerV3
         {
 
         }
-
-
-        private void button4_Click(object sender, EventArgs e)
+        private void SellItems_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetGameAsMainWindow();
             //ProgramHandle.OpenShopWindow();
@@ -465,7 +420,10 @@ namespace AresTrainerV3
                             Debug.WriteLine($"{item.ToString()}");
                         }
             */
+
         }
+
+
         private void OpenStorageBTN_Click(object sender, EventArgs e)
         {
             ProgramHandle.OpenStorageWindow();
@@ -690,5 +648,6 @@ namespace AresTrainerV3
 
 
         }
+
     }
 }

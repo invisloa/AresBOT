@@ -301,16 +301,22 @@ namespace AresTrainerV3.MoveRandom
                         }
                     } 
                 }
-/*                else if (ProgramHandle.GetPositionY > maxUpLimit - closeToLimit)
+                if(ProgramHandle.isInCity ==1)
                 {
-                    Debug.WriteLine("closeToLimit Up");
-                    AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    unstuckPlace.UnstuckMove();
-                    // while (attackAndCollectSODAndEvent.DoThisWhileMoving());
-                    upLimitBounce();
-                    MoveToPosRandom();
+                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+
                 }
-*/                return true;
+                /*                else if (ProgramHandle.GetPositionY > maxUpLimit - closeToLimit)
+                                {
+                                    Debug.WriteLine("closeToLimit Up");
+                                    AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
+                                    unstuckPlace.UnstuckMove();
+                                    // while (attackAndCollectSODAndEvent.DoThisWhileMoving());
+                                    upLimitBounce();
+                                    MoveToPosRandom();
+                                }
+                */
+                return true;
             }
             return false;
         }
