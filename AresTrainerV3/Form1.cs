@@ -683,7 +683,7 @@ namespace AresTrainerV3
 
 
 
-            while (ExpBotManagerAbstract.isExpBotRunning)
+            while (ProgramHandle.isInCity == 1)
             {
                 mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomSacredGiko.Item1,
                     TeleportValues.moverRandomSacredGiko.Item2, TeleportValues.moverRandomSacredGiko.Item3,
