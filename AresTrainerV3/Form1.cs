@@ -457,7 +457,7 @@ namespace AresTrainerV3
         {
             ProgramHandle.SetCameraForExpBot();
 
-            HealbotToRun = new HealBotHershalExp();
+            HealbotToRun = new HealBotOnlyHeal();
             HealbotToRun.StartHealBotThread();
 
             ExpBotManagerAbstract.RequestStartExpBot();
@@ -468,8 +468,8 @@ namespace AresTrainerV3
 
             while (true)
             {
-                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomthievesUp.Item1,
-                    TeleportValues.moverRandomthievesUp.Item2, TeleportValues.moverRandomthievesUp.Item3, TeleportValues.moverRandomthievesUp.Item4);
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomThievesUnder.Item1,
+                    TeleportValues.moverRandomThievesUnder.Item2, TeleportValues.moverRandomThievesUnder.Item3, TeleportValues.moverRandomThievesUnder.Item4);
             }
 
 

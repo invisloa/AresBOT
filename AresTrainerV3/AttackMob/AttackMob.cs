@@ -12,11 +12,10 @@ namespace AresTrainerV3.AttackMob
 {
     public static class AttackMobCollectSod
     {
+        static int attackUnstackCounter = 0;
         static void WaitForAttackEnd()
         {
             Thread.Sleep(200);
-
-            int i = 0;
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 
@@ -26,12 +25,12 @@ namespace AresTrainerV3.AttackMob
 
             while (ProgramHandle.isAttacking())
             {
-                i++;
+                attackUnstackCounter++;
                 pixelSodCollect.ClickAndCollectItem();
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
-                Debug.WriteLine(i);
-                if (i== 30)
+                Debug.WriteLine(attackUnstackCounter);
+                if (attackUnstackCounter == 30)
                 {
                     anywhereUnstucker.AttackUnstacker();
                 }
@@ -70,6 +69,7 @@ namespace AresTrainerV3.AttackMob
         {
             if (ProgramHandle.isMobSelected != 0)
             {
+                attackUnstackCounter = 0;
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 MoverRandom.AttackedOrCollected = true;
                 Debug.WriteLine($"Mouse R Down");
