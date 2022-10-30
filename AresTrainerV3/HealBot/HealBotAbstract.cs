@@ -247,13 +247,13 @@ namespace AresTrainerV3.HealBot
             // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
             if (ProgramHandle.isCurrentClassSelected == 1)
             {
-/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                    KeyPresser.PressKey(7, 100, 100);
-                }
-*/
-                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
+                /*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                                {
+                                    KeyPresser.PressKey(8, 100, 100);
+                                    KeyPresser.PressKey(7, 100, 100);
+                                }
+                */
+                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
