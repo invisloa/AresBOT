@@ -642,6 +642,11 @@ namespace AresTrainerV3
 
             while (ExpBotManagerAbstract.isExpBotRunning)
             {
+                if (ProgramHandle.isInCity == 1)
+                {
+                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                }
+
                 mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomHolinaGoblins.Item1,
                     TeleportValues.moverRandomHolinaGoblins.Item2, TeleportValues.moverRandomHolinaGoblins.Item3, TeleportValues.moverRandomHolinaGoblins.Item4);
             }
@@ -664,6 +669,11 @@ namespace AresTrainerV3
             
             while (ExpBotManagerAbstract.isExpBotRunning)
             {
+                if (ProgramHandle.isInCity == 1)
+                {
+                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                }
+
                 mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomEtanaBuckys.Item1,
                     TeleportValues.moverRandomEtanaBuckys.Item2, TeleportValues.moverRandomEtanaBuckys.Item3, TeleportValues.moverRandomEtanaBuckys.Item4);
             }
@@ -683,8 +693,13 @@ namespace AresTrainerV3
 
 
 
-            while (ProgramHandle.isInCity != 1)
+            while (ExpBotManagerAbstract.isExpBotRunning)
             {
+                if (ProgramHandle.isInCity == 1)
+                {
+                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                }
+
                 mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomSacredGiko.Item1,
                     TeleportValues.moverRandomSacredGiko.Item2, TeleportValues.moverRandomSacredGiko.Item3,
                     TeleportValues.moverRandomSacredGiko.Item4);

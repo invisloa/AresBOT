@@ -294,7 +294,7 @@ namespace AresTrainerV3.MoveRandom
 
                     for (int i = 0; i < sideMoveCount; i++)
                     {
-                        if(ProgramHandle.GetPositionY > maxUpLimit && ExpBotManagerAbstract.isExpBotRunning)
+                        if(ProgramHandle.GetPositionY > maxUpLimit && ExpBotManagerAbstract.isExpBotRunning )
                         {
                            // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                             MoveToPosRandom(_lastPositionAfterBounce);
