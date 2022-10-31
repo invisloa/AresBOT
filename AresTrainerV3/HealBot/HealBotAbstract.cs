@@ -212,7 +212,7 @@ namespace AresTrainerV3.HealBot
         {
             if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 8) // if less then 5 use key 6 which is teleport
                 {
-                KeyPresser.PressKey(1, 150, 150);
+                KeyPresser.PressKey(1, 100, 250);
                 }
             else
                 {
@@ -227,7 +227,7 @@ namespace AresTrainerV3.HealBot
             {
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
-                    KeyPresser.PressKey(2, 100, 100);
+                    KeyPresser.PressKey(2, 100, 250);
                     if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
                     {
                         RepoterCity.GoRepot();
