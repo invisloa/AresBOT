@@ -27,9 +27,6 @@ namespace AresTrainerV3.MoveRandom
 
         int _posBeforeMoveX = 0;
         int _posBeforeMoveY = 0;
-        int _walkDistanceX = 0;
-        int _walkDistanceY = 0;
-        int _minimalDistanceToTraver = 50000;
         public static bool AttackedOrCollected = false;
 
         DoScanAttackCollect attackAndCollectSODAndEvent = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
@@ -119,8 +116,6 @@ namespace AresTrainerV3.MoveRandom
                             }
                         }
                         _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
-                        _posBeforeMoveX = ProgramHandle.GetPositionX;
-                        _posBeforeMoveY = ProgramHandle.GetPositionY;
                     }
                     else
                     {

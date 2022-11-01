@@ -453,40 +453,6 @@ namespace AresTrainerV3
 
         }
 
-        private void TestMethod_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetCameraForExpBot();
-
-            HealbotToRun = new HealBotOnlyHeal();
-            HealbotToRun.StartHealBotThread();
-
-            ExpBotManagerAbstract.RequestStartExpBot();
-            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
-
-
-
-
-            while (true)
-            {
-                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomThievesUnder.Item1,
-                    TeleportValues.moverRandomThievesUnder.Item2, TeleportValues.moverRandomThievesUnder.Item3, TeleportValues.moverRandomThievesUnder.Item4);
-            }
-
-
-
-            /*            ProgramHandle.SetGameAsMainWindow();
-                        Thread.Sleep(500);
-                        ProgramHandle.SetCameraForExpBot();
-                        Thread.Sleep(500);
-
-                        DoScanAttackCollect zzz = new DoScanAttackCollect((new PixelItemCollector(new CollectAllItems())));
-                        while (true)
-                        {
-                            zzz.DoThisWhileMoving();
-                        }
-            */
-
-        }
 
 
 
@@ -679,6 +645,30 @@ namespace AresTrainerV3
             }
 
         }
+        private void TestMethod_Click(object sender, EventArgs e)
+        {
+            ProgramHandle.SetCameraForExpBot();
+
+            HealbotToRun = new HealBotOnlyHeal();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract.RequestStartExpBot();
+            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
+
+
+
+
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                if (ProgramHandle.isInCity == 1)
+                {
+                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                }
+                mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomThievesUnder.Item1,
+                    TeleportValues.moverRandomThievesUnder.Item2, TeleportValues.moverRandomThievesUnder.Item3, TeleportValues.moverRandomThievesUnder.Item4);
+            }
+        }
+
 
         private void MoverGiko_Click(object sender, EventArgs e)
         {
