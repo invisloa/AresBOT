@@ -82,6 +82,8 @@
             this.SellItems = new System.Windows.Forms.Button();
             this.EtanaBot = new System.Windows.Forms.Button();
             this.MoverGiko = new System.Windows.Forms.Button();
+            this.HealbotComboBox = new System.Windows.Forms.ComboBox();
+            this.ExpBotComboBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -607,11 +609,43 @@
             this.MoverGiko.UseVisualStyleBackColor = true;
             this.MoverGiko.Click += new System.EventHandler(this.MoverGiko_Click);
             // 
+            // HealbotComboBox
+            // 
+            this.HealbotComboBox.FormattingEnabled = true;
+            this.HealbotComboBox.Items.AddRange(new object[] {
+            "HealbotOnly",
+            "Etana",
+            "Sacred",
+            "Holina",
+            "Hershal",
+            "Kharon",
+            "UWC",
+            "COT"});
+            this.HealbotComboBox.Location = new System.Drawing.Point(727, 258);
+            this.HealbotComboBox.Name = "HealbotComboBox";
+            this.HealbotComboBox.Size = new System.Drawing.Size(121, 23);
+            this.HealbotComboBox.TabIndex = 57;
+            this.HealbotComboBox.SelectedIndexChanged += new System.EventHandler(this.HealbotComboBox_SelectedIndexChanged);
+            // 
+            // ExpBotComboBox
+            // 
+            this.ExpBotComboBox.FormattingEnabled = true;
+            this.ExpBotComboBox.Items.AddRange(new object[] {
+            "EtanaBuckerty",
+            "SacredGiko"});
+            this.ExpBotComboBox.Location = new System.Drawing.Point(727, 300);
+            this.ExpBotComboBox.Name = "ExpBotComboBox";
+            this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
+            this.ExpBotComboBox.TabIndex = 58;
+            this.ExpBotComboBox.SelectedIndexChanged += new System.EventHandler(this.ExpBotComboBox_SelectedIndexChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.ExpBotComboBox);
+            this.Controls.Add(this.HealbotComboBox);
             this.Controls.Add(this.MoverGiko);
             this.Controls.Add(this.EtanaBot);
             this.Controls.Add(this.SellItems);
@@ -731,5 +765,7 @@
         private Button SellItems;
         private Button EtanaBot;
         private Button MoverGiko;
+        private ComboBox HealbotComboBox;
+        private ComboBox ExpBotComboBox;
     }
 }

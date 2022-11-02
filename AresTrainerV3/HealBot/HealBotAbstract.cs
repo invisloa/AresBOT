@@ -35,7 +35,7 @@ namespace AresTrainerV3.HealBot
         public static int HpHealValue
         {
             get
-            { return hpHealValue; }
+            {return hpHealValue; }
             set
             { hpHealValue = value; }
         }
@@ -50,7 +50,11 @@ namespace AresTrainerV3.HealBot
         {
             get;
         }
-
+        public void setHealbotValues()
+        {
+            setHealValue();
+            setMannaRestoreValue();
+        }
         void setHealValue()
         {
             if (myCurrentHp < 100)

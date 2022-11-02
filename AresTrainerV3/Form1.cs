@@ -30,15 +30,20 @@ namespace AresTrainerV3
         static Thread animbotThread;
         static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
-        HealBotAbstract HealbotToRun;
+        HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
         globalKeyboardHook gkh = new globalKeyboardHook();
+
+        MoverRandom ExpBotMoverToRun = new MoverRandom(255);
+
 
         public Form1()
         {
             InitializeComponent();
             ProgramHandle.InitializeProgram();
-            MannaValueTextBox.Text = ProgramHandle.MannaRestoreValue.ToString();
-            HPValueTextBox.Text = ProgramHandle.hpHealValue.ToString();
+            HealbotToRun.setHealbotValues();
+            HPValueTextBox.Text = HealBotAbstract.HpHealValue.ToString();
+            MannaValueTextBox.Text = HealBotAbstract.MpRestoreValue.ToString();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -274,7 +279,7 @@ namespace AresTrainerV3
 
         private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
         {
-            int i = ProgramHandle.MannaRestoreValue;
+            int i = 100;
             int.TryParse(MannaValueTextBox.Text, out i);
             HealBotAbstract.MpRestoreValue = i;
         }
@@ -486,6 +491,7 @@ namespace AresTrainerV3
             ExpBotTest.StartExpBotThread();
         }
 
+
         private void button4_Click_1(object sender, EventArgs e)
         {
             ProgramHandle.TeleportToPositionTuple(TeleportValues.SacredlandsAlliExp);
@@ -599,7 +605,8 @@ namespace AresTrainerV3
 
             HealbotToRun = new HealBotOnlyHeal();
             HealbotToRun.StartHealBotThread();
-
+           // ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
+            Thread.Sleep(2000);
             ExpBotManagerAbstract.RequestStartExpBot();
             MoverRandom mover = new MoverRandom(TeleportValues.Hollina);
 
@@ -611,6 +618,9 @@ namespace AresTrainerV3
                 if (ProgramHandle.isInCity == 1)
                 {
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                    ExpBotManagerAbstract.RequestStopExpBot();
+                    HealBotAbstract.RequestStopHealBot();
+
                 }
 
                 mover.MoveAttackCollect(DirectionsEnum.Around, TeleportValues.moverRandomHolinaGoblins.Item1,
@@ -669,7 +679,6 @@ namespace AresTrainerV3
             }
         }
 
-
         private void MoverGiko_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetCameraForExpBot();
@@ -694,6 +703,52 @@ namespace AresTrainerV3
                     TeleportValues.moverRandomSacredGiko.Item2, TeleportValues.moverRandomSacredGiko.Item3,
                     TeleportValues.moverRandomSacredGiko.Item4);
             }
+
+        }
+        void RunMoverExpBot()
+        {
+            ProgramHandle.SetCameraForExpBot();
+            HealbotToRun.StartHealBotThread();
+
+            ExpBotManagerAbstract.RequestStartExpBot();
+            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
+
+
+        }
+
+        private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch(HealbotComboBox.SelectedIndex)
+            {
+                case 0:
+                    HealbotToRun = new HealBotOnlyHeal();
+                    break;
+                case 1:
+                    HealbotToRun = new HealBotOnlyHeal();
+                    break;
+                case 2:
+                    HealbotToRun = new HealBotSacredAlli();
+                    break;
+                case 3:
+                    HealbotToRun = new HealBotHolinaExp();
+                    break;
+                case 4:
+                    HealbotToRun = new HealBotHershalExp();
+                    break;
+                case 5:
+                    HealbotToRun = new HealBotKharonExp();
+                    break;
+                case 6:
+                    HealbotToRun = new HealBotUWC();
+                    break;
+                case 7:
+                    HealbotToRun = new HealBotOnlyHeal();
+                    break;
+            }
+        }
+
+        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

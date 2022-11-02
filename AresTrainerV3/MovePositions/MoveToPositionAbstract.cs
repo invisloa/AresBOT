@@ -211,11 +211,12 @@ namespace AresTrainerV3.MovePositions
             }
 
         }
+       // int directionLimit, int sideDownOrLeftLimit, int sideUpOrRightLimit, int isMainDirection
 
-        public bool MoveAttackCollect(DirectionsEnum goDierction, int directionLimit, int sideDownOrLeftLimit, int sideUpOrRightLimit , int isMainDirection)
+        public bool MoveAttackCollect(DirectionsEnum goDierction, Tuple<int,int,int,int> directionsLimit)
         {
             bool mainDirectionBool = true;
-            if(isMainDirection==0)
+            if(directionsLimit.Item4 == 0)
             {
                 mainDirectionBool = false;
             }
@@ -223,25 +224,25 @@ namespace AresTrainerV3.MovePositions
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
             else if (goDierction == DirectionsEnum.Right)
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
             else if (goDierction == DirectionsEnum.Up)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
             else // (goDierction == DirectionsEnum.Down)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
         }
     }
