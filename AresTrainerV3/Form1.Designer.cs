@@ -91,6 +91,8 @@
             this.label17 = new System.Windows.Forms.Label();
             this.ShutDownWhenInCity = new System.Windows.Forms.CheckBox();
             this.label18 = new System.Windows.Forms.Label();
+            this.CollectItemsBox = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -719,11 +721,34 @@
             this.label18.TabIndex = 68;
             this.label18.Text = "ShutDown on repot";
             // 
+            // CollectItemsBox
+            // 
+            this.CollectItemsBox.AutoSize = true;
+            this.CollectItemsBox.Checked = true;
+            this.CollectItemsBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.CollectItemsBox.Location = new System.Drawing.Point(727, 393);
+            this.CollectItemsBox.Name = "CollectItemsBox";
+            this.CollectItemsBox.Size = new System.Drawing.Size(15, 14);
+            this.CollectItemsBox.TabIndex = 71;
+            this.CollectItemsBox.UseVisualStyleBackColor = true;
+            this.CollectItemsBox.CheckedChanged += new System.EventHandler(this.CollectItemsBox_CheckedChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(748, 392);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(76, 15);
+            this.label19.TabIndex = 70;
+            this.label19.Text = "Collect Items";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.CollectItemsBox);
+            this.Controls.Add(this.label19);
             this.Controls.Add(this.ShutDownWhenInCity);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
@@ -861,6 +886,8 @@
         private Label label17;
         private CheckBox ShutDownWhenInCity;
         private Label label18;
+        private CheckBox CollectItemsBox;
+        private Label label19;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }

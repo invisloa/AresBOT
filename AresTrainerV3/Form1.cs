@@ -729,6 +729,18 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 shutDownOnRepot = false;
             }
         }
+
+        private void CollectItemsBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(CollectItemsBox.Checked)
+            {
+                DoScanAttackCollect.CollectItems = true;
+            }
+            else
+            {
+                DoScanAttackCollect.CollectItems = false;
+            }
+        }
     }
 /*    
     

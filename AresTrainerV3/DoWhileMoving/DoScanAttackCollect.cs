@@ -12,6 +12,7 @@ namespace AresTrainerV3.DoWhileMoving
     {
         ICollectItems ICollector;
         public static int NumberOfCollectScans = 1;
+        public static bool CollectItems = true;
 
         public DoScanAttackCollect(ICollectItems iCollector)
         {
@@ -24,13 +25,15 @@ namespace AresTrainerV3.DoWhileMoving
             {
                 return true;
             }
-            for (int i = 0; i < NumberOfCollectScans; i++)
+            if (CollectItems)
             {
-                if (ICollector.ClickAndCollectItem())
+                for (int i = 0; i < NumberOfCollectScans; i++)
                 {
-                    return true;
+                    if (ICollector.ClickAndCollectItem())
+                    {
+                        return true;
+                    }
                 }
-                
             }
             return false;
         }
