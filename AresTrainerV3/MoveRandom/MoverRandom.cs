@@ -13,20 +13,18 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MoveRandom
 {
-    public class MoverRandom : IMoveToPositon
+    public abstract class MoverRandom : IMoveToPositon
     {
         int _lastMouseMovePosition = 0;
         int _lastPositionAfterBounce = 0;
         int _incrementalRandomizer = 0;
         Random randomizer = new Random();
         MoveRandomPositions positionsToMove = new MoveRandomPositions();
-        int _moveOnlyOnMapX = 999;
+        abstract int _moveOnlyOnMapX;
         int moveClickSlower = 0;
         int howMuchToSlowClickMove = 2;
         int sideMoveCount = 50;
 
-        int _posBeforeMoveX = 0;
-        int _posBeforeMoveY = 0;
         public static bool AttackedOrCollected = false;
 
         public DoScanAttackCollect attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));

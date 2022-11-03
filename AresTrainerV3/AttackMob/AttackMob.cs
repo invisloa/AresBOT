@@ -35,54 +35,57 @@ namespace AresTrainerV3.AttackMob
                     anywhereUnstucker.AttackUnstacker();
                 }
             }
-            Thread.Sleep(10);
+            Thread.Sleep(20);
             if (ProgramHandle.isAttacking())
             {
                 WaitForAttackEnd();
             }
-            Thread.Sleep(10);
+            Thread.Sleep(20);
+            if (ProgramHandle.isNowRunningOut())
+            {
+                Thread.Sleep(500);
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(20);
             if (ProgramHandle.isAttacking())
             {
                 WaitForAttackEnd();
             }
-            Thread.Sleep(10);
+            if (ProgramHandle.isNowRunningOut())
+            {
+                Thread.Sleep(500);
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(20);
             if (ProgramHandle.isAttacking())
             {
                 WaitForAttackEnd();
             }
-            Thread.Sleep(10);
+            Thread.Sleep(20);
+            if (ProgramHandle.isNowRunningOut())
+            {
+                Thread.Sleep(500);
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(20);
             if (ProgramHandle.isAttacking())
             {
                 WaitForAttackEnd();
             }
-            Thread.Sleep(10);
+            Thread.Sleep(20);
+            if (ProgramHandle.isNowRunningOut())
+            {
+                Thread.Sleep(500);
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(20);
             if (ProgramHandle.isAttacking())
             {
                 WaitForAttackEnd();
             }
-            Thread.Sleep(10);
-            if (ProgramHandle.isAttacking())
+            if (ProgramHandle.isNowRunningOut())
             {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(10);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(10);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(10);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(10);
-            if (ProgramHandle.isAttacking())
-            {
+                Thread.Sleep(500);
                 WaitForAttackEnd();
             }
 
@@ -110,7 +113,7 @@ namespace AresTrainerV3.AttackMob
                 attackUnstackCounter = 0;
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Debug.WriteLine($"Mouse R Down");
-                Thread.Sleep(1);
+                Thread.Sleep(50);
                 if (ProgramHandle.isMouseClickedOnMob == 1)
                 {
                     Debug.WriteLine($"Mouse Clicked On Mob==1");
