@@ -1,6 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Sacred;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
@@ -22,7 +21,7 @@ namespace AresTrainerV3.StorageRepot
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotSacredBaldor2floorStorageBuy();
+                    //_expBotToStart = new ExpBotSacredBaldor2floorStorageBuy();
                 }
                 return _expBotToStart;
             }

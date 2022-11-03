@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
@@ -21,7 +21,7 @@ namespace AresTrainerV3.ExpBotManagement.Holina
             { return _MoveToPosPlace; }
         }
 
-        /*
+        *//*
                 down max limit
                     1124179514
                     right max limit
@@ -51,7 +51,7 @@ namespace AresTrainerV3.ExpBotManagement.Holina
 
         telep 1135812375, 1124261475
 
-        */
+        *//*
         public override void RunAndExp()
         {
             int howManyForLoops = 0;
@@ -96,3 +96,4 @@ namespace AresTrainerV3.ExpBotManagement.Holina
         }
     }
 }
+*/

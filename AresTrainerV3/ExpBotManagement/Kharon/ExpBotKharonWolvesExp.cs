@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -17,6 +17,9 @@ namespace AresTrainerV3.ExpBotManagement.Kharon
             get
             { return _moveToPosKharonWolvesExp; }
         }
+        Tuple<int, int, int, int> go1way = new Tuple<int, int, int, int>(1126867063, 1121156757, 1129999999, 1);
+        Tuple<int, int, int, int> go2way = new Tuple<int, int, int, int>(1128169347, 1126867063, 1128062330, 1);
+        Tuple<int, int, int, int> go3way = new Tuple<int, int, int, int>(1122739996, 1126867063, 1128062330, 1);
 
 
         public override void RunAndExp()
@@ -34,7 +37,7 @@ namespace AresTrainerV3.ExpBotManagement.Kharon
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1126867063, 1121156757,  1129999999, 1);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, go1way);
 
 
 
@@ -47,7 +50,7 @@ namespace AresTrainerV3.ExpBotManagement.Kharon
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1128169347, 1126867063,  1128062330, 1);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, go2way);
 
                         // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
@@ -57,10 +60,10 @@ namespace AresTrainerV3.ExpBotManagement.Kharon
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1122739996, 1126867063,  1128062330, 1);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, go3way);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*//*, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -75,3 +78,4 @@ namespace AresTrainerV3.ExpBotManagement.Kharon
 }
 
 
+*//**/

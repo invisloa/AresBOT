@@ -1,6 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Hershal;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;

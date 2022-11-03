@@ -27,15 +27,7 @@ namespace AresTrainerV3
         static volatile int hpValue = 0;
         static volatile int mannaValue = 0;
 
-        // FOR 1HITKO TESTING
-        // FOR 1HITKO TESTING
-        // FOR 1HITKO TESTING
-        // FOR 1HITKO TESTING
-       // static int Test1HitChangableValue = 40002;
         public static int SkillToOverride = PointersAndValues.arcerEmpBlasting;
-        // FOR 1HITKO TESTING
-        // FOR 1HITKO TESTING
-        // FOR 1HITKO TESTING
 
         static IntPtr baseAddress = IntPtr.Zero;
         static IntPtr client = IntPtr.Zero;
@@ -56,7 +48,6 @@ namespace AresTrainerV3
 
         static Process proc = Process.GetProcessesByName(foregroundProcessName)[0];
         static IntPtr baseNormalOffset;
-        // static IntPtr anim1AddressPointer;
         static IntPtr cameraBaseOffset;
         static IntPtr cameraFogOffset;
         static IntPtr mobSelectedOffset;
@@ -187,9 +178,6 @@ namespace AresTrainerV3
 
         public static int hpHealValue;
 
-        public static int MannaRestoreValue = 100;
-
-
         public static void SetGameAsMainWindow()
         {
              SetForegroundWindow(FindWindow(null, foregroundWindowName));
@@ -275,23 +263,6 @@ namespace AresTrainerV3
             isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
             isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
             isAttackingMob = (IntPtr)PointersAndValues.isAttackingMob;
-
-            int myMaxHp = getCurrentHp;
-            if (myMaxHp < 200)
-            {
-                hpHealValue = 100;
-            }
-            else if (myMaxHp < 400 && myMaxHp > 200)
-            {
-                hpHealValue = 200;
-
-            }
-            else
-            {
-              hpHealValue = myMaxHp - 350;
-            }
-
-
         }
 
 
@@ -640,12 +611,6 @@ namespace AresTrainerV3
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosOgre2ndFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosOgre2ndFloor.Item3));
             }
-            else if (GetCurrentMap == TeleportValues.Hershal)
-            {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item1));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item2));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item3));
-            }
             else if (GetCurrentMap == TeleportValues.UWC1stFloor)
             {
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosUWC1stFloor.Item1));
@@ -664,6 +629,25 @@ namespace AresTrainerV3
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosUWC3rdFloor.Item2));
                 memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosUWC3rdFloor.Item3));
             }
+            else if (GetCurrentMap == TeleportValues.Hershal)
+            {
+                if (_variableForChangablePosition == 0)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosHershalUWC.Item3));
+                    _variableForChangablePosition = 1;
+                }
+                else if (_variableForChangablePosition == 1)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniHershalTurtle.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniHershalTurtle.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniHershalTurtle.Item3));
+                    _variableForChangablePosition = 0;
+                }
+
+            }
+
             else if (GetCurrentMap == TeleportValues.UWC4rdFloor)
             {
                 if (_variableForChangablePosition == 0)

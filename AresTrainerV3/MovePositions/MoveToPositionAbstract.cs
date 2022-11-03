@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.DoWhileMoving;
+﻿/*using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.Unstuck;
 using System;
@@ -27,11 +27,11 @@ namespace AresTrainerV3.MovePositions
         {
 
             // Moves When Standing
-/*            if (ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.isNowStandingOut())
+*//*            if (ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.isNowStandingOut())
             {
                 mouseClickToMove(x, y);
             }
-*/            // Moves  in a loop even when not standing
+*//*            // Moves  in a loop even when not standing
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
                 mouseClickToMove(x, y);
@@ -93,13 +93,16 @@ namespace AresTrainerV3.MovePositions
                         }
                         else if (ProgramHandle.GetPositionY > sideUpOrRightLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Down, tupleForConverting);
                         }
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideDownOrLeftLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
+
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit,  ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Up, tupleForConverting);
                         }
                     }
                     return true;
@@ -126,13 +129,17 @@ namespace AresTrainerV3.MovePositions
                         }
                         else if (ProgramHandle.GetPositionY > sideUpOrRightLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
+
                             // ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Down, sideUpOrRightLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor,  0);
+                            MoveAttackCollect(DirectionsEnum.Down, tupleForConverting);
                         }
                         else if (ProgramHandle.GetPositionY < sideDownOrLeftLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideDownOrLeftLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
+
                             // ExpBotLog += $"goLeft-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Up, sideDownOrLeftLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Up, tupleForConverting);
                         }
                     }
                     return true;
@@ -163,13 +170,17 @@ namespace AresTrainerV3.MovePositions
                         }
                         else if (ProgramHandle.GetPositionX > sideUpOrRightLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideUpOrRightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Left, tupleForConverting);
                         }
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideDownOrLeftLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Right, tupleForConverting);
                         }
                     }
                     return true;
@@ -197,13 +208,17 @@ namespace AresTrainerV3.MovePositions
                         }
                         else if (ProgramHandle.GetPositionX > sideUpOrRightLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideUpOrRightLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+
                             // ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Left, sideUpOrRightLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Left, tupleForConverting);
                         }
                         else if (ProgramHandle.GetPositionX < sideDownOrLeftLimit)
                         {
+                            Tuple<int, int, int, int> tupleForConverting = new Tuple<int, int, int, int>(sideDownOrLeftLimit, ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+
                             // ExpBotLog += $"goRight-goUp currentY {ProgramHandle.GetPositionY} downLimit {downLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
-                            MoveAttackCollect(DirectionsEnum.Right, sideDownOrLeftLimit,  ProgramHandle.GetPositionY - moveBuffor, ProgramHandle.GetPositionY + moveBuffor, 0);
+                            MoveAttackCollect(DirectionsEnum.Right, tupleForConverting);
                         }
                     }
                     return true;
@@ -211,11 +226,12 @@ namespace AresTrainerV3.MovePositions
             }
 
         }
+       // int directionLimit, int sideDownOrLeftLimit, int sideUpOrRightLimit, int isMainDirection
 
-        public bool MoveAttackCollect(DirectionsEnum goDierction, int directionLimit, int sideDownOrLeftLimit, int sideUpOrRightLimit , int isMainDirection)
+        public bool MoveAttackCollect(DirectionsEnum goDierction, Tuple<int,int,int,int> directionsLimit)
         {
             bool mainDirectionBool = true;
-            if(isMainDirection==0)
+            if(directionsLimit.Item4 == 0)
             {
                 mainDirectionBool = false;
             }
@@ -223,25 +239,25 @@ namespace AresTrainerV3.MovePositions
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
             else if (goDierction == DirectionsEnum.Right)
             {
                 isMoveOnXAxis = true;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
             else if (goDierction == DirectionsEnum.Up)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = true;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
             else // (goDierction == DirectionsEnum.Down)
             {
                 isMoveOnXAxis = false;
                 isPosIncreasing = false;
-                return MoveToPosMouse(directionLimit,  sideDownOrLeftLimit, sideUpOrRightLimit, mainDirectionBool);
+                return MoveToPosMouse(directionsLimit.Item1, directionsLimit.Item2, directionsLimit.Item3, mainDirectionBool);
             }
         }
     }
@@ -284,7 +300,7 @@ namespace AresTrainerV3.MovePositions
 
 
 
-/*public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit, int moveOnlyOnMapX)
+*//*public static bool goLeft(int x, int y, int leftLimit, int upLimit, int downLimit, int moveOnlyOnMapX)
 {
     while (ProgramHandle.GetPositionX > leftLimit && _stopMoveExpBot && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
     {

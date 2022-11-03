@@ -1,7 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Hershal;
-using AresTrainerV3.ExpBotManagement.Kharon;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
 using System.Collections.Generic;
@@ -50,7 +48,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotHershalSellLeafMages();
+                    //_expBotToStart = new ExpBotHershalSellLeafMages();
                 }
                 return _expBotToStart;
             }

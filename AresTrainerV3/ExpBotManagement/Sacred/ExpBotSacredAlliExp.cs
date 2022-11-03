@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -62,7 +62,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1146955261, 1125345630, 1126722127, 1);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -73,7 +73,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1123628996, 1146687360, 1146955261, 1);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -88,3 +88,4 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
 }
 
 
+**/

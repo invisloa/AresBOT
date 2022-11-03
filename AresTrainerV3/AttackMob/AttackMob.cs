@@ -35,16 +35,29 @@ namespace AresTrainerV3.AttackMob
                     anywhereUnstucker.AttackUnstacker();
                 }
             }
-            Thread.Sleep(50);
+            Thread.Sleep(10);
             if (ProgramHandle.isAttacking())
             {
-               // Debug.WriteLine($"!Checked 2 IS STANDING");
                 WaitForAttackEnd();
             }
-            Thread.Sleep(50);
+            Thread.Sleep(10);
             if (ProgramHandle.isAttacking())
             {
-               // Debug.WriteLine($"!Checked 3 IS STANDING");
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
                 WaitForAttackEnd();
             }
 
@@ -71,13 +84,21 @@ namespace AresTrainerV3.AttackMob
             {
                 attackUnstackCounter = 0;
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-                MoverRandom.AttackedOrCollected = true;
                 Debug.WriteLine($"Mouse R Down");
-                Thread.Sleep(200);
+                Thread.Sleep(1);
                 if (ProgramHandle.isMouseClickedOnMob == 1)
                 {
+                    Debug.WriteLine($"Mouse Clicked On Mob==1");
+                    MoverRandom.AttackedOrCollected = true;
+
                     WaitForAttackEnd();
                 }
+                else
+                {
+                    Debug.WriteLine($"Mouse not Clicked On Mob");
+
+                }
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 //   Thread.Sleep(100);
                 Debug.WriteLine($"Mouse R UP");
