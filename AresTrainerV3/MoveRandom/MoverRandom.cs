@@ -29,7 +29,7 @@ namespace AresTrainerV3.MoveRandom
         int _posBeforeMoveY = 0;
         public static bool AttackedOrCollected = false;
 
-        DoScanAttackCollect attackAndCollectSODAndEvent = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
+        public DoScanAttackCollect attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
 
         int MoveOnlyOnMapX
         {
@@ -190,7 +190,7 @@ namespace AresTrainerV3.MoveRandom
                 if (ProgramHandle.GetPositionX > DirectionsLimts.Item1 && ProgramHandle.GetPositionX < DirectionsLimts.Item3 && ProgramHandle.GetPositionY < DirectionsLimts.Item2 && ProgramHandle.GetPositionY > DirectionsLimts.Item4)
                 {
                     //unstuckPlace.UnstuckMove();
-                    while (attackAndCollectSODAndEvent.DoThisWhileMoving()) ;
+                    while (attackAndCollectSODDefault.DoThisWhileMoving()) ;
                     Debug.WriteLine("MainMoveClick");
                     MoveToPosRandom();
                 }
@@ -199,7 +199,7 @@ namespace AresTrainerV3.MoveRandom
                     Debug.WriteLine("maxLimitLeft");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
-                    while (attackAndCollectSODAndEvent.DoThisWhileMoving());
+                    while (attackAndCollectSODDefault.DoThisWhileMoving());
                     leftLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
@@ -217,7 +217,7 @@ namespace AresTrainerV3.MoveRandom
                     Debug.WriteLine("maxRightLimit");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     // unstuckPlace.UnstuckMove();
-                    while (attackAndCollectSODAndEvent.DoThisWhileMoving());
+                    while (attackAndCollectSODDefault.DoThisWhileMoving());
                     rightLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
@@ -236,7 +236,7 @@ namespace AresTrainerV3.MoveRandom
                     Debug.WriteLine("maxDownLimit");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
-                    while (attackAndCollectSODAndEvent.DoThisWhileMoving());
+                    while (attackAndCollectSODDefault.DoThisWhileMoving());
                     downLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
@@ -254,7 +254,7 @@ namespace AresTrainerV3.MoveRandom
                     Debug.WriteLine("maxUpLimit");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
-                    while (attackAndCollectSODAndEvent.DoThisWhileMoving());
+                    while (attackAndCollectSODDefault.DoThisWhileMoving());
                     upLimitBounce();
                     _lastPositionAfterBounce = _lastMouseMovePosition;
 
