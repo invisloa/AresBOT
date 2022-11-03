@@ -89,6 +89,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.CollectorComboBox = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
+            this.ShutDownWhenInCity = new System.Windows.Forms.CheckBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -611,7 +613,8 @@
             "SacredGiko",
             "SacredThieves",
             "HolinaGoblins",
-            "HershalLowLvl"});
+            "HershalLowLvl",
+            "HershalLeafMages"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(727, 300);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
@@ -695,11 +698,34 @@
             this.label17.TabIndex = 67;
             this.label17.Text = "Collector";
             // 
+            // ShutDownWhenInCity
+            // 
+            this.ShutDownWhenInCity.AutoSize = true;
+            this.ShutDownWhenInCity.Checked = true;
+            this.ShutDownWhenInCity.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ShutDownWhenInCity.Location = new System.Drawing.Point(727, 370);
+            this.ShutDownWhenInCity.Name = "ShutDownWhenInCity";
+            this.ShutDownWhenInCity.Size = new System.Drawing.Size(15, 14);
+            this.ShutDownWhenInCity.TabIndex = 69;
+            this.ShutDownWhenInCity.UseVisualStyleBackColor = true;
+            this.ShutDownWhenInCity.CheckedChanged += new System.EventHandler(this.ShutDownWhenInCity_CheckedChanged);
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(748, 369);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(110, 15);
+            this.label18.TabIndex = 68;
+            this.label18.Text = "ShutDown on repot";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.ShutDownWhenInCity);
+            this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.CollectorComboBox);
             this.Controls.Add(this.label16);
@@ -833,6 +859,8 @@
         private Label label16;
         private ComboBox CollectorComboBox;
         private Label label17;
+        private CheckBox ShutDownWhenInCity;
+        private Label label18;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }

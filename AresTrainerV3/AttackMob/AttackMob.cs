@@ -60,6 +60,31 @@ namespace AresTrainerV3.AttackMob
             {
                 WaitForAttackEnd();
             }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
+            Thread.Sleep(10);
+            if (ProgramHandle.isAttacking())
+            {
+                WaitForAttackEnd();
+            }
 
         }
 

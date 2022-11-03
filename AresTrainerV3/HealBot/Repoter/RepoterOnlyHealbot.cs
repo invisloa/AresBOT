@@ -18,10 +18,8 @@ namespace AresTrainerV3.HealBot.Repoter
             Console.WriteLine("noRepotInThis");
             KeyPresser.PressKey(6, 200, 200);
             KeyPresser.PressKey(6, 200, 200);
-            HealBotAbstract.RequestStopHealBot();   
             ExpBotManagerAbstract.RequestStopExpBot();
-            System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-
+            HealBotAbstract.RequestStopHealBot();   
         }
 
         /*        protected override GoBackExpAbstract GoBackExpPlace

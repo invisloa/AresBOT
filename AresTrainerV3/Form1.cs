@@ -26,6 +26,7 @@ namespace AresTrainerV3
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
         HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
         globalKeyboardHook gkh = new globalKeyboardHook();
+        bool shutDownOnRepot = true;
 
         MoverRandom ExpBotMoverToRun;
 
@@ -614,7 +615,7 @@ namespace AresTrainerV3
             // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
             while (ExpBotManagerAbstract.isExpBotRunning)
             {
-                if (ProgramHandle.isInCity == 1)
+                if (ProgramHandle.isInCity == 1 && shutDownOnRepot)
                 {
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 }
@@ -685,8 +686,12 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             {
                 ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
             }
+            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
+            {
+                ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLeafMages);
+            }
         }
-
+        
 
         private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -711,6 +716,18 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
             }
 
+        }
+
+        private void ShutDownWhenInCity_CheckedChanged(object sender, EventArgs e)
+        {
+            if(ShutDownWhenInCity.Checked)
+            {
+                shutDownOnRepot = true;
+            }
+            else
+            {
+                shutDownOnRepot = false;
+            }
         }
     }
 /*    
