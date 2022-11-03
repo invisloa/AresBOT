@@ -89,7 +89,7 @@ namespace AresTrainerV3.HealBot.Repoter
             return false;
         }
 
-        public void GoRepot()
+        public virtual void GoRepot()
         {
             teleportToCityAndStopExpBot();
             Thread.Sleep(1000);
