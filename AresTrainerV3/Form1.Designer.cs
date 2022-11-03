@@ -85,6 +85,10 @@
             this.PositionY = new System.Windows.Forms.TextBox();
             this.ShowPositionsBtn = new System.Windows.Forms.Button();
             this.GoToPos = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.CollectorComboBox = new System.Windows.Forms.ComboBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -596,6 +600,7 @@
             this.HealbotComboBox.Name = "HealbotComboBox";
             this.HealbotComboBox.Size = new System.Drawing.Size(121, 23);
             this.HealbotComboBox.TabIndex = 57;
+            this.HealbotComboBox.Text = "HealbotOnly";
             this.HealbotComboBox.SelectedIndexChanged += new System.EventHandler(this.HealbotComboBox_SelectedIndexChanged);
             // 
             // ExpBotComboBox
@@ -604,6 +609,7 @@
             this.ExpBotComboBox.Items.AddRange(new object[] {
             "EtanaBuckerty",
             "SacredGiko",
+            "SacredThieves",
             "HolinaGoblins",
             "HershalLowLvl"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(727, 300);
@@ -646,11 +652,58 @@
             this.GoToPos.UseVisualStyleBackColor = true;
             this.GoToPos.Click += new System.EventHandler(this.GoToPos_Click);
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(727, 284);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 15);
+            this.label15.TabIndex = 64;
+            this.label15.Text = "MoverBot";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(727, 240);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(49, 15);
+            this.label16.TabIndex = 65;
+            this.label16.Text = "Healbot";
+            // 
+            // CollectorComboBox
+            // 
+            this.CollectorComboBox.FormattingEnabled = true;
+            this.CollectorComboBox.Items.AddRange(new object[] {
+            "+Event",
+            "+Jewelery",
+            "+Stones",
+            "+Stones+Jewelery",
+            "+Seller"});
+            this.CollectorComboBox.Location = new System.Drawing.Point(727, 343);
+            this.CollectorComboBox.Name = "CollectorComboBox";
+            this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
+            this.CollectorComboBox.TabIndex = 66;
+            this.CollectorComboBox.Text = "SOD";
+            this.CollectorComboBox.SelectedIndexChanged += new System.EventHandler(this.CollectorComboBox_SelectedIndexChanged);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(727, 326);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(55, 15);
+            this.label17.TabIndex = 67;
+            this.label17.Text = "Collector";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.label17);
+            this.Controls.Add(this.CollectorComboBox);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.label15);
             this.Controls.Add(this.GoToPos);
             this.Controls.Add(this.ShowPositionsBtn);
             this.Controls.Add(this.PositionY);
@@ -776,6 +829,10 @@
         private TextBox PositionY;
         private Button ShowPositionsBtn;
         private Button GoToPos;
+        private Label label15;
+        private Label label16;
+        private ComboBox CollectorComboBox;
+        private Label label17;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }

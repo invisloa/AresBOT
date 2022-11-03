@@ -663,14 +663,6 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
 
         }
         
-
-
-
-
-
-
-
-
         private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ExpBotComboBox.SelectedItem.ToString() == "EtanaBuckerty")
@@ -681,6 +673,10 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             {
                 ExpBotMoverToRun = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomSacredGiko);
             }
+            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredThieves")
+            {
+                ExpBotMoverToRun = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
+            }
             else if (ExpBotComboBox.SelectedItem.ToString() == "HolinaGoblins")
             {
                 ExpBotMoverToRun = new MoverRandom(TeleportValues.Hollina, TeleportValues.moverRandomHolinaGoblins);
@@ -690,5 +686,37 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
             }
         }
+
+
+        private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (CollectorComboBox.SelectedItem.ToString() == "+Event")
+            {
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent())); 
+            }
+            else if (CollectorComboBox.SelectedItem.ToString() == "+Jewelery")
+            {
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodJewelery()));
+            }
+            else if (CollectorComboBox.SelectedItem.ToString() == "+Stones")
+            {
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStones()));
+            }
+            else if (CollectorComboBox.SelectedItem.ToString() == "+Stones+Jewelery")
+            {
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
+            }
+            else if (CollectorComboBox.SelectedItem.ToString() == "+Seller")
+            {
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
+            }
+
+        }
     }
+/*    
+    
+
+
+
+*/
 }
