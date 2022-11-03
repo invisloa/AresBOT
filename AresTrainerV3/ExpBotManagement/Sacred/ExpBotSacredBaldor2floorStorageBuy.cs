@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
@@ -24,3 +24,4 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
         }
     }
 }
+*/

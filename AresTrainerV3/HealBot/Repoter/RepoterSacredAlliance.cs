@@ -1,6 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Sacred;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
 using System.Collections.Generic;
@@ -49,7 +48,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotSacredAlliExp();
+                   // _expBotToStart = new ExpBotSacredAlliExp();
                 }
                 return _expBotToStart;
             }

@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.DoWhileMoving;
+﻿/*using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ItemCollect;
 using System;
 using System.Collections.Generic;
@@ -40,4 +40,4 @@ namespace AresTrainerV3.MovePositions
             }
         }
     }
-}
+}*/

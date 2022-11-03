@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.ExpBotManagement.Holina
 {
-    internal class ExpBotHolinaSod : ExpBotManagerAbstract 
-        // last time stuck after scroll to city
+    internal class ExpBotHolinaSod : ExpBotManagerAbstract
+    // last time stuck after scroll to city
     {
 
         MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hollina, new CollectSodJewelery());
@@ -48,8 +48,8 @@ namespace AresTrainerV3.ExpBotManagement.Holina
 
                     else if (i == 1)
                     {
-                        
-        
+
+
 
 
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
@@ -67,7 +67,7 @@ namespace AresTrainerV3.ExpBotManagement.Holina
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1131347442, 1132162912, 1132715475, 1);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -78,7 +78,7 @@ namespace AresTrainerV3.ExpBotManagement.Holina
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Left, 1129835922, 1130604450, 1131347442, 1);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -92,3 +92,4 @@ namespace AresTrainerV3.ExpBotManagement.Holina
 }
 
 
+**/

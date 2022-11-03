@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,8 @@ namespace AresTrainerV3.ExpBotManagement.Etana
 {
     internal class ExpBotEtanaLowLvL : ExpBotManagerAbstract
     {
-
+        Tuple<int, int, int, int> go1way = new Tuple<int, int, int, int>(1129758111, 1121100155, 1123148846, 1);
+        Tuple<int, int, int, int> go2way = new Tuple<int, int, int, int>(1135103167, 1121100155, 1123148846, 1);
         MoveToPositionAbstract _moveToPosTest = new MoveToPosEtanaExp();
         public override MoveToPositionAbstract MoveToPosPlace
         {
@@ -34,7 +35,7 @@ namespace AresTrainerV3.ExpBotManagement.Etana
                     if (i == 0)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1129758111, 1121100155, 1123148846, 1);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, go1way);
 
 
 
@@ -43,7 +44,7 @@ namespace AresTrainerV3.ExpBotManagement.Etana
 
                     }
 
-                    /*                    else if (i == 1)
+                    *//*                    else if (i == 1)
                                         {
                                             ExpBotClass.ExpBotLog += $"current i {i}\n";
 
@@ -53,12 +54,12 @@ namespace AresTrainerV3.ExpBotManagement.Etana
                                             ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
 
                                         }
-                    */
+                    *//*
                     else if (i == 1)
                     {
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
-                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, 1135103167, 1121100155, 1123148846, 1);
+                        MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Up, go2way);
 
                         // while (!goUp(960, 300, 1115828432, 1107050535, ProgramHandle.GetPositionX + 80000000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Right Ended current i {i}\n";
@@ -73,3 +74,4 @@ namespace AresTrainerV3.ExpBotManagement.Etana
         }
     }
 }
+*/

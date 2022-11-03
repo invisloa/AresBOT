@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
@@ -12,7 +12,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
     internal class ExpBotHershalSellLeafMages : ExpBotManagerAbstract
     {
 
-        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hershal,new CollectAllItems());
+        MoveToPositionAbstract _MoveToPosPlace = new MoveToPosALL(TeleportValues.Hershal, new CollectAllItems());
         public override MoveToPositionAbstract MoveToPosPlace
         {
             get
@@ -51,7 +51,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1132749901, 1131207739, 1132991835, 1);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -60,7 +60,7 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
                         ExpBotClass.ExpBotLog += $"current i {i}\n";
 
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Down, 1131662730, 1127580850, 1133161566, 1);
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, Teleport222222222Values.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -73,4 +73,4 @@ namespace AresTrainerV3.ExpBotManagement.Hershal
     }
 }
 
-
+*/

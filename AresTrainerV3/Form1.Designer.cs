@@ -33,9 +33,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.StartSkillBtn = new System.Windows.Forms.Button();
             this.StartNormalBtn = new System.Windows.Forms.Button();
-            this.AddAnimValue = new System.Windows.Forms.Button();
-            this.SubstractAnimValue = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.TextBoxLog = new System.Windows.Forms.RichTextBox();
             this.HPValueTextBox = new System.Windows.Forms.TextBox();
             this.MannaValueTextBox = new System.Windows.Forms.TextBox();
@@ -84,6 +81,10 @@
             this.MoverGiko = new System.Windows.Forms.Button();
             this.HealbotComboBox = new System.Windows.Forms.ComboBox();
             this.ExpBotComboBox = new System.Windows.Forms.ComboBox();
+            this.PositionX = new System.Windows.Forms.TextBox();
+            this.PositionY = new System.Windows.Forms.TextBox();
+            this.ShowPositionsBtn = new System.Windows.Forms.Button();
+            this.GoToPos = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // StartHealbotBTN
@@ -138,35 +139,6 @@
             this.StartNormalBtn.UseVisualStyleBackColor = true;
             this.StartNormalBtn.Click += new System.EventHandler(this.StartNormalBtn_Click);
             // 
-            // AddAnimValue
-            // 
-            this.AddAnimValue.Location = new System.Drawing.Point(467, 176);
-            this.AddAnimValue.Name = "AddAnimValue";
-            this.AddAnimValue.Size = new System.Drawing.Size(98, 52);
-            this.AddAnimValue.TabIndex = 7;
-            this.AddAnimValue.Text = "Add";
-            this.AddAnimValue.UseVisualStyleBackColor = true;
-            this.AddAnimValue.Click += new System.EventHandler(this.AddAnimValue_Click);
-            // 
-            // SubstractAnimValue
-            // 
-            this.SubstractAnimValue.Location = new System.Drawing.Point(589, 176);
-            this.SubstractAnimValue.Name = "SubstractAnimValue";
-            this.SubstractAnimValue.Size = new System.Drawing.Size(134, 52);
-            this.SubstractAnimValue.TabIndex = 8;
-            this.SubstractAnimValue.Text = "Substract";
-            this.SubstractAnimValue.UseVisualStyleBackColor = true;
-            this.SubstractAnimValue.Click += new System.EventHandler(this.SubstractAnimValue_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(527, 137);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 23);
-            this.textBox1.TabIndex = 9;
-            this.textBox1.Text = "1000";
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
-            // 
             // TextBoxLog
             // 
             this.TextBoxLog.Location = new System.Drawing.Point(154, 12);
@@ -185,7 +157,7 @@
             // 
             // MannaValueTextBox
             // 
-            this.MannaValueTextBox.Location = new System.Drawing.Point(609, 297);
+            this.MannaValueTextBox.Location = new System.Drawing.Point(609, 296);
             this.MannaValueTextBox.Name = "MannaValueTextBox";
             this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
             this.MannaValueTextBox.TabIndex = 12;
@@ -214,7 +186,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(632, 277);
+            this.label3.Location = new System.Drawing.Point(609, 278);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 15);
             this.label3.TabIndex = 15;
@@ -358,7 +330,6 @@
             this.Tester.TabIndex = 30;
             this.Tester.Text = "Goblin";
             this.Tester.UseVisualStyleBackColor = true;
-            this.Tester.Click += new System.EventHandler(this.Tester_Click_1);
             // 
             // SetWindowPos
             // 
@@ -632,18 +603,58 @@
             this.ExpBotComboBox.FormattingEnabled = true;
             this.ExpBotComboBox.Items.AddRange(new object[] {
             "EtanaBuckerty",
-            "SacredGiko"});
+            "SacredGiko",
+            "HolinaGoblins",
+            "HershalLowLvl"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(727, 300);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
             this.ExpBotComboBox.SelectedIndexChanged += new System.EventHandler(this.ExpBotComboBox_SelectedIndexChanged);
             // 
+            // PositionX
+            // 
+            this.PositionX.Location = new System.Drawing.Point(480, 183);
+            this.PositionX.Name = "PositionX";
+            this.PositionX.Size = new System.Drawing.Size(100, 23);
+            this.PositionX.TabIndex = 59;
+            // 
+            // PositionY
+            // 
+            this.PositionY.Location = new System.Drawing.Point(589, 183);
+            this.PositionY.Name = "PositionY";
+            this.PositionY.Size = new System.Drawing.Size(100, 23);
+            this.PositionY.TabIndex = 60;
+            // 
+            // ShowPositionsBtn
+            // 
+            this.ShowPositionsBtn.Location = new System.Drawing.Point(541, 154);
+            this.ShowPositionsBtn.Name = "ShowPositionsBtn";
+            this.ShowPositionsBtn.Size = new System.Drawing.Size(91, 23);
+            this.ShowPositionsBtn.TabIndex = 62;
+            this.ShowPositionsBtn.Text = "position X Y ";
+            this.ShowPositionsBtn.UseVisualStyleBackColor = true;
+            this.ShowPositionsBtn.Click += new System.EventHandler(this.ShowPositionsBtn_Click);
+            // 
+            // GoToPos
+            // 
+            this.GoToPos.Location = new System.Drawing.Point(541, 213);
+            this.GoToPos.Name = "GoToPos";
+            this.GoToPos.Size = new System.Drawing.Size(91, 23);
+            this.GoToPos.TabIndex = 63;
+            this.GoToPos.Text = "GoToPos";
+            this.GoToPos.UseVisualStyleBackColor = true;
+            this.GoToPos.Click += new System.EventHandler(this.GoToPos_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.GoToPos);
+            this.Controls.Add(this.ShowPositionsBtn);
+            this.Controls.Add(this.PositionY);
+            this.Controls.Add(this.PositionX);
             this.Controls.Add(this.ExpBotComboBox);
             this.Controls.Add(this.HealbotComboBox);
             this.Controls.Add(this.MoverGiko);
@@ -692,9 +703,6 @@
             this.Controls.Add(this.MannaValueTextBox);
             this.Controls.Add(this.HPValueTextBox);
             this.Controls.Add(this.TextBoxLog);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.SubstractAnimValue);
-            this.Controls.Add(this.AddAnimValue);
             this.Controls.Add(this.StartNormalBtn);
             this.Controls.Add(this.StartSkillBtn);
             this.Controls.Add(this.label1);
@@ -716,9 +724,6 @@
         private Label label1;
         private Button StartSkillBtn;
         private Button StartNormalBtn;
-        private Button AddAnimValue;
-        private Button SubstractAnimValue;
-        private TextBox textBox1;
         private RichTextBox TextBoxLog;
         private TextBox HPValueTextBox;
         private TextBox MannaValueTextBox;
@@ -767,5 +772,11 @@
         private Button MoverGiko;
         private ComboBox HealbotComboBox;
         private ComboBox ExpBotComboBox;
+        private TextBox PositionX;
+        private TextBox PositionY;
+        private Button ShowPositionsBtn;
+        private Button GoToPos;
+
+        public EventHandler Tester_Click_1 { get; private set; }
     }
 }

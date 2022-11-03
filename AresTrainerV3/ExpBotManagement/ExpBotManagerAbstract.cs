@@ -10,7 +10,7 @@ namespace AresTrainerV3.ExpBotManager
 {
     public abstract class ExpBotManagerAbstract : IStartExpBotThread
     {
-        public abstract MoveToPositionAbstract MoveToPosPlace { get;}
+       // public abstract MoveToPositionAbstract MoveToPosPlace { get; }
         public abstract void RunAndExp();
 
         public void StartExpBotThread()
@@ -39,7 +39,7 @@ namespace AresTrainerV3.ExpBotManager
         public static void RequestStartExpBot()
         {
             if (!_isExpBotRunning)
-          {
+            {
                 _isExpBotRunning = true;
             }
         }

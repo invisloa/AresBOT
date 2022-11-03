@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿/*using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using System;
@@ -67,7 +67,7 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
                         MoveToPosPlace.MoveAttackCollect(DirectionsEnum.Right, 1142307448, 1129224109, 1129980817, 1);
 
 
-                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*/, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
+                        //while (!goRight(1250, 520, 1120884234 /*1128331398  old go full right*//*, ProgramHandle.GetPositionY + 800000, ProgramHandle.GetPositionY - 800000, TeleportValues.UWC1stFloor)) ;
                         ExpBotClass.ExpBotLog += $"Left Ended current i {i}\n";
 
                     }
@@ -82,3 +82,4 @@ namespace AresTrainerV3.ExpBotManagement.Sacred
 }
 
 
+*/

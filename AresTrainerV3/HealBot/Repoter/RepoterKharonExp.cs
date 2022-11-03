@@ -1,6 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManagement.Kharon;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using System;
@@ -50,7 +49,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotKharonWolvesExp();
+                   // _expBotToStart = new ExpBotKharonWolvesExp();
                 }
                 return _expBotToStart;
             }
