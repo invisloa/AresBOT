@@ -13,14 +13,22 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MoveRandom
 {
-    public abstract class MoverRandom : IMoveToPositon
+    public abstract class MoverRandom : ExpBotManagerAbstract, IMoveToPositon
     {
         int _lastMouseMovePosition = 0;
         int _lastPositionAfterBounce = 0;
         int _incrementalRandomizer = 0;
         Random randomizer = new Random();
         MoveRandomPositions positionsToMove = new MoveRandomPositions();
-        abstract int _moveOnlyOnMapX;
+        protected abstract int moveOnlyOnMapX
+        {
+            get;
+        }
+        protected abstract Tuple<int, int, int, int> DirectionsLimts
+        {
+            get;
+        }
+
         int moveClickSlower = 0;
         int howMuchToSlowClickMove = 2;
         int sideMoveCount = 50;
@@ -29,17 +37,6 @@ namespace AresTrainerV3.MoveRandom
 
         public DoScanAttackCollect attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
 
-        int MoveOnlyOnMapX
-        {
-            get
-            {
-                return _moveOnlyOnMapX;
-            }
-            set
-            {
-                _moveOnlyOnMapX = value;
-            }
-        }
         protected IUnstuckPosition unstuckPlace
         {
             get
@@ -64,13 +61,6 @@ namespace AresTrainerV3.MoveRandom
                 return i;
             }
         }
-        Tuple<int, int, int, int> DirectionsLimts;
-
-        public MoverRandom(int mapNumber, Tuple<int, int, int, int> directionsLimits)
-        {
-            MoveOnlyOnMapX = mapNumber;
-            DirectionsLimts = directionsLimits;
-        }
 
         void MoveToPosition(int movePositionNr)
         {
@@ -89,46 +79,51 @@ namespace AresTrainerV3.MoveRandom
 
         void MoveToPosRandom()
         {
-            moveClickSlower++;
+                moveClickSlower++;
 
-            if (moveClickSlower == howMuchToSlowClickMove)
-            {
-                moveClickSlower =0;
-                if (ProgramHandle.GetCurrentMap == MoveOnlyOnMapX)
+                if (moveClickSlower == howMuchToSlowClickMove)
                 {
-                    if (!AttackedOrCollected)
+                    moveClickSlower = 0;
+                    if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                     {
-                        if (ProgramHandle.isNowStandingOut())
+                        if (ExpBotManagerAbstract.isExpBotRunning)
                         {
-                            Debug.WriteLine("!!!!!!!!!!!!!!!!!!! TOO LOW DISTANCE!!!!!!!!!!!!!!!!!!");
-                            int a = randomizer.Next(3);
-                            if (a == 0)
+
+                            if (!AttackedOrCollected)
                             {
-                                _lastMouseMovePosition -= 8;
-                            }
-                            else if (a == 1)
-                            {
-                                _lastMouseMovePosition -= 16;
+                                if (ProgramHandle.isNowStandingOut())
+                                {
+                                    Debug.WriteLine("!!!!!!!!!!!!!!!!!!! TOO LOW DISTANCE!!!!!!!!!!!!!!!!!!");
+                                    int a = randomizer.Next(3);
+                                    if (a == 0)
+                                    {
+                                        _lastMouseMovePosition -= 8;
+                                    }
+                                    else if (a == 1)
+                                    {
+                                        _lastMouseMovePosition -= 16;
+                                    }
+                                    else
+                                    {
+                                        _lastMouseMovePosition -= 24;
+                                    }
+                                }
+                                _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
                             }
                             else
                             {
-                                _lastMouseMovePosition -= 24;
+                                _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
                             }
+                            MoveToPosition(_lastMouseMovePosition);
+                            AttackedOrCollected = false;
                         }
-                        _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
                     }
                     else
                     {
-                        _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
+                        ExpBotManagerAbstract.RequestStopExpBot();
+                        HealBotAbstract.RequestStopHealBot();
                     }
-                    MoveToPosition(_lastMouseMovePosition);
-                    AttackedOrCollected = false;
-                }
-                else
-                {
-                    ExpBotManagerAbstract.RequestStopExpBot();
-                    HealBotAbstract.RequestStopHealBot();
-                }
+                
             }
         }
         void MoveToPosRandom(int i)
@@ -178,6 +173,23 @@ namespace AresTrainerV3.MoveRandom
             else
             {
                 _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(10, 15));
+            }
+        }
+
+        public override void RunAndExp()
+        {
+            ProgramHandle.SetCameraForExpBot();
+            ExpBotManagerAbstract.RequestStartExpBot();
+
+
+            // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                if (ProgramHandle.isInCity == 1 && shutDownOnRepot)
+                {
+                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                }
+                this.MoveAttackCollect();
             }
         }
 

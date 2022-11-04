@@ -48,7 +48,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    _expBotToStart = new ExpBotSacredAlliExp();
+                  //  _expBotToStart = new ExpBotSacredAlliExp();
                 }
                 return _expBotToStart;
             }
