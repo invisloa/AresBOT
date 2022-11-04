@@ -12,7 +12,7 @@ namespace AresTrainerV3.AttackMob
 {
     public static class PixelMobAttack
     {
-        static Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+        static Bitmap bitmap = new Bitmap(1340, 840);
         static Graphics graphics = Graphics.FromImage(bitmap as Image);
 
 
@@ -33,7 +33,7 @@ namespace AresTrainerV3.AttackMob
                         if ((x < 934 || x > 979 || y < 500 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
-                              MouseOperations.SetCursorPosition(x+5, y);
+                              MouseOperations.SetCursorPosition(x+10, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //   Debug.WriteLine("1 attack for");
@@ -42,7 +42,7 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                              MouseOperations.SetCursorPosition(x-5, y);
+                              MouseOperations.SetCursorPosition(x- 10, y);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //  Debug.WriteLine("1 attack for");
@@ -51,7 +51,7 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                            MouseOperations.SetCursorPosition(x, y + 5);
+                            MouseOperations.SetCursorPosition(x, y + 10);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //  Debug.WriteLine("1 attack for");
@@ -60,7 +60,7 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                              MouseOperations.SetCursorPosition(x, y-5);
+                              MouseOperations.SetCursorPosition(x, y- 10);
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //  Debug.WriteLine("1 attack for");
@@ -72,7 +72,7 @@ namespace AresTrainerV3.AttackMob
                         }
                     }
                 }
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+               // graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
                 for (int x = 700; x < 1220; x++)
                 {
@@ -97,7 +97,7 @@ namespace AresTrainerV3.AttackMob
                         }
                     }
                 }
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                // graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
                 for (int x = 527; x < 1332; x++)
                 {

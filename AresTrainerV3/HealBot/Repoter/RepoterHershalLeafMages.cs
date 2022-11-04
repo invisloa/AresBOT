@@ -1,6 +1,7 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.HealBot.Repoter.Returner;
+using AresTrainerV3.MoveRandom.Hershal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -48,7 +49,7 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 if (_expBotToStart == null)
                 {
-                    //_expBotToStart = new ExpBotHershalSellLeafMages();
+                    _expBotToStart = new MoverHershalLeafMages();
                 }
                 return _expBotToStart;
             }
@@ -56,7 +57,7 @@ namespace AresTrainerV3.HealBot.Repoter
 
         protected override void MoveToRepot()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
@@ -66,7 +67,7 @@ namespace AresTrainerV3.HealBot.Repoter
                     {
                         if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108)
                         {
-                            KeyPresser.PressKey(6, 1000, 1000);
+                            KeyPresser.PressKey(6, 500, 500);
                         }
                     }
                 }

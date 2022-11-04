@@ -11,9 +11,9 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
-        public void wait(int howLongToWaint)
+        public void wait(int howLongToWait)
         {
-            for (int i = 0; i < howLongToWaint*1000; i++)
+            for (int i = 0; i < howLongToWait*1000; i++)
             {
                int a = 10;
             }
@@ -48,9 +48,13 @@ namespace AresTrainerV3.ItemCollect
         bool PixelScan(IWhatToCollect whatToCollect)
         {
             //Debug.WriteLine("Start PixelScan");
+            if(whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
 
             RepotAbstract.IsScanRunning = true;
-            Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+           // Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            Bitmap bitmap = new Bitmap(1360, 840);
+
+
             Graphics graphics = Graphics.FromImage(bitmap as Image);
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
@@ -83,7 +87,7 @@ namespace AresTrainerV3.ItemCollect
                     }
                 }
             }
-            graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+           // graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             for (int x = 550; x < 1360; x++)
             {
@@ -120,9 +124,11 @@ namespace AresTrainerV3.ItemCollect
         }
         public bool PixelScanUnderChar(IWhatToCollect whatToCollect)
         {
+            if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+            {
 
-            RepotAbstract.IsScanRunning = true;
-            // sleep 1ms didnt work it took too long
+                RepotAbstract.IsScanRunning = true;
+                // sleep 1ms didnt work it took too long
                 for (int x = 930; x < 980; x++)
                 {
                     for (int y = 500; y < 545; y++)
@@ -144,10 +150,10 @@ namespace AresTrainerV3.ItemCollect
                     }
 
                 }
+            }
             GC.Collect();
             RepotAbstract.IsScanRunning = false;
             return false;
-
         }
 
     }

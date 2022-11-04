@@ -53,7 +53,6 @@
             this.FastTestBTN = new System.Windows.Forms.Button();
             this.OpenStorageBTN = new System.Windows.Forms.Button();
             this.Tester = new System.Windows.Forms.Button();
-            this.SetWindowPos = new System.Windows.Forms.Button();
             this.teleport = new System.Windows.Forms.Button();
             this.TestMethod = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
@@ -338,16 +337,6 @@
             this.Tester.TabIndex = 30;
             this.Tester.Text = "Goblin";
             this.Tester.UseVisualStyleBackColor = true;
-            // 
-            // SetWindowPos
-            // 
-            this.SetWindowPos.Location = new System.Drawing.Point(753, 66);
-            this.SetWindowPos.Name = "SetWindowPos";
-            this.SetWindowPos.Size = new System.Drawing.Size(105, 23);
-            this.SetWindowPos.TabIndex = 31;
-            this.SetWindowPos.Text = "SetWindowPos";
-            this.SetWindowPos.UseVisualStyleBackColor = true;
-            this.SetWindowPos.Click += new System.EventHandler(this.SetWindowPos_Click);
             // 
             // teleport
             // 
@@ -786,7 +775,6 @@
             this.Controls.Add(this.label8);
             this.Controls.Add(this.TestMethod);
             this.Controls.Add(this.teleport);
-            this.Controls.Add(this.SetWindowPos);
             this.Controls.Add(this.Tester);
             this.Controls.Add(this.OpenStorageBTN);
             this.Controls.Add(this.FastTestBTN);
@@ -848,7 +836,6 @@
         private Button FastTestBTN;
         private Button OpenStorageBTN;
         private Button Tester;
-        private Button SetWindowPos;
         private Button teleport;
         private Button TestMethod;
         private Label label8;

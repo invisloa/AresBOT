@@ -6,6 +6,7 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
+using AresTrainerV3.MoveRandom.Hershal;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
 using System.Diagnostics;
@@ -26,7 +27,6 @@ namespace AresTrainerV3
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
         HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
         globalKeyboardHook gkh = new globalKeyboardHook();
-        bool shutDownOnRepot = true;
 
         MoverRandom ExpBotMoverToRun;
 
@@ -38,8 +38,8 @@ namespace AresTrainerV3
             HealbotToRun.setHealbotValues();
             HPValueTextBox.Text = HealBotAbstract.HpHealValue.ToString();
             MannaValueTextBox.Text = HealBotAbstract.MpRestoreValue.ToString();
-
         }
+
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -382,24 +382,6 @@ namespace AresTrainerV3
         {
             ProgramHandle.OpenStorageWindow();
         }
-        private void SetWindowPos_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(1000);
-            MouseOperations.SetCursorPosition(446, 129);
-            Thread.Sleep(300);
-
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-            Thread.Sleep(300);
-
-            MouseOperations.SetCursorPosition(446, 133);
-            MouseOperations.SetCursorPosition(446, 133);
-            MouseOperations.SetCursorPosition(446, 133);
-            Thread.Sleep(300);
-
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-
-        }
 
         private void teleport_Click(object sender, EventArgs e)
         {
@@ -428,7 +410,7 @@ namespace AresTrainerV3
             HealbotToRun.StartHealBotThread();
 
             ExpBotManagerAbstract.RequestStartExpBot();
-            MoverRandom mover = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
+           // MoverRandom mover = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
 
             while (ExpBotManagerAbstract.isExpBotRunning)
             {
@@ -437,7 +419,7 @@ namespace AresTrainerV3
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 }
 
-                mover.MoveAttackCollect();
+            //    mover.MoveAttackCollect();
             }
 
         }
@@ -494,7 +476,12 @@ namespace AresTrainerV3
 
         private void button6_Click(object sender, EventArgs e)
         {
-            RunMoverExpBot();
+            HealbotToRun.StartHealBotThread();
+            ProgramHandle.SetCameraForExpBot();
+
+            ExpBotMoverToRun.StartExpBotThread();
+
+          // RunMoverExpBot();
                 
         }
 
@@ -512,7 +499,7 @@ namespace AresTrainerV3
            // ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
             Thread.Sleep(2000);
             ExpBotManagerAbstract.RequestStartExpBot();
-            MoverRandom mover = new MoverRandom(TeleportValues.Hollina ,TeleportValues.moverRandomHolinaGoblins);
+          //  MoverRandom mover = new MoverRandom(TeleportValues.Hollina ,TeleportValues.moverRandomHolinaGoblins);
 
 
 
@@ -527,7 +514,7 @@ namespace AresTrainerV3
 
                 }
 
-                mover.MoveAttackCollect();
+             //   mover.MoveAttackCollect();
             }
 
 
@@ -541,7 +528,7 @@ namespace AresTrainerV3
             HealbotToRun.StartHealBotThread();
 
             ExpBotManagerAbstract.RequestStartExpBot();
-            MoverRandom mover = new MoverRandom(TeleportValues.Etana, TeleportValues.moverRandomEtanaBuckys);
+           // MoverRandom mover = new MoverRandom(TeleportValues.Etana, TeleportValues.moverRandomEtanaBuckys);
 
 
 
@@ -553,7 +540,7 @@ namespace AresTrainerV3
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 }
 
-                mover.MoveAttackCollect();
+               // mover.MoveAttackCollect();
             }
 
         }
@@ -565,7 +552,7 @@ namespace AresTrainerV3
             HealbotToRun.StartHealBotThread();
 
             ExpBotManagerAbstract.RequestStartExpBot();
-            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
+          //  MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
 
 
 
@@ -576,7 +563,7 @@ namespace AresTrainerV3
                 {
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 }
-                mover.MoveAttackCollect();
+             //   mover.MoveAttackCollect();
             }
         }
 
@@ -588,7 +575,7 @@ namespace AresTrainerV3
             HealbotToRun.StartHealBotThread();
 
             ExpBotManagerAbstract.RequestStartExpBot();
-            MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomSacredGiko);
+           // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomSacredGiko);
 
 
 
@@ -600,22 +587,21 @@ namespace AresTrainerV3
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 }
 
-                mover.MoveAttackCollect();
+              //  mover.MoveAttackCollect();
             }
 
         }
-        void RunMoverExpBot()
+/*        void RunMoverExpBot()
         {
-            ProgramHandle.SetCameraForExpBot();
             HealbotToRun.StartHealBotThread();
-
+            ProgramHandle.SetCameraForExpBot();
             ExpBotManagerAbstract.RequestStartExpBot();
 
 
             // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
             while (ExpBotManagerAbstract.isExpBotRunning)
             {
-                if (ProgramHandle.isInCity == 1 && shutDownOnRepot)
+                if (ProgramHandle.isInCity == 1 && ExpBotManagerAbstract.shutDownOnRepot)
                 {
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 }
@@ -624,7 +610,7 @@ namespace AresTrainerV3
 
 
         }
-
+*/
 
 
 private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -647,7 +633,7 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             }
             else if (HealbotComboBox.SelectedItem.ToString() == "Hershal")
             {
-                HealbotToRun = new HealBotOnlyHeal();
+                HealbotToRun = new HealBotHershalExp();
             }
             else if (HealbotComboBox.SelectedItem.ToString() == "Kharon")
             {
@@ -668,9 +654,9 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ExpBotComboBox.SelectedItem.ToString() == "EtanaBuckerty")
             {
-                ExpBotMoverToRun = new MoverRandom(TeleportValues.Etana, TeleportValues.moverRandomEtanaBuckys); 
+                ExpBotMoverToRun = new MoverHershalLeafMages(); 
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredGiko")
+/*            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredGiko")
             {
                 ExpBotMoverToRun = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomSacredGiko);
             }
@@ -686,9 +672,10 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             {
                 ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
             }
+*/            
             else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
             {
-                ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLeafMages);
+                ExpBotMoverToRun = new MoverHershalLeafMages(); 
             }
         }
         
@@ -722,11 +709,11 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if(ShutDownWhenInCity.Checked)
             {
-                shutDownOnRepot = true;
+                ExpBotManagerAbstract.shutDownOnRepot = true;
             }
             else
             {
-                shutDownOnRepot = false;
+                ExpBotManagerAbstract.shutDownOnRepot = false;
             }
         }
 

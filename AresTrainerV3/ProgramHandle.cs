@@ -168,11 +168,27 @@ namespace AresTrainerV3
 
         }
 
+        static void SetGamePosition () // On laptop the position is different on screen
+        {
+            SetGameAsMainWindow();
+            Thread.Sleep(1000);
+            MouseOperations.SetCursorPosition(446, 129);
+            Thread.Sleep(300);
+
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+            Thread.Sleep(10);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.Move);
+            Thread.Sleep(10);
+            MouseOperations.SetCursorPosition(446, 133);
+            Thread.Sleep(10);
+            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+
+        }
 
 
 
 
-        private static volatile int _anim1 = 0;
+    private static volatile int _anim1 = 0;
         private static volatile int _anim2 = 0;
         private static volatile int _skillValue = 0;
 
@@ -263,6 +279,7 @@ namespace AresTrainerV3
             isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
             isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
             isAttackingMob = (IntPtr)PointersAndValues.isAttackingMob;
+            SetGamePosition();
         }
 
 
