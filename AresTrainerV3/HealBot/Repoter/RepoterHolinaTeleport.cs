@@ -11,17 +11,6 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     internal class RepoterHolinaTeleport : RepotAbstract
     {
-        protected override GoBackExpAbstract GoBackExpPlace
-        {
-            get
-            {
-                if (_goBackExpPlace == null)
-                {
-                    _goBackExpPlace = new GoBackExpHolinaTeleport();
-                }
-                return _goBackExpPlace;
-            }
-        }
 
         protected override BuyerPotions BuyerPotionsCity
         {
@@ -40,17 +29,6 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 _repotCityVerification = TeleportValues.Hollina;
                 return _repotCityVerification;
-            }
-        }
-        protected override IStartExpBotThread ExpBotToStart
-        {
-            get
-            {
-                if (_expBotToStart == null)
-                {
-                    //_expBotToStart = new ExpBotHolinaSod();
-                }
-                return _expBotToStart;
             }
         }
 

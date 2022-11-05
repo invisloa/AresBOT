@@ -1,17 +1,21 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.DoWhileMoving;
+using AresTrainerV3.Enums;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.MoveRandom.Hershal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    public abstract class RepotAbstract :IGoRepot
+    public abstract class RepotAbstract : IGoRepot
     {
         protected Random randomizer = new Random();
         protected int isCurrentCity
@@ -19,12 +23,9 @@ namespace AresTrainerV3.HealBot.Repoter
             get { return ProgramHandle.GetCurrentMap; }
         }
 
-        protected GoBackExpAbstract _goBackExpPlace;
         protected BuyerPotions _buyerPotionsCity;
         protected int _repotCityVerification;
-        protected IStartExpBotThread _expBotToStart;
         public static bool IsScanRunning = false;
-
         protected void StopExpBot()
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
@@ -32,10 +33,6 @@ namespace AresTrainerV3.HealBot.Repoter
                 ExpBotManagerAbstract.RequestStopExpBot();
             }
         }
-        protected abstract GoBackExpAbstract GoBackExpPlace
-        { get; }
-        protected abstract IStartExpBotThread ExpBotToStart
-        { get; }
         protected abstract BuyerPotions BuyerPotionsCity
         {get;}
         protected abstract int repotCityCheck
@@ -113,8 +110,6 @@ namespace AresTrainerV3.HealBot.Repoter
                     BuyerPotionsCity.BuyPotions();
                 }
                 KeyPresser.PressEscape();
-                GoBackExpPlace.GoBackExp();
-                ExpBotToStart.StartExpBotThread();
             }
 
 

@@ -95,7 +95,7 @@ namespace AresTrainerV3.MoveRandom
                             {
                                 if (ProgramHandle.isNowStandingOut())
                                 {
-                                    Debug.WriteLine("!!!!!!!!!!!!!!!!!!! TOO LOW DISTANCE!!!!!!!!!!!!!!!!!!");
+                                    Debug.WriteLine("TOO LOW DISTANCE");
                                     int a = randomizer.Next(3);
                                     if (a == 0)
                                     {

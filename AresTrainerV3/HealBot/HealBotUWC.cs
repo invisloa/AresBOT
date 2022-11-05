@@ -13,15 +13,5 @@ namespace AresTrainerV3.HealBot
 
     internal class HealBotUWC : HealBotAbstract
     {
-
-        protected override IGoRepot RepoterCity
-        {
-            get
-            {
-                if (_repoterCity == null)
-                { _repoterCity = new RepotUWC(); }
-                return _repoterCity;
-            }
-        }
     }
 }

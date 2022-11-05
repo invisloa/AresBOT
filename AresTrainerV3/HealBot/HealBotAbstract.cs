@@ -1,6 +1,10 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿using AresTrainerV3.DoWhileMoving;
+using AresTrainerV3.ExpBotManagement;
+using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.MoveRandom.Hershal;
 using AresTrainerV3.SkillSelection;
 using System;
 using System.Collections.Generic;
@@ -8,6 +12,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3.HealBot
 {
@@ -16,7 +21,7 @@ namespace AresTrainerV3.HealBot
         public static bool SelfSetHealValue = false;
         public static bool SellItems = false;
         protected static bool _isHealBotRunning = false;
-        protected IGoRepot _repoterCity;
+        IGoRepot _repoterCity;
         public static bool IsHealBotRunning
         {
             get { return _isHealBotRunning; }
@@ -46,9 +51,10 @@ namespace AresTrainerV3.HealBot
             set
             { MannaRestoreValue = value; }
         }
-        abstract protected IGoRepot RepoterCity
+        IGoRepot repoterCity
         {
             get;
+            set;
         }
         public void setHealbotValues()
         {
@@ -160,16 +166,6 @@ namespace AresTrainerV3.HealBot
             else
                 _isHealBotRunning = true;
         }
-
-        /*        protected void scrollToCityIfNotInCity()
-                {
-                    if (ProgramHandle.isWhatAnimationRunning != isNowStandingCity)
-                    {
-                        KeyPresser.PressKey(6, 500, 500);
-                        Debug.WriteLine("Not in city use scroll");
-                    }
-                }
-        */
         protected void StartHealBot()
         {
             SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
@@ -191,10 +187,8 @@ namespace AresTrainerV3.HealBot
                 else if (myCurrentHp == 0)
                 {
                     StopExpBot();
-
                     Thread.Sleep(300000);
-                    RepoterCity.GoRepot();
-                    // HealBotTeleportRepotGoUWC();  // GO EXP IN UWC
+                    RepotAndStartExpBot();
                 }
                 if (myCurrentManna < MannaRestoreValue)
                 {
@@ -220,11 +214,17 @@ namespace AresTrainerV3.HealBot
                 }
             else
                 {
-                RepoterCity.GoRepot();
-                }
+                RepotAndStartExpBot();
+            }
 
         }
+        void RepotAndStartExpBot()
+        {
+            repoterCity.GoRepot();
+            _goBackExpPlace.GoBackExp();
+            ExpBotToStart.StartExpBotThread();
 
+        }
 
         protected void MannaKeyPress()
         {
@@ -234,12 +234,12 @@ namespace AresTrainerV3.HealBot
                     KeyPresser.PressKey(2, 100, 250);
                     if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
                     {
-                        RepoterCity.GoRepot();
+                        repoterCity.GoRepot();
                     }
                 }
                 else
                 {
-                    RepoterCity.GoRepot();
+                    RepotAndStartExpBot();
                 }
             }
 
@@ -281,6 +281,90 @@ namespace AresTrainerV3.HealBot
                 }
             }
         }
+
+
+
+
+        protected IStartExpBotThread _expBotToStart;
+        public MoverBotEnums whichBotThreadToStart
+        {
+            get;
+            set;
+        }
+        public WhatToCollectEnums whatToCollect
+        {
+            get;
+            set;
+        }
+        GoBackExpAbstract _goBackExpPlace;
+
+        private AbstractWhatToCollect whatToCollectSetter()
+        {
+            if (whatToCollect == WhatToCollectEnums.Event)
+            {
+                return new CollectSodEvent();
+            }
+            else if (whatToCollect == WhatToCollectEnums.Stones)
+            {
+                return new CollectSodStones();
+            }
+            else if (whatToCollect == WhatToCollectEnums.Jewelery)
+            {
+                return new CollectSodJewelery();
+            }
+            else if (whatToCollect == WhatToCollectEnums.SellWeapons)
+            {
+                return new CollectSellerCry();
+            }
+            else if (whatToCollect == WhatToCollectEnums.SellAll)
+            {
+                return new CollectAllItems();
+            }
+            else
+            {
+                return new CollectSod();
+
+            }
+        }
+        private IStartExpBotThread expPlaceToStartSetter()
+        {
+            if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
+            {
+                repoterCity = new RepoterHershalLeafMages();
+                _goBackExpPlace = new GoBackExpHershalTeleport();
+                return new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+            }
+            else return null;
+        }
+
+        protected IStartExpBotThread ExpBotToStart
+        {
+            get
+            {
+                if (_expBotToStart == null)
+                {
+                    expPlaceToStartSetter();
+                }
+                return _expBotToStart;
+            }
+        }
+
 
 
     }
