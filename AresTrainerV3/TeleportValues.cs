@@ -44,7 +44,7 @@ namespace AresTrainerV3
         public const int COT12thFloor = 57;
         public const int COT13thFloor = 58;
 
-
+        public const int GMLand = 46;
 
 
         public const int Kharon = 44;

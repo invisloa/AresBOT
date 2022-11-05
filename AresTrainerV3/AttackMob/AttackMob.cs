@@ -30,7 +30,7 @@ namespace AresTrainerV3.AttackMob
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
                 Debug.WriteLine(attackUnstackCounter);
-                if (attackUnstackCounter == 30)
+                if (attackUnstackCounter == 40)
                 {
                     anywhereUnstucker.AttackUnstacker();
                 }
