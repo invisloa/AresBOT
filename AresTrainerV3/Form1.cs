@@ -456,17 +456,6 @@ namespace AresTrainerV3
 
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            HealbotToRun.StartHealBotThread();
-            ProgramHandle.SetCameraForExpBot();
-
-            ExpBotMoverToRun.StartExpBotThread();
-
-          // RunMoverExpBot();
-                
-        }
-
         private void button7_Click(object sender, EventArgs e)
         {
 
@@ -713,6 +702,14 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             }
         }
 
+        private void RunExpBot_Click(object sender, EventArgs e)
+        {
+            HealbotToRun.StartHealBotThread();
+            ProgramHandle.SetCameraForExpBot();
+
+            ExpBotMoverToRun.StartExpBotThread();
+
+        }
     }
 /*    
     
