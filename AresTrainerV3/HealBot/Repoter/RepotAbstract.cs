@@ -53,7 +53,7 @@ namespace AresTrainerV3.HealBot.Repoter
             if (ProgramHandle.isNowRunningCity())
             {
                 Thread.Sleep(15000);
-                KeyPresser.PressKey(6, 200, 200);
+                KeyPresser.PressKey(6, 500, 1000);
             }
         }
         protected void teleportToCityAndStopExpBot()
@@ -116,8 +116,11 @@ namespace AresTrainerV3.HealBot.Repoter
                     }
                     KeyPresser.PressEscape();
                 }
-                else Thread.Sleep(50000);
+                else
+                {
+                Thread.Sleep(50000);
                 this.GoRepot();
+                } 
             }
 
 
