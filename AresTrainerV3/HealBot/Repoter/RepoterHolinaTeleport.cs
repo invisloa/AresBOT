@@ -42,17 +42,6 @@ namespace AresTrainerV3.HealBot.Repoter
                 return _repotCityVerification;
             }
         }
-        protected override IStartExpBotThread ExpBotToStart
-        {
-            get
-            {
-                if (_expBotToStart == null)
-                {
-                    //_expBotToStart = new ExpBotHolinaSod();
-                }
-                return _expBotToStart;
-            }
-        }
 
         protected override void MoveToRepot()
         {

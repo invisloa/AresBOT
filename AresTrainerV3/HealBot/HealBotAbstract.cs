@@ -191,10 +191,8 @@ namespace AresTrainerV3.HealBot
                 else if (myCurrentHp == 0)
                 {
                     StopExpBot();
-
                     Thread.Sleep(300000);
                     RepoterCity.GoRepot();
-                    // HealBotTeleportRepotGoUWC();  // GO EXP IN UWC
                 }
                 if (myCurrentManna < MannaRestoreValue)
                 {

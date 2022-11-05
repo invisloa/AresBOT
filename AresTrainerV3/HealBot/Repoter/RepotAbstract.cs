@@ -1,17 +1,21 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.DoWhileMoving;
+using AresTrainerV3.Enums;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.MoveRandom.Hershal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    public abstract class RepotAbstract :IGoRepot
+    public abstract class RepotAbstract : IGoRepot
     {
         protected Random randomizer = new Random();
         protected int isCurrentCity
@@ -22,8 +26,86 @@ namespace AresTrainerV3.HealBot.Repoter
         protected GoBackExpAbstract _goBackExpPlace;
         protected BuyerPotions _buyerPotionsCity;
         protected int _repotCityVerification;
-        protected IStartExpBotThread _expBotToStart;
         public static bool IsScanRunning = false;
+        protected IStartExpBotThread _expBotToStart;
+        public MoverBotEnums whichBotThreadToStart
+        {
+            get;
+            set;
+        }
+        public WhatToCollectEnums whatToCollect
+        {
+            get;
+            set;
+        }
+
+        private AbstractWhatToCollect whatToCollectSetter()
+        {
+            if (whatToCollect == WhatToCollectEnums.Event)
+            {
+                return new CollectSodEvent();
+            }
+            else if (whatToCollect == WhatToCollectEnums.Stones)
+            {
+                return new CollectSodStones();
+            }
+            else if (whatToCollect == WhatToCollectEnums.Jewelery)
+            {
+                return new CollectSodJewelery();
+            }
+            else if (whatToCollect == WhatToCollectEnums.SellWeapons)
+            {
+                return new CollectSellerCry();
+            }
+            else if(whatToCollect == WhatToCollectEnums.SellAll)
+            {
+                return new CollectAllItems();
+            }
+            else
+            {
+                return new CollectSod();
+
+            }
+
+
+        }
+        private IStartExpBotThread expThreadToStartSetter()
+        {
+            if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
+            {
+
+            }
+            if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
+            {
+                return new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+            }
+            else return null;
+        }
+
+
+        protected IStartExpBotThread ExpBotToStart
+        {
+            get
+            {
+                if (_expBotToStart == null)
+                {
+                    expThreadToStartSetter();
+                }
+                return _expBotToStart;
+            }
+        }
 
         protected void StopExpBot()
         {
@@ -33,8 +115,6 @@ namespace AresTrainerV3.HealBot.Repoter
             }
         }
         protected abstract GoBackExpAbstract GoBackExpPlace
-        { get; }
-        protected abstract IStartExpBotThread ExpBotToStart
         { get; }
         protected abstract BuyerPotions BuyerPotionsCity
         {get;}
