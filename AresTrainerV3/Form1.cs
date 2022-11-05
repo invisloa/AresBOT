@@ -657,7 +657,8 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
 */            
             else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
             {
-                ExpBotMoverToRun = new MoverHershalLeafMages(); 
+                ExpBotMoverToRun = new MoverHershalLeafMages();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
             }
         }
         
