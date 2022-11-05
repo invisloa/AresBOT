@@ -10,15 +10,6 @@ namespace AresTrainerV3.HealBot
     public class HealBotHolinaExp : HealBotAbstract
     {
 
-        protected override IGoRepot RepoterCity
-        {
-            get
-            {
-                if (_repoterCity == null)
-                { _repoterCity = new RepoterHolinaTeleport(); }
-                return _repoterCity;
-            }
-        }
     }
 }
 

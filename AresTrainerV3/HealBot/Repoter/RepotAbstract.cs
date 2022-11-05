@@ -23,90 +23,9 @@ namespace AresTrainerV3.HealBot.Repoter
             get { return ProgramHandle.GetCurrentMap; }
         }
 
-        protected GoBackExpAbstract _goBackExpPlace;
         protected BuyerPotions _buyerPotionsCity;
         protected int _repotCityVerification;
         public static bool IsScanRunning = false;
-        protected IStartExpBotThread _expBotToStart;
-        public MoverBotEnums whichBotThreadToStart
-        {
-            get;
-            set;
-        }
-        public WhatToCollectEnums whatToCollect
-        {
-            get;
-            set;
-        }
-
-        private AbstractWhatToCollect whatToCollectSetter()
-        {
-            if (whatToCollect == WhatToCollectEnums.Event)
-            {
-                return new CollectSodEvent();
-            }
-            else if (whatToCollect == WhatToCollectEnums.Stones)
-            {
-                return new CollectSodStones();
-            }
-            else if (whatToCollect == WhatToCollectEnums.Jewelery)
-            {
-                return new CollectSodJewelery();
-            }
-            else if (whatToCollect == WhatToCollectEnums.SellWeapons)
-            {
-                return new CollectSellerCry();
-            }
-            else if(whatToCollect == WhatToCollectEnums.SellAll)
-            {
-                return new CollectAllItems();
-            }
-            else
-            {
-                return new CollectSod();
-
-            }
-
-
-        }
-        private IStartExpBotThread expThreadToStartSetter()
-        {
-            if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
-            {
-
-            }
-            if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
-            {
-
-            }
-            if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
-            {
-
-            }
-            if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
-            {
-
-            }
-            if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
-            {
-                return new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-            }
-            else return null;
-        }
-
-
-        protected IStartExpBotThread ExpBotToStart
-        {
-            get
-            {
-                if (_expBotToStart == null)
-                {
-                    expThreadToStartSetter();
-                }
-                return _expBotToStart;
-            }
-        }
-
         protected void StopExpBot()
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
@@ -114,8 +33,6 @@ namespace AresTrainerV3.HealBot.Repoter
                 ExpBotManagerAbstract.RequestStopExpBot();
             }
         }
-        protected abstract GoBackExpAbstract GoBackExpPlace
-        { get; }
         protected abstract BuyerPotions BuyerPotionsCity
         {get;}
         protected abstract int repotCityCheck
@@ -193,8 +110,6 @@ namespace AresTrainerV3.HealBot.Repoter
                     BuyerPotionsCity.BuyPotions();
                 }
                 KeyPresser.PressEscape();
-                GoBackExpPlace.GoBackExp();
-                ExpBotToStart.StartExpBotThread();
             }
 
 

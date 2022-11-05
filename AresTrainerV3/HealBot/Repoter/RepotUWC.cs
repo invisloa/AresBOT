@@ -11,17 +11,6 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     internal class RepotUWC : RepotAbstract
     {
-        protected override GoBackExpAbstract GoBackExpPlace
-        {
-            get
-            {
-                if (_goBackExpPlace == null)
-                {
-                    _goBackExpPlace = new GoBackExpUWC();
-                }
-                return _goBackExpPlace;
-            }
-        }
 
         protected override BuyerPotions BuyerPotionsCity
         {

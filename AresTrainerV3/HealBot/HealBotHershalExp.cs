@@ -10,15 +10,6 @@ namespace AresTrainerV3.HealBot
     internal class HealBotHershalExp : HealBotAbstract
     {
 
-        protected override IGoRepot RepoterCity
-        {
-            get
-            {
-                if (_repoterCity == null)
-                { _repoterCity = new RepoterHershalLeafMages(); }
-                return _repoterCity;
-            }
-        }
     }
 }
 
