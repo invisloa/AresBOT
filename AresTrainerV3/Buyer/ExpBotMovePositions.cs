@@ -91,6 +91,13 @@ namespace AresTrainerV3.Buyer
                     new Tuple<int, int>(654, 805),
                     new Tuple<int, int>(789, 748),
         };
+        public static Tuple<int, int>[] HershalRepotMovePositions2 = new Tuple<int, int>[]
+        {
+                    new Tuple<int, int>(1292, 185),
+                    new Tuple<int, int>(1415, 362),
+                    new Tuple<int, int>(654, 805),
+                    new Tuple<int, int>(789, 748),
+        };
 
         public static Tuple<int, int>[] KharonRepotMovePositions = new Tuple<int, int>[]
         {

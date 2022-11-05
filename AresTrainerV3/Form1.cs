@@ -710,6 +710,14 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             ExpBotMoverToRun.StartExpBotThread();
 
         }
+
+        private void fasttest_Click(object sender, EventArgs e)
+        {
+            RepoterHershalLeafMages zzz = new RepoterHershalLeafMages();
+            ProgramHandle.SetGameAsMainWindow();
+            ProgramHandle.SetCameraForExpBot();
+            zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
+        }
     }
 /*    
     
