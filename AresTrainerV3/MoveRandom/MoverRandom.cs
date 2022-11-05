@@ -79,6 +79,8 @@ namespace AresTrainerV3.MoveRandom
 
         void MoveToPosRandom()
         {
+            if (ProgramHandle.isInCity != 1)
+            {
                 moveClickSlower++;
 
                 if (moveClickSlower == howMuchToSlowClickMove)
@@ -123,7 +125,7 @@ namespace AresTrainerV3.MoveRandom
                         ExpBotManagerAbstract.RequestStopExpBot();
                         HealBotAbstract.RequestStopHealBot();
                     }
-                
+                }
             }
         }
         void MoveToPosRandom(int i)

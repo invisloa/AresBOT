@@ -424,11 +424,6 @@ namespace AresTrainerV3
                 ProgramHandle.SetCameraForExpBot();
                 Thread.Sleep(100);
             }
-/*            else
-            {
-                ProgramHandle.HealBotTeleportRepotGoUWC();
-            }
-*/     
         }
 
         static void MoveToPositionWhenNotAttacking( int x,int y)

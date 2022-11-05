@@ -335,36 +335,6 @@ namespace AresTrainerV3
                 _stopBot = true;
         }
 
-        public static void HealBotRepotKharonSell()
-        {
-            if (ExpBotClass.isExpBotSell)
-            {
-                ExpBotClass.RequestisExpBotSell();
-            }
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_6);
-            inputSimulator.Keyboard.Sleep(150);
-
-            PressKey1Heal();
-            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(200);
-            inputSimulator.Keyboard.KeyUp(VirtualKeyCode.VK_2);
-            inputSimulator.Keyboard.Sleep(150);
-
-            ExpBotClass.Repot(GetCurrentMap);
-            // ExpBotClass.TeleportSScroll();
-            ExpBotClass.ExpBotSellKharonGoBackToSpot();
-
-           // TODO         I DELETED STARTTHEREADFORTESTING WIITH KINDA NO INTENTIONS TO MAKE THIS STOP WORKING  Form1.StartThreadForTesting();
-
-
-        }
-
-
-
-
-
         public static void Start1HitKO(SkillSelector skillSelector)
         {
 
