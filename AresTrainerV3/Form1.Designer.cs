@@ -298,7 +298,7 @@
             // 
             // teleport
             // 
-            this.teleport.Location = new System.Drawing.Point(753, 37);
+            this.teleport.Location = new System.Drawing.Point(749, 384);
             this.teleport.Name = "teleport";
             this.teleport.Size = new System.Drawing.Size(75, 23);
             this.teleport.TabIndex = 32;
@@ -537,7 +537,7 @@
             "Kharon",
             "UWC",
             "COT"});
-            this.HealbotComboBox.Location = new System.Drawing.Point(727, 258);
+            this.HealbotComboBox.Location = new System.Drawing.Point(732, 211);
             this.HealbotComboBox.Name = "HealbotComboBox";
             this.HealbotComboBox.Size = new System.Drawing.Size(121, 23);
             this.HealbotComboBox.TabIndex = 57;
@@ -554,7 +554,7 @@
             "HolinaGoblins",
             "HershalLowLvl",
             "HershalLeafMages"});
-            this.ExpBotComboBox.Location = new System.Drawing.Point(727, 300);
+            this.ExpBotComboBox.Location = new System.Drawing.Point(732, 253);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
@@ -597,7 +597,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(727, 284);
+            this.label15.Location = new System.Drawing.Point(732, 237);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 15);
             this.label15.TabIndex = 64;
@@ -606,7 +606,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(727, 240);
+            this.label16.Location = new System.Drawing.Point(732, 193);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(49, 15);
             this.label16.TabIndex = 65;
@@ -621,7 +621,7 @@
             "+Stones",
             "+Stones+Jewelery",
             "+Seller"});
-            this.CollectorComboBox.Location = new System.Drawing.Point(727, 343);
+            this.CollectorComboBox.Location = new System.Drawing.Point(732, 296);
             this.CollectorComboBox.Name = "CollectorComboBox";
             this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
             this.CollectorComboBox.TabIndex = 66;
@@ -631,7 +631,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(727, 326);
+            this.label17.Location = new System.Drawing.Point(732, 279);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 15);
             this.label17.TabIndex = 67;
@@ -640,7 +640,7 @@
             // ShutDownWhenInCity
             // 
             this.ShutDownWhenInCity.AutoSize = true;
-            this.ShutDownWhenInCity.Location = new System.Drawing.Point(727, 370);
+            this.ShutDownWhenInCity.Location = new System.Drawing.Point(732, 323);
             this.ShutDownWhenInCity.Name = "ShutDownWhenInCity";
             this.ShutDownWhenInCity.Size = new System.Drawing.Size(15, 14);
             this.ShutDownWhenInCity.TabIndex = 69;
@@ -650,7 +650,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(748, 369);
+            this.label18.Location = new System.Drawing.Point(753, 322);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(110, 15);
             this.label18.TabIndex = 68;
@@ -661,7 +661,7 @@
             this.CollectItemsBox.AutoSize = true;
             this.CollectItemsBox.Checked = true;
             this.CollectItemsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CollectItemsBox.Location = new System.Drawing.Point(727, 393);
+            this.CollectItemsBox.Location = new System.Drawing.Point(732, 346);
             this.CollectItemsBox.Name = "CollectItemsBox";
             this.CollectItemsBox.Size = new System.Drawing.Size(15, 14);
             this.CollectItemsBox.TabIndex = 71;
@@ -671,7 +671,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(748, 392);
+            this.label19.Location = new System.Drawing.Point(753, 345);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(76, 15);
             this.label19.TabIndex = 70;
