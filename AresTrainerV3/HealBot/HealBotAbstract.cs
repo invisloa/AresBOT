@@ -220,6 +220,8 @@ namespace AresTrainerV3.HealBot
         }
         void RepotAndStartExpBot()
         {
+            expPlaceToStartSetter();
+            whatToCollectSetter();
             repoterCity.GoRepot();
             _goBackExpPlace.GoBackExp();
             ExpBotToStart.StartExpBotThread();
