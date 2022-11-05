@@ -28,18 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.StartHealbotBTN = new System.Windows.Forms.Button();
             this.ClassChangeComboBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.StartSkillBtn = new System.Windows.Forms.Button();
-            this.StartNormalBtn = new System.Windows.Forms.Button();
             this.TextBoxLog = new System.Windows.Forms.RichTextBox();
             this.HPValueTextBox = new System.Windows.Forms.TextBox();
             this.MannaValueTextBox = new System.Windows.Forms.TextBox();
             this.BtnHitKO = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.MouseScannerBtn = new System.Windows.Forms.Button();
             this.Log = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -49,7 +46,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnHealbotOnOff = new System.Windows.Forms.Button();
-            this.TestingThread = new System.Windows.Forms.Button();
             this.FastTestBTN = new System.Windows.Forms.Button();
             this.OpenStorageBTN = new System.Windows.Forms.Button();
             this.Tester = new System.Windows.Forms.Button();
@@ -94,15 +90,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // StartHealbotBTN
-            // 
-            this.StartHealbotBTN.Location = new System.Drawing.Point(316, 273);
-            this.StartHealbotBTN.Name = "StartHealbotBTN";
-            this.StartHealbotBTN.Size = new System.Drawing.Size(93, 50);
-            this.StartHealbotBTN.TabIndex = 0;
-            this.StartHealbotBTN.Text = "Start Healbot";
-            this.StartHealbotBTN.UseVisualStyleBackColor = true;
-            // 
             // ClassChangeComboBox
             // 
             this.ClassChangeComboBox.FormattingEnabled = true;
@@ -128,23 +115,13 @@
             // 
             // StartSkillBtn
             // 
-            this.StartSkillBtn.Location = new System.Drawing.Point(318, 329);
+            this.StartSkillBtn.Location = new System.Drawing.Point(266, 270);
             this.StartSkillBtn.Name = "StartSkillBtn";
             this.StartSkillBtn.Size = new System.Drawing.Size(91, 49);
             this.StartSkillBtn.TabIndex = 3;
             this.StartSkillBtn.Text = "Start Skill Speed";
             this.StartSkillBtn.UseVisualStyleBackColor = true;
             this.StartSkillBtn.Click += new System.EventHandler(this.StartSkillBtn_Click);
-            // 
-            // StartNormalBtn
-            // 
-            this.StartNormalBtn.Location = new System.Drawing.Point(467, 329);
-            this.StartNormalBtn.Name = "StartNormalBtn";
-            this.StartNormalBtn.Size = new System.Drawing.Size(102, 49);
-            this.StartNormalBtn.TabIndex = 4;
-            this.StartNormalBtn.Text = "Start Nomral Speed";
-            this.StartNormalBtn.UseVisualStyleBackColor = true;
-            this.StartNormalBtn.Click += new System.EventHandler(this.StartNormalBtn_Click);
             // 
             // TextBoxLog
             // 
@@ -156,7 +133,7 @@
             // 
             // HPValueTextBox
             // 
-            this.HPValueTextBox.Location = new System.Drawing.Point(480, 295);
+            this.HPValueTextBox.Location = new System.Drawing.Point(480, 266);
             this.HPValueTextBox.Name = "HPValueTextBox";
             this.HPValueTextBox.Size = new System.Drawing.Size(100, 23);
             this.HPValueTextBox.TabIndex = 11;
@@ -164,7 +141,7 @@
             // 
             // MannaValueTextBox
             // 
-            this.MannaValueTextBox.Location = new System.Drawing.Point(609, 296);
+            this.MannaValueTextBox.Location = new System.Drawing.Point(602, 266);
             this.MannaValueTextBox.Name = "MannaValueTextBox";
             this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
             this.MannaValueTextBox.TabIndex = 12;
@@ -184,7 +161,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(503, 277);
+            this.label2.Location = new System.Drawing.Point(503, 248);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 15);
             this.label2.TabIndex = 14;
@@ -193,21 +170,11 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(609, 278);
+            this.label3.Location = new System.Drawing.Point(602, 248);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 15);
             this.label3.TabIndex = 15;
             this.label3.Text = "Manna value";
-            // 
-            // MouseScannerBtn
-            // 
-            this.MouseScannerBtn.Location = new System.Drawing.Point(589, 328);
-            this.MouseScannerBtn.Name = "MouseScannerBtn";
-            this.MouseScannerBtn.Size = new System.Drawing.Size(134, 49);
-            this.MouseScannerBtn.TabIndex = 16;
-            this.MouseScannerBtn.Text = "MouseScannerBtn";
-            this.MouseScannerBtn.UseVisualStyleBackColor = true;
-            this.MouseScannerBtn.Click += new System.EventHandler(this.MouseScannerBtn_Click);
             // 
             // Log
             // 
@@ -299,16 +266,6 @@
             this.BtnHealbotOnOff.Text = "OFF";
             this.BtnHealbotOnOff.UseVisualStyleBackColor = false;
             // 
-            // TestingThread
-            // 
-            this.TestingThread.Location = new System.Drawing.Point(360, 384);
-            this.TestingThread.Name = "TestingThread";
-            this.TestingThread.Size = new System.Drawing.Size(101, 23);
-            this.TestingThread.TabIndex = 26;
-            this.TestingThread.Text = "TestingThread";
-            this.TestingThread.UseVisualStyleBackColor = true;
-            this.TestingThread.Click += new System.EventHandler(this.TestingThread_Click);
-            // 
             // FastTestBTN
             // 
             this.FastTestBTN.Location = new System.Drawing.Point(47, 422);
@@ -350,7 +307,7 @@
             // 
             // TestMethod
             // 
-            this.TestMethod.Location = new System.Drawing.Point(235, 415);
+            this.TestMethod.Location = new System.Drawing.Point(226, 422);
             this.TestMethod.Name = "TestMethod";
             this.TestMethod.Size = new System.Drawing.Size(91, 23);
             this.TestMethod.TabIndex = 33;
@@ -454,7 +411,7 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(482, 278);
+            this.checkBox1.Location = new System.Drawing.Point(482, 249);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(15, 14);
             this.checkBox1.TabIndex = 44;
@@ -529,7 +486,7 @@
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(580, 413);
+            this.button6.Location = new System.Drawing.Point(618, 341);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(91, 23);
             this.button6.TabIndex = 52;
@@ -539,7 +496,7 @@
             // 
             // MoverGoblins
             // 
-            this.MoverGoblins.Location = new System.Drawing.Point(360, 413);
+            this.MoverGoblins.Location = new System.Drawing.Point(316, 384);
             this.MoverGoblins.Name = "MoverGoblins";
             this.MoverGoblins.Size = new System.Drawing.Size(91, 23);
             this.MoverGoblins.TabIndex = 53;
@@ -559,7 +516,7 @@
             // 
             // EtanaBot
             // 
-            this.EtanaBot.Location = new System.Drawing.Point(474, 413);
+            this.EtanaBot.Location = new System.Drawing.Point(413, 384);
             this.EtanaBot.Name = "EtanaBot";
             this.EtanaBot.Size = new System.Drawing.Size(91, 23);
             this.EtanaBot.TabIndex = 55;
@@ -569,7 +526,7 @@
             // 
             // MoverGiko
             // 
-            this.MoverGiko.Location = new System.Drawing.Point(474, 384);
+            this.MoverGiko.Location = new System.Drawing.Point(323, 422);
             this.MoverGiko.Name = "MoverGiko";
             this.MoverGiko.Size = new System.Drawing.Size(91, 23);
             this.MoverGiko.TabIndex = 56;
@@ -776,7 +733,6 @@
             this.Controls.Add(this.Tester);
             this.Controls.Add(this.OpenStorageBTN);
             this.Controls.Add(this.FastTestBTN);
-            this.Controls.Add(this.TestingThread);
             this.Controls.Add(this.BtnHealbotOnOff);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -786,18 +742,15 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Log);
-            this.Controls.Add(this.MouseScannerBtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnHitKO);
             this.Controls.Add(this.MannaValueTextBox);
             this.Controls.Add(this.HPValueTextBox);
             this.Controls.Add(this.TextBoxLog);
-            this.Controls.Add(this.StartNormalBtn);
             this.Controls.Add(this.StartSkillBtn);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ClassChangeComboBox);
-            this.Controls.Add(this.StartHealbotBTN);
             this.Name = "Form1";
             this.Text = "Ares V3.1";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -808,19 +761,15 @@
         }
 
         #endregion
-
-        private Button StartHealbotBTN;
         private ComboBox ClassChangeComboBox;
         private Label label1;
         private Button StartSkillBtn;
-        private Button StartNormalBtn;
         private RichTextBox TextBoxLog;
         private TextBox HPValueTextBox;
         private TextBox MannaValueTextBox;
         private Button BtnHitKO;
         private Label label2;
         private Label label3;
-        private Button MouseScannerBtn;
         private Button Log;
         private Button button1;
         private Button button2;
@@ -830,7 +779,6 @@
         private Label label6;
         private Label label7;
         private Button BtnHealbotOnOff;
-        private Button TestingThread;
         private Button FastTestBTN;
         private Button OpenStorageBTN;
         private Button Tester;

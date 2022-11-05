@@ -170,11 +170,6 @@ namespace AresTrainerV3
             }
         }
 
-        private void StartNormalBtn_Click(object sender, EventArgs e)
-        {
-            // StartNormalAttack();
-        }
-
 
 
         private void HpToBuy_TextChanged(object sender, EventArgs e)
@@ -273,6 +268,23 @@ namespace AresTrainerV3
 
             }
 
+            /*            if (!BitmapCreator.isStopPixelAttack)
+                        {
+                            button2.Text = "OFF";
+                            button2.BackColor = Color.Gray;
+                        }
+                        else
+                        {
+                            button2.Text = "ON";
+                            button2.BackColor = Color.Yellow;
+
+                        }
+            */
+            if (!ExpBotClass.isStopMoveExpBot)
+            {
+                button3.Text = "OFF";
+                button3.BackColor = Color.Gray;
+            }
             else
             {
                 button3.Text = "ON";
@@ -296,10 +308,6 @@ namespace AresTrainerV3
             System.Environment.Exit(1); 
         }
 
-        private void MouseScannerBtn_Click(object sender, EventArgs e)
-        {
-            AttackWhenMobSelectedThread();
-        }
 
         #region OLD NORMAL ATTACK THREAD and Functuiobn
         // static Thread normalAttackThread = new Thread(ProgramHandle.StartNormalAttack);
@@ -328,11 +336,12 @@ namespace AresTrainerV3
 */
         #endregion
 
-
-        private void TestingThread_Click(object sender, EventArgs e)
+        private void Tester_Click(object sender, EventArgs e)
         {
 
+            TextBoxLog.Text = ExpBotClass.ExpBotLog;
         }
+
         private void SellItems_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetGameAsMainWindow();
@@ -702,6 +711,7 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 DoScanAttackCollect.CollectItems = false;
             }
         }
+
     }
 /*    
     
