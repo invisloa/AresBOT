@@ -273,23 +273,6 @@ namespace AresTrainerV3
 
             }
 
-            /*            if (!BitmapCreator.isStopPixelAttack)
-                        {
-                            button2.Text = "OFF";
-                            button2.BackColor = Color.Gray;
-                        }
-                        else
-                        {
-                            button2.Text = "ON";
-                            button2.BackColor = Color.Yellow;
-
-                        }
-            */
-            if (!ExpBotClass.isStopMoveExpBot)
-            {
-                button3.Text = "OFF";
-                button3.BackColor = Color.Gray;
-            }
             else
             {
                 button3.Text = "ON";
@@ -345,16 +328,6 @@ namespace AresTrainerV3
 */
         #endregion
 
-        private void Tester_Click(object sender, EventArgs e)
-        {
-
-            // ProgramHandle.TeleportKoHitTest();
-            TextBoxLog.Text = ExpBotClass.ExpBotLog;
-            // Thread.Sleep(5000);
-
-
-            //ExpBotClass.Repot(ProgramHandle.GetCurrentMap);
-        }
 
         private void TestingThread_Click(object sender, EventArgs e)
         {
