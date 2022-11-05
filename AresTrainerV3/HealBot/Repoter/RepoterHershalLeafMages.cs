@@ -41,18 +41,20 @@ namespace AresTrainerV3.HealBot.Repoter
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
-                for (int i = 0; i < 20; i++)
-                {
                     if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
                     {
-                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108)
+                        if (ProgramHandle.GetPositionX == 1142172652 && ProgramHandle.GetPositionY == 1141596108)
                         {
-                            KeyPresser.PressKey(6, 500, 500);
+                            MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
                         }
+                        else if (ProgramHandle.GetPositionX == 1139294473 && ProgramHandle.GetPositionY == 1140809096)
+                    {
+                        MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
+
                     }
+
                 }
             }
-            MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
         }
     }
 }

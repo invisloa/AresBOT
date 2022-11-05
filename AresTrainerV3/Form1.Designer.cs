@@ -685,6 +685,7 @@
             this.fasttest.TabIndex = 72;
             this.fasttest.Text = "Fast Test";
             this.fasttest.UseVisualStyleBackColor = true;
+            this.fasttest.Click += new System.EventHandler(this.fasttest_Click);
             // 
             // RunExpBot
             // 

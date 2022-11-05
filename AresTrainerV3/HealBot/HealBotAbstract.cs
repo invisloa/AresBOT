@@ -328,31 +328,30 @@ namespace AresTrainerV3.HealBot
 
             }
         }
-        private IStartExpBotThread expPlaceToStartSetter()
+        private void expPlaceToStartSetter()
         {
             if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
             {
 
             }
-            if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
+            else if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
             {
 
             }
-            if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
+            else if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
             {
 
             }
-            if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
+            else if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
             {
 
             }
-            if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
+            else if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
             {
                 repoterCity = new RepoterHershalLeafMages();
                 _goBackExpPlace = new GoBackExpHershalTeleport();
-                return new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                _expBotToStart =  new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
             }
-            else return null;
         }
 
         protected IStartExpBotThread ExpBotToStart
