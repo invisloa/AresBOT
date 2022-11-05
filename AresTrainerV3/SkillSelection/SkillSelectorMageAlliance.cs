@@ -29,12 +29,11 @@ namespace AresTrainerV3.SkillSelection
                 KeyPresser.PressKey(4, 50, 50);
                 KeyPresser.PressKey(4, 50, 50);
                 KeyPresser.PressKey(4, 50, 50);
-                KeyPresser.PressKey(3, 50, 50);
-
                 Thread.Sleep(500);
                 KeyPresser.PressKey(5, 50, 50);
                 KeyPresser.PressKey(5, 50, 50);
                 KeyPresser.PressKey(5, 50, 50);
+                KeyPresser.PressKey(3, 20, 20);
                 KeyPresser.PressKey(3, 10, 10);
             }
 
