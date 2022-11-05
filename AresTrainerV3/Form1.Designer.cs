@@ -692,8 +692,6 @@
             // ShutDownWhenInCity
             // 
             this.ShutDownWhenInCity.AutoSize = true;
-            this.ShutDownWhenInCity.Checked = true;
-            this.ShutDownWhenInCity.CheckState = System.Windows.Forms.CheckState.Checked;
             this.ShutDownWhenInCity.Location = new System.Drawing.Point(727, 370);
             this.ShutDownWhenInCity.Name = "ShutDownWhenInCity";
             this.ShutDownWhenInCity.Size = new System.Drawing.Size(15, 14);

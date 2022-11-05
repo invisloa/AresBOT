@@ -12,7 +12,7 @@ namespace AresTrainerV3.ExpBotManager
     {
        // public abstract MoveToPositionAbstract MoveToPosPlace { get; }
         public abstract void RunAndExp();
-        public static bool shutDownOnRepot = true;
+        public static bool shutDownOnRepot = false;
         public void StartExpBotThread()
         {
             RequestStartExpBot();
