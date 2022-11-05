@@ -14,7 +14,14 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     internal class RepoterHershalLeafMages : RepotAbstract
     {
-
+        protected override bool checkIfCloseToShop()
+        {
+            if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
+                && ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
+            { return true; }
+            else
+            { return false; }
+        }
         protected override BuyerPotions BuyerPotionsCity
         {
             get
@@ -41,16 +48,23 @@ namespace AresTrainerV3.HealBot.Repoter
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
-                    if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+                if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+                {
+                    for (int i = 0; i < 5; i++)
                     {
-                        if (ProgramHandle.GetPositionX == 1142172652 && ProgramHandle.GetPositionY == 1141596108)
+                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108 || ProgramHandle.GetPositionX != 1139294473 && ProgramHandle.GetPositionY != 1140809096)
+                        {
+                            KeyPresser.PressKey(6, 200, 200);
+                        }
+                    }
+
+                    if (ProgramHandle.GetPositionX == 1142172652 && ProgramHandle.GetPositionY == 1141596108)
                         {
                             MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
                         }
-                        else if (ProgramHandle.GetPositionX == 1139294473 && ProgramHandle.GetPositionY == 1140809096)
+                    else if (ProgramHandle.GetPositionX == 1139294473 && ProgramHandle.GetPositionY == 1140809096)
                     {
-                        MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions);
-
+                        MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
                     }
 
                 }

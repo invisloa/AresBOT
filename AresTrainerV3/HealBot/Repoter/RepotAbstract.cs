@@ -22,7 +22,10 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             get { return ProgramHandle.GetCurrentMap; }
         }
-
+        protected virtual bool checkIfCloseToShop()
+        {
+            return true;
+        }
         protected BuyerPotions _buyerPotionsCity;
         protected int _repotCityVerification;
         public static bool IsScanRunning = false;
@@ -100,16 +103,21 @@ namespace AresTrainerV3.HealBot.Repoter
                 MoveToRepot();
                 Thread.Sleep(+randomizer.Next(1, 500));
 
-                //MouseClickOpenShop();
-                ProgramHandle.OpenShopWindow();
-                Thread.Sleep(500);
-
-                if (ProgramHandle.isShopWindowStillOpen() == 1)
+                if (checkIfCloseToShop())
                 {
-                    ItemSeller.SellItemsMouseMove();
-                    BuyerPotionsCity.BuyPotions();
+                    //MouseClickOpenShop();
+                    ProgramHandle.OpenShopWindow();
+                    Thread.Sleep(500);
+
+                    if (ProgramHandle.isShopWindowStillOpen() == 1)
+                    {
+                        ItemSeller.SellItemsMouseMove();
+                        BuyerPotionsCity.BuyPotions();
+                    }
+                    KeyPresser.PressEscape();
                 }
-                KeyPresser.PressEscape();
+                else Thread.Sleep(50000);
+                this.GoRepot();
             }
 
 
