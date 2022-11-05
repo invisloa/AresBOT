@@ -69,7 +69,6 @@
             this.button5 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.RunSellerCheckBox = new System.Windows.Forms.CheckBox();
-            this.button6 = new System.Windows.Forms.Button();
             this.MoverGoblins = new System.Windows.Forms.Button();
             this.SellItems = new System.Windows.Forms.Button();
             this.EtanaBot = new System.Windows.Forms.Button();
@@ -88,6 +87,8 @@
             this.label18 = new System.Windows.Forms.Label();
             this.CollectItemsBox = new System.Windows.Forms.CheckBox();
             this.label19 = new System.Windows.Forms.Label();
+            this.fasttest = new System.Windows.Forms.Button();
+            this.RunExpBot = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ClassChangeComboBox
@@ -484,16 +485,6 @@
             this.RunSellerCheckBox.UseVisualStyleBackColor = true;
             this.RunSellerCheckBox.CheckedChanged += new System.EventHandler(this.RunSellerCheckBox_CheckedChanged);
             // 
-            // button6
-            // 
-            this.button6.Location = new System.Drawing.Point(618, 341);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(91, 23);
-            this.button6.TabIndex = 52;
-            this.button6.Text = "button6";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
             // MoverGoblins
             // 
             this.MoverGoblins.Location = new System.Drawing.Point(316, 384);
@@ -686,11 +677,32 @@
             this.label19.TabIndex = 70;
             this.label19.Text = "Collect Items";
             // 
+            // fasttest
+            // 
+            this.fasttest.Location = new System.Drawing.Point(619, 421);
+            this.fasttest.Name = "fasttest";
+            this.fasttest.Size = new System.Drawing.Size(75, 23);
+            this.fasttest.TabIndex = 72;
+            this.fasttest.Text = "Fast Test";
+            this.fasttest.UseVisualStyleBackColor = true;
+            // 
+            // RunExpBot
+            // 
+            this.RunExpBot.Location = new System.Drawing.Point(749, 421);
+            this.RunExpBot.Name = "RunExpBot";
+            this.RunExpBot.Size = new System.Drawing.Size(75, 23);
+            this.RunExpBot.TabIndex = 73;
+            this.RunExpBot.Text = "RunExpBot";
+            this.RunExpBot.UseVisualStyleBackColor = true;
+            this.RunExpBot.Click += new System.EventHandler(this.RunExpBot_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.RunExpBot);
+            this.Controls.Add(this.fasttest);
             this.Controls.Add(this.CollectItemsBox);
             this.Controls.Add(this.label19);
             this.Controls.Add(this.ShutDownWhenInCity);
@@ -709,7 +721,6 @@
             this.Controls.Add(this.EtanaBot);
             this.Controls.Add(this.SellItems);
             this.Controls.Add(this.MoverGoblins);
-            this.Controls.Add(this.button6);
             this.Controls.Add(this.RunSellerCheckBox);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.button5);
@@ -802,7 +813,6 @@
         private Button button5;
         private Label label14;
         private CheckBox RunSellerCheckBox;
-        private Button button6;
         private Button MoverGoblins;
         private Button SellItems;
         private Button EtanaBot;
@@ -821,6 +831,8 @@
         private Label label18;
         private CheckBox CollectItemsBox;
         private Label label19;
+        private Button fasttest;
+        private Button RunExpBot;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }

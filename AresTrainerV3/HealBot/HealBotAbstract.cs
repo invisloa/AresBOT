@@ -359,10 +359,7 @@ namespace AresTrainerV3.HealBot
         {
             get
             {
-                if (_expBotToStart == null)
-                {
-                    expPlaceToStartSetter();
-                }
+                expPlaceToStartSetter();
                 return _expBotToStart;
             }
         }
