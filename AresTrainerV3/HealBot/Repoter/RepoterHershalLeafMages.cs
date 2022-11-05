@@ -52,7 +52,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 {
                     for (int i = 0; i < 5; i++)
                     {
-                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108 || ProgramHandle.GetPositionX != 1139294473 && ProgramHandle.GetPositionY != 1140809096)
+                        if (ProgramHandle.GetPositionX != 1142172652 && ProgramHandle.GetPositionY != 1141596108 && ProgramHandle.GetPositionX != 1139294473 && ProgramHandle.GetPositionY != 1140809096)
                         {
                             KeyPresser.PressKey(6, 200, 200);
                         }
