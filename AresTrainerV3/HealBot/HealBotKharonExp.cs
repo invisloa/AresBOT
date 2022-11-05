@@ -11,15 +11,6 @@ namespace AresTrainerV3.HealBot
     internal class HealBotKharonExp : HealBotAbstract
     {
 
-        protected override IGoRepot RepoterCity
-        {
-            get
-            {
-                if (_repoterCity == null)
-                { _repoterCity = new RepoterKharonExp(); }
-                return _repoterCity;
-            }
-        }
     }
 }
 

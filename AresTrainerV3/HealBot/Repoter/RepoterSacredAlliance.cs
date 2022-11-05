@@ -11,18 +11,6 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     internal class RepoterSacredAlliance : RepotAbstract
     {
-        protected override GoBackExpAbstract GoBackExpPlace
-        {
-            get
-            {
-                if (_goBackExpPlace == null)
-                {
-                    _goBackExpPlace = new GoBackExpSacredAlliTeleport();
-                }
-                return _goBackExpPlace;
-            }
-        }
-
         protected override BuyerPotions BuyerPotionsCity
         {
             get

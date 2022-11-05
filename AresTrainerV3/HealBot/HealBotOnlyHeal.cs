@@ -9,14 +9,5 @@ namespace AresTrainerV3.HealBot
 {
     internal class HealBotOnlyHeal : HealBotAbstract
     {
-        protected override IGoRepot RepoterCity
-        {
-            get
-            {
-                if (_repoterCity == null)
-                { _repoterCity = new RepoterOnlyHealbot(); }
-                return _repoterCity;
-            }
-        }
     }
 }

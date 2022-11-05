@@ -12,18 +12,6 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     public class RepoterKharonExp : RepotAbstract
     {
-        protected override GoBackExpAbstract GoBackExpPlace
-        {
-            get
-            {
-                if(_goBackExpPlace == null)
-                {
-                    _goBackExpPlace = new GoBackExpKharonWolves();
-                }
-                return _goBackExpPlace;
-            }
-        }
-
         protected override BuyerPotions BuyerPotionsCity
         {
             get
