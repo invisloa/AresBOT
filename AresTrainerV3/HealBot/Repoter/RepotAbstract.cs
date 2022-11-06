@@ -128,12 +128,12 @@ namespace AresTrainerV3.HealBot.Repoter
         public void MoveToRepotWithPositions(Tuple<int, int>[] citySpecificPositions)
         {
             ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(500);
+            Thread.Sleep(1000);
             if (!ProgramHandle.isNowRunningCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {
-                    MouseOperations.MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2, 10);
+                    MouseOperations.MoveAndLeftClickOperation(citySpecificPositions[i].Item1, citySpecificPositions[i].Item2, 50);
                     Thread.Sleep(1000);
                     while (!ProgramHandle.isNowStandingCity())
                     {
