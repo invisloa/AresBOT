@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.Buyer;
+﻿using AresTrainerV3.AttackMob;
+using AresTrainerV3.Buyer;
 using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
@@ -724,7 +725,12 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             RepoterHershalLeafMages zzz = new RepoterHershalLeafMages();
             ProgramHandle.SetGameAsMainWindow();
             ProgramHandle.SetCameraForExpBot();
-           // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
+            for (int i = 0; i < 100; i++)
+            {
+                PixelMobAttack.AttackSkillMobWhenSelected();
+
+            }
+            // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
         }
     }
 /*    

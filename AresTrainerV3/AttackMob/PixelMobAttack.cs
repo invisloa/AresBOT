@@ -30,10 +30,12 @@ namespace AresTrainerV3.AttackMob
                     for (int y = 360; y < 680; y++)
                     {
                         Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 9331 || x > 987 || y < 500 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
+                        if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
                               MouseOperations.SetCursorPosition(x+10, y);
+                            ProgramHandle.waitMouseInPos();
+
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //   Debug.WriteLine("1 attack for");
@@ -43,6 +45,8 @@ namespace AresTrainerV3.AttackMob
                                 return true;
                             }
                               MouseOperations.SetCursorPosition(x- 10, y);
+                            ProgramHandle.waitMouseInPos();
+
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //  Debug.WriteLine("1 attack for");
@@ -52,6 +56,8 @@ namespace AresTrainerV3.AttackMob
                                 return true;
                             }
                             MouseOperations.SetCursorPosition(x, y + 10);
+                            ProgramHandle.waitMouseInPos();
+
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //  Debug.WriteLine("1 attack for");
@@ -61,6 +67,8 @@ namespace AresTrainerV3.AttackMob
                                 return true;
                             }
                               MouseOperations.SetCursorPosition(x, y- 10);
+                            ProgramHandle.waitMouseInPos();
+
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 //  Debug.WriteLine("1 attack for");
@@ -72,7 +80,8 @@ namespace AresTrainerV3.AttackMob
                         }
                     }
                 }
-               // graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                graphics = Graphics.FromImage(bitmap as Image);
+                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
                 for (int x = 700; x < 1220; x++)
                 {
@@ -82,10 +91,12 @@ namespace AresTrainerV3.AttackMob
 
 
                         Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 979 || y < 500 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+                        if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
                             MouseOperations.SetCursorPosition(x, y);
+                            ProgramHandle.waitMouseInPos();
+
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 // Debug.WriteLine("2 attack for");
@@ -97,7 +108,8 @@ namespace AresTrainerV3.AttackMob
                         }
                     }
                 }
-                // graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                graphics = Graphics.FromImage(bitmap as Image);
+                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
                 for (int x = 527; x < 1332; x++)
                 {
@@ -107,9 +119,11 @@ namespace AresTrainerV3.AttackMob
 
 
                         Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 979 || y < 500 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+                        if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
                         {
                             MouseOperations.SetCursorPosition(x, y);
+                            ProgramHandle.waitMouseInPos();
+
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                // Debug.WriteLine("3 attack for");

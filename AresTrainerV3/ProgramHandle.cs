@@ -995,6 +995,14 @@ namespace AresTrainerV3
                 return false;
             }
         }
+        public static void waitMouseInPos()
+        {
+            for (int i = 0; i < 50000; i++)
+            {
+                int a = 10;
+            }
+        }
+
         public static bool isNowStandingOut()
         {
             if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
