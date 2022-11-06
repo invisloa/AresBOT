@@ -10,6 +10,7 @@ namespace AresTrainerV3.Enums
     {
         public enum MoverBotEnums
         {
+            NoRepot,
             EtanaBuckerty,
             SacredGiko,
             SacredThieves,
