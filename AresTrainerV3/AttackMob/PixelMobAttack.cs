@@ -30,7 +30,7 @@ namespace AresTrainerV3.AttackMob
                     for (int y = 360; y < 680; y++)
                     {
                         Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 979 || y < 500 || y > 540) && currentPixelColor == PointersAndValues.blackPixelColor)
+                        if ((x < 9331 || x > 987 || y < 500 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
                               MouseOperations.SetCursorPosition(x+10, y);

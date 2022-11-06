@@ -330,7 +330,7 @@ namespace AresTrainerV3.HealBot
         }
         private void expPlaceToStartSetter()
         {
-            if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
+            if (whichBotThreadToStart == MoverBotEnums.NoRepot)
             {
                 repoterCity = null;
                 _goBackExpPlace = null;
