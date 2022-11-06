@@ -81,7 +81,6 @@ namespace AresTrainerV3
         }
         public static void MoveAndLeftClickOperation(int xPos, int yPos,int delay)
         {
-            Thread.Sleep(delay);
             MouseOperations.SetCursorPosition(xPos, yPos);
             Thread.Sleep(delay);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);

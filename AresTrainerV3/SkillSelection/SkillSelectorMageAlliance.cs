@@ -16,7 +16,6 @@ namespace AresTrainerV3.SkillSelection
                 if (ProgramHandle.isInCity != 1)
                 {
                     UseRapidWhenLowSkillDelay();
-                    UseRapidWhenLowSkillDelay();
                 }
                 Thread.Sleep(5000);
 
@@ -26,15 +25,15 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
             {
-                KeyPresser.PressKey(4, 50, 50);
-                KeyPresser.PressKey(4, 50, 50);
-                KeyPresser.PressKey(4, 50, 50);
+                KeyPresser.PressKey(4, 100, 100);
+                KeyPresser.PressKey(4, 100, 100);
+                KeyPresser.PressKey(4, 100, 100);
                 Thread.Sleep(500);
-                KeyPresser.PressKey(5, 50, 50);
-                KeyPresser.PressKey(5, 50, 50);
-                KeyPresser.PressKey(5, 50, 50);
-                KeyPresser.PressKey(3, 20, 20);
-                KeyPresser.PressKey(3, 10, 10);
+                KeyPresser.PressKey(5, 100, 100);
+                KeyPresser.PressKey(5, 100, 100);
+                KeyPresser.PressKey(5, 100, 100);
+                KeyPresser.PressKey(3, 100, 100);
+                KeyPresser.PressKey(3, 100, 100);
             }
 
         }

@@ -6,7 +6,9 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
+using AresTrainerV3.MoveRandom.Etana;
 using AresTrainerV3.MoveRandom.Hershal;
+using AresTrainerV3.MoveRandom.SacredAlliance;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
 using System.Diagnostics;
@@ -625,25 +627,30 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ExpBotComboBox.SelectedItem.ToString() == "EtanaBuckerty")
             {
-                ExpBotMoverToRun = new MoverHershalLeafMages(); 
+                ExpBotMoverToRun = new MoverEtanaBuckerty();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
+
             }
-/*            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredGiko")
+            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredGiko")
             {
-                ExpBotMoverToRun = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomSacredGiko);
+                ExpBotMoverToRun = new MoverGiko();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
             }
             else if (ExpBotComboBox.SelectedItem.ToString() == "SacredThieves")
             {
-                ExpBotMoverToRun = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
+                ExpBotMoverToRun = new MoverThievesUnder();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "HolinaGoblins")
-            {
-                ExpBotMoverToRun = new MoverRandom(TeleportValues.Hollina, TeleportValues.moverRandomHolinaGoblins);
-            }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLowLvl")
-            {
-                ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
-            }
-*/            
+            /*            else if (ExpBotComboBox.SelectedItem.ToString() == "HolinaGoblins")
+                        {
+                            ExpBotMoverToRun = new MoverRandom(TeleportValues.Hollina, TeleportValues.moverRandomHolinaGoblins);
+                        }
+                        else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLowLvl")
+                        {
+                            ExpBotMoverToRun = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
+                        }
+
+            */
             else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
