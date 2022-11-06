@@ -332,7 +332,8 @@ namespace AresTrainerV3.HealBot
         {
             if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
             {
-
+                repoterCity = null;
+                _goBackExpPlace = null;
             }
             else if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
             {
