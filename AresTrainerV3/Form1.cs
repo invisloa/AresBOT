@@ -653,8 +653,6 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         
         private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(ProgramHandle.GetCurrentMap ==1)
-
             if (CollectorComboBox.SelectedItem.ToString() == "+Event")
             {
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent())); 
