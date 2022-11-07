@@ -12,27 +12,19 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.isCurrentSkill() == 2)
             {
-                ProgramHandle.SkillToOverride = PointersAndValues.arcerEmpBlasting;
+                ProgramHandle.SkillToOverride = 40002;
             }
             else if (ProgramHandle.isCurrentSkill() == 3)
             {
-                ProgramHandle.SkillToOverride = PointersAndValues.arcerSpeedUpSkill;
+                ProgramHandle.SkillToOverride = 40003;
             }
             else if (ProgramHandle.isCurrentSkill() == 4)
             {
-                ProgramHandle.SkillToOverride = 40002;
+                ProgramHandle.SkillToOverride = PointersAndValues.arcerSpeedUpSkill;
             }
-            else if (ProgramHandle.isCurrentSkill() == 12)
+            else if (ProgramHandle.isCurrentSkill() == 10)
             {
                 ProgramHandle.SkillToOverride = PointersAndValues.arcerEmpBlasting;
-            }
-            else if (ProgramHandle.isCurrentSkill() == 8)
-            {
-                ProgramHandle.SkillToOverride = PointersAndValues.mageSupportFireBarrier;
-            }
-            else if (ProgramHandle.isCurrentSkill() == 9)
-            {
-                ProgramHandle.SkillToOverride = PointersAndValues.mageSupportLightningBarrier;
             }
         }
         public override void Rebuff()
