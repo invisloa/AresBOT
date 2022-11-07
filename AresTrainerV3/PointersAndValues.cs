@@ -14,6 +14,9 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
+    public static int MaxCollectWeight = 1500;
+    public const int MaxCollectWeightNormalValue = 2050;
+
     public static string GameProcessName
     {
         get

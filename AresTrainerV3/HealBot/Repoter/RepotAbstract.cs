@@ -94,7 +94,7 @@ namespace AresTrainerV3.HealBot.Repoter
             teleportToCityAndStopExpBot();
             Thread.Sleep(1000);
             // Set Weight limit back to the original state if player found changed it to not to collect items@
-            AbstractWhatToCollect.MaxCollectWeight = 1500;
+            PointersAndValues.MaxCollectWeight = PointersAndValues.MaxCollectWeightNormalValue;
             ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(500);
             if (isCurrentCity == repotCityCheck)

@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.Buyer;
+﻿using AresTrainerV3.AttackMob;
+using AresTrainerV3.Buyer;
 using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
@@ -23,6 +24,7 @@ using Utilities;
 
 namespace AresTrainerV3
 {
+
     public partial class Form1 : Form
     {
         static Thread animbotThread;
@@ -657,7 +659,7 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
 */            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
         }
         
@@ -718,13 +720,21 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             ExpBotMoverToRun.StartExpBotThread();
 
         }
-
         private void fasttest_Click(object sender, EventArgs e)
         {
-            RepoterHershalLeafMages zzz = new RepoterHershalLeafMages();
             ProgramHandle.SetGameAsMainWindow();
             ProgramHandle.SetCameraForExpBot();
-           // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
+            while (true)
+            {
+                FastTestWindow.Text = ProgramHandle.getCurrentItemHighlightedType.ToString();
+                Refresh();
+                Thread.Sleep(100);
+            }
+
+
+            //            RepoterHershalLeafMages zzz = new RepoterHershalLeafMages();
+
+            // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
         }
     }
 /*    

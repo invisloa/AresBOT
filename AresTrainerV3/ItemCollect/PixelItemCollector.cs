@@ -11,13 +11,6 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
-        public void wait(int howLongToWait)
-        {
-            for (int i = 0; i < howLongToWait*1000; i++)
-            {
-               int a = 10;
-            }
-        }
         IWhatToCollect _whatToCollect { get; }
         IWhatToCollect CollectIgnoringWeight = new CollectSod();
         public PixelItemCollector(IWhatToCollect whatToCollect)
@@ -26,7 +19,7 @@ namespace AresTrainerV3.ItemCollect
         }
         bool ScanAndCollect()
         {
-            if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
+            if (ProgramHandle.getCurrentWeight < PointersAndValues.MaxCollectWeight && ProgramHandle.isInCity != 1)
             {
                 return PixelScan(_whatToCollect);
             }
@@ -48,7 +41,7 @@ namespace AresTrainerV3.ItemCollect
         bool PixelScan(IWhatToCollect whatToCollect)
         {
             //Debug.WriteLine("Start PixelScan");
-            if(whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+            if(whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < PointersAndValues.MaxCollectWeight)
 
             RepotAbstract.IsScanRunning = true;
            // Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
@@ -71,7 +64,7 @@ namespace AresTrainerV3.ItemCollect
                             for (int z = -1; z < 2; z++)
                             {
                                 MouseOperations.SetCursorPosition(x + (3 * i), y + (3 * z));
-                                wait(50);
+                                ProgramHandle.waitMouseInPos();
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -101,7 +94,7 @@ namespace AresTrainerV3.ItemCollect
                             for (int z = -1; z < 2; z++)
                             {
                                 MouseOperations.SetCursorPosition(x + (2 * i), y + (2 * z));
-                                wait(40);
+                                ProgramHandle.waitMouseInPos();
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -124,7 +117,7 @@ namespace AresTrainerV3.ItemCollect
         }
         public bool PixelScanUnderChar(IWhatToCollect whatToCollect)
         {
-            if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+            if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < PointersAndValues.MaxCollectWeight)
             {
 
                 RepotAbstract.IsScanRunning = true;

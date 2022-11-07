@@ -89,6 +89,8 @@
             this.label19 = new System.Windows.Forms.Label();
             this.fasttest = new System.Windows.Forms.Button();
             this.RunExpBot = new System.Windows.Forms.Button();
+            this.FastTestWindow = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // ClassChangeComboBox
@@ -697,11 +699,29 @@
             this.RunExpBot.UseVisualStyleBackColor = true;
             this.RunExpBot.Click += new System.EventHandler(this.RunExpBot_Click);
             // 
+            // FastTestWindow
+            // 
+            this.FastTestWindow.Location = new System.Drawing.Point(594, 41);
+            this.FastTestWindow.Name = "FastTestWindow";
+            this.FastTestWindow.Size = new System.Drawing.Size(100, 23);
+            this.FastTestWindow.TabIndex = 74;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(594, 16);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(71, 15);
+            this.label20.TabIndex = 75;
+            this.label20.Text = "TestWindow";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.label20);
+            this.Controls.Add(this.FastTestWindow);
             this.Controls.Add(this.RunExpBot);
             this.Controls.Add(this.fasttest);
             this.Controls.Add(this.CollectItemsBox);
@@ -834,6 +854,8 @@
         private Label label19;
         private Button fasttest;
         private Button RunExpBot;
+        private TextBox FastTestWindow;
+        private Label label20;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }
