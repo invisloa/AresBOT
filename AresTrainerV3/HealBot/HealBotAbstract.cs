@@ -234,7 +234,7 @@ namespace AresTrainerV3.HealBot
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 250);
-                    if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
+                    if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
                     {
                         repoterCity.GoRepot();
                     }
@@ -332,6 +332,7 @@ namespace AresTrainerV3.HealBot
         {
             if (whichBotThreadToStart == MoverBotEnums.NoRepot)
             {
+                System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 repoterCity = null;
                 _goBackExpPlace = null;
             }

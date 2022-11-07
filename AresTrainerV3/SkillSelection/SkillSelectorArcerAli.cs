@@ -16,7 +16,7 @@ namespace AresTrainerV3.SkillSelection
             }
             else if (ProgramHandle.isCurrentSkill() == 3)
             {
-                ProgramHandle.SkillToOverride = 40003;
+                ProgramHandle.SkillToOverride = PointersAndValues.arcerAlliLastSingle;
             }
             else if (ProgramHandle.isCurrentSkill() == 4)
             {

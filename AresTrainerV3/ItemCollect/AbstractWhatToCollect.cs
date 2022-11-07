@@ -10,7 +10,6 @@ namespace AresTrainerV3.ItemCollect
 {
     public abstract class AbstractWhatToCollect : IWhatToCollect
     {
-        public static int MaxCollectWeight = 1500;
 
         protected const int SOD = -13799;
         protected const int EventItems = 32627;
