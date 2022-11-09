@@ -381,6 +381,13 @@ namespace AresTrainerV3
             PositionX.Text = ProgramHandle.GetPositionX.ToString();
             PositionY.Text = ProgramHandle.GetPositionY.ToString();
         }
+        private void ShowPosShort_Click(object sender, EventArgs e)
+        {
+            PositionX.Text = ProgramHandle.GetPositionShortX.ToString();
+            PositionY.Text = ProgramHandle.GetPositionShortY.ToString();
+
+        }
+
 
         private void GoToPos_Click(object sender, EventArgs e)
         {
@@ -528,7 +535,7 @@ namespace AresTrainerV3
             HealbotToRun.StartHealBotThread();
 
             ExpBotManagerAbstract.RequestStartExpBot();
-          //  MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
+            //  MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
 
 
 
@@ -649,18 +656,28 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 ExpBotMoverToRun = new MoverHolinaGoblins();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-/*            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLowLvl")
-            {
-                ExpBotMoverToRun = new Hersha();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
-            }
+            /*            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLowLvl")
+                        {
+                            ExpBotMoverToRun = new Hersha();
+                            HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
+                        }
 
 
-*/            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
+            */
+            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
             }
+            else if (ExpBotComboBox.SelectedItem.ToString() == "KharonWolves")
+            {
+                ExpBotMoverToRun = new MoverHershalLeafMages();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+            }
+
+
+
+            
         }
         
         private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -736,6 +753,7 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
 
             // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
         }
+
     }
 /*    
     
