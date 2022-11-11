@@ -680,26 +680,32 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CollectorComboBox.SelectedItem.ToString() == "+Event")
             {
+                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent())); 
             }
             else if (CollectorComboBox.SelectedItem.ToString() == "+Jewelery")
             {
+                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodJewelery()));
             }
             else if (CollectorComboBox.SelectedItem.ToString() == "+Stones")
             {
+                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStones()));
             }
             else if (CollectorComboBox.SelectedItem.ToString() == "+Stones+Jewelery")
             {
+                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
             }
             else if (CollectorComboBox.SelectedItem.ToString() == "+Seller")
             {
+                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
             }
             else if (CollectorComboBox.SelectedItem.ToString() == "AllItems")
             {
+                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
             }
         }

@@ -332,7 +332,6 @@ namespace AresTrainerV3.HealBot
             else
             {
                 return new CollectSod();
-
             }
         }
         private void expPlaceToStartSetter()
