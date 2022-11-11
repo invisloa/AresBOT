@@ -570,7 +570,8 @@
             "+Jewelery",
             "+Stones",
             "+Stones+Jewelery",
-            "+Seller"});
+            "+Seller",
+            "AllItems"});
             this.CollectorComboBox.Location = new System.Drawing.Point(732, 296);
             this.CollectorComboBox.Name = "CollectorComboBox";
             this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
@@ -671,6 +672,7 @@
             this.GoToPos.TabIndex = 82;
             this.GoToPos.Text = "GoToPos";
             this.GoToPos.UseVisualStyleBackColor = true;
+            this.GoToPos.Click += new System.EventHandler(this.GoToPos_Click_1);
             // 
             // checkBox1
             // 

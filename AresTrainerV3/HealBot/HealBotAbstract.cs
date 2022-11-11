@@ -171,6 +171,7 @@ namespace AresTrainerV3.HealBot
             SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
             ProgramHandle.SetGameAsMainWindow();
             ClassRebuffer.StartRebuffThread();
+            expPlaceToStartSetter();
 
             RequestStopHealBot();
             if (SelfSetHealValue)
@@ -195,6 +196,11 @@ namespace AresTrainerV3.HealBot
                     MannaKeyPress();
                 }
                 WhiteRedPotionKeyPress();
+                if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
+                {
+                    RepotAndStartExpBot();
+                }
+
             }
             return;
 
@@ -211,7 +217,7 @@ namespace AresTrainerV3.HealBot
             if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 8) // if less then 5 use key 6 which is teleport
                 {
                 KeyPresser.PressKey(1, 100, 250);
-                }
+            }
             else
                 {
                 RepotAndStartExpBot();
@@ -234,10 +240,11 @@ namespace AresTrainerV3.HealBot
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 250);
-                    if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
-                    {
-                        repoterCity.GoRepot();
-                    }
+                    /*                    if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
+                                        {
+                                        RepotAndStartExpBot();
+                                        }
+                    */
                 }
                 else
                 {

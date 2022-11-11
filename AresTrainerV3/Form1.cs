@@ -674,10 +674,6 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 ExpBotMoverToRun = new MoverHershalLeafMages();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
             }
-
-
-
-            
         }
         
         private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -702,7 +698,10 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             {
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
             }
-
+            else if (CollectorComboBox.SelectedItem.ToString() == "AllItems")
+            {
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
+            }
         }
 
         private void ShutDownWhenInCity_CheckedChanged(object sender, EventArgs e)
@@ -754,6 +753,14 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
             // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
         }
 
+        private void GoToPos_Click_1(object sender, EventArgs e)
+        {
+            int x = 0;
+            int y = 0;
+            Int32.TryParse(PositionX.Text, out x);
+            Int32.TryParse(PositionY.Text, out y);
+            ProgramHandle.TeleportToPosition(x, y, 0);
+        }
     }
 /*    
     
