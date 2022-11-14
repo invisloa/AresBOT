@@ -214,7 +214,7 @@ namespace AresTrainerV3.HealBot
 
         protected void HealKeyPress()
         {
-            if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 8) // if less then 5 use key 6 which is teleport
+            if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
                 {
                 KeyPresser.PressKey(1, 100, 250);
             }
@@ -237,7 +237,7 @@ namespace AresTrainerV3.HealBot
         protected void MannaKeyPress()
         {
             {
-                if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
+                if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 2) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 250);
                     /*                    if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
@@ -338,7 +338,7 @@ namespace AresTrainerV3.HealBot
         {
             if (whichBotThreadToStart == MoverBotEnums.NoRepot)
             {
-                System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+               // System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 repoterCity = null;
                 _goBackExpPlace = null;
             }
@@ -358,7 +358,13 @@ namespace AresTrainerV3.HealBot
             {
                 repoterCity = new RepoterHershalLeafMages();
                 _goBackExpPlace = new GoBackExpHershalTeleport();
-                _expBotToStart =  new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                _expBotToStart = new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+            }
+            else if (whichBotThreadToStart == MoverBotEnums.HershalUWC1stFloor)
+            {
+                repoterCity = new RepoterHershalLeafMages();
+                _goBackExpPlace = new GoBackExpUWC();
+                _expBotToStart = new MoverHershalUwc1stFloor() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
             }
         }
 

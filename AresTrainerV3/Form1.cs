@@ -455,15 +455,15 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
-            BuyerPotions.HpPotionsToBuy = 70;
+            BuyerPotions.HpPotionsToBuy = 20;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            BuyerPotions.MpPotionsToBuy = 45;
+            BuyerPotions.MpPotionsToBuy = 5;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
-            BuyerPotions.SpeedPotionsToBuy = 4;
+            BuyerPotions.SpeedPotionsToBuy = 3;
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
             HealBotAbstract.SellItems = true;
             SellItemsCheckBox.Checked = true;
-            DoScanAttackCollect.NumberOfCollectScans = 3;
+            DoScanAttackCollect.NumberOfCollectScans = 2;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 
         }
@@ -596,7 +596,7 @@ namespace AresTrainerV3
 */
 
 
-private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+/*private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (HealbotComboBox.SelectedItem.ToString() == "HealbotOnly")
             {
@@ -633,7 +633,7 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
 
         }
         
-        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+*/        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (ExpBotComboBox.SelectedItem.ToString() == "EtanaBuckerty")
             {
@@ -656,18 +656,15 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 ExpBotMoverToRun = new MoverHolinaGoblins();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-            /*            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLowLvl")
-                        {
-                            ExpBotMoverToRun = new Hersha();
-                            HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
-                        }
-
-
-            */
             else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+            }
+            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalUWC1stFloor")
+            {
+                ExpBotMoverToRun = new MoverHershalUwc1stFloor();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
             }
             else if (ExpBotComboBox.SelectedItem.ToString() == "KharonWolves")
             {
@@ -675,7 +672,7 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
             }
         }
-        
+
         private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (CollectorComboBox.SelectedItem.ToString() == "+Event")
@@ -744,6 +741,11 @@ private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         }
         private void fasttest_Click(object sender, EventArgs e)
         {
+            int i;
+            i=ProgramHandle.GetCurrentMap;
+            i=ProgramHandle.getForthSlotValue;
+
+
             ProgramHandle.SetGameAsMainWindow();
             ProgramHandle.SetCameraForExpBot();
             while (true)

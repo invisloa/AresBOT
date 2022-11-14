@@ -17,6 +17,7 @@ namespace AresTrainerV3.Enums
             HolinaGoblins,
             HershalLowLvl,
             HershalLeafMages,
+            HershalUWC1stFloor,
             KharonWolves
         }
         public enum WhatToCollectEnums

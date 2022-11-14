@@ -68,13 +68,11 @@
             this.SellItems = new System.Windows.Forms.Button();
             this.EtanaBot = new System.Windows.Forms.Button();
             this.MoverGiko = new System.Windows.Forms.Button();
-            this.HealbotComboBox = new System.Windows.Forms.ComboBox();
             this.ExpBotComboBox = new System.Windows.Forms.ComboBox();
             this.PositionX = new System.Windows.Forms.TextBox();
             this.PositionY = new System.Windows.Forms.TextBox();
             this.ShowPositionsBtn = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.CollectorComboBox = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.ShutDownWhenInCity = new System.Windows.Forms.CheckBox();
@@ -484,25 +482,6 @@
             this.MoverGiko.UseVisualStyleBackColor = true;
             this.MoverGiko.Click += new System.EventHandler(this.MoverGiko_Click);
             // 
-            // HealbotComboBox
-            // 
-            this.HealbotComboBox.FormattingEnabled = true;
-            this.HealbotComboBox.Items.AddRange(new object[] {
-            "HealbotOnly",
-            "Etana",
-            "Sacred",
-            "Holina",
-            "Hershal",
-            "Kharon",
-            "UWC",
-            "COT"});
-            this.HealbotComboBox.Location = new System.Drawing.Point(732, 211);
-            this.HealbotComboBox.Name = "HealbotComboBox";
-            this.HealbotComboBox.Size = new System.Drawing.Size(121, 23);
-            this.HealbotComboBox.TabIndex = 57;
-            this.HealbotComboBox.Text = "HealbotOnly";
-            this.HealbotComboBox.SelectedIndexChanged += new System.EventHandler(this.HealbotComboBox_SelectedIndexChanged);
-            // 
             // ExpBotComboBox
             // 
             this.ExpBotComboBox.FormattingEnabled = true;
@@ -513,6 +492,7 @@
             "HolinaGoblins",
             "HershalLowLvl",
             "HershalLeafMages",
+            "HershalUWC1stFloor",
             "KharonWolves"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(732, 253);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
@@ -552,15 +532,6 @@
             this.label15.Size = new System.Drawing.Size(59, 15);
             this.label15.TabIndex = 64;
             this.label15.Text = "MoverBot";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(732, 193);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(49, 15);
-            this.label16.TabIndex = 65;
-            this.label16.Text = "Healbot";
             // 
             // CollectorComboBox
             // 
@@ -747,13 +718,11 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.CollectorComboBox);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.ShowPositionsBtn);
             this.Controls.Add(this.PositionY);
             this.Controls.Add(this.PositionX);
             this.Controls.Add(this.ExpBotComboBox);
-            this.Controls.Add(this.HealbotComboBox);
             this.Controls.Add(this.MoverGiko);
             this.Controls.Add(this.EtanaBot);
             this.Controls.Add(this.SellItems);

@@ -629,11 +629,11 @@ namespace AresTrainerV3
             {
                 return false;
             }
-            if (typeAdress == 544) // dolomite
+/*            if (typeAdress == 544) // dolomite
             {
                 return false;
             }
-            if (typeAdress == 3093) // LegacyPot
+*/            if (typeAdress == 3093) // LegacyPot
             {
                 return false;
             }

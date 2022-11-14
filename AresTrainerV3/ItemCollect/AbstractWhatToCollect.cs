@@ -56,7 +56,7 @@ namespace AresTrainerV3.ItemCollect
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(500);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            while (!ProgramHandle.isNowStandingOut() || ProgramHandle.isNowStandingCity())
+            while (!ProgramHandle.isNowStandingOut() && !ProgramHandle.isNowStandingCity())
             {
                 Debug.WriteLine("collecting while");
             Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
