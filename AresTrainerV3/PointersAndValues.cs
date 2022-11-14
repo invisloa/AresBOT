@@ -14,7 +14,7 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public static int MaxCollectWeight = 1500;
+    public static int MaxCollectWeight = 2050;
     public const int MaxCollectWeightNormalValue = 2050;
 
     public static string GameProcessName
@@ -185,9 +185,12 @@ public static class PointersAndValues
     public const int runSpeedOffset = 0xb8e;
     public const int mapNumberOffset = 0x5a8;
     public const int isInCityOffset = 0x5a4;
-    public const int positionYOffset = 0x244;
     public const int positionXOffset = 0x23c;
+    public const int positionYOffset = 0x244;
     public const int positionZOffset = 0x240;
+    public const int positionXShortOffset = 0x23e;
+    public const int positionYShortOffset = 0x246;
+
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
     public const int mobSelected = 0xfd;
@@ -381,12 +384,5 @@ public static class PointersAndValues
 
     public static Color blackPixelColor = ColorTranslator.FromHtml("#000000");
 
-    public static Tuple<int, int>[] PositionsArray =
-    {
-        new Tuple<int, int>(5, 78),
-        new Tuple<int, int>(5, 78),
-        new Tuple<int, int>(5, 78),
-        new Tuple<int, int>(5, 78),
-    };
 
 }

@@ -18,6 +18,7 @@ namespace AresTrainerV3.MoveRandom
         int _lastMouseMovePosition = 0;
         int _lastPositionAfterBounce = 0;
         int _incrementalRandomizer = 0;
+        bool tooLowDistance = false;
         Random randomizer = new Random();
         MoveRandomPositions positionsToMove = new MoveRandomPositions();
         protected abstract int moveOnlyOnMapX
@@ -85,6 +86,7 @@ namespace AresTrainerV3.MoveRandom
 
                 if (moveClickSlower == howMuchToSlowClickMove)
                 {
+                    tooLowDistance = false;
                     moveClickSlower = 0;
                     if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
                     {
@@ -95,6 +97,7 @@ namespace AresTrainerV3.MoveRandom
                             {
                                 if (ProgramHandle.isNowStandingOut())
                                 {
+                                    tooLowDistance = true;
                                     Debug.WriteLine("TOO LOW DISTANCE");
                                     int a = randomizer.Next(3);
                                     if (a == 0)
@@ -117,6 +120,10 @@ namespace AresTrainerV3.MoveRandom
                                 _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
                             }
                             MoveToPosition(_lastMouseMovePosition);
+                            if(tooLowDistance)
+                            {
+                                Thread.Sleep(100);
+                            }
                             AttackedOrCollected = false;
                         }
                     }

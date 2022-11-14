@@ -32,11 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.StartSkillBtn = new System.Windows.Forms.Button();
             this.TextBoxLog = new System.Windows.Forms.RichTextBox();
-            this.HPValueTextBox = new System.Windows.Forms.TextBox();
-            this.MannaValueTextBox = new System.Windows.Forms.TextBox();
             this.BtnHitKO = new System.Windows.Forms.Button();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.Log = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -61,7 +57,6 @@
             this.BuyMaxHp = new System.Windows.Forms.CheckBox();
             this.button4 = new System.Windows.Forms.Button();
             this.UWCThread = new System.Windows.Forms.Button();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SellItemsCheckBox = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.NumberOfCollectScans = new System.Windows.Forms.TextBox();
@@ -73,14 +68,11 @@
             this.SellItems = new System.Windows.Forms.Button();
             this.EtanaBot = new System.Windows.Forms.Button();
             this.MoverGiko = new System.Windows.Forms.Button();
-            this.HealbotComboBox = new System.Windows.Forms.ComboBox();
             this.ExpBotComboBox = new System.Windows.Forms.ComboBox();
             this.PositionX = new System.Windows.Forms.TextBox();
             this.PositionY = new System.Windows.Forms.TextBox();
             this.ShowPositionsBtn = new System.Windows.Forms.Button();
-            this.GoToPos = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
             this.CollectorComboBox = new System.Windows.Forms.ComboBox();
             this.label17 = new System.Windows.Forms.Label();
             this.ShutDownWhenInCity = new System.Windows.Forms.CheckBox();
@@ -91,6 +83,13 @@
             this.RunExpBot = new System.Windows.Forms.Button();
             this.FastTestWindow = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
+            this.GoToPos = new System.Windows.Forms.Button();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.MannaValueTextBox = new System.Windows.Forms.TextBox();
+            this.HPValueTextBox = new System.Windows.Forms.TextBox();
+            this.ShowPosShort = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ClassChangeComboBox
@@ -134,22 +133,6 @@
             this.TextBoxLog.TabIndex = 10;
             this.TextBoxLog.Text = "";
             // 
-            // HPValueTextBox
-            // 
-            this.HPValueTextBox.Location = new System.Drawing.Point(480, 266);
-            this.HPValueTextBox.Name = "HPValueTextBox";
-            this.HPValueTextBox.Size = new System.Drawing.Size(100, 23);
-            this.HPValueTextBox.TabIndex = 11;
-            this.HPValueTextBox.TextChanged += new System.EventHandler(this.HPValueTextBox_TextChanged);
-            // 
-            // MannaValueTextBox
-            // 
-            this.MannaValueTextBox.Location = new System.Drawing.Point(602, 266);
-            this.MannaValueTextBox.Name = "MannaValueTextBox";
-            this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
-            this.MannaValueTextBox.TabIndex = 12;
-            this.MannaValueTextBox.TextChanged += new System.EventHandler(this.MannaValueTextBox_TextChanged);
-            // 
             // BtnHitKO
             // 
             this.BtnHitKO.BackColor = System.Drawing.SystemColors.GrayText;
@@ -160,24 +143,6 @@
             this.BtnHitKO.TabIndex = 13;
             this.BtnHitKO.Text = "OFF";
             this.BtnHitKO.UseVisualStyleBackColor = false;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(503, 248);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(62, 15);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Heal value";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(602, 248);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 15);
-            this.label3.TabIndex = 15;
-            this.label3.Text = "Manna value";
             // 
             // Log
             // 
@@ -411,16 +376,6 @@
             this.UWCThread.UseVisualStyleBackColor = true;
             this.UWCThread.Click += new System.EventHandler(this.button5_Click);
             // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(482, 249);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(15, 14);
-            this.checkBox1.TabIndex = 44;
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
-            // 
             // SellItemsCheckBox
             // 
             this.SellItemsCheckBox.AutoSize = true;
@@ -527,25 +482,6 @@
             this.MoverGiko.UseVisualStyleBackColor = true;
             this.MoverGiko.Click += new System.EventHandler(this.MoverGiko_Click);
             // 
-            // HealbotComboBox
-            // 
-            this.HealbotComboBox.FormattingEnabled = true;
-            this.HealbotComboBox.Items.AddRange(new object[] {
-            "HealbotOnly",
-            "Etana",
-            "Sacred",
-            "Holina",
-            "Hershal",
-            "Kharon",
-            "UWC",
-            "COT"});
-            this.HealbotComboBox.Location = new System.Drawing.Point(732, 211);
-            this.HealbotComboBox.Name = "HealbotComboBox";
-            this.HealbotComboBox.Size = new System.Drawing.Size(121, 23);
-            this.HealbotComboBox.TabIndex = 57;
-            this.HealbotComboBox.Text = "HealbotOnly";
-            this.HealbotComboBox.SelectedIndexChanged += new System.EventHandler(this.HealbotComboBox_SelectedIndexChanged);
-            // 
             // ExpBotComboBox
             // 
             this.ExpBotComboBox.FormattingEnabled = true;
@@ -555,7 +491,9 @@
             "SacredThieves",
             "HolinaGoblins",
             "HershalLowLvl",
-            "HershalLeafMages"});
+            "HershalLeafMages",
+            "HershalUWC1stFloor",
+            "KharonWolves"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(732, 253);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
@@ -578,23 +516,13 @@
             // 
             // ShowPositionsBtn
             // 
-            this.ShowPositionsBtn.Location = new System.Drawing.Point(541, 154);
+            this.ShowPositionsBtn.Location = new System.Drawing.Point(467, 153);
             this.ShowPositionsBtn.Name = "ShowPositionsBtn";
-            this.ShowPositionsBtn.Size = new System.Drawing.Size(91, 23);
+            this.ShowPositionsBtn.Size = new System.Drawing.Size(118, 23);
             this.ShowPositionsBtn.TabIndex = 62;
-            this.ShowPositionsBtn.Text = "position X Y ";
+            this.ShowPositionsBtn.Text = "position Long X Y ";
             this.ShowPositionsBtn.UseVisualStyleBackColor = true;
             this.ShowPositionsBtn.Click += new System.EventHandler(this.ShowPositionsBtn_Click);
-            // 
-            // GoToPos
-            // 
-            this.GoToPos.Location = new System.Drawing.Point(541, 213);
-            this.GoToPos.Name = "GoToPos";
-            this.GoToPos.Size = new System.Drawing.Size(91, 23);
-            this.GoToPos.TabIndex = 63;
-            this.GoToPos.Text = "GoToPos";
-            this.GoToPos.UseVisualStyleBackColor = true;
-            this.GoToPos.Click += new System.EventHandler(this.GoToPos_Click);
             // 
             // label15
             // 
@@ -605,15 +533,6 @@
             this.label15.TabIndex = 64;
             this.label15.Text = "MoverBot";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(732, 193);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(49, 15);
-            this.label16.TabIndex = 65;
-            this.label16.Text = "Healbot";
-            // 
             // CollectorComboBox
             // 
             this.CollectorComboBox.FormattingEnabled = true;
@@ -622,7 +541,8 @@
             "+Jewelery",
             "+Stones",
             "+Stones+Jewelery",
-            "+Seller"});
+            "+Seller",
+            "AllItems"});
             this.CollectorComboBox.Location = new System.Drawing.Point(732, 296);
             this.CollectorComboBox.Name = "CollectorComboBox";
             this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
@@ -715,11 +635,79 @@
             this.label20.TabIndex = 75;
             this.label20.Text = "TestWindow";
             // 
+            // GoToPos
+            // 
+            this.GoToPos.Location = new System.Drawing.Point(541, 213);
+            this.GoToPos.Name = "GoToPos";
+            this.GoToPos.Size = new System.Drawing.Size(91, 23);
+            this.GoToPos.TabIndex = 82;
+            this.GoToPos.Text = "GoToPos";
+            this.GoToPos.UseVisualStyleBackColor = true;
+            this.GoToPos.Click += new System.EventHandler(this.GoToPos_Click_1);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(479, 257);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(15, 14);
+            this.checkBox1.TabIndex = 81;
+            this.checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(599, 256);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 15);
+            this.label3.TabIndex = 80;
+            this.label3.Text = "Manna value";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(500, 256);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(62, 15);
+            this.label2.TabIndex = 79;
+            this.label2.Text = "Heal value";
+            // 
+            // MannaValueTextBox
+            // 
+            this.MannaValueTextBox.Location = new System.Drawing.Point(599, 274);
+            this.MannaValueTextBox.Name = "MannaValueTextBox";
+            this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
+            this.MannaValueTextBox.TabIndex = 78;
+            // 
+            // HPValueTextBox
+            // 
+            this.HPValueTextBox.Location = new System.Drawing.Point(477, 274);
+            this.HPValueTextBox.Name = "HPValueTextBox";
+            this.HPValueTextBox.Size = new System.Drawing.Size(100, 23);
+            this.HPValueTextBox.TabIndex = 77;
+            // 
+            // ShowPosShort
+            // 
+            this.ShowPosShort.Location = new System.Drawing.Point(594, 153);
+            this.ShowPosShort.Name = "ShowPosShort";
+            this.ShowPosShort.Size = new System.Drawing.Size(118, 23);
+            this.ShowPosShort.TabIndex = 83;
+            this.ShowPosShort.Text = "position Short X Y ";
+            this.ShowPosShort.UseVisualStyleBackColor = true;
+            this.ShowPosShort.Click += new System.EventHandler(this.ShowPosShort_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.ShowPosShort);
+            this.Controls.Add(this.GoToPos);
+            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.MannaValueTextBox);
+            this.Controls.Add(this.HPValueTextBox);
             this.Controls.Add(this.label20);
             this.Controls.Add(this.FastTestWindow);
             this.Controls.Add(this.RunExpBot);
@@ -730,14 +718,11 @@
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.CollectorComboBox);
-            this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.GoToPos);
             this.Controls.Add(this.ShowPositionsBtn);
             this.Controls.Add(this.PositionY);
             this.Controls.Add(this.PositionX);
             this.Controls.Add(this.ExpBotComboBox);
-            this.Controls.Add(this.HealbotComboBox);
             this.Controls.Add(this.MoverGiko);
             this.Controls.Add(this.EtanaBot);
             this.Controls.Add(this.SellItems);
@@ -749,7 +734,6 @@
             this.Controls.Add(this.label13);
             this.Controls.Add(this.SellItemsCheckBox);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.UWCThread);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.BuyMaxHp);
@@ -774,11 +758,7 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Log);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.BtnHitKO);
-            this.Controls.Add(this.MannaValueTextBox);
-            this.Controls.Add(this.HPValueTextBox);
             this.Controls.Add(this.TextBoxLog);
             this.Controls.Add(this.StartSkillBtn);
             this.Controls.Add(this.label1);
@@ -797,11 +777,7 @@
         private Label label1;
         private Button StartSkillBtn;
         private RichTextBox TextBoxLog;
-        private TextBox HPValueTextBox;
-        private TextBox MannaValueTextBox;
         private Button BtnHitKO;
-        private Label label2;
-        private Label label3;
         private Button Log;
         private Button button1;
         private Button button2;
@@ -826,7 +802,6 @@
         private CheckBox BuyMaxHp;
         private Button button4;
         private Button UWCThread;
-        private CheckBox checkBox1;
         private CheckBox SellItemsCheckBox;
         private Label label12;
         private TextBox NumberOfCollectScans;
@@ -843,7 +818,6 @@
         private TextBox PositionX;
         private TextBox PositionY;
         private Button ShowPositionsBtn;
-        private Button GoToPos;
         private Label label15;
         private Label label16;
         private ComboBox CollectorComboBox;
@@ -856,6 +830,13 @@
         private Button RunExpBot;
         private TextBox FastTestWindow;
         private Label label20;
+        private Button GoToPos;
+        private CheckBox checkBox1;
+        private Label label3;
+        private Label label2;
+        private TextBox MannaValueTextBox;
+        private TextBox HPValueTextBox;
+        private Button ShowPosShort;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }

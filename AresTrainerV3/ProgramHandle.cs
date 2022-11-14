@@ -792,13 +792,37 @@ namespace AresTrainerV3
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor2IceCubeMiddle.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor2IceCubeMiddle.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor2IceCubeMiddle.Item3));
-                    _variableForChangablePosition ++;
+                    _variableForChangablePosition++;
                 }
                 else if (_variableForChangablePosition == 2)
                 {
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor2IceCube.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor2IceCube.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor2IceCube.Item3));
+                    _variableForChangablePosition = 0;
+                }
+            }
+            else if (GetCurrentMap == TeleportValues.KharonHorse)
+            {
+                if (_variableForChangablePosition == 0)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item3));
+                    _variableForChangablePosition = 1;
+                }
+                else if (_variableForChangablePosition == 1)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item3));
+                    _variableForChangablePosition++;
+                }
+                else if (_variableForChangablePosition == 2)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item3));
                     _variableForChangablePosition = 0;
                 }
             }
@@ -816,7 +840,16 @@ namespace AresTrainerV3
             }
             return;
         }
+        static int ReadPositionShortX()
+        {
+            return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXShortOffset))), 0);
 
+        }
+        static int ReadPositionShortY()
+        {
+            return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYShortOffset))), 0);
+
+        }
         static int ReadPositionX()
         {
             return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), 4)), 0);
@@ -842,6 +875,20 @@ namespace AresTrainerV3
             get
             {
                 return ReadPositionY();
+            }
+        }
+        public static int GetPositionShortX
+        {
+            get
+            {
+                return ReadPositionShortX();
+            }
+        }
+        public static int GetPositionShortY
+        {
+            get
+            {
+                return ReadPositionShortY();
             }
         }
         public static int GetPositionZ

@@ -12,7 +12,7 @@ namespace AresTrainerV3.Buyer
         {
             if (PointersAndValues.isNostalgia == true)
             {
-                base.BuyPotionsAbstract(200, false, 200, 5, ExpBotMovePositionsValues.mousePositionsForHershalBuying);
+                base.BuyPotionsAbstract(80, false, 20, 5, ExpBotMovePositionsValues.mousePositionsForHershalBuying);
             }
             else
             {

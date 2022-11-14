@@ -51,6 +51,7 @@ namespace AresTrainerV3
         public const int KharonPlateau = 45;
         public const int SlothFloor1 = 48;
         public const int SlothFloor2 = 49;
+        public const int KharonHorse = 50;
 
 
 
@@ -112,6 +113,9 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosSlothFloor2 = new ValueTuple<int, int, int>(1134407858, 1138126219, 1097859072);
         public static ValueTuple<int, int, int> MiniPosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
         public static ValueTuple<int, int, int> MiniPosSlothFloor2IceCubeMiddle = new ValueTuple<int, int, int>(1133621892, 1132091306, 0);
+        public static ValueTuple<int, int, int> KharonHorseBulglarAoe = new ValueTuple<int, int, int>(1135172319, 1137007029, 0);
+
+
 
         public static Tuple<int, int, int> MiniSacredLandsImpCave = new Tuple<int, int, int>(1129967491, 1142341254, 0);
         public static Tuple<int, int, int> MiniHershalTurtle = new Tuple<int, int, int>(1144459024, 1142613273, 1065554544);
@@ -138,6 +142,8 @@ namespace AresTrainerV3
 
         public static Tuple<int, int, int, int> moverRandomHershalLowLvl = new Tuple<int, int, int, int>(1130311265, 1141435437, 1134827717, 1137807344);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomHershalLeafMages = new Tuple<int, int, int, int>(1127987620, 1133037274, 1133101347, 1131251099);  //Left,Up,Right,Down
+        public static Tuple<int, int, int, int> moverRandomUWC1stFloor = new Tuple<int, int, int, int>(1110493212, 1116984574, 1122140674, 1110027219);  //Left,Up,Right,Down
+
         // IF X_CITY=ETANA
         // SET POSITION TO XYZ
 
