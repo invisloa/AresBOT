@@ -774,6 +774,13 @@ namespace AresTrainerV3
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar3.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar3.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar3.Item3));
+                    _variableForChangablePosition++;
+                }
+                else if (_variableForChangablePosition == 4)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar4.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar4.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar4.Item3));
                     _variableForChangablePosition = 0;
                 }
             }

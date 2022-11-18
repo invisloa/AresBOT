@@ -110,6 +110,7 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar1 = new ValueTuple<int, int, int>(1129762520, 1134509410, 1101089181);
         public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar2 = new ValueTuple<int, int, int>(1132962719, 1131670265, 1102053376);
         public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar3 = new ValueTuple<int, int, int>(1134395149, 1135955773, 1097859072);
+        public static ValueTuple<int, int, int> MiniPosSlothFloor1BossBulgar4 = new ValueTuple<int, int, int>(1128810480, 1136200217, 1097859072);
         public static ValueTuple<int, int, int> PosSlothFloor2 = new ValueTuple<int, int, int>(1134407858, 1138126219, 1097859072);
         public static ValueTuple<int, int, int> MiniPosSlothFloor2IceCube = new ValueTuple<int, int, int>(1133097017, 1135058534, 1107017794);
         public static ValueTuple<int, int, int> MiniPosSlothFloor2IceCubeMiddle = new ValueTuple<int, int, int>(1133621892, 1132091306, 0);
