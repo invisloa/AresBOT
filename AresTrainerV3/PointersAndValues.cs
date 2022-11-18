@@ -286,10 +286,9 @@ public static class PointersAndValues
     public const int isRunningAnimationArcEMPOutside = 4536352;
     public const int isRunningAnimationSorcAlliStaffOutside = 4523712;
     public const int isRunningAnimationSorcAlliOrbOutside = 4363264;
-
-    
     public const int isRunningAnimationSpearALLIOutside = 4500992;
-
+    
+    
     public const int isRunningAnimationArcAlliInCity = 4545808;
     public const int isRunningAnimationArcEmpInCity = 4546528;
     public const int isRunningAnimationSpearAlliInCity = 4545808;
