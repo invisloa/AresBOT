@@ -1044,7 +1044,7 @@ namespace AresTrainerV3
         }
         public static void waitMouseInPos()
         {
-            for (int i = 0; i < 50000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 int a = 10;
             }

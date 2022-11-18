@@ -593,11 +593,11 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Td > 15 && StrikingPower > 60)
+            else if (Td > 10 && StrikingPower > 60)
             {
                 return true;
             }
-            else if (Justus > 20 && StrikingPower > 60)
+            else if (Justus > 10 && StrikingPower > 60)
             {
                 return true;
             }
@@ -609,7 +609,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Luck > 25)
+            else if (Luck > 15)
             {
                 return true;
             }
