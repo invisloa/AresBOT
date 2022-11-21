@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.HealBot;
+﻿using AresTrainerV3.AttackMob;
+using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
 using System;
 using System.Collections.Generic;
@@ -65,6 +66,14 @@ namespace AresTrainerV3.ItemCollect
                             {
                                 MouseOperations.SetCursorPosition(x + (3 * i), y + (3 * z));
                                 ProgramHandle.waitMouseInPos();
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    //   Debug.WriteLine("1 attack for");
+
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -74,6 +83,7 @@ namespace AresTrainerV3.ItemCollect
 
                                     return true;
                                 }
+
                             }
                         }
 

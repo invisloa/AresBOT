@@ -13,7 +13,7 @@ namespace AresTrainerV3.ItemCollect
             if (ProgramHandle.getCurrentItemHighlightedType == SOD || ProgramHandle.getCurrentItemHighlightedType == jewelery ||
                 ProgramHandle.getCurrentItemHighlightedType == cryBow || ProgramHandle.getCurrentItemHighlightedType == cryOrb ||
                 ProgramHandle.getCurrentItemHighlightedType == cryPhasor || ProgramHandle.getCurrentItemHighlightedType == crySword
-                || ProgramHandle.getCurrentItemHighlightedType == cryStaff)
+                || ProgramHandle.getCurrentItemHighlightedType == cryStaff || ProgramHandle.getCurrentItemHighlightedType == stones)
             {
                 return true;
             }

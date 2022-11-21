@@ -30,6 +30,11 @@ namespace AresTrainerV3
         public const int Siros3thFloor = 14;
         public const int Siros4thFloor = 15;
 
+        public const int SirosBasement1stFloor = 16;
+        public const int SirosBasement2ndFloor = 62;
+
+
+
         public const int COT1stFloor = 36;
         public const int COT2ndFloor = 37;
         public const int COT3rdFloor = 38;
@@ -83,9 +88,13 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> PosHollinaSiros = new ValueTuple<int, int, int>( 1115018006, 1134911994, 1106469888);
         public static ValueTuple<int, int, int> PosHollinaTunnel = new ValueTuple<int, int, int>( 1137152155, 1120233092, 1091370351);
         public static ValueTuple<int, int, int> PosSiros1stFloor = new ValueTuple<int, int, int>( 1123683631, 1129909568, 1077936122);
-        public static ValueTuple<int, int, int> PosSiros2thFloor = new ValueTuple<int, int, int>( 1124022917, 1131430000, 1091567612);
+        public static ValueTuple<int, int, int> PosSiros2thFloorTo3rd = new ValueTuple<int, int, int>(1124022917, 1131430000, 1091567612);
+        public static ValueTuple<int, int, int> PosSiros2thFloorToBasement = new ValueTuple<int, int, int>(1103884700, 1128356476, 0);
         public static ValueTuple<int, int, int> PosSiros3thFloor = new ValueTuple<int, int, int>( 1123787210, 1129977407, 1077936122);
-        public static ValueTuple<int, int, int> PosSiros4thFloor = new ValueTuple<int, int, int>( 1125928930, 1121854248, 1086346279);
+        public static ValueTuple<int, int, int> PosSiros4thFloor = new ValueTuple<int, int, int>(1125928930, 1121854248, 1086346279);
+        public static ValueTuple<int, int, int> PosSiros1stBasementFloor = new ValueTuple<int, int, int>(1121378362, 1129807456, 0);
+        public static ValueTuple<int, int, int> PosSiros2ndBasementFloor = new ValueTuple<int, int, int>(1124062914, 1131328071, 0);
+
 
         public static ValueTuple<int, int, int> PosEmpireSacred = new ValueTuple<int, int, int>( 1142560515, 1146754742, 1092824576);
         public static ValueTuple<int, int, int> PosOgre1stFloor = new ValueTuple<int, int, int>( 1125223858, 1135281824, 1076037106);
@@ -144,9 +153,7 @@ namespace AresTrainerV3
         public static Tuple<int, int, int, int> moverRandomHershalLowLvl = new Tuple<int, int, int, int>(1130311265, 1141435437, 1134827717, 1137807344);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomHershalLeafMages = new Tuple<int, int, int, int>(1127987620, 1133037274, 1133101347, 1131251099);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomUWC1stFloor = new Tuple<int, int, int, int>(1110493212, 1116984574, 1122140674, 1110027219);  //Left,Up,Right,Down
-
-        // IF X_CITY=ETANA
-        // SET POSITION TO XYZ
-
+        public static Tuple<int, int, int, int> moverRandomKharonWolves = new Tuple<int, int, int, int>(1120173211, 1130046682, 1129089075, 1126879685);  //Left,Up,Right,Down
+ 
     }
 }
