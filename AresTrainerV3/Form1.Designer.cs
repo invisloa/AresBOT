@@ -265,7 +265,7 @@
             // 
             // teleport
             // 
-            this.teleport.Location = new System.Drawing.Point(749, 384);
+            this.teleport.Location = new System.Drawing.Point(753, 364);
             this.teleport.Name = "teleport";
             this.teleport.Size = new System.Drawing.Size(75, 23);
             this.teleport.TabIndex = 32;
@@ -494,7 +494,7 @@
             "HershalLeafMages",
             "HershalUWC1stFloor",
             "KharonWolves"});
-            this.ExpBotComboBox.Location = new System.Drawing.Point(732, 253);
+            this.ExpBotComboBox.Location = new System.Drawing.Point(727, 214);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
@@ -527,7 +527,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(732, 237);
+            this.label15.Location = new System.Drawing.Point(727, 198);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 15);
             this.label15.TabIndex = 64;
@@ -543,7 +543,7 @@
             "+Stones+Jewelery",
             "+Seller",
             "AllItems"});
-            this.CollectorComboBox.Location = new System.Drawing.Point(732, 296);
+            this.CollectorComboBox.Location = new System.Drawing.Point(727, 257);
             this.CollectorComboBox.Name = "CollectorComboBox";
             this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
             this.CollectorComboBox.TabIndex = 66;
@@ -553,7 +553,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(732, 279);
+            this.label17.Location = new System.Drawing.Point(727, 240);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 15);
             this.label17.TabIndex = 67;
@@ -562,7 +562,7 @@
             // ShutDownWhenInCity
             // 
             this.ShutDownWhenInCity.AutoSize = true;
-            this.ShutDownWhenInCity.Location = new System.Drawing.Point(732, 323);
+            this.ShutDownWhenInCity.Location = new System.Drawing.Point(727, 284);
             this.ShutDownWhenInCity.Name = "ShutDownWhenInCity";
             this.ShutDownWhenInCity.Size = new System.Drawing.Size(15, 14);
             this.ShutDownWhenInCity.TabIndex = 69;
@@ -572,7 +572,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(753, 322);
+            this.label18.Location = new System.Drawing.Point(748, 283);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(110, 15);
             this.label18.TabIndex = 68;
@@ -583,7 +583,7 @@
             this.CollectItemsBox.AutoSize = true;
             this.CollectItemsBox.Checked = true;
             this.CollectItemsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CollectItemsBox.Location = new System.Drawing.Point(732, 346);
+            this.CollectItemsBox.Location = new System.Drawing.Point(727, 307);
             this.CollectItemsBox.Name = "CollectItemsBox";
             this.CollectItemsBox.Size = new System.Drawing.Size(15, 14);
             this.CollectItemsBox.TabIndex = 71;
@@ -593,7 +593,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(753, 345);
+            this.label19.Location = new System.Drawing.Point(748, 306);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(76, 15);
             this.label19.TabIndex = 70;
@@ -611,7 +611,7 @@
             // 
             // RunExpBot
             // 
-            this.RunExpBot.Location = new System.Drawing.Point(749, 421);
+            this.RunExpBot.Location = new System.Drawing.Point(753, 393);
             this.RunExpBot.Name = "RunExpBot";
             this.RunExpBot.Size = new System.Drawing.Size(75, 23);
             this.RunExpBot.TabIndex = 73;

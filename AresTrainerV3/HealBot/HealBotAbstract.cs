@@ -5,6 +5,7 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MoveRandom.Hershal;
+using AresTrainerV3.MoveRandom.Kharon;
 using AresTrainerV3.SkillSelection;
 using System;
 using System.Collections.Generic;
@@ -258,21 +259,21 @@ namespace AresTrainerV3.HealBot
         {
 
             // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
-            if (ProgramHandle.isCurrentClassSelected == 1)
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
-                /*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-                                {
-                                    KeyPresser.PressKey(8, 100, 100);
-                                    KeyPresser.PressKey(7, 100, 100);
-                                }
-                */
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                {
+                    KeyPresser.PressKey(8, 100, 100);
+                    KeyPresser.PressKey(7, 100, 100);
+                }
+
+*/                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
                 }
             }
-            if (ProgramHandle.isCurrentClassSelected == 2)
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
                 if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
@@ -280,7 +281,7 @@ namespace AresTrainerV3.HealBot
                 }
             }
 
-            else if (ProgramHandle.isCurrentClassSelected == 3)
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
                 if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
@@ -289,6 +290,7 @@ namespace AresTrainerV3.HealBot
                     KeyPresser.PressKey(7, 100, 100);
                 }
             }
+
         }
 
 
@@ -365,6 +367,15 @@ namespace AresTrainerV3.HealBot
                 repoterCity = new RepoterHershalLeafMages();
                 _goBackExpPlace = new GoBackExpUWC();
                 _expBotToStart = new MoverHershalUwc1stFloor() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+            }
+            else if (whichBotThreadToStart == MoverBotEnums.KharonWolves)
+            {
+                repoterCity = new RepoterKharonExp();
+                _goBackExpPlace = new GoBackExpKharonWolves();
+                _expBotToStart = new MoverKharonWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                Thread blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+                blackScreenThread.Start();
+
             }
         }
 

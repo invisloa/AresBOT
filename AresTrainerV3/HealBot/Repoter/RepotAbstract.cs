@@ -22,10 +22,6 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             get { return ProgramHandle.GetCurrentMap; }
         }
-        protected virtual bool checkIfCloseToShop()
-        {
-            return true;
-        }
         protected BuyerPotions _buyerPotionsCity;
         protected int _repotCityVerification;
         public static bool IsScanRunning = false;
@@ -141,6 +137,22 @@ namespace AresTrainerV3.HealBot.Repoter
                     }
                 }
             }
+        }
+        protected virtual bool checkIfCloseToShop()
+        {
+            if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+            {
+                if (ProgramHandle.GetPositionShortX > 17412 && ProgramHandle.GetPositionShortX < 17415 && ProgramHandle.GetPositionShortY < 17415 && ProgramHandle.GetPositionShortY > 17412)
+                {
+                    return true;
+                }
+                else { return false; }
+            }
+            else
+            {
+                return false;
+            } 
+            
         }
 
 

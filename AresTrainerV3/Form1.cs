@@ -10,6 +10,7 @@ using AresTrainerV3.MoveRandom;
 using AresTrainerV3.MoveRandom.Etana;
 using AresTrainerV3.MoveRandom.Hershal;
 using AresTrainerV3.MoveRandom.Holina;
+using AresTrainerV3.MoveRandom.Kharon;
 using AresTrainerV3.MoveRandom.SacredAlliance;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
@@ -668,8 +669,8 @@ namespace AresTrainerV3
             }
             else if (ExpBotComboBox.SelectedItem.ToString() == "KharonWolves")
             {
-                ExpBotMoverToRun = new MoverHershalLeafMages();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+                ExpBotMoverToRun = new MoverKharonWolves();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
             }
         }
 
@@ -741,24 +742,19 @@ namespace AresTrainerV3
         }
         private void fasttest_Click(object sender, EventArgs e)
         {
-            int i;
-            i=ProgramHandle.GetCurrentMap;
-            i=ProgramHandle.getForthSlotValue;
-
-
-            ProgramHandle.SetGameAsMainWindow();
-            ProgramHandle.SetCameraForExpBot();
-            while (true)
+            while(true)
             {
-                FastTestWindow.Text = ProgramHandle.getCurrentItemHighlightedType.ToString();
+                PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
                 Refresh();
-                Thread.Sleep(100);
+                //1073741824
             }
+            /*            int i;
+                        RepoterKharonExp zzz = new RepoterKharonExp();
+                        zzz.GoRepot();
+            *//*
 
-
-            //            RepoterHershalLeafMages zzz = new RepoterHershalLeafMages();
-
-            // zzz.MoveToRepotWithPositions(ExpBotMovePositionsValues.HershalRepotMovePositions2);
+            ProgramHandle.AntiBlackScreener();
+*/
         }
 
         private void GoToPos_Click_1(object sender, EventArgs e)

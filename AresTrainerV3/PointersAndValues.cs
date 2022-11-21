@@ -14,8 +14,8 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public static int MaxCollectWeight = 2050;
-    public const int MaxCollectWeightNormalValue = 2050;
+    public static int MaxCollectWeight = 1780;
+    public const int MaxCollectWeightNormalValue = 1780;
 
     public static string GameProcessName
     {
@@ -57,6 +57,18 @@ public static class PointersAndValues
             else { return 0x2A9194; }
         }
     }
+    public static int antiBlackMOffset
+    {
+        get
+        {
+            if (isNostalgia) { return 0x2a9084; }
+            else { return 0x2a9184; }
+        }
+    }
+
+
+
+
     public static int cameraFogPointer
     {
         get
@@ -221,6 +233,11 @@ public static class PointersAndValues
     public const int SellWindowOffset = 0xc0;
     public const int SellItemSelectedOffset = 0x12e;
 
+    public const int AntiBlack1Offset = 0x850;
+    public const int AntiBlack2Offset = 0x9b0;
+    public const int AntiBlack3Offset = 0xb10;
+
+
 
 
 
@@ -357,8 +374,6 @@ public static class PointersAndValues
     public static int mageSupportRapid = 62519;
     public static int mageSupportEnergyShield = 63019;
     public static int mageSupportBlastArmor = 62619;
-
-
 
     // KNIGHT
     public static int knightskilllAnim1 = 1135783990;
