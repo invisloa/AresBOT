@@ -4,6 +4,7 @@ using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
@@ -742,13 +743,21 @@ namespace AresTrainerV3
         }
         private void fasttest_Click(object sender, EventArgs e)
         {
-            while(true)
+
+
+            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
+            ProgramHandle.SetGameAsMainWindow();
+            ProgramHandle.SetCameraForExpBot();
+            ProgramHandle.SetCameraLong();
+            Thread.Sleep(500);
+            zzz.GoBackExp();
+/*            while(true)
             {
                 PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
                 Refresh();
                 //1073741824
             }
-            /*            int i;
+*/            /*            int i;
                         RepoterKharonExp zzz = new RepoterKharonExp();
                         zzz.GoRepot();
             *//*

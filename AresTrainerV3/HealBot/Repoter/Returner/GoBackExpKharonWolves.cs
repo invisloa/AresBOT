@@ -72,10 +72,10 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                 if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetPositionX < 1124331952 && ProgramHandle.GetPositionX > 1123556437)
                 {
                         MouseOperations.MoveAndLeftClickOperation(960, 400, 50);
-                        Thread.Sleep(1000);
+                        Thread.Sleep(2000);
                 }
             }
-            Thread.Sleep(randomizer.Next(1000,5000));
+            Thread.Sleep(randomizer.Next(2000,5000));
             if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
             {
                 GoOutOfTheZagroda();
