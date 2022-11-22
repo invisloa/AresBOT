@@ -456,7 +456,7 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
-            BuyerPotions.HpPotionsToBuy = 20;
+            BuyerPotions.HpPotionsToBuy = 60;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
             BuyerPotions.MpPotionsToBuy = 5;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
