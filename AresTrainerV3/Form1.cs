@@ -635,7 +635,8 @@ namespace AresTrainerV3
 
         }
         
-*/        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+*/      
+        void AssignBot()
         {
             if (ExpBotComboBox.Text == "EtanaBuckerty")
             {
@@ -673,14 +674,10 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverKharonWolves();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
             }
-        }
-
-        private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
             if (CollectorComboBox.Text == "+Event")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
-                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent())); 
+                ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent()));
             }
             else if (CollectorComboBox.Text == "+Jewelery")
             {
@@ -707,6 +704,17 @@ namespace AresTrainerV3
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
             }
+
+
+        }
+        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AssignBot();
+        }
+
+        private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AssignBot();
         }
 
         private void ShutDownWhenInCity_CheckedChanged(object sender, EventArgs e)
@@ -735,6 +743,7 @@ namespace AresTrainerV3
 
         private void RunExpBot_Click(object sender, EventArgs e)
         {
+            AssignBot();
             HealbotToRun.StartHealBotThread();
             ProgramHandle.SetCameraForExpBot();
 
