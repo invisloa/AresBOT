@@ -31,7 +31,7 @@ namespace AresTrainerV3
         static Thread animbotThread;
         static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
-        HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
+        public static HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
         globalKeyboardHook gkh = new globalKeyboardHook();
 
         MoverRandom ExpBotMoverToRun;

@@ -345,11 +345,11 @@ namespace AresTrainerV3
             {
                 if(ProgramHandle.isInCity != 1)
                 {
-                skillSelector.SkillAssign();
+                 //  skillSelector.SkillAssign();
                     memSkill.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(SkillToOverride));
-                    memSkill.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.visualSkillAttack), BitConverter.GetBytes(0));
+                 //   memSkill.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.visualSkillAttack), BitConverter.GetBytes(0));
 
-                    skillSelector.Rebuff();
+                  //  skillSelector.Rebuff();
                 }
 
                 // memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
@@ -1088,7 +1088,7 @@ namespace AresTrainerV3
         }
         public static void waitMouseInPos()
         {
-            for (int i = 0; i < 200000; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 int a = 1;
             }

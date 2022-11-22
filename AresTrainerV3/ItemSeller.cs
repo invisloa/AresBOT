@@ -720,9 +720,9 @@ namespace AresTrainerV3
                     int sellItemNumber = item + 12; // START FROM 3 Row 1st Column -its 12
                     if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
                     {
-                        Thread.Sleep(500);
-                        MouseOperations.MoveAndLeftClickOperation(1235, 670, 200); // Open Inventory Tab 2
-                        Thread.Sleep(500);
+                        Thread.Sleep(150);
+                        MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
+                        Thread.Sleep(150);
                     }
                     ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
                     MoveAndLeftClickToSellAll();
@@ -739,7 +739,7 @@ namespace AresTrainerV3
             Thread.Sleep(500);
             ItemsForSaleListGenerate();
             ProgramHandle.OpenShopWindow();
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
 
             foreach (var item in itemsForSaleList)

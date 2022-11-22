@@ -51,23 +51,28 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                 }
             }
             ProgramHandle.SetCameraForExpBot();
+            if (ProgramHandle.isInCity == 1 && ProgramHandle.GetCurrentMap != TeleportValues.GMLand)
+            {
+                Thread.Sleep(10000);
+                Form1.HealbotToRun.RepotAndStartExpBot();
+
+            }
 
         }
 
         public override void GoBackExp()
         {
-            MouseOperations.MoveAndLeftClickOperation(800+randomizer.Next(-20,20), 295+randomizer.Next(-40,100), 400);
+            MouseOperations.MoveAndLeftClickOperation(800+randomizer.Next(-20,20), 295+randomizer.Next(-40,100), 150);
             while (!ProgramHandle.isNowStandingCity())
             {
                 Thread.Sleep(1);
             }
             for (int i = 0; i < 10; i++)
             {
-                Thread.Sleep(1000);
                 if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetPositionX < 1124331952 && ProgramHandle.GetPositionX > 1123556437)
                 {
                         MouseOperations.MoveAndLeftClickOperation(960, 400, 50);
-                        Thread.Sleep(500);
+                        Thread.Sleep(1000);
                 }
             }
             Thread.Sleep(randomizer.Next(1000,5000));
@@ -81,7 +86,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
             {
                 KeyPresser.PressKey(6, 100, 100);
-                Thread.Sleep(1000);
+                Thread.Sleep(50000);
                 _repoterCity.GoRepot();
             }
 
