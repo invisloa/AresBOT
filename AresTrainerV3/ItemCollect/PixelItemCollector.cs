@@ -53,9 +53,9 @@ namespace AresTrainerV3.ItemCollect
             graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 
             Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
-            for (int x = 800; x < 1120; x++)
+            for (int x = 850; x < 1170; x++)
             {
-                for (int y = 360; y < 680; y++)
+                for (int y = 410; y < 730; y++)
                 {
                     Color currentPixelColor = bitmap.GetPixel(x, y);
                     if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
@@ -66,14 +66,6 @@ namespace AresTrainerV3.ItemCollect
                             {
                                 MouseOperations.SetCursorPosition(x + (3 * i), y + (3 * z));
                                 ProgramHandle.waitMouseInPos();
-                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                {
-                                    //   Debug.WriteLine("1 attack for");
-
-                                    RepotAbstract.IsScanRunning = false;
-                                    GC.Collect();
-                                    return true;
-                                }
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -105,6 +97,14 @@ namespace AresTrainerV3.ItemCollect
                             {
                                 MouseOperations.SetCursorPosition(x + (2 * i), y + (2 * z));
                                 ProgramHandle.waitMouseInPos();
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    //   Debug.WriteLine("1 attack for");
+
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -136,11 +136,14 @@ namespace AresTrainerV3.ItemCollect
                 {
                     for (int y = 500; y < 545; y++)
                     {
-                        for (int i = -1; i < 2; i++)
-                        {
-                            for (int z = -1; z < 2; z++)
-                            {
-                                MouseOperations.SetCursorPosition(x + (2 * i), y + (2 * z));
+                        /*                        for (int i = -1; i < 2; i++)
+                                                {
+                                                    for (int z = -1; z < 2; z++)
+                                                    {
+                                                        MouseOperations.SetCursorPosition(x + (2 * i), y + (2 * z));
+                        */
+                        MouseOperations.SetCursorPosition(x , y);
+                        ProgramHandle.waitMouseInPos();
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -148,9 +151,9 @@ namespace AresTrainerV3.ItemCollect
                                     GC.Collect();
                                     return true;
                                 }
-                            }
+/*                            }
                         }
-                    }
+*/                    }
 
                 }
             }

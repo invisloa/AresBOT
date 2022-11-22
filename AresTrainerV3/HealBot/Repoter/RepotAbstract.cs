@@ -150,7 +150,7 @@ namespace AresTrainerV3.HealBot.Repoter
             }
             else
             {
-                return false;
+                return true;
             } 
             
         }
