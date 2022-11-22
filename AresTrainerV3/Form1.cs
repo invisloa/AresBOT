@@ -4,6 +4,7 @@ using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
@@ -458,13 +459,13 @@ namespace AresTrainerV3
             BuyerPotions.BuyFromForm = true;
             BuyerPotions.HpPotionsToBuy = 60;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            BuyerPotions.MpPotionsToBuy = 5;
+            BuyerPotions.MpPotionsToBuy = 35;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             BuyerPotions.SpeedPotionsToBuy = 3;
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
             HealBotAbstract.SellItems = true;
             SellItemsCheckBox.Checked = true;
-            DoScanAttackCollect.NumberOfCollectScans = 2;
+            DoScanAttackCollect.NumberOfCollectScans = 1;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 
         }
@@ -636,38 +637,38 @@ namespace AresTrainerV3
         
 */        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (ExpBotComboBox.SelectedItem.ToString() == "EtanaBuckerty")
+            if (ExpBotComboBox.Text == "EtanaBuckerty")
             {
                 ExpBotMoverToRun = new MoverEtanaBuckerty();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
 
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredGiko")
+            else if (ExpBotComboBox.Text == "SacredGiko")
             {
                 ExpBotMoverToRun = new MoverGiko();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "SacredThieves")
+            else if (ExpBotComboBox.Text == "SacredThieves")
             {
                 ExpBotMoverToRun = new MoverThievesUnder();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "HolinaGoblins")
+            else if (ExpBotComboBox.Text == "HolinaGoblins")
             {
                 ExpBotMoverToRun = new MoverHolinaGoblins();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalLeafMages")
+            else if (ExpBotComboBox.Text == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "HershalUWC1stFloor")
+            else if (ExpBotComboBox.Text == "HershalUWC1stFloor")
             {
                 ExpBotMoverToRun = new MoverHershalUwc1stFloor();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
             }
-            else if (ExpBotComboBox.SelectedItem.ToString() == "KharonWolves")
+            else if (ExpBotComboBox.Text == "KharonWolves")
             {
                 ExpBotMoverToRun = new MoverKharonWolves();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
@@ -676,32 +677,32 @@ namespace AresTrainerV3
 
         private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (CollectorComboBox.SelectedItem.ToString() == "+Event")
+            if (CollectorComboBox.Text == "+Event")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent())); 
             }
-            else if (CollectorComboBox.SelectedItem.ToString() == "+Jewelery")
+            else if (CollectorComboBox.Text == "+Jewelery")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodJewelery()));
             }
-            else if (CollectorComboBox.SelectedItem.ToString() == "+Stones")
+            else if (CollectorComboBox.Text == "+Stones")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStones()));
             }
-            else if (CollectorComboBox.SelectedItem.ToString() == "+Stones+Jewelery")
+            else if (CollectorComboBox.Text == "+Stones+Jewelery")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
             }
-            else if (CollectorComboBox.SelectedItem.ToString() == "+Seller")
+            else if (CollectorComboBox.Text == "+Seller")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
             }
-            else if (CollectorComboBox.SelectedItem.ToString() == "AllItems")
+            else if (CollectorComboBox.Text == "AllItems")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
@@ -742,13 +743,21 @@ namespace AresTrainerV3
         }
         private void fasttest_Click(object sender, EventArgs e)
         {
-            while(true)
+
+
+            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
+            ProgramHandle.SetGameAsMainWindow();
+            ProgramHandle.SetCameraForExpBot();
+            ProgramHandle.SetCameraLong();
+            Thread.Sleep(500);
+            zzz.GoBackExp();
+/*            while(true)
             {
                 PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
                 Refresh();
                 //1073741824
             }
-            /*            int i;
+*/            /*            int i;
                         RepoterKharonExp zzz = new RepoterKharonExp();
                         zzz.GoRepot();
             *//*

@@ -498,6 +498,7 @@
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
+            this.ExpBotComboBox.Text = "KharonWolves";
             this.ExpBotComboBox.SelectedIndexChanged += new System.EventHandler(this.ExpBotComboBox_SelectedIndexChanged);
             // 
             // PositionX
@@ -539,15 +540,15 @@
             this.CollectorComboBox.Items.AddRange(new object[] {
             "+Event",
             "+Jewelery",
+            "+Seller",
             "+Stones",
             "+Stones+Jewelery",
-            "+Seller",
             "AllItems"});
             this.CollectorComboBox.Location = new System.Drawing.Point(727, 257);
             this.CollectorComboBox.Name = "CollectorComboBox";
             this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
             this.CollectorComboBox.TabIndex = 66;
-            this.CollectorComboBox.Text = "SOD";
+            this.CollectorComboBox.Text = "AllItems";
             this.CollectorComboBox.SelectedIndexChanged += new System.EventHandler(this.CollectorComboBox_SelectedIndexChanged);
             // 
             // label17
