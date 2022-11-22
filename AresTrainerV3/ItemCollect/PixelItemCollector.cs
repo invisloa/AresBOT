@@ -97,7 +97,7 @@ namespace AresTrainerV3.ItemCollect
                             {
                                 MouseOperations.SetCursorPosition(x + (2 * i), y + (2 * z));
                                 ProgramHandle.waitMouseInPos();
-                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+/*                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                                 {
                                     //   Debug.WriteLine("1 attack for");
 
@@ -105,6 +105,7 @@ namespace AresTrainerV3.ItemCollect
                                     GC.Collect();
                                     return true;
                                 }
+*/               
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;

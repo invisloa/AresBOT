@@ -32,7 +32,7 @@ namespace AresTrainerV3.MoveRandom
 
         int moveClickSlower = 0;
         int howMuchToSlowClickMove = 2;
-        int sideMoveCount = 50;
+        int sideMoveCount = 10;
 
         public static bool AttackedOrCollected = false;
 

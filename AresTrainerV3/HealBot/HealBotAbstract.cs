@@ -225,7 +225,7 @@ namespace AresTrainerV3.HealBot
             }
 
         }
-        void RepotAndStartExpBot()
+        public void RepotAndStartExpBot()
         {
             expPlaceToStartSetter();
             whatToCollectSetter();
@@ -261,18 +261,18 @@ namespace AresTrainerV3.HealBot
             // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                /*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                                {
+                                    KeyPresser.PressKey(8, 100, 100);
+                                    KeyPresser.PressKey(7, 100, 100);
+                                }
+                */
+                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);
                 }
-
-/*                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                    KeyPresser.PressKey(7, 100, 100);
-                }
-*/            }
+            }
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
                 if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)

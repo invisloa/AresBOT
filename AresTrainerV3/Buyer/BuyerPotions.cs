@@ -14,17 +14,19 @@ namespace AresTrainerV3.Buyer
         public static int MpPotionsToBuy = 100;
         public static int SpeedPotionsToBuy = 10;
         public static bool BuyMaxPotions = false;
+        private static int _defaultMouseClickDelay = 150;
+        private static int _defaultKeyClickDelay = 50;
 
         void ClickOkWhenBuying()
         {
-            MouseOperations.MoveAndLeftClickOperation(560, 570, 300);
+            MouseOperations.MoveAndLeftClickOperation(560, 570, _defaultMouseClickDelay);
         }
         void BuyingHpPotionsMax()
         {
             MouseOperations.ClickFirstSlotInventoryLeft();
-            Thread.Sleep(500);
+            Thread.Sleep(_defaultMouseClickDelay);
             MouseOperations.ClickMaxPotionsToBuy();
-            Thread.Sleep(500);
+            Thread.Sleep(_defaultMouseClickDelay);
             ClickOkWhenBuying();
         }
 
@@ -43,7 +45,7 @@ namespace AresTrainerV3.Buyer
             {
                 if(numberOfPotionToBuy > x*100-1)
                 {
-                    KeyPresser.PressKey(x, 100, 100);
+                    KeyPresser.PressKey(x, _defaultKeyClickDelay, _defaultKeyClickDelay);
                     numberOfPotionToBuy -= x*100;
                 }
             }
@@ -52,13 +54,13 @@ namespace AresTrainerV3.Buyer
                 if (numberOfPotionToBuy > x * 10 - 1)
                 {
                     midleNumberPressed = true;
-                    KeyPresser.PressKey(x, 100, 100);
+                    KeyPresser.PressKey(x, _defaultKeyClickDelay, _defaultKeyClickDelay);
                     numberOfPotionToBuy -= x * 10;
                 }
             }
             if (!midleNumberPressed)
             {
-                KeyPresser.PressKey(0, 100, 100);
+                KeyPresser.PressKey(0, _defaultKeyClickDelay, _defaultKeyClickDelay);
             }
 
             for (int x = 9; x > 0; x--)
@@ -67,13 +69,13 @@ namespace AresTrainerV3.Buyer
                 {
                     lastNumberPressed = true;
 
-                    KeyPresser.PressKey(x, 100, 100);
+                    KeyPresser.PressKey(x, _defaultKeyClickDelay, _defaultKeyClickDelay);
                     numberOfPotionToBuy -= x;
                 }
             }
             if (!lastNumberPressed)
             {
-                KeyPresser.PressKey(0, 100, 100);
+                KeyPresser.PressKey(0, _defaultKeyClickDelay, _defaultKeyClickDelay);
             }
 
             ClickOkWhenBuying();
@@ -100,7 +102,7 @@ namespace AresTrainerV3.Buyer
                     {
                         // int howManyPotionsToBuy = PointersAndValues.ItemCount1 + (mannaLimit - 1) - ProgramHandle.getSecondSlotValue;
                         MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                        MouseOperations.MoveAndLeftClickOperation(1295, 530, 800); //2slot inv
+                        MouseOperations.MoveAndLeftClickOperation(1295, 530, _defaultMouseClickDelay); //2slot inv
 
                         HowManyPotionsToBuy(PotionsToBuyCalculator(mannaLimit, ProgramHandle.getSecondSlotValue));
                     }
@@ -109,14 +111,14 @@ namespace AresTrainerV3.Buyer
                         if (ProgramHandle.isCurrentClassSelected != PointersAndValues.ClassSorcerer)
                         {
                             MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                            MouseOperations.MoveAndLeftClickOperation(1330, 530, 800); // 3 slot inv
+                            MouseOperations.MoveAndLeftClickOperation(1330, 530, _defaultMouseClickDelay); // 3 slot inv
                             HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getThirdSlotValue));
                         }
                     }
                     else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // White Potions
                     {
                         MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                        MouseOperations.MoveAndLeftClickOperation(1365, 530, 800); // 4 slot inv
+                        MouseOperations.MoveAndLeftClickOperation(1365, 530, _defaultMouseClickDelay); // 4 slot inv
 
                         HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getForthSlotValue));
                     }
@@ -126,7 +128,7 @@ namespace AresTrainerV3.Buyer
                         if (!hpMaxBuy)
                         {
                             MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 300);
-                            MouseOperations.MoveAndLeftClickOperation(1260, 530, 300); // 1 slot inv
+                            MouseOperations.MoveAndLeftClickOperation(1260, 530, _defaultMouseClickDelay); // 1 slot inv
 
                             HowManyPotionsToBuy(PotionsToBuyCalculator(hpLimit, ProgramHandle.getFirstSlotValue));
 

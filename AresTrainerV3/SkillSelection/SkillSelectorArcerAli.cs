@@ -12,7 +12,7 @@ namespace AresTrainerV3.SkillSelection
         {
             if (ProgramHandle.isCurrentSkill() == 2)
             {
-                ProgramHandle.SkillToOverride = 40002;
+                ProgramHandle.SkillToOverride = 40000;
             }
             else if (ProgramHandle.isCurrentSkill() == 3)
             {
