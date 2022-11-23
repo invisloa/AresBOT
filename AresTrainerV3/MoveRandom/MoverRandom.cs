@@ -120,7 +120,7 @@ namespace AresTrainerV3.MoveRandom
                                 _lastMouseMovePosition = MovePositionRandomizer(_lastMouseMovePosition);
                             }
                             MoveToPosition(_lastMouseMovePosition);
-                            if(tooLowDistance)
+                            if (tooLowDistance)
                             {
                                 Thread.Sleep(100);
                             }
@@ -129,8 +129,14 @@ namespace AresTrainerV3.MoveRandom
                     }
                     else
                     {
-                        ExpBotManagerAbstract.RequestStopExpBot();
-                        HealBotAbstract.RequestStopHealBot();
+                        Thread.Sleep(5000);
+                        if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
+                        {
+                            ExpBotManagerAbstract.RequestStopExpBot();
+                            HealBotAbstract.RequestStopHealBot();
+
+                            System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                        }
                     }
                 }
             }

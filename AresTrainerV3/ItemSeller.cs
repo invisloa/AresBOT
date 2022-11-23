@@ -565,9 +565,6 @@ namespace AresTrainerV3
             #endregion
 
 
-
-
-
             // Check IF stats Are Higher
             if (Agi > hightValueMainStats)
             {
@@ -581,7 +578,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Gedel > 8 && (Agi > 7 || Mp > 7 || Con > 7))
+            else if (Gedel > 14 && (Agi > 7 || Mp > 7 || Con > 7))
             {
                 return true;
             }
@@ -589,15 +586,16 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (MageAlliPower > 80 || MageEmpPower > 80)
-            {
+/*            else if (MageAlliPower > 80 || MageEmpPower > 80)
+*//*            {
                 return true;
             }
+*/
             else if (Td > 10 && StrikingPower > 60)
             {
                 return true;
             }
-            else if (Justus > 10 && StrikingPower > 60)
+            else if (Justus > 15 && StrikingPower > 60)
             {
                 return true;
             }
@@ -605,11 +603,19 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Sihon > 35)
+            else if (Sihon > 45)
             {
                 return true;
             }
-            else if (Luck > 15)
+            else if (Sihon > 35 && Mp > 3 || Sihon > 35 && Agi > 3 || Sihon > 35 && Con > 3)
+            {
+                return true;
+            }
+            else if (Sihon > 30 && Mp > 6 || Sihon > 30 && Agi > 6 || Sihon > 30 && Con > 6)
+            {
+                return true;
+            }
+            else if (Luck > 25)
             {
                 return true;
             }
@@ -669,7 +675,7 @@ namespace AresTrainerV3
             Thread.Sleep(100);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
-                Thread.Sleep(100);
+                Thread.Sleep(50);
                 Debug.WriteLine("window open sell item left click");
                 MouseOperations.SetCursorPosition(560, 570);
                 Thread.Sleep(50);
@@ -681,7 +687,7 @@ namespace AresTrainerV3
             }
 
             Debug.WriteLine("Check if high value");
-            Thread.Sleep(350);
+            Thread.Sleep(200);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
                 Thread.Sleep(100);
