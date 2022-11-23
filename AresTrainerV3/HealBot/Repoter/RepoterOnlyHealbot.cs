@@ -19,7 +19,7 @@ namespace AresTrainerV3.HealBot.Repoter
             KeyPresser.PressKey(6, 200, 200);
             KeyPresser.PressKey(6, 200, 200);
             ExpBotManagerAbstract.RequestStopExpBot();
-            HealBotAbstract.RequestStopHealBot();   
+           // HealBotAbstract.RequestStopHealBot();   
         }
 
         /*        protected override GoBackExpAbstract GoBackExpPlace
