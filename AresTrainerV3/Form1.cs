@@ -752,27 +752,30 @@ namespace AresTrainerV3
         }
         private void fasttest_Click(object sender, EventArgs e)
         {
-
-
-            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
-            ProgramHandle.SetGameAsMainWindow();
-            ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.SetCameraLong();
-            Thread.Sleep(500);
-            zzz.GoBackExp();
-/*            while(true)
+            var date = DateTime.Now;
+            if (date.Hour == 5)
             {
-                PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
-                Refresh();
-                //1073741824
+                Debug.WriteLine("zzzz");
             }
-*/            /*            int i;
-                        RepoterKharonExp zzz = new RepoterKharonExp();
-                        zzz.GoRepot();
-            *//*
+            /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
+                        ProgramHandle.SetGameAsMainWindow();
+                        ProgramHandle.SetCameraForExpBot();
+                        ProgramHandle.SetCameraLong();
+                        Thread.Sleep(500);
+                        zzz.GoBackExp();
+            *//*            while(true)
+                        {
+                            PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
+                            Refresh();
+                            //1073741824
+                        }
+            */            /*            int i;
+                                    RepoterKharonExp zzz = new RepoterKharonExp();
+                                    zzz.GoRepot();
+                        *//*
 
-            ProgramHandle.AntiBlackScreener();
-*/
+                        ProgramHandle.AntiBlackScreener();
+            */
         }
 
         private void GoToPos_Click_1(object sender, EventArgs e)

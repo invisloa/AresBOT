@@ -15,6 +15,7 @@ namespace AresTrainerV3.AttackMob
         static int attackUnstackCounter = 0;
         static void WaitForAttackEnd()
         {
+            attackUnstackCounter++;
             Thread.Sleep(200);
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
@@ -25,7 +26,6 @@ namespace AresTrainerV3.AttackMob
 
             while (ProgramHandle.isAttacking())
             {
-                attackUnstackCounter++;
                 pixelSodCollect.ClickAndCollectItem();
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
@@ -43,52 +43,9 @@ namespace AresTrainerV3.AttackMob
             Thread.Sleep(20);
             if (ProgramHandle.isNowRunningOut())
             {
-                Thread.Sleep(500);
+                Thread.Sleep(200);
                 WaitForAttackEnd();
             }
-            Thread.Sleep(20);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            if (ProgramHandle.isNowRunningOut())
-            {
-                Thread.Sleep(500);
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(20);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(20);
-            if (ProgramHandle.isNowRunningOut())
-            {
-                Thread.Sleep(500);
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(20);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(20);
-            if (ProgramHandle.isNowRunningOut())
-            {
-                Thread.Sleep(500);
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(20);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            if (ProgramHandle.isNowRunningOut())
-            {
-                Thread.Sleep(500);
-                WaitForAttackEnd();
-            }
-
         }
 
         static bool isMobTargeted()
