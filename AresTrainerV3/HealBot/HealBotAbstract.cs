@@ -19,6 +19,7 @@ namespace AresTrainerV3.HealBot
 {
     public abstract class HealBotAbstract
     {
+        Thread blackScreenThread;
         public static bool SelfSetHealValue = false;
         public static bool SellItems = false;
         protected static bool _isHealBotRunning = false;
@@ -216,11 +217,11 @@ namespace AresTrainerV3.HealBot
         protected void HealKeyPress()
         {
             if (ProgramHandle.getFirstSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
-                {
+            {
                 KeyPresser.PressKey(1, 100, 150);
             }
             else
-                {
+            {
                 RepotAndStartExpBot();
             }
 
@@ -230,6 +231,11 @@ namespace AresTrainerV3.HealBot
             expPlaceToStartSetter();
             whatToCollectSetter();
             repoterCity.GoRepot();
+            var date = DateTime.Now;
+            if (date.Hour == 5)
+            {
+                System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+            }
             _goBackExpPlace.GoBackExp();
             ExpBotToStart.StartExpBotThread();
 
@@ -373,9 +379,11 @@ namespace AresTrainerV3.HealBot
                 repoterCity = new RepoterKharonExp();
                 _goBackExpPlace = new GoBackExpKharonWolves();
                 _expBotToStart = new MoverKharonWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-                Thread blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-                blackScreenThread.Start();
-
+                if (blackScreenThread == null)
+                {
+                    blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+                    @blackScreenThread.Start();
+                }
             }
         }
 

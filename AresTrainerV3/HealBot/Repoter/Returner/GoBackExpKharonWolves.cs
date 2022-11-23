@@ -42,7 +42,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             }
             ProgramHandle.SetCameraForExpBot();
 
-            for (int i = 0; i < 2 + randomizer.Next(4); i++)
+            for (int i = 0; i < 5 + randomizer.Next(4); i++)
             {
                 MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(100), 10);
                 while (ProgramHandle.isNowRunningOut())
