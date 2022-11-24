@@ -34,6 +34,7 @@ namespace AresTrainerV3
         public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
         public static HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
         globalKeyboardHook gkh = new globalKeyboardHook();
+        Random randomizer = new Random();
 
         MoverRandom ExpBotMoverToRun;
 
@@ -159,7 +160,7 @@ namespace AresTrainerV3
         void Start1HitKoThread()
         {
             ProgramHandle.SetCameraLong();
-            CurrentlySelectedClass = SkillSelector.SelectPropperClass();
+/*            CurrentlySelectedClass = SkillSelector.SelectPropperClass();
 
             Thread.Sleep(50);
             ProgramHandle.RequestStopAnim();
@@ -175,7 +176,7 @@ namespace AresTrainerV3
                 animbotThread = new Thread(() => ProgramHandle.Start1HitKO(CurrentlySelectedClass));
                 animbotThread.Start();
             }
-        }
+*/        }
 
 
 
@@ -674,6 +675,12 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverKharonWolves();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
             }
+            else if (ExpBotComboBox.Text == "Sloth1stFloor")
+            {
+                ExpBotMoverToRun = new MoverSloth1stFloor();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
+            }
+            
             if (CollectorComboBox.Text == "+Event")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
@@ -750,8 +757,14 @@ namespace AresTrainerV3
             ExpBotMoverToRun.StartExpBotThread();
 
         }
+
         private void fasttest_Click(object sender, EventArgs e)
         {
+
+
+            ProgramHandle.SetCameraForExpBot();
+            Thread.Sleep(500);
+
             var date = DateTime.Now;
             if (date.Hour == 5)
             {

@@ -493,7 +493,8 @@
             "HershalLowLvl",
             "HershalLeafMages",
             "HershalUWC1stFloor",
-            "KharonWolves"});
+            "KharonWolves",
+            "Sloth1stFloor"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(727, 214);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);

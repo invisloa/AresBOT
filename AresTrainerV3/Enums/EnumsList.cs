@@ -18,7 +18,8 @@ namespace AresTrainerV3.Enums
             HershalLowLvl,
             HershalLeafMages,
             HershalUWC1stFloor,
-            KharonWolves
+            KharonWolves,
+            Sloth1stFloor
         }
         public enum WhatToCollectEnums
         {
