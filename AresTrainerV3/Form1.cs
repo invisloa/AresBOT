@@ -457,9 +457,9 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
-            BuyerPotions.HpPotionsToBuy = 60;
+            BuyerPotions.HpPotionsToBuy = 50;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            BuyerPotions.MpPotionsToBuy = 35;
+            BuyerPotions.MpPotionsToBuy = 30;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             BuyerPotions.SpeedPotionsToBuy = 3;
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
@@ -789,7 +789,9 @@ namespace AresTrainerV3
     }
 /*    
     
+    TODO
 
+    Mage power items sell SET there are only 1 stats
 
 
 */
