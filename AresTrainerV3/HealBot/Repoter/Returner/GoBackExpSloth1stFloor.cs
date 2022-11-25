@@ -19,7 +19,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
 
         bool teleportToSloth1stExpBot()
         {
-            Thread.Sleep(2000);
+            Thread.Sleep(1000);
 
             if (teleportToKharonPlateu())
             {
@@ -47,9 +47,9 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                 {
                     for (int y = 0; y < 3; y++)
                     {
-                        Thread.Sleep(500);
+                        Thread.Sleep(1000);
                         ProgramHandle.TeleportToPositionTuple(TeleportValues.KharonPlateuSlothEntraceTuple);
-                        Thread.Sleep(200);
+                        Thread.Sleep(1000);
                         ProgramHandle.TeleportToPositionTuple(TeleportValues.KharonPlateuSlothEntraceTuple);
                         if (ProgramHandle.GetPositionX == 1148190218)
                         {
@@ -62,7 +62,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                                 {
                                     Thread.Sleep(1500);
                                     ProgramHandle.SetCameraForExpBot();
-                                    MouseOperations.MoveAndLeftClickOperation(960 + randomizer.Next(200), 700 + randomizer.Next(100), 150);
+                                    MouseOperations.MoveAndLeftClickOperation(960 + randomizer.Next(200), 700 + randomizer.Next(60), 150);
 
                                     return true;
                                 }

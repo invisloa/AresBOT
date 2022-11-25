@@ -103,7 +103,7 @@ namespace AresTrainerV3.ItemCollect
                     {
                                 MouseOperations.SetCursorPosition(x , y);
                                 ProgramHandle.waitMouseInPos();
-                        AttackWhenPointedOnMob();
+                                AttackWhenPointedOnMob();
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
