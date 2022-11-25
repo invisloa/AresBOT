@@ -95,6 +95,8 @@ namespace AresTrainerV3.HealBot.Repoter
             Thread.Sleep(500);
             if (isCurrentCity == repotCityCheck)
             {
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
                 Thread.Sleep(1000);
                 MoveToRepot();
                 Thread.Sleep(+randomizer.Next(1, 500));
@@ -114,12 +116,10 @@ namespace AresTrainerV3.HealBot.Repoter
                 }
                 else
                 {
-                Thread.Sleep(50000);
+                Thread.Sleep(10000);
                 this.GoRepot();
                 } 
             }
-
-
         }
         public void MoveToRepotWithPositions(Tuple<int, int>[] citySpecificPositions)
         {
@@ -138,21 +138,27 @@ namespace AresTrainerV3.HealBot.Repoter
                 }
             }
         }
-        protected virtual bool checkIfCloseToShop()
+        protected  bool checkIfCloseToShop()
         {
             if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
             {
-                if (ProgramHandle.GetPositionShortX > 17412 && ProgramHandle.GetPositionShortX < 17415 && ProgramHandle.GetPositionShortY < 17415 && ProgramHandle.GetPositionShortY > 17412)
-                {
-                    return true;
-                }
-                else { return false; }
+                if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
+                    && ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
+                { return true; }
+                else
+                { return false; }
             }
-            else
+            else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
             {
-                return true;
-            } 
-            
+                if (ProgramHandle.GetPositionX > 1125115858 && ProgramHandle.GetPositionX < 1125782038
+                    && ProgramHandle.GetPositionY > 1125170820 && ProgramHandle.GetPositionY < 1125701048)
+                { return true; }
+                else
+                { return false; }
+            }
+
+            return true;
+
         }
 
 

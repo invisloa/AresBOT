@@ -170,12 +170,13 @@ namespace AresTrainerV3.HealBot
         }
         protected void StartHealBot()
         {
-            SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
             ProgramHandle.SetGameAsMainWindow();
-            ClassRebuffer.StartRebuffThread();
             expPlaceToStartSetter();
-
             RequestStopHealBot();
+
+            SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
+            ClassRebuffer.StartRebuffThread();
+
             if (SelfSetHealValue)
             {
                 setHealValue();
@@ -232,10 +233,6 @@ namespace AresTrainerV3.HealBot
             whatToCollectSetter();
             repoterCity.GoRepot();
             var date = DateTime.Now;
-            if (date.Hour == 5)
-            {
-                System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-            }
             _goBackExpPlace.GoBackExp();
             ExpBotToStart.StartExpBotThread();
 
@@ -346,7 +343,6 @@ namespace AresTrainerV3.HealBot
         {
             if (whichBotThreadToStart == MoverBotEnums.NoRepot)
             {
-               // System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                 repoterCity = null;
                 _goBackExpPlace = null;
             }

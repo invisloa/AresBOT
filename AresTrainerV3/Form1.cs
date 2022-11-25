@@ -160,8 +160,8 @@ namespace AresTrainerV3
         void Start1HitKoThread()
         {
             ProgramHandle.SetCameraLong();
-/*            CurrentlySelectedClass = SkillSelector.SelectPropperClass();
-
+            /*            CurrentlySelectedClass = SkillSelector.SelectPropperClass();
+            */
             Thread.Sleep(50);
             ProgramHandle.RequestStopAnim();
             Thread.Sleep(50);
@@ -169,14 +169,14 @@ namespace AresTrainerV3
 
             if (animbotThread == null)
             {
-                animbotThread = new Thread(() => ProgramHandle.Start1HitKO(CurrentlySelectedClass));
+                animbotThread = new Thread(() => ProgramHandle.Start1HitKO());
             }
             if (!animbotThread.IsAlive)
             {
-                animbotThread = new Thread(() => ProgramHandle.Start1HitKO(CurrentlySelectedClass));
+                animbotThread = new Thread(() => ProgramHandle.Start1HitKO());
                 animbotThread.Start();
             }
-*/        }
+        }
 
 
 
@@ -760,7 +760,12 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(500);
+            HealBotAbstract.RequestStopHealBot();
 
+            SkillSelectorSpearAlli spearbuff = new SkillSelectorSpearAlli();
+            spearbuff.Rebuff();
 
             ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(500);

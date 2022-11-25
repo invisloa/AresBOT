@@ -25,9 +25,25 @@ namespace AresTrainerV3.SkillSelection
             else
                 return new SkillSelectorArcerAli();
         }
+
+        protected void checkIfAttackSkillIsSelected()
+        {
+            if (ProgramHandle.isCurrentSkill() != 2)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    if (ProgramHandle.isCurrentSkill() != 2)
+                    {
+                        KeyPresser.PressKey(3, 50, 50);
+                        Thread.Sleep(10);
+                    }
+
+                }
+            }
+
+        }
         public abstract void SkillAssign();
         public abstract void Rebuff();
-
         public void StartRebuffThread()
         {
                 Thread SkillSelectorThread = new Thread(Rebuff);

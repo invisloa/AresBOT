@@ -15,12 +15,11 @@ namespace AresTrainerV3.MoveRandom
 {
     public abstract class MoverRandom : ExpBotManagerAbstract, IMoveToPositon
     {
-        int _lastMouseMovePosition = 0;
-        int _lastPositionAfterBounce = 0;
-        int _incrementalRandomizer = 0;
-        bool tooLowDistance = false;
-        Random randomizer = new Random();
-        MoveRandomPositions positionsToMove = new MoveRandomPositions();
+        protected int _lastMouseMovePosition = 0;
+        protected int _lastPositionAfterBounce = 0;
+        protected bool tooLowDistance = false;
+        protected Random randomizer = new Random();
+        protected MoveRandomPositions positionsToMove = new MoveRandomPositions();
         protected abstract int moveOnlyOnMapX
         {
             get;
@@ -46,9 +45,9 @@ namespace AresTrainerV3.MoveRandom
             }
         }
 
-        int MovePositionRandomizer(int i)
+        protected int MovePositionRandomizer(int i)
         {
-            i = randomizer.Next(i - 2, i + 3); // not less then i-2 and not more then i+2
+            i = randomizer.Next(i - 1, i + 2); // not less then i-1 and not more then i+1
             if (i >= positionsToMove.MovePositionsArray.Length)  // transform if i> length of array
             {
                 return i - positionsToMove.MovePositionsArray.Length;
@@ -78,7 +77,7 @@ namespace AresTrainerV3.MoveRandom
             Thread.Sleep(50);
         }
 
-        void MoveToPosRandom()
+        protected virtual void MoveToPosRandom()
         {
             if (ProgramHandle.isInCity != 1)
             {
@@ -130,7 +129,11 @@ namespace AresTrainerV3.MoveRandom
                     else
                     {
                         Thread.Sleep(5000);
-                        if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
+                        if (moveOnlyOnMapX == TeleportValues.SlothFloor1 && ProgramHandle.GetCurrentMap ==  TeleportValues.KharonPlateau)
+                        {
+                            Form1.HealbotToRun.RepotAndStartExpBot();
+                        }
+                        else if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
                         {
                             ExpBotManagerAbstract.RequestStopExpBot();
                             HealBotAbstract.RequestStopHealBot();
@@ -146,7 +149,7 @@ namespace AresTrainerV3.MoveRandom
             _lastMouseMovePosition =i;
             MoveToPosRandom();
         }
-        void leftLimitBounce()
+        protected virtual void leftLimitBounce()
         {
             if (_lastMouseMovePosition > 16)
             {

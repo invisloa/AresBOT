@@ -12,6 +12,7 @@ namespace AresTrainerV3.AttackMob
 {
     public static class AttackMobCollectSod
     {
+        public static bool IsAttackingPixel = false;
         static int attackUnstackCounter = 0;
         static void WaitForAttackEnd()
         {
@@ -72,6 +73,8 @@ namespace AresTrainerV3.AttackMob
                 Thread.Sleep(50);
                 if (ProgramHandle.isMouseClickedOnMob == 1)
                 {
+                    IsAttackingPixel = true;
+
                     attackUnstackCounter = 0;
 
                     Debug.WriteLine($"Mouse Clicked On Mob==1");
@@ -88,6 +91,8 @@ namespace AresTrainerV3.AttackMob
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 //   Thread.Sleep(100);
                 Debug.WriteLine($"Mouse R UP");
+                IsAttackingPixel = false;
+
             }
         }
         public static bool CheckIfSelectedAndAttackSkill()

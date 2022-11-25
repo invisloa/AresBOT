@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MoveRandom
 {
-    internal class MoveRandomPositions
+    public class MoveRandomPositions
     {
         public  Tuple<int, int>[] MovePositionsArray =
         {

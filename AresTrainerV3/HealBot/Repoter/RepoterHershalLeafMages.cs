@@ -14,14 +14,6 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     internal class RepoterHershalLeafMages : RepotAbstract
     {
-        protected override bool checkIfCloseToShop()
-        {
-            if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
-                && ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
-            { return true; }
-            else
-            { return false; }
-        }
         protected override BuyerPotions BuyerPotionsCity
         {
             get

@@ -12,6 +12,47 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
+        void waitForAttackEnd()
+        {
+            while (ProgramHandle.isAttacking())
+            {
+                Thread.Sleep(50);
+            }
+            Thread.Sleep(50);
+            if (ProgramHandle.isAttacking())
+            {
+                waitForAttackEnd();
+            }
+            Thread.Sleep(50);
+            if (ProgramHandle.isAttacking())
+            {
+                waitForAttackEnd();
+            }
+        }
+        void AttackWhenPointedOnMob()
+        {
+            if (!AttackMobCollectSod.IsAttackingPixel)
+            {
+                if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000)
+                {
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+                    Debug.WriteLine($"Mouse R Down");
+                    Thread.Sleep(50);
+                    if (ProgramHandle.isMouseClickedOnMob == 1)
+                    {
+                        waitForAttackEnd();
+                        Debug.WriteLine($"Mouse Clicked On Mob==1");
+                    }
+
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                    //   Thread.Sleep(100);
+                    Debug.WriteLine($"Mouse R UP");
+
+                }
+            }
+
+        }
         IWhatToCollect _whatToCollect { get; }
         IWhatToCollect CollectIgnoringWeight = new CollectSod();
         public PixelItemCollector(IWhatToCollect whatToCollect)
@@ -60,12 +101,9 @@ namespace AresTrainerV3.ItemCollect
                     Color currentPixelColor = bitmap.GetPixel(x, y);
                     if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
-                        for (int i = -1; i < 2; i++)
-                        {
-                            for (int z = -1; z < 2; z++)
-                            {
-                                MouseOperations.SetCursorPosition(x + (3 * i), y + (3 * z));
+                                MouseOperations.SetCursorPosition(x , y);
                                 ProgramHandle.waitMouseInPos();
+                        AttackWhenPointedOnMob();
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
@@ -75,10 +113,6 @@ namespace AresTrainerV3.ItemCollect
 
                                     return true;
                                 }
-
-                            }
-                        }
-
                     }
                 }
             }
@@ -91,32 +125,27 @@ namespace AresTrainerV3.ItemCollect
                     Color currentPixelColor = bitmap.GetPixel(x, y);
                     if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
-                        for (int i = -1; i < 2; i++)
+                        MouseOperations.SetCursorPosition(x, y);
+                        ProgramHandle.waitMouseInPos();
+                        AttackWhenPointedOnMob();
+
+                        /*                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                                        {
+                                                            //   Debug.WriteLine("1 attack for");
+
+                                                            RepotAbstract.IsScanRunning = false;
+                                                            GC.Collect();
+                                                            return true;
+                                                        }
+                        */
+                        if (whatToCollect.ClickAndCollectWhatItem())
                         {
-                            for (int z = -1; z < 2; z++)
-                            {
-                                MouseOperations.SetCursorPosition(x + (2 * i), y + (2 * z));
-                                ProgramHandle.waitMouseInPos();
-/*                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                {
-                                    //   Debug.WriteLine("1 attack for");
+                            RepotAbstract.IsScanRunning = false;
 
-                                    RepotAbstract.IsScanRunning = false;
-                                    GC.Collect();
-                                    return true;
-                                }
-*/               
-                                if (whatToCollect.ClickAndCollectWhatItem())
-                                {
-                                    RepotAbstract.IsScanRunning = false;
-
-                                    Debug.WriteLine("EndCollect");
-                                    GC.Collect();
-                                    return true;
-                                }
-                            }
+                            Debug.WriteLine("EndCollect");
+                            GC.Collect();
+                            return true;
                         }
-
                     }
                 }
             }
@@ -145,7 +174,9 @@ namespace AresTrainerV3.ItemCollect
                         */
                         MouseOperations.SetCursorPosition(x , y);
                         ProgramHandle.waitMouseInPos();
-                                if (whatToCollect.ClickAndCollectWhatItem())
+                        AttackWhenPointedOnMob();
+
+                        if (whatToCollect.ClickAndCollectWhatItem())
                                 {
                                     RepotAbstract.IsScanRunning = false;
                                     Debug.WriteLine("Under Foot Scan PixelScanUnderChar");

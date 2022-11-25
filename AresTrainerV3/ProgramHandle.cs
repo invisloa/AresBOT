@@ -160,13 +160,20 @@ namespace AresTrainerV3
                 return memSkill.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.classSelected));
             }
         }
-        public static byte getBuff1Informations
+        public static Tuple<int,int, int, int> getBuff1Informations
         {
+
             get
             {
-                return memRebuff.readByte(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1ActiveOffOffset));
-            }
+                {
+                    int firstbuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1FirstOffset))), 0);
+                    int secondBuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, (PointersAndValues.Buff2FirstOffset)))), 0);
+                    int thirdBuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff3FirstOffset))), 0);
+                    int forthBuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff4FirstOffset))), 0);
 
+                    return new Tuple<int, int, int, int>(firstbuff, secondBuff, thirdBuff, forthBuff);
+                }
+            }
         }
 
         static void SetGamePosition () // On laptop the position is different on screen
@@ -251,9 +258,7 @@ namespace AresTrainerV3
 
             UIWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.UiWindowMOffset));
 
-            BuffWindowMOffset = memRebuff.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.UiWindowMOffset));
-         
-            BuffWindowMOffset = memRebuff.readpointer(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1Active2MOffset));
+            BuffWindowMOffset = memRebuff.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.Buff1FirstOffOffset));
 
             isCurrentSkillTabMOffset = memSkill.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.CurrentSkillTabMOffset));
 
@@ -338,7 +343,7 @@ namespace AresTrainerV3
                 _stopBot = true;
         }
 
-        public static void Start1HitKO(SkillSelector skillSelector)
+        public static void Start1HitKO(/*SkillSelector skillSelector*/)
         {
 
             while (_stopAnim)
@@ -346,13 +351,13 @@ namespace AresTrainerV3
                 if(ProgramHandle.isInCity != 1)
                 {
                  //  skillSelector.SkillAssign();
-                    memSkill.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(SkillToOverride));
+                 // memSkill.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.skill1Offset), BitConverter.GetBytes(SkillToOverride));
                  //   memSkill.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.visualSkillAttack), BitConverter.GetBytes(0));
 
                   //  skillSelector.Rebuff();
                 }
 
-                // memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
+                memNormal.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.clickDelayPointer), BitConverter.GetBytes(0));
                 #region OldAnimFunction
 
                 /*                // anim 1 

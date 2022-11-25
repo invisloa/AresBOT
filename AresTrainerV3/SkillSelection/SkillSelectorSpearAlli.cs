@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AresTrainerV3.HealBot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,20 +9,56 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorSpearAlli : SkillSelector
     {
+        int firstBuff, secondBuff, thirdBuff, fourthBuff;
+        int buff1value = PointersAndValues.BuffSpearMeditation;
+        int buff2value = -1;
+        int buff3value = -1;
+
+        bool buffIsNotActive(int buffValue)
+        {
+
+            if (buffValue == firstBuff || buffValue == secondBuff || buffValue == thirdBuff || buffValue == fourthBuff)
+            {
+                return false;
+            }
+
+            return true;
+        }
         public override void Rebuff()
         {
-            if (ProgramHandle.isInCity != 1)
+            while (HealBotAbstract.IsHealBotRunning == true)
             {
-/*                KeyPresser.PressKey(4, 100, 100);
-                SkillAssign();
-                KeyPresser.PressKey(4, 100, 100);
-                SkillAssign();
-                KeyPresser.PressKey(4, 100, 100);
-                KeyPresser.PressKey(3, 100, 100);
-                Thread.Sleep(150000);
+                if (ProgramHandle.isInCity != 1)
+                {
+                    firstBuff = ProgramHandle.getBuff1Informations.Item1;
+                    secondBuff = ProgramHandle.getBuff1Informations.Item2;
+                    thirdBuff = ProgramHandle.getBuff1Informations.Item3;
+                    fourthBuff = ProgramHandle.getBuff1Informations.Item4;
 
-*/            }
- 
+
+                    if (buffIsNotActive(buff1value))
+                    {
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(4, 50, 50);
+                        KeyPresser.PressKey(4, 50, 50);
+                    }
+                    if (buffIsNotActive(buff2value))
+                    {
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                    }
+                    if (buffIsNotActive(buff2value))
+                    {
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                    }
+                    checkIfAttackSkillIsSelected();
+                }
+                Thread.Sleep(5000);
+            }
+
         }
 
         public override void SkillAssign()

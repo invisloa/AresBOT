@@ -156,7 +156,7 @@ namespace AresTrainerV3
         public static Tuple<int, int, int, int> moverRandomHershalLeafMages = new Tuple<int, int, int, int>(1127987620, 1133037274, 1133101347, 1131251099);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomUWC1stFloor = new Tuple<int, int, int, int>(1110493212, 1116984574, 1122140674, 1110027219);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomKharonWolves = new Tuple<int, int, int, int>(1120173211, 1130046682, 1129089075, 1126879685);  //Left,Up,Right,Down
-        public static Tuple<int, int, int, int> moverRandomSloth1stFloor = new Tuple<int, int, int, int>(1120205799, 1137975177, 1125905268, 1137659923);  //Left,Up,Right,Down
+        public static Tuple<int, int, int, int> moverRandomSloth1stFloor = new Tuple<int, int, int, int>(1124434047, 1137975177, 1125905268, 1137659923);  //Left,Up,Right,Down
 
 
 

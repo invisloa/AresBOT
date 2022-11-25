@@ -50,11 +50,13 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                         Thread.Sleep(500);
                         ProgramHandle.TeleportToPositionTuple(TeleportValues.KharonPlateuSlothEntraceTuple);
                         Thread.Sleep(200);
+                        ProgramHandle.TeleportToPositionTuple(TeleportValues.KharonPlateuSlothEntraceTuple);
                         if (ProgramHandle.GetPositionX == 1148190218)
                         {
                             ProgramHandle.SetCameraForExpBot();
                             for (int z = 0; z < 8; z++)
                             {
+
                                 MouseOperations.MoveAndLeftClickOperation(1060, 520, 150);
                                 if (ProgramHandle.GetCurrentMap == TeleportValues.SlothFloor1)
                                 {
@@ -103,14 +105,17 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                 MouseOperations.MoveAndLeftClickOperation(930, 150, 100);
                 if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
                 {
+                    ProgramHandle.SetCameraForExpBot();
                     MouseOperations.MoveAndLeftClickOperation(930, 460, 100);
                 }
                 if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
                 {
+                    ProgramHandle.SetCameraForExpBot();
                     MouseOperations.MoveAndLeftClickOperation(930, 150, 100);
                 }
                 if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
                 {
+                    ProgramHandle.SetCameraForExpBot();
                     MouseOperations.MoveAndLeftClickOperation(930, 460, 100);
                 }
                 if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)

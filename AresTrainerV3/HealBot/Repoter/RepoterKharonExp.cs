@@ -34,7 +34,7 @@ namespace AresTrainerV3.HealBot.Repoter
 
         protected override void MoveToRepot()
         {
-            Thread.Sleep(500+ randomizer.Next(1,3000));
+            Thread.Sleep(1000+ randomizer.Next(1,3000));
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
@@ -42,10 +42,18 @@ namespace AresTrainerV3.HealBot.Repoter
                 ProgramHandle.SetCameraLong();
                 Thread.Sleep(100 + randomizer.Next(1, 1000));
 
-                MouseOperations.MoveAndLeftClickOperation(1125, 253, 500);
+                MouseOperations.MoveAndLeftClickOperation(1125, 253, 200);
+                Thread.Sleep(500);
+                if (ProgramHandle.isNowStandingCity())
+                {
+                    MouseOperations.MoveAndLeftClickOperation(1125, 253, 200);
+                    Thread.Sleep(500);
+
+                }
+
                 while (!ProgramHandle.isNowStandingCity())
                 {
-                    Thread.Sleep(1);
+                    Thread.Sleep(50);
                 }
             }
         }

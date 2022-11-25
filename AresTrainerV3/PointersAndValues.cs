@@ -218,8 +218,11 @@ public static class PointersAndValues
     public const int CurrentSkillTabMOffset = 0x58;
     public const int StorageWindow2MOffset = 0x94;
     public const int InventoryWindow2MOffset = 0x60;
-    public const int Buff1Active2MOffset = 0x15c;
-    public const int Buff1ActiveOffOffset = 0x114;
+    public const int Buff1FirstOffOffset = 0x15c;
+    public const int Buff1FirstOffset = 0x118;  // second is 0x150 every next is 0x38 or +70 dec
+    public const int Buff2FirstOffset = 0x158;  // second is 0x150 every next is 0x38 or +70 dec
+    public const int Buff3FirstOffset = 0x198;  // second is 0x150 every next is 0x38 or +70 dec
+    public const int Buff4FirstOffset = 0x1d8;  // second is 0x150 every next is 0x38 or +70 dec
 
     public const int CurrentSkillTabOffOffset = 0x174;
 
@@ -238,6 +241,10 @@ public static class PointersAndValues
     public const int AntiBlack3Offset = 0xb10;
 
 
+    // BUFF VALUES
+
+    public const int BuffSpearMeditation = 3353;
+    public const int BuffSpearShout = 3354;
 
 
 
