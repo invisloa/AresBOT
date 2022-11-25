@@ -35,7 +35,7 @@ namespace AresTrainerV3.SkillSelection
                     thirdBuff = ProgramHandle.getBuff1Informations.Item3;
                     fourthBuff = ProgramHandle.getBuff1Informations.Item4;
 
-
+                     
                     if (buffIsNotActive(buff1value))
                     {
                         KeyPresser.PressKey(4, 50, 50);
