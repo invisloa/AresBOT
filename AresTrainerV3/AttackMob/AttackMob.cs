@@ -70,7 +70,7 @@ namespace AresTrainerV3.AttackMob
             {
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Debug.WriteLine($"Mouse R Down");
-                Thread.Sleep(100);
+                Thread.Sleep(300);
                 if (ProgramHandle.isMouseClickedOnMob == 1)
                 {
                     IsAttackingPixel = true;

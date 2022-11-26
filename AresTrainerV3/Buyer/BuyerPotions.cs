@@ -41,7 +41,7 @@ namespace AresTrainerV3.Buyer
             bool midleNumberPressed = false;
             bool lastNumberPressed = false;
 
-            for (int x = 3; x >0 ; x--)
+            for (int x = 9; x >0 ; x--)
             {
                 if(numberOfPotionToBuy > x*100-1)
                 {
