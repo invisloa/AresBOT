@@ -16,7 +16,7 @@ namespace AresTrainerV3.AttackMob
         static int attackUnstackCounter = 0;
         static void WaitForAttackEnd()
         {
-            Thread.Sleep(200);
+            Thread.Sleep(500);
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 
@@ -70,7 +70,7 @@ namespace AresTrainerV3.AttackMob
             {
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
                 Debug.WriteLine($"Mouse R Down");
-                Thread.Sleep(50);
+                Thread.Sleep(100);
                 if (ProgramHandle.isMouseClickedOnMob == 1)
                 {
                     IsAttackingPixel = true;
