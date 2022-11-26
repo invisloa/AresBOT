@@ -36,13 +36,13 @@ namespace AresTrainerV3.AttackMob
                     anywhereUnstucker.AttackUnstacker();
                 }
             }
-            Thread.Sleep(20);
+            Thread.Sleep(50);
             if (ProgramHandle.isAttacking())
             {
                 WaitForAttackEnd();
             }
-            Thread.Sleep(20);
-            if (ProgramHandle.isNowRunningOut())
+            Thread.Sleep(50);
+            if (ProgramHandle.isAttacking())
             {
                 Thread.Sleep(200);
                 WaitForAttackEnd();
