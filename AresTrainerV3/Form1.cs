@@ -760,7 +760,9 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetGameAsMainWindow();
+            int i = ProgramHandle.getCurrentAttackSpeed;
+            Debug.WriteLine(i);
+/*            ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(500);
             HealBotAbstract.RequestStopHealBot();
 
@@ -774,7 +776,7 @@ namespace AresTrainerV3
             if (date.Hour == 5)
             {
                 Debug.WriteLine("zzzz");
-            }
+*/          
             /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
                         ProgramHandle.SetGameAsMainWindow();
                         ProgramHandle.SetCameraForExpBot();
