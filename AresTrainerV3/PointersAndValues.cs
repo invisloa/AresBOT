@@ -14,8 +14,10 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public static int MaxCollectWeight = 1780;
-    public const int MaxCollectWeightNormalValue = 1780;
+    public static int MaxCollectWeight = 2280;
+    public const int MaxCollectWeightNormalValue = 2280;
+    public const int mouseWaitTimeMs = 1;
+
 
     public static string GameProcessName
     {
@@ -267,7 +269,7 @@ public static class PointersAndValues
     public const int castingSpeeDelaydZero = 16256;
     public const int castingSpeedDelayPlus1 = 16230;
     public const int castingSpeedDelayPlus2 = 16204;
-
+    
     
     
     

@@ -11,7 +11,6 @@ namespace AresTrainerV3
 
     public class ProgramHandle
     {
-        public static int mouseWaitTimeMs = 1;
         public static string processName = PointersAndValues.GameProcessName;
         public static string foregroundProcessName = PointersAndValues.GameWindowProcessName;
         public static string foregroundWindowName = PointersAndValues.GameWindowVisualName;
@@ -1091,13 +1090,18 @@ namespace AresTrainerV3
                 return false;
             }
         }
-        public static void waitMouseInPos()
+        public static void waitMouseInPosAttack()
         {
             var sw = Stopwatch.StartNew();
-            while (sw.ElapsedMilliseconds < mouseWaitTimeMs)
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1000)
             {
-                return;
+                Thread.Sleep(0);
             }
+        }
+        public static void waitMouseInPosScanUnder()
+        {
+            waitMouseInPosAttack();
+            waitMouseInPosAttack();
         }
 
         public static bool isNowStandingOut()

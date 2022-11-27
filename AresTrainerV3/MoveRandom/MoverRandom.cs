@@ -20,6 +20,7 @@ namespace AresTrainerV3.MoveRandom
         protected bool tooLowDistance = false;
         protected Random randomizer = new Random();
         protected MoveRandomPositions positionsToMove = new MoveRandomPositions();
+        bool movedMainMove = true;
         protected abstract int moveOnlyOnMapX
         {
             get;
@@ -217,6 +218,7 @@ namespace AresTrainerV3.MoveRandom
             {        //int maxLimitLeft, int maxUpLimit, int maxRightLimit, int maxDownLimit
                 if (ProgramHandle.GetPositionX > DirectionsLimts.Item1 && ProgramHandle.GetPositionX < DirectionsLimts.Item3 && ProgramHandle.GetPositionY < DirectionsLimts.Item2 && ProgramHandle.GetPositionY > DirectionsLimts.Item4)
                 {
+                    movedMainMove = true;
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving()) ;
                     Debug.WriteLine("MainMoveClick");
@@ -228,51 +230,62 @@ namespace AresTrainerV3.MoveRandom
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    leftLimitBounce();
-                    _lastPositionAfterBounce = _lastMouseMovePosition;
-
-
-/*                    for (int i = 0; i < sideMoveCount; i++)
+                    if (movedMainMove)
                     {
-                        if (ProgramHandle.GetPositionX < DirectionsLimts.Item1 && ExpBotManagerAbstract.isExpBotRunning)
-                        {
-                           // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                            MoveToPosRandom(_lastPositionAfterBounce);
-                        }
+                        leftLimitBounce();
                     }
-*/                    MoveToPosRandom(_lastPositionAfterBounce);
+                    movedMainMove = false;
+
+
+                    /*                    for (int i = 0; i < sideMoveCount; i++)
+                                        {
+                                            if (ProgramHandle.GetPositionX < DirectionsLimts.Item1 && ExpBotManagerAbstract.isExpBotRunning)
+                                            {
+                                               // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
+                                                MoveToPosRandom(_lastPositionAfterBounce);
+                                            }
+                                        }
+                    */
+                    MoveToPosRandom(_lastMouseMovePosition);
 
                 }
                 else if(ProgramHandle.GetPositionX > DirectionsLimts.Item3)
                 {
+
                     Debug.WriteLine("maxRightLimit");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     // unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    rightLimitBounce();
-                    _lastPositionAfterBounce = _lastMouseMovePosition;
-
-/*                    for (int i = 0; i < sideMoveCount; i++)
+                    if (movedMainMove)
                     {
-                        if (ProgramHandle.GetPositionX > DirectionsLimts.Item3 && ExpBotManagerAbstract.isExpBotRunning)
-                        {
-                           // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                            MoveToPosRandom(_lastPositionAfterBounce);
-                        }
+                        rightLimitBounce();
                     }
-*/                    MoveToPosRandom(_lastPositionAfterBounce);
+                    movedMainMove = false;
+                    /*                    for (int i = 0; i < sideMoveCount; i++)
+                                        {
+                                            if (ProgramHandle.GetPositionX > DirectionsLimts.Item3 && ExpBotManagerAbstract.isExpBotRunning)
+                                            {
+                                               // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
+                                                MoveToPosRandom(_lastPositionAfterBounce);
+                                            }
+                                        }
+                    */
+                    MoveToPosRandom(_lastMouseMovePosition);
 
 
                 }
                 else if(ProgramHandle.GetPositionY < DirectionsLimts.Item4)
                 {
+
                     Debug.WriteLine("maxDownLimit");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    downLimitBounce();
-                    _lastPositionAfterBounce = _lastMouseMovePosition;
-
+                    if (movedMainMove)
+                    {
+                        downLimitBounce();
+                    }
+                    movedMainMove = false;
                     /*                    for (int i = 0; i < sideMoveCount; i++)
                                         {
                                             if (ProgramHandle.GetPositionY < DirectionsLimts.Item4 && ExpBotManagerAbstract.isExpBotRunning)
@@ -282,18 +295,21 @@ namespace AresTrainerV3.MoveRandom
                                             }
                                         }
                     */
-                    MoveToPosRandom(_lastPositionAfterBounce);
+                    MoveToPosRandom(_lastMouseMovePosition);
 
                 }
                 else if (ProgramHandle.GetPositionY > DirectionsLimts.Item2)
                 {
+
                     Debug.WriteLine("maxUpLimit");
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    upLimitBounce();
-                    _lastPositionAfterBounce = _lastMouseMovePosition;
-
+                    if (movedMainMove)
+                    {
+                        upLimitBounce();
+                    }
+                    movedMainMove = false;
                     /*                    for (int i = 0; i < sideMoveCount; i++)
                                         {
                                             if(ProgramHandle.GetPositionY > DirectionsLimts.Item2 && ExpBotManagerAbstract.isExpBotRunning )
@@ -303,8 +319,7 @@ namespace AresTrainerV3.MoveRandom
                                             }
                                         } 
                     */
-                    MoveToPosRandom(_lastPositionAfterBounce);
-
+                    MoveToPosRandom(_lastMouseMovePosition);
                 }
                 return true;
             }
