@@ -97,6 +97,7 @@ namespace AresTrainerV3.MoveRandom
                             {
                                 if (ProgramHandle.isNowStandingOut())
                                 {
+                                    //movedMainMove = true;
                                     tooLowDistance = true;
                                     Debug.WriteLine("TOO LOW DISTANCE");
                                     int a = randomizer.Next(3);
@@ -218,7 +219,7 @@ namespace AresTrainerV3.MoveRandom
             {        //int maxLimitLeft, int maxUpLimit, int maxRightLimit, int maxDownLimit
                 if (ProgramHandle.GetPositionX > DirectionsLimts.Item1 && ProgramHandle.GetPositionX < DirectionsLimts.Item3 && ProgramHandle.GetPositionY < DirectionsLimts.Item2 && ProgramHandle.GetPositionY > DirectionsLimts.Item4)
                 {
-                    movedMainMove = true;
+                    //movedMainMove = true;
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving()) ;
                     Debug.WriteLine("MainMoveClick");
@@ -230,11 +231,11 @@ namespace AresTrainerV3.MoveRandom
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    if (movedMainMove)
+                   // if (movedMainMove)
                     {
                         leftLimitBounce();
                     }
-                    movedMainMove = false;
+                  //  movedMainMove = false;
 
 
                     /*                    for (int i = 0; i < sideMoveCount; i++)
@@ -256,11 +257,11 @@ namespace AresTrainerV3.MoveRandom
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     // unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    if (movedMainMove)
+                   // if (movedMainMove)
                     {
                         rightLimitBounce();
                     }
-                    movedMainMove = false;
+                   // movedMainMove = false;
                     /*                    for (int i = 0; i < sideMoveCount; i++)
                                         {
                                             if (ProgramHandle.GetPositionX > DirectionsLimts.Item3 && ExpBotManagerAbstract.isExpBotRunning)
@@ -281,11 +282,11 @@ namespace AresTrainerV3.MoveRandom
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    if (movedMainMove)
+                    //if (movedMainMove)
                     {
                         downLimitBounce();
                     }
-                    movedMainMove = false;
+                   // movedMainMove = false;
                     /*                    for (int i = 0; i < sideMoveCount; i++)
                                         {
                                             if (ProgramHandle.GetPositionY < DirectionsLimts.Item4 && ExpBotManagerAbstract.isExpBotRunning)
@@ -305,11 +306,11 @@ namespace AresTrainerV3.MoveRandom
                     // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
                     //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    if (movedMainMove)
+                   // if (movedMainMove)
                     {
                         upLimitBounce();
                     }
-                    movedMainMove = false;
+                   // movedMainMove = false;
                     /*                    for (int i = 0; i < sideMoveCount; i++)
                                         {
                                             if(ProgramHandle.GetPositionY > DirectionsLimts.Item2 && ExpBotManagerAbstract.isExpBotRunning )

@@ -16,6 +16,14 @@ namespace AresTrainerV3.AttackMob
         static int attackUnstackCounter = 0;
         static void WaitForAttackEnd()
         {
+            void checkIfIsNowAttackingAnimation()
+            {
+                Thread.Sleep(100);
+                if (ProgramHandle.isAttacking())
+                {
+                    WaitForAttackEnd();
+                }
+            }
             Thread.Sleep(500);
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
@@ -31,22 +39,14 @@ namespace AresTrainerV3.AttackMob
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
                 Debug.WriteLine(attackUnstackCounter);
-                if (attackUnstackCounter == 100)
+                if (attackUnstackCounter == 60)
                 {
                     anywhereUnstucker.AttackUnstacker();
                 }
             }
-            Thread.Sleep(50);
-            if (ProgramHandle.isAttacking())
-            {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(50);
-            if (ProgramHandle.isAttacking())
-            {
-                Thread.Sleep(200);
-                WaitForAttackEnd();
-            }
+            checkIfIsNowAttackingAnimation();
+            checkIfIsNowAttackingAnimation();
+            checkIfIsNowAttackingAnimation();
         }
 
         static bool isMobTargeted()
@@ -64,7 +64,7 @@ namespace AresTrainerV3.AttackMob
             else
                 return false;
         }
-        static void SkillAttack()
+        static bool SkillAttack()
         {
             if (ProgramHandle.isMobSelected != 0)
             {
@@ -81,31 +81,39 @@ namespace AresTrainerV3.AttackMob
                     MoverRandom.AttackedOrCollected = true;
 
                     WaitForAttackEnd();
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                    Debug.WriteLine($"Mouse R UP");
+                    IsAttackingPixel = false;
+                    return true;
+
+
                 }
                 else
                 {
                     Debug.WriteLine($"Mouse not Clicked On Mob");
-
+                    MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+                    Debug.WriteLine($"Mouse R UP");
+                    IsAttackingPixel = false;
+                    return false;
                 }
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-                //   Thread.Sleep(100);
-                Debug.WriteLine($"Mouse R UP");
-                IsAttackingPixel = false;
-
             }
+            return false;
         }
         public static bool CheckIfSelectedAndAttackSkill()
         {
             if (isMobTargeted())
             {
-                SkillAttack();
-                return true;
+                if (SkillAttack())
+                {
+                    return true;
+                }
+                return false;
             }
             else
             {
                 return false;
             }
+
         }
     }
 

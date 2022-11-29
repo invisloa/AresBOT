@@ -12,6 +12,7 @@ namespace AresTrainerV3.AttackMob
 {
     public static class PixelMobAttack
     {
+        static int moveMouseVector = 25;
         static Bitmap bitmap = new Bitmap(1340, 840);
         static Graphics graphics = Graphics.FromImage(bitmap as Image);
 
@@ -33,8 +34,8 @@ namespace AresTrainerV3.AttackMob
                         if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
-                              MouseOperations.SetCursorPosition(x+ 20, y);
-                            ProgramHandle.waitMouseInPosAttack();
+                              MouseOperations.SetCursorPosition(x+ moveMouseVector, y);
+                            ProgramHandle.waitMouseInPos();
 
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
@@ -44,8 +45,8 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                              MouseOperations.SetCursorPosition(x- 20, y);
-                            ProgramHandle.waitMouseInPosAttack();
+                              MouseOperations.SetCursorPosition(x- moveMouseVector, y);
+                            ProgramHandle.waitMouseInPos();
 
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
@@ -55,8 +56,8 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                            MouseOperations.SetCursorPosition(x, y + 20);
-                            ProgramHandle.waitMouseInPosAttack();
+                            MouseOperations.SetCursorPosition(x, y + moveMouseVector);
+                            ProgramHandle.waitMouseInPos();
 
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
@@ -66,8 +67,8 @@ namespace AresTrainerV3.AttackMob
                                 GC.Collect();
                                 return true;
                             }
-                              MouseOperations.SetCursorPosition(x, y- 20);
-                            ProgramHandle.waitMouseInPosAttack();
+                              MouseOperations.SetCursorPosition(x, y- moveMouseVector);
+                            ProgramHandle.waitMouseInPos();
 
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
@@ -95,8 +96,7 @@ namespace AresTrainerV3.AttackMob
 
                         {
                             MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPosAttack();
-
+                            ProgramHandle.waitMouseInPos();
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
                                 // Debug.WriteLine("2 attack for");
@@ -122,7 +122,7 @@ namespace AresTrainerV3.AttackMob
                         if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
                         {
                             MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPosAttack();
+                            ProgramHandle.waitMouseInPos();
 
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {

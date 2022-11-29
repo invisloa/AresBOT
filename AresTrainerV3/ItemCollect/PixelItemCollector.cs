@@ -102,7 +102,7 @@ namespace AresTrainerV3.ItemCollect
                     if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
                                 MouseOperations.SetCursorPosition(x , y);
-                                ProgramHandle.waitMouseInPosAttack();
+                                ProgramHandle.waitMouseInPos();
                                 AttackWhenPointedOnMob();
                                 if (whatToCollect.ClickAndCollectWhatItem())
                                 {
@@ -126,7 +126,7 @@ namespace AresTrainerV3.ItemCollect
                     if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
                     {
                         MouseOperations.SetCursorPosition(x, y);
-                        ProgramHandle.waitMouseInPosAttack();
+                        ProgramHandle.waitMouseInPos();
                         AttackWhenPointedOnMob();
 
                         /*                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())

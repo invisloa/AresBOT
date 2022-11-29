@@ -1090,7 +1090,7 @@ namespace AresTrainerV3
                 return false;
             }
         }
-        public static void waitMouseInPosAttack()
+        public static void waitMouseInPos()
         {
             var sw = Stopwatch.StartNew();
             while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1000)
@@ -1100,8 +1100,11 @@ namespace AresTrainerV3
         }
         public static void waitMouseInPosScanUnder()
         {
-            waitMouseInPosAttack();
-            waitMouseInPosAttack();
+            var sw = Stopwatch.StartNew();
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1500)
+            {
+                Thread.Sleep(0);
+            }
         }
 
         public static bool isNowStandingOut()
