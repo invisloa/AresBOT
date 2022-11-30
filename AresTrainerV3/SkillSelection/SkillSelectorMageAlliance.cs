@@ -23,7 +23,7 @@ namespace AresTrainerV3.SkillSelection
         }
         void UseRapidWhenLowSkillDelay()
         {
-            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
+            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus1)
             {
                 KeyPresser.PressKey(4, 100, 100);
                 KeyPresser.PressKey(4, 100, 100);

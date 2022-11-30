@@ -772,8 +772,12 @@ namespace AresTrainerV3
             AssignBot();
             HealbotToRun.StartHealBotThread();
             ProgramHandle.SetCameraForExpBot();
-            HealbotToRun.RepotAndStartExpBot();
-           // ExpBotMoverToRun.StartExpBotThread();
+            if (HealbotToRun.whichBotThreadToStart != Enums.EnumsList.MoverBotEnums.NoRepot)
+            {
+                HealbotToRun.RepotAndStartExpBot();
+            }
+            else
+                ExpBotMoverToRun.StartExpBotThread();
 
         }
 
