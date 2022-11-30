@@ -199,7 +199,7 @@ namespace AresTrainerV3.HealBot
                     MannaKeyPress();
                 }
                 WhiteRedPotionKeyPress();
-                if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
+                if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
                 {
                     RepotAndStartExpBot();
                 }

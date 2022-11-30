@@ -12,6 +12,7 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
+
         void waitForAttackEnd()
         {
             while (ProgramHandle.isAttacking())
@@ -61,7 +62,7 @@ namespace AresTrainerV3.ItemCollect
         }
         bool ScanAndCollect()
         {
-            if (ProgramHandle.getCurrentWeight < PointersAndValues.MaxCollectWeight && ProgramHandle.isInCity != 1)
+            if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
             {
                 return PixelScan(_whatToCollect);
             }
@@ -83,7 +84,7 @@ namespace AresTrainerV3.ItemCollect
         bool PixelScan(IWhatToCollect whatToCollect)
         {
             //Debug.WriteLine("Start PixelScan");
-            if(whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < PointersAndValues.MaxCollectWeight)
+            if(whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
 
             RepotAbstract.IsScanRunning = true;
            // Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
@@ -157,7 +158,7 @@ namespace AresTrainerV3.ItemCollect
         }
         public bool PixelScanUnderChar(IWhatToCollect whatToCollect)
         {
-            if (whatToCollect == CollectIgnoringWeight && ProgramHandle.getCurrentWeight < PointersAndValues.MaxCollectWeight)
+            if (whatToCollect == CollectIgnoringWeight && ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
             {
 
                 RepotAbstract.IsScanRunning = true;

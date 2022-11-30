@@ -14,8 +14,6 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public static int MaxCollectWeight;
-    public static int MaxCollectWeightNormalValue;
     public const int mouseWaitTimeMs = 1;
 
 

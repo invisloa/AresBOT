@@ -716,8 +716,22 @@ namespace AresTrainerV3
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
             }
-
-
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+            {
+                AbstractWhatToCollect.MaxCollectWeight = 2280;
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
+            {
+                AbstractWhatToCollect.MaxCollectWeight = 2080;
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+            {
+                AbstractWhatToCollect.MaxCollectWeight = 2180;
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+            {
+                AbstractWhatToCollect.MaxCollectWeight = 1980;
+            }
         }
         private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {

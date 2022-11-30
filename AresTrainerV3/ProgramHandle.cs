@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.SkillSelection;
+﻿using AresTrainerV3.ItemCollect;
+using AresTrainerV3.SkillSelection;
 using Microsoft.VisualBasic.Devices;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
@@ -279,9 +280,6 @@ namespace AresTrainerV3
             anim2Address = memSkill.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
             slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
-
-            PointersAndValues.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
-            PointersAndValues.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
 
             isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
             isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
