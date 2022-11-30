@@ -280,6 +280,8 @@ namespace AresTrainerV3
 
             slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
 
+            PointersAndValues.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
+            PointersAndValues.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
 
             isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
             isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
@@ -445,10 +447,6 @@ namespace AresTrainerV3
         public static int getCurrentWeight
         {
             get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
-        }
-        public static int getMaxWeight
-        {
-            get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightMaxOffset), 4)); }
         }
         public static int getCurrentHp
         {
@@ -909,6 +907,7 @@ namespace AresTrainerV3
             return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXShortOffset))), 0);
 
         }
+
         static int ReadPositionShortY()
         {
             return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYShortOffset))), 0);
@@ -989,6 +988,7 @@ namespace AresTrainerV3
         {
             return BitConverter.ToInt16(memSeller.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 4))));
         }
+
         public static byte isShopWindowStillOpen()
         {
             return memSeller.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1));
@@ -1019,6 +1019,11 @@ namespace AresTrainerV3
         {
            get { return BitConverter.ToInt16((memScanner.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))), 0); }
         }
+        public static int getMaxWeight
+        {
+            get { return BitConverter.ToInt16(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightMaxOffset), 0)); }
+        }
+
         public static int isMouseClickedOnMob
         {
             get { return BitConverter.ToInt16((memAttacking.readShort(proc.Handle, IntPtr.Add(isAttackingMob, 0))), 0); }

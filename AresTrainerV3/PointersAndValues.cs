@@ -14,8 +14,8 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public static int MaxCollectWeight = ProgramHandle.getMaxWeight-120;
-    public static int MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
+    public static int MaxCollectWeight;
+    public static int MaxCollectWeightNormalValue;
     public const int mouseWaitTimeMs = 1;
 
 
