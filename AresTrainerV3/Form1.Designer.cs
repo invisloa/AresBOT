@@ -494,12 +494,13 @@
             "HershalLeafMages",
             "HershalUWC1stFloor",
             "KharonWolves",
-            "Sloth1stFloor"});
+            "Sloth1stFloor",
+            "SlothNoIcebergs"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(727, 214);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
-            this.ExpBotComboBox.Text = "KharonWolves";
+            this.ExpBotComboBox.Text = "SlothNoIcebergs";
             this.ExpBotComboBox.SelectedIndexChanged += new System.EventHandler(this.ExpBotComboBox_SelectedIndexChanged);
             // 
             // PositionX

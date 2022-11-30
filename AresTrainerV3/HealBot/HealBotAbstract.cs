@@ -391,7 +391,13 @@ namespace AresTrainerV3.HealBot
             {
                 repoterCity = new RepoterKharonExp();
                 _goBackExpPlace = new GoBackExpSloth1stFloor();
-                _expBotToStart = new MoverSloth1stFloor() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                _expBotToStart = new MoverSloth1stFloorEntrace() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+            }
+            else if (whichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
+            {
+                repoterCity = new RepoterKharonExp();
+                _goBackExpPlace = new GoBackExpSlothNoIcebergs();
+                @_expBotToStart = new MoverSloth1stFloorNoIceBergs() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
             }
 
         }

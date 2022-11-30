@@ -375,7 +375,7 @@ namespace AresTrainerV3
 
         private void teleport_Click(object sender, EventArgs e)
         {
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.HershalMagicExp);
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.PosSlothFloor1NoIceBergs);
 
         }
 
@@ -458,9 +458,9 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
-            BuyerPotions.HpPotionsToBuy = 50;
+            BuyerPotions.HpPotionsToBuy = 120;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            BuyerPotions.MpPotionsToBuy = 30;
+            BuyerPotions.MpPotionsToBuy = 35;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             BuyerPotions.SpeedPotionsToBuy = 3;
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
@@ -677,10 +677,15 @@ namespace AresTrainerV3
             }
             else if (ExpBotComboBox.Text == "Sloth1stFloor")
             {
-                ExpBotMoverToRun = new MoverSloth1stFloor();
+                ExpBotMoverToRun = new MoverSloth1stFloorEntrace();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
             }
-            
+            else if (ExpBotComboBox.Text == "SlothNoIcebergs")
+            {
+                ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
+            }
+
             if (CollectorComboBox.Text == "+Event")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
@@ -753,8 +758,8 @@ namespace AresTrainerV3
             AssignBot();
             HealbotToRun.StartHealBotThread();
             ProgramHandle.SetCameraForExpBot();
-
-            ExpBotMoverToRun.StartExpBotThread();
+            HealbotToRun.RepotAndStartExpBot();
+           // ExpBotMoverToRun.StartExpBotThread();
 
         }
 

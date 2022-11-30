@@ -162,7 +162,7 @@ namespace AresTrainerV3.MoveRandom
                 _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(2, 7));
             }
         }
-        void rightLimitBounce()
+        protected virtual void rightLimitBounce()
         {
             if (_lastMouseMovePosition > 24)
             {
@@ -173,7 +173,7 @@ namespace AresTrainerV3.MoveRandom
                 _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(10, 15));
             }
         }
-        void upLimitBounce()
+        protected virtual void upLimitBounce()
         {
             if (_lastMouseMovePosition > 8)
             {
@@ -184,7 +184,7 @@ namespace AresTrainerV3.MoveRandom
                 _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(26, 31));
             }
         }
-        void downLimitBounce()
+        protected virtual void downLimitBounce()
         {
             if (_lastMouseMovePosition > 24)
             {

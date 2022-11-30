@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MoveRandom.Kharon
 {
-    internal class MoverSloth1stFloor : MoverRandom
+    internal class MoverSloth1stFloorNoIceBergs : MoverRandom
     {
         protected override int moveOnlyOnMapX
         {
@@ -20,13 +20,13 @@ namespace AresTrainerV3.MoveRandom.Kharon
         {
             get
             {
-                return TeleportValues.moverRandomSloth1stFloor;
+                return TeleportValues.moverRandomSloth1stFloorNoIcebergs;
             }
 
         }
-        protected override void leftLimitBounce()
+        protected override void downLimitBounce()
         {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(-3,4));
+            _lastMouseMovePosition = MovePositionRandomizer(8);
         }
 
     }

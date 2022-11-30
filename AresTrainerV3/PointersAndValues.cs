@@ -14,8 +14,8 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public static int MaxCollectWeight = 2280;
-    public const int MaxCollectWeightNormalValue = 2280;
+    public static int MaxCollectWeight = ProgramHandle.getMaxWeight-120;
+    public static int MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
     public const int mouseWaitTimeMs = 1;
 
 
@@ -180,6 +180,7 @@ public static class PointersAndValues
     public const int hpOffset = 0x148;
     public const int MannaOffset = 0x980;
     public const int WeightOffset = 0x998;
+    public const int WeightMaxOffset = 0x99c;
     public const int skill1Offset = 0x05c;
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;

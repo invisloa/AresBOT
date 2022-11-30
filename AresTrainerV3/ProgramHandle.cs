@@ -446,6 +446,10 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
         }
+        public static int getMaxWeight
+        {
+            get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightMaxOffset), 4)); }
+        }
         public static int getCurrentHp
         {
             get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0); }
@@ -777,7 +781,6 @@ namespace AresTrainerV3
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosKharonPlateuSlothEntrace.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosKharonPlateuSlothEntrace.Item3));
                     _variableForChangablePosition++;
-
                 }
                 else if (_variableForChangablePosition == 1)
                 {
@@ -787,20 +790,21 @@ namespace AresTrainerV3
                     _variableForChangablePosition = 0;
                 }
             }
-                else if (GetCurrentMap == TeleportValues.SlothFloor1)
+            else if (GetCurrentMap == TeleportValues.SlothFloor1)
             {
                 if (_variableForChangablePosition == 0)
-                {
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item1));
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item2));
-                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item3));
-                    _variableForChangablePosition++;
-                }
-                else if (_variableForChangablePosition == 1)
                 {
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar1.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar1.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar1.Item3));
+                    _variableForChangablePosition++;
+
+                }
+                else if (_variableForChangablePosition == 1)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1NoIceBergs.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1NoIceBergs.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1NoIceBergs.Item3));
                     _variableForChangablePosition++;
                 }
                 else if (_variableForChangablePosition == 2)
@@ -822,7 +826,16 @@ namespace AresTrainerV3
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar4.Item1));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar4.Item2));
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.MiniPosSlothFloor1BossBulgar4.Item3));
+                    _variableForChangablePosition++;
+
+                }
+                else if (_variableForChangablePosition == 5)
+                {
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item1));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item2));
+                    memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSlothFloor1.Item3));
                     _variableForChangablePosition = 0;
+
                 }
             }
 
@@ -873,6 +886,9 @@ namespace AresTrainerV3
                     memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.KharonHorseBulglarAoe.Item3));
                     _variableForChangablePosition = 0;
                 }
+
+
+
             }
 
 
@@ -1093,7 +1109,7 @@ namespace AresTrainerV3
         public static void waitMouseInPos()
         {
             var sw = Stopwatch.StartNew();
-            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1000)
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1200)
             {
                 Thread.Sleep(0);
             }
@@ -1101,7 +1117,7 @@ namespace AresTrainerV3
         public static void waitMouseInPosScanUnder()
         {
             var sw = Stopwatch.StartNew();
-            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1500)
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 2000)
             {
                 Thread.Sleep(0);
             }
