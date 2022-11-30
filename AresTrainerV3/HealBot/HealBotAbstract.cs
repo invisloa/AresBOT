@@ -384,7 +384,7 @@ namespace AresTrainerV3.HealBot
                 if (blackScreenThread == null)
                 {
                     blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-                    @blackScreenThread.Start();
+                    blackScreenThread.Start();
                 }
             }
             else if (whichBotThreadToStart == MoverBotEnums.Sloth1stFloor)
@@ -397,7 +397,12 @@ namespace AresTrainerV3.HealBot
             {
                 repoterCity = new RepoterKharonExp();
                 _goBackExpPlace = new GoBackExpSlothNoIcebergs();
-                @_expBotToStart = new MoverSloth1stFloorNoIceBergs() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                _expBotToStart = new MoverSloth1stFloorNoIceBergs() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                if (blackScreenThread == null)
+                {
+                    blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+                    blackScreenThread.Start();
+                }
             }
 
         }
