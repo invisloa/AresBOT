@@ -158,7 +158,7 @@ namespace AresTrainerV3.ItemCollect
         }
         public bool PixelScanUnderChar(IWhatToCollect whatToCollect)
         {
-            if (whatToCollect == CollectIgnoringWeight && ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+            if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
             {
 
                 RepotAbstract.IsScanRunning = true;
