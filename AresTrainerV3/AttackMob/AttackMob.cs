@@ -16,35 +16,25 @@ namespace AresTrainerV3.AttackMob
         static int attackUnstackCounter = 0;
         static void checkIfIsNowAttackingAnimation()
         {
-            Thread.Sleep(15);
-            if (ProgramHandle.isAttacking())
+            int waitTime = 15;
+            Debug.WriteLine("check started");
+            Thread.Sleep(waitTime);
+            for (int i = 0; i < 20; i++)
             {
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(15);
-            if (ProgramHandle.isAttacking())
-            {
-                Debug.WriteLine("drugi");
-                WaitForAttackEnd();
-            }
-            Thread.Sleep(15);
-            if (ProgramHandle.isAttacking())
-            {
-                Debug.WriteLine("trzeci");
+                Thread.Sleep(waitTime);
+                if (ProgramHandle.isAttacking())
+                {
+                    WaitForAttackEnd();
+                }
 
-                WaitForAttackEnd();
             }
-            Thread.Sleep(15);
-            if (ProgramHandle.isAttacking())
-            {
-                Debug.WriteLine("czwarty");
-                WaitForAttackEnd();
-            }
+            Debug.WriteLine("check ended");
+
         }
-
         static void WaitForAttackEnd()
         {
-            Thread.Sleep(200);
+            Debug.WriteLine("wait started");
+            Thread.Sleep(100);
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 
@@ -55,6 +45,8 @@ namespace AresTrainerV3.AttackMob
             while (ProgramHandle.isAttacking())
             {
                 attackUnstackCounter++;
+                Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
+
                 pixelSodCollect.ClickAndCollectItem();
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
@@ -64,10 +56,6 @@ namespace AresTrainerV3.AttackMob
                     anywhereUnstucker.AttackUnstacker();
                 }
             }
-            Debug.WriteLine("attacking stopped");
-            Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
-            checkIfIsNowAttackingAnimation();
-            checkIfIsNowAttackingAnimation();
             checkIfIsNowAttackingAnimation();
             Debug.WriteLine("attacking stopped");
             Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
@@ -102,6 +90,7 @@ namespace AresTrainerV3.AttackMob
                     attackUnstackCounter = 0;
                     Debug.WriteLine($"Mouse Clicked On Mob==1");
                     MoverRandom.AttackedOrCollected = true;
+                    WaitForAttackEnd();
                     WaitForAttackEnd();
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                     Debug.WriteLine($"Mouse R UP");

@@ -5,6 +5,7 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MoveRandom.Hershal;
+using AresTrainerV3.MoveRandom.Holina;
 using AresTrainerV3.MoveRandom.Kharon;
 using AresTrainerV3.SkillSelection;
 using System;
@@ -161,7 +162,7 @@ namespace AresTrainerV3.HealBot
             }
         }
 
-        public static void RequestStopHealBot()
+        public static void RequestStartStopHealBot()
         {
             if (_isHealBotRunning)
                 _isHealBotRunning = false;
@@ -172,7 +173,7 @@ namespace AresTrainerV3.HealBot
         {
             ProgramHandle.SetGameAsMainWindow();
             expPlaceToStartSetter();
-            RequestStopHealBot();
+            RequestStartStopHealBot();
 
             SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
             ClassRebuffer.StartRebuffThread();
@@ -358,6 +359,9 @@ namespace AresTrainerV3.HealBot
             }
             else if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
             {
+                repoterCity = new RepoterHolinaTeleport();
+                _goBackExpPlace = new GoBackExpHolinaTeleport();
+                _expBotToStart = new MoverHolinaGoblins() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 
             }
             else if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)

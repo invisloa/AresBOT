@@ -13,6 +13,7 @@ namespace AresTrainerV3.SkillSelection
         {
             while (HealBotAbstract.IsHealBotRunning == true)
             {
+                checkIfAttackSkillIsSelected();
                 if (ProgramHandle.isInCity != 1)
                 {
                     UseRapidWhenLowSkillDelay();
@@ -32,6 +33,13 @@ namespace AresTrainerV3.SkillSelection
                 KeyPresser.PressKey(5, 100, 100);
                 KeyPresser.PressKey(5, 100, 100);
                 KeyPresser.PressKey(5, 100, 100);
+                Thread.Sleep(100);
+
+                KeyPresser.PressKey(3, 100, 100);
+                KeyPresser.PressKey(3, 100, 100);
+                Thread.Sleep(500);
+                KeyPresser.PressKey(3, 100, 100);
+                Thread.Sleep(200);
                 KeyPresser.PressKey(3, 100, 100);
                 KeyPresser.PressKey(3, 100, 100);
             }

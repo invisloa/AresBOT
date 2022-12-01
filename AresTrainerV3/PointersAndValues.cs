@@ -321,7 +321,7 @@ public static class PointersAndValues
 
 
 
-
+    // is now standing animation
     public const int isStandingAnimationArcerAlliOut = 4534400;
     public const int isStandingAnimationArcerAlliCity = 4550176;
     public const int isStandingAnimationArcerEmpOut = 4535136;
@@ -334,7 +334,14 @@ public static class PointersAndValues
     public const int isStandingAnimationSpearAlliOut = 4498752;
     public const int isStandingAnimationSpearAlliCity = 4550176;
 
+
+    // being hit animation
+    public const int isBeingHitSorcAlli = 4446720;
+    public const int isBeingHitSorcAlli2 = 4451328;
+
     
+
+    //4541440
 
 
 
@@ -343,7 +350,7 @@ public static class PointersAndValues
     public const int isAttackingBowEmpAnimation = 4536832;
     public const int isAttackingSorcAlliAnimation = 4541440;
     public const int isAttackingKnightAlliAnimation = 4425728;
-    public const int isAttackingSpearAlliAnimation = 4507200;
+    public const int isAttackingSpearAlliAnimation = 4510144;
 
 
 

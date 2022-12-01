@@ -31,6 +31,8 @@ namespace AresTrainerV3.SkillSelection
         }
         public override void Rebuff()
         {
+            checkIfAttackSkillIsSelected();
+            Thread.Sleep(10000);
         }
     }
 }

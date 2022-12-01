@@ -54,10 +54,12 @@ namespace AresTrainerV3.Buyer
         };
         public static Tuple<int, int>[] mousePositionsForHolinaBuying = new Tuple<int, int>[]
         {
-                    new Tuple<int, int>(995, 270),  //mana pot (S)
+                    //new Tuple<int, int>(995, 270),  //mana pot (S)
+                    new Tuple<int, int>(995, 340),  //mana pot (L)
                     new Tuple<int, int>(995, 425),  //red pot
                     new Tuple<int, int>(995, 385),  //white pot
-                    new Tuple<int, int>(995, 185),  //hp pot Hysop
+                    //new Tuple<int, int>(995, 185),  //hp pot Hysop
+                    new Tuple<int, int>(995, 225),  //hp pot Yarrow
 
         };
         public static Tuple<int, int>[] mousePositionsForSacredLandsBuying = new Tuple<int, int>[]

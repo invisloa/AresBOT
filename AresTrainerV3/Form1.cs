@@ -496,7 +496,7 @@ namespace AresTrainerV3
                 {
                     System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
                     ExpBotManagerAbstract.RequestStopExpBot();
-                    HealBotAbstract.RequestStopHealBot();
+                    HealBotAbstract.RequestStartStopHealBot();
 
                 }
 
@@ -639,6 +639,9 @@ namespace AresTrainerV3
 */      
         void AssignBot()
         {
+            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
+            AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
+
             if (ExpBotComboBox.Text == "EtanaBuckerty")
             {
                 ExpBotMoverToRun = new MoverEtanaBuckerty();
@@ -658,7 +661,9 @@ namespace AresTrainerV3
             else if (ExpBotComboBox.Text == "HolinaGoblins")
             {
                 ExpBotMoverToRun = new MoverHolinaGoblins();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+                //HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+
             }
             else if (ExpBotComboBox.Text == "HershalLeafMages")
             {
@@ -716,22 +721,6 @@ namespace AresTrainerV3
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
             }
-            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
-            {
-                AbstractWhatToCollect.MaxCollectWeight = 2280;
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
-            {
-                AbstractWhatToCollect.MaxCollectWeight = 2080;
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
-            {
-                AbstractWhatToCollect.MaxCollectWeight = 2180;
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
-            {
-                AbstractWhatToCollect.MaxCollectWeight = 1980;
-            }
         }
         private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -783,7 +772,15 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
-            int i = ProgramHandle.getCurrentAttackSpeed;
+            ProgramHandle.SetGameAsMainWindow();
+            Thread.Sleep(500);
+            SkillSelector skiller = SkillSelector.SelectPropperClass();
+            HealBotAbstract.RequestStartStopHealBot();
+            skiller.Rebuff();
+
+            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
+
+            int i = AbstractWhatToCollect.MaxCollectWeight;
             Debug.WriteLine(i);
 /*            ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(500);

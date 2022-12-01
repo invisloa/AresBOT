@@ -10,8 +10,8 @@ namespace AresTrainerV3.ItemCollect
 {
     public abstract class AbstractWhatToCollect : IWhatToCollect
     {
-        public static int MaxCollectWeight = 2000;
-        public static int MaxCollectWeightNormalValue = 2000;
+        public static int MaxCollectWeight = 2080;
+        public static int MaxCollectWeightNormalValue = 2080;
 
         protected const int SOD = -13799;
         protected const int EventItems = 32627;
@@ -61,7 +61,9 @@ namespace AresTrainerV3.ItemCollect
             while (!ProgramHandle.isNowStandingOut() && !ProgramHandle.isNowStandingCity())
             {
                 Debug.WriteLine("collecting while");
-            Thread.Sleep(200); // !!!!!!!!!!!!!! TODO IS RUNNING ANIMATION
+                Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
+
+                Thread.Sleep(200);
             }
             Thread.Sleep(50);
             PixelItemCollector underCharPostScanner = new PixelItemCollector(this);

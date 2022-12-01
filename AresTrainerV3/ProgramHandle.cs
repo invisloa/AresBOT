@@ -446,6 +446,12 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightOffset), 4)); }
         }
+        public static int getMaxWeight
+        {
+            get { return BitConverter.ToInt32(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightMaxOffset), 4)); }
+        }
+
+
         public static int getCurrentHp
         {
             get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4)), 0); }
@@ -1017,11 +1023,6 @@ namespace AresTrainerV3
         {
            get { return BitConverter.ToInt16((memScanner.readShort(proc.Handle, IntPtr.Add(isItemHighlightedType, 0))), 0); }
         }
-        public static int getMaxWeight
-        {
-            get { return BitConverter.ToInt16(memWeight.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.WeightMaxOffset), 0)); }
-        }
-
         public static int isMouseClickedOnMob
         {
             get { return BitConverter.ToInt16((memAttacking.readShort(proc.Handle, IntPtr.Add(isAttackingMob, 0))), 0); }
@@ -1083,10 +1084,32 @@ namespace AresTrainerV3
                 return true;
             }
         }
+        public static bool isNowAttackingAnim()
+        {
+            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSpearAlliAnimation
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSorcAlliAnimation
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingKnightAlliAnimation
+                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation
+                )
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public static bool isAttacking()
         {
-            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
+            /*            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
+                        {
+                            return true;
+                        }
+            */
+
+            if (isNowAttackingAnim() || isNowRunningOut())
             {
                 return true;
             }
@@ -1132,7 +1155,9 @@ namespace AresTrainerV3
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutOrb ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliOut
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliOut ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isBeingHitSorcAlli ||
+                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isBeingHitSorcAlli2
                 )
             {
                 return true;
