@@ -92,14 +92,13 @@ namespace AresTrainerV3.HealBot.Repoter
             // Set Weight limit back to the original state if player found changed it to not to collect items@
             AbstractWhatToCollect.MaxCollectWeight = AbstractWhatToCollect.MaxCollectWeightNormalValue;
             ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(500);
             if (isCurrentCity == repotCityCheck)
             {
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
                 MoveToRepot();
-                Thread.Sleep(+randomizer.Next(1, 500));
+                Thread.Sleep(500);
 
                 if (checkIfCloseToShop())
                 {
@@ -116,7 +115,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 }
                 else
                 {
-                Thread.Sleep(10000);
+                Thread.Sleep(100000);
                 this.GoRepot();
                 } 
             }

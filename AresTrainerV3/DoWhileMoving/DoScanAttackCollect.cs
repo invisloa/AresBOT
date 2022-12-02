@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.AttackMob;
+using AresTrainerV3.HealBot;
 using AresTrainerV3.ItemCollect;
 using System;
 using System.Collections.Generic;
@@ -21,21 +22,48 @@ namespace AresTrainerV3.DoWhileMoving
 
         bool ScanAttackCollect()
         {
-            if(PixelMobAttack.AttackSkillMobWhenSelected())
+            if (HealBotAbstract.SellItems == true)
             {
-                return true;
-            }
-            if (CollectItems)
-            {
-                for (int i = 0; i < NumberOfCollectScans; i++)
+                if (CollectItems)
                 {
-                    if (ICollector.ClickAndCollectItem())
+                    for (int i = 0; i < NumberOfCollectScans; i++)
+                    {
+                        if (ICollector.ClickAndCollectItem())
+                        {
+                            return true;
+                        }
+                    }
+                }
+
+                if (PixelMobAttack.AttackSkillMobWhenSelected())
+                {
+                    return true;
+                }
+                return false;
+            }
+            else
+            {
+                bool ScanAttackCollect()
+                {
+                    if (PixelMobAttack.AttackSkillMobWhenSelected())
                     {
                         return true;
                     }
+                    if (CollectItems)
+                    {
+                        for (int i = 0; i < NumberOfCollectScans; i++)
+                        {
+                            if (ICollector.ClickAndCollectItem())
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
                 }
             }
             return false;
+0!
         }
 
 

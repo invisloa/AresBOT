@@ -36,7 +36,7 @@ namespace AresTrainerV3.ItemCollect
         {
             if (collectItemValues())
             {
-                Thread.Sleep(1);
+                Thread.Sleep(2);
                 if (collectItemValues())
                 {
                     CollectionClick();

@@ -293,7 +293,7 @@ namespace AresTrainerV3.HealBot
                     // for now using with red potion later to change for a sorcerer
                     KeyPresser.PressKey(7, 100, 100);
                 }
-*/                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImpNotLastSkill)
+*/                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     KeyPresser.PressKey(7, 100, 100);

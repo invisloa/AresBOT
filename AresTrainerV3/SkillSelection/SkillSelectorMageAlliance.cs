@@ -24,7 +24,7 @@ namespace AresTrainerV3.SkillSelection
         }
         void UseRapidWhenLowSkillDelay()
         {
-            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus1)
+            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayOrbWithRosAoe)
             {
                 KeyPresser.PressKey(4, 100, 100);
                 KeyPresser.PressKey(4, 100, 100);

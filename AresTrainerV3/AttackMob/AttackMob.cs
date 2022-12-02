@@ -35,6 +35,7 @@ namespace AresTrainerV3.AttackMob
         {
             Debug.WriteLine("wait started");
             Thread.Sleep(100);
+            //IWhatToCollect _SodCollector = new CollectAllItems(); // WHAT TO COLLECT WHEN ATTACKING 
             IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 

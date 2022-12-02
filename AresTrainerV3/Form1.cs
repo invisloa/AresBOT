@@ -772,53 +772,47 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(500);
-            SkillSelector skiller = SkillSelector.SelectPropperClass();
-            HealBotAbstract.RequestStartStopHealBot();
-            skiller.Rebuff();
-
             AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
 
-            int i = AbstractWhatToCollect.MaxCollectWeight;
+            int i = ProgramHandle.getCurrentAttackSpeed;
             Debug.WriteLine(i);
-/*            ProgramHandle.SetGameAsMainWindow();
+            ProgramHandle.SetGameAsMainWindow();
             Thread.Sleep(500);
-            HealBotAbstract.RequestStopHealBot();
+            HealBotAbstract.RequestStartStopHealBot();
 
-            SkillSelectorSpearAlli spearbuff = new SkillSelectorSpearAlli();
-            spearbuff.Rebuff();
+            SkillSelector classBuff = SkillSelector.SelectPropperClass();
+            classBuff.Rebuff();
 
-            ProgramHandle.SetCameraForExpBot();
+/*            ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(500);
 
             var date = DateTime.Now;
             if (date.Hour == 5)
             {
                 Debug.WriteLine("zzzz");
-*/          
-            /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
-                        ProgramHandle.SetGameAsMainWindow();
-                        ProgramHandle.SetCameraForExpBot();
-                        ProgramHandle.SetCameraLong();
-                        Thread.Sleep(500);
-                        zzz.GoBackExp();
-            *//*            while(true)
-                        {
-                            PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
-                            Refresh();
-                            //1073741824
-                        }
-            */            /*            int i;
-                                    RepoterKharonExp zzz = new RepoterKharonExp();
-                                    zzz.GoRepot();
-                        *//*
 
-                        ProgramHandle.AntiBlackScreener();
-            */
-        }
+*/                /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
+                            ProgramHandle.SetGameAsMainWindow();
+                            ProgramHandle.SetCameraForExpBot();
+                            ProgramHandle.SetCameraLong();
+                            Thread.Sleep(500);
+                            zzz.GoBackExp();
+                *//*            while(true)
+                            {
+                                PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
+                                Refresh();
+                                //1073741824
+                            }
+                */            /*            int i;
+                                        RepoterKharonExp zzz = new RepoterKharonExp();
+                                        zzz.GoRepot();
+                            *//*
 
-        private void GoToPos_Click_1(object sender, EventArgs e)
+                            ProgramHandle.AntiBlackScreener();
+                */
+            }
+
+            private void GoToPos_Click_1(object sender, EventArgs e)
         {
             int x = 0;
             int y = 0;

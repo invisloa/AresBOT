@@ -14,7 +14,7 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public const int mouseWaitTimeMs = 1;
+    public const int mouseWaitTimeMs = 2;
 
 
     public static string GameProcessName
@@ -266,7 +266,9 @@ public static class PointersAndValues
     public const int attackSpeednormalValueBow = 1070945622;
     public const int attackSpeedKishValueBow = 1073741824;
     public const int castingSpeeDelaydZero = 16256;
-    public const int castingSpeedDelayPlus1 = 16230;
+    public const int castingSpeedDelayOrbWithRosAoe = 16255;
+
+    public const int castingSpeedDelayPlus1 = 16204;
     public const int castingSpeedDelayPlus2 = 16204;
     
     
