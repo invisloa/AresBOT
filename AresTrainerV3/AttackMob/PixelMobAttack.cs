@@ -34,7 +34,7 @@ namespace AresTrainerV3.AttackMob
                         if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
                         {
-                              MouseOperations.SetCursorPosition(x+ moveMouseVector, y);
+                            MouseOperations.SetCursorPosition(x+ moveMouseVector, y);
                             ProgramHandle.waitMouseInPos();
 
                             if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())

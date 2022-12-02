@@ -43,8 +43,6 @@ namespace AresTrainerV3.DoWhileMoving
             }
             else
             {
-                bool ScanAttackCollect()
-                {
                     if (PixelMobAttack.AttackSkillMobWhenSelected())
                     {
                         return true;
@@ -60,9 +58,7 @@ namespace AresTrainerV3.DoWhileMoving
                         }
                     }
                     return false;
-                }
             }
-            return false;
         }
 
 
