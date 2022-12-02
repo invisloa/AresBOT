@@ -63,7 +63,6 @@ namespace AresTrainerV3.DoWhileMoving
                 }
             }
             return false;
-0!
         }
 
 
