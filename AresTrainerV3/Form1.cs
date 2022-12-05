@@ -357,14 +357,6 @@ namespace AresTrainerV3
             Thread.Sleep(1000);
 
             ItemSeller.SellItemsMouseMove();
-
-
-            /*            foreach (var item in ItemSeller.itemsForSaleList)
-                        {
-                            Debug.WriteLine($"{item.ToString()}");
-                        }
-            */
-
         }
 
 
@@ -397,41 +389,6 @@ namespace AresTrainerV3
             ProgramHandle.TeleportToPosition(Int32.Parse(PositionX.Text), Int32.Parse(PositionY.Text), 0);
         }
 
-
-
-        private void FastTestBTN_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetCameraForExpBot();
-
-            HealbotToRun = new HealBotOnlyHeal();
-            HealbotToRun.StartHealBotThread();
-
-            ExpBotManagerAbstract.RequestStartExpBot();
-           // MoverRandom mover = new MoverRandom(TeleportValues.Hershal, TeleportValues.moverRandomHershalLowLvl);
-
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                if (ProgramHandle.isInCity == 1)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-                }
-
-            //    mover.MoveAttackCollect();
-            }
-
-        }
-
-
-        private void button4_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void SellItemsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if(SellItemsCheckBox.Checked)
@@ -452,9 +409,6 @@ namespace AresTrainerV3
             DoScanAttackCollect.NumberOfCollectScans = i;
         }
 
-        private void button5_Click_1(object sender, EventArgs e)
-        {
-        }
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
@@ -471,172 +425,6 @@ namespace AresTrainerV3
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void MoverGoblins_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetCameraForExpBot();
-
-            HealbotToRun = new HealBotOnlyHeal();
-            HealbotToRun.StartHealBotThread();
-           // ProgramHandle.TeleportToPositionTuple(TeleportValues.HolinaGoblinsExp);
-            Thread.Sleep(2000);
-            ExpBotManagerAbstract.RequestStartExpBot();
-          //  MoverRandom mover = new MoverRandom(TeleportValues.Hollina ,TeleportValues.moverRandomHolinaGoblins);
-
-
-
-
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                if (ProgramHandle.isInCity == 1)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-                    ExpBotManagerAbstract.RequestStopExpBot();
-                    HealBotAbstract.RequestStartStopHealBot();
-
-                }
-
-             //   mover.MoveAttackCollect();
-            }
-
-
-        }
-
-        private void EtanaBot_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetCameraForExpBot();
-
-            HealbotToRun = new HealBotOnlyHeal();
-            HealbotToRun.StartHealBotThread();
-
-            ExpBotManagerAbstract.RequestStartExpBot();
-           // MoverRandom mover = new MoverRandom(TeleportValues.Etana, TeleportValues.moverRandomEtanaBuckys);
-
-
-
-            
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                if (ProgramHandle.isInCity == 1)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-                }
-
-               // mover.MoveAttackCollect();
-            }
-
-        }
-        private void TestMethod_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetCameraForExpBot();
-
-            HealbotToRun = new HealBotOnlyHeal();
-            HealbotToRun.StartHealBotThread();
-
-            ExpBotManagerAbstract.RequestStartExpBot();
-            //  MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomThievesUnder);
-
-
-
-
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                if (ProgramHandle.isInCity == 1)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-                }
-             //   mover.MoveAttackCollect();
-            }
-        }
-
-        private void MoverGiko_Click(object sender, EventArgs e)
-        {
-            ProgramHandle.SetCameraForExpBot();
-
-            HealbotToRun = new HealBotOnlyHeal();
-            HealbotToRun.StartHealBotThread();
-
-            ExpBotManagerAbstract.RequestStartExpBot();
-           // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand, TeleportValues.moverRandomSacredGiko);
-
-
-
-
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                if (ProgramHandle.isInCity == 1)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-                }
-
-              //  mover.MoveAttackCollect();
-            }
-
-        }
-/*        void RunMoverExpBot()
-        {
-            HealbotToRun.StartHealBotThread();
-            ProgramHandle.SetCameraForExpBot();
-            ExpBotManagerAbstract.RequestStartExpBot();
-
-
-            // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                if (ProgramHandle.isInCity == 1 && ExpBotManagerAbstract.shutDownOnRepot)
-                {
-                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
-                }
-                ExpBotMoverToRun.MoveAttackCollect();
-            }
-
-
-        }
-*/
-
-
-/*private void HealbotComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (HealbotComboBox.SelectedItem.ToString() == "HealbotOnly")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "Etana")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "Sacred")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "Holina")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "Hershal")
-            {
-                HealbotToRun = new HealBotHershalExp();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "Kharon")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "UWC")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-            else if (HealbotComboBox.SelectedItem.ToString() == "COT")
-            {
-                HealbotToRun = new HealBotOnlyHeal();
-            }
-
-        }
-        
-*/      
         void AssignBot()
         {
             AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
@@ -661,8 +449,8 @@ namespace AresTrainerV3
             else if (ExpBotComboBox.Text == "HolinaGoblins")
             {
                 ExpBotMoverToRun = new MoverHolinaGoblins();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
-                //HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+                //HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
 
             }
             else if (ExpBotComboBox.Text == "HershalLeafMages")

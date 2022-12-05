@@ -36,7 +36,16 @@ namespace AresTrainerV3.ItemCollect
         {
             if (collectItemValues())
             {
-                Thread.Sleep(2);
+                ProgramHandle.waitMouseInPos();
+                Thread.Sleep(1);
+                ProgramHandle.waitMouseInPos();
+                ProgramHandle.waitMouseInPos();
+                Thread.Sleep(1);
+                ProgramHandle.waitMouseInPos();
+                Thread.Sleep(1);
+                ProgramHandle.waitMouseInPos();
+                ProgramHandle.waitMouseInPos();
+                Thread.Sleep(1);
                 if (collectItemValues())
                 {
                     CollectionClick();

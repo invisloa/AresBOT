@@ -88,10 +88,8 @@ namespace AresTrainerV3.MoveRandom
                 {
                     tooLowDistance = false;
                     moveClickSlower = 0;
-                    if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+                    if (ProgramHandle.GetCurrentMap == moveOnlyOnMapX && ExpBotManagerAbstract.isExpBotRunning)
                     {
-                        if (ExpBotManagerAbstract.isExpBotRunning)
-                        {
 
                             if (!AttackedOrCollected)
                             {
@@ -126,21 +124,24 @@ namespace AresTrainerV3.MoveRandom
                                 Thread.Sleep(100);
                             }
                             AttackedOrCollected = false;
-                        }
                     }
                     else
                     {
                         Thread.Sleep(5000);
-                        if (moveOnlyOnMapX == TeleportValues.SlothFloor1 && ProgramHandle.GetCurrentMap ==  TeleportValues.KharonPlateau)
+                        if (ExpBotManagerAbstract.isExpBotRunning)
                         {
-                            Form1.HealbotToRun.RepotAndStartExpBot();
-                        }
-                        else if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
-                        {
-                            ExpBotManagerAbstract.RequestStopExpBot();
-                            HealBotAbstract.RequestStartStopHealBot();
 
-                            System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                            if (moveOnlyOnMapX == TeleportValues.SlothFloor1 && ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
+                            {
+                                Form1.HealbotToRun.RepotAndStartExpBot();
+                            }
+                            else if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
+                            {
+                                ExpBotManagerAbstract.RequestStopExpBot();
+                                HealBotAbstract.RequestStartStopHealBot();
+
+                                System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                            }
                         }
                     }
                 }
@@ -201,8 +202,6 @@ namespace AresTrainerV3.MoveRandom
             ProgramHandle.SetCameraForExpBot();
             ExpBotManagerAbstract.RequestStartExpBot();
 
-
-            // MoverRandom mover = new MoverRandom(TeleportValues.AllianceSacredLand);
             while (ExpBotManagerAbstract.isExpBotRunning)
             {
                 if (ProgramHandle.isInCity == 1 && shutDownOnRepot)

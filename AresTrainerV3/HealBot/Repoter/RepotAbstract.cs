@@ -55,6 +55,10 @@ namespace AresTrainerV3.HealBot.Repoter
         protected void teleportToCityAndStopExpBot()
         {
             StopExpBot();
+            while (ExpBotManagerAbstract.isExpBotRunning)
+            {
+                Thread.Sleep(10);
+            }
             KeyPresser.PressKey(6, 100, 100);
             Thread.Sleep(1000);
             while (IsScanRunning)
@@ -137,7 +141,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 }
             }
         }
-        protected  bool checkIfCloseToShop()
+        /*protected*/  bool checkIfCloseToShop()
         {
             if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
             {

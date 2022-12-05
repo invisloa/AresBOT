@@ -14,7 +14,7 @@ public static class PointersAndValues
 
     // MAIN OFFSETS
     public static bool isNostalgia = true;
-    public const int mouseWaitTimeMs = 2;
+    public const int mouseWaitTimeMs = 1;
 
 
     public static string GameProcessName

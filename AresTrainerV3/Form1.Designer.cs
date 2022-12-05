@@ -42,11 +42,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.BtnHealbotOnOff = new System.Windows.Forms.Button();
-            this.FastTestBTN = new System.Windows.Forms.Button();
             this.OpenStorageBTN = new System.Windows.Forms.Button();
-            this.Tester = new System.Windows.Forms.Button();
             this.teleport = new System.Windows.Forms.Button();
-            this.TestMethod = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -55,19 +52,13 @@
             this.MpToBuy = new System.Windows.Forms.TextBox();
             this.SpeedPot = new System.Windows.Forms.TextBox();
             this.BuyMaxHp = new System.Windows.Forms.CheckBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.UWCThread = new System.Windows.Forms.Button();
             this.SellItemsCheckBox = new System.Windows.Forms.CheckBox();
             this.label12 = new System.Windows.Forms.Label();
             this.NumberOfCollectScans = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.RunSellerCheckBox = new System.Windows.Forms.CheckBox();
-            this.MoverGoblins = new System.Windows.Forms.Button();
             this.SellItems = new System.Windows.Forms.Button();
-            this.EtanaBot = new System.Windows.Forms.Button();
-            this.MoverGiko = new System.Windows.Forms.Button();
             this.ExpBotComboBox = new System.Windows.Forms.ComboBox();
             this.PositionX = new System.Windows.Forms.TextBox();
             this.PositionY = new System.Windows.Forms.TextBox();
@@ -234,16 +225,6 @@
             this.BtnHealbotOnOff.Text = "OFF";
             this.BtnHealbotOnOff.UseVisualStyleBackColor = false;
             // 
-            // FastTestBTN
-            // 
-            this.FastTestBTN.Location = new System.Drawing.Point(47, 422);
-            this.FastTestBTN.Name = "FastTestBTN";
-            this.FastTestBTN.Size = new System.Drawing.Size(75, 23);
-            this.FastTestBTN.TabIndex = 27;
-            this.FastTestBTN.Text = "LeafMages";
-            this.FastTestBTN.UseVisualStyleBackColor = true;
-            this.FastTestBTN.Click += new System.EventHandler(this.FastTestBTN_Click);
-            // 
             // OpenStorageBTN
             // 
             this.OpenStorageBTN.Location = new System.Drawing.Point(8, 6);
@@ -254,15 +235,6 @@
             this.OpenStorageBTN.UseVisualStyleBackColor = true;
             this.OpenStorageBTN.Click += new System.EventHandler(this.OpenStorageBTN_Click);
             // 
-            // Tester
-            // 
-            this.Tester.Location = new System.Drawing.Point(145, 383);
-            this.Tester.Name = "Tester";
-            this.Tester.Size = new System.Drawing.Size(75, 23);
-            this.Tester.TabIndex = 30;
-            this.Tester.Text = "Goblin";
-            this.Tester.UseVisualStyleBackColor = true;
-            // 
             // teleport
             // 
             this.teleport.Location = new System.Drawing.Point(753, 364);
@@ -272,16 +244,6 @@
             this.teleport.Text = "teleport";
             this.teleport.UseVisualStyleBackColor = true;
             this.teleport.Click += new System.EventHandler(this.teleport_Click);
-            // 
-            // TestMethod
-            // 
-            this.TestMethod.Location = new System.Drawing.Point(226, 422);
-            this.TestMethod.Name = "TestMethod";
-            this.TestMethod.Size = new System.Drawing.Size(91, 23);
-            this.TestMethod.TabIndex = 33;
-            this.TestMethod.Text = "MoverThieves";
-            this.TestMethod.UseVisualStyleBackColor = true;
-            this.TestMethod.Click += new System.EventHandler(this.TestMethod_Click);
             // 
             // label8
             // 
@@ -356,26 +318,6 @@
             this.BuyMaxHp.UseVisualStyleBackColor = true;
             this.BuyMaxHp.CheckedChanged += new System.EventHandler(this.BuyMaxHp_CheckedChanged);
             // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(48, 383);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 42;
-            this.button4.Text = "GikoCave";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click_1);
-            // 
-            // UWCThread
-            // 
-            this.UWCThread.Location = new System.Drawing.Point(145, 422);
-            this.UWCThread.Name = "UWCThread";
-            this.UWCThread.Size = new System.Drawing.Size(75, 23);
-            this.UWCThread.TabIndex = 43;
-            this.UWCThread.Text = "UWC";
-            this.UWCThread.UseVisualStyleBackColor = true;
-            this.UWCThread.Click += new System.EventHandler(this.button5_Click);
-            // 
             // SellItemsCheckBox
             // 
             this.SellItemsCheckBox.AutoSize = true;
@@ -413,16 +355,6 @@
             this.label13.TabIndex = 47;
             this.label13.Text = "CollectScans";
             // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(235, 383);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 49;
-            this.button5.Text = "Kharon";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click_1);
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -442,16 +374,6 @@
             this.RunSellerCheckBox.UseVisualStyleBackColor = true;
             this.RunSellerCheckBox.CheckedChanged += new System.EventHandler(this.RunSellerCheckBox_CheckedChanged);
             // 
-            // MoverGoblins
-            // 
-            this.MoverGoblins.Location = new System.Drawing.Point(316, 384);
-            this.MoverGoblins.Name = "MoverGoblins";
-            this.MoverGoblins.Size = new System.Drawing.Size(91, 23);
-            this.MoverGoblins.TabIndex = 53;
-            this.MoverGoblins.Text = "MoverGoblins";
-            this.MoverGoblins.UseVisualStyleBackColor = true;
-            this.MoverGoblins.Click += new System.EventHandler(this.MoverGoblins_Click);
-            // 
             // SellItems
             // 
             this.SellItems.Location = new System.Drawing.Point(753, 8);
@@ -461,26 +383,6 @@
             this.SellItems.Text = "SellItems";
             this.SellItems.UseVisualStyleBackColor = true;
             this.SellItems.Click += new System.EventHandler(this.SellItems_Click);
-            // 
-            // EtanaBot
-            // 
-            this.EtanaBot.Location = new System.Drawing.Point(413, 384);
-            this.EtanaBot.Name = "EtanaBot";
-            this.EtanaBot.Size = new System.Drawing.Size(91, 23);
-            this.EtanaBot.TabIndex = 55;
-            this.EtanaBot.Text = "EtanaBot";
-            this.EtanaBot.UseVisualStyleBackColor = true;
-            this.EtanaBot.Click += new System.EventHandler(this.EtanaBot_Click);
-            // 
-            // MoverGiko
-            // 
-            this.MoverGiko.Location = new System.Drawing.Point(323, 422);
-            this.MoverGiko.Name = "MoverGiko";
-            this.MoverGiko.Size = new System.Drawing.Size(91, 23);
-            this.MoverGiko.TabIndex = 56;
-            this.MoverGiko.Text = "MoverGiko";
-            this.MoverGiko.UseVisualStyleBackColor = true;
-            this.MoverGiko.Click += new System.EventHandler(this.MoverGiko_Click);
             // 
             // ExpBotComboBox
             // 
@@ -726,19 +628,13 @@
             this.Controls.Add(this.PositionY);
             this.Controls.Add(this.PositionX);
             this.Controls.Add(this.ExpBotComboBox);
-            this.Controls.Add(this.MoverGiko);
-            this.Controls.Add(this.EtanaBot);
             this.Controls.Add(this.SellItems);
-            this.Controls.Add(this.MoverGoblins);
             this.Controls.Add(this.RunSellerCheckBox);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.NumberOfCollectScans);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.SellItemsCheckBox);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.UWCThread);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.BuyMaxHp);
             this.Controls.Add(this.SpeedPot);
             this.Controls.Add(this.MpToBuy);
@@ -747,11 +643,8 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this.TestMethod);
             this.Controls.Add(this.teleport);
-            this.Controls.Add(this.Tester);
             this.Controls.Add(this.OpenStorageBTN);
-            this.Controls.Add(this.FastTestBTN);
             this.Controls.Add(this.BtnHealbotOnOff);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -790,11 +683,8 @@
         private Label label6;
         private Label label7;
         private Button BtnHealbotOnOff;
-        private Button FastTestBTN;
         private Button OpenStorageBTN;
-        private Button Tester;
         private Button teleport;
-        private Button TestMethod;
         private Label label8;
         private Label label9;
         private Label label10;
@@ -803,19 +693,13 @@
         private TextBox MpToBuy;
         private TextBox SpeedPot;
         private CheckBox BuyMaxHp;
-        private Button button4;
-        private Button UWCThread;
         private CheckBox SellItemsCheckBox;
         private Label label12;
         private TextBox NumberOfCollectScans;
         private Label label13;
-        private Button button5;
         private Label label14;
         private CheckBox RunSellerCheckBox;
-        private Button MoverGoblins;
         private Button SellItems;
-        private Button EtanaBot;
-        private Button MoverGiko;
         private ComboBox HealbotComboBox;
         private ComboBox ExpBotComboBox;
         private TextBox PositionX;
