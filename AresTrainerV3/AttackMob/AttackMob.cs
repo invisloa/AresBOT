@@ -16,10 +16,10 @@ namespace AresTrainerV3.AttackMob
         static int attackUnstackCounter = 0;
         static void checkIfIsNowAttackingAnimation()
         {
-            int waitTime = 15;
+            int waitTime = 20;
             Debug.WriteLine("check started");
             Thread.Sleep(waitTime);
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 10; i++)
             {
                 Thread.Sleep(waitTime);
                 if (ProgramHandle.isAttacking())
@@ -91,7 +91,6 @@ namespace AresTrainerV3.AttackMob
                     attackUnstackCounter = 0;
                     Debug.WriteLine($"Mouse Clicked On Mob==1");
                     MoverRandom.AttackedOrCollected = true;
-                    WaitForAttackEnd();
                     WaitForAttackEnd();
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                     Debug.WriteLine($"Mouse R UP");
