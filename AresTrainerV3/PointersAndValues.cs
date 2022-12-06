@@ -247,7 +247,7 @@ public static class PointersAndValues
     public const int BuffSpearMeditation = 3353;
     public const int BuffSpearShout = 3354;
 
-
+    public const int BuffMageShield = 3417;
 
 
     // Class

@@ -4,23 +4,48 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
 namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorMageAlliance : SkillSelector
     {
+        int buff1value = PointersAndValues.BuffMageShield;
+        int buff2value = 2489;  // TEMPORARY EXP SCROLL!!!!!
+        int buff3value = -1;
+
+        bool buffIsNotActive(int buffValue)
+        {
+
+            if (buffValue == firstBuff || buffValue == secondBuff || buffValue == thirdBuff || buffValue == fourthBuff)
+            {
+                return false;
+            }
+
+            return true;
+        }
         public override void Rebuff()
         {
             while (HealBotAbstract.IsHealBotRunning == true)
             {
-                checkIfAttackSkillIsSelected();
                 if (ProgramHandle.isInCity != 1)
                 {
-                    UseRapidWhenLowSkillDelay();
-                }
-                Thread.Sleep(5000);
+                    firstBuff = ProgramHandle.getBuff1Informations.Item1;
+                    secondBuff = ProgramHandle.getBuff1Informations.Item2;
+                    thirdBuff = ProgramHandle.getBuff1Informations.Item3;
+                    fourthBuff = ProgramHandle.getBuff1Informations.Item4;
 
+                    UseRapidWhenLowSkillDelay();
+                    if (buffIsNotActive(buff1value))
+                    {
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                    }
+                    checkIfAttackSkillIsSelected();
+                }
+
+                Thread.Sleep(5000);
             }
+
         }
         void UseRapidWhenLowSkillDelay()
         {
@@ -36,8 +61,6 @@ namespace AresTrainerV3.SkillSelection
                 Thread.Sleep(100);
 
                 KeyPresser.PressKey(3, 100, 100);
-                KeyPresser.PressKey(3, 100, 100);
-                Thread.Sleep(500);
                 KeyPresser.PressKey(3, 100, 100);
                 Thread.Sleep(200);
                 KeyPresser.PressKey(3, 100, 100);

@@ -9,7 +9,6 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorSpearAlli : SkillSelector
     {
-        int firstBuff, secondBuff, thirdBuff, fourthBuff;
         int buff1value = PointersAndValues.BuffSpearMeditation;
         int buff2value = -1;
         int buff3value = -1;

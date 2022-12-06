@@ -8,6 +8,8 @@ namespace AresTrainerV3.SkillSelection
 {
     public abstract class SkillSelector : ISelectSkill
     {
+        protected int firstBuff, secondBuff, thirdBuff, fourthBuff;
+
         public static SkillSelector SelectPropperClass()
         {
             if (ProgramHandle.isCurrentClassSelected == 1)
@@ -35,7 +37,7 @@ namespace AresTrainerV3.SkillSelection
                     if (ProgramHandle.isCurrentSkill() != 2)
                     {
                         KeyPresser.PressKey(3, 50, 50);
-                        Thread.Sleep(10);
+                        Thread.Sleep(200);
                     }
 
                 }
