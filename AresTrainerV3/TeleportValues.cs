@@ -125,6 +125,9 @@ namespace AresTrainerV3
         public static ValueTuple<int, int, int> KharonHorseBulglarAoe = new ValueTuple<int, int, int>(1135172319, 1137007029, 0);
 
 
+        public static Tuple<int, int, int> KharoncCityTeleported = new Tuple<int, int, int>(1124073472, 1122369536, 1106067456);
+
+        public static Tuple<int, int, int> KharoncCityWalkedToTeleportShort = new Tuple<int, int, int>(17152, 17142, 16874);
 
         public static Tuple<int, int, int> KharonTeleportOutside = new Tuple<int, int, int>(1124052940, 1128515351, 1128115351);
         public static Tuple<int, int, int> KharonPlateuSlothEntraceTuple = new Tuple<int, int, int>(1148190218, 1148523002, 1097859072);

@@ -81,6 +81,7 @@
             this.MannaValueTextBox = new System.Windows.Forms.TextBox();
             this.HPValueTextBox = new System.Windows.Forms.TextBox();
             this.ShowPosShort = new System.Windows.Forms.Button();
+            this.PositionZ = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ClassChangeComboBox
@@ -398,7 +399,7 @@
             "KharonWolves",
             "Sloth1stFloor",
             "SlothNoIcebergs"});
-            this.ExpBotComboBox.Location = new System.Drawing.Point(727, 214);
+            this.ExpBotComboBox.Location = new System.Drawing.Point(719, 233);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
@@ -407,21 +408,21 @@
             // 
             // PositionX
             // 
-            this.PositionX.Location = new System.Drawing.Point(480, 183);
+            this.PositionX.Location = new System.Drawing.Point(461, 183);
             this.PositionX.Name = "PositionX";
             this.PositionX.Size = new System.Drawing.Size(100, 23);
             this.PositionX.TabIndex = 59;
             // 
             // PositionY
             // 
-            this.PositionY.Location = new System.Drawing.Point(589, 183);
+            this.PositionY.Location = new System.Drawing.Point(565, 183);
             this.PositionY.Name = "PositionY";
             this.PositionY.Size = new System.Drawing.Size(100, 23);
             this.PositionY.TabIndex = 60;
             // 
             // ShowPositionsBtn
             // 
-            this.ShowPositionsBtn.Location = new System.Drawing.Point(467, 153);
+            this.ShowPositionsBtn.Location = new System.Drawing.Point(459, 153);
             this.ShowPositionsBtn.Name = "ShowPositionsBtn";
             this.ShowPositionsBtn.Size = new System.Drawing.Size(118, 23);
             this.ShowPositionsBtn.TabIndex = 62;
@@ -432,7 +433,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(727, 198);
+            this.label15.Location = new System.Drawing.Point(719, 217);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(59, 15);
             this.label15.TabIndex = 64;
@@ -448,7 +449,7 @@
             "+Stones",
             "+Stones+Jewelery",
             "AllItems"});
-            this.CollectorComboBox.Location = new System.Drawing.Point(727, 257);
+            this.CollectorComboBox.Location = new System.Drawing.Point(719, 276);
             this.CollectorComboBox.Name = "CollectorComboBox";
             this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
             this.CollectorComboBox.TabIndex = 66;
@@ -458,7 +459,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(727, 240);
+            this.label17.Location = new System.Drawing.Point(719, 259);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(55, 15);
             this.label17.TabIndex = 67;
@@ -467,7 +468,7 @@
             // ShutDownWhenInCity
             // 
             this.ShutDownWhenInCity.AutoSize = true;
-            this.ShutDownWhenInCity.Location = new System.Drawing.Point(727, 284);
+            this.ShutDownWhenInCity.Location = new System.Drawing.Point(719, 303);
             this.ShutDownWhenInCity.Name = "ShutDownWhenInCity";
             this.ShutDownWhenInCity.Size = new System.Drawing.Size(15, 14);
             this.ShutDownWhenInCity.TabIndex = 69;
@@ -477,7 +478,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(748, 283);
+            this.label18.Location = new System.Drawing.Point(740, 302);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(110, 15);
             this.label18.TabIndex = 68;
@@ -488,7 +489,7 @@
             this.CollectItemsBox.AutoSize = true;
             this.CollectItemsBox.Checked = true;
             this.CollectItemsBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.CollectItemsBox.Location = new System.Drawing.Point(727, 307);
+            this.CollectItemsBox.Location = new System.Drawing.Point(719, 326);
             this.CollectItemsBox.Name = "CollectItemsBox";
             this.CollectItemsBox.Size = new System.Drawing.Size(15, 14);
             this.CollectItemsBox.TabIndex = 71;
@@ -498,7 +499,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(748, 306);
+            this.label19.Location = new System.Drawing.Point(740, 325);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(76, 15);
             this.label19.TabIndex = 70;
@@ -601,11 +602,19 @@
             this.ShowPosShort.UseVisualStyleBackColor = true;
             this.ShowPosShort.Click += new System.EventHandler(this.ShowPosShort_Click);
             // 
+            // PositionZ
+            // 
+            this.PositionZ.Location = new System.Drawing.Point(671, 182);
+            this.PositionZ.Name = "PositionZ";
+            this.PositionZ.Size = new System.Drawing.Size(100, 23);
+            this.PositionZ.TabIndex = 84;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(860, 450);
+            this.Controls.Add(this.PositionZ);
             this.Controls.Add(this.ShowPosShort);
             this.Controls.Add(this.GoToPos);
             this.Controls.Add(this.checkBox1);
@@ -724,6 +733,7 @@
         private TextBox MannaValueTextBox;
         private TextBox HPValueTextBox;
         private Button ShowPosShort;
+        private TextBox PositionZ;
 
         public EventHandler Tester_Click_1 { get; private set; }
     }

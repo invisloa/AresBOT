@@ -203,6 +203,8 @@ public static class PointersAndValues
     public const int positionZOffset = 0x240;
     public const int positionXShortOffset = 0x23e;
     public const int positionYShortOffset = 0x246;
+    public const int positionZShortOffset = 0x242;
+
 
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
@@ -269,7 +271,7 @@ public static class PointersAndValues
     public const int castingSpeedDelayOrbWithRosAoe = 16255;
 
     public const int castingSpeedDelayPlus1 = 16204;
-    public const int castingSpeedDelayPlus2 = 16204;
+    public const int castingSpeedDelayPlus2 = 16179;
     
     
     

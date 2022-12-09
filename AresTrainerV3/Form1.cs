@@ -63,7 +63,8 @@ namespace AresTrainerV3
             //
             gkh.KeyF2Down += StartOnlyHealbotThread;
             gkh.KeyF2Down += ShowIfOnOrOff;
-     //       gkh.KeyF3Down += ;
+            //       gkh.KeyF3Down += ;
+            gkh.KeyF3Down += StopAllBots;
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
             gkh.KeyF4Down += ShowIfOnOrOff;
@@ -78,7 +79,11 @@ namespace AresTrainerV3
             HealbotToRun = new HealBotOnlyHeal();
             HealbotToRun.StartHealBotThread();
         }
-
+        void StopAllBots()
+        {
+            ExpBotManagerAbstract.RequestStopExpBot();
+            HealBotAbstract.RequestStartStopHealBot();
+        }
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBox1.Checked)
@@ -375,12 +380,13 @@ namespace AresTrainerV3
         {
             PositionX.Text = ProgramHandle.GetPositionX.ToString();
             PositionY.Text = ProgramHandle.GetPositionY.ToString();
+            PositionZ.Text = ProgramHandle.GetPositionZ.ToString();
         }
         private void ShowPosShort_Click(object sender, EventArgs e)
         {
             PositionX.Text = ProgramHandle.GetPositionShortX.ToString();
             PositionY.Text = ProgramHandle.GetPositionShortY.ToString();
-
+            PositionZ.Text = ProgramHandle.GetPositionShortZ.ToString();
         }
 
 
@@ -412,15 +418,15 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
-            BuyerPotions.HpPotionsToBuy = 120;
+            BuyerPotions.HpPotionsToBuy = 135;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            BuyerPotions.MpPotionsToBuy = 35;
+            BuyerPotions.MpPotionsToBuy = 15;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             BuyerPotions.SpeedPotionsToBuy = 3;
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
             HealBotAbstract.SellItems = true;
             SellItemsCheckBox.Checked = true;
-            DoScanAttackCollect.NumberOfCollectScans = 1;
+            DoScanAttackCollect.NumberOfCollectScans = 2;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 
         }
@@ -560,47 +566,41 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
-            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
+            int i = ProgramHandle.GetSkillDelay;
+            ProgramHandle.SetCameraForExpBot();
 
-            int i = ProgramHandle.getCurrentAttackSpeed;
-            Debug.WriteLine(i);
-            ProgramHandle.SetGameAsMainWindow();
-            Thread.Sleep(500);
-            HealBotAbstract.RequestStartStopHealBot();
+            ProgramHandle.SetCameraLong();
 
-            SkillSelector classBuff = SkillSelector.SelectPropperClass();
-            classBuff.Rebuff();
+            /*            ProgramHandle.SetCameraForExpBot();
+                        Thread.Sleep(500);
 
-/*            ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(500);
+                        var date = DateTime.Now;
+                        if (date.Hour == 5)
+                        {
+                            Debug.WriteLine("zzzz");
 
-            var date = DateTime.Now;
-            if (date.Hour == 5)
-            {
-                Debug.WriteLine("zzzz");
+            */                /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
+                                        ProgramHandle.SetGameAsMainWindow();
+                                        ProgramHandle.SetCameraForExpBot();
+                                        ProgramHandle.SetCameraLong();
+                                        Thread.Sleep(500);
+                                        zzz.GoBackExp();
+                            *//*            while(true)
+                                        {
+                                            PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
+                                            Refresh();
+                                            //1073741824
+                                        }
+                            */            /*            int i;
+                                                    RepoterKharonExp zzz = new RepoterKharonExp();
+                                                    zzz.GoRepot();
+                                        *//*
 
-*/                /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
-                            ProgramHandle.SetGameAsMainWindow();
-                            ProgramHandle.SetCameraForExpBot();
-                            ProgramHandle.SetCameraLong();
-                            Thread.Sleep(500);
-                            zzz.GoBackExp();
-                *//*            while(true)
-                            {
-                                PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
-                                Refresh();
-                                //1073741824
-                            }
-                */            /*            int i;
-                                        RepoterKharonExp zzz = new RepoterKharonExp();
-                                        zzz.GoRepot();
-                            *//*
+                                        ProgramHandle.AntiBlackScreener();
+                            */
+        }
 
-                            ProgramHandle.AntiBlackScreener();
-                */
-            }
-
-            private void GoToPos_Click_1(object sender, EventArgs e)
+        private void GoToPos_Click_1(object sender, EventArgs e)
         {
             int x = 0;
             int y = 0;

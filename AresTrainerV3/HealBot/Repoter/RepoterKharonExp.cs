@@ -38,12 +38,20 @@ namespace AresTrainerV3.HealBot.Repoter
             CheckIfNotRunning();
             if (ProgramHandle.isNowStandingCity())
             {
-                Thread.Sleep(200 + randomizer.Next(1, 1000));
-                ProgramHandle.SetCameraLong();
-                Thread.Sleep(100 + randomizer.Next(1, 1000));
+                    Thread.Sleep(500);
+                    ProgramHandle.SetCameraLong();
+                    Thread.Sleep(500);
+                if (ProgramHandle.GetPositionShortY == 17126)
+                {
+                    MouseOperations.MoveAndLeftClickOperation(1125, 253, 200);
+                    Thread.Sleep(500);
+                }
+                else if(ProgramHandle.GetPositionShortY == 17142)
+                {
+                    MouseOperations.MoveAndLeftClickOperation(1126, 318, 200);
+                    Thread.Sleep(500);
 
-                MouseOperations.MoveAndLeftClickOperation(1125, 253, 200);
-                Thread.Sleep(500);
+                }
                 if (ProgramHandle.isNowStandingCity())
                 {
                     MouseOperations.MoveAndLeftClickOperation(1125, 253, 200);

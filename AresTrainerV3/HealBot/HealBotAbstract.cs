@@ -109,11 +109,11 @@ namespace AresTrainerV3.HealBot
             }
             else if (myCurrentHp < 650)
             {
-                hpHealValue = 380;
+                hpHealValue = 400;
             }
             else
             {
-                hpHealValue = myCurrentHp - 300;
+                hpHealValue = myCurrentHp - 200;
             }
         }
         void setMannaRestoreValue()
@@ -279,11 +279,11 @@ namespace AresTrainerV3.HealBot
             }
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                 }
-            }
+*/            }
 
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {

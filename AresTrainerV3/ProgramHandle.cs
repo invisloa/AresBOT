@@ -909,13 +909,14 @@ namespace AresTrainerV3
         static int ReadPositionShortX()
         {
             return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXShortOffset))), 0);
-
         }
-
         static int ReadPositionShortY()
         {
             return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYShortOffset))), 0);
-
+        }
+        static int ReadPositionShortZ()
+        {
+            return BitConverter.ToInt16((memTeleport.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZShortOffset))), 0);
         }
         static int ReadPositionX()
         {
@@ -944,6 +945,13 @@ namespace AresTrainerV3
                 return ReadPositionY();
             }
         }
+        public static int GetPositionZ
+        {
+            get
+            {
+                return ReadPositionZ();
+            }
+        }
         public static int GetPositionShortX
         {
             get
@@ -958,13 +966,14 @@ namespace AresTrainerV3
                 return ReadPositionShortY();
             }
         }
-        public static int GetPositionZ
+        public static int GetPositionShortZ
         {
             get
             {
-                return ReadPositionZ();
+                return ReadPositionShortZ();
             }
         }
+
 
 
 

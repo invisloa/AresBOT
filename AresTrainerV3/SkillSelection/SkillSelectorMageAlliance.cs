@@ -9,7 +9,7 @@ namespace AresTrainerV3.SkillSelection
     internal class SkillSelectorMageAlliance : SkillSelector
     {
         int buff1value = PointersAndValues.BuffMageShield;
-        int buff2value = 2489;  // TEMPORARY EXP SCROLL!!!!!
+        int buff2value = -1;  
         int buff3value = -1;
 
         bool buffIsNotActive(int buffValue)
@@ -41,15 +41,20 @@ namespace AresTrainerV3.SkillSelection
                         KeyPresser.PressKey(5, 50, 50);
                     }
                     checkIfAttackSkillIsSelected();
+                    if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                    {
+                        KeyPresser.PressKey(8, 100, 100);
+                    }
+
                 }
 
-                Thread.Sleep(5000);
+                Thread.Sleep(15000);
             }
-
+             
         }
         void UseRapidWhenLowSkillDelay()
         {
-            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus1)
+            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
             {
                 KeyPresser.PressKey(4, 100, 100);
                 KeyPresser.PressKey(4, 100, 100);
