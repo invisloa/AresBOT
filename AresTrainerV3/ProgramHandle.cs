@@ -1109,7 +1109,6 @@ namespace AresTrainerV3
                 return false;
             }
         }
-
         public static bool isAttacking()
         {
             /*            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
@@ -1144,7 +1143,7 @@ namespace AresTrainerV3
         public static void waitMouseInPos()
         {
             var sw = Stopwatch.StartNew();
-            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1200)
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 1600)
             {
                 Thread.Sleep(0);
             }
@@ -1157,7 +1156,6 @@ namespace AresTrainerV3
                 Thread.Sleep(0);
             }
         }
-
         public static bool isNowStandingOut()
         {
             if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||

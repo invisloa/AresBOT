@@ -418,15 +418,15 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotions.BuyFromForm = true;
-            BuyerPotions.HpPotionsToBuy = 135;
+            BuyerPotions.HpPotionsToBuy = 80;
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            BuyerPotions.MpPotionsToBuy = 15;
+            BuyerPotions.MpPotionsToBuy = 10;
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             BuyerPotions.SpeedPotionsToBuy = 3;
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
             HealBotAbstract.SellItems = true;
             SellItemsCheckBox.Checked = true;
-            DoScanAttackCollect.NumberOfCollectScans = 2;
+            DoScanAttackCollect.NumberOfCollectScans = 1;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 
         }

@@ -192,7 +192,7 @@ namespace AresTrainerV3.HealBot
                 else if (myCurrentHp == 0)
                 {
                     StopExpBot();
-                    Thread.Sleep(300000);
+                    Thread.Sleep(60000);
                     RepotAndStartExpBot();
                 }
                 if (myCurrentManna < MannaRestoreValue)

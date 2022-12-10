@@ -647,6 +647,35 @@ namespace AresTrainerV3
             {
                 return false;
             }
+            if (typeAdress == 9261) // Eventscarf
+            {
+                return false;
+            }
+            if (typeAdress == 9262) // Eventscarf
+            {
+                return false;
+            }
+            if (typeAdress == 9263) // Eventscarf
+            {
+                return false;
+            }
+            if (typeAdress == 9264) // Eventscarf
+            {
+                return false;
+            }
+            if (typeAdress == 9265) // Eventscarf
+            {
+                return false;
+            }
+
+            if (typeAdress == 9266) // Eventhead
+            {
+                return false;
+            }
+            if (typeAdress == 9267) // Eventhead
+            {
+                return false;
+            }
 
             else
             {
