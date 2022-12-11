@@ -851,48 +851,19 @@ namespace AresTrainerV3
                 if (typeAdress == item)
                 { return false; }
             }
+            foreach (int item in PointersAndValues.ItemValuesEventSnowman)
+            {
+                if (typeAdress == item)
+                { return false; }
+            }
             if (typeAdress == 187)// arrows
             {
                 return false;
             }
-            public static readonly ItemEventSnowmanItems
             if (typeAdress == 3093) // LegacyPot
             {
                 return false;
             }
-            if (typeAdress == 9220) // EventBrew
-            {
-                return false;
-            }
-            if (typeAdress == 9261) // Eventscarf
-            {
-                return false;
-            }
-            if (typeAdress == 9262) // Eventscarf
-            {
-                return false;
-            }
-            if (typeAdress == 9263) // Eventscarf
-            {
-                return false;
-            }
-            if (typeAdress == 9264) // Eventscarf
-            {
-                return false;
-            }
-            if (typeAdress == 9265) // Eventscarf
-            {
-                return false;
-            }
-            if (typeAdress == 9266) // Eventhead
-            {
-                return false;
-            }
-            if (typeAdress == 9267) // Eventhead
-            {
-                return false;
-            }
-
             else
             {
                 return true;
