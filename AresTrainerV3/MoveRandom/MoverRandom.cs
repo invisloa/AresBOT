@@ -95,7 +95,6 @@ namespace AresTrainerV3.MoveRandom
                             {
                                 if (ProgramHandle.isNowStandingOut())
                                 {
-                                    //movedMainMove = true;
                                     tooLowDistance = true;
                                     Debug.WriteLine("TOO LOW DISTANCE");
                                     int a = randomizer.Next(3);
@@ -121,7 +120,7 @@ namespace AresTrainerV3.MoveRandom
                             MoveToPosition(_lastMouseMovePosition);
                             if (tooLowDistance)
                             {
-                                Thread.Sleep(100);
+                                Thread.Sleep(20);
                             }
                             AttackedOrCollected = false;
                     }

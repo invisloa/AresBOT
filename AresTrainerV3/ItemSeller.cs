@@ -223,7 +223,7 @@ namespace AresTrainerV3
             }
             #endregion
 
-            #region Mouscle Power??
+            #region Mouscle Power
             // Baruch
             if (stat1 == 1)
             {
@@ -564,6 +564,101 @@ namespace AresTrainerV3
             }
             #endregion
 
+            #region Fire
+            if (stat1 == 35)
+            {
+                Fire += 10;
+            }
+            else if (stat1 == 36)
+            {
+                Fire += 20;
+            }
+            else if (stat1 == 37)
+            {
+                Fire += 30;
+            }
+            else if (stat1 == 38)
+            {
+                Fire += 40;
+            }
+            else if (stat1 == 39)
+            {
+                Fire += 50;
+            }
+            else if (stat1 == 40)
+            {
+                Fire += 60;
+            }
+            //stat2
+
+
+
+
+            #endregion
+
+            #region Water
+
+            //stats 1
+
+            if (stat2 == 38)
+            {
+                Water += 5;
+            }
+            else if (stat2 == 39)
+            {
+                Water += 15;
+            }
+            else if (stat2 == 40)
+            {
+                Water += 25;
+            }
+            else if (stat2 == 41)
+            {
+                Water += 35;
+            }
+            else if (stat2 == 42)
+            {
+                Water += 45;
+            }
+            else if (stat2 == 43)
+            {
+                Water += 55;
+            }
+            #endregion
+
+
+            #region Earth
+
+          // stats 1
+
+            if (stat2 == 44)
+            {
+                Earth += 5;
+            }
+            else if (stat2 == 45)
+            {
+                Earth += 15;
+            }
+            else if (stat2 == 46)
+            {
+                Earth += 25;
+            }
+            else if (stat2 == 47)
+            {
+                Earth += 35;
+            }
+            else if (stat2 == 48)
+            {
+                Earth += 45;
+            }
+            else if (stat2 == 49)
+            {
+                Earth += 55;
+            }
+            #endregion
+
+
+
 
             // Check IF stats Are Higher
             if (Agi > hightValueMainStats)
@@ -766,11 +861,11 @@ namespace AresTrainerV3
         }
         #endregion
 
-        public static void NewSellItems()
+/*        public static void NewSellItems()
         {
-/*            Thread.Sleep(500);
+*//*            Thread.Sleep(500);
             ExpBotClass.MoveAndLeftClickOperation(1235, 570);
-*/    
+*//*    
             Thread.Sleep(500);
             ItemsForSaleListGenerate();
             ProgramHandle.OpenShopWindow();
@@ -794,5 +889,5 @@ namespace AresTrainerV3
 
             }
         }
-    }
+*/    }
 }

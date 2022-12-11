@@ -233,7 +233,6 @@ namespace AresTrainerV3.HealBot
             expPlaceToStartSetter();
             whatToCollectSetter();
             repoterCity.GoRepot();
-            var date = DateTime.Now;
             _goBackExpPlace.GoBackExp();
             ExpBotToStart.StartExpBotThread();
 
@@ -245,11 +244,6 @@ namespace AresTrainerV3.HealBot
                 if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 2) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 150);
-                    /*                    if (SellItems == true && ProgramHandle.getCurrentWeight > PointersAndValues.MaxCollectWeight)
-                                        {
-                                        RepotAndStartExpBot();
-                                        }
-                    */
                 }
                 else
                 {

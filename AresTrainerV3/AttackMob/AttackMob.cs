@@ -14,6 +14,7 @@ namespace AresTrainerV3.AttackMob
     {
         public static bool IsAttackingPixel = false;
         static int attackUnstackCounter = 0;
+        static int unstackMax = 30;
         static void checkIfIsNowAttackingAnimation()
         {
             int waitTime = 20;
@@ -52,7 +53,7 @@ namespace AresTrainerV3.AttackMob
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
                 Debug.WriteLine(attackUnstackCounter);
-                if (attackUnstackCounter == 50)
+                if (attackUnstackCounter == unstackMax)
                 {
                     anywhereUnstucker.AttackUnstacker();
                 }

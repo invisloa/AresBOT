@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.HealBot;
+﻿using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.Unstuck;
 using System;
@@ -22,119 +23,125 @@ namespace AresTrainerV3.AttackMob
             //Debug.WriteLine("Start AttackScan");
             if (ProgramHandle.isInCity != 1)
             {
-                RepotAbstract.IsScanRunning = true;
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-
-                for (int x = 800; x < 1120; x++)
+                if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
 
-                    for (int y = 360; y < 680; y++)
+                    RepotAbstract.IsScanRunning = true;
+                    graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+
+                    for (int x = 800; x < 1120; x++)
                     {
-                        Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
+                        for (int y = 360; y < 680; y++)
                         {
-                            MouseOperations.SetCursorPosition(x+ moveMouseVector, y);
-                            ProgramHandle.waitMouseInPos();
+                            Color currentPixelColor = bitmap.GetPixel(x, y);
+                            if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                             {
-                                //   Debug.WriteLine("1 attack for");
+                                MouseOperations.SetCursorPosition(x + moveMouseVector, y);
+                                ProgramHandle.waitMouseInPos();
 
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
-                            }
-                              MouseOperations.SetCursorPosition(x- moveMouseVector, y);
-                            ProgramHandle.waitMouseInPos();
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    //   Debug.WriteLine("1 attack for");
 
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                            {
-                                //  Debug.WriteLine("1 attack for");
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
+                                MouseOperations.SetCursorPosition(x - moveMouseVector, y);
+                                ProgramHandle.waitMouseInPos();
 
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
-                            }
-                            MouseOperations.SetCursorPosition(x, y + moveMouseVector);
-                            ProgramHandle.waitMouseInPos();
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    //  Debug.WriteLine("1 attack for");
 
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                            {
-                                //  Debug.WriteLine("1 attack for");
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
+                                MouseOperations.SetCursorPosition(x, y + moveMouseVector);
+                                ProgramHandle.waitMouseInPos();
 
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
-                            }
-                              MouseOperations.SetCursorPosition(x, y- moveMouseVector);
-                            ProgramHandle.waitMouseInPos();
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    //  Debug.WriteLine("1 attack for");
 
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                            {
-                                //  Debug.WriteLine("1 attack for");
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
+                                MouseOperations.SetCursorPosition(x, y - moveMouseVector);
+                                ProgramHandle.waitMouseInPos();
 
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    //  Debug.WriteLine("1 attack for");
+
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
-                graphics = Graphics.FromImage(bitmap as Image);
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-
-                for (int x = 700; x < 1220; x++)
+                if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
-
-                    for (int y = 260; y < 780; y++)
+                    graphics = Graphics.FromImage(bitmap as Image);
+                    graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                    for (int x = 700; x < 1220; x++)
                     {
 
-
-                        Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
-
+                        for (int y = 260; y < 780; y++)
                         {
-                            MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPos();
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                            {
-                                // Debug.WriteLine("2 attack for");
+                            Color currentPixelColor = bitmap.GetPixel(x, y);
+                            if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
+                            {
+                                MouseOperations.SetCursorPosition(x, y);
+                                ProgramHandle.waitMouseInPos();
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    // Debug.WriteLine("2 attack for");
+
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
-                graphics = Graphics.FromImage(bitmap as Image);
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-
-                for (int x = 527; x < 1332; x++)
+                if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
-
-                    for (int y = 237; y < 835; y++)
+                    graphics = Graphics.FromImage(bitmap as Image);
+                    graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                    for (int x = 527; x < 1332; x++)
                     {
 
-
-                        Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
+                        for (int y = 237; y < 835; y++)
                         {
-                            MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPos();
 
-                            if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+
+                            Color currentPixelColor = bitmap.GetPixel(x, y);
+                            if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
                             {
-                               // Debug.WriteLine("3 attack for");
+                                MouseOperations.SetCursorPosition(x, y);
+                                ProgramHandle.waitMouseInPos();
 
-                                RepotAbstract.IsScanRunning = false;
-                                GC.Collect();
-                                return true;
+                                if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                {
+                                    // Debug.WriteLine("3 attack for");
+
+                                    RepotAbstract.IsScanRunning = false;
+                                    GC.Collect();
+                                    return true;
+                                }
                             }
                         }
-                    }
 
+                    }
                 }
             }
            // Debug.WriteLine("attack false");

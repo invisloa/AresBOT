@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AresTrainerV3.HealBot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,8 +32,11 @@ namespace AresTrainerV3.SkillSelection
         }
         public override void Rebuff()
         {
-            checkIfAttackSkillIsSelected();
-            Thread.Sleep(10000);
+            while (HealBotAbstract.IsHealBotRunning == true)
+            {
+                checkIfAttackSkillIsSelected();
+                Thread.Sleep(10000);
+            }
         }
     }
 }

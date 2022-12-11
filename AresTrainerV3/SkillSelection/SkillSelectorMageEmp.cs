@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AresTrainerV3.HealBot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,11 @@ namespace AresTrainerV3.SkillSelection
     {
         public override void Rebuff()
         {
-            throw new NotImplementedException();
+            while (HealBotAbstract.IsHealBotRunning == true)
+            {
+
+                throw new NotImplementedException();
+            }
         }
 
         public override void SkillAssign()
