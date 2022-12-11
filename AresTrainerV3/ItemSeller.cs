@@ -144,9 +144,6 @@ namespace AresTrainerV3
         }
 
         public static List<int> itemsForSaleList = new List<int>();
-
-
-
         public static bool isItemHighValue(int stat1, int stat2)
         {
             int magicAttack = 85;
@@ -856,11 +853,11 @@ namespace AresTrainerV3
                 if (typeAdress == item)
                 { return false; }
             }
-            if (typeAdress == 187)// arrows
+/*            if (typeAdress == 187)// arrows
             {
                 return false;
             }
-            if (typeAdress == 3093) // LegacyPot
+*/            if (typeAdress == 3093) // LegacyPot
             {
                 return false;
             }
