@@ -10,11 +10,14 @@ namespace AresTrainerV3
 {
     public class ItemSeller
     {
+
         public static void itemArrayPositionsInitialize()
         {
 
+
             int spaceMultiplyer = 0;
             int spaceBetweenRows = 0;
+
 
             for (int i = 0; i < 72; i++)
             {
@@ -146,6 +149,8 @@ namespace AresTrainerV3
 
         public static bool isItemHighValue(int stat1, int stat2)
         {
+            int magicAttack = 85;
+            int magicWithHp = 40;
             int hightValueMainStats = 12;
 
             int Mp = 0;
@@ -165,7 +170,6 @@ namespace AresTrainerV3
             int MageAlliPower = 0;
             int Gedel = 0;
             int Mizaph = 0;
-
             #region Mizaph++
             if (stat1 == 120)
             {
@@ -176,8 +180,6 @@ namespace AresTrainerV3
                 Mizaph += 2;
             }
             #endregion
-
-
             #region Agility++
             // Bilhan
             if (stat1 == 17)
@@ -222,7 +224,6 @@ namespace AresTrainerV3
                 Agi += 10;
             }
             #endregion
-
             #region Mouscle Power
             // Baruch
             if (stat1 == 1)
@@ -267,7 +268,6 @@ namespace AresTrainerV3
                 Mp += 10;
             }
             #endregion
-
             #region Concentration
             // Lhasha
             if (stat1 == 12)
@@ -286,7 +286,7 @@ namespace AresTrainerV3
             {
                 Con += 7;
             }
-            else if (stat1 == 5)
+            else if (stat1 == 16)
             {
                 Con += 9;
             }
@@ -312,7 +312,6 @@ namespace AresTrainerV3
                 Con += 10;
             }
             #endregion
-
             #region TotalDamage++
             // Amos
             if (stat1 == 75)
@@ -349,7 +348,6 @@ namespace AresTrainerV3
                 Td += 20;
             }
             #endregion
-
             #region Sihon
             // Sihon
             if (stat1 == 186)
@@ -365,8 +363,6 @@ namespace AresTrainerV3
                 Sihon += 50;
             }
             #endregion
-
-
             #region StrikingPower
             // Kazen /  Doriat
             if (stat2 == 123 || stat2 == 118)
@@ -386,7 +382,6 @@ namespace AresTrainerV3
                 StrikingPower += 120;
             }
             #endregion
-
             #region Mage
 
             // Air 
@@ -491,7 +486,6 @@ namespace AresTrainerV3
             }
 
             #endregion
-
             #region Justus
             // Justus
             if (stat1 == 189)
@@ -515,7 +509,6 @@ namespace AresTrainerV3
                 Justus += 30;
             }
             #endregion
-
             #region Gedel
             // Gedel
             if (stat1 == 81)
@@ -535,7 +528,6 @@ namespace AresTrainerV3
                 Gedel += 20;
             }
             #endregion
-
             #region Luck
             // Luck
             if (stat2 == 97)
@@ -563,7 +555,6 @@ namespace AresTrainerV3
                 Luck += 25;
             }
             #endregion
-
             #region Fire
             if (stat1 == 35)
             {
@@ -590,16 +581,63 @@ namespace AresTrainerV3
                 Fire += 60;
             }
             //stat2
-
-
-
-
+            if (stat2 == 32)
+            {
+                Water += 5;
+            }
+            else if (stat2 == 33)
+            {
+                Fire += 15;
+            }
+            else if (stat2 == 34)
+            {
+                Fire += 25;
+            }
+            else if (stat2 == 35)
+            {
+                Fire += 35;
+            }
+            else if (stat2 == 36)
+            {
+                Fire += 45;
+            }
+            else if (stat2 == 37)
+            {
+                Fire += 55;
+            }
             #endregion
-
             #region Water
 
             //stats 1
-
+            if (stat1 == 41)
+            {
+                Water += 5;
+            }
+            else if (stat1 == 42)
+            {
+                Water += 10;
+            }
+            else if (stat1 == 43)
+            {
+                Water += 20;
+            }
+            else if (stat1 == 44)
+            {
+                Water += 30;
+            }
+            else if (stat1 == 45)
+            {
+                Water += 40;
+            }
+            else if (stat1 == 46)
+            {
+                Water += 50;
+            }
+            else if (stat1 == 47)
+            {
+                Water += 60;
+            }
+            //stats 2
             if (stat2 == 38)
             {
                 Water += 5;
@@ -625,12 +663,37 @@ namespace AresTrainerV3
                 Water += 55;
             }
             #endregion
-
-
             #region Earth
-
-          // stats 1
-
+            // stats 1
+            if (stat1 == 48)
+            {
+                Earth += 5;
+            }
+            else if(stat1 == 49)
+            {
+                Earth += 10;
+            }
+            else if (stat1 == 50)
+            {
+                Earth += 20;
+            }
+            else if (stat1 == 51)
+            {
+                Earth += 30;
+            }
+            else if (stat1 == 52)
+            {
+                Earth += 40;
+            }
+            else if (stat1 == 53)
+            {
+                Earth += 50;
+            }
+            else if (stat1 == 54)
+            {
+                Earth += 60;
+            }
+            // stats 2
             if (stat2 == 44)
             {
                 Earth += 5;
@@ -656,9 +719,63 @@ namespace AresTrainerV3
                 Earth += 55;
             }
             #endregion
+            #region Air
 
+            // stats 1
+            if (stat1 == 55)
+            {
+                Air += 5;
+            }
+            else if (stat1 == 56)
+            {
+                Air += 10;
+            }
+            else if (stat1 == 57)
+            {
+                Air += 20;
+            }
+            else if (stat1 == 58)
+            {
+                Air += 30;
+            }
+            else if (stat1 == 59)
+            {
+                Air += 40;
+            }
+            else if (stat1 == 60)
+            {
+                Air += 50;
+            }
+            else if (stat1 == 61)
+            {
+                Air += 60;
+            }
 
-
+            if (stat2 == 50)
+            {
+                Air += 5;
+            }
+            else if (stat2 == 51)
+            {
+                Air += 15;
+            }
+            else if (stat2 == 52)
+            {
+                Air += 25;
+            }
+            else if (stat2 == 53)
+            {
+                Air += 35;
+            }
+            else if (stat2 == 54)
+            {
+                Air += 45;
+            }
+            else if (stat2 == 55)
+            {
+                Air += 55;
+            }
+            #endregion
 
             // Check IF stats Are Higher
             if (Agi > hightValueMainStats)
@@ -681,11 +798,14 @@ namespace AresTrainerV3
             {
                 return true;
             }
-/*            else if (MageAlliPower > 80 || MageEmpPower > 80)
-*//*            {
+            else if (Fire > magicAttack || Earth > magicAttack || Water > magicAttack || Air > magicAttack)
+            {
                 return true;
             }
-*/
+            else if (Fire > magicWithHp || magicWithHp > magicAttack || Water > magicWithHp || Air > magicWithHp && Justus >15)
+            {
+                return true;
+            }
             else if (Td > 10 && StrikingPower > 60)
             {
                 return true;
@@ -726,15 +846,17 @@ namespace AresTrainerV3
         }
         public static bool isItemSaleType(int typeAdress)
         {
-            if(typeAdress == 187)// arrows
+            foreach (int item in PointersAndValues.ItemValuesSodSop)
+            {
+                if (typeAdress == item)
+                { return false; }
+            }
+            if (typeAdress == 187)// arrows
             {
                 return false;
             }
-/*            if (typeAdress == 544) // dolomite
-            {
-                return false;
-            }
-*/            if (typeAdress == 3093) // LegacyPot
+            public static readonly ItemEventSnowmanItems
+            if (typeAdress == 3093) // LegacyPot
             {
                 return false;
             }
@@ -762,7 +884,6 @@ namespace AresTrainerV3
             {
                 return false;
             }
-
             if (typeAdress == 9266) // Eventhead
             {
                 return false;

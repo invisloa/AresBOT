@@ -405,7 +405,8 @@ public static class PointersAndValues
 
 
     // item values
-    public static readonly int[] SodSop =  { 246, 247, 1092, 1093, 1094, 1095 };
+    public static readonly int[] ItemValuesSodSop =  { 246, 247, 1092, 1093, 1094, 1095 };
+    public static readonly int[] ItemValuesEventSnowman = { 9220, 9261, 9262, 9263, 9264, 9265, 9266, 9267};
 
 
     // cry items

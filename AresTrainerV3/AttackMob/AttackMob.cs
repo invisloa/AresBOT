@@ -72,7 +72,8 @@ namespace AresTrainerV3.AttackMob
             }
             else if (ProgramHandle.isMobSelected > 8300000)
             {
-                AbstractWhatToCollect.MaxCollectWeight = 1;
+                // Temporaty disabled 
+               // AbstractWhatToCollect.MaxCollectWeight = 1;
                 Debug.WriteLine($"Player Found");
                 return false;
             }
