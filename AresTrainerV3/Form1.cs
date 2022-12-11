@@ -417,12 +417,26 @@ namespace AresTrainerV3
 
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            BuyerPotions.BuyFromForm = true;
             BuyerPotions.HpPotionsToBuy = 80;
-            HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
             BuyerPotions.MpPotionsToBuy = 10;
-            MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             BuyerPotions.SpeedPotionsToBuy = 3;
+
+            BuyerPotions.BuyFromForm = true;
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
+            {
+                // do nothing;
+            }
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+            {
+                BuyerPotions.MpPotionsToBuy = 3;
+            }
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
+            {
+                BuyerPotions.HpPotionsToBuy = 120;
+                BuyerPotions.MpPotionsToBuy = 0;
+            }
+            HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
+            MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
             SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
             HealBotAbstract.SellItems = true;
             SellItemsCheckBox.Checked = true;

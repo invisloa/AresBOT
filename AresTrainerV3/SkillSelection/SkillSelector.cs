@@ -37,7 +37,7 @@ namespace AresTrainerV3.SkillSelection
                     if (ProgramHandle.isCurrentSkill() != 2)
                     {
                         KeyPresser.PressKey(3, 50, 50);
-                        Thread.Sleep(200);
+                        Thread.Sleep(2000);
                     }
 
                 }

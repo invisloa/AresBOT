@@ -404,7 +404,7 @@
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
             this.ExpBotComboBox.TabIndex = 58;
-            this.ExpBotComboBox.Text = "SlothNoIcebergs";
+            this.ExpBotComboBox.Text = "SlothAoe";
             this.ExpBotComboBox.SelectedIndexChanged += new System.EventHandler(this.ExpBotComboBox_SelectedIndexChanged);
             // 
             // PositionX
