@@ -402,6 +402,17 @@ namespace AresTrainerV3.HealBot
                     blackScreenThread.Start();
                 }
             }
+            else if (whichBotThreadToStart == MoverBotEnums.SlothAoe)
+            {
+                repoterCity = new RepoterKharonExp();
+                _goBackExpPlace = new GoBackExpSlothNoIcebergs();
+                _expBotToStart = new MoverSloth1stFloorAoe() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+                if (blackScreenThread == null)
+                {
+                    blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+                    blackScreenThread.Start();
+                }
+            }
 
         }
 

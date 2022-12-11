@@ -136,10 +136,13 @@ namespace AresTrainerV3.MoveRandom
                             }
                             else if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
                             {
-                                ExpBotManagerAbstract.RequestStopExpBot();
-                                HealBotAbstract.RequestStartStopHealBot();
-
-                                System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                                Thread.Sleep(5000);
+                                if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX && ExpBotManagerAbstract.isExpBotRunning)
+                                {
+                                    ExpBotManagerAbstract.RequestStopExpBot();
+                                    HealBotAbstract.RequestStartStopHealBot();
+                                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                                }
                             }
                         }
                     }

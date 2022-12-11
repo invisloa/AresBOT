@@ -484,6 +484,11 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
             }
+            else if (ExpBotComboBox.Text == "SlothAoe")
+            {
+                ExpBotMoverToRun = new MoverSloth1stFloorAoe();
+                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
+            }
 
             if (CollectorComboBox.Text == "+Event")
             {

@@ -398,7 +398,8 @@
             "HershalUWC1stFloor",
             "KharonWolves",
             "Sloth1stFloor",
-            "SlothNoIcebergs"});
+            "SlothNoIcebergs",
+            "SlothAoe"});
             this.ExpBotComboBox.Location = new System.Drawing.Point(719, 233);
             this.ExpBotComboBox.Name = "ExpBotComboBox";
             this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.HealBot.Repoter.Returner
 {
-    internal class GoBackExpSlothNoIcebergs : GoBackExpAbstract
+    public class GoBackExpSlothNoIcebergs : GoBackExpAbstract
     {
 
 

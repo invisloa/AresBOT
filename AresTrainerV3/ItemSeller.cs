@@ -939,7 +939,7 @@ namespace AresTrainerV3
                 {
                     Debug.WriteLine($"sell item {item}");
 
-                    int sellItemNumber = item + 12; // START FROM 3 Row 1st Column -its 12
+                    int sellItemNumber = item + 6; // START FROM 3 Row 1st Column = 12
                     if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
                     {
                         Thread.Sleep(150);
