@@ -25,6 +25,7 @@ namespace AresTrainerV3.SkillSelection
         }
         public override void Rebuff()
         {
+            int acHopeNotBuffed = ProgramHandle.getCurrentAC+10;
             while (HealBotAbstract.IsHealBotRunning == true)
             {
                 if (ProgramHandle.isInCity != 1)
@@ -43,11 +44,11 @@ namespace AresTrainerV3.SkillSelection
                     }
                     if (buffIsNotActive(buff2value))
                     {
-                        KeyPresser.PressKey(5, 50, 50);
-                        KeyPresser.PressKey(5, 50, 50);
-                        KeyPresser.PressKey(5, 50, 50);
                     }
                     if (buffIsNotActive(buff2value))
+                    {
+                    }
+                    if(ProgramHandle.getCurrentAC < acHopeNotBuffed)
                     {
                         KeyPresser.PressKey(5, 50, 50);
                         KeyPresser.PressKey(5, 50, 50);

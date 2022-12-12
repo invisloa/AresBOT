@@ -268,7 +268,6 @@ namespace AresTrainerV3
             
             storageWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.StorageWindow2MOffset));
 
-
             hpAddress = memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.hpOffset), 4);
 
             MannaAddress = memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.MannaOffset), 4);
@@ -468,6 +467,11 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memHealBot.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.AttackSpeedOffset), 4)), 0); }
         }
+        public static int getCurrentAC
+        {
+            get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.currentAC), 4)); }
+        }
+
 
         public static int isWhatAnimationRunning
         {

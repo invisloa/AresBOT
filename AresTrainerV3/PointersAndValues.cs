@@ -179,6 +179,7 @@ public static class PointersAndValues
     public const int MannaOffset = 0x980;
     public const int WeightOffset = 0x998;
     public const int WeightMaxOffset = 0x99c;
+    public const int currentAC = 0x9d4;
     public const int skill1Offset = 0x05c;
     public const int anim1Offset = 0x3a8;
     public const int anim2Offset = 0x3ac;

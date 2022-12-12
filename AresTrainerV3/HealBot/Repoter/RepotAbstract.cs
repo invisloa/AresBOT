@@ -55,14 +55,6 @@ namespace AresTrainerV3.HealBot.Repoter
         protected void teleportToCityAndStopExpBot()
         {
             StopExpBot();
-            while (IsScanRunning)
-            {
-                Thread.Sleep(20);
-            }
-            while (ExpBotManagerAbstract.isExpBotRunning)
-            {
-                Thread.Sleep(10);
-            }
             KeyPresser.PressKey(6, 100, 100);
             Thread.Sleep(1000);
 

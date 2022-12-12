@@ -587,8 +587,11 @@ namespace AresTrainerV3
         {
             int i = ProgramHandle.GetSkillDelay;
             ProgramHandle.SetCameraForExpBot();
-
             ProgramHandle.SetCameraLong();
+
+            HealBotAbstract.RequestStartStopHealBot();
+            SkillSelector asd = SkillSelector.SelectPropperClass();
+            asd.Rebuff();
 
             /*            ProgramHandle.SetCameraForExpBot();
                         Thread.Sleep(500);
