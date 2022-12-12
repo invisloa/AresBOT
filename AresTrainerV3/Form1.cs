@@ -424,10 +424,12 @@ namespace AresTrainerV3
             BuyerPotions.BuyFromForm = true;
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
-                // do nothing;
+                BuyerPotions.HpPotionsToBuy = 122;
+                BuyerPotions.MpPotionsToBuy = 20;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
+                BuyerPotions.HpPotionsToBuy = 120;
                 BuyerPotions.MpPotionsToBuy = 3;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
