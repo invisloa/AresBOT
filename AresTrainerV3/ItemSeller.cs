@@ -831,11 +831,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Mizaph > 0 && (Mp > 3||Con>3||Agi>3))
-            {
-                return true;
-            }
-            else if (Mizaph>1)
+            else if (Mizaph > 1 && (Mp > 3||Con>3||Agi>3))
             {
                 return true;
             }
