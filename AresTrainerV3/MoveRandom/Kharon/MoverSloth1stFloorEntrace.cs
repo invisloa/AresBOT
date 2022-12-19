@@ -24,7 +24,7 @@ namespace AresTrainerV3.MoveRandom.Kharon
             }
 
         }
-        protected override void downLimitBounce()
+        protected override void leftLimitBounce()
         {
                 _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(-2,3));
         }
