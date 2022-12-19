@@ -424,8 +424,8 @@ namespace AresTrainerV3
             BuyerPotions.BuyFromForm = true;
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
-                BuyerPotions.HpPotionsToBuy = 122;
-                BuyerPotions.MpPotionsToBuy = 20;
+                BuyerPotions.HpPotionsToBuy = 99;
+                BuyerPotions.MpPotionsToBuy = 15;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
@@ -468,14 +468,18 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverThievesUnder();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-            else if (ExpBotComboBox.Text == "HolinaGoblins")
-            {
-                ExpBotMoverToRun = new MoverHolinaGoblins();
-                //HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
-
-            }
-            else if (ExpBotComboBox.Text == "HershalLeafMages")
+			else if (ExpBotComboBox.Text == "HolinaGoblins")
+			{
+				ExpBotMoverToRun = new MoverHolinaGoblins();
+				//HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+			}
+			else if (ExpBotComboBox.Text == "HolinaBuckSlavePit")
+			{
+				ExpBotMoverToRun = new MoverHolinaBuckSlavePit();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+			}
+			else if (ExpBotComboBox.Text == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
@@ -500,13 +504,19 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
             }
-            else if (ExpBotComboBox.Text == "SlothAoe")
-            {
-                ExpBotMoverToRun = new MoverSloth1stFloorAoe();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
-            }
+			else if (ExpBotComboBox.Text == "SlothAoe")
+			{
+				ExpBotMoverToRun = new MoverSloth1stFloorAoe();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
+			}
+			else if (ExpBotComboBox.Text == "testUWC")
+			{
+				ExpBotMoverToRun = new MoverSloth1stFloorAoe();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
+			}
+			
 
-            if (CollectorComboBox.Text == "+Event")
+			if (CollectorComboBox.Text == "+Event")
             {
                 HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent()));
@@ -587,15 +597,22 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
-            int i = ProgramHandle.GetSkillDelay;
+			ProgramHandle.SetCameraForExpBot();
+
+			ExpBotClass.RequestStartStopMoveExpBot();
+            ExpBotManagerAbstract.RequestStartExpBot();
+
+			ExpBotClass.RunAndExpSquareUWC();
+
+/*            int i = ProgramHandle.GetCurrentMap;
             ProgramHandle.SetCameraForExpBot();
             ProgramHandle.SetCameraLong();
 
             HealBotAbstract.RequestStartStopHealBot();
             SkillSelector asd = SkillSelector.SelectPropperClass();
             asd.Rebuff();
-
-            /*            ProgramHandle.SetCameraForExpBot();
+*/
+			/*            ProgramHandle.SetCameraForExpBot();
                         Thread.Sleep(500);
 
                         var date = DateTime.Now;
@@ -622,7 +639,7 @@ namespace AresTrainerV3
 
                                         ProgramHandle.AntiBlackScreener();
                             */
-        }
+		}
 
         private void GoToPos_Click_1(object sender, EventArgs e)
         {

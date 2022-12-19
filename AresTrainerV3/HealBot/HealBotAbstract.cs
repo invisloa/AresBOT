@@ -279,28 +279,47 @@ namespace AresTrainerV3.HealBot
                 }
 */            }
 
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
-            {
-/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+			{
+				/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+								{
+									KeyPresser.PressKey(8, 100, 100);
+									// for now using with red potion later to change for a sorcerer
+									KeyPresser.PressKey(7, 100, 100);
+								}
+				*/
+				if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
+				{
+					KeyPresser.PressKey(8, 100, 100);
+					KeyPresser.PressKey(7, 100, 100);
+				}
+
+			}
+			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+			{
+                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     // for now using with red potion later to change for a sorcerer
                     KeyPresser.PressKey(7, 100, 100);
-                }
-*/                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                    KeyPresser.PressKey(7, 100, 100);
-                }
+					KeyPresser.PressKey(5, 100, 100);
 
-            }
+				}
 
-        }
+				/*                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
+								{
+									KeyPresser.PressKey(8, 100, 100);
+									KeyPresser.PressKey(7, 100, 100);
+								}
+				*/
+			}
+
+		}
 
 
 
 
-        protected IStartExpBotThread _expBotToStart;
+		protected IStartExpBotThread _expBotToStart;
         public MoverBotEnums whichBotThreadToStart
         {
             get;
@@ -344,8 +363,8 @@ namespace AresTrainerV3.HealBot
         {
             if (whichBotThreadToStart == MoverBotEnums.NoRepot)
             {
-                repoterCity = null;
-                _goBackExpPlace = null;
+				repoterCity = new RepoterShutdown();
+                _goBackExpPlace = new GoBackExpHolinaTeleport();
             }
             else if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
             {

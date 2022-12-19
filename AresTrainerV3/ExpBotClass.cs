@@ -10,6 +10,7 @@ using System.Threading;
 using System;
 using AresTrainerV3.Buyer;
 using AresTrainerV3.Unstuck;
+using AresTrainerV3.AttackMob;
 
 namespace AresTrainerV3
 {
@@ -80,7 +81,7 @@ namespace AresTrainerV3
         {
             get { return _stopMoveExpBot; }
         }
-        public static void RequestStopMoveExpBot()
+        public static void RequestStartStopMoveExpBot()
         {
             if (_stopMoveExpBot)
                 _stopMoveExpBot = false;
@@ -440,17 +441,17 @@ namespace AresTrainerV3
                 Thread.Sleep(50);
             }
         }
-/*
+
         static void MoveScanAndAttack(int x, int y)
         {
-            if (isNowStandingOut())
+            if (ProgramHandle.isNowStandingOut())
             {
                 moveToPosition(x, y);
             }
 
             PixelMobAttack.AttackSkillMobWhenSelected();
         }
-*/       public static void MoveIfStandingOut(int x,int y)
+        public static void MoveIfStandingOut(int x,int y)
         {
 
             if (ProgramHandle.isNowStandingOut())
@@ -492,9 +493,10 @@ namespace AresTrainerV3
                     {
                     ExpBotLog += $"goLeft \n";
 
-                    MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
-                    }
-                    if (ProgramHandle.GetPositionY > upLimit)
+					MoveScanAndAttack(x + moveRandomizer, y + moveRandomizer);
+					//MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
+				}
+				if (ProgramHandle.GetPositionY > upLimit)
                     {
                     ExpBotLog += $"goLeft-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
                     goDown(900+ moveRandomizer, 640+ moveRandomizer, upLimit, ProgramHandle.GetPositionX - moveBuffor, ProgramHandle.GetPositionX + moveBuffor, moveOnlyOnMapX);
@@ -518,10 +520,10 @@ namespace AresTrainerV3
                     {
                     ExpBotLog += $"goRight \n";
 
-                    MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
+					MoveScanAndAttack(x + moveRandomizer, y + moveRandomizer);
 
-                    }
-                    if (ProgramHandle.GetPositionY > upLimit)
+				}
+				if (ProgramHandle.GetPositionY > upLimit)
                 {
                     ExpBotLog += $"goRight-goDown currentY {ProgramHandle.GetPositionY} UpLimit {upLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
@@ -547,10 +549,10 @@ namespace AresTrainerV3
                         {
                         ExpBotLog += $"goUp \n";
 
-                        MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
+					MoveScanAndAttack(x + moveRandomizer, y + moveRandomizer);
 
-                        }
-                    if (ProgramHandle.GetPositionX > rightLimit)
+				}
+				if (ProgramHandle.GetPositionX > rightLimit)
                         {
                             ExpBotLog += $"goUp-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
@@ -577,10 +579,10 @@ namespace AresTrainerV3
                 {
                     ExpBotLog += $"goDown currentY xyz{ProgramHandle.GetPositionY} downLimit {upLimit} currentX {ProgramHandle.GetPositionX} \n";
 
-                    MoveIfStandingOut(x+ moveRandomizer, y+ moveRandomizer);
+					MoveScanAndAttack(x + moveRandomizer, y + moveRandomizer);
 
-                }
-                if (ProgramHandle.GetPositionX > rightLimit)
+				}
+				if (ProgramHandle.GetPositionX > rightLimit)
                 {
                     ExpBotLog += $"goDown-goLeft currentX {ProgramHandle.GetPositionX} rightLimit {rightLimit} current x {ProgramHandle.GetPositionX}, current y {ProgramHandle.GetPositionY} \n";
 
@@ -722,16 +724,6 @@ namespace AresTrainerV3
         }
 
 
-        public static void MoveAndRightClickOperation(int xPos, int yPos)
-        {
-            Thread.Sleep(150);
-            MouseOperations.SetCursorPosition(xPos, yPos);
-            Thread.Sleep(100);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-            Thread.Sleep(100);
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-            Thread.Sleep(100);
-        }
 
 
 

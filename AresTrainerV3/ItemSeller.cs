@@ -148,7 +148,7 @@ namespace AresTrainerV3
         {
             int magicAttack = 85;
             int magicWithHp = 40;
-            int hightValueMainStats = 12;
+            int hightValueMainStats = 14;
 
             int Mp = 0;
             int Agi = 0;
@@ -328,19 +328,19 @@ namespace AresTrainerV3
                 Td += 20;
             }
             // Magbisch
-            if (stat1 == 64)
+            if (stat2 == 64)
             {
                 Td += 5;
             }
-            else if (stat1 == 65)
+            else if (stat2 == 65)
             {
                 Td += 10;
             }
-            else if (stat1 == 66)
+            else if (stat2 == 66)
             {
                 Td += 15;
             }
-            else if (stat1 == 67)
+            else if (stat2 == 67)
             {
                 Td += 20;
             }
@@ -799,19 +799,19 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Fire > magicWithHp || magicWithHp > magicAttack || Water > magicWithHp || Air > magicWithHp && Justus >15)
+            else if ((Fire > magicWithHp || magicWithHp > magicAttack || Water > magicWithHp || Air > magicWithHp) && Justus >15)
             {
                 return true;
             }
-            else if (Td > 10 && StrikingPower > 60)
+            else if (Td > 10 && StrikingPower > 45)
             {
                 return true;
             }
-            else if (Justus > 15 && StrikingPower > 60)
+            else if (Justus > 15 && StrikingPower > 45)
             {
                 return true;
             }
-            else if (Justus > 10 && Td > 10)
+            else if (Justus > 20 && Td > 10)
             {
                 return true;
             }
@@ -819,11 +819,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Sihon > 35 && Mp > 3 || Sihon > 35 && Agi > 3 || Sihon > 35 && Con > 3)
-            {
-                return true;
-            }
-            else if (Sihon > 30 && Mp > 6 || Sihon > 30 && Agi > 6 || Sihon > 30 && Con > 6)
+            else if (Sihon > 40 && Mp > 5 || Sihon > 35 && Agi > 5 || Sihon > 35 && Con > 5)
             {
                 return true;
             }
@@ -939,7 +935,7 @@ namespace AresTrainerV3
                         MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
                         Thread.Sleep(150);
                     }
-                    ExpBotClass.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
+                    MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
                     MoveAndLeftClickToSellAll();
                 }
             }
