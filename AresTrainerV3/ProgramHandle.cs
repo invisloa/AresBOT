@@ -244,7 +244,7 @@ namespace AresTrainerV3
             cameraBaseOffset = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.cameraBaseMOffset));
 
 			cameraFogOffsetComp = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogMOffsetComp));
-			cameraFogOffsetLapt = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogMOffsetComp));
+			cameraFogOffsetLapt = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogMOffsetLapt));
 
 			antiBlackOffset = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.antiBlackMOffset));
 
