@@ -49,15 +49,22 @@ public static class PointersAndValues
             else { return 0x2ad2fc; }
         }
     }
-    public static int fogMOffset
-    {
-        get
-        {
-            if (isNostalgia) { return 0x2B03CC; }
-            else { return 0x2A9194; }
-        }
-    }
-    public static int antiBlackMOffset
+	public static int fogMOffsetComp
+	{
+		get
+		{
+			if (isNostalgia) { return 0x2B03CC; }
+			else { return 0x2A9194; }
+		}
+	}
+	public static int fogMOffsetLapt
+	{
+		get
+		{
+			 return 0x2a9084;
+		}
+	}
+	public static int antiBlackMOffset
     {
         get
         {
@@ -69,17 +76,24 @@ public static class PointersAndValues
 
 
 
-    public static int cameraFogPointer
-    {
-        get
-        {
-            if (isNostalgia) { return 0xd16; }
-            else { return 0xfb6; }
+	public static int cameraFogPointerComp
+	{
+		get
+		{
+			if (isNostalgia) { return 0xd16; }
+			else { return 0xfb6; }
+		}
+	}
+	public static int cameraFogPointerLapt
+	{
+		get
+		{
+			 return 0xd86;
         }
-    }
+	}
 
 
-    public static int cameraBaseMOffset
+	public static int cameraBaseMOffset
     {
         get
         {

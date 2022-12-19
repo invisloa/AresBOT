@@ -49,8 +49,9 @@ namespace AresTrainerV3
         static Process proc = Process.GetProcessesByName(foregroundProcessName)[0];
         static IntPtr baseNormalOffset;
         static IntPtr cameraBaseOffset;
-        static IntPtr cameraFogOffset;
-        static IntPtr antiBlackOffset;
+		static IntPtr cameraFogOffsetComp;
+		static IntPtr cameraFogOffsetLapt;		
+		static IntPtr antiBlackOffset;
         static IntPtr mobSelectedOffset;
         static IntPtr mobBeingAttackedOffset;
         static IntPtr itemMouseoverHighlightedOffset;
@@ -242,9 +243,10 @@ namespace AresTrainerV3
 
             cameraBaseOffset = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.cameraBaseMOffset));
 
-            cameraFogOffset = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogMOffset));
+			cameraFogOffsetComp = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogMOffsetComp));
+			cameraFogOffsetLapt = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.fogMOffsetComp));
 
-            antiBlackOffset = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.antiBlackMOffset));
+			antiBlackOffset = memNormal.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.antiBlackMOffset));
 
             mobSelectedOffset = memScanner.readpointer(proc.Handle, IntPtr.Add(client, PointersAndValues.mobSelectedMOffset));
 
@@ -395,10 +397,11 @@ namespace AresTrainerV3
         {
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceAnimValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
-            memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-          //  memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-        }
-        public static void AntiBlackScreener()
+			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+			//  memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+		}
+		public static void AntiBlackScreener()
         {
             while (true)
             {
@@ -415,10 +418,11 @@ namespace AresTrainerV3
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceBotValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleXPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleXValue));
-            memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-        }
+            memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+		}
 
-        public static int isInCity
+		public static int isInCity
         {
             get
             {
