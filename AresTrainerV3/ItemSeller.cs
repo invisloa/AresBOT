@@ -146,9 +146,10 @@ namespace AresTrainerV3
         public static List<int> itemsForSaleList = new List<int>();
         public static bool isItemHighValue(int stat1, int stat2)
         {
-            int magicAttack = 85;
-            int magicWithHp = 40;
-            int hightValueMainStats = 14;
+            int magicAttackLimit = 85;
+			int magicJustusLimit = 40;
+			int magicJustus25Limit = 30;
+			int hightValueMainStats = 14;
 
             int Mp = 0;
             int Agi = 0;
@@ -795,23 +796,27 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Fire > magicAttack || Earth > magicAttack || Water > magicAttack || Air > magicAttack)
+            else if (Fire > magicAttackLimit || Earth > magicAttackLimit || Water > magicAttackLimit || Air > magicAttackLimit)
             {
                 return true;
             }
-            else if ((Fire > magicWithHp || magicWithHp > magicAttack || Water > magicWithHp || Air > magicWithHp) && Justus >15)
+			else if ((Fire > magicJustusLimit || magicJustusLimit > magicAttackLimit || Water > magicJustusLimit || Air > magicJustusLimit) && Justus > 15)
+			{
+				return true;
+			}
+			else if ((Fire > magicJustus25Limit || Earth > magicJustus25Limit || Water > magicJustus25Limit || Air > magicJustus25Limit) && Justus > 20)
+			{
+				return true;
+			}
+			else if (Td > 10 && StrikingPower > 45)
             {
                 return true;
             }
-            else if (Td > 10 && StrikingPower > 45)
-            {
-                return true;
-            }
-            else if (Justus > 15 && StrikingPower > 45)
-            {
-                return true;
-            }
-            else if (Justus > 20 && Td > 10)
+			else if (Justus > 15 && StrikingPower > 45)
+			{
+				return true;
+			}
+			else if (Justus > 20 && Td > 10)
             {
                 return true;
             }

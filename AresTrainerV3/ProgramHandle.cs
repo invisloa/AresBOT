@@ -398,7 +398,7 @@ namespace AresTrainerV3
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceAnimValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
 			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+			// memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
 			//  memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
 		}
 		public static void AntiBlackScreener()
@@ -419,7 +419,7 @@ namespace AresTrainerV3
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleXPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleXValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+			//memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
 		}
 
 		public static int isInCity

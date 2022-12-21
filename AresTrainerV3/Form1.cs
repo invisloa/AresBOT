@@ -598,12 +598,13 @@ namespace AresTrainerV3
         private void fasttest_Click(object sender, EventArgs e)
         {
 			ProgramHandle.SetCameraForExpBot();
+            ProgramHandle.TeleportToPositionTuple(TeleportValues.PosSiros1stBasementFloorEXPSpot);
 
-			ExpBotClass.RequestStartStopMoveExpBot();
+/*			ExpBotClass.RequestStartStopMoveExpBot();
             ExpBotManagerAbstract.RequestStartExpBot();
 
 			ExpBotClass.RunAndExpSquareUWC();
-
+*/
 /*            int i = ProgramHandle.GetCurrentMap;
             ProgramHandle.SetCameraForExpBot();
             ProgramHandle.SetCameraLong();

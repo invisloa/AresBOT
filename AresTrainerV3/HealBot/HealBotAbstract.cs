@@ -202,6 +202,7 @@ namespace AresTrainerV3.HealBot
                 WhiteRedPotionKeyPress();
                 if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
                 {
+                    // try to make storage repot and items move
                     RepotAndStartExpBot();
                 }
 
@@ -230,12 +231,14 @@ namespace AresTrainerV3.HealBot
         }
         public void RepotAndStartExpBot()
         {
-            expPlaceToStartSetter();
-            whatToCollectSetter();
+            if (repoterCity == null)
+            {
+                expPlaceToStartSetter();
+                whatToCollectSetter();
+            }
             repoterCity.GoRepot();
             _goBackExpPlace.GoBackExp();
             ExpBotToStart.StartExpBotThread();
-
         }
 
         protected void MannaKeyPress()
