@@ -456,7 +456,7 @@
 			this.CollectorComboBox.Name = "CollectorComboBox";
 			this.CollectorComboBox.Size = new System.Drawing.Size(121, 23);
 			this.CollectorComboBox.TabIndex = 66;
-			this.CollectorComboBox.Text = "AllItems";
+			this.CollectorComboBox.Text = "+Jewelery";
 			this.CollectorComboBox.SelectedIndexChanged += new System.EventHandler(this.CollectorComboBox_SelectedIndexChanged);
 			// 
 			// label17
