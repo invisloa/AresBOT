@@ -444,10 +444,12 @@ namespace AresTrainerV3
             SellItemsCheckBox.Checked = true;
             DoScanAttackCollect.NumberOfCollectScans = 1;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
+			this.CollectorComboBox.Text = "AllItems";
 
-        }
 
-        void AssignBot()
+		}
+
+		void AssignBot()
         {
             AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
             AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
