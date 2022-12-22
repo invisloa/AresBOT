@@ -203,8 +203,9 @@ public static class PointersAndValues
     public const int slotWhitePotOffset = 0xc06;
     public const int slotCandleOffset = 0xc22;
     public const int slotScrollOffset = 0xc3e;
-    public const int slotFirstSellOffset = 0xc5a;
-    public const int MouseoverHighlightedOffset = 0x7c;
+	public const int slotFirstSellOffset = 0xc5a;
+	public const int blessItem2rowValue = 0xc5c;
+	public const int MouseoverHighlightedOffset = 0x7c;
     public const int cameraDistancePointer = 0x19c;
     public const int cameraAngleYPointer = 0x1b6;
     public const int cameraAngleXPointer = 0x1a0;

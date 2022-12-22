@@ -597,22 +597,23 @@ namespace AresTrainerV3
 
         private void fasttest_Click(object sender, EventArgs e)
         {
+
+			int i = ProgramHandle.ReadBless2RowValue();
 			ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.TeleportToPositionTuple(TeleportValues.PosSiros1stBasementFloorEXPSpot);
 
-/*			ExpBotClass.RequestStartStopMoveExpBot();
-            ExpBotManagerAbstract.RequestStartExpBot();
+			/*			ExpBotClass.RequestStartStopMoveExpBot();
+						ExpBotManagerAbstract.RequestStartExpBot();
 
-			ExpBotClass.RunAndExpSquareUWC();
-*/
-/*            int i = ProgramHandle.GetCurrentMap;
-            ProgramHandle.SetCameraForExpBot();
-            ProgramHandle.SetCameraLong();
+						ExpBotClass.RunAndExpSquareUWC();
+			*/
+			/*            int i = ProgramHandle.GetCurrentMap;
+						ProgramHandle.SetCameraForExpBot();
+						ProgramHandle.SetCameraLong();
 
-            HealBotAbstract.RequestStartStopHealBot();
-            SkillSelector asd = SkillSelector.SelectPropperClass();
-            asd.Rebuff();
-*/
+						HealBotAbstract.RequestStartStopHealBot();
+						SkillSelector asd = SkillSelector.SelectPropperClass();
+						asd.Rebuff();
+			*/
 			/*            ProgramHandle.SetCameraForExpBot();
                         Thread.Sleep(500);
 
@@ -642,7 +643,7 @@ namespace AresTrainerV3
                             */
 		}
 
-        private void GoToPos_Click_1(object sender, EventArgs e)
+		private void GoToPos_Click_1(object sender, EventArgs e)
         {
             int x = 0;
             int y = 0;

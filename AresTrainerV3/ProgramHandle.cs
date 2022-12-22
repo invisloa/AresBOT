@@ -990,19 +990,22 @@ namespace AresTrainerV3
 
 
 
+		public static byte ReadBless2RowValue()
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.blessItem2rowValue));
+		}
 
-        public static void SetItemForSaleSelected(int itemforSaleNumber)
+		public static void SetItemForSaleSelected(int itemforSaleNumber)
         {
             // ADD +27 - FIRST SALE INVENTORY ITEM STARTS FROM 27
             memSeller.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellItemSelectedOffset), BitConverter.GetBytes(itemforSaleNumber+27));
         }
 
-        public static byte ReadSellItemsByteValue(int offset)
-        {
-            return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + (offset * 0x1c)));
-        }
-
-        public static byte ReadSellItemsStat1(int offset)
+		public static byte ReadSellItemsByteValue(int offset)
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + (offset * 0x1c)));
+		}
+		public static byte ReadSellItemsStat1(int offset)
         {
             return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 2)));
         }
