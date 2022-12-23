@@ -203,7 +203,7 @@ namespace AresTrainerV3
 
         public static int hpHealValue;
 
-        public static void SetGameAsMainWindow()
+		public static void SetGameAsMainWindow()
         {
              SetForegroundWindow(FindWindow(null, foregroundWindowName));
         }
@@ -396,11 +396,16 @@ namespace AresTrainerV3
         public static void SetCameraLong()
         {
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceAnimValue));
-            memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
-			memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-			// memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-			//  memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffset, PointersAndValues.cameraFogPointer), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-		}
+                memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
+			if (PointersAndValues.IsComputer)
+			{
+				memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+            }
+            else
+            {
+                memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+            }
+        }
 		public static void AntiBlackScreener()
         {
             while (true)
@@ -418,9 +423,15 @@ namespace AresTrainerV3
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceBotValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleYPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleYValue));
             memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraAngleXPointer), BitConverter.GetBytes(PointersAndValues.cameraAngleXValue));
-            memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-			//memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
-		}
+			if (PointersAndValues.IsComputer)
+			{
+				memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetComp, PointersAndValues.cameraFogPointerComp), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+            }
+            else
+            {
+                memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
+            }
+        }
 
 		public static int isInCity
         {
@@ -990,10 +1001,13 @@ namespace AresTrainerV3
 
 
 
-		public static byte ReadBless2RowValue()
+		public static byte GetBless2RowValue
 		{
-			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.blessItem2rowValue));
-		}
+			get
+            {
+                return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.blessItem2rowValue));
+            }
+        }
 
 		public static void SetItemForSaleSelected(int itemforSaleNumber)
         {
@@ -1001,7 +1015,7 @@ namespace AresTrainerV3
             memSeller.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellItemSelectedOffset), BitConverter.GetBytes(itemforSaleNumber+27));
         }
 
-		public static byte ReadSellItemsByteValue(int offset)
+		public static byte ReadItemsPresenceValue(int offset)
 		{
 			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + (offset * 0x1c)));
 		}

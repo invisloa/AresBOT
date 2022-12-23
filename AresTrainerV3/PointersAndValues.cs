@@ -10,11 +10,13 @@ namespace AresTrainerV3;
 public static class PointersAndValues
 {
 
-    //  x 1126112223        1119396195
+	//  x 1126112223        1119396195
 
-    // MAIN OFFSETS
-    public static bool isNostalgia = true;
-    public const int mouseWaitTimeMs = 1;
+	// MAIN OFFSETS
+	public static bool isNostalgia = true;
+	public static bool IsComputer = true;
+
+	public const int mouseWaitTimeMs = 1;
 
 
     public static string GameProcessName

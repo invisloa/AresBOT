@@ -16,5 +16,9 @@ namespace AresTrainerV3.HealBot.Repoter
 		{
 			throw new NotImplementedException();
 		}
+		void MoveItemsToStorage()
+		{
+
+		}
 	}
 }

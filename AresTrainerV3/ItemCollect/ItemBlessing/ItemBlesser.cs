@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AresTrainerV3.ExpBotManager;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,33 +9,52 @@ namespace AresTrainerV3.ItemCollect.ItemBlessing
 {
 	public class ItemBlesser
 	{
-		int blessMaxValue = 0;
-		public ItemBlesser(int blessLimit) 
-		{
-			blessMaxValue = blessLimit;	
-		}
 
-		public void BlessItem()
+		public void BlessItem(int blessValue)
 		{
-			while (blessMaxValue < ProgramHandle.ReadBless2RowValue())
+			int sleepTime = 200;
+			int i = 0;
+			while ((blessValue > ProgramHandle.GetBless2RowValue) && ExpBotManagerAbstract.isExpBotRunning)
 			{
-				MouseOperations.SetCursorPosition(1300, 560);
-				Thread.Sleep(50);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-				Thread.Sleep(50);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-				Thread.Sleep(50);
-				MouseOperations.SetCursorPosition(570, 570);
-				Thread.Sleep(50);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-				Thread.Sleep(50);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-				Thread.Sleep(50);
-				MouseOperations.SetCursorPosition(1260, 560);
-				Thread.Sleep(50);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-				Thread.Sleep(50);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+				{
+					ProgramHandle.SetCameraForExpBot();
+					Thread.Sleep(sleepTime);
+					//ProgramHandle.TeleportToPositionTuple(TeleportValues.PosBlessingItems);
+					MouseOperations.SetCursorPosition(1300, 560);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+					Thread.Sleep(sleepTime);
+					MouseOperations.SetCursorPosition(570, 570);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+					Thread.Sleep(sleepTime);
+					MouseOperations.SetCursorPosition(1260, 560);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+					Thread.Sleep(sleepTime);
+					MouseOperations.SetCursorPosition(915, 460);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+					Thread.Sleep(sleepTime);
+					MouseOperations.SetCursorPosition(570, 570);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+					Thread.Sleep(sleepTime);
+					MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+					Thread.Sleep(sleepTime);
+				}
 			}
 		}
 

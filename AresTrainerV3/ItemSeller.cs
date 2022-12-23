@@ -11,145 +11,14 @@ namespace AresTrainerV3
     public class ItemSeller
     {
 
-        public static void itemArrayPositionsInitialize()
-        {
 
-
-            int spaceMultiplyer = 0;
-            int spaceBetweenRows = 0;
-
-
-            for (int i = 0; i < 72; i++)
-            {
-                if (i < 6)
-                {
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 12)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-
-                }
-                else if (i < 18)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-
-                }
-                else if (i < 24)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 30)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 36)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 42)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceBetweenRows = 0;   // 0 Because it starts from start again
-                        spaceBetweenRows = 0;   // 0 Because it starts from start again
-                        spaceMultiplyer = 0;
-
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 48)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 54)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 60)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 66)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                else if (i < 72)
-                {
-                    if (spaceMultiplyer > 5)
-                    {
-                        spaceMultiplyer = 0;
-                        spaceBetweenRows += 35;
-
-                    }
-                    ExpBotMovePositionsValues.itemSellPositions[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-                }
-                spaceMultiplyer++;
-            }
-        }
-
-        public static List<int> itemsForSaleList = new List<int>();
+        public static List<int> imtemsToOperate = new List<int>();
         public static bool isItemHighValue(int stat1, int stat2)
         {
             int magicAttackLimit = 85;
-			int magicJustusLimit = 40;
-			int magicJustus25Limit = 30;
-			int hightValueMainStats = 14;
+            int magicJustusLimit = 40;
+            int magicJustus25Limit = 30;
+            int hightValueMainStats = 14;
 
             int Mp = 0;
             int Agi = 0;
@@ -667,7 +536,7 @@ namespace AresTrainerV3
             {
                 Earth += 5;
             }
-            else if(stat1 == 49)
+            else if (stat1 == 49)
             {
                 Earth += 10;
             }
@@ -800,23 +669,23 @@ namespace AresTrainerV3
             {
                 return true;
             }
-			else if ((Fire > magicJustusLimit || magicJustusLimit > magicAttackLimit || Water > magicJustusLimit || Air > magicJustusLimit) && Justus > 15)
-			{
-				return true;
-			}
-			else if ((Fire > magicJustus25Limit || Earth > magicJustus25Limit || Water > magicJustus25Limit || Air > magicJustus25Limit) && Justus > 20)
-			{
-				return true;
-			}
-			else if (Td > 10 && StrikingPower > 45)
+            else if ((Fire > magicJustusLimit || magicJustusLimit > magicAttackLimit || Water > magicJustusLimit || Air > magicJustusLimit) && Justus > 15)
             {
                 return true;
             }
-			else if (Justus > 15 && StrikingPower > 45)
-			{
-				return true;
-			}
-			else if (Justus > 20 && Td > 10)
+            else if ((Fire > magicJustus25Limit || Earth > magicJustus25Limit || Water > magicJustus25Limit || Air > magicJustus25Limit) && Justus > 20)
+            {
+                return true;
+            }
+            else if (Td > 10 && StrikingPower > 45)
+            {
+                return true;
+            }
+            else if (Justus > 15 && StrikingPower > 45)
+            {
+                return true;
+            }
+            else if (Justus > 20 && Td > 10)
             {
                 return true;
             }
@@ -832,7 +701,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Mizaph > 1 && (Mp > 3||Con>3||Agi>3))
+            else if (Mizaph > 1 && (Mp > 3 || Con > 3 || Agi > 3))
             {
                 return true;
             }
@@ -850,11 +719,12 @@ namespace AresTrainerV3
                 if (typeAdress == item)
                 { return false; }
             }
-/*            if (typeAdress == 187)// arrows
-            {
-                return false;
-            }
-*/            if (typeAdress == 3093) // LegacyPot
+            /*            if (typeAdress == 187)// arrows
+                        {
+                            return false;
+                        }
+            */
+            if (typeAdress == 3093) // LegacyPot
             {
                 return false;
             }
@@ -865,115 +735,185 @@ namespace AresTrainerV3
         }
         public static void ItemsForSaleListGenerate()
         {
-            itemsForSaleList.Clear();
+            imtemsToOperate.Clear();
             for (int i = 0; i < 60; i++)
             {
-                if (ProgramHandle.ReadSellItemsByteValue(i) != 0)
+                if (ProgramHandle.ReadItemsPresenceValue(i) != 0)
                 {
-                    if (!isItemHighValue(ProgramHandle.ReadSellItemsStat1(i),ProgramHandle.ReadSellItemsStat2(i)) && isItemSaleType(ProgramHandle.ReadSellItemsType(i)))
+                    if (!isItemHighValue(ProgramHandle.ReadSellItemsStat1(i), ProgramHandle.ReadSellItemsStat2(i)) && isItemSaleType(ProgramHandle.ReadSellItemsType(i)))
                     {
-                        itemsForSaleList.Add(i);
-                    } 
+                        imtemsToOperate.Add(i);
+                    }
                 }
             }
         }
+        public static void ItemsForStorageMoveGenerate()
+        {
+            imtemsToOperate.Clear();
+            for (int i = 0; i < 60; i++)
+            {
+                if (ProgramHandle.ReadItemsPresenceValue(i) != 0)
+                {
+                    imtemsToOperate.Add(i);
+                }
+            }
+        }
+		public bool checkIfCloseToShop()
+		{
+			if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+			{
+				if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
+					&& ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
+				{ return true; }
+				else
+				{ return false; }
+			}
+			else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
+			{
+				if (ProgramHandle.GetPositionX > 1125115858 && ProgramHandle.GetPositionX < 1125782038
+					&& ProgramHandle.GetPositionY > 1125170820 && ProgramHandle.GetPositionY < 1125701048)
+				{ return true; }
+				else
+				{ return false; }
+			}
+			return true;
+		}
 
 
-        public static void MoveAndLeftClickToSellAll()
+		public static void MoveAndLeftClickToSellAll()
         {
             Debug.WriteLine("Check if selll window is open");
-            Thread.Sleep(100);
+            Thread.Sleep(50);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
-                Thread.Sleep(50);
+                Thread.Sleep(30);
                 Debug.WriteLine("window open sell item left click");
                 MouseOperations.SetCursorPosition(560, 570);
-                Thread.Sleep(50);
+                Thread.Sleep(30);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(50);
+                Thread.Sleep(30);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100);
-
+                Thread.Sleep(75);
             }
 
             Debug.WriteLine("Check if high value");
-            Thread.Sleep(200);
+            Thread.Sleep(100);
             if (ProgramHandle.isSellWindowStillOpen == 1)
             {
-                Thread.Sleep(100);
                 Debug.WriteLine("high value item click once more");
                 MouseOperations.SetCursorPosition(560, 570);
-                Thread.Sleep(50);
+                Thread.Sleep(30);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(50);
+                Thread.Sleep(30);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100 );
+                Thread.Sleep(100);
 
             }
         }
 
         #region OldSellItems
-        public static void SellItemsMouseMove()
+        public void SellItemsMouseMove()
         {
-            ItemSeller.itemArrayPositionsInitialize();
-            Thread.Sleep(50);
-            ItemsForSaleListGenerate();
-            Thread.Sleep(50);
-            ProgramHandle.OpenShopWindow();
-            Thread.Sleep(500);
+            if (checkIfCloseToShop())
+            {
+                ProgramHandle.OpenShopWindow();
+                Thread.Sleep(50);
+                ItemsForSaleListGenerate();
+                int firstSellList = imtemsToOperate.Count;
+                Thread.Sleep(500);
 
+                MouseOperations.MoveAndLeftClickOperation(1235, 570, 100);  // Open Inventory Tab 1
+                Thread.Sleep(300);
+
+                //  SELL ONLY FIRST ROW OF SECOND TAB  
+                // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
+                foreach (var item in imtemsToOperate)
+                {
+                    if (ProgramHandle.isShopWindowStillOpen() == 1)
+                    {
+                        Debug.WriteLine($"sell item {item}");
+
+                        int sellItemNumber = item + 6; // START FROM 2 Row 1st Column = 12
+                        if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                        {
+                            Thread.Sleep(150);
+                            MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
+                            Thread.Sleep(150);
+                        }
+                        MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
+                        MoveAndLeftClickToSellAll();
+                    }
+                }
+                ItemsForSaleListGenerate();
+                if (imtemsToOperate.Count != 0 && firstSellList != imtemsToOperate.Count)
+                {
+                    SellItemsMouseMove();
+				}
+
+            }
+		}
+        #endregion
+
+        #region StorageItemMove
+        public static void MoveItemsToStorage()
+        {
+            ItemsForStorageMoveGenerate();
+            Thread.Sleep(50);
+            ProgramHandle.OpenStorageWindow();
+            Thread.Sleep(500);
             MouseOperations.MoveAndLeftClickOperation(1235, 570, 100);  // Open Inventory Tab 1
             Thread.Sleep(300);
 
             //  SELL ONLY FIRST ROW OF SECOND TAB  
             // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
-            foreach (var item in itemsForSaleList)
+            foreach (int item in imtemsToOperate)
             {
-                if (ProgramHandle.isShopWindowStillOpen() == 1)
-                {
-                    Debug.WriteLine($"sell item {item}");
+                Debug.WriteLine($"move to Storage{item}");
 
-                    int sellItemNumber = item + 6; // START FROM 3 Row 1st Column = 12
-                    if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
-                    {
-                        Thread.Sleep(150);
-                        MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
-                        Thread.Sleep(150);
-                    }
-                    MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
+                int itemToMove = item + 6; // START FROM 2 Row 1st column
+                if (itemToMove >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                {
+                    Thread.Sleep(150);
+                    MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
+                    Thread.Sleep(150);
+                }
+                MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item1, ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item2);
+            }
+        }
+    }
+    #endregion
+
+
+
+
+
+    /*        public static void NewSellItems()
+            {
+    *//*            Thread.Sleep(500);
+                ExpBotClass.MoveAndLeftClickOperation(1235, 570);
+    *//*    
+                Thread.Sleep(500);
+                ItemsForSaleListGenerate();
+                ProgramHandle.OpenShopWindow();
+                Thread.Sleep(1000);
+
+
+                foreach (var item in itemsForSaleList)
+                {
+                    Thread.Sleep(200);
+
+                    ProgramHandle.SetItemForSaleSelected(item);
+                    Thread.Sleep(200);
+                    ProgramHandle.OpenSellConfirmationUI();
+
+
+                    Thread.Sleep(200);
                     MoveAndLeftClickToSellAll();
+                    Thread.Sleep(200);
+
+
+
                 }
             }
-        }
-        #endregion
-
-/*        public static void NewSellItems()
-        {
-*//*            Thread.Sleep(500);
-            ExpBotClass.MoveAndLeftClickOperation(1235, 570);
-*//*    
-            Thread.Sleep(500);
-            ItemsForSaleListGenerate();
-            ProgramHandle.OpenShopWindow();
-            Thread.Sleep(1000);
-
-
-            foreach (var item in itemsForSaleList)
-            {
-                Thread.Sleep(200);
-
-                ProgramHandle.SetItemForSaleSelected(item);
-                Thread.Sleep(200);
-                ProgramHandle.OpenSellConfirmationUI();
-
-
-                Thread.Sleep(200);
-                MoveAndLeftClickToSellAll();
-                Thread.Sleep(200);
-
-
-
-            }
-        }
-*/    }
+    */
 }

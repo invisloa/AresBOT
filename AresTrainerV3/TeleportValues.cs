@@ -151,8 +151,9 @@ namespace AresTrainerV3
         public static Tuple<int, int, int> HershalUWCEntrace = new Tuple<int, int, int>(1146093959, 1131233933, 1091297280);
 
 
-        // SafePositions
-        public static Tuple<int, int, int> SafePosBaldorTemple2Floor = new Tuple<int, int, int>(1, 1, 1);
+		// SafePositions
+		public static Tuple<int, int, int> PosBlessingItems = new Tuple<int, int, int>(1130682429, 1127279816, 1091408142);
+
 
 
         public static Tuple<int, int, int, int> moverRandomEtanaBuckys = new Tuple<int, int, int, int>(1120531098, 1134986919, 1125090368, 1128186402);  //Left,Up,Right,Down
@@ -164,16 +165,17 @@ namespace AresTrainerV3
 	 	public static Tuple<int, int, int, int> moverRandomHolinaBuckSlave = new Tuple<int, int, int, int>(1124199974, 1124762662, 1125517200, 1123145422);  //Left,Up,Right,Down
 
 		public static Tuple<int, int, int, int> moverRandomHershalLowLvl = new Tuple<int, int, int, int>(1130311265, 1141435437, 1134827717, 1137807344);  //Left,Up,Right,Down
-        public static Tuple<int, int, int, int> moverRandomHershalLeafMages = new Tuple<int, int, int, int>(1127987620, 1133037274, 1133101347, 1131251099);  //Left,Up,Right,Down
-        public static Tuple<int, int, int, int> moverRandomUWC1stFloor = new Tuple<int, int, int, int>(1110493212, 1116984574, 1122140674, 1110027219);  //Left,Up,Right,Down
+		public static Tuple<int, int, int, int> moverRandomHershalLeafMages = new Tuple<int, int, int, int>(1127987620, 1133037274, 1133101347, 1131251099);  //Left,Up,Right,Down
+        public static Tuple<int, int, int, int> moverRandomHershalElves = new Tuple<int, int, int, int>(1142410400, 1129543726, 1142958167, 1127990620);  //Left,Up,Right,Down
+		public static Tuple<int, int, int, int> moverRandomUWC1stFloor = new Tuple<int, int, int, int>(1110493212, 1116984574, 1122140674, 1110027219);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomKharonWolves = new Tuple<int, int, int, int>(1120173211, 1130046682, 1129089075, 1126879685);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomSloth1stFloor = new Tuple<int, int, int, int>(1124434047, 1137975177, 1125905268, 1137659923);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomSloth1stFloorNoIcebergs = new Tuple<int, int, int, int>(1117317700, 1137975177, 1122940064, 1133700146);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomSloth1stFloorAoe = new Tuple<int, int, int, int>(1118582503, 1126938769, 1120949079, 1126052185);  //Left,Up,Right,Down
 
-		// left 1124199974
-		// up 1124762662
-		// right 1125517200
-		// down 1123145422
+		// left 1142410400
+		// up 1129543726
+		// right 1142958167
+		// down 1127990620
 	}
 }

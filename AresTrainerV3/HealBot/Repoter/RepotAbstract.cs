@@ -18,7 +18,9 @@ namespace AresTrainerV3.HealBot.Repoter
     public abstract class RepotAbstract : IGoRepot
     {
         protected Random randomizer = new Random();
-        protected int isCurrentCity
+        ItemSeller Seller = new ItemSeller();
+
+		protected int isCurrentCity
         {
             get { return ProgramHandle.GetCurrentMap; }
         }
@@ -95,24 +97,17 @@ namespace AresTrainerV3.HealBot.Repoter
                 Thread.Sleep(500);
                 MoveToRepot();
                 Thread.Sleep(500);
-
-                if (checkIfCloseToShop())
+                //MouseClickOpenShop();
+                if (Seller.checkIfCloseToShop())
                 {
-                    //MouseClickOpenShop();
-                    ProgramHandle.OpenShopWindow();
-                    Thread.Sleep(500);
-
-                    if (ProgramHandle.isShopWindowStillOpen() == 1)
-                    {
-                        ItemSeller.SellItemsMouseMove();
-                        BuyerPotionsCity.BuyPotions();
-                    }
+                    Seller.SellItemsMouseMove();            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TO CHANGE TO CHANGE TODO TODO
+                    BuyerPotionsCity.BuyPotions();
                     KeyPresser.PressEscape();
                 }
                 else
                 {
-                Thread.Sleep(100000);
-                this.GoRepot();
+                    Thread.Sleep(50000);
+                    this.GoRepot();
                 } 
             }
         }
@@ -133,30 +128,6 @@ namespace AresTrainerV3.HealBot.Repoter
                 }
             }
         }
-        /*protected*/  bool checkIfCloseToShop()
-        {
-            if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
-            {
-                if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
-                    && ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
-                { return true; }
-                else
-                { return false; }
-            }
-            else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-            {
-                if (ProgramHandle.GetPositionX > 1125115858 && ProgramHandle.GetPositionX < 1125782038
-                    && ProgramHandle.GetPositionY > 1125170820 && ProgramHandle.GetPositionY < 1125701048)
-                { return true; }
-                else
-                { return false; }
-            }
-
-            return true;
-
-        }
-
-
         protected abstract void MoveToRepot();
 
     }

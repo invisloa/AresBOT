@@ -11,7 +11,16 @@ namespace AresTrainerV3
     {
         static InputSimulator inputSimulator = new InputSimulator();
 
-        public static void PressKey(int keyNumber,int startDelay,int endDelay)
+        public static void PressEnter(int startDelay, int endDelay)
+        {
+			inputSimulator.Keyboard.Sleep(startDelay);
+			inputSimulator.Keyboard.KeyDown(VirtualKeyCode.RETURN);
+			inputSimulator.Keyboard.Sleep(startDelay);
+			inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
+			inputSimulator.Keyboard.Sleep(endDelay);
+		}
+
+		public static void PressKey(int keyNumber,int startDelay,int endDelay)
         {
             if (keyNumber == 0)
             {

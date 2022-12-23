@@ -327,7 +327,7 @@ namespace AresTrainerV3
 
                 if (ProgramHandle.isShopWindowStillOpen() == 1)
                 {
-                    ItemSeller.SellItemsMouseMove();
+                   // ItemSeller.SellItemsMouseMove();
 
                     BuyerPotionsHershalExp buyerPotionsHershalExp = new BuyerPotionsHershalExp();
                     buyerPotionsHershalExp.BuyPotions();
@@ -346,13 +346,9 @@ namespace AresTrainerV3
 
                 MoveToRepot(ExpBotMovePositionsValues.KharonRepotMovePositions);
                 inputSimulator.Keyboard.Sleep(500);
-
                 MouseClickOpenShop();
-
                 inputSimulator.Keyboard.Sleep(500);
-
-                ItemSeller.SellItemsMouseMove();
-
+                //ItemSeller.SellItemsMouseMove();
                 inputSimulator.Keyboard.Sleep(500);
                 BuyPotionsFromShopSell(ExpBotMovePositionsValues.mousePositionsForKharonBuying);
                 inputSimulator.Keyboard.Sleep(200);

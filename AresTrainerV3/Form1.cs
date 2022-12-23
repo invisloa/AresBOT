@@ -6,6 +6,7 @@ using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.ItemCollect.ItemBlessing;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
 using AresTrainerV3.MoveRandom.Etana;
@@ -35,8 +36,9 @@ namespace AresTrainerV3
         public static HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
         globalKeyboardHook gkh = new globalKeyboardHook();
         Random randomizer = new Random();
+        public ItemSeller Seller = new ItemSeller();
 
-        MoverRandom ExpBotMoverToRun;
+		MoverRandom ExpBotMoverToRun;
 
 
         public Form1()
@@ -361,7 +363,7 @@ namespace AresTrainerV3
             //ProgramHandle.OpenShopWindow();
             Thread.Sleep(1000);
 
-            ItemSeller.SellItemsMouseMove();
+            Seller.SellItemsMouseMove();
         }
 
 
@@ -597,12 +599,42 @@ namespace AresTrainerV3
 
         }
 
-        private void fasttest_Click(object sender, EventArgs e)
-        {
 
-			int i = ProgramHandle.ReadBless2RowValue();
+
+		public void BlessItem()
+        {
+			ExpBotManagerAbstract.RequestStartExpBot();
+			ItemBlesser Blesser = new ItemBlesser();
+			Blesser.BlessItem(10);
+		}
+		public void StartBlessThread()
+		{
+			ExpBotManagerAbstract.RequestStartExpBot();
+			Thread.Sleep(10);
+				Thread ExpBotThread = new Thread(BlessItem);
+				ExpBotThread.Start();
+		}
+
+
+
+
+
+
+
+
+
+		private void fasttest_Click(object sender, EventArgs e)
+        {
 			ProgramHandle.SetCameraForExpBot();
 
+            Thread.Sleep(1000);
+			ItemSeller.MoveItemsToStorage();
+
+
+
+			//StartBlessThread();
+			/*			int i = ProgramHandle.ReadBless2RowValue();
+            */
 			/*			ExpBotClass.RequestStartStopMoveExpBot();
 						ExpBotManagerAbstract.RequestStartExpBot();
 
