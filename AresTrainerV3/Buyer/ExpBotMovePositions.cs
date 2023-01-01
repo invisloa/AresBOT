@@ -118,140 +118,47 @@ namespace AresTrainerV3.Buyer
                     new Tuple<int, int>(960, 620),
         };
 
-		public static Tuple<int,int>[] itemArrayPositionsInitialize()
+		public static Tuple<int,int>[] itemsInvArrPosInit(Tuple<int,int,int> firstPosXY)
 		{
 
-			Tuple<int, int>[] tempT = new Tuple<int, int>[72];
+			Tuple<int, int>[] tempTuppleArr = new Tuple<int, int>[72];
 			int spaceMultiplyer = 0;
 			int spaceBetweenRows = 0;
 
+			void stepThroughColumns(int i, ref int spaceMultiplyer, ref int spaceBetweenRows)
+			{
+				if (spaceMultiplyer > firstPosXY.Item3)
+				{
+					spaceMultiplyer = 0;
+					spaceBetweenRows += 35;
+				}
+				tempTuppleArr[i] = new Tuple<int, int>(firstPosXY.Item1 + spaceMultiplyer * 35, firstPosXY.Item2 + spaceBetweenRows);
+			}
 
 			for (int i = 0; i < 72; i++)
 			{
-				if (i < 6)
+				if (i < 36)
 				{
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
+					stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
 				}
-				else if (i < 12)
+				else if (i == 36)
 				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-
-				}
-				else if (i < 18)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-
-				}
-				else if (i < 24)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 30)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 36)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 42)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceBetweenRows = 0;   // 0 Because it starts from start again
-						spaceBetweenRows = 0;   // 0 Because it starts from start again
-						spaceMultiplyer = 0;
-
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 48)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 54)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 60)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
-				}
-				else if (i < 66)
-				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
+					spaceBetweenRows = 0;   // 0 Because it starts from start again
+					spaceBetweenRows = 0;   // 0 Because it starts from start again
+					spaceMultiplyer = 0;
+					stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
 				}
 				else if (i < 72)
 				{
-					if (spaceMultiplyer > 5)
-					{
-						spaceMultiplyer = 0;
-						spaceBetweenRows += 35;
-
-					}
-					tempT[i] = new Tuple<int, int>(ExpBotMovePositionsValues.firstColumnInventory + spaceMultiplyer * 35, ExpBotMovePositionsValues.firstRowInventory + spaceBetweenRows);
+					stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
 				}
 				spaceMultiplyer++;
 			}
-			return tempT;
+			return tempTuppleArr;
 		}
-		public const int firstColumnInventory = 1260; // every next row is +35
-        public const int firstRowInventory = 530; // every next column is +35;
-		public static Tuple<int, int>[] itemSellPositions = itemArrayPositionsInitialize();
+		static Tuple<int, int, int> inventoryFirstSlotTupple = new Tuple<int, int, int>(1260, 530, 5);
+		static Tuple<int, int, int> storageFirstSlotTupple = new Tuple<int, int, int >(985, 180, 6);
+		public static Tuple<int, int>[] itemSellPositions = itemsInvArrPosInit(inventoryFirstSlotTupple);
+		public static Tuple<int, int>[] itemMoveFromStoragePositions = itemsInvArrPosInit(storageFirstSlotTupple);
 	}
 }

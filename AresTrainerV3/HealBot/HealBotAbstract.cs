@@ -107,13 +107,25 @@ namespace AresTrainerV3.HealBot
             {
                 hpHealValue = 340;
             }
-            else if (myCurrentHp < 650)
-            {
-                hpHealValue = 400;
-            }
-            else
-            {
-                hpHealValue = myCurrentHp - 200;
+			else if (myCurrentHp < 650)
+			{
+				hpHealValue = 400;
+			}
+			else if (myCurrentHp < 850)
+			{
+				hpHealValue = 550;
+			}
+			else if (myCurrentHp < 1050)
+			{
+				hpHealValue = 700;
+			}
+			else if (myCurrentHp < 1250)
+			{
+				hpHealValue = 900;
+			}
+			else
+			{
+                hpHealValue = myCurrentHp - 500;
             }
         }
         void setMannaRestoreValue()

@@ -738,7 +738,7 @@ namespace AresTrainerV3
             imtemsToOperate.Clear();
             for (int i = 0; i < 60; i++)
             {
-                if (ProgramHandle.ReadItemsPresenceValue(i) != 0)
+                if (ProgramHandle.ReadInvItmsCount(i) != 0)
                 {
                     if (!isItemHighValue(ProgramHandle.ReadSellItemsStat1(i), ProgramHandle.ReadSellItemsStat2(i)) && isItemSaleType(ProgramHandle.ReadSellItemsType(i)))
                     {
@@ -752,7 +752,7 @@ namespace AresTrainerV3
             imtemsToOperate.Clear();
             for (int i = 0; i < 60; i++)
             {
-                if (ProgramHandle.ReadItemsPresenceValue(i) != 0)
+                if (ProgramHandle.ReadInvItmsCount(i) != 0)
                 {
                     imtemsToOperate.Add(i);
                 }
@@ -880,40 +880,48 @@ namespace AresTrainerV3
                 MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item1, ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item2);
             }
         }
-    }
-    #endregion
+		#endregion
+		#region ItemMoveFromStorage
+        void moveItemsFromStorage()
+        {
+			// itemMoveFromStoragePositions
+		}
+		#endregion
 
 
-
-
-
-    /*        public static void NewSellItems()
-            {
-    *//*            Thread.Sleep(500);
-                ExpBotClass.MoveAndLeftClickOperation(1235, 570);
-    *//*    
-                Thread.Sleep(500);
-                ItemsForSaleListGenerate();
-                ProgramHandle.OpenShopWindow();
-                Thread.Sleep(1000);
-
-
-                foreach (var item in itemsForSaleList)
-                {
-                    Thread.Sleep(200);
-
-                    ProgramHandle.SetItemForSaleSelected(item);
-                    Thread.Sleep(200);
-                    ProgramHandle.OpenSellConfirmationUI();
-
-
-                    Thread.Sleep(200);
-                    MoveAndLeftClickToSellAll();
-                    Thread.Sleep(200);
-
-
-
-                }
-            }
-    */
+	}
 }
+
+
+
+
+
+/*        public static void NewSellItems()
+		{
+*//*            Thread.Sleep(500);
+			ExpBotClass.MoveAndLeftClickOperation(1235, 570);
+*//*    
+			Thread.Sleep(500);
+			ItemsForSaleListGenerate();
+			ProgramHandle.OpenShopWindow();
+			Thread.Sleep(1000);
+
+
+			foreach (var item in itemsForSaleList)
+			{
+				Thread.Sleep(200);
+
+				ProgramHandle.SetItemForSaleSelected(item);
+				Thread.Sleep(200);
+				ProgramHandle.OpenSellConfirmationUI();
+
+
+				Thread.Sleep(200);
+				MoveAndLeftClickToSellAll();
+				Thread.Sleep(200);
+
+
+
+			}
+		}
+*/

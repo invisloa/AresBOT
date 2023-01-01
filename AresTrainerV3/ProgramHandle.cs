@@ -1015,7 +1015,7 @@ namespace AresTrainerV3
             memSeller.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellItemSelectedOffset), BitConverter.GetBytes(itemforSaleNumber+27));
         }
 
-		public static byte ReadItemsPresenceValue(int offset)
+		public static byte ReadInvItmsCount(int offset)
 		{
 			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + (offset * 0x1c)));
 		}
