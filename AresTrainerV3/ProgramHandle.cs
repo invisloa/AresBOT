@@ -7,9 +7,6 @@ using WindowsInput;
 
 namespace AresTrainerV3
 {
-
-
-
     public class ProgramHandle
     {
         public static string processName = PointersAndValues.GameProcessName;
