@@ -299,7 +299,7 @@ namespace AresTrainerV3
         public static void MoveToRepot(Tuple<int, int>[] citySpecificPositions)
         {
             Thread.Sleep(500);
-            if (!ProgramHandle.isNowRunningCity())
+            if (ProgramHandle.isNowStandingCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {

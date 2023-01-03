@@ -1090,84 +1090,6 @@ namespace AresTrainerV3
             Thread.Sleep(10);
 
         }
-        public static bool isNowStandingCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpCityF
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliCity)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public static bool isNowRunningCity()
-        {
-            if (ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerEmpCity
-                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationArcerAlliCity
-                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationSorcAlliCity
-                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationSorcEmpCityF
-                || ProgramHandle.isWhatAnimationRunning != PointersAndValues.isStandingAnimationSpearAlliCity
-                )
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
-        public static bool isNowAttackingAnim()
-        {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSpearAlliAnimation
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSorcAlliAnimation
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingKnightAlliAnimation
-                || ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation
-                )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        public static bool isAttacking()
-        {
-            /*            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
-                        {
-                            return true;
-                        }
-            */
-
-            if (isNowAttackingAnim() || isNowRunningOut())
-            {
-                return true;
-            }
-            else
-            { return false; }
-        }
-        public static bool isNowRunningOut()
-        {
-            if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcALLIOutside ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcEMPOutside ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSpearALLIOutside ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliStaffOutside ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliOrbOutside
-               )
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
         public static void waitMouseInPos()
         {
             var sw = Stopwatch.StartNew();
@@ -1184,13 +1106,81 @@ namespace AresTrainerV3
                 Thread.Sleep(0);
             }
         }
-        public static bool isNowStandingOut()
+		public static bool isAttacking()
+		{
+			/*            if (ProgramHandle.isMobBeingAttacked != -1 && !isNowStandingOut())
+                        {
+                            return true;
+                        }
+            */
+
+			if (isNowAttackingAnim() || isNowRunningOut())
+			{
+				return true;
+			}
+			else
+			{ return false; }
+		}
+		public static bool isNowStandingCity()
+		{
+			if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpCity
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliCity
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliCity
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpCityF
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliCity
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearEmpCity)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		public static bool isNowAttackingAnim()
+		{
+			if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSpearAlliAnimation
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSorcAlliAnimation
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingKnightAlliAnimation
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSpearEmpAnimation
+				)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public static bool isNowRunningOut()
+		{
+			if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcALLIOutside ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcEMPOutside ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSpearALLIOutside ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliStaffOutside ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSpearEmpOutside ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliOrbOutside
+			   )
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+
+		public static bool isNowStandingOut()
         {
             if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutOrb ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliOut ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliOut ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearEmpOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isBeingHitSorcAlli ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isBeingHitSorcAlli2
                 )

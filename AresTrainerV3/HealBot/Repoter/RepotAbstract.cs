@@ -48,7 +48,7 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         protected void CheckIfNotRunning()
         {
-            if (ProgramHandle.isNowRunningCity())
+            if (!ProgramHandle.isNowStandingCity())
             {
                 Thread.Sleep(15000);
                 KeyPresser.PressKey(6, 500, 1000);
@@ -115,7 +115,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(1000);
-            if (!ProgramHandle.isNowRunningCity())
+            if (ProgramHandle.isNowStandingCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
                 {

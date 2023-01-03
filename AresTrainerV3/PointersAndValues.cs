@@ -335,13 +335,14 @@ public static class PointersAndValues
     public const int isRunningAnimationArcEMPOutside = 4536352;
     public const int isRunningAnimationSorcAlliStaffOutside = 4523712;
     public const int isRunningAnimationSorcAlliOrbOutside = 4363264;
-    public const int isRunningAnimationSpearALLIOutside = 4500992;
-    
-    
-    public const int isRunningAnimationArcAlliInCity = 4545808;
-    public const int isRunningAnimationArcEmpInCity = 4546528;
-    public const int isRunningAnimationSpearAlliInCity = 4545808;
+	public const int isRunningAnimationSpearALLIOutside = 4500992;
+	public const int isRunningAnimationSpearEmpOutside = 4502464;
 
+	public const int isRunningAnimationArcAlliInCity = 4545808;
+    public const int isRunningAnimationArcEmpInCity = 4546528;
+	public const int isRunningAnimationSpearAlliInCity = 4545808;
+	public const int isRunningAnimationSpearEmpInCity = 4546528;
+    
 
 
     // is now standing animation
@@ -355,11 +356,13 @@ public static class PointersAndValues
     public const int isStandingAnimationSorcEmpCityF = 4552960;
     public const int isStandingAnimationSorcEmpOutF = 4522944;
     public const int isStandingAnimationSpearAlliOut = 4498752;
-    public const int isStandingAnimationSpearAlliCity = 4550176;
+	public const int isStandingAnimationSpearAlliCity = 4550176;
+    public const int isStandingAnimationSpearEmpOut = 4500224;
+	public const int isStandingAnimationSpearEmpCity = 4550976;
 
 
-    // being hit animation
-    public const int isBeingHitSorcAlli = 4446720;
+	// being hit animation
+	public const int isBeingHitSorcAlli = 4446720;
     public const int isBeingHitSorcAlli2 = 4451328;
 
     
@@ -373,8 +376,9 @@ public static class PointersAndValues
     public const int isAttackingBowEmpAnimation = 4536832;
     public const int isAttackingSorcAlliAnimation = 4541440;
     public const int isAttackingKnightAlliAnimation = 4425728;
-    public const int isAttackingSpearAlliAnimation = 4510144;
-
+	public const int isAttackingSpearAlliAnimation = 4510144;
+	public const int isAttackingSpearEmpAnimation = 4511616;
+    
 
 
 
