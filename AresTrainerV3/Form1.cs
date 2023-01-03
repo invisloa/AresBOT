@@ -431,13 +431,13 @@ namespace AresTrainerV3
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
-                BuyerPotions.HpPotionsToBuy = 120;
-                BuyerPotions.MpPotionsToBuy = 3;
+                BuyerPotions.HpPotionsToBuy = 100;
+                BuyerPotions.MpPotionsToBuy = 25;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
                 BuyerPotions.HpPotionsToBuy = 120;
-                BuyerPotions.MpPotionsToBuy = 0;
+                BuyerPotions.MpPotionsToBuy = 20;
             }
             HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
             MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
