@@ -628,7 +628,11 @@ namespace AresTrainerV3
 			ProgramHandle.SetCameraForExpBot();
 
             Thread.Sleep(1000);
-			ItemSeller.MoveItemsToStorage();
+			HealBotAbstract.RequestStartStopHealBot();
+			SkillSelector asd = SkillSelector.SelectPropperClass();
+			asd.Rebuff();
+
+			//ItemSeller.MoveItemsToStorage();
 
 
 

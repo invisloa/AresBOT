@@ -262,10 +262,11 @@ public static class PointersAndValues
     public const int AntiBlack3Offset = 0xb10;
 
 
-    // BUFF VALUES
+	// BUFF VALUES
 
-    public const int BuffSpearMeditation = 3353;
-    public const int BuffSpearShout = 3354;
+	public const int BuffSpearMeditationAlli = 3353;
+	public const int BuffSpearMeditationEmp = 3338;
+	public const int BuffSpearShout = 3354;
 
     public const int BuffMageShield = 3417;
 
