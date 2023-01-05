@@ -1126,7 +1126,8 @@ namespace AresTrainerV3
 			if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpCity
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliCity
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliCity
-				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpCityF
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpCityStaff
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpCityOrb
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliCity
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearEmpCity)
 			{
@@ -1141,6 +1142,7 @@ namespace AresTrainerV3
 		{
 			if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSpearAlliAnimation
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSorcAlliAnimation
+				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingSorcEmpAnimation
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowAlliAnimation
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingKnightAlliAnimation
 				|| ProgramHandle.isWhatAnimationRunning == PointersAndValues.isAttackingBowEmpAnimation
@@ -1161,6 +1163,7 @@ namespace AresTrainerV3
 				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationArcEMPOutside ||
 				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSpearALLIOutside ||
 				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliStaffOutside ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcEmpStaffOutside ||
 				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSpearEmpOutside ||
 				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isRunningAnimationSorcAlliOrbOutside
 			   )
@@ -1176,7 +1179,8 @@ namespace AresTrainerV3
 		public static bool isNowStandingOut()
         {
             if (ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutStaff ||
-                ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcEmpOutStaff ||
+				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerEmpOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationArcerAlliOut ||
                 ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSorcAlliOutOrb ||
 				ProgramHandle.isWhatAnimationRunning == PointersAndValues.isStandingAnimationSpearAlliOut ||

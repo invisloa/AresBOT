@@ -425,18 +425,29 @@ namespace AresTrainerV3.HealBot
                 _goBackExpPlace = new GoBackExpSloth1stFloor();
                 _expBotToStart = new MoverSloth1stFloorEntrace() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
             }
-            else if (whichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
-            {
-                repoterCity = new RepoterKharonExp();
-                _goBackExpPlace = new GoBackExpSlothNoIcebergs();
-                _expBotToStart = new MoverSloth1stFloorNoIceBergs() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-                if (blackScreenThread == null)
-                {
-                    blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-                    blackScreenThread.Start();
-                }
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.SlothAoe)
+			else if (whichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
+			{
+				repoterCity = new RepoterKharonExp();
+				_goBackExpPlace = new GoBackExpSlothNoIcebergs();
+				_expBotToStart = new MoverSloth1stFloorNoIceBergs() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				if (blackScreenThread == null)
+				{
+					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+					blackScreenThread.Start();
+				}
+			}
+			else if (whichBotThreadToStart == MoverBotEnums.SlothHorseFarm)
+			{
+				repoterCity = new RepoterKharonExp();
+				_goBackExpPlace = new GoBackExpSlothHorseFarm();
+				_expBotToStart = new SlothHorseFarm() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				if (blackScreenThread == null)
+				{
+					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+					blackScreenThread.Start();
+				}
+			}
+			else if (whichBotThreadToStart == MoverBotEnums.SlothAoe)
             {
                 repoterCity = new RepoterKharonExp();
                 _goBackExpPlace = new GoBackExpSlothNoIcebergs();

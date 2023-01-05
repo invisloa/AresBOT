@@ -400,6 +400,7 @@
             "KharonWolves",
             "Sloth1stFloor",
             "SlothNoIcebergs",
+            "SlothHorseFarm",
             "SlothAoe",
             "testUWC"});
 			this.ExpBotComboBox.Location = new System.Drawing.Point(719, 233);

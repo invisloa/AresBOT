@@ -20,7 +20,8 @@ namespace AresTrainerV3.Enums
             HershalUWC1stFloor,
             KharonWolves,
             Sloth1stFloor,
-            SlothNoIcebergs,
+			SlothHorseFarm,
+			SlothNoIcebergs,
             SlothAoe
         }
         public enum WhatToCollectEnums

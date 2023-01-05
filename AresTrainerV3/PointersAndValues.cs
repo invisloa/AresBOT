@@ -268,11 +268,12 @@ public static class PointersAndValues
 	public const int BuffSpearMeditationEmp = 3338;
 	public const int BuffSpearShout = 3354;
 
-    public const int BuffMageShield = 3417;
+	public const int BuffMageShieldAlli = 3417;
+	public const int BuffMageShieldEmp = 3385;
 
 
-    // Class
-    public const int ClassKnight = 0;
+	// Class
+	public const int ClassKnight = 0;
     public const int ClassArcher = 1;
     public const int ClassSorcerer = 2;
     public const int ClassSpear= 3;
@@ -333,8 +334,9 @@ public static class PointersAndValues
 
     public const int isRunningAnimationArcALLIOutside = 4535616;
     public const int isRunningAnimationArcEMPOutside = 4536352;
-    public const int isRunningAnimationSorcAlliStaffOutside = 4523712;
-    public const int isRunningAnimationSorcAlliOrbOutside = 4363264;
+	public const int isRunningAnimationSorcAlliStaffOutside = 4523712;
+	public const int isRunningAnimationSorcEmpStaffOutside = 4524448;
+	public const int isRunningAnimationSorcAlliOrbOutside = 4363264;
 	public const int isRunningAnimationSpearALLIOutside = 4500992;
 	public const int isRunningAnimationSpearEmpOutside = 4502464;
 
@@ -350,11 +352,13 @@ public static class PointersAndValues
     public const int isStandingAnimationArcerAlliCity = 4550176;
     public const int isStandingAnimationArcerEmpOut = 4535136;
     public const int isStandingAnimationArcerEmpCity = 4550976;
-    public const int isStandingAnimationSorcAlliOutStaff = 4522496;
-    public const int isStandingAnimationSorcAlliOutOrb = 4331520;
+	public const int isStandingAnimationSorcAlliOutStaff = 4522496;
+	public const int isStandingAnimationSorcAlliOutOrb = 4331520;
     public const int isStandingAnimationSorcAlliCity = 4550976;
-    public const int isStandingAnimationSorcEmpCityF = 4552960;
-    public const int isStandingAnimationSorcEmpOutF = 4522944;
+	public const int isStandingAnimationSorcEmpCityOrb = 4552960;
+	public const int isStandingAnimationSorcEmpCityStaff = 4550976;
+	public const int isStandingAnimationSorcEmpOutOrb = 4522944;
+	public const int isStandingAnimationSorcEmpOutStaff = 4523232;
     public const int isStandingAnimationSpearAlliOut = 4498752;
 	public const int isStandingAnimationSpearAlliCity = 4550176;
     public const int isStandingAnimationSpearEmpOut = 4500224;
@@ -374,7 +378,8 @@ public static class PointersAndValues
     public const int isBeingHitAnimation = 4536960;
     public const int isAttackingBowAlliAnimation = 4536096;
     public const int isAttackingBowEmpAnimation = 4536832;
-    public const int isAttackingSorcAlliAnimation = 4541440;
+	public const int isAttackingSorcAlliAnimation = 4541440;
+	public const int isAttackingSorcEmpAnimation = 4542144;
     public const int isAttackingKnightAlliAnimation = 4425728;
 	public const int isAttackingSpearAlliAnimation = 4510144;
 	public const int isAttackingSpearEmpAnimation = 4511616;

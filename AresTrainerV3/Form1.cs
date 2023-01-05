@@ -503,11 +503,16 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverSloth1stFloorEntrace();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
             }
-            else if (ExpBotComboBox.Text == "SlothNoIcebergs")
-            {
-                ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
-            }
+			else if (ExpBotComboBox.Text == "SlothNoIcebergs")
+			{
+				ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
+			}
+			else if (ExpBotComboBox.Text == "SlothHorseFarm")
+			{
+				ExpBotMoverToRun = new SlothHorseFarm();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothHorseFarm;
+			}
 			else if (ExpBotComboBox.Text == "SlothAoe")
 			{
 				ExpBotMoverToRun = new MoverSloth1stFloorAoe();
@@ -518,7 +523,6 @@ namespace AresTrainerV3
 				ExpBotMoverToRun = new MoverSloth1stFloorAoe();
 				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
 			}
-			
 
 			if (CollectorComboBox.Text == "+Event")
             {

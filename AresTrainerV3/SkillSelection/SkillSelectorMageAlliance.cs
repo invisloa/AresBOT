@@ -8,7 +8,7 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorMageAlliance : SkillSelector
     {
-        int buff1value = PointersAndValues.BuffMageShield;
+        int buff1value = PointersAndValues.BuffMageShieldEmp;
         int buff2value = -1;  
         int buff3value = -1;
 
@@ -41,7 +41,7 @@ namespace AresTrainerV3.SkillSelection
                         KeyPresser.PressKey(5, 50, 50);
                     }
                     checkIfAttackSkillIsSelected();
-                    if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                   if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                     {
                         KeyPresser.PressKey(8, 100, 100);
                     }
