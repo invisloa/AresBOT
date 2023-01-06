@@ -61,20 +61,21 @@ namespace AresTrainerV3.ItemCollect
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             MoverRandom.AttackedOrCollected = true;
             Debug.WriteLine("Collect"+ ProgramHandle.getCurrentItemHighlightedType);
-            Thread.Sleep(200);
+            Thread.Sleep(50);
 
-            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
+/*            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             Thread.Sleep(50);
+*/
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             while (!ProgramHandle.isNowStandingOut() && !ProgramHandle.isNowStandingCity())
             {
                 Debug.WriteLine("collecting while");
                 Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
 
-                Thread.Sleep(200);
+                Thread.Sleep(10);
             }
-            Thread.Sleep(50);
+            // Thread.Sleep(50);
             PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
             underCharPostScanner.PixelScanUnderChar(this);
         }
