@@ -86,7 +86,10 @@ namespace AresTrainerV3.HealBot.Repoter
         public virtual void GoRepot()
         {
             teleportToCityAndStopExpBot();
-            Thread.Sleep(1000);
+            if (isCurrentCity != repotCityCheck)
+            {
+                Thread.Sleep(1000);
+            }
             // Set Weight limit back to the original state if player found changed it to not to collect items@
             AbstractWhatToCollect.MaxCollectWeight = AbstractWhatToCollect.MaxCollectWeightNormalValue;
             ProgramHandle.SetCameraForExpBot();
@@ -94,9 +97,8 @@ namespace AresTrainerV3.HealBot.Repoter
             {
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                 MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(500);
                 MoveToRepot();
-                Thread.Sleep(500);
+                Thread.Sleep(100);
                 //MouseClickOpenShop();
                 if (Seller.checkIfCloseToShop())
                 {
@@ -114,7 +116,7 @@ namespace AresTrainerV3.HealBot.Repoter
         public void MoveToRepotWithPositions(Tuple<int, int>[] citySpecificPositions)
         {
             ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             if (ProgramHandle.isNowStandingCity())
             {
                 for (int i = 0; i < citySpecificPositions.Length; i++)
