@@ -677,11 +677,11 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Td > 10 && StrikingPower > 45)
+            else if (Td > 15 && StrikingPower > 80)
             {
                 return true;
             }
-            else if (Justus > 15 && StrikingPower > 45)
+            else if (Justus > 20 && StrikingPower > 100)
             {
                 return true;
             }
