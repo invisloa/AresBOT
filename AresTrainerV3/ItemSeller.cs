@@ -18,7 +18,7 @@ namespace AresTrainerV3
             int magicAttackLimit = 85;
             int magicJustusLimit = 40;
             int magicJustus25Limit = 30;
-            int hightValueMainStats = 14;
+            int hightValueMainStats = 16;
 
             int Mp = 0;
             int Agi = 0;
@@ -693,7 +693,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Sihon > 40 && Mp > 5 || Sihon > 35 && Agi > 5 || Sihon > 35 && Con > 5)
+            else if (Sihon > 40 && Mp > 6 || Sihon > 40 && Agi > 6 || Sihon > 40 && Con > 6)
             {
                 return true;
             }
@@ -701,7 +701,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Mizaph > 1 && (Mp > 3 || Con > 3 || Agi > 3))
+            else if (Mizaph > 1 && (Mp > 6 || Con > 6 || Agi > 6))
             {
                 return true;
             }

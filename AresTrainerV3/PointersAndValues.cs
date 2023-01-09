@@ -107,7 +107,7 @@ public static class PointersAndValues
     {
         get
         {
-            if (isNostalgia) { return 0x2A9648; }
+            if (isNostalgia) { return 0x2A964c; }
             else { return 0x2A9748; }
         }
     }
@@ -226,8 +226,9 @@ public static class PointersAndValues
 
     public const int clickPositionXOffset = 0x544;
     public const int clickPositionYOffset = 0x53c;
-    public const int mobSelected = 0xfd;
-    public const int AttackSpeedOffset = 0x470;     
+	//public const int mobSelected = 0xfd;
+	public const int mobSelected = 0x13d;
+	public const int AttackSpeedOffset = 0x470;     
     public const int mobBeingTargeted = 0x050;
     public const int typeOfAnimationIsRunning = 0x3b5;
     public const int lastSlotItemStat1 = 0xf84;
