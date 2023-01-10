@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.ItemCollect;
+﻿using AresTrainerV3.HealBot;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MoveRandom;
 using AresTrainerV3.Unstuck;
 using System;
@@ -36,8 +37,16 @@ namespace AresTrainerV3.AttackMob
         {
             Debug.WriteLine("wait started");
             Thread.Sleep(100);
-            //IWhatToCollect _SodCollector = new CollectAllItems(); // WHAT TO COLLECT WHEN ATTACKING 
-            IWhatToCollect _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
+            IWhatToCollect _SodCollector;
+
+			if (HealBotAbstract.SellItems == true)
+            {
+				_SodCollector = new CollectAllItems(); // WHAT TO COLLECT WHEN ATTACKING 
+            }
+            else
+            {
+                _SodCollector = new CollectSod(); // WHAT TO COLLECT WHEN ATTACKING 
+            }
             PixelItemCollector pixelSodCollect = new PixelItemCollector(_SodCollector);
 
             UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
