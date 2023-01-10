@@ -518,6 +518,11 @@ namespace AresTrainerV3
 				ExpBotMoverToRun = new MoverSloth1stFloorAoe();
 				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
 			}
+			else if (ExpBotComboBox.Text == "SlothAoe2spot")
+			{
+				ExpBotMoverToRun = new MoverSloth1stFloorAoe2Spot();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe2Spot;
+			}
 			else if (ExpBotComboBox.Text == "testUWC")
 			{
 				ExpBotMoverToRun = new MoverSloth1stFloorAoe();

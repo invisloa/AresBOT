@@ -22,9 +22,11 @@ namespace AresTrainerV3.Enums
             Sloth1stFloor,
 			SlothHorseFarm,
 			SlothNoIcebergs,
-            SlothAoe
-        }
-        public enum WhatToCollectEnums
+			SlothAoe,
+			SlothAoe2Spot
+
+		}
+		public enum WhatToCollectEnums
         {
             SOD,
             Event,

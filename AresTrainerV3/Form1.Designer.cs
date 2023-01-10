@@ -402,6 +402,7 @@
             "SlothNoIcebergs",
             "SlothHorseFarm",
             "SlothAoe",
+            "SlothAoe2spot",
             "testUWC"});
 			this.ExpBotComboBox.Location = new System.Drawing.Point(719, 233);
 			this.ExpBotComboBox.Name = "ExpBotComboBox";
