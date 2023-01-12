@@ -163,14 +163,29 @@ namespace AresTrainerV3.HealBot
                 MannaRestoreValue = 80;
 
             }
-            else if (myCurrentManna < 400)
-            {
-                MannaRestoreValue = 90;
-
-            }
-            else
-            {
-                MannaRestoreValue = 100;
+			else if (myCurrentManna < 400)
+			{
+				MannaRestoreValue = 90;
+			}
+			else if (myCurrentManna < 500)
+			{
+				MannaRestoreValue = 100;
+			}
+			else if (myCurrentManna < 600)
+			{
+				MannaRestoreValue = 150;
+			}
+			else if (myCurrentManna < 700)
+			{
+				MannaRestoreValue = 200;
+			}
+			else if (myCurrentManna < 800)
+			{
+				MannaRestoreValue = 300;
+			}
+			else
+			{
+                MannaRestoreValue = 400;
             }
         }
 

@@ -10,12 +10,15 @@ namespace AresTrainerV3
 {
     public class ItemSeller
     {
+		static Func<int, bool> ItemsOperationDelegate;
 
 
-        public static List<int> imtemsToOperate = new List<int>();
-        public static bool isItemHighValue(int stat1, int stat2)
+		public static List<int> imtemsToOperate = new List<int>();
+        public static bool isItemHighValue(int addressNumber)
         {
-            int magicAttackLimit = 85;
+            int stat1 = ProgramHandle.ReadSellItemsStat1(addressNumber);
+			int stat2 = ProgramHandle.ReadSellItemsStat2(addressNumber);
+			int magicAttackLimit = 85;
             int magicJustusLimit = 40;
             int magicJustus25Limit = 30;
             int hightValueMainStats = 16;
@@ -657,7 +660,7 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Gedel > 14 && (Agi > 7 || Mp > 7 || Con > 7))
+            else if (Gedel > 15 && (Agi > 7 || Mp > 7 || Con > 7))
             {
                 return true;
             }
@@ -733,31 +736,56 @@ namespace AresTrainerV3
                 return true;
             }
         }
-        public static void ItemsForSaleListGenerate()
+
+
+
+		public static void ItemsToOperateListGenerate(Func<int, bool> funcDelegate)
+		{
+
+			imtemsToOperate.Clear();
+			for (int i = 0; i < 60; i++)
+			{
+				if (ProgramHandle.ReadInvItmsCount(i) != 0)
+				{
+					if (funcDelegate(i))
+					{
+						imtemsToOperate.Add(i);
+					}
+				}
+			}
+		}
+
+		public static void ItemsForSaleListGenerate()
         {
-            imtemsToOperate.Clear();
-            for (int i = 0; i < 60; i++)
-            {
-                if (ProgramHandle.ReadInvItmsCount(i) != 0)
-                {
-                    if (!isItemHighValue(ProgramHandle.ReadSellItemsStat1(i), ProgramHandle.ReadSellItemsStat2(i)) && isItemSaleType(ProgramHandle.ReadSellItemsType(i)))
-                    {
-                        imtemsToOperate.Add(i);
-                    }
-                }
-            }
-        }
-        public static void ItemsForStorageMoveGenerate()
+            ItemsToOperateListGenerate(isItemForSaleCheck);
+		}
+		public static void ItemsForStorageMoveGenerate()
+		{
+			ItemsToOperateListGenerate(isItemForStorageCheck);
+		}
+		
+		static bool isItemForStorageCheck(int itemVector)
+		{
+			if (ProgramHandle.ReadInvItmsCount(itemVector) != 0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+        static bool isItemForSaleCheck(int itemVector)
         {
-            imtemsToOperate.Clear();
-            for (int i = 0; i < 60; i++)
+			if (!isItemHighValue(itemVector) && isItemSaleType(ProgramHandle.ReadItemsType(itemVector)))
             {
-                if (ProgramHandle.ReadInvItmsCount(i) != 0)
-                {
-                    imtemsToOperate.Add(i);
-                }
+                return true;
             }
-        }
+            else
+            {
+                return false;
+            }
+		}
 		public bool checkIfCloseToShop()
 		{
 			if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
@@ -778,8 +806,6 @@ namespace AresTrainerV3
 			}
 			return true;
 		}
-
-
 		public static void MoveAndLeftClickToSellAll()
         {
             Debug.WriteLine("Check if selll window is open");
@@ -822,14 +848,14 @@ namespace AresTrainerV3
                 int firstSellList = imtemsToOperate.Count;
                 Thread.Sleep(500);
 
-                MouseOperations.MoveAndLeftClickOperation(1235, 570, 100);  // Open Inventory Tab 1
+                MouseOperations.OpenInventoryTab1();
                 Thread.Sleep(300);
 
                 //  SELL ONLY FIRST ROW OF SECOND TAB  
                 // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
                 foreach (var item in imtemsToOperate)
                 {
-                    if (ProgramHandle.isShopWindowStillOpen() == 1)
+                    if (ProgramHandle.isShopWindowStillOpen == 1)
                     {
                         Debug.WriteLine($"sell item {item}");
 
@@ -861,7 +887,7 @@ namespace AresTrainerV3
             Thread.Sleep(50);
             ProgramHandle.OpenStorageWindow();
             Thread.Sleep(500);
-            MouseOperations.MoveAndLeftClickOperation(1235, 570, 100);  // Open Inventory Tab 1
+            MouseOperations.OpenInventoryTab1();
             Thread.Sleep(300);
 
             //  SELL ONLY FIRST ROW OF SECOND TAB  

@@ -1,5 +1,6 @@
 ﻿using AresTrainerV3.HealBot;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.ItemDelete;
 using AresTrainerV3.MoveRandom;
 using AresTrainerV3.Unstuck;
 using System;
@@ -12,8 +13,9 @@ using System.Threading.Tasks;
 namespace AresTrainerV3.AttackMob
 {
     public static class AttackMobCollectSod
-    {
-        public static bool IsAttackingPixel = false;
+	{
+
+		public static bool IsAttackingPixel = false;
         static int attackUnstackCounter = 0;
         static int unstackMax = 44;
         static void checkIfIsNowAttackingAnimation()
@@ -37,7 +39,7 @@ namespace AresTrainerV3.AttackMob
         {
             Debug.WriteLine("wait started");
             Thread.Sleep(100);
-            IWhatToCollect _SodCollector;
+			IWhatToCollect _SodCollector;
 
 			if (HealBotAbstract.SellItems == true)
             {

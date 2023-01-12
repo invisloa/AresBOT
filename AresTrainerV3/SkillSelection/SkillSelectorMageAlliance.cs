@@ -66,6 +66,7 @@ namespace AresTrainerV3.SkillSelection
                 Thread.Sleep(100);
 				KeyPresser.PressKey(7, 100, 100);
 				KeyPresser.PressKey(7, 100, 100);
+				KeyPresser.PressKey(7, 100, 100);
 				Thread.Sleep(100);
 
 				KeyPresser.PressKey(3, 100, 100);

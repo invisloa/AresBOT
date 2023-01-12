@@ -256,7 +256,9 @@ public static class PointersAndValues
     public const int inventoryWindowOffset2 = 0xd8;
     public const int inventoryCurrentTabOffset = 0x110;
     public const int SellWindowOffset = 0xc0;
-    public const int SellItemSelectedOffset = 0x12e;
+	public const int DeleteWindowOffset = 0x138c;
+
+	public const int SellItemSelectedOffset = 0x12e;
 
     public const int AntiBlack1Offset = 0x850;
     public const int AntiBlack2Offset = 0x9b0;

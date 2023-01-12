@@ -502,12 +502,16 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt32((memScanner.readbytes(proc.Handle, IntPtr.Add(itemMouseoverHighlightedOffset, PointersAndValues.MouseoverHighlightedOffset), 4)), 0); }
         }
-        public static int isSellWindowStillOpen
-        {
-            get { return memSeller.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset)); }
-        }
+		public static int isSellWindowStillOpen
+		{
+			get { return memSeller.readByte(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset)); }
+		}
+		public static int isDeletelWindowOpen
+		{
+			get { return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.DeleteWindowOffset)); }
+		}
 
-        public static void OpenSellConfirmationUI()
+		public static void OpenSellConfirmationUI()
         {
             memSeller.writebytes(proc.Handle, IntPtr.Add(sellAdressMOffset, PointersAndValues.SellWindowOffset), BitConverter.GetBytes(1));
         }
@@ -1025,14 +1029,9 @@ namespace AresTrainerV3
         {
             return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 1)));
         }
-        public static int ReadSellItemsType(int offset)
+        public static int ReadItemsType(int offset)
         {
             return BitConverter.ToInt16(memSeller.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 4))));
-        }
-
-        public static byte isShopWindowStillOpen()
-        {
-            return memSeller.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1));
         }
         public static byte isCurrentSkillTabNr()
         {
@@ -1064,27 +1063,38 @@ namespace AresTrainerV3
         {
             get { return BitConverter.ToInt16((memAttacking.readShort(proc.Handle, IntPtr.Add(isAttackingMob, 0))), 0); }
         }
+		public static byte isInventoryWindowStillOpen
+		{
+            get {return memSeller.readByte(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset1));}
+		}
 
-        public static void OpenShopWindow()
+		public static byte isShopWindowStillOpen
+		{
+            get { return memSeller.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1)); }
+		}
+
+		public static void OpenInventoryWindow()
         {
-            Thread.Sleep(10);
-            memSeller.writebytes(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1), BitConverter.GetBytes(1));
-            Thread.Sleep(10);
-            memSeller.writebytes(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset2), BitConverter.GetBytes(1));
             Thread.Sleep(10);
             memSeller.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset1), BitConverter.GetBytes(1));
             Thread.Sleep(10);
             memSeller.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset2), BitConverter.GetBytes(1));
             Thread.Sleep(10);
         }
+
+			public static void OpenShopWindow()
+        {
+            OpenInventoryWindow();
+			memSeller.writebytes(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+            memSeller.writebytes(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset2), BitConverter.GetBytes(1));
+            Thread.Sleep(10);
+        }
+
         public static void OpenStorageWindow()
         {
-            Thread.Sleep(10);
-            memSeller.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset1), BitConverter.GetBytes(1));
-            Thread.Sleep(10);
-            memSeller.writebytes(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryWindowOffset2), BitConverter.GetBytes(1));
-            Thread.Sleep(10);
-            memSeller.writebytes(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.StorageWindowOffset1), BitConverter.GetBytes(1));
+			OpenInventoryWindow();
+			memSeller.writebytes(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.StorageWindowOffset1), BitConverter.GetBytes(1));
             Thread.Sleep(10);
             memSeller.writebytes(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.StorageWindowOffset2), BitConverter.GetBytes(1));
             Thread.Sleep(10);

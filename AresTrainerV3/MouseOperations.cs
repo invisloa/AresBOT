@@ -89,6 +89,21 @@ namespace AresTrainerV3
                 Y = y;
             }
         }
+		public static void OpenInventoryTab1()
+		{
+			MoveAndLeftClickOperation(1235, 570, 100);
+		}
+		public static void OpenDeleteTab()
+		{
+			MoveAndLeftClickOperation(1415, 765, 50);
+		}
+		public static void MoveItemToDeleteWindow()
+		{
+			MoveAndLeftClickOperation(1080, 200, 50);
+		}
+        
+        
+
         public static void MoveAndLeftClickOperation(int xPos, int yPos,int delay)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);

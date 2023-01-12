@@ -325,7 +325,7 @@ namespace AresTrainerV3
                 MoveToRepot(ExpBotMovePositionsValues.HershalRepotMovePositions);
                 MouseClickOpenShop();
 
-                if (ProgramHandle.isShopWindowStillOpen() == 1)
+                if (ProgramHandle.isShopWindowStillOpen == 1)
                 {
                    // ItemSeller.SellItemsMouseMove();
 

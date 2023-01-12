@@ -84,58 +84,59 @@ namespace AresTrainerV3.ItemCollect
 
         bool PixelScan(IWhatToCollect whatToCollect)
         {
-                if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+            if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+            {
                 RepotAbstract.IsScanRunning = true;
                 // Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
                 Bitmap bitmap = new Bitmap(1360, 840);
                 Graphics graphics = Graphics.FromImage(bitmap as Image);
                 graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-                Color desiredPixelColor = ColorTranslator.FromHtml("#FFFFFF");
-            if (ExpBotManagerAbstract.isExpBotRunning == true)
-            {
-
-                for (int x = 850; x < 1170; x++)
+                if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
-                    for (int y = 410; y < 730; y++)
-                    {
-                        Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
-                        {
-                            MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPos();
-                            AttackWhenPointedOnMob();
-                            if (whatToCollect.ClickAndCollectWhatItem())
-                            {
-                                RepotAbstract.IsScanRunning = false;
-                                Debug.WriteLine("EndCollect");
-                                GC.Collect();
-                                Debug.WriteLine("1 Pixel for");
 
-                                return true;
+                    for (int x = 850; x < 1170; x++)
+                    {
+                        for (int y = 410; y < 730; y++)
+                        {
+                            Color currentPixelColor = bitmap.GetPixel(x, y);
+                            if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
+                            {
+                                MouseOperations.SetCursorPosition(x, y);
+                                ProgramHandle.waitMouseInPos();
+                                AttackWhenPointedOnMob();
+                                if (whatToCollect.ClickAndCollectWhatItem())
+                                {
+                                    RepotAbstract.IsScanRunning = false;
+                                    Debug.WriteLine("EndCollect");
+                                    GC.Collect();
+                                    Debug.WriteLine("1 Pixel for");
+
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
-            }
-            if (ExpBotManagerAbstract.isExpBotRunning == true)
-            {
-                for (int x = 550; x < 1360; x++)
+                if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
-                    for (int y = 290; y < 835; y++)
+                    for (int x = 550; x < 1360; x++)
                     {
-                        Color currentPixelColor = bitmap.GetPixel(x, y);
-                        if ((x < 934 || x > 979 || y < 500 || y > 538) && desiredPixelColor == currentPixelColor)
+                        for (int y = 290; y < 835; y++)
                         {
-                            MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPos();
-                            AttackWhenPointedOnMob();
-                            if (whatToCollect.ClickAndCollectWhatItem())
+                            Color currentPixelColor = bitmap.GetPixel(x, y);
+                            if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
                             {
-                                RepotAbstract.IsScanRunning = false;
+                                MouseOperations.SetCursorPosition(x, y);
+                                ProgramHandle.waitMouseInPos();
+                                AttackWhenPointedOnMob();
+                                if (whatToCollect.ClickAndCollectWhatItem())
+                                {
+                                    RepotAbstract.IsScanRunning = false;
 
-                                Debug.WriteLine("EndCollect");
-                                GC.Collect();
-                                return true;
+                                    Debug.WriteLine("EndCollect");
+                                    GC.Collect();
+                                    return true;
+                                }
                             }
                         }
                     }

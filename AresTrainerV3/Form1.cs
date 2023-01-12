@@ -7,6 +7,7 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemCollect.ItemBlessing;
+using AresTrainerV3.ItemDelete;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
 using AresTrainerV3.MoveRandom.Etana;
@@ -635,18 +636,14 @@ namespace AresTrainerV3
 		private void fasttest_Click(object sender, EventArgs e)
         {
 			ProgramHandle.SetCameraForExpBot();
-            while (true)
-            {
-                PositionX.Text = ProgramHandle.isMobSelected.ToString();
-                Refresh();
-            }
 
 			Thread.Sleep(1000);
+/*
 			HealBotAbstract.RequestStartStopHealBot();
             ExpBotManagerAbstract.RequestStartExpBot();
             PixelMobAttack.AttackSkillMobWhenSelected();
 
-/*			SkillSelector asd = SkillSelector.SelectPropperClass();
+*//*			SkillSelector asd = SkillSelector.SelectPropperClass();
 			asd.Rebuff();
 */
 			//ItemSeller.MoveItemsToStorage();

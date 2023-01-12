@@ -87,7 +87,7 @@ namespace AresTrainerV3.Buyer
         {
             for (int i = 0; i < 4; i++)
             {
-                if (ProgramHandle.isShopWindowStillOpen() == 1)
+                if (ProgramHandle.isShopWindowStillOpen == 1)
                 {
 
                     if (BuyFromForm)
