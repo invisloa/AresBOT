@@ -450,6 +450,8 @@ public static class PointersAndValues
     //  CHyba nie potrzebne public static InputSimulator inputSimulator = new InputSimulator();
 
     public static Color blackPixelColor = ColorTranslator.FromHtml("#000000");
+    public static Color WhitePixelColor = ColorTranslator.FromHtml("#FFFFFF");
+
 
 
 }
