@@ -37,7 +37,6 @@ namespace AresTrainerV3.AttackMob
         }
         static void WaitForAttackEnd()
         {
-            ItemSeller.MoveItemsToStorage();
             Thread.Sleep(100);
 			IWhatToCollect _SodCollector;
 
