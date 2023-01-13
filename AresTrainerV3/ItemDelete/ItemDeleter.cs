@@ -130,8 +130,8 @@ namespace AresTrainerV3.ItemDelete
 		}
 		public bool isItemDeleteType(int addressVector)
 		{
-			int itemType = ProgramHandle.ReadItemsType(addressVector);
-			if(lowValueItems.Contains(itemType) && !ItemSeller.isItemHighValue(addressVector))
+			int itemType = ProgramHandle.ReadInventoryItemsType(addressVector);
+			if(lowValueItems.Contains(itemType) && !ItemSeller.isItemHighValue(addressVector, Enums.EnumsList.InventoryType.Inventory))
 			{
 				return true;
 			}

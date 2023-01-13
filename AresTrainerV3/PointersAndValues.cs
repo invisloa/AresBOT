@@ -206,7 +206,9 @@ public static class PointersAndValues
     public const int slotCandleOffset = 0xc22;
     public const int slotScrollOffset = 0xc3e;
 	public const int slotFirstSellOffset = 0xc5a;
-	public const int blessItem2rowValue = 0xc5c;
+	public const int slotFirstStorageValueOffset = 0x116;
+	public const int slotFirstStorageTypeOffset = 0x112;
+    public const int blessItem2rowValue = 0xc5c;
 	public const int MouseoverHighlightedOffset = 0x7c;
     public const int cameraDistancePointer = 0x19c;
     public const int cameraAngleYPointer = 0x1b6;
@@ -436,7 +438,7 @@ public static class PointersAndValues
 
 
     // item values
-    public static readonly int[] ItemValuesSodSop =  { 246, 247, 1092, 1093, 1094, 1095 };
+    public static readonly int[] ItemsNotForSaleValues =  { 0, 246, 247, 1092, 1093, 1094, 1095, 3093 };
     public static readonly int[] ItemValuesEventSnowman = { 9220, 9261, 9262, 9263, 9264, 9265, 9266, 9267};
 
 

@@ -635,9 +635,20 @@ namespace AresTrainerV3
 
 		private void fasttest_Click(object sender, EventArgs e)
         {
-			ProgramHandle.SetCameraForExpBot();
+            ProgramHandle.SetCameraForExpBot();
 
-			Thread.Sleep(1000);
+            //ItemSeller.moveItemsFromStorage();
+            ProgramHandle.OpenStorageWindow();
+			Thread.Sleep(300);
+
+            ItemSeller.MoveItemsToStorage();
+
+/*			BuyerPotionsStorage pb = new BuyerPotionsStorage();
+            pb.BuyPotions();
+
+*/			Thread.Sleep(1000);
+
+
 /*
 			HealBotAbstract.RequestStartStopHealBot();
             ExpBotManagerAbstract.RequestStartExpBot();

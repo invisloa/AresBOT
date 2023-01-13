@@ -169,10 +169,9 @@ namespace AresTrainerV3.AttackMob
                         }
                     }
                 }
-           // Debug.WriteLine("attack false");
 
             RepotAbstract.IsScanRunning = false;
-            GC.Collect();
+			GC.Collect();
             return false;
 
         }

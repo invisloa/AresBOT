@@ -119,7 +119,7 @@ namespace AresTrainerV3
                     MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 120)      // HP Potions 
+                else if (i == 3 && ProgramHandle.getFirstInvSlotValue < PointersAndValues.ItemCount1 + 120)      // HP Potions 
                 {
                     MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
@@ -149,7 +149,7 @@ namespace AresTrainerV3
                     MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);
                 }
-                else if (i == 3 && ProgramHandle.getFirstSlotValue < PointersAndValues.ItemCount1 + 30)      // HP Potions 
+                else if (i == 3 && ProgramHandle.getFirstInvSlotValue < PointersAndValues.ItemCount1 + 30)      // HP Potions 
                 {
                     MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);

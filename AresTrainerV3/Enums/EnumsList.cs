@@ -35,9 +35,15 @@ namespace AresTrainerV3.Enums
             StonesAndJewelery,
             SellWeapons,
             SellAll
-
+        }
+		public enum InventoryType
+        {
+            Inventory,
+            Storage
         }
 
 
-    }
-    }
+
+
+	}
+	}

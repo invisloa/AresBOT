@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -118,10 +119,11 @@ namespace AresTrainerV3.Buyer
                     new Tuple<int, int>(960, 620),
         };
 
-		public static Tuple<int,int>[] itemsInvArrPosInit(Tuple<int,int,int> firstPosXY)
+		public static Tuple<int,int>[] itemsInvArrPosInit(Tuple<int,int,int> firstPosXY, bool isNotStorage)
 		{
+			int numberOfSpaces  = isNotStorage ? 72 : 98;
 
-			Tuple<int, int>[] tempTuppleArr = new Tuple<int, int>[72];
+			Tuple<int, int>[] tempTuppleArr = new Tuple<int, int>[numberOfSpaces];
 			int spaceMultiplyer = 0;
 			int spaceBetweenRows = 0;
 
@@ -135,30 +137,23 @@ namespace AresTrainerV3.Buyer
 				tempTuppleArr[i] = new Tuple<int, int>(firstPosXY.Item1 + spaceMultiplyer * 35, firstPosXY.Item2 + spaceBetweenRows);
 			}
 
-			for (int i = 0; i < 72; i++)
+			for (int i = 0; i < numberOfSpaces; i++)
 			{
-				if (i < 36)
-				{
-					stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
-				}
-				else if (i == 36)
+				if (i == 36 && isNotStorage)
 				{
 					spaceBetweenRows = 0;   // 0 Because it starts from start again
 					spaceBetweenRows = 0;   // 0 Because it starts from start again
 					spaceMultiplyer = 0;
-					stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
 				}
-				else if (i < 72)
-				{
-					stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
-				}
+
+				stepThroughColumns(i, ref spaceMultiplyer, ref spaceBetweenRows);
 				spaceMultiplyer++;
 			}
 			return tempTuppleArr;
 		}
 		static Tuple<int, int, int> inventoryFirstSlotTupple = new Tuple<int, int, int>(1260, 530, 5);
-		static Tuple<int, int, int> storageFirstSlotTupple = new Tuple<int, int, int >(985, 180, 6);
-		public static Tuple<int, int>[] itemSellPositions = itemsInvArrPosInit(inventoryFirstSlotTupple);
-		public static Tuple<int, int>[] itemMoveFromStoragePositions = itemsInvArrPosInit(storageFirstSlotTupple);
+		static Tuple<int, int, int> storageFirstSlotTupple = new Tuple<int, int, int >(985, 175, 6);
+		public static Tuple<int, int>[] itemSellPositions = itemsInvArrPosInit(inventoryFirstSlotTupple, true);
+		public static Tuple<int, int>[] itemMoveFromStoragePositions = itemsInvArrPosInit(storageFirstSlotTupple, false);
 	}
 }

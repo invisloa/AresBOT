@@ -44,9 +44,10 @@ namespace AresTrainerV3
 		{
 			Thread.Sleep(30);
 			MouseOperations.SetCursorPosition(xPos, yPos);
-			Thread.Sleep(30);
+			Thread.Sleep(50);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-			Thread.Sleep(30);
+			Thread.Sleep(50);
+			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			Thread.Sleep(50);
 		}

@@ -86,7 +86,7 @@ namespace AresTrainerV3
         // TESTING
         static byte lastSlotStat1;
 
-        static byte[] slotFirstAddress;
+        static byte[] invFirstSlotAddress;
 
 
         //!!!
@@ -277,9 +277,11 @@ namespace AresTrainerV3
 
             anim2Address = memSkill.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.anim2Offset), 4);
 
-            slotFirstAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
+            invFirstSlotAddress = memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4);
 
-            isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
+
+
+			isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
             isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
             isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
             isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
@@ -437,10 +439,14 @@ namespace AresTrainerV3
                 return memIsInCity.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.isInCityOffset));
             }
         }
-        public static int getFirstSlotValue
-        {
-            get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)); }
-        }
+		public static int getFirstInvSlotValue
+		{
+			get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)); }
+		}
+		public static int getFirstStorageSlotValue
+		{
+			get { return memSeller.readByte(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.slotFirstStorageValueOffset)); }
+		}
         public static int getSecondSlotValue
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)); }
@@ -1021,15 +1027,31 @@ namespace AresTrainerV3
 			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + (offset * 0x1c)));
 		}
 		public static byte ReadSellItemsStat1(int offset)
-        {
-            return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 2)));
-        }
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 2)));
+		}
+		public static byte ReadSellItemsStat2(int offset)
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 1)));
+		}
+		public static byte ReadStorageItemsvalue(int offset)
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.slotFirstStorageValueOffset + ((offset * 0x1c))));
+		}
+		public static byte ReadStorageItemsStat1(int offset)
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.slotFirstStorageValueOffset + ((offset * 0x1c) - 2)));
+		}
+		public static byte ReadStorageItemsStat2(int offset)
+		{
+			return memSeller.readByte(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.slotFirstStorageValueOffset + ((offset * 0x1c) - 1)));
+		}
+		public static int ReadStorageItemsType(int offset)
+		{
+			return BitConverter.ToInt16(memSeller.readShort(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.slotFirstStorageValueOffset + ((offset * 0x1c) - 4))));
+		}
 
-        public static byte ReadSellItemsStat2(int offset)
-        {
-            return memSeller.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 1)));
-        }
-        public static int ReadItemsType(int offset)
+		public static int ReadInventoryItemsType(int offset)
         {
             return BitConverter.ToInt16(memSeller.readShort(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotFirstSellOffset + ((offset * 0x1c) - 4))));
         }
@@ -1098,7 +1120,6 @@ namespace AresTrainerV3
             Thread.Sleep(10);
             memSeller.writebytes(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.StorageWindowOffset2), BitConverter.GetBytes(1));
             Thread.Sleep(10);
-
         }
         public static void waitMouseInPos()
         {

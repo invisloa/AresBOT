@@ -129,12 +129,7 @@ namespace AresTrainerV3.MoveRandom
                         Thread.Sleep(5000);
                         if (ExpBotManagerAbstract.isExpBotRunning)
                         {
-
-                            if (moveOnlyOnMapX == TeleportValues.SlothFloor1 && ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
-                            {
-                                Form1.HealbotToRun.RepotAndStartExpBot();
-                            }
-                            else if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
+                            if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)
                             {
                                 Thread.Sleep(5000);
                                 if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX && ExpBotManagerAbstract.isExpBotRunning)

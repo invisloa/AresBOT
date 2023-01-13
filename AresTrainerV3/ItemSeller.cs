@@ -5,23 +5,39 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3
 {
     public class ItemSeller
     {
-		static Func<int, bool> ItemsOperationDelegate;
+		static List<int> imtemsToOperate = new List<int>();
+        static InventoryType inventoryTypeOperation;
 
-
-		public static List<int> imtemsToOperate = new List<int>();
-        public static bool isItemHighValue(int addressNumber)
+		public static bool isItemHighValue(int itemAdressVector, InventoryType invType)
         {
-            int stat1 = ProgramHandle.ReadSellItemsStat1(addressNumber);
-			int stat2 = ProgramHandle.ReadSellItemsStat2(addressNumber);
+            inventoryTypeOperation = invType;
+			return isItemHighValue(itemAdressVector);
+		}
+
+		static bool isItemHighValue(int itemAdressVector)
+        {
+            int stat1, stat2;
+
+			if (inventoryTypeOperation == InventoryType.Inventory)
+            {
+				stat1 = ProgramHandle.ReadSellItemsStat1(itemAdressVector);
+                stat2 = ProgramHandle.ReadSellItemsStat2(itemAdressVector);
+            }
+            else 
+            {
+				stat1 = ProgramHandle.ReadStorageItemsStat1(itemAdressVector);
+				stat2 = ProgramHandle.ReadStorageItemsStat2(itemAdressVector);
+			}
 			int magicAttackLimit = 85;
             int magicJustusLimit = 40;
             int magicJustus25Limit = 30;
-            int hightValueMainStats = 16;
+            int hightValueMainStats = 14;
 
             int Mp = 0;
             int Agi = 0;
@@ -710,24 +726,19 @@ namespace AresTrainerV3
             }
             else return false;
         }
-        public static bool isItemSaleType(int typeAdress)
+        static bool isItemSaleType(int itemTypeVector)
         {
-            foreach (int item in PointersAndValues.ItemValuesSodSop)
+            int itemTypeValue;
+            if (inventoryTypeOperation == InventoryType.Inventory)
             {
-                if (typeAdress == item)
-                { return false; }
-            }
-            foreach (int item in PointersAndValues.ItemValuesEventSnowman)
+                itemTypeValue = ProgramHandle.ReadInventoryItemsType(itemTypeVector);
+			}
+            else
             {
-                if (typeAdress == item)
-                { return false; }
-            }
-            /*            if (typeAdress == 187)// arrows
-                        {
-                            return false;
-                        }
-            */
-            if (typeAdress == 3093) // LegacyPot
+				itemTypeValue = ProgramHandle.ReadStorageItemsType(itemTypeVector);
+			}
+			if (PointersAndValues.ItemsNotForSaleValues.Contains(itemTypeValue) ||
+				PointersAndValues.ItemValuesEventSnowman.Contains(itemTypeValue))
             {
                 return false;
             }
@@ -736,35 +747,62 @@ namespace AresTrainerV3
                 return true;
             }
         }
-
-
-
-		public static void ItemsToOperateListGenerate(Func<int, bool> funcDelegate)
+		public static void ItemsOperationsListGenerate(Func<int, bool> delegateIsItemFitToAdd, InventoryType invTypeOperation)
 		{
-
+            inventoryTypeOperation = invTypeOperation;
+			int inventoryCount;
+            if (inventoryTypeOperation == InventoryType.Inventory) inventoryCount = 60;
+            else inventoryCount = 98;
 			imtemsToOperate.Clear();
-			for (int i = 0; i < 60; i++)
+			for (int i = 0; i < inventoryCount; i++)
 			{
-				if (ProgramHandle.ReadInvItmsCount(i) != 0)
+				if (delegateIsItemFitToAdd(i))
 				{
-					if (funcDelegate(i))
-					{
-						imtemsToOperate.Add(i);
-					}
+					imtemsToOperate.Add(i);
 				}
 			}
 		}
-
-		public static void ItemsForSaleListGenerate()
+		static void ItemsForSaleListGenerate()
         {
-            ItemsToOperateListGenerate(isItemForSaleCheck);
+            ItemsOperationsListGenerate(isItemForSaleCheck, InventoryType.Inventory);
 		}
-		public static void ItemsForStorageMoveGenerate()
+		static void ItemsFromStorageListGenerate()
 		{
-			ItemsToOperateListGenerate(isItemForStorageCheck);
+			ItemsOperationsListGenerate(isItemForSaleCheck, InventoryType.Storage);
 		}
-		
-		static bool isItemForStorageCheck(int itemVector)
+
+		static void ItemsToStorageMoveListGenerate()
+		{
+			ItemsOperationsListGenerate(isItemForToStorageMoveCheck, InventoryType.Inventory);
+		}
+		static bool isItemForSaleCheck(int itemVector)
+		{
+			if (!isItemHighValue(itemVector) && isItemSaleType(itemVector))
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+        static bool isStorageFullCheck()
+        {
+            int invSlotValue = 0;
+            for (int i = 95; i < 99; i++)
+            {
+				invSlotValue += ProgramHandle.ReadStorageItemsvalue(i);
+			}
+            if (invSlotValue == 4)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+		}
+		static bool isItemForToStorageMoveCheck(int itemVector)
 		{
 			if (ProgramHandle.ReadInvItmsCount(itemVector) != 0)
 			{
@@ -775,67 +813,6 @@ namespace AresTrainerV3
 				return false;
 			}
 		}
-        static bool isItemForSaleCheck(int itemVector)
-        {
-			if (!isItemHighValue(itemVector) && isItemSaleType(ProgramHandle.ReadItemsType(itemVector)))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-		}
-		public bool checkIfCloseToShop()
-		{
-			if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
-			{
-				if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
-					&& ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
-				{ return true; }
-				else
-				{ return false; }
-			}
-			else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-			{
-				if (ProgramHandle.GetPositionX > 1125115858 && ProgramHandle.GetPositionX < 1125782038
-					&& ProgramHandle.GetPositionY > 1125170820 && ProgramHandle.GetPositionY < 1125701048)
-				{ return true; }
-				else
-				{ return false; }
-			}
-			return true;
-		}
-		public static void MoveAndLeftClickToSellAll()
-        {
-            Debug.WriteLine("Check if selll window is open");
-            Thread.Sleep(50);
-            if (ProgramHandle.isSellWindowStillOpen == 1)
-            {
-                Thread.Sleep(30);
-                Debug.WriteLine("window open sell item left click");
-                MouseOperations.SetCursorPosition(560, 570);
-                Thread.Sleep(30);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(30);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(75);
-            }
-
-            Debug.WriteLine("Check if high value");
-            Thread.Sleep(100);
-            if (ProgramHandle.isSellWindowStillOpen == 1)
-            {
-                Debug.WriteLine("high value item click once more");
-                MouseOperations.SetCursorPosition(560, 570);
-                Thread.Sleep(30);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-                Thread.Sleep(30);
-                MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-                Thread.Sleep(100);
-
-            }
-        }
 
         #region OldSellItems
         public void SellItemsMouseMove()
@@ -883,36 +860,113 @@ namespace AresTrainerV3
         #region StorageItemMove
         public static void MoveItemsToStorage()
         {
-            ItemsForStorageMoveGenerate();
-            Thread.Sleep(50);
-            ProgramHandle.OpenStorageWindow();
-            Thread.Sleep(500);
-            MouseOperations.OpenInventoryTab1();
-            Thread.Sleep(300);
-
-            //  SELL ONLY FIRST ROW OF SECOND TAB  
-            // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
-            foreach (int item in imtemsToOperate)
+            if (!isStorageFullCheck())
             {
-                Debug.WriteLine($"move to Storage{item}");
-
-                int itemToMove = item + 6; // START FROM 2 Row 1st column
-                if (itemToMove >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                ItemsToStorageMoveListGenerate();
+                if (imtemsToOperate.Count > 3)
                 {
-                    Thread.Sleep(150);
-                    MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
-                    Thread.Sleep(150);
+                    ProgramHandle.OpenStorageWindow();
+                    Thread.Sleep(75);
+                    MouseOperations.OpenInventoryTab1();
+                    Thread.Sleep(75);
+
+                    //  SELL ONLY FIRST ROW OF SECOND TAB  
+                    // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
+                    foreach (int item in imtemsToOperate)
+                    {
+                        Debug.WriteLine($"move to Storage{item}");
+
+                        int itemToMove = item + 6; // START FROM 2 Row 1st column
+                        if (itemToMove >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                        {
+                            Thread.Sleep(150);
+                            MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
+                            Thread.Sleep(150);
+                        }
+                        MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item1, ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item2);
+                    }
+                    KeyPresser.PressEscape();
+                    KeyPresser.PressEscape();
                 }
-                MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item1, ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item2);
             }
-        }
-		#endregion
-		#region ItemMoveFromStorage
-        void moveItemsFromStorage()
-        {
-			// itemMoveFromStoragePositions
 		}
 		#endregion
+		#region ItemMoveFromStorage
+
+        public static void moveItemsFromStorage()
+		{
+			ProgramHandle.OpenStorageWindow();
+			ItemsFromStorageListGenerate();
+			Thread.Sleep(700);
+			MouseOperations.OpenInventoryTab1();
+			Thread.Sleep(200);
+
+            foreach (int item in imtemsToOperate)
+            {
+                if (ProgramHandle.isInventoryWindowStillOpen == 1)
+                {
+                    Debug.WriteLine($"move from Storage{item}");
+                    MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemMoveFromStoragePositions[item].Item1, ExpBotMovePositionsValues.itemMoveFromStoragePositions[item].Item2);
+                }
+            }
+
+			/*            MoveItemsFromStorageListGenerate();
+						foreach(int item in imtemsToOperate)
+						MouseOperations.MoveAndRightClickOperation(ExpBotMovePositions.itemMoveFromStoragePositions[itemToMove].item1,
+																	ExpBotMovePositions.itemMoveFromStoragePositions[itemToMove].item2)
+			*/
+		}
+		#endregion
+		public bool checkIfCloseToShop()
+		{
+			if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
+			{
+				if (ProgramHandle.GetPositionX > 1141175465 && ProgramHandle.GetPositionX < 1141336640
+					&& ProgramHandle.GetPositionY > 1141133820 && ProgramHandle.GetPositionY < 1141308147)
+				{ return true; }
+				else
+				{ return false; }
+			}
+			else if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
+			{
+				if (ProgramHandle.GetPositionX > 1125115858 && ProgramHandle.GetPositionX < 1125782038
+					&& ProgramHandle.GetPositionY > 1125170820 && ProgramHandle.GetPositionY < 1125701048)
+				{ return true; }
+				else
+				{ return false; }
+			}
+			return true;
+		}
+		public static void MoveAndLeftClickToSellAll()
+		{
+			Debug.WriteLine("Check if selll window is open");
+			Thread.Sleep(50);
+			if (ProgramHandle.isSellWindowStillOpen == 1)
+			{
+				Thread.Sleep(30);
+				Debug.WriteLine("window open sell item left click");
+				MouseOperations.SetCursorPosition(560, 570);
+				Thread.Sleep(30);
+				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+				Thread.Sleep(30);
+				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+				Thread.Sleep(75);
+			}
+
+			Debug.WriteLine("Check if high value");
+			Thread.Sleep(100);
+			if (ProgramHandle.isSellWindowStillOpen == 1)
+			{
+				Debug.WriteLine("high value item click once more");
+				MouseOperations.SetCursorPosition(560, 570);
+				Thread.Sleep(30);
+				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+				Thread.Sleep(30);
+				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+				Thread.Sleep(100);
+
+			}
+		}
 
 
 	}
