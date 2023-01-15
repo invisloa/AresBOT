@@ -794,7 +794,7 @@ namespace AresTrainerV3
             {
 				invSlotValue += ProgramHandle.ReadStorageItemsvalue(i);
 			}
-            if (invSlotValue >2) // not =4 cause there can be potions etc.
+            if (invSlotValue >2) // not =3 cause there can be potions etc.
             {
                 return true;
             }
