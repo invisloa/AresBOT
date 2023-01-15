@@ -878,14 +878,14 @@ namespace AresTrainerV3
                 if (imtemsToOperate.Count > 8 &&
                     ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight - 200) // - 200 is at least 1 item less then needed for repot
                 {
-                    ProgramHandle.OpenStorageWindow();
-                    Thread.Sleep(75);
-                    MouseOperations.OpenInventoryTab1();
-                    Thread.Sleep(75);
+					ProgramHandle.OpenStorageWindow();
+					Thread.Sleep(200);
+					MouseOperations.OpenInventoryTab1();
+					Thread.Sleep(75);
 
-                    //  SELL ONLY FIRST ROW OF SECOND TAB  
-                    // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
-                    foreach (int item in imtemsToOperate)
+					//  SELL ONLY FIRST ROW OF SECOND TAB  
+					// for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
+					foreach (int item in imtemsToOperate)
                     {
                         Debug.WriteLine($"move to Storage{item}");
 
