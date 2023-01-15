@@ -432,8 +432,8 @@ namespace AresTrainerV3
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
-                BuyerPotions.HpPotionsToBuy = 200;
-                BuyerPotions.MpPotionsToBuy = 50;
+                BuyerPotions.HpPotionsToBuy = 250;
+                BuyerPotions.MpPotionsToBuy = 45;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
