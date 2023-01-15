@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.Buyer;
+using AresTrainerV3.ItemCollect;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -786,14 +787,14 @@ namespace AresTrainerV3
 				return false;
 			}
 		}
-        static bool isStorageFullCheck()
+        public static bool isStorageFullCheck()
         {
             int invSlotValue = 0;
             for (int i = 95; i < 99; i++)
             {
 				invSlotValue += ProgramHandle.ReadStorageItemsvalue(i);
 			}
-            if (invSlotValue == 4)
+            if (invSlotValue ==4)
             {
                 return true;
             }
@@ -819,14 +820,12 @@ namespace AresTrainerV3
         {
             if (checkIfCloseToShop())
             {
-                ProgramHandle.OpenShopWindow();
+				ProgramHandle.OpenShopWindow();
                 Thread.Sleep(50);
                 ItemsForSaleListGenerate();
                 int firstSellList = imtemsToOperate.Count;
-                Thread.Sleep(500);
-
-                MouseOperations.OpenInventoryTab1();
-                Thread.Sleep(300);
+				Thread.Sleep(200);
+				MouseOperations.OpenInventoryTab1();
 
                 //  SELL ONLY FIRST ROW OF SECOND TAB  
                 // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
@@ -850,10 +849,23 @@ namespace AresTrainerV3
                 ItemsForSaleListGenerate();
                 if (imtemsToOperate.Count != 0 && firstSellList != imtemsToOperate.Count)
                 {
-                    SellItemsMouseMove();
+					Debug.WriteLine($"items for sale left {imtemsToOperate.Count}");
+					SellItemsMouseMove();
 				}
 
-            }
+				ItemsFromStorageListGenerate();
+                if (imtemsToOperate.Count != 0)
+				{
+					KeyPresser.PressEscape();
+					KeyPresser.PressEscape();
+					moveItemsFromStorage();
+					KeyPresser.PressEscape();
+					KeyPresser.PressEscape();
+					SellItemsMouseMove();
+				}
+
+
+			}
 		}
         #endregion
 
@@ -863,7 +875,8 @@ namespace AresTrainerV3
             if (!isStorageFullCheck())
             {
                 ItemsToStorageMoveListGenerate();
-                if (imtemsToOperate.Count > 3)
+                if (imtemsToOperate.Count > 8 &&
+                    ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight - 200) // - 200 is at least 1 item less then needed for repot
                 {
                     ProgramHandle.OpenStorageWindow();
                     Thread.Sleep(75);
@@ -895,6 +908,10 @@ namespace AresTrainerV3
 
         public static void moveItemsFromStorage()
 		{
+			KeyPresser.PressEscape();
+			Thread.Sleep(200);
+			KeyPresser.PressEscape();
+			Thread.Sleep(200);
 			ProgramHandle.OpenStorageWindow();
 			ItemsFromStorageListGenerate();
 			Thread.Sleep(700);
@@ -903,18 +920,12 @@ namespace AresTrainerV3
 
             foreach (int item in imtemsToOperate)
             {
-                if (ProgramHandle.isInventoryWindowStillOpen == 1)
+                if (ProgramHandle.isInventoryWindowStillOpen == 1 && ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeightNormalValue)
                 {
                     Debug.WriteLine($"move from Storage{item}");
                     MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemMoveFromStoragePositions[item].Item1, ExpBotMovePositionsValues.itemMoveFromStoragePositions[item].Item2);
                 }
             }
-
-			/*            MoveItemsFromStorageListGenerate();
-						foreach(int item in imtemsToOperate)
-						MouseOperations.MoveAndRightClickOperation(ExpBotMovePositions.itemMoveFromStoragePositions[itemToMove].item1,
-																	ExpBotMovePositions.itemMoveFromStoragePositions[itemToMove].item2)
-			*/
 		}
 		#endregion
 		public bool checkIfCloseToShop()
@@ -950,20 +961,21 @@ namespace AresTrainerV3
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
 				Thread.Sleep(30);
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-				Thread.Sleep(75);
+				Thread.Sleep(50);
 			}
 
 			Debug.WriteLine("Check if high value");
-			Thread.Sleep(100);
+			Thread.Sleep(75);
 			if (ProgramHandle.isSellWindowStillOpen == 1)
 			{
+				Thread.Sleep(20);
 				Debug.WriteLine("high value item click once more");
 				MouseOperations.SetCursorPosition(560, 570);
 				Thread.Sleep(30);
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
 				Thread.Sleep(30);
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-				Thread.Sleep(100);
+				Thread.Sleep(50);
 
 			}
 		}

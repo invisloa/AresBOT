@@ -50,7 +50,6 @@ namespace AresTrainerV3.ItemCollect
                     MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
                     //   Thread.Sleep(100);
                     Debug.WriteLine($"Mouse R UP");
-
                 }
             }
 
@@ -172,7 +171,8 @@ namespace AresTrainerV3.ItemCollect
 
                     }
                 }
-            }
+                ItemSeller.MoveItemsToStorage();
+			}
             GC.Collect();
             RepotAbstract.IsScanRunning = false;
             return false;

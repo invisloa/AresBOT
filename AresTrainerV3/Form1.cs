@@ -641,7 +641,7 @@ namespace AresTrainerV3
             ProgramHandle.OpenStorageWindow();
 			Thread.Sleep(300);
 
-            ItemSeller.MoveItemsToStorage();
+            ItemSeller.isStorageFullCheck();
 
 /*			BuyerPotionsStorage pb = new BuyerPotionsStorage();
             pb.BuyPotions();

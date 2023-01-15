@@ -227,7 +227,7 @@ namespace AresTrainerV3.HealBot
                     MannaKeyPress();
                 }
                 WhiteRedPotionKeyPress();
-                if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight)
+                if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity !=1)
                 {
                     // try to make storage repot and items move
                     RepotAndStartExpBot();
@@ -248,7 +248,7 @@ namespace AresTrainerV3.HealBot
         {
             if (ProgramHandle.getFirstInvSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
             {
-                KeyPresser.PressKey(1, 100, 100);
+                KeyPresser.PressKey(1, 50, 50);
             }
             else
             {
@@ -286,7 +286,6 @@ namespace AresTrainerV3.HealBot
         protected void WhiteRedPotionKeyPress()
         {
 
-            // TO DO GET CURRENT CLASS AND SET PROPPER POTION USE
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
                 /*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
@@ -307,8 +306,7 @@ namespace AresTrainerV3.HealBot
                 {
                     KeyPresser.PressKey(8, 100, 100);
                 }
-*/            }
-
+*/           }
 			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
 			{
 				/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
@@ -343,7 +341,6 @@ namespace AresTrainerV3.HealBot
 								}
 				*/
 			}
-
 		}
 
 
