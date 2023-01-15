@@ -790,11 +790,11 @@ namespace AresTrainerV3
         public static bool isStorageFullCheck()
         {
             int invSlotValue = 0;
-            for (int i = 95; i < 99; i++)
+            for (int i = 95; i < 98; i++)
             {
 				invSlotValue += ProgramHandle.ReadStorageItemsvalue(i);
 			}
-            if (invSlotValue ==4)
+            if (invSlotValue >2) // not =4 cause there can be potions etc.
             {
                 return true;
             }

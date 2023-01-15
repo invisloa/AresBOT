@@ -152,6 +152,7 @@ namespace AresTrainerV3.ItemCollect
                 if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
                 {
                     RepotAbstract.IsScanRunning = true;
+                    ItemSeller.MoveItemsToStorage();
                     for (int x = 930; x < 980; x++)
                     {
                         for (int y = 500; y < 545; y++)
@@ -171,7 +172,6 @@ namespace AresTrainerV3.ItemCollect
 
                     }
                 }
-                ItemSeller.MoveItemsToStorage();
 			}
             GC.Collect();
             RepotAbstract.IsScanRunning = false;

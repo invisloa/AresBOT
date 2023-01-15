@@ -24,8 +24,6 @@ namespace AresTrainerV3.DoWhileMoving
         {
             if (HealBotAbstract.SellItems == true)
             {
-                if (CollectItems)
-                {
                     for (int i = 0; i < NumberOfCollectScans; i++)
                     {
                         if (ICollector.ClickAndCollectItem())
@@ -33,7 +31,6 @@ namespace AresTrainerV3.DoWhileMoving
                             return true;
                         }
                     }
-                }
 
                 if (PixelMobAttack.AttackSkillMobWhenSelected())
                 {
