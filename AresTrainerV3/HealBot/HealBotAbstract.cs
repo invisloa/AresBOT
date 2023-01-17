@@ -325,7 +325,7 @@ namespace AresTrainerV3.HealBot
 			}
 			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
 			{
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     // for now using with red potion later to change for a sorcerer
@@ -334,12 +334,11 @@ namespace AresTrainerV3.HealBot
 
 				}
 
-				/*                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
-								{
-									KeyPresser.PressKey(8, 100, 100);
-									KeyPresser.PressKey(7, 100, 100);
-								}
-				*/
+*/				if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
+				{
+					KeyPresser.PressKey(8, 100, 100);
+					KeyPresser.PressKey(7, 100, 100);
+				}
 			}
 		}
 
