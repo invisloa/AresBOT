@@ -712,6 +712,7 @@ namespace AresTrainerV3
             int blessValue;
             Int32.TryParse(HpToBuy.Text, out blessValue);
 			MessageBox.Show($"You are going to try bless item to {blessValue}");
+
 			ItemBlesser itemBlesser = new ItemBlesser();
             itemBlesser.BlessItem(blessValue);
 		}
