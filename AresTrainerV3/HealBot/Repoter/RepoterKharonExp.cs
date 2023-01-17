@@ -12,7 +12,7 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     public class RepoterKharonExp : RepotAbstract
     {
-        protected override BuyerPotions BuyerPotionsCity
+        protected override BuyerPotionsAbstract BuyerPotionsCity
         {
             get
             {

@@ -76,7 +76,7 @@ namespace AresTrainerV3.ItemDelete
 					{
 						Debug.WriteLine($"delete {item}");
 						int deleteItemNumber = item + 6; // START FROM 2 Row 1st Column = 12
-						if (deleteItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+						if (deleteItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened == 0)
 						{
 							Thread.Sleep(150);
 							MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2

@@ -24,7 +24,7 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             get { return ProgramHandle.GetCurrentMap; }
         }
-        protected BuyerPotions _buyerPotionsCity;
+        protected BuyerPotionsAbstract _buyerPotionsCity;
         protected int _repotCityVerification;
         public static bool IsScanRunning = false;
         protected void StopExpBot()
@@ -34,7 +34,7 @@ namespace AresTrainerV3.HealBot.Repoter
                 ExpBotManagerAbstract.RequestStopExpBot();
             }
         }
-        protected abstract BuyerPotions BuyerPotionsCity
+        protected abstract BuyerPotionsAbstract BuyerPotionsCity
         {get;}
         protected abstract int repotCityCheck
         {get;}

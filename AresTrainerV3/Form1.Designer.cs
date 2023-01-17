@@ -82,6 +82,7 @@
 			this.HPValueTextBox = new System.Windows.Forms.TextBox();
 			this.ShowPosShort = new System.Windows.Forms.Button();
 			this.PositionZ = new System.Windows.Forms.TextBox();
+			this.ItemBlesserBtn = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// ClassChangeComboBox
@@ -614,11 +615,22 @@
 			this.PositionZ.Size = new System.Drawing.Size(100, 23);
 			this.PositionZ.TabIndex = 84;
 			// 
+			// ItemBlesserBtn
+			// 
+			this.ItemBlesserBtn.Location = new System.Drawing.Point(672, 6);
+			this.ItemBlesserBtn.Name = "ItemBlesserBtn";
+			this.ItemBlesserBtn.Size = new System.Drawing.Size(75, 23);
+			this.ItemBlesserBtn.TabIndex = 85;
+			this.ItemBlesserBtn.Text = "Bless Item";
+			this.ItemBlesserBtn.UseVisualStyleBackColor = true;
+			this.ItemBlesserBtn.Click += new System.EventHandler(this.ItemBlesserBtn_Click);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(860, 450);
+			this.Controls.Add(this.ItemBlesserBtn);
 			this.Controls.Add(this.PositionZ);
 			this.Controls.Add(this.ShowPosShort);
 			this.Controls.Add(this.GoToPos);
@@ -739,7 +751,8 @@
         private TextBox HPValueTextBox;
         private Button ShowPosShort;
         private TextBox PositionZ;
+		private Button ItemBlesserBtn;
 
-        public EventHandler Tester_Click_1 { get; private set; }
+		public EventHandler Tester_Click_1 { get; private set; }
     }
 }

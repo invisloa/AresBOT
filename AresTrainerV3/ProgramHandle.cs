@@ -140,9 +140,12 @@ namespace AresTrainerV3
         {
             get { return _stopKoChangeValue; }
         }
-        public static byte isCurrentInventoryTabOppened()
+        public static byte isCurrentInventoryTabOppened
         {
-            return memSeller.readByte(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryCurrentTabOffset)); 
+			get 
+                {
+                return memSeller.readByte(proc.Handle, IntPtr.Add(inventoryWindowMOffset, PointersAndValues.inventoryCurrentTabOffset));
+                }
         }
 
         public static int GetSkillDelay

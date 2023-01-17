@@ -42,14 +42,15 @@ namespace AresTrainerV3
         }
 		public static void MoveAndRightClickOperation(int xPos, int yPos)
 		{
-			Thread.Sleep(30);
+            int sleepTime = 60;
+			Thread.Sleep(sleepTime);
 			MouseOperations.SetCursorPosition(xPos, yPos);
-			Thread.Sleep(50);
+			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-			Thread.Sleep(50);
+			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-			Thread.Sleep(50);
+			Thread.Sleep(sleepTime);
 		}
 
 		public static void SetCursorPosition(MousePoint point)
@@ -92,7 +93,23 @@ namespace AresTrainerV3
         }
 		public static void OpenInventoryTab1()
 		{
+			Thread.Sleep(15);
 			MoveAndLeftClickOperation(1235, 570, 100);
+			Thread.Sleep(15);
+			if (ProgramHandle.isCurrentInventoryTabOppened != 0)
+			{
+				OpenInventoryTab1();
+			}
+		}
+		public static void OpenInventoryTab2()
+		{
+			Thread.Sleep(15);
+			MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
+			Thread.Sleep(15);
+			if (ProgramHandle.isCurrentInventoryTabOppened != 1)
+			{
+				OpenInventoryTab2();
+			}
 		}
 		public static void OpenDeleteTab()
 		{

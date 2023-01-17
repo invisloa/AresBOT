@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace AresTrainerV3.Buyer
 {
-    public abstract class BuyerPotions : IBuyerPotionsFromShop
+    public abstract class BuyerPotionsAbstract : IBuyerPotionsFromShop
     {
         public static bool BuyFromForm = false;
         public static int HpPotionsToBuy = 100;
@@ -128,7 +128,6 @@ namespace AresTrainerV3.Buyer
                             MouseOperations.MoveAndLeftClickOperation(1260, 530, _defaultMouseClickDelay); // 1 slot inv
 
                             HowManyPotionsToBuy(PotionsToBuyCalculator(hpLimit, ProgramHandle.getFirstInvSlotValue));
-
                         }
                         else
                         {

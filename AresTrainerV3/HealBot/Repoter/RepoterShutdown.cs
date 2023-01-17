@@ -9,7 +9,7 @@ namespace AresTrainerV3.HealBot.Repoter
 {
     internal class RepoterShutdown : RepotAbstract
 	{
-		protected override BuyerPotions BuyerPotionsCity
+		protected override BuyerPotionsAbstract BuyerPotionsCity
 		{
 			get
 			{

@@ -192,11 +192,11 @@ namespace AresTrainerV3
         {
             if (HpToBuy.Text != "0")
             {
-                BuyerPotions.BuyFromForm = true;
+                BuyerPotionsAbstract.BuyFromForm = true;
             }
             int i = 0;
             int.TryParse(HpToBuy.Text, out i);
-            BuyerPotions.HpPotionsToBuy = i;
+            BuyerPotionsAbstract.HpPotionsToBuy = i;
         }
 
         private void MpToBuy_TextChanged(object sender, EventArgs e)
@@ -204,7 +204,7 @@ namespace AresTrainerV3
             {
                 int i = 0;
                 int.TryParse(MpToBuy.Text, out i);
-                BuyerPotions.MpPotionsToBuy = i;
+                BuyerPotionsAbstract.MpPotionsToBuy = i;
 
             }
         }
@@ -213,7 +213,7 @@ namespace AresTrainerV3
         {
             int i = 0;
             int.TryParse(SpeedPot.Text, out i);
-            BuyerPotions.SpeedPotionsToBuy = i;
+            BuyerPotionsAbstract.SpeedPotionsToBuy = i;
 
         }
 
@@ -221,11 +221,11 @@ namespace AresTrainerV3
         {
             if (BuyMaxHp.Checked)
             {
-                BuyerPotions.BuyMaxPotions = true;
+                BuyerPotionsAbstract.BuyMaxPotions = true;
             }
             else
             {
-                BuyerPotions.BuyMaxPotions = false;
+                BuyerPotionsAbstract.BuyMaxPotions = false;
             }
         }
 
@@ -420,29 +420,29 @@ namespace AresTrainerV3
 
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            BuyerPotions.HpPotionsToBuy = 80;
-            BuyerPotions.MpPotionsToBuy = 10;
-            BuyerPotions.SpeedPotionsToBuy = 3;
+            BuyerPotionsAbstract.HpPotionsToBuy = 80;
+            BuyerPotionsAbstract.MpPotionsToBuy = 10;
+            BuyerPotionsAbstract.SpeedPotionsToBuy = 3;
 
-            BuyerPotions.BuyFromForm = true;
+            BuyerPotionsAbstract.BuyFromForm = true;
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
-                BuyerPotions.HpPotionsToBuy = 250;
-                BuyerPotions.MpPotionsToBuy = 25;
+                BuyerPotionsAbstract.HpPotionsToBuy = 250;
+                BuyerPotionsAbstract.MpPotionsToBuy = 25;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
-                BuyerPotions.HpPotionsToBuy = 250;
-                BuyerPotions.MpPotionsToBuy = 45;
+                BuyerPotionsAbstract.HpPotionsToBuy = 250;
+                BuyerPotionsAbstract.MpPotionsToBuy = 45;
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
-                BuyerPotions.HpPotionsToBuy = 120;
-                BuyerPotions.MpPotionsToBuy = 20;
+                BuyerPotionsAbstract.HpPotionsToBuy = 120;
+                BuyerPotionsAbstract.MpPotionsToBuy = 20;
             }
-            HpToBuy.Text = BuyerPotions.HpPotionsToBuy.ToString();
-            MpToBuy.Text = BuyerPotions.MpPotionsToBuy.ToString();
-            SpeedPot.Text = BuyerPotions.SpeedPotionsToBuy.ToString();
+            HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
+            MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
+            SpeedPot.Text = BuyerPotionsAbstract.SpeedPotionsToBuy.ToString();
             HealBotAbstract.SellItems = true;
             SellItemsCheckBox.Checked = true;
             DoScanAttackCollect.NumberOfCollectScans = 1;
@@ -636,9 +636,10 @@ namespace AresTrainerV3
 		private void fasttest_Click(object sender, EventArgs e)
         {
             ProgramHandle.SetCameraForExpBot();
+            Thread.Sleep(150);
 			Thread.Sleep(150);
-			Thread.Sleep(150);
-
+            ItemSeller itemsel = new ItemSeller();
+            itemsel.SellItemsMouseMove();
 
 			/*
 						HealBotAbstract.RequestStartStopHealBot();
@@ -705,7 +706,16 @@ namespace AresTrainerV3
             Int32.TryParse(PositionY.Text, out y);
             ProgramHandle.TeleportToPosition(x, y, 0);
         }
-    }
+
+		private void ItemBlesserBtn_Click(object sender, EventArgs e)
+		{
+            int blessValue;
+            Int32.TryParse(HpToBuy.Text, out blessValue);
+			MessageBox.Show($"You are going to try bless item to {blessValue}");
+			ItemBlesser itemBlesser = new ItemBlesser();
+            itemBlesser.BlessItem(blessValue);
+		}
+	}
 /*    
     
     TODO

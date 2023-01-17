@@ -12,7 +12,6 @@ namespace AresTrainerV3.ItemCollect
     {
         public static int MaxCollectWeight;
         public static int MaxCollectWeightNormalValue;
-
         protected const int SOD = -13799;
         protected const int EventItems = 32627;
         protected const int jewelery = -19435;
@@ -54,7 +53,6 @@ namespace AresTrainerV3.ItemCollect
             }
             return false;
         }
-
         protected void CollectionClick()
         {
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);

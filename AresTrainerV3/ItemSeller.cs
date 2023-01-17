@@ -815,16 +815,23 @@ namespace AresTrainerV3
 			}
 		}
 
-        #region OldSellItems
-        public void SellItemsMouseMove()
+		#region OldSellItems
+		void AssignWeight()
+		{
+			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
+			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
+		}
+
+		public void SellItemsMouseMove()
         {
-            if (checkIfCloseToShop())
+            AssignWeight();
+
+			if (checkIfCloseToShop())
             {
 				ProgramHandle.OpenShopWindow();
-                Thread.Sleep(50);
                 ItemsForSaleListGenerate();
                 int firstSellList = imtemsToOperate.Count;
-				Thread.Sleep(200);
+				Thread.Sleep(100);
 				MouseOperations.OpenInventoryTab1();
 
                 //  SELL ONLY FIRST ROW OF SECOND TAB  
@@ -836,12 +843,10 @@ namespace AresTrainerV3
                         Debug.WriteLine($"sell item {item}");
 
                         int sellItemNumber = item + 6; // START FROM 2 Row 1st Column = 12
-                        if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                        if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened == 0)
                         {
-                            Thread.Sleep(150);
-                            MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
-                            Thread.Sleep(150);
-                        }
+							MouseOperations.OpenInventoryTab2();
+						}
                         MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
                         MoveAndLeftClickToSellAll();
                     }
@@ -867,10 +872,10 @@ namespace AresTrainerV3
 
 			}
 		}
-        #endregion
+		#endregion
 
-        #region StorageItemMove
-        public static void MoveItemsToStorage()
+		#region StorageItemMove
+		public static void MoveItemsToStorage()
         {
             if (!isStorageFullCheck())
             {
@@ -890,7 +895,7 @@ namespace AresTrainerV3
                         Debug.WriteLine($"move to Storage{item}");
 
                         int itemToMove = item + 6; // START FROM 2 Row 1st column
-                        if (itemToMove >= 36 && ProgramHandle.isCurrentInventoryTabOppened() == 0)
+                        if (itemToMove >= 36 && ProgramHandle.isCurrentInventoryTabOppened == 0)
                         {
                             Thread.Sleep(150);
                             MouseOperations.MoveAndLeftClickOperation(1235, 670, 100); // Open Inventory Tab 2
@@ -904,6 +909,7 @@ namespace AresTrainerV3
             }
 		}
 		#endregion
+
 		#region ItemMoveFromStorage
 
         public static void moveItemsFromStorage()
@@ -954,33 +960,28 @@ namespace AresTrainerV3
 			Thread.Sleep(50);
 			if (ProgramHandle.isSellWindowStillOpen == 1)
 			{
-				Thread.Sleep(30);
-				Debug.WriteLine("window open sell item left click");
-				MouseOperations.SetCursorPosition(560, 570);
-				Thread.Sleep(30);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-				Thread.Sleep(30);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-				Thread.Sleep(50);
+				LeftClickSellConfirmation("normal item sell");
 			}
 
 			Debug.WriteLine("Check if high value");
-			Thread.Sleep(75);
+			Thread.Sleep(50);
 			if (ProgramHandle.isSellWindowStillOpen == 1)
 			{
-				Thread.Sleep(20);
-				Debug.WriteLine("high value item click once more");
-				MouseOperations.SetCursorPosition(560, 570);
-				Thread.Sleep(30);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-				Thread.Sleep(30);
-				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-				Thread.Sleep(50);
-
+				LeftClickSellConfirmation("high value item click once more");
 			}
 		}
-
-
+        static void LeftClickSellConfirmation(string debugMessage)
+		{
+            int sleepTime = 50;
+			Thread.Sleep(sleepTime);
+			Debug.WriteLine(debugMessage);
+			MouseOperations.SetCursorPosition(560, 570);
+			Thread.Sleep(sleepTime);
+			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+			Thread.Sleep(sleepTime);
+			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+			Thread.Sleep(sleepTime);
+		}
 	}
 }
 

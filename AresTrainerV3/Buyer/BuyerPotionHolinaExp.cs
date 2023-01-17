@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.Buyer
 {
-    internal class BuyerPotionHolinaExp : BuyerPotions
+    internal class BuyerPotionHolinaExp : BuyerPotionsAbstract
     {
         public override void BuyPotions()
         {

@@ -12,7 +12,10 @@ namespace AresTrainerV3.ItemCollect.ItemBlessing
 
 		public void BlessItem(int blessValue)
 		{
+			ExpBotManagerAbstract.RequestStartExpBot();
+			ProgramHandle.SetGameAsMainWindow();
 			int sleepTime = 200;
+			Thread.Sleep(sleepTime*3);
 			int i = 0;
 			while ((blessValue > ProgramHandle.GetBless2RowValue) && ExpBotManagerAbstract.isExpBotRunning)
 			{
