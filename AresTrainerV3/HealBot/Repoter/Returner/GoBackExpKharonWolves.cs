@@ -42,16 +42,16 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             }
             ProgramHandle.SetCameraForExpBot();
 
-            for (int i = 0; i < 5 + randomizer.Next(4); i++)
+            for (int i = 0; i < 15 + randomizer.Next(10); i++)
             {
-                MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(100), 10);
+                MouseOperations.MoveAndLeftClickOperation(1050 + randomizer.Next(300), 200 + randomizer.Next(200), 10);
                 while (ProgramHandle.isNowRunningOut())
                 {
                     ProgramHandle.isNowRunningOut();
                 }
             }
             ProgramHandle.SetCameraForExpBot();
-            if (ProgramHandle.isInCity == 1 && ProgramHandle.GetCurrentMap != TeleportValues.GMLand)
+            if (ProgramHandle.isInCity == 1)
             {
                 Thread.Sleep(10000);
                 Form1.HealbotToRun.RepotAndStartExpBot();

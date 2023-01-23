@@ -8,7 +8,7 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorMageAlliance : SkillSelector
     {
-        int buff1value = PointersAndValues.BuffMageShieldEmp;
+        int buff1value = PointersAndValues.BuffMageShieldAlli;
         int buff2value = -1;  
         int buff3value = -1;
 
@@ -41,9 +41,11 @@ namespace AresTrainerV3.SkillSelection
                         KeyPresser.PressKey(5, 50, 50);
                     }
                     checkIfAttackSkillIsSelected();
-                   if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                    if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                     {
-                        KeyPresser.PressKey(8, 100, 100);
+						KeyPresser.PressKey(7, 100, 100);  // temporary exp scrolls
+
+						KeyPresser.PressKey(8, 100, 100);
                     }
 
                 }
@@ -54,26 +56,23 @@ namespace AresTrainerV3.SkillSelection
         }
         void UseRapidWhenLowSkillDelay()
         {
-            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus1)
-            {
-                KeyPresser.PressKey(4, 100, 100);
-                KeyPresser.PressKey(4, 100, 100);
-                KeyPresser.PressKey(4, 100, 100);
+            int clickDelayTime = 150;
+            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
+            { 
+                KeyPresser.PressKey(4, 2 * clickDelayTime);
+                KeyPresser.PressKey(4, 2 * clickDelayTime);
+                KeyPresser.PressKey(4, 2 * clickDelayTime);
                 Thread.Sleep(500);
-                KeyPresser.PressKey(5, 100, 100);
-                KeyPresser.PressKey(5, 100, 100);
-                KeyPresser.PressKey(5, 100, 100);
-                Thread.Sleep(100);
-				KeyPresser.PressKey(7, 100, 100);
-				KeyPresser.PressKey(7, 100, 100);
-				KeyPresser.PressKey(7, 100, 100);
-				Thread.Sleep(100);
+				KeyPresser.PressKey(7, clickDelayTime);
+				KeyPresser.PressKey(7, clickDelayTime);
+				KeyPresser.PressKey(7, clickDelayTime);
+				Thread.Sleep(500);
 
-				KeyPresser.PressKey(3, 100, 100);
-                KeyPresser.PressKey(3, 100, 100);
-                Thread.Sleep(200);
-                KeyPresser.PressKey(3, 100, 100);
-                KeyPresser.PressKey(3, 100, 100);
+				KeyPresser.PressKey(3, clickDelayTime);
+                KeyPresser.PressKey(3, clickDelayTime);
+                Thread.Sleep(500);
+                KeyPresser.PressKey(3, clickDelayTime);
+                KeyPresser.PressKey(3, clickDelayTime);
             }
 
         }

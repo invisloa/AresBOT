@@ -36,7 +36,12 @@ namespace AresTrainerV3.HealBot.Repoter
         {
             Thread.Sleep(100);
             CheckIfNotRunning();
-            ProgramHandle.SetCameraForExpBot();
+			ProgramHandle.SetCameraForExpBot();
+			ProgramHandle.SetCameraLong();
+			MouseOperations.MoveAndLeftClickOperation(965, 720,200);
+            Thread.Sleep(5000);
+            KeyPresser.PressKey(6, 200, 200);
+			Thread.Sleep(5000);
             if (ProgramHandle.isNowStandingCity())
             {
                 ProgramHandle.TeleportToPositionTuple(TeleportValues.ShopHolinaPos);

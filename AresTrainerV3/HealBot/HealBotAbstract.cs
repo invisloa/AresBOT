@@ -199,7 +199,7 @@ namespace AresTrainerV3.HealBot
         protected void StartHealBot()
         {
             ProgramHandle.SetGameAsMainWindow();
-            expPlaceToStartSetter();
+            expPlaceRepoterBotToStartSetter();
             RequestStartStopHealBot();
 
             SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
@@ -260,7 +260,7 @@ namespace AresTrainerV3.HealBot
         {
             if (repoterCity == null)
             {
-                expPlaceToStartSetter();
+                expPlaceRepoterBotToStartSetter();
                 whatToCollectSetter();
             }
             repoterCity.GoRepot();
@@ -288,17 +288,18 @@ namespace AresTrainerV3.HealBot
 
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
-                /*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                {
+                    KeyPresser.PressKey(8, 100, 100);
+                    KeyPresser.PressKey(7, 100, 100);
+                }
+
+                /*                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
                                 {
                                     KeyPresser.PressKey(8, 100, 100);
                                     KeyPresser.PressKey(7, 100, 100);
                                 }
                 */
-                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                    KeyPresser.PressKey(7, 100, 100);
-                }
             }
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
@@ -325,22 +326,25 @@ namespace AresTrainerV3.HealBot
 			}
 			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
 			{
-/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
                 {
                     KeyPresser.PressKey(8, 100, 100);
                     // for now using with red potion later to change for a sorcerer
                     KeyPresser.PressKey(7, 100, 100);
-					KeyPresser.PressKey(5, 100, 100);
+                    KeyPresser.PressKey(5, 100, 100);
 
-				}
+                }
 
-*/				if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
-				{
-					KeyPresser.PressKey(8, 100, 100);
-					KeyPresser.PressKey(7, 100, 100);
-				}
-			}
-		}
+                /*				if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKnightPlus2Tempest)
+                                {
+                                    KeyPresser.PressKey(8, 100, 100);
+                                    KeyPresser.PressKey(7, 100, 100);
+                                    // temporaty !!!!!!!!!!!!!!!!!!!!!!!!
+                                    KeyPresser.PressKey(5, 100, 100);
+                                }
+                */
+            }
+        }
 
 
 
@@ -385,7 +389,7 @@ namespace AresTrainerV3.HealBot
                 return new CollectSod();
             }
         }
-        private void expPlaceToStartSetter()
+        private void expPlaceRepoterBotToStartSetter()
         {
             if (whichBotThreadToStart == MoverBotEnums.NoRepot)
             {
@@ -405,9 +409,11 @@ namespace AresTrainerV3.HealBot
             }
             else if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
             {
-
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
+				repoterCity = new RepoterHershalLeafMages();
+				_goBackExpPlace = new GoBackExpHershalLowLvl();
+				_expBotToStart = new MoverHershalLowLvl() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+			}
+			else if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
             {
                 repoterCity = new RepoterHershalLeafMages();
                 _goBackExpPlace = new GoBackExpHershalTeleport();
@@ -487,7 +493,7 @@ namespace AresTrainerV3.HealBot
         {
             get
             {
-                expPlaceToStartSetter();
+                expPlaceRepoterBotToStartSetter();
                 return _expBotToStart;
             }
         }

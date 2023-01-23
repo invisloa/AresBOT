@@ -21,6 +21,26 @@ namespace AresTrainerV3.MoveRandom
         protected Random randomizer = new Random();
         protected MoveRandomPositions positionsToMove = new MoveRandomPositions();
         bool movedMainMove = true;
+        int bounceAntiRepeatCount = 0;
+        void mainMoveSet()
+        {
+            movedMainMove = true;
+            bounceAntiRepeatCount = 0;
+        }
+        bool isBounceable()
+		{
+			if (movedMainMove || bounceAntiRepeatCount > 6)
+            {
+                return true;
+            }
+            else
+			{
+				bounceAntiRepeatCount++;
+				return false;
+            }
+
+        }
+        
         protected abstract int moveOnlyOnMapX
         {
             get;
@@ -146,55 +166,42 @@ namespace AresTrainerV3.MoveRandom
         }
         void MoveToPosRandom(int i)
         {
-            _lastMouseMovePosition =i;
+			_lastMouseMovePosition = i;
             MoveToPosRandom();
         }
-        protected virtual void leftLimitBounce()
+		protected virtual void BorderLimitBounce(int mousePos,int firstBouncePos,int SecondBouncePos)
         {
-            if (_lastMouseMovePosition > 16)
+            if (isBounceable())
             {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(26, 31));
+                if (_lastMouseMovePosition > mousePos)
+                {
+                    _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(firstBouncePos, firstBouncePos + 6));
+                }
+                else
+                {
+                    _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(SecondBouncePos, SecondBouncePos + 6));
+                }
             }
-            else
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(2, 7));
-            }
+			bounceAntiRepeatCount++;
+		}
+		protected virtual void leftLimitBounce()
+        {
+            BorderLimitBounce(16, 26, 2);
         }
         protected virtual void rightLimitBounce()
         {
-            if (_lastMouseMovePosition > 24)
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(18, 23));
-            }
-            else
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(10, 15));
-            }
+			BorderLimitBounce(24, 18, 10);
         }
         protected virtual void upLimitBounce()
         {
-            if (_lastMouseMovePosition > 8)
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(18, 23));
-            }
-            else
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(26, 31));
-            }
+			BorderLimitBounce(8, 18, 26);
         }
         protected virtual void downLimitBounce()
         {
-            if (_lastMouseMovePosition > 24)
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(2, 7));
-            }
-            else
-            {
-                _lastMouseMovePosition = MovePositionRandomizer(randomizer.Next(10, 15));
-            }
-        }
+			BorderLimitBounce(24, 2, 10);
+		}
 
-        public override void RunAndExp()
+		public override void RunAndExp()
         {
             ProgramHandle.SetCameraForExpBot();
             ExpBotManagerAbstract.RequestStartExpBot();
@@ -212,113 +219,48 @@ namespace AresTrainerV3.MoveRandom
         public bool MoveAttackCollect()
         {
             while (ExpBotManagerAbstract.isExpBotRunning)
-            {        //int maxLimitLeft, int maxUpLimit, int maxRightLimit, int maxDownLimit
+            {
                 if (ProgramHandle.GetPositionX > DirectionsLimts.Item1 && ProgramHandle.GetPositionX < DirectionsLimts.Item3 && ProgramHandle.GetPositionY < DirectionsLimts.Item2 && ProgramHandle.GetPositionY > DirectionsLimts.Item4)
                 {
-                    //movedMainMove = true;
-                    //unstuckPlace.UnstuckMove();
-                    while (attackAndCollectSODDefault.DoThisWhileMoving()) ;
+                    mainMoveSet();
+					while (attackAndCollectSODDefault.DoThisWhileMoving()) ;
                     Debug.WriteLine("MainMoveClick");
                     MoveToPosRandom();
                 }
                 else if(ProgramHandle.GetPositionX < DirectionsLimts.Item1)
                 {
                     Debug.WriteLine("maxLimitLeft");
-                    // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                   // if (movedMainMove)
-                    {
-                        leftLimitBounce();
-                    }
-                  //  movedMainMove = false;
-
-
-                    /*                    for (int i = 0; i < sideMoveCount; i++)
-                                        {
-                                            if (ProgramHandle.GetPositionX < DirectionsLimts.Item1 && ExpBotManagerAbstract.isExpBotRunning)
-                                            {
-                                               // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                                                MoveToPosRandom(_lastPositionAfterBounce);
-                                            }
-                                        }
-                    */
+                    leftLimitBounce();
                     MoveToPosRandom(_lastMouseMovePosition);
-
-                }
-                else if(ProgramHandle.GetPositionX > DirectionsLimts.Item3)
+					movedMainMove = false;
+				}
+				else if(ProgramHandle.GetPositionX > DirectionsLimts.Item3)
                 {
-
                     Debug.WriteLine("maxRightLimit");
-                    // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    // unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                   // if (movedMainMove)
-                    {
-                        rightLimitBounce();
-                    }
-                   // movedMainMove = false;
-                    /*                    for (int i = 0; i < sideMoveCount; i++)
-                                        {
-                                            if (ProgramHandle.GetPositionX > DirectionsLimts.Item3 && ExpBotManagerAbstract.isExpBotRunning)
-                                            {
-                                               // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                                                MoveToPosRandom(_lastPositionAfterBounce);
-                                            }
-                                        }
-                    */
+                    rightLimitBounce();
                     MoveToPosRandom(_lastMouseMovePosition);
-
-
-                }
-                else if(ProgramHandle.GetPositionY < DirectionsLimts.Item4)
+					movedMainMove = false;
+				}
+				else if(ProgramHandle.GetPositionY < DirectionsLimts.Item4)
                 {
 
                     Debug.WriteLine("maxDownLimit");
-                    // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                    //if (movedMainMove)
-                    {
-                        downLimitBounce();
-                    }
-                   // movedMainMove = false;
-                    /*                    for (int i = 0; i < sideMoveCount; i++)
-                                        {
-                                            if (ProgramHandle.GetPositionY < DirectionsLimts.Item4 && ExpBotManagerAbstract.isExpBotRunning)
-                                            {
-                                                //AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                                                MoveToPosRandom(_lastPositionAfterBounce);
-                                            }
-                                        }
-                    */
+                    downLimitBounce();
                     MoveToPosRandom(_lastMouseMovePosition);
-
-                }
-                else if (ProgramHandle.GetPositionY > DirectionsLimts.Item2)
+					movedMainMove = false;
+				}
+				else if (ProgramHandle.GetPositionY > DirectionsLimts.Item2)
                 {
-
                     Debug.WriteLine("maxUpLimit");
-                    // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                    //unstuckPlace.UnstuckMove();
                     while (attackAndCollectSODDefault.DoThisWhileMoving());
-                   // if (movedMainMove)
-                    {
-                        upLimitBounce();
-                    }
-                   // movedMainMove = false;
-                    /*                    for (int i = 0; i < sideMoveCount; i++)
-                                        {
-                                            if(ProgramHandle.GetPositionY > DirectionsLimts.Item2 && ExpBotManagerAbstract.isExpBotRunning )
-                                            {
-                                               // AttackedOrCollected = true; // set true to not run distance check cause this runs without scanner and runs too fast
-                                                MoveToPosRandom(_lastPositionAfterBounce);
-                                            }
-                                        } 
-                    */
-                    MoveToPosRandom(_lastMouseMovePosition);
-                }
-                return true;
+                    upLimitBounce();
+					MoveToPosRandom(_lastMouseMovePosition);
+					movedMainMove = false;
+				}
+				return true;
             }
             return false;
         }

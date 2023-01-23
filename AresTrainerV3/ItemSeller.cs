@@ -38,7 +38,7 @@ namespace AresTrainerV3
 			int magicAttackLimit = 85;
             int magicJustusLimit = 40;
             int magicJustus25Limit = 30;
-            int hightValueMainStats = 14;
+            int hightValueMainStats = 12;
 
             int Mp = 0;
             int Agi = 0;
@@ -709,11 +709,11 @@ namespace AresTrainerV3
             {
                 return true;
             }
-            else if (Sihon > 45)
+            else if (Sihon > 35)
             {
                 return true;
             }
-            else if (Sihon > 40 && Mp > 6 || Sihon > 40 && Agi > 6 || Sihon > 40 && Con > 6)
+            else if (Sihon > 30 && Mp > 4 || Sihon > 30 && Agi > 4 || Sihon > 30 && Con > 4)
             {
                 return true;
             }
@@ -859,7 +859,7 @@ namespace AresTrainerV3
 				}
 
 				ItemsFromStorageListGenerate();
-                if (imtemsToOperate.Count != 0)
+                if (imtemsToOperate.Count != 0 && ProgramHandle.isShopWindowStillOpen == 1 && ProgramHandle.getCurrentWeight< AbstractWhatToCollect.MaxCollectWeightNormalValue)
 				{
 					KeyPresser.PressEscape();
 					KeyPresser.PressEscape();
@@ -880,7 +880,8 @@ namespace AresTrainerV3
             if (!isStorageFullCheck())
             {
                 ItemsToStorageMoveListGenerate();
-                if (imtemsToOperate.Count > 8 &&
+                int itemsToMoveToStorageCount = imtemsToOperate.Count;
+				if (itemsToMoveToStorageCount > 8 &&
                     ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight - 200) // - 200 is at least 1 item less then needed for repot
                 {
 					ProgramHandle.OpenStorageWindow();

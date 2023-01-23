@@ -96,9 +96,14 @@ namespace AresTrainerV3
 			Thread.Sleep(15);
 			MoveAndLeftClickOperation(1235, 570, 100);
 			Thread.Sleep(15);
-			if (ProgramHandle.isCurrentInventoryTabOppened != 0)
-			{
-				OpenInventoryTab1();
+            for (int i = 0; i < 4; i++)
+            {
+				if (ProgramHandle.isCurrentInventoryTabOppened != 0)
+				{
+					Thread.Sleep(15);
+					MoveAndLeftClickOperation(1235, 570, 100);
+					Thread.Sleep(15);
+				}
 			}
 		}
 		public static void OpenInventoryTab2()

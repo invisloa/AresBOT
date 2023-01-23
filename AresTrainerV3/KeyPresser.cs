@@ -19,6 +19,11 @@ namespace AresTrainerV3
 			inputSimulator.Keyboard.KeyUp(VirtualKeyCode.RETURN);
 			inputSimulator.Keyboard.Sleep(endDelay);
 		}
+		public static void PressKey(int keyNumber, int downUpDelayTime)
+        {
+			PressKey(keyNumber, downUpDelayTime, downUpDelayTime);
+
+		}
 
 		public static void PressKey(int keyNumber,int startDelay,int endDelay)
         {

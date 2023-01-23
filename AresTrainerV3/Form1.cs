@@ -242,13 +242,6 @@ namespace AresTrainerV3
 
         }
 
-        private void HPValueTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-            int i = 100;
-            int.TryParse(HPValueTextBox.Text, out i);
-            HealBotAbstract.HpHealValue = i;
-        }
 
         private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -476,14 +469,20 @@ namespace AresTrainerV3
 			else if (ExpBotComboBox.Text == "HolinaGoblins")
 			{
 				ExpBotMoverToRun = new MoverHolinaGoblins();
-				//HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
-				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+				//HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
 			}
 			else if (ExpBotComboBox.Text == "HolinaBuckSlavePit")
 			{
 				ExpBotMoverToRun = new MoverHolinaBuckSlavePit();
 				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
 			}
+			else if (ExpBotComboBox.Text == "HershalLowLvl")
+			{
+				ExpBotMoverToRun = new MoverHershalLowLvl();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
+			}
+
 			else if (ExpBotComboBox.Text == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
@@ -605,8 +604,9 @@ namespace AresTrainerV3
                 HealbotToRun.RepotAndStartExpBot();
             }
             else
+            {
                 ExpBotMoverToRun.StartExpBotThread();
-
+            }
         }
 
 
@@ -635,13 +635,22 @@ namespace AresTrainerV3
 
 		private void fasttest_Click(object sender, EventArgs e)
         {
-            ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(150);
+            int g = ProgramHandle.isCurrentInventoryTabOppened;
+			ProgramHandle.SetCameraForExpBot();
+            HealBotAbstract.RequestStartStopHealBot();
+            ExpBotManagerAbstract.RequestStartExpBot();
+            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+			//ProgramHandle.SetCameraLong();
 			Thread.Sleep(150);
-            ItemSeller itemsel = new ItemSeller();
-            itemsel.SellItemsMouseMove();
+			Thread.Sleep(150);
+            PixelItemCollector ss = new PixelItemCollector(new CollectAllItems());
+            for (int i = 0; i < 5; i++)
+            {
+				ss.ClickAndCollectItem();
 
-			/*
+			}
+
+			/* 915 440 1015 565
 						HealBotAbstract.RequestStartStopHealBot();
 						ExpBotManagerAbstract.RequestStartExpBot();
 						PixelMobAttack.AttackSkillMobWhenSelected();
@@ -715,6 +724,17 @@ namespace AresTrainerV3
 
 			ItemBlesser itemBlesser = new ItemBlesser();
             itemBlesser.BlessItem(blessValue);
+		}
+
+		private void HPValueTextBox_TextChanged_1(object sender, EventArgs e)
+		{
+/*			private void HPValueTextBox_TextChanged(object sender, EventArgs e)
+			{
+
+*/				int i = 100;
+				int.TryParse(HPValueTextBox.Text, out i);
+				HealBotAbstract.HpHealValue = i;
+			//}
 		}
 	}
 /*    

@@ -289,7 +289,9 @@ public static class PointersAndValues
     public const int runSpeedNormalValue = 16859264;
     public const int runSpeedWhitePotValue = 16859315;
     public const int attackSpeedSpearImpNotLastSkill = 1068948334;
-    public const int attackSpeedSpearImp = 1070945622;
+	public const int attackSpeedSpearImp = 1070945622;
+	public const int attackSpeedKnightPlus2Tempest = 1073741824;
+    
     public const int attackSpeedSpearImpBos = 1073741824;
     public const int attackSpeednormalValueBow = 1070945622;
     public const int attackSpeedKishValueBow = 1073741824;
