@@ -360,7 +360,7 @@ namespace AresTrainerV3.HealBot
             get;
             set;
         }
-        GoBackExpAbstract _goBackExpPlace;
+        IGoBackExpAbstract _goBackExpPlace;
 
         private AbstractWhatToCollect whatToCollectSetter()
         {
