@@ -836,7 +836,7 @@ namespace AresTrainerV3
 
                 //  SELL ONLY FIRST ROW OF SECOND TAB  
                 // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
-                foreach (var item in imtemsToOperate)
+				foreach (var item in imtemsToOperate)
                 {
                     if (ProgramHandle.isShopWindowStillOpen == 1)
                     {
@@ -857,6 +857,10 @@ namespace AresTrainerV3
 					Debug.WriteLine($"items for sale left {imtemsToOperate.Count}");
 					SellItemsMouseMove();
 				}
+                else if(firstSellList == imtemsToOperate.Count) // too far from shop game bug
+                {
+                    return;
+                }
 
 				ItemsFromStorageListGenerate();
                 if (imtemsToOperate.Count != 0 && ProgramHandle.isShopWindowStillOpen == 1 && ProgramHandle.getCurrentWeight< AbstractWhatToCollect.MaxCollectWeightNormalValue)
@@ -868,8 +872,6 @@ namespace AresTrainerV3
 					KeyPresser.PressEscape();
 					SellItemsMouseMove();
 				}
-
-
 			}
 		}
 		#endregion
@@ -881,7 +883,7 @@ namespace AresTrainerV3
             {
                 ItemsToStorageMoveListGenerate();
                 int itemsToMoveToStorageCount = imtemsToOperate.Count;
-				if (itemsToMoveToStorageCount > 8 &&
+				if (itemsToMoveToStorageCount > 6 &&
                     ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight - 200) // - 200 is at least 1 item less then needed for repot
                 {
 					ProgramHandle.OpenStorageWindow();

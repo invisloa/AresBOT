@@ -635,21 +635,24 @@ namespace AresTrainerV3
 
 		private void fasttest_Click(object sender, EventArgs e)
         {
-            int g = ProgramHandle.isCurrentInventoryTabOppened;
 			ProgramHandle.SetCameraForExpBot();
-            HealBotAbstract.RequestStartStopHealBot();
-            ExpBotManagerAbstract.RequestStartExpBot();
-            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-			//ProgramHandle.SetCameraLong();
-			Thread.Sleep(150);
-			Thread.Sleep(150);
-            PixelItemCollector ss = new PixelItemCollector(new CollectAllItems());
-            for (int i = 0; i < 5; i++)
-            {
-				ss.ClickAndCollectItem();
+			ProgramHandle.SetCameraLong();
 
-			}
+			/*            int g = ProgramHandle.isCurrentInventoryTabOppened;
+						ProgramHandle.SetCameraForExpBot();
+						HealBotAbstract.RequestStartStopHealBot();
+						ExpBotManagerAbstract.RequestStartExpBot();
+						AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+						//ProgramHandle.SetCameraLong();
+						Thread.Sleep(150);
+						Thread.Sleep(150);
+						PixelItemCollector ss = new PixelItemCollector(new CollectAllItems());
+						for (int i = 0; i < 5; i++)
+						{
+							ss.ClickAndCollectItem();
 
+						}
+			*/
 			/* 915 440 1015 565
 						HealBotAbstract.RequestStartStopHealBot();
 						ExpBotManagerAbstract.RequestStartExpBot();
