@@ -448,7 +448,6 @@ namespace AresTrainerV3
             {
                 ExpBotMoverToRun = new MoverEtanaBuckerty();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
-
             }
             else if (ExpBotComboBox.Text == "SacredGiko")
             {
@@ -487,12 +486,17 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverHershalUwc1stFloor();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
             }
-            else if (ExpBotComboBox.Text == "KharonWolves")
-            {
-                ExpBotMoverToRun = new MoverKharonWolves();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
-            }
-            else if (ExpBotComboBox.Text == "Sloth1stFloor")
+			else if (ExpBotComboBox.Text == "KharonWolves")
+			{
+				ExpBotMoverToRun = new MoverKharonWolves();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
+			}
+			else if (ExpBotComboBox.Text == "KharonBigWolves")
+			{
+				ExpBotMoverToRun = new MoverKharonBigWolves();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonBigWolves;
+			}
+			else if (ExpBotComboBox.Text == "Sloth1stFloor")
             {
                 ExpBotMoverToRun = new MoverSloth1stFloorEntrace();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
@@ -630,10 +634,13 @@ namespace AresTrainerV3
 		private void fasttest_Click(object sender, EventArgs e)
         {
 			ProgramHandle.SetCameraForExpBot();
+			ProgramHandle.SetCameraLong();
+
 			Thread.Sleep(150);
 			Thread.Sleep(150);
             ShopMoveUnbugger smu = new ShopMoveUnbugger();
-            smu.UnBugShop();
+       //     smu.UnBugShop();
+
 /*            PixelScanForNpc npc = new PixelScanForNpc();
             npc.FindNpc();
 */			//ShopMoveUnbugger unb = new ShopMoveUnbugger();

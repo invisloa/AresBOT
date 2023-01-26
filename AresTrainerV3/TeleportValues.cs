@@ -172,16 +172,19 @@ namespace AresTrainerV3
         public static Tuple<int, int, int, int> moverRandomHershalElves = new Tuple<int, int, int, int>(1142410400, 1129543726, 1142958167, 1127990620);  //Left,Up,Right,Down
 		public static Tuple<int, int, int, int> moverRandomUWC1stFloor = new Tuple<int, int, int, int>(1110493212, 1116984574, 1122140674, 1110027219);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomKharonWolves = new Tuple<int, int, int, int>(1120173211, 1130046682, 1129089075, 1126879685);  //Left,Up,Right,Down
-        public static Tuple<int, int, int, int> moverRandomSloth1stFloor = new Tuple<int, int, int, int>(1124434047, 1137975177, 1125905268, 1137659923);  //Left,Up,Right,Down
+		public static Tuple<int, int, int, int> moverRandomKharonBigWolves = new Tuple<int, int, int, int>(1142123962, 1141073814, 1143779967, 1135031921);  //Left,Up,Right,Down
+
+		public static Tuple<int, int, int, int> moverRandomSloth1stFloor = new Tuple<int, int, int, int>(1124434047, 1137975177, 1125905268, 1137659923);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomSloth1stFloorNoIcebergs = new Tuple<int, int, int, int>(1117317700, 1137975177, 1122940064, 1133700146);  //Left,Up,Right,Down
 		public static Tuple<int, int, int, int> moverRandomSloth1stFloorAoe = new Tuple<int, int, int, int>(1118582503, 1126938769, 1120949079, 1126052185);  //Left,Up,Right,Down
 		public static Tuple<int, int, int, int> moverRandomSloth1stFloorAoe2 = new Tuple<int, int, int, int>(1132145205, 1131272846, 1132899859, 1129831150);  //Left,Up,Right,Down
         public static Tuple<int, int, int, int> moverRandomSlothHorseFarm = new Tuple<int, int, int, int>(1124917651, 1133298023, 1124351779, 1133088682);  //Left,Up,Right,Down
 
-		// left 1132185438
-		// up 1129733833
-		// right 1132963887
-		// down 1131433212
+
+		// left 1142123962
+		// up 1141073814
+		// right 1143779967
+		// down 1135031921
 
 		//1132689809
 		//1130929285

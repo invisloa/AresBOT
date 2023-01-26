@@ -980,7 +980,7 @@ namespace AresTrainerV3
 						MouseLeftClickToSellAll();
 						bugVerifier++;
 					}
-					if (bugVerifier == 2 && imtemsToOperate.Count == ItemsForSaleListGenerate().Count)
+					if (bugVerifier == 3 && imtemsToOperate.Count == ItemsForSaleListGenerate().Count)
 					{
 						howManyTries++;
 						if (howManyTries == 3)
@@ -990,6 +990,7 @@ namespace AresTrainerV3
 						}
 						ShopTooFarAntiBug();
 						Thread.Sleep(200);
+						howManyTries++;
 						SellItemsByMouseMove();
 					}
 				}

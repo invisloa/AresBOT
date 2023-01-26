@@ -3,6 +3,7 @@ using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
+using AresTrainerV3.HealBot.Repoter.Returner.kharon;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.MoveRandom.Hershal;
 using AresTrainerV3.MoveRandom.Holina;
@@ -396,18 +397,29 @@ namespace AresTrainerV3.HealBot
                 _goBackExpPlace = new GoBackExpUWC();
                 _expBotToStart = new MoverHershalUwc1stFloor() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
             }
-            else if (whichBotThreadToStart == MoverBotEnums.KharonWolves)
-            {
-                repoterCity = new RepoterKharonExp();
-                _goBackExpPlace = new GoBackExpKharonWolves();
-                _expBotToStart = new MoverKharonWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-                if (blackScreenThread == null)
-                {
-                    blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-                    blackScreenThread.Start();
-                }
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.Sloth1stFloor)
+			else if (whichBotThreadToStart == MoverBotEnums.KharonWolves)
+			{
+				repoterCity = new RepoterKharonExp();
+				_goBackExpPlace = new GoBackExpKharonWolves();
+				_expBotToStart = new MoverKharonWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				if (blackScreenThread == null)
+				{
+					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+					blackScreenThread.Start();
+				}
+			}
+			else if (whichBotThreadToStart == MoverBotEnums.KharonBigWolves)
+			{
+				repoterCity = new RepoterKharonExp();
+				_goBackExpPlace = new GoBackExpKharonBigWolves();
+				_expBotToStart = new MoverKharonBigWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				if (blackScreenThread == null)
+				{
+					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
+					blackScreenThread.Start();
+				}
+			}
+			else if (whichBotThreadToStart == MoverBotEnums.Sloth1stFloor)
             {
                 repoterCity = new RepoterKharonExp();
                 _goBackExpPlace = new GoBackExpSloth1stFloor();

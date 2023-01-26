@@ -399,6 +399,7 @@
             "HershalLeafMages",
             "HershalUWC1stFloor",
             "KharonWolves",
+            "KharonBigWolves",
             "Sloth1stFloor",
             "SlothNoIcebergs",
             "SlothHorseFarm",

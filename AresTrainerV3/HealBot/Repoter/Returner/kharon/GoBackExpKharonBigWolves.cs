@@ -1,35 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.HealBot.Repoter.Returner
+namespace AresTrainerV3.HealBot.Repoter.Returner.kharon
 {
-    internal class GoBackExpSloth1stFloor : GoBackExpAbstract
-    { 
-    
-        
-            IGoRepot _repoterCity = new RepoterKharonExp();
-            public override void GoBackExp()
-            {
-              teleportToSloth1stExpBot();
-            }
+    public class GoBackExpKharonBigWolves : GoBackExpAbstract
+    {
 
-        bool teleportToSloth1stExpBot()
+
+        IGoRepot _repoterCity = new RepoterKharonExp();
+        public override void GoBackExp()
+        {
+            teleportToKharonBigWolvesSpot();
+        }
+
+        bool teleportToKharonBigWolvesSpot()
         {
             Thread.Sleep(1000);
 
             if (teleportToKharonPlateu())
             {
-                if (teleportToSloth1stFloor())
+                int xRandomTelep = randomizer.Next(TeleportValues.moverRandomKharonBigWolves.Item1, TeleportValues.moverRandomKharonBigWolves.Item3);
+                int yRandomTelep = randomizer.Next(TeleportValues.moverRandomKharonBigWolves.Item4 , TeleportValues.moverRandomKharonBigWolves.Item2);
+				ProgramHandle.SetCameraForExpBot();
+				Tuple<int, int, int> telepTuple = new Tuple<int, int, int>(xRandomTelep, yRandomTelep, 0);
+				for (int i = 0; i < 100; i++)
                 {
-                    return true;
-                }
-            }
-            if (ProgramHandle.GetCurrentMap == TeleportValues.SlothFloor1)
-            {
+					ProgramHandle.TeleportToPositionTuple(telepTuple);
+					Thread.Sleep(50);
+				}
+				ProgramHandle.TeleportToPositionTuple(telepTuple);
+                Thread.Sleep(500);
                 return true;
             }
             else

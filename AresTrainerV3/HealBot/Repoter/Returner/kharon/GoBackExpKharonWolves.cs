@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.HealBot.Repoter.Returner
+namespace AresTrainerV3.HealBot.Repoter.Returner.kharon
 {
     public class GoBackExpKharonWolves : GoBackExpAbstract
     {
@@ -20,18 +20,19 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
             ProgramHandle.SetCameraForExpBot();
 
-/*            while (ProgramHandle.isNowStandingCity())
-            {
-                i++;
-                Thread.Sleep(1);
-                if(i >5000)
-                {
-                    Debug.WriteLine("go repot stuck zagroda");
-                    RepoterKharonExp repotWhenStuck = new RepoterKharonExp();
-                    repotWhenStuck.GoRepot();
-                }
-            }
-*/        }
+            /*            while (ProgramHandle.isNowStandingCity())
+                        {
+                            i++;
+                            Thread.Sleep(1);
+                            if(i >5000)
+                            {
+                                Debug.WriteLine("go repot stuck zagroda");
+                                RepoterKharonExp repotWhenStuck = new RepoterKharonExp();
+                                repotWhenStuck.GoRepot();
+                            }
+                        }
+            */
+        }
         void PassTheStuckMountain()
         {
             ProgramHandle.SetCameraLong();
@@ -62,7 +63,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
 
         public override void GoBackExp()
         {
-            MouseOperations.MoveAndLeftClickOperation(800+randomizer.Next(-20,20), 295+randomizer.Next(-40,100), 150);
+            MouseOperations.MoveAndLeftClickOperation(800 + randomizer.Next(-20, 20), 295 + randomizer.Next(-40, 100), 150);
             while (!ProgramHandle.isNowStandingCity())
             {
                 Thread.Sleep(1);
@@ -71,11 +72,11 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
             {
                 if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon && ProgramHandle.GetPositionX < 1124331952 && ProgramHandle.GetPositionX > 1123556437)
                 {
-                        MouseOperations.MoveAndLeftClickOperation(960, 400, 50);
-                        Thread.Sleep(2000);
+                    MouseOperations.MoveAndLeftClickOperation(960, 400, 50);
+                    Thread.Sleep(2000);
                 }
             }
-            Thread.Sleep(randomizer.Next(2000,5000));
+            Thread.Sleep(randomizer.Next(2000, 5000));
             if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
             {
                 GoOutOfTheZagroda();

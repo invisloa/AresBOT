@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.HealBot.Repoter.Returner
+namespace AresTrainerV3.HealBot.Repoter.Returner.kharon
 {
-    public class GoBackExpSlothNoIcebergs : GoBackExpAbstract
-    {
+    public class GoBackExpSlothNoIcebergs : GoBackExpAbstractKharonTelep
+	{
 
 
         IGoRepot _repoterCity = new RepoterKharonExp();
@@ -83,56 +83,6 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
                 return false;
             }
 
-        }
-
-
-        bool teleportToKharonPlateu()
-        {
-            ProgramHandle.SetCameraForExpBot();
-            for (int i = 0; i < 500; i++)
-            {
-                if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-                {
-                    Thread.Sleep(10);
-                    ProgramHandle.TeleportToPositionTuple(TeleportValues.KharonTeleportOutside);
-                }
-                else if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
-                {
-                    return true;
-                }
-            }
-            if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-            {
-                MouseOperations.MoveAndLeftClickOperation(930, 150, 100);
-                if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-                {
-                    ProgramHandle.SetCameraForExpBot();
-                    MouseOperations.MoveAndLeftClickOperation(930, 460, 100);
-                }
-                if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-                {
-                    ProgramHandle.SetCameraForExpBot();
-                    MouseOperations.MoveAndLeftClickOperation(930, 150, 100);
-                }
-                if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
-                {
-                    ProgramHandle.SetCameraForExpBot();
-                    MouseOperations.MoveAndLeftClickOperation(930, 460, 100);
-                }
-                if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
-                {
-                    return true;
-                }
-
-            }
-            if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
         }
 
     }
