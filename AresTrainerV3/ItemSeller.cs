@@ -1,5 +1,7 @@
 ﻿using AresTrainerV3.Buyer;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.PixelScanNPC;
+using AresTrainerV3.ShopSellAntiBug;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,15 +14,16 @@ namespace AresTrainerV3
 {
     public class ItemSeller
     {
-		static List<int> imtemsToOperate = new List<int>();
-        static InventoryType inventoryTypeOperation;
+        IUnBugShop ShopUnbugger = Factory.CreateUnbugShop();
+		int howManyTries = 0;
 
+
+		static InventoryType inventoryTypeOperation;
 		public static bool isItemHighValue(int itemAdressVector, InventoryType invType)
         {
             inventoryTypeOperation = invType;
 			return isItemHighValue(itemAdressVector);
 		}
-
 		static bool isItemHighValue(int itemAdressVector)
         {
             int stat1, stat2;
@@ -748,9 +751,11 @@ namespace AresTrainerV3
                 return true;
             }
         }
-		public static void ItemsOperationsListGenerate(Func<int, bool> delegateIsItemFitToAdd, InventoryType invTypeOperation)
+		public static List<int> ItemsOperationsListGenerate(Func<int, bool> delegateIsItemFitToAdd, InventoryType invTypeOperation)
 		{
-            inventoryTypeOperation = invTypeOperation;
+			 List<int> imtemsToOperate = new List<int>();
+
+			inventoryTypeOperation = invTypeOperation;
 			int inventoryCount;
             if (inventoryTypeOperation == InventoryType.Inventory) inventoryCount = 60;
             else inventoryCount = 98;
@@ -762,19 +767,20 @@ namespace AresTrainerV3
 					imtemsToOperate.Add(i);
 				}
 			}
+            return imtemsToOperate;
 		}
-		static void ItemsForSaleListGenerate()
+		static List<int> ItemsForSaleListGenerate()
         {
-            ItemsOperationsListGenerate(isItemForSaleCheck, InventoryType.Inventory);
+             return ItemsOperationsListGenerate(isItemForSaleCheck, InventoryType.Inventory);
 		}
-		static void ItemsFromStorageListGenerate()
+		static List<int> ItemsFromStorageListGenerate()
 		{
-			ItemsOperationsListGenerate(isItemForSaleCheck, InventoryType.Storage);
+			return ItemsOperationsListGenerate(isItemForSaleCheck, InventoryType.Storage);
 		}
 
-		static void ItemsToStorageMoveListGenerate()
+		static List<int> ItemsToStorageMoveListGenerate()
 		{
-			ItemsOperationsListGenerate(isItemForToStorageMoveCheck, InventoryType.Inventory);
+			return ItemsOperationsListGenerate(isItemForToStorageMoveCheck, InventoryType.Inventory);
 		}
 		static bool isItemForSaleCheck(int itemVector)
 		{
@@ -815,75 +821,23 @@ namespace AresTrainerV3
 			}
 		}
 
-		#region OldSellItems
-		void AssignWeight()
-		{
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
-			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
-		}
-
-		public void SellItemsMouseMove()
+        void ShopTooFarAntiBug()
         {
-            AssignWeight();
-
-			if (checkIfCloseToShop())
+            if(IsCloseToShop())
             {
-				ProgramHandle.OpenShopWindow();
-                ItemsForSaleListGenerate();
-                int firstSellList = imtemsToOperate.Count;
-				Thread.Sleep(100);
-				MouseOperations.OpenInventoryTab1();
-
-                //  SELL ONLY FIRST ROW OF SECOND TAB  
-                // for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
-				foreach (var item in imtemsToOperate)
-                {
-                    if (ProgramHandle.isShopWindowStillOpen == 1)
-                    {
-                        Debug.WriteLine($"sell item {item}");
-
-                        int sellItemNumber = item + 6; // START FROM 2 Row 1st Column = 12
-                        if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened == 0)
-                        {
-							MouseOperations.OpenInventoryTab2();
-						}
-                        MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
-                        MoveAndLeftClickToSellAll();
-                    }
-                }
-                ItemsForSaleListGenerate();
-                if (imtemsToOperate.Count != 0 && firstSellList != imtemsToOperate.Count)
-                {
-					Debug.WriteLine($"items for sale left {imtemsToOperate.Count}");
-					SellItemsMouseMove();
-				}
-                else if(firstSellList == imtemsToOperate.Count) // too far from shop game bug
-                {
-                    return;
-                }
-
-				ItemsFromStorageListGenerate();
-                if (imtemsToOperate.Count != 0 && ProgramHandle.isShopWindowStillOpen == 1 && ProgramHandle.getCurrentWeight< AbstractWhatToCollect.MaxCollectWeightNormalValue)
-				{
-					KeyPresser.PressEscape();
-					KeyPresser.PressEscape();
-					moveItemsFromStorage();
-					KeyPresser.PressEscape();
-					KeyPresser.PressEscape();
-					SellItemsMouseMove();
-				}
+				KeyPresser.PressEscape();
+				ShopUnbugger.UnBugShop();
 			}
 		}
-		#endregion
 
 		#region StorageItemMove
 		public static void MoveItemsToStorage()
         {
             if (!isStorageFullCheck())
             {
-                ItemsToStorageMoveListGenerate();
+                List<int> imtemsToOperate = ItemsToStorageMoveListGenerate();
                 int itemsToMoveToStorageCount = imtemsToOperate.Count;
-				if (itemsToMoveToStorageCount > 6 &&
+				if (itemsToMoveToStorageCount > 3 &&
                     ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight - 200) // - 200 is at least 1 item less then needed for repot
                 {
 					ProgramHandle.OpenStorageWindow();
@@ -906,7 +860,8 @@ namespace AresTrainerV3
                         }
                         MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item1, ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item2);
                     }
-                    KeyPresser.PressEscape();
+					Thread.Sleep(100);
+					KeyPresser.PressEscape();
                     KeyPresser.PressEscape();
                 }
             }
@@ -926,8 +881,9 @@ namespace AresTrainerV3
 			Thread.Sleep(700);
 			MouseOperations.OpenInventoryTab1();
 			Thread.Sleep(200);
+            List<int> imtemsToOperate = ItemsFromStorageListGenerate();
 
-            foreach (int item in imtemsToOperate)
+			foreach (int item in imtemsToOperate)
             {
                 if (ProgramHandle.isInventoryWindowStillOpen == 1 && ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeightNormalValue)
                 {
@@ -937,7 +893,7 @@ namespace AresTrainerV3
             }
 		}
 		#endregion
-		public bool checkIfCloseToShop()
+		public bool IsCloseToShop()
 		{
 			if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
 			{
@@ -957,34 +913,105 @@ namespace AresTrainerV3
 			}
 			return true;
 		}
-		public static void MoveAndLeftClickToSellAll()
+		public static void MouseLeftClickToSellAll()
 		{
 			Debug.WriteLine("Check if selll window is open");
-			Thread.Sleep(50);
+			Thread.Sleep(70);
 			if (ProgramHandle.isSellWindowStillOpen == 1)
 			{
 				LeftClickSellConfirmation("normal item sell");
 			}
 
 			Debug.WriteLine("Check if high value");
-			Thread.Sleep(50);
+			Thread.Sleep(70);
 			if (ProgramHandle.isSellWindowStillOpen == 1)
 			{
 				LeftClickSellConfirmation("high value item click once more");
 			}
 		}
-        static void LeftClickSellConfirmation(string debugMessage)
+		#region OldSellItems
+		void AssignWeight()
 		{
-            int sleepTime = 50;
+			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
+			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
+		}
+		static void LeftClickSellConfirmation(string debugMessage)
+		{
+			int sleepTime = 50;
 			Thread.Sleep(sleepTime);
 			Debug.WriteLine(debugMessage);
 			MouseOperations.SetCursorPosition(560, 570);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
 			Thread.Sleep(sleepTime);
+			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 			Thread.Sleep(sleepTime);
 		}
+
+		public void SellItemsByMouseMove()
+		{
+			AssignWeight();
+
+			if (IsCloseToShop())
+			{
+				ProgramHandle.OpenShopWindow();
+				ItemsForSaleListGenerate();
+				int firstSellListCount = ItemsForSaleListGenerate().Count;
+				List<int> imtemsToOperate = ItemsForSaleListGenerate();
+				int bugVerifier = 0;
+				Thread.Sleep(100);
+				MouseOperations.OpenInventoryTab1();
+
+				//  SELL ONLY FIRST ROW OF SECOND TAB  
+				// for (int i = 12; i < ExpBotMovePositions.itemSellPositions.Length; i++) // START FROM 3 Row 1st Column - its 12
+				foreach (var item in imtemsToOperate)
+				{
+					if (ProgramHandle.isShopWindowStillOpen == 1)
+					{
+						Debug.WriteLine($"sell item {item}");
+
+						int sellItemNumber = item + 6; // START FROM 2 Row 1st Column = 12
+						if (sellItemNumber >= 36 && ProgramHandle.isCurrentInventoryTabOppened == 0)
+						{
+							MouseOperations.OpenInventoryTab2();
+						}
+						MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item1, ExpBotMovePositionsValues.itemSellPositions[sellItemNumber].Item2);
+						MouseLeftClickToSellAll();
+						bugVerifier++;
+					}
+					if (bugVerifier == 2 && imtemsToOperate.Count == ItemsForSaleListGenerate().Count)
+					{
+						howManyTries++;
+						if (howManyTries == 3)
+						{
+							throw new NotImplementedException();
+							//System.Diagnostics.Process.Start("Shutdown", "-s -t 30");
+						}
+						ShopTooFarAntiBug();
+						Thread.Sleep(200);
+						SellItemsByMouseMove();
+					}
+				}
+				howManyTries = 0;
+				if (ItemsForSaleListGenerate().Count != 0 && firstSellListCount != ItemsForSaleListGenerate().Count)
+				{
+					Debug.WriteLine($"items for sale left {imtemsToOperate.Count}");
+					SellItemsByMouseMove();
+				}
+				if (ItemsFromStorageListGenerate().Count != 0 && ProgramHandle.isShopWindowStillOpen == 1 && ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeightNormalValue)
+				{
+					KeyPresser.PressEscape();
+					KeyPresser.PressEscape();
+					moveItemsFromStorage();
+					KeyPresser.PressEscape();
+					KeyPresser.PressEscape();
+					SellItemsByMouseMove();
+				}
+			}
+		}
+		#endregion
+
 	}
 }
 

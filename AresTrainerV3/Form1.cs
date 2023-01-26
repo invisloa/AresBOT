@@ -15,6 +15,8 @@ using AresTrainerV3.MoveRandom.Hershal;
 using AresTrainerV3.MoveRandom.Holina;
 using AresTrainerV3.MoveRandom.Kharon;
 using AresTrainerV3.MoveRandom.SacredAlliance;
+using AresTrainerV3.PixelScanNPC;
+using AresTrainerV3.ShopSellAntiBug;
 using AresTrainerV3.SkillSelection;
 using AresTrainerV3.Unstuck;
 using System.Diagnostics;
@@ -242,14 +244,6 @@ namespace AresTrainerV3
 
         }
 
-
-        private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
-        {
-            int i = 100;
-            int.TryParse(MannaValueTextBox.Text, out i);
-            HealBotAbstract.MpRestoreValue = i;
-        }
-
         void ShowIfOnOrOff()
 
         {
@@ -357,7 +351,7 @@ namespace AresTrainerV3
             //ProgramHandle.OpenShopWindow();
             Thread.Sleep(1000);
 
-            Seller.SellItemsMouseMove();
+            Seller.SellItemsByMouseMove();
         }
 
 
@@ -430,8 +424,8 @@ namespace AresTrainerV3
             }
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
-                BuyerPotionsAbstract.HpPotionsToBuy = 120;
-                BuyerPotionsAbstract.MpPotionsToBuy = 20;
+                BuyerPotionsAbstract.HpPotionsToBuy = 333;
+                BuyerPotionsAbstract.MpPotionsToBuy = 55;
             }
             HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
             MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
@@ -636,7 +630,18 @@ namespace AresTrainerV3
 		private void fasttest_Click(object sender, EventArgs e)
         {
 			ProgramHandle.SetCameraForExpBot();
-			ProgramHandle.SetCameraLong();
+			Thread.Sleep(150);
+			Thread.Sleep(150);
+            ShopMoveUnbugger smu = new ShopMoveUnbugger();
+            smu.UnBugShop();
+/*            PixelScanForNpc npc = new PixelScanForNpc();
+            npc.FindNpc();
+*/			//ShopMoveUnbugger unb = new ShopMoveUnbugger();
+            // unb.UnBugShop();
+			// PixelScanForNpc npc = new PixelScanForNpc();
+            // npc.FindNpc();
+			//ProgramHandle.SetCameraLong();
+			//     ItemSeller.MoveItemsToStorage();
 
 			/*            int g = ProgramHandle.isCurrentInventoryTabOppened;
 						ProgramHandle.SetCameraForExpBot();
@@ -731,21 +736,26 @@ namespace AresTrainerV3
 
 		private void HPValueTextBox_TextChanged_1(object sender, EventArgs e)
 		{
-/*			private void HPValueTextBox_TextChanged(object sender, EventArgs e)
-			{
 
-*/				int i = 100;
-				int.TryParse(HPValueTextBox.Text, out i);
-				HealBotAbstract.HpHealValue = i;
-			//}
+			int i = 100;
+			int.TryParse(HPValueTextBox.Text, out i);
+			HealBotAbstract.HpHealValue = i;
+			
+		}
+
+		private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
+		{
+			int i = 100;
+			int.TryParse(MannaValueTextBox.Text, out i);
+			HealBotAbstract.MpRestoreValue = i;
 		}
 	}
-/*    
-    
-    TODO
+	/*    
 
-    Mage power items sell SET there are only 1 stats
+		TODO
+
+		Mage power items sell SET there are only 1 stats
 
 
-*/
+	*/
 }

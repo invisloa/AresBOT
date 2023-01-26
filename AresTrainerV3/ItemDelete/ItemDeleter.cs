@@ -106,7 +106,7 @@ namespace AresTrainerV3.ItemDelete
 				Thread.Sleep(delaytime);
 				MouseOperations.MoveAndLeftClickOperation(1000, 770, 50);
 				Thread.Sleep(delaytime);
-				ItemSeller.MoveAndLeftClickToSellAll();
+				ItemSeller.MouseLeftClickToSellAll();
 				Thread.Sleep(delaytime);
 			}
 

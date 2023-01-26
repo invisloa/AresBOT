@@ -409,7 +409,7 @@
 			this.ExpBotComboBox.Name = "ExpBotComboBox";
 			this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);
 			this.ExpBotComboBox.TabIndex = 58;
-			this.ExpBotComboBox.Text = "SlothAoe2spot";
+			this.ExpBotComboBox.Text = "SlothAoe";
 			this.ExpBotComboBox.SelectedIndexChanged += new System.EventHandler(this.ExpBotComboBox_SelectedIndexChanged);
 			// 
 			// PositionX
@@ -590,6 +590,7 @@
 			this.MannaValueTextBox.Name = "MannaValueTextBox";
 			this.MannaValueTextBox.Size = new System.Drawing.Size(100, 23);
 			this.MannaValueTextBox.TabIndex = 78;
+			this.MannaValueTextBox.TextChanged += new System.EventHandler(this.MannaValueTextBox_TextChanged);
 			// 
 			// HPValueTextBox
 			// 

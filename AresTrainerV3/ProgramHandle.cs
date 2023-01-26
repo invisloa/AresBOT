@@ -446,19 +446,19 @@ namespace AresTrainerV3
 		{
 			get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotHPOffset), 4)); }
 		}
+		public static int getSecondSlotValue
+		{
+			get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)); }
+		}
 		public static int getFirstStorageSlotValue
 		{
 			get { return memSeller.readByte(proc.Handle, IntPtr.Add(storageWindowMOffset, PointersAndValues.slotFirstStorageValueOffset)); }
 		}
-        public static int getSecondSlotValue
-        {
-            get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotMannaOffset), 4)); }
-        }
-        public static int getThirdSlotValue
+        public static int getRedPotSlotValue  //3rd slot
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotRedPotOffset), 4)); }
         }
-        public static int getForthSlotValue
+        public static int getWhitePotSlotValue // 4th slot
         {
             get { return BitConverter.ToInt32(memNormal.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.slotWhitePotOffset), 4)); }
         }

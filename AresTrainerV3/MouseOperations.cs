@@ -49,6 +49,7 @@ namespace AresTrainerV3
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
+			Thread.Sleep(5);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			Thread.Sleep(sleepTime);
 		}

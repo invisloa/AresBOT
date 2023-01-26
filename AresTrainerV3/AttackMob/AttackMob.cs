@@ -74,7 +74,7 @@ namespace AresTrainerV3.AttackMob
 
         }
 
-        static bool isMobTargeted()
+		static bool isMobTargeted()
         { 
             if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000 && ProgramHandle.isInCity != 1)
             {

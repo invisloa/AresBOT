@@ -175,17 +175,9 @@ namespace AresTrainerV3.HealBot
 			{
 				MannaRestoreValue = 150;
 			}
-			else if (myCurrentManna < 700)
-			{
-				MannaRestoreValue = 200;
-			}
-			else if (myCurrentManna < 800)
-			{
-				MannaRestoreValue = 300;
-			}
 			else
 			{
-                MannaRestoreValue = 400;
+                MannaRestoreValue = 200;
             }
         }
 
@@ -246,7 +238,7 @@ namespace AresTrainerV3.HealBot
 
         protected void HealKeyPress()
         {
-            if (ProgramHandle.getFirstInvSlotValue > PointersAndValues.ItemCount1 + 5) // if less then 5 use key 6 which is teleport
+            if (ProgramHandle.getFirstInvSlotValue > PointersAndValues.InvPotCount(7))
             {
                 KeyPresser.PressKey(1, 50, 50);
             }
@@ -271,7 +263,7 @@ namespace AresTrainerV3.HealBot
         protected void MannaKeyPress()
         {
             {
-                if (ProgramHandle.getSecondSlotValue > PointersAndValues.ItemCount1 + 2) // if less then 5 use key 6 which is teleport
+                if (ProgramHandle.getSecondSlotValue > PointersAndValues.InvPotCount(3)) // if less then 5 use key 6 which is teleport
                 {
                     KeyPresser.PressKey(2, 100, 150);
                 }
@@ -282,69 +274,48 @@ namespace AresTrainerV3.HealBot
             }
 
         }
+        void KeyClickSpeedPotions()
+        {
+			KeyPresser.PressKey(8, 100, 100);
+			KeyPresser.PressKey(7, 100, 100);
+		}
+		void UseWhiteRedOnRunningSpeed()
+        {
+			if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue && ProgramHandle.getWhitePotSlotValue > PointersAndValues.InvPotCount(1)
+				&& ProgramHandle.getRedPotSlotValue > PointersAndValues.InvPotCount(1))
+			{
+                KeyClickSpeedPotions();
+            }
 
-        protected void WhiteRedPotionKeyPress()
+		}
+        void UseWhiteRedOnAttackSpeed(int plusSpeedValue)
+        {
+            if (ProgramHandle.getCurrentAttackSpeed == plusSpeedValue)
+            {
+				KeyClickSpeedPotions();
+			}
+		}
+
+		protected void WhiteRedPotionKeyPress()
         {
 
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                    KeyPresser.PressKey(7, 100, 100);
-                }
-
-                /*                if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKishValueBow)
-                                {
-                                    KeyPresser.PressKey(8, 100, 100);
-                                    KeyPresser.PressKey(7, 100, 100);
-                                }
-                */
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
-            {
-/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                }
-*/           }
+                UseWhiteRedOnRunningSpeed();
+			}
 			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
 			{
-				/*                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-								{
-									KeyPresser.PressKey(8, 100, 100);
-									// for now using with red potion later to change for a sorcerer
-									KeyPresser.PressKey(7, 100, 100);
-								}
-				*/
-				if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedSpearImp)
-				{
-					KeyPresser.PressKey(8, 100, 100);
-					KeyPresser.PressKey(7, 100, 100);
-				}
-
+				//UseWhiteRedOnRunningSpeed();
+                UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedSpearImp);
 			}
 			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
 			{
-                if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-                {
-                    KeyPresser.PressKey(8, 100, 100);
-                    // for now using with red potion later to change for a sorcerer
-                    KeyPresser.PressKey(7, 100, 100);
-                    KeyPresser.PressKey(5, 100, 100);
+				UseWhiteRedOnRunningSpeed();
+				// UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedKnightPlus2Tempest);
+			}
+			// else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
 
-                }
-
-                /*				if (ProgramHandle.getCurrentAttackSpeed == PointersAndValues.attackSpeedKnightPlus2Tempest)
-                                {
-                                    KeyPresser.PressKey(8, 100, 100);
-                                    KeyPresser.PressKey(7, 100, 100);
-                                    // temporaty !!!!!!!!!!!!!!!!!!!!!!!!
-                                    KeyPresser.PressKey(5, 100, 100);
-                                }
-                */
-            }
-        }
+		}
 
 
 

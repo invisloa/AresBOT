@@ -323,7 +323,12 @@ public static class PointersAndValues
     public static int MouseoverItemValue = 43880704;
     public static int MouseoverMobValue = 43881072;
     public static int ItemCount1 = 16777217;
-    public static int MouseoverMobValueNoItem = 42106960;
+	public static int InvPotCount(int howMany)
+    {
+            return howMany + 16777216;
+    }
+
+	public static int MouseoverMobValueNoItem = 42106960;
     public static int MouseoverMobValueKharon = 41980528;
     public static int MouseoverItemValueKharon = 43028736;
     // public static int MouseoverItemValueKharon = 42766592;

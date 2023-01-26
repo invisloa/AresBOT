@@ -103,21 +103,21 @@ namespace AresTrainerV3.Buyer
                         MouseOperations.MoveAndLeftClickOperation(1295, 530, _defaultMouseClickDelay); //2slot inv
                         HowManyPotionsToBuy(PotionsToBuyCalculator(mannaLimit, ProgramHandle.getSecondSlotValue));
                     }
-                    else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // Red Potions
+                    else if (i == 1 && ProgramHandle.getRedPotSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // Red Potions
                     {
                         if (ProgramHandle.isCurrentClassSelected != PointersAndValues.ClassSorcerer)
                         {
                             MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, _defaultMouseClickDelay);
                             MouseOperations.MoveAndLeftClickOperation(1330, 530, _defaultMouseClickDelay); // 3 slot inv
-                            HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getThirdSlotValue));
+                            HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getRedPotSlotValue));
                         }
                     }
-                    else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // White Potions
+                    else if (i == 2 && ProgramHandle.getWhitePotSlotValue < PointersAndValues.ItemCount1 + (redWhiteLimit - 1)) // White Potions
                     {
                         MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, _defaultMouseClickDelay);
                         MouseOperations.MoveAndLeftClickOperation(1365, 530, _defaultMouseClickDelay); // 4 slot inv
 
-                        HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getForthSlotValue));
+                        HowManyPotionsToBuy(PotionsToBuyCalculator(redWhiteLimit, ProgramHandle.getWhitePotSlotValue));
                     }
                     else if (i == 3 && ProgramHandle.getFirstInvSlotValue < PointersAndValues.ItemCount1 - 1 + hpLimit)      // HP Potions 
                     {

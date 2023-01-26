@@ -109,12 +109,12 @@ namespace AresTrainerV3
 
                     HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 3) // Red Potions
+                else if (i == 1 && ProgramHandle.getRedPotSlotValue < PointersAndValues.ItemCount1 + 3) // Red Potions
                 {
                     MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
                 }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 3) // White Potions
+                else if (i == 2 && ProgramHandle.getWhitePotSlotValue < PointersAndValues.ItemCount1 + 3) // White Potions
                 {
                     MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, 150);
                     HowManyPotionsToBuyExp(i);
@@ -139,12 +139,12 @@ namespace AresTrainerV3
 
                     HowManyPotionsToBuySell(i);
                 }
-                else if (i == 1 && ProgramHandle.getThirdSlotValue < PointersAndValues.ItemCount1 + 4) // Red Potions
+                else if (i == 1 && ProgramHandle.getRedPotSlotValue < PointersAndValues.ItemCount1 + 4) // Red Potions
                 {
                     MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);
                 }
-                else if (i == 2 && ProgramHandle.getForthSlotValue < PointersAndValues.ItemCount1 + 4) // White Potions
+                else if (i == 2 && ProgramHandle.getWhitePotSlotValue < PointersAndValues.ItemCount1 + 4) // White Potions
                 {
                     MouseOperations.MoveAndLeftClickOperation(whereAreYouBuyingPositions[i].Item1, whereAreYouBuyingPositions[i].Item2, 200);
                     HowManyPotionsToBuySell(i);

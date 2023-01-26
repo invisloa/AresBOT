@@ -61,12 +61,12 @@ namespace AresTrainerV3.HealBot.Repoter
             Thread.Sleep(1000);
 
             // scrollToCityIfNotInCity();
-            while (press1IfLowHp()) ;
-            while (press2IfLowManna()) ;
+            press1IfLowHp();
+            press2IfLowManna();
         }
         public bool press1IfLowHp()
         {
-            if (ProgramHandle.getCurrentHp < HealBotAbstract.HpHealValue && ProgramHandle.getCurrentHp != 0)
+            if (ProgramHandle.getCurrentHp < HealBotAbstract.HpHealValue && ProgramHandle.getFirstInvSlotValue > PointersAndValues.InvPotCount(1))
             {
                 KeyPresser.PressKey(1, 500, 500);
                 return true;
@@ -75,7 +75,7 @@ namespace AresTrainerV3.HealBot.Repoter
         }
         public bool press2IfLowManna()
         {
-            if (ProgramHandle.getCurrentManna < HealBotAbstract.MpRestoreValue)
+            if (ProgramHandle.getCurrentManna < HealBotAbstract.MpRestoreValue && ProgramHandle.getSecondSlotValue > PointersAndValues.InvPotCount(1))
             {
                 KeyPresser.PressKey(2, 500, 500);
                 return true;
@@ -100,9 +100,10 @@ namespace AresTrainerV3.HealBot.Repoter
                 MoveToRepot();
                 Thread.Sleep(100);
                 //MouseClickOpenShop();
-                if (Seller.checkIfCloseToShop())
+                if (Seller.IsCloseToShop())
                 {
-                    Seller.SellItemsMouseMove();            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! TO CHANGE TO CHANGE TODO TODO
+                    Seller.SellItemsByMouseMove();
+
                     BuyerPotionsCity.BuyPotions();
                     KeyPresser.PressEscape();
                 }
