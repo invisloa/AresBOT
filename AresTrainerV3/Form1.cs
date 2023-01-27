@@ -407,26 +407,32 @@ namespace AresTrainerV3
 
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            BuyerPotionsAbstract.HpPotionsToBuy = 80;
-            BuyerPotionsAbstract.MpPotionsToBuy = 10;
             BuyerPotionsAbstract.SpeedPotionsToBuy = 3;
 
             BuyerPotionsAbstract.BuyFromForm = true;
-            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
-            {
-                BuyerPotionsAbstract.HpPotionsToBuy = 250;
-                BuyerPotionsAbstract.MpPotionsToBuy = 25;
-            }
-            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+			if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
+			{
+				BuyerPotionsAbstract.HpPotionsToBuy = 250;
+				BuyerPotionsAbstract.MpPotionsToBuy = 25;
+			}
+			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+			{
+				BuyerPotionsAbstract.HpPotionsToBuy = 333;
+				BuyerPotionsAbstract.MpPotionsToBuy = 35;
+                ExpBotComboBox.Text = "SlothAoe2spot";
+			}
+			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
                 BuyerPotionsAbstract.HpPotionsToBuy = 250;
                 BuyerPotionsAbstract.MpPotionsToBuy = 45;
             }
-            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
                 BuyerPotionsAbstract.HpPotionsToBuy = 333;
                 BuyerPotionsAbstract.MpPotionsToBuy = 55;
             }
+
+
             HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
             MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
             SpeedPot.Text = BuyerPotionsAbstract.SpeedPotionsToBuy.ToString();
