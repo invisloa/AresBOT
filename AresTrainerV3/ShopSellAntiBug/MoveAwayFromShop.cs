@@ -12,8 +12,10 @@ namespace AresTrainerV3.ShopSellAntiBug
 
 		public void ActionToUnBugShop()
 		{
+			Thread.Sleep(200);
 			MouseOperations.MoveAndLeftClickOperation(750 + randomizer.Next(100), 400 + randomizer.Next(250), 200);
-			while(!ProgramHandle.isNowStandingCity())
+			Thread.Sleep(100);
+			while (!ProgramHandle.isNowStandingCity())
 			{
 				Thread.Sleep(1);
 			}

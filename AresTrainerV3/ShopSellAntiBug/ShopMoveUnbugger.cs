@@ -14,7 +14,6 @@ namespace AresTrainerV3.ShopSellAntiBug
 		public void UnBugShop()
 		{
 			ProgramHandle.SetCameraForExpBot();
-			Thread.Sleep(200);
 			unbugAction.ActionToUnBugShop();
 			npcFinder.FindNpc();
 		}

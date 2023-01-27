@@ -11,7 +11,7 @@ namespace AresTrainerV3.PixelScanNPC
 {
 	public class PixelScanForNpc : IFindNPC
 	{
-		int howManyScans = 10;
+		int howManyScans = 3;
 
 		bool isNPCTargeted()
 		{
