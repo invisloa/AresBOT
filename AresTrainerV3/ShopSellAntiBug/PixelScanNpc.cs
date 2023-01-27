@@ -46,14 +46,10 @@ namespace AresTrainerV3.PixelScanNPC
 								Console.WriteLine($"NPC found right clicking");
 								MouseOperations.MoveAndRightClickOperation(x, y);
 								Thread.Sleep(50);
-
-								if (!ProgramHandle.isNowStandingCity())
-								{
-									Thread.Sleep(200);
+								MouseOperations.MoveAndRightClickOperation(x, y);
+									Thread.Sleep(2000);
 									GC.Collect();
 									return true;
-
-								}
 							}
 						}
 					}

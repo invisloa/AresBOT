@@ -983,14 +983,13 @@ namespace AresTrainerV3
 					if (bugVerifier == 3 && imtemsToOperate.Count == ItemsForSaleListGenerate().Count)
 					{
 						howManyTries++;
-						if (howManyTries == 3)
+						if (howManyTries == 4)
 						{
 							throw new NotImplementedException();
 							//System.Diagnostics.Process.Start("Shutdown", "-s -t 30");
 						}
 						ShopTooFarAntiBug();
 						Thread.Sleep(200);
-						howManyTries++;
 						SellItemsByMouseMove();
 					}
 				}

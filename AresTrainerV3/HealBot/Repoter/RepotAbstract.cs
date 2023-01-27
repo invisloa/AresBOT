@@ -105,9 +105,13 @@ namespace AresTrainerV3.HealBot.Repoter
                     Seller.SellItemsByMouseMove();
 
                     BuyerPotionsCity.BuyPotions();
-                    KeyPresser.PressEscape();
-                }
-                else
+					Thread.Sleep(100);
+
+					KeyPresser.PressEscape();
+					Thread.Sleep(100);
+
+				}
+				else
                 {
                     Thread.Sleep(50000);
                     this.GoRepot();

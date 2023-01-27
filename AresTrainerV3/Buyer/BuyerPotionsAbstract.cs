@@ -20,18 +20,19 @@ namespace AresTrainerV3.Buyer
         IUnBugShop ShopUnbugger = Factory.CreateUnbugShop();
         int howManyUnbugTriesCount = 0;
 
-        void ClickOkWhenBuying()
+        void ClickEnterWhenBuying()
         {
-            KeyPresser.PressEnter(_defaultKeyClickDelay, _defaultKeyClickDelay);
-            //MouseOperations.MoveAndLeftClickOperation(560, 570, _defaultMouseClickDelay);
-        }
-        void BuyingHpPotionsMax()
+			Thread.Sleep(15);
+			KeyPresser.PressEnter(_defaultKeyClickDelay, _defaultKeyClickDelay);
+			Thread.Sleep(15);
+		}
+		void BuyingHpPotionsMax()
         {
             MouseOperations.ClickFirstSlotInventoryLeft();
             Thread.Sleep(_defaultMouseClickDelay);
             MouseOperations.ClickMaxPotionsToBuy();
             Thread.Sleep(_defaultMouseClickDelay);
-            ClickOkWhenBuying();
+            ClickEnterWhenBuying();
         }
 
         void HowManyPotionsToBuy(int numberOfPotionToBuy)
@@ -81,7 +82,7 @@ namespace AresTrainerV3.Buyer
             {
                 KeyPresser.PressKey(0, _defaultKeyClickDelay, _defaultKeyClickDelay);
             }
-			ClickOkWhenBuying();
+			ClickEnterWhenBuying();
 
         }
 
@@ -141,7 +142,6 @@ namespace AresTrainerV3.Buyer
                         {
                             MouseOperations.MoveAndLeftClickOperation(buyPotionsMouseMovePos[i].Item1, buyPotionsMouseMovePos[i].Item2, _defaultMouseClickDelay);
                             MouseOperations.MoveAndLeftClickOperation(1260, 530, _defaultMouseClickDelay); // 1 slot inv
-
                             HowManyPotionsToBuy(PotionsToBuyCalculator(hpLimit, ProgramHandle.getFirstInvSlotValue));
                         }
                         else

@@ -13,7 +13,10 @@ namespace AresTrainerV3.HealBot.Repoter.Returner.kharon
         IGoRepot _repoterCity = new RepoterKharonExp();
         public override void GoBackExp()
         {
-            teleportToKharonBigWolvesSpot();
+            if(!teleportToKharonBigWolvesSpot())
+            {
+                throw new NotImplementedException();
+            }
         }
 
         bool teleportToKharonBigWolvesSpot()
