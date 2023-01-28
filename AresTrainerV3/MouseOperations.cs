@@ -42,14 +42,14 @@ namespace AresTrainerV3
         }
 		public static void MoveAndRightClickOperation(int xPos, int yPos)
 		{
-            int sleepTime = 60;
+            int sleepTime = 30;
 			Thread.Sleep(sleepTime);
 			MouseOperations.SetCursorPosition(xPos, yPos);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-			Thread.Sleep(5);
+			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			Thread.Sleep(sleepTime);
 		}

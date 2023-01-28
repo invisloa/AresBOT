@@ -860,7 +860,7 @@ namespace AresTrainerV3
                         }
                         MouseOperations.MoveAndRightClickOperation(ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item1, ExpBotMovePositionsValues.itemSellPositions[itemToMove].Item2);
                     }
-					Thread.Sleep(100);
+					Thread.Sleep(50);
 					KeyPresser.PressEscape();
                     KeyPresser.PressEscape();
                 }
@@ -983,7 +983,7 @@ namespace AresTrainerV3
 					if (bugVerifier == 3 && imtemsToOperate.Count == ItemsForSaleListGenerate().Count)
 					{
 						howManyTries++;
-						if (howManyTries == 4)
+						if (howManyTries == 5)
 						{
 							throw new NotImplementedException();
 							//System.Diagnostics.Process.Start("Shutdown", "-s -t 30");
