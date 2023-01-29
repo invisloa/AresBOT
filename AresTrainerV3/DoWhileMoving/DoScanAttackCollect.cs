@@ -26,7 +26,7 @@ namespace AresTrainerV3.DoWhileMoving
             {
                     for (int i = 0; i < NumberOfCollectScans; i++)
                     {
-                        if (ICollector.ClickAndCollectItem())
+                        if (ICollector.ScanClickAndCollectItem())
                         {
                             return true;
                         }
@@ -48,7 +48,7 @@ namespace AresTrainerV3.DoWhileMoving
                     {
                         for (int i = 0; i < NumberOfCollectScans; i++)
                         {
-                            if (ICollector.ClickAndCollectItem())
+                            if (ICollector.ScanClickAndCollectItem())
                             {
                                 return true;
                             }

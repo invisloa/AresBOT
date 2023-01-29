@@ -26,7 +26,14 @@ namespace AresTrainerV3.ItemInventory
         }
         static bool isItemHighValue(int itemAdressVector)
         {
-            int stat1, stat2;
+			int hightValueMainStats = 14;
+			int SihonValue = 40;
+            int SihonWithStats = 35;
+			int magicAttackLimit = 85;
+			int magicJustusLimit = 40;
+			int magicJustus25Limit = 30;
+
+			int stat1, stat2;
 
             if (inventoryTypeOperation == InventoryType.Inventory)
             {
@@ -38,10 +45,6 @@ namespace AresTrainerV3.ItemInventory
                 stat1 = ProgramHandle.ReadStorageItemsStat1(itemAdressVector);
                 stat2 = ProgramHandle.ReadStorageItemsStat2(itemAdressVector);
             }
-            int magicAttackLimit = 85;
-            int magicJustusLimit = 40;
-            int magicJustus25Limit = 30;
-            int hightValueMainStats = 12;
 
             int Mp = 0;
             int Agi = 0;
@@ -712,11 +715,11 @@ namespace AresTrainerV3.ItemInventory
             {
                 return true;
             }
-            else if (Sihon > 35)
+            else if (SihonValue > 35)
             {
                 return true;
             }
-            else if (Sihon > 30 && Mp > 4 || Sihon > 30 && Agi > 4 || Sihon > 30 && Con > 4)
+            else if (SihonWithStats > 30 && Mp > 4 || SihonWithStats > 30 && Agi > 4 || SihonWithStats > 30 && Con > 4)
             {
                 return true;
             }

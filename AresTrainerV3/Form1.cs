@@ -640,22 +640,26 @@ namespace AresTrainerV3
 
 		private void fasttest_Click(object sender, EventArgs e)
         {
+			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+			ExpBotManagerAbstract.RequestStartExpBot();
 			ProgramHandle.SetCameraForExpBot();
-			ProgramHandle.SetCameraLong();
-
 			Thread.Sleep(150);
 			Thread.Sleep(150);
-            ShopMoveUnbugger smu = new ShopMoveUnbugger();
-       //     smu.UnBugShop();
+            PixelItemCollector collector = new PixelItemCollector(new CollectAllItems());
+            collector.ScanClickAndCollectItem();
+			//			ProgramHandle.SetCameraLong();
 
-/*            PixelScanForNpc npc = new PixelScanForNpc();
-            npc.FindNpc();
-*/			//ShopMoveUnbugger unb = new ShopMoveUnbugger();
-            // unb.UnBugShop();
-			// PixelScanForNpc npc = new PixelScanForNpc();
-            // npc.FindNpc();
-			//ProgramHandle.SetCameraLong();
-			//     ItemSeller.MoveItemsToStorage();
+			//    ShopMoveUnbugger smu = new ShopMoveUnbugger();
+			//     smu.UnBugShop();
+
+			/*            PixelScanForNpc npc = new PixelScanForNpc();
+						npc.FindNpc();
+			*/            //ShopMoveUnbugger unb = new ShopMoveUnbugger();
+						  // unb.UnBugShop();
+						  // PixelScanForNpc npc = new PixelScanForNpc();
+						  // npc.FindNpc();
+						  //ProgramHandle.SetCameraLong();
+						  //     ItemSeller.MoveItemsToStorage();
 
 			/*            int g = ProgramHandle.isCurrentInventoryTabOppened;
 						ProgramHandle.SetCameraForExpBot();

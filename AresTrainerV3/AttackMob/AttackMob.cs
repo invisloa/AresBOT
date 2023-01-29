@@ -59,7 +59,7 @@ namespace AresTrainerV3.AttackMob
                 attackUnstackCounter++;
                 Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
 
-                pixelSodCollect.ClickAndCollectItem();
+                pixelSodCollect.ScanClickAndCollectItem();
                 //Debug.WriteLine($"is not StandingAnimation");
                 Thread.Sleep(100);
                 Debug.WriteLine(attackUnstackCounter);

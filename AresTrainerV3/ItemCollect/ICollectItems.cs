@@ -8,6 +8,6 @@ namespace AresTrainerV3.ItemCollect
 {
     public interface ICollectItems
     {
-        public bool ClickAndCollectItem();
+        public bool ScanClickAndCollectItem();
     }
 }

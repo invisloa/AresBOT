@@ -38,17 +38,13 @@ namespace AresTrainerV3.ItemCollect
         {
             if (collectItemValues())
             {
-                ProgramHandle.waitMouseInPos();
                 Thread.Sleep(1);
-                ProgramHandle.waitMouseInPos();
-                ProgramHandle.waitMouseInPos();
                 Thread.Sleep(1);
-                ProgramHandle.waitMouseInPos();
                 Thread.Sleep(1);
-                ProgramHandle.waitMouseInPos();
-                ProgramHandle.waitMouseInPos();
-                Thread.Sleep(1);
-                if (collectItemValues())
+				Thread.Sleep(1);
+				Thread.Sleep(1);
+				Thread.Sleep(1);
+				if (collectItemValues())
                 {
                     CollectionClick();
                     return true;
@@ -78,7 +74,7 @@ namespace AresTrainerV3.ItemCollect
             }
             ItemCollectUnbuger.UnbugWhenCollecting(positionBeforeClick);
 			PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
-            underCharPostScanner.PixelScanUnderChar(this);
+            underCharPostScanner.PixelScanUnderChar();
         }
 
     }

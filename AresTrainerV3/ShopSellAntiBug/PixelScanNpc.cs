@@ -41,7 +41,8 @@ namespace AresTrainerV3.PixelScanNPC
 						if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 						{
 							MouseOperations.SetCursorPosition(x, y);
-							Thread.Sleep(10);
+							ProgramHandle.waitMouseInPosScanUnder();
+							ProgramHandle.waitMouseInPosScanUnder();
 							if (isNPCTargeted())
 							{
 								Console.WriteLine($"NPC found right clicking");

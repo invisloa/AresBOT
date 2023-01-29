@@ -14,7 +14,22 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
+		IWhatToCollect _whatToCollect { get; }
+        IWhatToCollect currentCollect;
+		IWhatToCollect CollectIgnoringWeight = new CollectSod();
 
+		int[] smallX = new int[2] { 850, 1170 };
+		int[] smallY = new int[2] { 410, 730 };
+		int[] bigX = new int[2] { 550, 1360 };
+		int[] bigY = new int[2] { 290, 835 };
+		int[] underCharX = new int[2] { 930, 980 };
+		int[] underCharY = new int[2] { 500, 545 };
+		Bitmap bitmap = new Bitmap(1370, 840);
+		void BitmapCopyFromScreen()
+        {
+			Graphics graphics = Graphics.FromImage(bitmap as Image);
+			graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+        }
         void waitForAttackEnd()
         {
             while (ProgramHandle.isAttacking())
@@ -54,8 +69,6 @@ namespace AresTrainerV3.ItemCollect
                 }
             }
         }
-        IWhatToCollect _whatToCollect { get; }
-        IWhatToCollect CollectIgnoringWeight = new CollectSod();
         public PixelItemCollector(IWhatToCollect whatToCollect)
         {
             _whatToCollect = whatToCollect;
@@ -64,118 +77,131 @@ namespace AresTrainerV3.ItemCollect
         {
             if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
             {
-                return PixelScan(_whatToCollect);
-            }
-            else if (ProgramHandle.isInCity != 1)
+                currentCollect = _whatToCollect;
+				return PixelScan();
+
+			}
+			else if (ProgramHandle.isInCity != 1)
             {
-                return PixelScan(CollectIgnoringWeight);
+				currentCollect = CollectIgnoringWeight;
+				return PixelScan();
             }
-
-            GC.Collect();
-            RepotAbstract.IsScanRunning = false;
             return false;
-        }
-
-        public bool ClickAndCollectItem()
+       }
+        public bool ScanClickAndCollectItem()
         {
             return ScanAndCollect();
         }
 
-        bool PixelScan(IWhatToCollect whatToCollect)
+        bool PixelScan()
         {
-            if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
-            {
-                RepotAbstract.IsScanRunning = true;
-                // Bitmap bitmap = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
-                Bitmap bitmap = new Bitmap(1360, 840);
-                Graphics graphics = Graphics.FromImage(bitmap as Image);
-                graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-                if (ExpBotManagerAbstract.isExpBotRunning == true)
+            if (currentCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+			{
+
+				if (PixelScaner(smallX, smallY))
                 {
-
-                    for (int x = 850; x < 1170; x++)
-                    {
-                        for (int y = 410; y < 730; y++)
-                        {
-                            Color currentPixelColor = bitmap.GetPixel(x, y);
-                            if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
-                            {
-                                MouseOperations.SetCursorPosition(x, y);
-                                ProgramHandle.waitMouseInPos();
-                                AttackWhenPointedOnMob();
-                                if (whatToCollect.ClickAndCollectWhatItem())
-                                {
-                                    RepotAbstract.IsScanRunning = false;
-                                    Debug.WriteLine("EndCollect");
-                                    GC.Collect();
-                                    Debug.WriteLine("1 Pixel for");
-
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+                    return CollectSucces();
                 }
-                if (ExpBotManagerAbstract.isExpBotRunning == true)
+                if (PixelScaner(bigX, bigY))
                 {
-                    for (int x = 550; x < 1360; x++)
-                    {
-                        for (int y = 290; y < 835; y++)
-                        {
-                            Color currentPixelColor = bitmap.GetPixel(x, y);
-                            if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
-                            {
-                                MouseOperations.SetCursorPosition(x, y);
-                                ProgramHandle.waitMouseInPos();
-                                AttackWhenPointedOnMob();
-                                if (whatToCollect.ClickAndCollectWhatItem())
-                                {
-                                    RepotAbstract.IsScanRunning = false;
-
-                                    Debug.WriteLine("EndCollect");
-                                    GC.Collect();
-                                    return true;
-                                }
-                            }
-                        }
-                    }
+                    return CollectSucces();
                 }
             }
-            GC.Collect();
-            RepotAbstract.IsScanRunning = false;
-            return false;
+            return CollectFail();
         }
-        public bool PixelScanUnderChar(IWhatToCollect whatToCollect)
+		public bool PixelScaner(int[] xSize, int[] ySize)
+		{
+			if (ExpBotManagerAbstract.isExpBotRunning == true)
+			{
+				RepotAbstract.IsScanRunning = true;
+				BitmapCopyFromScreen();
+				for (int x = xSize[0]; x < xSize[1]; x++)
+				{
+					for (int y = ySize[0]; y < ySize[1]; y++)
+					{
+						Color currentPixelColor = bitmap.GetPixel(x, y);
+						if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
+						{
+							waitMouseAttackPointedMob(x, y);
+							if (currentCollect.ClickAndCollectWhatItem())
+							{
+								return true;
+							}
+						}
+					}
+				}
+			}
+			return false;
+		}
+		public bool PixelScanUnderChar()
         {
             if (ExpBotManagerAbstract.isExpBotRunning == true)
             {
-                if (whatToCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
+                if (currentCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
                 {
-                    RepotAbstract.IsScanRunning = true;
-                    ItemSeller.MoveItemsToStorage();
-                    for (int x = 930; x < 980; x++)
+					ItemSeller.MoveItemsToStorage();
+					if(PixelScaner(underCharX, underCharY))
                     {
-                        for (int y = 500; y < 545; y++)
-                        {
-                            MouseOperations.SetCursorPosition(x, y);
-                            ProgramHandle.waitMouseInPosScanUnder();
-                            AttackWhenPointedOnMob();
-
-                            if (whatToCollect.ClickAndCollectWhatItem())
-                            {
-                                RepotAbstract.IsScanRunning = false;
-                                Debug.WriteLine("Under Foot Scan PixelScanUnderChar");
-                                GC.Collect();
-                                return true;
-                            }
-                        }
-
+                        return CollectSucces();
                     }
-                }
+				}
 			}
-            GC.Collect();
-            RepotAbstract.IsScanRunning = false;
-            return false;
+            return CollectFail();
         }
-    }
+		public bool PixelSodWhileAttacking()
+		{
+			RepotAbstract.IsScanRunning = true;
+            BitmapCopyFromScreen();
+			if (ExpBotManagerAbstract.isExpBotRunning == true)
+			{
+				for (int x = 550; x < 1360; x++)
+				{
+					for (int y = 290; y < 835; y++)
+					{
+						Color currentPixelColor = bitmap.GetPixel(x, y);
+						if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
+						{
+                            WaitMouseInPosition(x, y);
+							if (CollectIgnoringWeight.ClickAndCollectWhatItem())
+							{
+                               return CollectSucces();
+							}
+						}
+					}
+				}
+			}
+            return CollectFail();
+        }
+
+        bool CollectSucces()
+        {
+			RepotAbstract.IsScanRunning = false;
+			Debug.WriteLine("EndCollect");
+			GC.Collect();
+			return true;
+		}
+        bool CollectFail()
+        {
+			GC.Collect();
+			RepotAbstract.IsScanRunning = false;
+			return false;
+		}
+		void WaitMouseInPosition(int x, int y)
+        {
+			MouseOperations.SetCursorPosition(x, y);
+			ProgramHandle.waitMouseInPosScanUnder();
+
+		}
+		void waitMouseAttackPointedMob(int x, int y)
+		{
+            WaitMouseInPosition(x, y);
+			AttackWhenPointedOnMob();
+		}
+
+	}
 }
+
+
+
+// TO DO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+// small scan big scan using delegate as a method to run
