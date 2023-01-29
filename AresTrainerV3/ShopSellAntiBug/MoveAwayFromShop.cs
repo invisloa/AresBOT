@@ -13,10 +13,7 @@ namespace AresTrainerV3.ShopSellAntiBug
 		public void ActionToUnBugShop()
 		{
 			Thread.Sleep(100);
-
-
-
-
+			Console.WriteLine("move away from shop");
 			KeyPresser.PressEscape();
 			Thread.Sleep(200);
 			MouseOperations.MoveAndLeftClickOperation(750 + randomizer.Next(100), 400 + randomizer.Next(250), 200);

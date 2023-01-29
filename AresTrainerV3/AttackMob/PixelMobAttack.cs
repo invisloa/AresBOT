@@ -45,7 +45,6 @@ namespace AresTrainerV3.AttackMob
 */
 		public static bool AttackSkillMobWhenSelected()
         {
-            //Debug.WriteLine("Start AttackScan");
             if (ProgramHandle.isInCity != 1)
             {
                 if (ExpBotManagerAbstract.isExpBotRunning == true)

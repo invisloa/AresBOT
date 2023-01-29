@@ -2,6 +2,7 @@
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.ItemInventory;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -52,7 +53,6 @@ namespace AresTrainerV3.ItemCollect
                     Debug.WriteLine($"Mouse R UP");
                 }
             }
-
         }
         IWhatToCollect _whatToCollect { get; }
         IWhatToCollect CollectIgnoringWeight = new CollectSod();

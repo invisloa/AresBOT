@@ -8,6 +8,7 @@ using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemCollect.ItemBlessing;
 using AresTrainerV3.ItemDelete;
+using AresTrainerV3.ItemInventory;
 using AresTrainerV3.MovePositions;
 using AresTrainerV3.MoveRandom;
 using AresTrainerV3.MoveRandom.Etana;

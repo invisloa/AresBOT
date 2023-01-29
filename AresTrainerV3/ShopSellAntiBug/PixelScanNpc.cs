@@ -11,7 +11,7 @@ namespace AresTrainerV3.PixelScanNPC
 {
 	public class PixelScanForNpc : IFindNPC
 	{
-		int howManyScans = 3;
+		int howManyScans = 5;
 
 		bool isNPCTargeted()
 		{
@@ -20,7 +20,9 @@ namespace AresTrainerV3.PixelScanNPC
 				return true;
 			}
 			else
+			{
 				return false;
+			}
 		}
 		bool pixelScanForNPC()
 		{
@@ -39,8 +41,7 @@ namespace AresTrainerV3.PixelScanNPC
 						if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
 						{
 							MouseOperations.SetCursorPosition(x, y);
-							ProgramHandle.waitMouseInPos();
-							ProgramHandle.waitMouseInPos();
+							Thread.Sleep(10);
 							if (isNPCTargeted())
 							{
 								Console.WriteLine($"NPC found right clicking");

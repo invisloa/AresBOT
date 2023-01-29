@@ -42,9 +42,9 @@ namespace AresTrainerV3
         }
 		public static void MoveAndRightClickOperation(int xPos, int yPos)
 		{
-            int sleepTime = 30;
-			Thread.Sleep(sleepTime);
+            int sleepTime = 35;
 			MouseOperations.SetCursorPosition(xPos, yPos);
+			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
 			Thread.Sleep(sleepTime);
@@ -125,10 +125,20 @@ namespace AresTrainerV3
 		{
 			MoveAndLeftClickOperation(1080, 200, 50);
 		}
-        
-        
 
-        public static void MoveAndLeftClickOperation(int xPos, int yPos,int delay)
+		public static void MoveAndLeftClickOperation(int xPos, int yPos)
+		{
+            int delay = 77;
+			MouseOperations.SetCursorPosition(xPos, yPos);
+			Thread.Sleep(delay);
+			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
+			Thread.Sleep(delay);
+			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+			Thread.Sleep(delay);
+		}
+
+
+		public static void MoveAndLeftClickOperation(int xPos, int yPos,int delay)
         {
             MouseOperations.SetCursorPosition(xPos, yPos);
             Thread.Sleep(delay);

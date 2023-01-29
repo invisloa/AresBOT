@@ -9,7 +9,7 @@ namespace AresTrainerV3.ItemCollect.ItemBlessing
 {
 	public class ItemBlesser
 	{
-		int sleepTime = 200;
+		int sleepTime = 177;
 		int posSlotFirstSod = 1300;
 		int posSlotSecontSod = 1330;
 		int posSlotThirdSod = 1360;
@@ -17,11 +17,10 @@ namespace AresTrainerV3.ItemCollect.ItemBlessing
 
 		public void BlessItem(int blessValue)
 		{
-		ExpBotManagerAbstract.RequestStartExpBot();
+			ExpBotManagerAbstract.RequestStartExpBot();
 			ProgramHandle.SetGameAsMainWindow();
 			Thread.Sleep(sleepTime*3);
-			int i = 0;
-			while ((secondItemBlessValue < blessValue) && ExpBotManagerAbstract.isExpBotRunning)
+			while ((secondItemBlessValue < blessValue) && ProgramHandle.isInventoryWindowStillOpen==1)
 			{
 				if (ProgramHandle.ReadInvItmsCount(0) == 0)
 				{
@@ -87,24 +86,22 @@ namespace AresTrainerV3.ItemCollect.ItemBlessing
 		void BuyDestructedItem()
 		{
 			ProgramHandle.SetCameraForExpBot();
-			Thread.Sleep(sleepTime*2);
 			MouseOperations.SetCursorPosition(915, 460);
-			Thread.Sleep(sleepTime*2);
+			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
-			Thread.Sleep(sleepTime * 2);
+			Thread.Sleep(sleepTime);
 			MouseOperations.SetCursorPosition(570, 570);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-			Thread.Sleep(sleepTime);
+			Thread.Sleep(sleepTime*2);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 			Thread.Sleep(sleepTime);
-
 		}
 		void BlessItemMouseMoves(int sodsPosition)
 		{

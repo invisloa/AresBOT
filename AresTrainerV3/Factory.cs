@@ -1,4 +1,5 @@
 ﻿using AresTrainerV3.HealBot.Repoter.Returner;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.PixelScanNPC;
 using AresTrainerV3.ShopSellAntiBug;
 using System;
@@ -22,6 +23,10 @@ namespace AresTrainerV3
 		public static IActionToUnbug CreateUnbugActionClass()
 		{
 			return new MoveAwayFromShop();
+		}
+		public static IUnbugWhenCollecting CreateCollectItemUnbugger()
+		{
+			return new CollectAntibug();
 		}
 	}
 }

@@ -116,6 +116,8 @@ namespace AresTrainerV3.Buyer
                             }
 							howManyUnbugTriesCount++;
 							ShopUnbugger.UnBugShop();
+                            ProgramHandle.OpenShopWindow();
+                            Thread.Sleep(300);
 							this.BuyPotions();
 						}
                     }

@@ -5,6 +5,7 @@ using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.ItemInventory;
 using AresTrainerV3.MoveRandom.Hershal;
 using System;
 using System.Collections.Generic;

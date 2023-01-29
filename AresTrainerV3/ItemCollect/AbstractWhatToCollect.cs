@@ -10,7 +10,10 @@ namespace AresTrainerV3.ItemCollect
 {
     public abstract class AbstractWhatToCollect : IWhatToCollect
     {
-        public static int MaxCollectWeight;
+        IUnbugWhenCollecting ItemCollectUnbuger = Factory.CreateCollectItemUnbugger();
+
+
+		public static int MaxCollectWeight;
         public static int MaxCollectWeightNormalValue;
         protected const int SOD = -13799;
         protected const int EventItems = 32627;
@@ -55,6 +58,7 @@ namespace AresTrainerV3.ItemCollect
         }
         protected void CollectionClick()
         {
+            int positionBeforeClick = ProgramHandle.GetPositionShortX;
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
             MoverRandom.AttackedOrCollected = true;
@@ -70,11 +74,10 @@ namespace AresTrainerV3.ItemCollect
             {
                 Debug.WriteLine("collecting while");
                 Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
-
                 Thread.Sleep(10);
             }
-            // Thread.Sleep(50);
-            PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
+            ItemCollectUnbuger.UnbugWhenCollecting(positionBeforeClick);
+			PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
             underCharPostScanner.PixelScanUnderChar(this);
         }
 

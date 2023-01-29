@@ -156,7 +156,7 @@ namespace AresTrainerV3.MoveRandom
                                 {
                                     ExpBotManagerAbstract.RequestStopExpBot();
                                     HealBotAbstract.RequestStartStopHealBot();
-                                    System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+                                    System.Diagnostics.Process.Start("Shutdown", "-s -t 60");
                                 }
                             }
                         }
