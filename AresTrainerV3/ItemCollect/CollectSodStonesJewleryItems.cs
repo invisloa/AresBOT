@@ -10,7 +10,7 @@ namespace AresTrainerV3.ItemCollect
     {
         protected override bool collectItemValues()
         {
-            if (ProgramHandle.getCurrentItemHighlightedType == SOD || ProgramHandle.getCurrentItemHighlightedType == jewelery || ProgramHandle.getCurrentItemHighlightedType == stones)
+            if (ProgramHandle.getCurrentItemHighlightedType == SOD || ProgramHandle.getCurrentItemHighlightedType == jewelery)
             { 
                 return true;
             }
