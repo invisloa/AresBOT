@@ -14,7 +14,7 @@ namespace AresTrainerV3.ItemCollect
 {
     public class PixelItemCollector : ICollectItems
     {
-        IWhatToCollect whatToCollect = new CollectSod();
+        IWhatToCollect whatToCollect = new CollectSod();           // TEMPORARY TO DO TO CHANGE
 		IWhatToCollect _whatToCollect { get { return whatToCollect; } set { whatToCollect = value; } }
         IWhatToCollect currentCollect;
 		IWhatToCollect CollectIgnoringWeight = new CollectSod();
