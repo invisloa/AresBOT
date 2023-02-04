@@ -74,7 +74,7 @@ namespace AresTrainerV3
             gkh.KeyF3Down += ShowIfOnOrOff;
             gkh.KeyF4Down += Start1HitKoThread;
             gkh.KeyF4Down += ShowIfOnOrOff;
-            gkh.KeyF5Down += ProgramHandle.Teleporting;
+            gkh.KeyF5Down += ProgramHandle.TeleportingPlace;
             gkh.KeyF6Down += AttackWhenMobSelectedThread;
             gkh.KeyF6Down += ShowIfOnOrOff;
             gkh.KeyF9Down += ShowIfOnOrOff;
@@ -461,16 +461,20 @@ namespace AresTrainerV3
                 ExpBotMoverToRun = new MoverGiko();
                 HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
-            else if (ExpBotComboBox.Text == "SacredThieves")
-            {
-                ExpBotMoverToRun = new MoverThievesUnder();
-                HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
-            }
+			else if (ExpBotComboBox.Text == "SacredThieves")
+			{
+				ExpBotMoverToRun = new MoverThievesUnder();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+			}
+			else if (ExpBotComboBox.Text == "SacredThievesSOD")
+			{
+				ExpBotMoverToRun = new MoverThievesSOD();
+				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+			}
 			else if (ExpBotComboBox.Text == "HolinaGoblins")
 			{
 				ExpBotMoverToRun = new MoverHolinaGoblins();
 				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
-				//HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
 			}
 			else if (ExpBotComboBox.Text == "HolinaBuckSlavePit")
 			{
@@ -482,7 +486,6 @@ namespace AresTrainerV3
 				ExpBotMoverToRun = new MoverHershalLowLvl();
 				HealbotToRun.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
 			}
-
 			else if (ExpBotComboBox.Text == "HershalLeafMages")
             {
                 ExpBotMoverToRun = new MoverHershalLeafMages();
@@ -640,14 +643,14 @@ namespace AresTrainerV3
 
 		private void fasttest_Click(object sender, EventArgs e)
         {
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+/*			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
 			ExpBotManagerAbstract.RequestStartExpBot();
-			ProgramHandle.SetCameraForExpBot();
-			Thread.Sleep(150);
+*/			ProgramHandle.SetCameraForExpBot();
+/*			Thread.Sleep(150);
 			Thread.Sleep(150);
             PixelItemCollector collector = new PixelItemCollector(new CollectAllItems());
             collector.ScanClickAndCollectItem();
-			//			ProgramHandle.SetCameraLong();
+*/			//			ProgramHandle.SetCameraLong();
 
 			//    ShopMoveUnbugger smu = new ShopMoveUnbugger();
 			//     smu.UnBugShop();

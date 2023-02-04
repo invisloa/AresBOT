@@ -78,7 +78,7 @@ namespace AresTrainerV3.ItemCollect
         {
             if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
             {
-                currentCollect = _whatToCollect;
+                currentCollect = whatToCollect;
 				return PixelScan();
 
 			}
@@ -124,7 +124,7 @@ namespace AresTrainerV3.ItemCollect
 						if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
 						{
 							waitMouseAttackPointedMob(x, y);
-							if (currentCollect.ClickAndCollectWhatItem())
+							if (_whatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}

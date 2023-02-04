@@ -2,6 +2,7 @@
 using AresTrainerV3.SkillSelection;
 using Microsoft.VisualBasic.Devices;
 using System.Diagnostics;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using WindowsInput;
 
@@ -12,9 +13,9 @@ namespace AresTrainerV3
         public static string processName = PointersAndValues.GameProcessName;
         public static string foregroundProcessName = PointersAndValues.GameWindowProcessName;
         public static string foregroundWindowName = PointersAndValues.GameWindowVisualName;
-
         static int _variableForChangablePosition = 0;
 
+        static Random randomizer = new Random();
         [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
         public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
 
@@ -546,14 +547,34 @@ namespace AresTrainerV3
             get
             { return BitConverter.ToInt32((memTeleport.readbytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.mapNumberOffset), 4)), 0); }
         }
-        public static void Teleporting()
+		static void Teleport(Tuple<int,int,int> teleportPlace)
+		{
+			memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(teleportPlace.Item1));
+			memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(teleportPlace.Item2));
+			memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(teleportPlace.Item3));
+		}
+        static void RandomMoverTeleport(Tuple<int, int, int, int> teleportPlace)
+		{
+            memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(randomizer.Next(teleportPlace.Item1, teleportPlace.Item3)));
+			memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(randomizer.Next(teleportPlace.Item4 , teleportPlace.Item2)));
+			memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(0));
+		}
+		public static void TeleportingPlace()
         {
 
             if (GetCurrentMap == TeleportValues.AllianceSacredLand)
-            {
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionXOffset), BitConverter.GetBytes(TeleportValues.PosSacredLandsOgre.Item1));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionYOffset), BitConverter.GetBytes(TeleportValues.PosSacredLandsOgre.Item2));
-                memTeleport.writebytes(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.positionZOffset), BitConverter.GetBytes(TeleportValues.PosSacredLandsOgre.Item3));
+			{
+				if (_variableForChangablePosition == 0)
+				{
+                    Teleport(TeleportValues.PosSacredLandsOgre);
+					_variableForChangablePosition = 1;
+				}
+				else if (_variableForChangablePosition == 1)
+				{
+                    RandomMoverTeleport(TeleportValues.moverRandomSacredAlliThievesSod);
+					_variableForChangablePosition = 0;
+
+				}
             }
 
             else if (GetCurrentMap == TeleportValues.BaldorTempleFirstFloor)

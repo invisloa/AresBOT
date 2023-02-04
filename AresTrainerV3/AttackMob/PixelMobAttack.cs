@@ -14,7 +14,7 @@ namespace AresTrainerV3.AttackMob
 {
     public static class PixelMobAttack
     {
-        static int moveMouseVector = 25;
+        static int moveMouseVector = 10;
         static Bitmap bitmap = new Bitmap(1340, 840);
         static Graphics graphics = Graphics.FromImage(bitmap as Image);
 
@@ -52,95 +52,35 @@ namespace AresTrainerV3.AttackMob
 
                     RepotAbstract.IsScanRunning = true;
                     graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-
                         for (int x = 800; x < 1120; x++)
                         {
-
-                            for (int y = 360; y < 680; y++)
+                            if (x < 934 || x > 987)
                             {
-                                Color currentPixelColor = bitmap.GetPixel(x, y);
-                                if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
-
+                                for (int y = 360; y < 680; y++)
                                 {
-                                    MouseOperations.SetCursorPosition(x + moveMouseVector, y);
-                                    ProgramHandle.waitMouseInPos();
-
-                                    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                    Color currentPixelColor = bitmap.GetPixel(x, y);
+                                    if ((x < 934 || x > 987) && (y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
                                     {
-                                        //   Debug.WriteLine("1 attack for");
+                                        MouseOperations.SetCursorPosition(x, y);
+                                        ProgramHandle.waitMouseInPos();
 
-                                        RepotAbstract.IsScanRunning = false;
-                                        GC.Collect();
-                                        return true;
-                                    }
-                                    MouseOperations.SetCursorPosition(x - moveMouseVector, y);
-                                    ProgramHandle.waitMouseInPos();
+                                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+                                        {
+                                            //   Debug.WriteLine("1 attack for");
 
-                                    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                    {
-                                        //  Debug.WriteLine("1 attack for");
-
-                                        RepotAbstract.IsScanRunning = false;
-                                        GC.Collect();
-                                        return true;
-                                    }
-                                    MouseOperations.SetCursorPosition(x, y + moveMouseVector);
-                                    ProgramHandle.waitMouseInPos();
-
-                                    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                    {
-                                        //  Debug.WriteLine("1 attack for");
-
-                                        RepotAbstract.IsScanRunning = false;
-                                        GC.Collect();
-                                        return true;
-                                    }
-                                    MouseOperations.SetCursorPosition(x, y - moveMouseVector);
-                                    ProgramHandle.waitMouseInPos();
-
-                                    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                    {
-                                        //  Debug.WriteLine("1 attack for");
-
-                                        RepotAbstract.IsScanRunning = false;
-                                        GC.Collect();
-                                        return true;
+                                            RepotAbstract.IsScanRunning = false;
+                                            GC.Collect();
+                                            return true;
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    if (ExpBotManagerAbstract.isExpBotRunning == true)
-                    {
-                        graphics = Graphics.FromImage(bitmap as Image);
-                        graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-                        for (int x = 700; x < 1220; x++)
-                        {
-
-                            for (int y = 260; y < 780; y++)
-                            {
-                                Color currentPixelColor = bitmap.GetPixel(x, y);
-                                if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
-
-                                {
-                                    MouseOperations.SetCursorPosition(x, y);
-                                    ProgramHandle.waitMouseInPos();
-                                    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                    {
-                                        // Debug.WriteLine("2 attack for");
-
-                                        RepotAbstract.IsScanRunning = false;
-                                        GC.Collect();
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if (ExpBotManagerAbstract.isExpBotRunning == true)
-                    {
-                        graphics = Graphics.FromImage(bitmap as Image);
-                        graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+                }
+                if (ExpBotManagerAbstract.isExpBotRunning == true)
+                {
+                     graphics = Graphics.FromImage(bitmap as Image);
+                     graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
                         for (int x = 527; x < 1332; x++)
                         {
 
@@ -156,8 +96,6 @@ namespace AresTrainerV3.AttackMob
 
                                     if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
                                     {
-                                        // Debug.WriteLine("3 attack for");
-
                                         RepotAbstract.IsScanRunning = false;
                                         GC.Collect();
                                         return true;
@@ -166,13 +104,11 @@ namespace AresTrainerV3.AttackMob
                             }
 
                         }
-                    }
                 }
-
+            }
             RepotAbstract.IsScanRunning = false;
 			GC.Collect();
             return false;
-
         }
 
     }

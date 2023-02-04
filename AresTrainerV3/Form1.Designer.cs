@@ -393,6 +393,7 @@
             "EtanaBuckerty",
             "SacredGiko",
             "SacredThieves",
+            "SacredThievesSOD",
             "HolinaGoblins",
             "HolinaBuckSlavePit",
             "HershalLowLvl",

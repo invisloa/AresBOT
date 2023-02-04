@@ -303,19 +303,21 @@ namespace AresTrainerV3.HealBot
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
             {
                 UseWhiteRedOnRunningSpeed();
-			}
-			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
-			{
-				//UseWhiteRedOnRunningSpeed();
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+            {
+                //UseWhiteRedOnRunningSpeed();
                 UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedSpearImp);
-			}
-			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
-			{
-				UseWhiteRedOnRunningSpeed();
-				// UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedKnightPlus2Tempest);
-			}
-			// else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
-
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+            {
+                UseWhiteRedOnRunningSpeed();
+                // UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedKnightPlus2Tempest);
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
+            {
+                UseWhiteRedOnRunningSpeed();
+            }
 		}
 
 
