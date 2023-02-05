@@ -178,10 +178,10 @@ namespace AresTrainerV3
 		public static Tuple<int, int, int, int> moverRandomSloth1stFloorAoe = new Tuple<int, int, int, int>(1118582503, 1126938769, 1120949079, 1126052185);  //Left,Up,Right,Down
 		public static Tuple<int, int, int, int> moverRandomSloth1stFloorAoe2 = new Tuple<int, int, int, int>(1132145205, 1131272846, 1132899859, 1129831150);  //Left,Up,Right,Down
 		public static Tuple<int, int, int, int> moverRandomSlothHorseFarm = new Tuple<int, int, int, int>(1124917651, 1133298023, 1124351779, 1133088682);  //Left,Up,Right,Down
-		public static Tuple<int, int, int, int> moverRandomSacredAlliThievesSod = new Tuple<int, int, int, int>(1136646890, 1142866316, 1138522128, 1141837440);  //Left,Up,Right,Down
+		public static Tuple<int, int, int, int> moverRandomSacredAlliThievesSod = new Tuple<int, int, int, int>(1136646890, 1142866316, 1138333998, 1141837440);  //Left,Up,Right,Down
 
 		// left 1136646890
-		// up 1142866316
+		// up 1142866316 1138333998
 		// right 1138522128
 		// down 1141837440
 

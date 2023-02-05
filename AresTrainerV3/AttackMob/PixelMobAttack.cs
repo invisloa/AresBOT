@@ -17,36 +17,12 @@ namespace AresTrainerV3.AttackMob
         static int moveMouseVector = 10;
         static Bitmap bitmap = new Bitmap(1340, 840);
         static Graphics graphics = Graphics.FromImage(bitmap as Image);
-
-/*        public static bool IsTooMuchPixels()
-		{
-			int pixelCount = 0;
-            for (int x = 700; x < 1220; x++)
-            {
-
-                for (int y = 260; y < 780; y++)
-                {
-					if ((x < 934 || x > 987 || y < 495 || y > 550) && bitmap.GetPixel(x, y) == PointersAndValues.blackPixelColor)
-                    {
-                        pixelCount++;
-                    }
-
-				}
-			}
-            if (pixelCount > 20000)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-*/
 		public static bool AttackSkillMobWhenSelected()
-        {
-            if (ProgramHandle.isInCity != 1)
-            {
+		{
+			int redDifference = 32; // This value can be adjusted to set the maximum allowed difference between the red values of `currentPixel` and `Color.Red`.
+
+				if (ProgramHandle.isInCity != 1)
+				{
                 if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
 
@@ -59,19 +35,20 @@ namespace AresTrainerV3.AttackMob
                                 for (int y = 360; y < 680; y++)
                                 {
                                     Color currentPixelColor = bitmap.GetPixel(x, y);
-                                    if ((x < 934 || x > 987) && (y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
-                                    {
-                                        MouseOperations.SetCursorPosition(x, y);
-                                        ProgramHandle.waitMouseInPos();
+                                    if ((x < 934 || x > 987) && (y < 495 || y > 550) && Math.Abs(currentPixelColor.R - Color.Red.R) <= redDifference)
 
-                                        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                        {
-                                            //   Debug.WriteLine("1 attack for");
+									{
+											MouseOperations.SetCursorPosition(x, y);
+									ProgramHandle.waitMouseInPos();
 
-                                            RepotAbstract.IsScanRunning = false;
-                                            GC.Collect();
-                                            return true;
-                                        }
+									if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+												{
+													//   Debug.WriteLine("1 attack for");
+
+													RepotAbstract.IsScanRunning = false;
+													GC.Collect();
+													return true;
+												}
                                     }
                                 }
                             }
@@ -79,7 +56,6 @@ namespace AresTrainerV3.AttackMob
                 }
                 if (ExpBotManagerAbstract.isExpBotRunning == true)
                 {
-                     graphics = Graphics.FromImage(bitmap as Image);
                      graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
                         for (int x = 527; x < 1332; x++)
                         {
@@ -91,16 +67,15 @@ namespace AresTrainerV3.AttackMob
                                 Color currentPixelColor = bitmap.GetPixel(x, y);
                                 if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
                                 {
-                                    MouseOperations.SetCursorPosition(x, y);
-                                    ProgramHandle.waitMouseInPos();
-
-                                    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-                                    {
-                                        RepotAbstract.IsScanRunning = false;
-                                        GC.Collect();
-                                        return true;
-                                    }
-                                }
+									MouseOperations.SetCursorPosition(x, y);
+								ProgramHandle.waitMouseInPos();
+								if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+										{
+											RepotAbstract.IsScanRunning = false;
+											GC.Collect();
+											return true;
+										}
+									}
                             }
 
                         }

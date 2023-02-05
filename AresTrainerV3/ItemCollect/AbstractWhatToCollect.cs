@@ -36,7 +36,12 @@ namespace AresTrainerV3.ItemCollect
         protected abstract bool collectItemValues();
         public bool ClickAndCollectWhatItem()
         {
-            if (collectItemValues())
+			if (ProgramHandle.getCurrentItemHighlightedType == SOD)
+            {
+
+            }
+
+			if (collectItemValues())
             {
                 Thread.Sleep(1);
                 Thread.Sleep(1);

@@ -1,7 +1,9 @@
-﻿using AresTrainerV3.AttackMob;
+﻿using AresTrainerV3;
+using AresTrainerV3.AttackMob;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
+using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemInventory;
 using System;
 using System.Collections.Generic;
@@ -18,7 +20,7 @@ namespace AresTrainerV3.ItemCollect
 		IWhatToCollect _whatToCollect { get { return whatToCollect; } set { whatToCollect = value; } }
         IWhatToCollect currentCollect;
 		IWhatToCollect CollectIgnoringWeight = new CollectSod();
-
+		bool wasSodDetected = false;
 		int[] smallX = new int[2] { 850, 1170 };
 		int[] smallY = new int[2] { 410, 730 };
 		int[] bigX = new int[2] { 550, 1360 };
@@ -93,8 +95,14 @@ namespace AresTrainerV3.ItemCollect
         {
             return ScanAndCollect();
         }
-
-        bool PixelScan()
+		void WasSodSelected()
+		{
+			if (ProgramHandle.getCurrentItemHighlightedType == -13799)
+			{
+				wasSodDetected = true;
+			}
+		}
+		bool PixelScan()
         {
             if (currentCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
 			{
@@ -116,6 +124,7 @@ namespace AresTrainerV3.ItemCollect
 			{
 				RepotAbstract.IsScanRunning = true;
 				BitmapCopyFromScreen();
+				wasSodDetected = false;
 				for (int x = xSize[0]; x < xSize[1]; x++)
 				{
 					for (int y = ySize[0]; y < ySize[1]; y++)
@@ -124,9 +133,42 @@ namespace AresTrainerV3.ItemCollect
 						if ((x < 934 || x > 979 || y < 500 || y > 538) && currentPixelColor == PointersAndValues.WhitePixelColor)
 						{
 							waitMouseAttackPointedMob(x, y);
+							WasSodSelected();
 							if (_whatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
+							}
+							waitMouseAttackPointedMob(x+1, y+1);
+							WasSodSelected();
+
+							if (_whatToCollect.ClickAndCollectWhatItem())
+							{
+								return true;
+							}
+							waitMouseAttackPointedMob(x-1, y -1);
+							WasSodSelected();
+
+							if (_whatToCollect.ClickAndCollectWhatItem())
+							{
+								return true;
+							}
+							waitMouseAttackPointedMob(x + 1, y-1);
+							WasSodSelected();
+
+							if (_whatToCollect.ClickAndCollectWhatItem())
+							{
+								return true;
+							}
+							waitMouseAttackPointedMob(x-1, y+1);
+							WasSodSelected();
+
+							if (_whatToCollect.ClickAndCollectWhatItem())
+							{
+								return true;
+							}
+							if (wasSodDetected == true)
+							{
+								this.PixelScaner(bigX, bigY);
 							}
 						}
 					}
@@ -139,12 +181,23 @@ namespace AresTrainerV3.ItemCollect
             if (ExpBotManagerAbstract.isExpBotRunning == true)
             {
                 if (currentCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
-                {
+				{
+					RepotAbstract.IsScanRunning = true;
 					ItemSeller.MoveItemsToStorage();
-					if(PixelScaner(underCharX, underCharY))
-                    {
-                        return CollectSucces();
-                    }
+					for (int x = 930; x < 980; x++)
+					{
+						for (int y = 500; y < 545; y++)
+						{
+							MouseOperations.SetCursorPosition(x, y);
+							ProgramHandle.waitMouseInPosScanUnder();
+							AttackWhenPointedOnMob();
+
+							if (whatToCollect.ClickAndCollectWhatItem())
+							{
+								return CollectSucces();
+							}
+						}
+					}
 				}
 			}
             return CollectFail();
@@ -205,4 +258,3 @@ namespace AresTrainerV3.ItemCollect
 
 
 // TO DO XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-// small scan big scan using delegate as a method to run
