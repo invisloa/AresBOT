@@ -645,13 +645,21 @@ namespace AresTrainerV3
         {
 			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
     		ExpBotManagerAbstract.RequestStartExpBot();
+            HealBotAbstract.RequestStartStopHealBot();
+
+
+
 			ProgramHandle.SetCameraForExpBot();
 			Thread.Sleep(150);
 
 
-			PixelItemCollector collect = new PixelItemCollector(new CollectSod());
-            collect.ScanClickAndCollectItem();
-/*			Thread.Sleep(150);
+			///PixelItemCollector collect = new PixelItemCollector(new CollectSod());
+            // collect.ScanClickAndCollectItem();
+            PixelMobAttack.AttackSkillMobWhenSelected();
+/*            SkillSelector asd = new SkillSelectorMageAlliance();
+            asd.Rebuff();
+
+*//*			Thread.Sleep(150);
 			Thread.Sleep(150);
             PixelItemCollector collector = new PixelItemCollector(new CollectAllItems());
             collector.ScanClickAndCollectItem();

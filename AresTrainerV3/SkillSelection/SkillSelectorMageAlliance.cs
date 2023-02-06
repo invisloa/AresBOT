@@ -26,31 +26,31 @@ namespace AresTrainerV3.SkillSelection
         {
             while (HealBotAbstract.IsHealBotRunning == true)
             {
-				/*                if (ProgramHandle.isInCity != 1)
-								{
-									firstBuff = ProgramHandle.getBuff1Informations.Item1;
-									secondBuff = ProgramHandle.getBuff1Informations.Item2;
-									thirdBuff = ProgramHandle.getBuff1Informations.Item3;
-									fourthBuff = ProgramHandle.getBuff1Informations.Item4;
+                if (ProgramHandle.isInCity != 1)
+                {
+                    firstBuff = ProgramHandle.getBuff1Informations.Item1;
+                    secondBuff = ProgramHandle.getBuff1Informations.Item2;
+                    thirdBuff = ProgramHandle.getBuff1Informations.Item3;
+                    fourthBuff = ProgramHandle.getBuff1Informations.Item4;
 
-									UseRapidWhenLowSkillDelay();
-									if (buffIsNotActive(buff1value))
-									{
-										KeyPresser.PressKey(5, 50, 50);
-										KeyPresser.PressKey(5, 50, 50);
-										KeyPresser.PressKey(5, 50, 50);
-									}
-									checkIfAttackSkillIsSelected();
-									if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
-									{
-										KeyPresser.PressKey(7, 100, 100);  // temporary exp scrolls
+                    UseRapidWhenLowSkillDelay();
+                    if (buffIsNotActive(buff1value))
+                    {
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                        KeyPresser.PressKey(5, 50, 50);
+                    }
+                    checkIfAttackSkillIsSelected();
+                    if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue)
+                    {
+                        KeyPresser.PressKey(7, 100, 100);  // temporary exp scrolls
 
-										KeyPresser.PressKey(8, 100, 100);
-									}
+                        KeyPresser.PressKey(8, 100, 100);
+                    }
 
-								}
-				*/
-				KeyPresser.PressKey(5, 50, 50);
+                }
+
+                KeyPresser.PressKey(3, 50, 50);
 				Thread.Sleep(60000);
             }
              
@@ -58,7 +58,7 @@ namespace AresTrainerV3.SkillSelection
         void UseRapidWhenLowSkillDelay()
         {
             int clickDelayTime = 150;
-            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeedDelayPlus2)
+            if (ProgramHandle.GetSkillDelay == PointersAndValues.castingSpeeDelaydZero)
             { 
                 KeyPresser.PressKey(4, 2 * clickDelayTime);
                 KeyPresser.PressKey(4, 2 * clickDelayTime);
