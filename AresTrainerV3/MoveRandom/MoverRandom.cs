@@ -146,7 +146,7 @@ namespace AresTrainerV3.MoveRandom
                     }
                     else
                     {
-                        Thread.Sleep(5000);
+                        Thread.Sleep(15000);
                         if (ExpBotManagerAbstract.isExpBotRunning)
                         {
                             if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX)

@@ -8,7 +8,9 @@ namespace AresTrainerV3.MoveRandom
 {
     public class MoveRandomPositions
     {
-        public  Tuple<int, int>[] MovePositionsArray =
+
+
+		public Tuple<int, int>[] MovePositionsArray =
         {
             new Tuple<int, int>(1290, 520),
             new Tuple<int, int>(1290, 460),
