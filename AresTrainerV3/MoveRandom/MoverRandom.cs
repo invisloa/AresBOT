@@ -22,7 +22,7 @@ namespace AresTrainerV3.MoveRandom
         protected MoveRandomPositions positionsToMove = new MoveRandomPositions();
         bool movedMainMove = true;
         int bounceAntiRepeatCount = 0;
-        void mainMoveSet()
+		void mainMoveSet()
         {
             movedMainMove = true;
             bounceAntiRepeatCount = 0;
@@ -55,8 +55,21 @@ namespace AresTrainerV3.MoveRandom
         int sideMoveCount = 10;
 
         public static bool AttackedOrCollected = false;
+		DoScanAttackCollect _whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
 
-        public DoScanAttackCollect attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
+
+		public override DoScanAttackCollect whatToCollectWhileMoving
+        {
+            get
+            {
+                return _whatToCollectWhileMoving;
+
+            }
+            set
+            {
+                _whatToCollectWhileMoving = value;
+            }
+        }
 
         protected IUnstuckPosition unstuckPlace
         {
@@ -223,14 +236,14 @@ namespace AresTrainerV3.MoveRandom
                 if (ProgramHandle.GetPositionX > DirectionsLimts.Item1 && ProgramHandle.GetPositionX < DirectionsLimts.Item3 && ProgramHandle.GetPositionY < DirectionsLimts.Item2 && ProgramHandle.GetPositionY > DirectionsLimts.Item4)
                 {
                     mainMoveSet();
-					while (attackAndCollectSODDefault.DoThisWhileMoving()) ;
+					while (whatToCollectWhileMoving.DoThisWhileMoving()) ;
                     Debug.WriteLine("MainMoveClick");
                     MoveToPosRandom();
                 }
                 else if(ProgramHandle.GetPositionX < DirectionsLimts.Item1)
                 {
                     Debug.WriteLine("maxLimitLeft");
-                    while (attackAndCollectSODDefault.DoThisWhileMoving());
+                    while (whatToCollectWhileMoving.DoThisWhileMoving());
                     leftLimitBounce();
                     MoveToPosRandom(_lastMouseMovePosition);
 					movedMainMove = false;
@@ -238,7 +251,7 @@ namespace AresTrainerV3.MoveRandom
 				else if(ProgramHandle.GetPositionX > DirectionsLimts.Item3)
                 {
                     Debug.WriteLine("maxRightLimit");
-                    while (attackAndCollectSODDefault.DoThisWhileMoving());
+                    while (whatToCollectWhileMoving.DoThisWhileMoving());
                     rightLimitBounce();
                     MoveToPosRandom(_lastMouseMovePosition);
 					movedMainMove = false;
@@ -247,7 +260,7 @@ namespace AresTrainerV3.MoveRandom
                 {
 
                     Debug.WriteLine("maxDownLimit");
-                    while (attackAndCollectSODDefault.DoThisWhileMoving());
+                    while (whatToCollectWhileMoving.DoThisWhileMoving());
                     downLimitBounce();
                     MoveToPosRandom(_lastMouseMovePosition);
 					movedMainMove = false;
@@ -255,7 +268,7 @@ namespace AresTrainerV3.MoveRandom
 				else if (ProgramHandle.GetPositionY > DirectionsLimts.Item2)
                 {
                     Debug.WriteLine("maxUpLimit");
-                    while (attackAndCollectSODDefault.DoThisWhileMoving());
+                    while (whatToCollectWhileMoving.DoThisWhileMoving());
                     upLimitBounce();
 					MoveToPosRandom(_lastMouseMovePosition);
 					movedMainMove = false;

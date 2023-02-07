@@ -395,7 +395,6 @@
             "SacredThieves",
             "SacredThievesSOD",
             "HolinaGoblins",
-            "HolinaBuckSlavePit",
             "HershalLowLvl",
             "HershalLeafMages",
             "HershalUWC1stFloor",
@@ -405,8 +404,7 @@
             "SlothNoIcebergs",
             "SlothHorseFarm",
             "SlothAoe",
-            "SlothAoe2spot",
-            "testUWC"});
+            "SlothAoe2spot"});
 			this.ExpBotComboBox.Location = new System.Drawing.Point(719, 233);
 			this.ExpBotComboBox.Name = "ExpBotComboBox";
 			this.ExpBotComboBox.Size = new System.Drawing.Size(121, 23);

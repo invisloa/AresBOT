@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.ExpBotManagement;
+﻿using AresTrainerV3.DoWhileMoving;
+using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.MovePositions;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.ExpBotManager
 {
-    public abstract class ExpBotManagerAbstract : IStartExpBotThread
-    {
+    public abstract class ExpBotManagerAbstract : IStartExpBotThread, IMoveToPositon
+	{
        // public abstract MoveToPositionAbstract MoveToPosPlace { get; }
         public abstract void RunAndExp();
         public static bool shutDownOnRepot = false;
@@ -30,7 +31,14 @@ namespace AresTrainerV3.ExpBotManager
         {
             get { return _isExpBotRunning; }
         }
-        public static void RequestStopExpBot()
+
+		public abstract DoScanAttackCollect whatToCollectWhileMoving
+		{
+			get;
+			set;
+		}
+
+		public static void RequestStopExpBot()
         {
             if (_isExpBotRunning)
             {
@@ -45,5 +53,9 @@ namespace AresTrainerV3.ExpBotManager
             }
         }
 
-    }
+		public bool MoveAttackCollect()
+		{
+			throw new NotImplementedException();
+		}
+	}
 }

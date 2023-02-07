@@ -1,4 +1,6 @@
-﻿using AresTrainerV3.Unstuck;
+﻿using AresTrainerV3.DoWhileMoving;
+using AresTrainerV3.ItemCollect;
+using AresTrainerV3.Unstuck;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,12 @@ namespace AresTrainerV3.MovePositions
 {
     public interface IMoveToPositon
     {
-        public bool MoveAttackCollect();
+		public DoScanAttackCollect whatToCollectWhileMoving
+        {
+            get;
+            set;
+        }
+
+		public bool MoveAttackCollect();
     }
 }

@@ -32,6 +32,10 @@ namespace AresTrainerV3.HealBot
         protected static int MannaRestoreValue = 0;
         protected int myCurrentHp { get { return ProgramHandle.getCurrentHp; } }
         protected int myCurrentManna { get { return ProgramHandle.getCurrentManna; } }
+        IGoRepot repoterCity = Factory.repoterCity;
+        IGoBackExpAbstract _goBackExpPlace = Factory._goBackExpPlace;
+        ExpBotManagerAbstract ExpBotToStart = Factory._expBotToStart;
+
         protected void StopExpBot()
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
@@ -185,7 +189,6 @@ namespace AresTrainerV3.HealBot
         protected void StartHealBot()
         {
             ProgramHandle.SetGameAsMainWindow();
-            expPlaceRepoterBotToStartSetter();
             RequestStartStopHealBot();
 
             SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
