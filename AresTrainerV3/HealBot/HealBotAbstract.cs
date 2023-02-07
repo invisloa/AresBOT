@@ -21,35 +21,6 @@ namespace AresTrainerV3.HealBot
 {
     public abstract class HealBotAbstract
     {
-        Thread blackScreenThread;
-		protected IStartExpBotThread _expBotToStart;
-		IGoRepot _repoterCity;
-		public MoverBotEnums whichBotThreadToStart
-		{
-			get;
-			set;
-		}
-		public WhatToCollectEnums whatToCollect
-		{
-			get;
-			set;
-		}
-		IGoBackExpAbstract _goBackExpPlace;
-
-		protected IStartExpBotThread ExpBotToStart
-		{
-			get
-			{
-				expPlaceRepoterBotToStartSetter();
-				return _expBotToStart;
-			}
-		}
-		IGoRepot repoterCity
-		{
-			get;
-			set;
-		}
-
 		public static bool SelfSetHealValue = false;
         public static bool SellItems = false;
         protected static bool _isHealBotRunning = false;
@@ -275,7 +246,7 @@ namespace AresTrainerV3.HealBot
             if (repoterCity == null)
             {
                 expPlaceRepoterBotToStartSetter();
-                whatToCollectSetter();
+                Factory.whatToCollectSetter();
             }
             repoterCity.GoRepot();
             _goBackExpPlace.GoBackExp();
@@ -296,145 +267,5 @@ namespace AresTrainerV3.HealBot
             }
 
         }
-        private AbstractWhatToCollect whatToCollectSetter()
-        {
-            if (whatToCollect == WhatToCollectEnums.Event)
-            {
-                return new CollectSodEvent();
-            }
-            else if (whatToCollect == WhatToCollectEnums.Stones)
-            {
-                return new CollectSodStones();
-            }
-            else if (whatToCollect == WhatToCollectEnums.Jewelery)
-            {
-                return new CollectSodJewelery();
-            }
-            else if (whatToCollect == WhatToCollectEnums.SellWeapons)
-            {
-                return new CollectSellerCry();
-            }
-            else if (whatToCollect == WhatToCollectEnums.SellAll)
-            {
-                return new CollectAllItems();
-            }
-            else
-            {
-                return new CollectSod();
-            }
-        }
-        private void expPlaceRepoterBotToStartSetter()
-        {
-            if (whichBotThreadToStart == MoverBotEnums.NoRepot)
-            {
-				repoterCity = new RepoterShutdown();
-                _goBackExpPlace = new GoBackExpHolinaTeleport();
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.SacredThieves)
-            {
-
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
-            {
-                repoterCity = new RepoterHolinaTeleport();
-                _goBackExpPlace = new GoBackExpHolinaTeleport();
-                _expBotToStart = new MoverHolinaGoblins() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
-            {
-				repoterCity = new RepoterHershalLeafMages();
-				_goBackExpPlace = new GoBackExpHershalLowLvl();
-				_expBotToStart = new MoverHershalLowLvl() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-			}
-			else if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
-            {
-                repoterCity = new RepoterHershalLeafMages();
-                _goBackExpPlace = new GoBackExpHershalTeleport();
-                _expBotToStart = new MoverHershalLeafMages() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-            }
-            else if (whichBotThreadToStart == MoverBotEnums.HershalUWC1stFloor)
-            {
-                repoterCity = new RepoterHershalLeafMages();
-                _goBackExpPlace = new GoBackExpUWC();
-                _expBotToStart = new MoverHershalUwc1stFloor() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-            }
-			else if (whichBotThreadToStart == MoverBotEnums.KharonWolves)
-			{
-				repoterCity = new RepoterKharonExp();
-				_goBackExpPlace = new GoBackExpKharonWolves();
-				_expBotToStart = new MoverKharonWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-				if (blackScreenThread == null)
-				{
-					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-					blackScreenThread.Start();
-				}
-			}
-			else if (whichBotThreadToStart == MoverBotEnums.KharonBigWolves)
-			{
-				repoterCity = new RepoterKharonExp();
-				_goBackExpPlace = new GoBackExpKharonBigWolves();
-				_expBotToStart = new MoverKharonBigWolves() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-				if (blackScreenThread == null)
-				{
-					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-					blackScreenThread.Start();
-				}
-			}
-			else if (whichBotThreadToStart == MoverBotEnums.Sloth1stFloor)
-            {
-                repoterCity = new RepoterKharonExp();
-                _goBackExpPlace = new GoBackExpSloth1stFloor();
-                _expBotToStart = new MoverSloth1stFloorEntrace() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-            }
-			else if (whichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
-			{
-				repoterCity = new RepoterKharonExp();
-				_goBackExpPlace = new GoBackExpSlothNoIcebergs();
-				_expBotToStart = new MoverSloth1stFloorNoIceBergs() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-				if (blackScreenThread == null)
-				{
-					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-					blackScreenThread.Start();
-				}
-			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothHorseFarm)
-			{
-				repoterCity = new RepoterKharonExp();
-				_goBackExpPlace = new GoBackExpSlothHorseFarm();
-				_expBotToStart = new SlothHorseFarm() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-				if (blackScreenThread == null)
-				{
-					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-					blackScreenThread.Start();
-				}
-			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothAoe)
-			{
-				repoterCity = new RepoterKharonExp();
-				_goBackExpPlace = new GoBackExpSlothNoIcebergs();
-				_expBotToStart = new MoverSloth1stFloorAoe() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-				if (blackScreenThread == null)
-				{
-					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-					blackScreenThread.Start();
-				}
-			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothAoe2Spot)
-			{
-				repoterCity = new RepoterKharonExp();
-				_goBackExpPlace = new GoBackExpSloth1FloorAoe2Spot();
-				_expBotToStart = new MoverSloth1stFloorAoe2Spot() { attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
-				if (blackScreenThread == null)
-				{
-					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
-					blackScreenThread.Start();
-				}
-			}
-
-		}
-
-
-
     }
 }

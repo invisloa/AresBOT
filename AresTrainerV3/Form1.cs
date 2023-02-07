@@ -649,10 +649,6 @@ namespace AresTrainerV3
 			SkillSelector asd = new SkillSelectorMageAlliance();
 			asd.Rebuff();
 
-			ItemSeller isell = new ItemSeller();
-			isell.SellItemsByMouseMove();
-
-
 
 			ProgramHandle.SetCameraForExpBot();
 			Thread.Sleep(150);

@@ -32,8 +32,20 @@ namespace AresTrainerV3.SkillSelection
             }
              
         }
+		public override void SkillAssign()
+        {
+            // currently no Hacking;
+        }
 
-        public override void SkillAssign()
+
+
+	}
+}
+
+
+
+
+/*        public override void SkillAssign()
         {
             if (ProgramHandle.isCurrentSkill() == 2)
             {
@@ -60,14 +72,7 @@ namespace AresTrainerV3.SkillSelection
                 ProgramHandle.SkillToOverride = PointersAndValues.mageSupportLightningBarrier;
             }
         }
-
-    }
-}
-
-
-
-
-
+*/
 
 
 
