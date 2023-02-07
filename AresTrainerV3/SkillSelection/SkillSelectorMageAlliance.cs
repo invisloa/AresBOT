@@ -28,7 +28,7 @@ namespace AresTrainerV3.SkillSelection
                     checkIfAttackSkillIsSelected();
                 }
                 KeyPresser.PressKey(3, 50, 50);
-				Thread.Sleep(60000);
+				Thread.Sleep(10000);
             }
              
         }

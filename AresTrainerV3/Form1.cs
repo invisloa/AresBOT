@@ -539,32 +539,32 @@ namespace AresTrainerV3
 
 			if (CollectorComboBox.Text == "+Event")
             {
-                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent()));
             }
             else if (CollectorComboBox.Text == "+Jewelery")
             {
-                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
+				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodJewelery()));
             }
             else if (CollectorComboBox.Text == "+Stones")
             {
-                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
+				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStones()));
             }
             else if (CollectorComboBox.Text == "+Stones+Jewelery")
             {
-                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
+				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
             }
             else if (CollectorComboBox.Text == "+Seller")
             {
-                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
+				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
             }
             else if (CollectorComboBox.Text == "AllItems")
             {
-                HealbotToRun.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
                 ExpBotMoverToRun.attackAndCollectSODDefault = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
             }
         }
