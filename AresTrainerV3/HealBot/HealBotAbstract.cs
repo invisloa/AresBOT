@@ -22,10 +22,37 @@ namespace AresTrainerV3.HealBot
     public abstract class HealBotAbstract
     {
         Thread blackScreenThread;
-        public static bool SelfSetHealValue = false;
+		protected IStartExpBotThread _expBotToStart;
+		IGoRepot _repoterCity;
+		public MoverBotEnums whichBotThreadToStart
+		{
+			get;
+			set;
+		}
+		public WhatToCollectEnums whatToCollect
+		{
+			get;
+			set;
+		}
+		IGoBackExpAbstract _goBackExpPlace;
+
+		protected IStartExpBotThread ExpBotToStart
+		{
+			get
+			{
+				expPlaceRepoterBotToStartSetter();
+				return _expBotToStart;
+			}
+		}
+		IGoRepot repoterCity
+		{
+			get;
+			set;
+		}
+
+		public static bool SelfSetHealValue = false;
         public static bool SellItems = false;
         protected static bool _isHealBotRunning = false;
-        IGoRepot _repoterCity;
         public static bool IsHealBotRunning
         {
             get { return _isHealBotRunning; }
@@ -54,11 +81,6 @@ namespace AresTrainerV3.HealBot
             { return MannaRestoreValue; }
             set
             { MannaRestoreValue = value; }
-        }
-        IGoRepot repoterCity
-        {
-            get;
-            set;
         }
         public void setHealbotValues()
         {
@@ -219,7 +241,6 @@ namespace AresTrainerV3.HealBot
                 {
                     MannaKeyPress();
                 }
-                WhiteRedPotionKeyPress();
                 if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity !=1)
                 {
                     // try to make storage repot and items move
@@ -275,67 +296,6 @@ namespace AresTrainerV3.HealBot
             }
 
         }
-        void KeyClickSpeedPotions()
-        {
-			KeyPresser.PressKey(8, 100, 100);
-			KeyPresser.PressKey(7, 100, 100);
-		}
-		void UseWhiteRedOnRunningSpeed()
-        {
-			if (ProgramHandle.getCurrentRunningSpeed == PointersAndValues.runSpeedNormalValue && ProgramHandle.getWhitePotSlotValue > PointersAndValues.InvPotCount(1)
-				&& ProgramHandle.getRedPotSlotValue > PointersAndValues.InvPotCount(1))
-			{
-                KeyClickSpeedPotions();
-            }
-
-		}
-        void UseWhiteRedOnAttackSpeed(int plusSpeedValue)
-        {
-            if (ProgramHandle.getCurrentAttackSpeed == plusSpeedValue)
-            {
-				KeyClickSpeedPotions();
-			}
-		}
-
-		protected void WhiteRedPotionKeyPress()
-        {
-
-            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
-            {
-                UseWhiteRedOnRunningSpeed();
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
-            {
-                //UseWhiteRedOnRunningSpeed();
-                UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedSpearImp);
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
-            {
-                UseWhiteRedOnRunningSpeed();
-                // UseWhiteRedOnAttackSpeed(PointersAndValues.attackSpeedKnightPlus2Tempest);
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
-            {
-                UseWhiteRedOnRunningSpeed();
-            }
-		}
-
-
-
-
-		protected IStartExpBotThread _expBotToStart;
-        public MoverBotEnums whichBotThreadToStart
-        {
-            get;
-            set;
-        }
-        public WhatToCollectEnums whatToCollect
-        {
-            get;
-            set;
-        }
-        IGoBackExpAbstract _goBackExpPlace;
-
         private AbstractWhatToCollect whatToCollectSetter()
         {
             if (whatToCollect == WhatToCollectEnums.Event)
@@ -473,15 +433,6 @@ namespace AresTrainerV3.HealBot
 			}
 
 		}
-
-		protected IStartExpBotThread ExpBotToStart
-        {
-            get
-            {
-                expPlaceRepoterBotToStartSetter();
-                return _expBotToStart;
-            }
-        }
 
 
 

@@ -29,12 +29,6 @@ namespace AresTrainerV3.SkillSelection
             {
                 if (ProgramHandle.isInCity != 1)
                 {
-                    firstBuff = ProgramHandle.getBuff1Informations.Item1;
-                    secondBuff = ProgramHandle.getBuff1Informations.Item2;
-                    thirdBuff = ProgramHandle.getBuff1Informations.Item3;
-                    fourthBuff = ProgramHandle.getBuff1Informations.Item4;
-
-                     
                     if (buffIsNotActive(buff1value))
                     {
 						KeyPresser.PressKey(4, 50, 50);

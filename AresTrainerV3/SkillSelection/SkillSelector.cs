@@ -27,8 +27,27 @@ namespace AresTrainerV3.SkillSelection
             else
                 return new SkillSelectorArcerAli();
         }
+		bool buffIsNotActive(int buffValue)
+		{
+			foreach (var item in ProgramHandle.getBuffInformations)
+			{
+				if (buffValue == item)
+				{ return false; }
+			}
+			return true;
+		}
 
-        protected void checkIfAttackSkillIsSelected()
+		protected void checkBuffAndClick(int buffValue, int buffKey)
+		{
+			if (buffIsNotActive(buffValue))
+			{
+				KeyPresser.PressKey(buffKey, 75, 75);
+				KeyPresser.PressKey(buffKey, 75, 75);
+				KeyPresser.PressKey(buffKey, 75, 75);
+			}
+		}
+
+		protected void checkIfAttackSkillIsSelected()
         {
             if (ProgramHandle.isCurrentSkill() != 2)
             {

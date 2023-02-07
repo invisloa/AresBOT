@@ -162,19 +162,18 @@ namespace AresTrainerV3
                 return memSkill.readByte(proc.Handle, IntPtr.Add(baseNormalOffset, PointersAndValues.classSelected));
             }
         }
-        public static Tuple<int,int, int, int> getBuff1Informations
+        public static List<int> getBuffInformations
         {
-
-            get
+            get 
             {
-                {
-                    int firstbuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1FirstOffset))), 0);
-                    int secondBuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, (PointersAndValues.Buff2FirstOffset)))), 0);
-                    int thirdBuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff3FirstOffset))), 0);
-                    int forthBuff = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff4FirstOffset))), 0);
+				List<int> buffInformations = new List<int>();
 
-                    return new Tuple<int, int, int, int>(firstbuff, secondBuff, thirdBuff, forthBuff);
-                }
+				for (int i = 0; i < 9; i++)
+               {
+                int buffToAdd = BitConverter.ToInt16((memRebuff.readShort(proc.Handle, IntPtr.Add(BuffWindowMOffset, PointersAndValues.Buff1FirstOffset+0x40*i))), 0);
+					buffInformations.Add(buffToAdd);
+			   }
+			return buffInformations;
             }
         }
 

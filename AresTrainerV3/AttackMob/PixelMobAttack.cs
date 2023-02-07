@@ -12,85 +12,115 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.AttackMob
 {
-    public static class PixelMobAttack
-    {
-        static int moveMouseVector = 10;
+	public static class PixelMobAttack
+	{
+		static int moveMouseVector = 10;
 		static int redDifference = 32;
 
 		static Bitmap bitmap = new Bitmap(1340, 840);
-        static Graphics graphics = Graphics.FromImage(bitmap as Image);
-        static bool checkSearchColor(Color currentPixelColor)
-        {
+		static Graphics graphics = Graphics.FromImage(bitmap as Image);
+		static bool wasMobSelected = false;
+		static void WasMobSelected()
+		{
+			if (ProgramHandle.isMobSelected != 0 && ProgramHandle.isMobSelected < 8300000 && ProgramHandle.isInCity != 1)
+			{
+				wasMobSelected = true;
+			}
+		}
+		static void ScanAgainWhenMobFound()
+		{
+			if (wasMobSelected == true)
+			{
+				PixelMobAttack.AttackSkillMobWhenSelected();
+			}
+		}
+
+		static bool checkSearchColor(Color currentPixelColor)
+		{
 			if (currentPixelColor.G == 0 && currentPixelColor.B == 0 &&
 				currentPixelColor.R < 130 && currentPixelColor.R > 20)
-            {
-                return true;
-            }
-            else return false;
+			{
+				return true;
+			}
+			else return false;
 		}
 		public static bool AttackSkillMobWhenSelected()
 		{
-
-				if (ProgramHandle.isInCity != 1)
+			wasMobSelected= false;
+			if (ProgramHandle.isInCity != 1)
+			{
+				if (ExpBotManagerAbstract.isExpBotRunning == true)
 				{
-                if (ExpBotManagerAbstract.isExpBotRunning == true)
-                {
-                    RepotAbstract.IsScanRunning = true;
-                    graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-                        for (int x = 800; x < 1120; x++)
-                        {
-                            if (x < 934 || x > 987)
-                            {
-                                for (int y = 360; y < 680; y++)
-                                {
-                                    Color currentPixelColor = bitmap.GetPixel(x, y);
-                                    if ((x < 934 || x > 987) && (y < 495 || y > 550) && checkSearchColor(currentPixelColor))
-
-									{
-											MouseOperations.SetCursorPosition(x, y);
-							        		ProgramHandle.waitMouseInPos();
-									        if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-											{
-												//   Debug.WriteLine("1 attack for");
-												RepotAbstract.IsScanRunning = false;
-												GC.Collect();
-												return true;
-											}
-                                    }
-                                }
-                            }
-                        }
-                }
-                if (ExpBotManagerAbstract.isExpBotRunning == true)
-                {
-                     graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
-                        for (int x = 527; x < 1332; x++)
-                        {
-
-                            for (int y = 237; y < 835; y++)
-                            {
-                                Color currentPixelColor = bitmap.GetPixel(x, y);
-                                if ((x < 934 || x > 987 || y < 495 || y > 550) && checkSearchColor(currentPixelColor))
+					RepotAbstract.IsScanRunning = true;
+					graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+					for (int x = 800; x < 1120; x++)
+					{
+						if (x < 934 || x > 987)
+						{
+							for (int y = 360; y < 680; y++)
 							{
+								Color currentPixelColor = bitmap.GetPixel(x, y);
+								if ((x < 934 || x > 987) && (y < 495 || y > 550) && checkSearchColor(currentPixelColor))
+								{
 									MouseOperations.SetCursorPosition(x, y);
-								    ProgramHandle.waitMouseInPos();
-								    if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
-										{
-											RepotAbstract.IsScanRunning = false;
-											GC.Collect();
-											return true;
-										}
+									ProgramHandle.waitMouseInPos();
+									WasMobSelected();
+									if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+									{
+										return endScanLoopSucces();
 									}
-                            }
+								}
+							}
+						}
+					}
+					ScanAgainWhenMobFound();
+				}
+				if (ExpBotManagerAbstract.isExpBotRunning == true)
+				{
+					graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
+					for (int x = 527; x < 1332; x++)
+					{
 
-                        }
-                }
-            }
-            RepotAbstract.IsScanRunning = false;
+						for (int y = 237; y < 835; y++)
+						{
+							Color currentPixelColor = bitmap.GetPixel(x, y);
+							if ((x < 934 || x > 987 || y < 495 || y > 550) && checkSearchColor(currentPixelColor))
+							{
+								MouseOperations.SetCursorPosition(x, y);
+								ProgramHandle.waitMouseInPos();
+								WasMobSelected();
+
+								if (AttackMobCollectSod.CheckIfSelectedAndAttackSkill())
+								{
+									return endScanLoopSucces();
+								}
+							}
+						}
+
+					}
+					ScanAgainWhenMobFound();
+				}
+			}
+			return endScanLoopFail();
+		}
+		static void endScanning()
+		{
+			wasMobSelected = false;
+			RepotAbstract.IsScanRunning = false;
 			GC.Collect();
-            return false;
-        }
+		}
+		static bool endScanLoopSucces()
+		{
+			endScanning();
+			return true;
+		}
+		static bool endScanLoopFail()
+		{
+			endScanning();
+			return false;
+		}
 
-    }
+
+	}
 
 }

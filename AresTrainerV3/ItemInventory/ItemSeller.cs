@@ -715,11 +715,11 @@ namespace AresTrainerV3.ItemInventory
             {
                 return true;
             }
-            else if (SihonValue > 35)
+            else if (Sihon > SihonValue)
             {
                 return true;
             }
-            else if (SihonWithStats > 30 && Mp > 4 || SihonWithStats > 30 && Agi > 4 || SihonWithStats > 30 && Con > 4)
+            else if (Sihon > SihonWithStats && Mp > 4 || Sihon > SihonWithStats && Agi > 4 || Sihon > SihonWithStats && Con > 4)
             {
                 return true;
             }

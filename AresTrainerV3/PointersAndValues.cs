@@ -247,9 +247,11 @@ public static class PointersAndValues
     public const int Buff1FirstOffset = 0x118;  // second is 0x150 every next is 0x38 or +70 dec
     public const int Buff2FirstOffset = 0x158;  // second is 0x150 every next is 0x38 or +70 dec
     public const int Buff3FirstOffset = 0x198;  // second is 0x150 every next is 0x38 or +70 dec
-    public const int Buff4FirstOffset = 0x1d8;  // second is 0x150 every next is 0x38 or +70 dec
-
-    public const int CurrentSkillTabOffOffset = 0x174;
+	public const int Buff4FirstOffset = 0x1d8;  // second is 0x150 every next is 0x38 or +70 dec
+	public const int Buff5FirstOffset = 0x218;  // second is 0x150 every next is 0x38 or +70 dec
+	public const int Buff6FirstOffset = 0x258;  // second is 0x150 every next is 0x38 or +70 dec
+	public const int Buff7FirstOffset = 0x298;  // second is 0x150 every next is 0x38 or +70 dec
+	public const int CurrentSkillTabOffOffset = 0x174;
 
     public const int ShopWindowOffset1 = 0xc0;
     public const int ShopWindowOffset2 = 0xd8;
@@ -295,7 +297,8 @@ public static class PointersAndValues
     public const int attackSpeedSpearImpBos = 1073741824;
     public const int attackSpeednormalValueBow = 1070945622;
     public const int attackSpeedKishValueBow = 1073741824;
-    public const int castingSpeeDelaydZero = 16256;
+	public const int castingSpeeDelaydZero = 16255;
+	public const int castingSpeeDelaydZeroAoe = 16256;
     public const int castingSpeedDelayOrbWithRosAoe = 16255;
 
     public const int castingSpeedDelayPlus1 = 16204;
