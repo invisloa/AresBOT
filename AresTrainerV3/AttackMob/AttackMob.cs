@@ -17,7 +17,7 @@ namespace AresTrainerV3.AttackMob
 
 		public static bool IsAttackingPixel = false;
         static int attackUnstackCounter = 0;
-        static int unstackMax = 44;
+        static int unstackMax = 60;
         static void checkIfIsNowAttackingAnimation()
         {
             int waitTime = 20;

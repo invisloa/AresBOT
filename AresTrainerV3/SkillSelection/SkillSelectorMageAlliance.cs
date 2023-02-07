@@ -101,4 +101,3 @@ namespace AresTrainerV3.SkillSelection
                     }
 */
 
-*/
