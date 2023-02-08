@@ -222,6 +222,7 @@ namespace AresTrainerV3
 		{
             SetBotEnums();
             SetCollectEnums();
+            Factory.SetExpBot();
 		}
 
 

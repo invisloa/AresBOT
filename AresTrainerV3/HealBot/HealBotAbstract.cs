@@ -20,23 +20,41 @@ using static AresTrainerV3.Enums.EnumsList;
 namespace AresTrainerV3.HealBot
 {
     public abstract class HealBotAbstract
-    {
+	{
+		IGoRepot repoterCity
+        {
+            get
+            {
+                return Factory.RepoterCity;
+			}
+        }
+		IGoBackExpAbstract _goBackExpPlace
+		{
+			get
+			{
+				return Factory.GoBackExpPlace;
+			}
+		}
+		ExpBotManagerAbstract ExpBotToStart
+		{
+			get
+			{
+				return Factory.ExpBotMoverToRun;
+			}
+		}
 		public static bool SelfSetHealValue = false;
         public static bool SellItems = false;
         protected static bool _isHealBotRunning = false;
-        public static bool IsHealBotRunning
-        {
-            get { return _isHealBotRunning; }
-        }
         protected static int hpHealValue = 0;
         protected static int MannaRestoreValue = 0;
         protected int myCurrentHp { get { return ProgramHandle.getCurrentHp; } }
         protected int myCurrentManna { get { return ProgramHandle.getCurrentManna; } }
-        IGoRepot repoterCity = Factory.repoterCity;
-        IGoBackExpAbstract _goBackExpPlace = Factory._goBackExpPlace;
-        ExpBotManagerAbstract ExpBotToStart = Factory._expBotToStart;
+		public static bool IsHealBotRunning
+		{
+			get { return _isHealBotRunning; }
+		}
 
-        protected void StopExpBot()
+		protected void StopExpBot()
         {
             if (ExpBotManagerAbstract.isExpBotRunning)
             {
@@ -246,11 +264,6 @@ namespace AresTrainerV3.HealBot
         }
         public void RepotAndStartExpBot()
         {
-            if (repoterCity == null)
-            {
-                expPlaceRepoterBotToStartSetter();
-                Factory.whatToCollectSetter();
-            }
             repoterCity.GoRepot();
             _goBackExpPlace.GoBackExp();
             ExpBotToStart.StartExpBotThread();

@@ -36,14 +36,20 @@ namespace AresTrainerV3.SkillSelection
 			}
 			return true;
 		}
-
-		protected void checkBuffAndClick(int buffValue, int buffKey)
+        protected void checkForWhitePotBuff()
+        {
+			if (buffIsNotActive(1697))
+            {
+				KeyPresser.PressKey(8, 75, 75);
+			}
+		}
+		protected void checkBuffAndClick(int buffValue, int buffPressKey)
 		{
 			if (buffIsNotActive(buffValue))
 			{
-				KeyPresser.PressKey(buffKey, 75, 75);
-				KeyPresser.PressKey(buffKey, 75, 75);
-				KeyPresser.PressKey(buffKey, 75, 75);
+				KeyPresser.PressKey(buffPressKey, 75, 75);
+				KeyPresser.PressKey(buffPressKey, 75, 75);
+				KeyPresser.PressKey(buffPressKey, 75, 75);
 			}
 		}
 

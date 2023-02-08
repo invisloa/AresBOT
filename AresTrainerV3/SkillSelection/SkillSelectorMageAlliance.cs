@@ -11,7 +11,6 @@ namespace AresTrainerV3.SkillSelection
 		int expScroll = 2489;
 		int mageShield = 3417;
 		int Rapid = 3416;
-		int whitePot = 1697;
 		int dontknowwhat = 1607; // ????? not sure this one
 		int candle = 1605;
 
@@ -19,11 +18,12 @@ namespace AresTrainerV3.SkillSelection
         {
             while (HealBotAbstract.IsHealBotRunning == true)
             {
-                if (ProgramHandle.isInCity != 1)
+                checkForWhitePotBuff();
+
+				if (ProgramHandle.isInCity != 1)
                 {
 					checkBuffAndClick(Rapid, 4);
 					checkBuffAndClick(mageShield, 5);
-					checkBuffAndClick(whitePot, 8);
 					checkBuffAndClick(expScroll, 7);
                     checkIfAttackSkillIsSelected();
                 }
