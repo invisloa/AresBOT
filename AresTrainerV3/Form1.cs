@@ -153,8 +153,8 @@ namespace AresTrainerV3
 		}
         void SetBotEnums()
         {
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
-			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
+			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 150;
 
 			if (ExpBotComboBox.Text == "EtanaBuckerty")
 			{

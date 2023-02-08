@@ -14,12 +14,12 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.ItemCollect
 {
-    public class PixelItemCollector : ICollectItems
-    {
-        IWhatToCollect whatToCollect = new CollectSod();           // TEMPORARY TO DO TO CHANGE
-		IWhatToCollect _whatToCollect { get { return whatToCollect; } set { whatToCollect = value; } }
-        IWhatToCollect currentCollect;
-		IWhatToCollect CollectIgnoringWeight = new CollectSod();
+	public class PixelItemCollector : ICollectItems
+	{
+		IWhatToCollect whatToCollectToSet;         // TEMPORARY TO DO TO CHANGE
+		IWhatToCollect GetWhatToCollect { get { return currentCollect; } set { currentCollect = value; } }
+		IWhatToCollect CollectIgnoringWeight { get { return new CollectSod(); } }
+		IWhatToCollect currentCollect;
 		bool wasSodDetected = false;
 		int[] smallX = new int[2] { 850, 1170 };
 		int[] smallY = new int[2] { 410, 730 };
@@ -74,18 +74,19 @@ namespace AresTrainerV3.ItemCollect
         }
         public PixelItemCollector(IWhatToCollect whatToCollect)
         {
-            _whatToCollect = whatToCollect;
+            whatToCollectToSet = whatToCollect;
         }
         bool ScanAndCollect()
         {
             if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
-            {
-                currentCollect = whatToCollect;
+			{
+				Debug.WriteLine($"SCAN NORMAL Weights {ProgramHandle.getCurrentWeight}   {AbstractWhatToCollect.MaxCollectWeight} ");
+				currentCollect = whatToCollectToSet;
 				return PixelScan();
-
 			}
 			else if (ProgramHandle.isInCity != 1)
             {
+				Debug.WriteLine("ignoring weight");
 				currentCollect = CollectIgnoringWeight;
 				return PixelScan();
             }
@@ -104,9 +105,6 @@ namespace AresTrainerV3.ItemCollect
 		}
 		bool PixelScan()
         {
-            if (currentCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
-			{
-
 				if (PixelScaner(smallX, smallY))
                 {
                     return CollectSucces();
@@ -115,8 +113,7 @@ namespace AresTrainerV3.ItemCollect
                 {
                     return CollectSucces();
                 }
-            }
-            return CollectFail();
+			return CollectFail();
         }
 		public bool PixelScaner(int[] xSize, int[] ySize)
 		{
@@ -134,35 +131,35 @@ namespace AresTrainerV3.ItemCollect
 						{
 							waitMouseAttackPointedMob(x, y);
 							WasSodSelected();
-							if (_whatToCollect.ClickAndCollectWhatItem())
+							if (GetWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x+1, y+1);
 							WasSodSelected();
 
-							if (_whatToCollect.ClickAndCollectWhatItem())
+							if (GetWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x-1, y -1);
 							WasSodSelected();
 
-							if (_whatToCollect.ClickAndCollectWhatItem())
+							if (GetWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x + 1, y-1);
 							WasSodSelected();
 
-							if (_whatToCollect.ClickAndCollectWhatItem())
+							if (GetWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x-1, y+1);
 							WasSodSelected();
 
-							if (_whatToCollect.ClickAndCollectWhatItem())
+							if (GetWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
@@ -192,7 +189,7 @@ namespace AresTrainerV3.ItemCollect
 							ProgramHandle.waitMouseInPosScanUnder();
 							AttackWhenPointedOnMob();
 
-							if (whatToCollect.ClickAndCollectWhatItem())
+							if (whatToCollectToSet.ClickAndCollectWhatItem())
 							{
 								return CollectSucces();
 							}

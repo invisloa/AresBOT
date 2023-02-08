@@ -32,7 +32,7 @@ namespace AresTrainerV3.ExpBotManager
             get { return _isExpBotRunning; }
         }
 
-		public abstract DoScanAttackCollect whatToCollectWhileMoving
+		public abstract DoScanAttackCollect WhatToCollectWhileMoving
 		{
 			get;
 			set;

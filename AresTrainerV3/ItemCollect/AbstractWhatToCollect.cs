@@ -38,8 +38,8 @@ namespace AresTrainerV3.ItemCollect
         {
 			if (ProgramHandle.getCurrentItemHighlightedType == SOD)
             {
-
-            }
+				CollectionClick();
+			}
 
 			if (collectItemValues())
             {

@@ -35,7 +35,7 @@ namespace AresTrainerV3.AttackMob
 			}
 		}
 
-		static bool checkSearchColor(Color currentPixelColor)
+		static public bool CheckSearchColor(Color currentPixelColor)
 		{
 			if (currentPixelColor.G == 0 && currentPixelColor.B == 0 &&
 				currentPixelColor.R < 130 && currentPixelColor.R > 20)
@@ -60,7 +60,7 @@ namespace AresTrainerV3.AttackMob
 							for (int y = 360; y < 680; y++)
 							{
 								Color currentPixelColor = bitmap.GetPixel(x, y);
-								if ((x < 934 || x > 987) && (y < 495 || y > 550) && checkSearchColor(currentPixelColor))
+								if ((x < 934 || x > 987) && (y < 495 || y > 550) && CheckSearchColor(currentPixelColor))
 								{
 									MouseOperations.SetCursorPosition(x, y);
 									ProgramHandle.waitMouseInPos();
@@ -84,7 +84,7 @@ namespace AresTrainerV3.AttackMob
 						for (int y = 237; y < 835; y++)
 						{
 							Color currentPixelColor = bitmap.GetPixel(x, y);
-							if ((x < 934 || x > 987 || y < 495 || y > 550) && checkSearchColor(currentPixelColor))
+							if ((x < 934 || x > 987 || y < 495 || y > 550) && CheckSearchColor(currentPixelColor))
 							{
 								MouseOperations.SetCursorPosition(x, y);
 								ProgramHandle.waitMouseInPos();

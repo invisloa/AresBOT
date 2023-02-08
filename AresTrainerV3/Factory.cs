@@ -41,33 +41,6 @@ namespace AresTrainerV3
 		public static void SetExpBot()
 		{
 			expPlaceRepoterBotToStartSetter();
-			SetCollectItems();
-		}
-		public static void SetCollectItems()
-		{
-			switch (whatToCollect)
-			{
-				case Enums.EnumsList.WhatToCollectEnums.Event:
-					ExpBotMoverToRun.whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSodEvent()));
-					break;
-				case Enums.EnumsList.WhatToCollectEnums.Stones:
-					ExpBotMoverToRun.whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStones()));
-					break;
-				case Enums.EnumsList.WhatToCollectEnums.Jewelery:
-					ExpBotMoverToRun.whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSodJewelery()));
-					break;
-				case Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery:
-					ExpBotMoverToRun.whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSodStonesJewleryItems()));
-					break;
-				case Enums.EnumsList.WhatToCollectEnums.SellWeapons:
-					ExpBotMoverToRun.whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSellerCry()));
-					break;
-				case Enums.EnumsList.WhatToCollectEnums.SellAll:
-					ExpBotMoverToRun.whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectAllItems()));
-					break;
-				default:
-					break;
-			}
 		}
 		public static void expPlaceRepoterBotToStartSetter()
 		{
@@ -94,31 +67,31 @@ namespace AresTrainerV3
 			{
 				RepoterCity = new RepoterHolinaTeleport();
 				GoBackExpPlace = new GoBackExpHolinaTeleport();
-				ExpBotMoverToRun = new MoverHolinaGoblins() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverHolinaGoblins() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 			}
 			else if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
 			{
 				RepoterCity = new RepoterHershalLeafMages();
 				GoBackExpPlace = new GoBackExpHershalLowLvl();
-				ExpBotMoverToRun = new MoverHershalLowLvl() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverHershalLowLvl() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 			}
 			else if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
 			{
 				RepoterCity = new RepoterHershalLeafMages();
 				GoBackExpPlace = new GoBackExpHershalTeleport();
-				ExpBotMoverToRun = new MoverHershalLeafMages() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverHershalLeafMages() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 			}
 			else if (whichBotThreadToStart == MoverBotEnums.HershalUWC1stFloor)
 			{
 				RepoterCity = new RepoterHershalLeafMages();
 				GoBackExpPlace = new GoBackExpUWC();
-				ExpBotMoverToRun = new MoverHershalUwc1stFloor() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverHershalUwc1stFloor() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 			}
 			else if (whichBotThreadToStart == MoverBotEnums.KharonWolves)
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpKharonWolves();
-				ExpBotMoverToRun = new MoverKharonWolves() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverKharonWolves() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
@@ -129,7 +102,7 @@ namespace AresTrainerV3
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpKharonBigWolves();
-				ExpBotMoverToRun = new MoverKharonBigWolves() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverKharonBigWolves() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
@@ -140,13 +113,13 @@ namespace AresTrainerV3
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSloth1stFloor();
-				ExpBotMoverToRun = new MoverSloth1stFloorEntrace() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverSloth1stFloorEntrace() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 			}
 			else if (whichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSlothNoIcebergs();
-				ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
@@ -157,7 +130,7 @@ namespace AresTrainerV3
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSlothHorseFarm();
-				ExpBotMoverToRun = new SlothHorseFarm() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new SlothHorseFarm() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
@@ -168,7 +141,7 @@ namespace AresTrainerV3
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSlothNoIcebergs();
-				ExpBotMoverToRun = new MoverSloth1stFloorAoe() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverSloth1stFloorAoe() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
@@ -179,7 +152,7 @@ namespace AresTrainerV3
 			{
 				RepoterCity = new RepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSloth1FloorAoe2Spot();
-				ExpBotMoverToRun = new MoverSloth1stFloorAoe2Spot() { whatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
+				ExpBotMoverToRun = new MoverSloth1stFloorAoe2Spot() { WhatToCollectWhileMoving = new DoScanAttackCollect(new PixelItemCollector(whatToCollectSetter())) };
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);

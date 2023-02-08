@@ -38,7 +38,7 @@ namespace AresTrainerV3.PixelScanNPC
 					for (int y = 260; y < 780; y++)
 					{
 						Color currentPixelColor = bitmap.GetPixel(x, y);
-						if ((x < 934 || x > 987 || y < 495 || y > 550) && currentPixelColor == PointersAndValues.blackPixelColor)
+						if ((x < 934 || x > 987 || y < 495 || y > 550) && PixelMobAttack.CheckSearchColor(currentPixelColor))
 						{
 							MouseOperations.SetCursorPosition(x, y);
 							ProgramHandle.waitMouseInPosScanUnder();
