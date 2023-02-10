@@ -939,13 +939,14 @@ namespace AresTrainerV3.ItemInventory
 		static void LeftClickSellConfirmation(string debugMessage)
 		{
 			int sleepTime = 35;
+			if((Control.MouseButtons & MouseButtons.Left) == MouseButtons.Left)
+			{
+				Thread.Sleep(sleepTime);
+				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+			}
 			Debug.WriteLine(debugMessage);
 			MouseOperations.SetCursorPosition(560, 570);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-			Thread.Sleep(sleepTime);
-			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftDown);
-			Thread.Sleep(sleepTime);
-			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 			Thread.Sleep(sleepTime);

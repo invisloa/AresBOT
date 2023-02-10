@@ -760,7 +760,7 @@ namespace AresTrainerV3
             {
                 BuyerPotionsAbstract.HpPotionsToBuy = 333;
                 BuyerPotionsAbstract.MpPotionsToBuy = 35;
-                ExpBotComboBox.Text = "SlothAoe2spot";
+                ExpBotComboBox.Text = "HershalLowLvl";
             }
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {
