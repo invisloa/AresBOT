@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.MoveRandom;
+﻿using AresTrainerV3.MoveModels.MoveRandom;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

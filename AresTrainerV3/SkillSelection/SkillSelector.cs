@@ -25,7 +25,7 @@ namespace AresTrainerV3.SkillSelection
                 return new SkillSelectorSpearAlli();
             }
             else
-                return new SkillSelectorArcerAli();
+                return new SkillSelectorKnightAlli();
         }
 		bool buffIsNotActive(int buffValue)
 		{
@@ -36,10 +36,18 @@ namespace AresTrainerV3.SkillSelection
 			}
 			return true;
 		}
-        protected void checkForWhitePotBuff()
-        {
+		protected void checkForWhitePotBuff()
+		{
 			if (buffIsNotActive(1697))
-            {
+			{
+				KeyPresser.PressKey(8, 75, 75);
+			}
+		}
+		protected void checkForWhiteRed()
+		{
+			if (buffIsNotActive(1697))
+			{
+				KeyPresser.PressKey(7, 75, 75);
 				KeyPresser.PressKey(8, 75, 75);
 			}
 		}

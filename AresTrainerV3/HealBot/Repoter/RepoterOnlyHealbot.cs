@@ -1,28 +1,21 @@
-﻿using AresTrainerV3.Buyer;
-using AresTrainerV3.ExpBotManager;
-using AresTrainerV3.HealBot.Repoter.Returner;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AresTrainerV3.ExpBotManager;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterOnlyHealbot : IGoRepot
-    {
+	internal class RepoterOnlyHealbot : IGoRepot
+	{
 
 
-        public void GoRepot()
-        {
-            Console.WriteLine("noRepotInThis");
-            KeyPresser.PressKey(6, 200, 200);
-            KeyPresser.PressKey(6, 200, 200);
-            ExpBotManagerAbstract.RequestStopExpBot();
-           // HealBotAbstract.RequestStopHealBot();   
-        }
+		public void GoRepot()
+		{
+			Console.WriteLine("noRepotInThis");
+			KeyPresser.PressKey(6, 200, 200);
+			KeyPresser.PressKey(6, 200, 200);
+			ExpBotManagerAbstract.RequestStopExpBot();
+			// HealBotAbstract.RequestStopHealBot();   
+		}
 
-        /*        protected override GoBackExpAbstract GoBackExpPlace
+		/*        protected override GoBackExpAbstract GoBackExpPlace
                 {
                     get
                     {
@@ -89,5 +82,5 @@ namespace AresTrainerV3.HealBot.Repoter
 
                 }
         */
-    }
+	}
 }

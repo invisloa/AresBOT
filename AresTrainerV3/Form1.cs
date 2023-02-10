@@ -1,28 +1,11 @@
-﻿using AresTrainerV3;
-using AresTrainerV3.AttackMob;
-using AresTrainerV3.Buyer;
-using AresTrainerV3.DoWhileMoving;
+﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
-using AresTrainerV3.HealBot.Repoter;
-using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemCollect.ItemBlessing;
-using AresTrainerV3.ItemDelete;
 using AresTrainerV3.ItemInventory;
-using AresTrainerV3.MovePositions;
-using AresTrainerV3.MoveRandom;
-using AresTrainerV3.MoveRandom.Etana;
-using AresTrainerV3.MoveRandom.Hershal;
-using AresTrainerV3.MoveRandom.Holina;
-using AresTrainerV3.MoveRandom.Kharon;
-using AresTrainerV3.MoveRandom.SacredAlliance;
-using AresTrainerV3.PixelScanNPC;
-using AresTrainerV3.ShopSellAntiBug;
+using AresTrainerV3.ItemInventory.Buyer;
 using AresTrainerV3.SkillSelection;
-using AresTrainerV3.Unstuck;
-using System;
-using System.Diagnostics;
 using Utilities;
 
 
@@ -123,110 +106,110 @@ namespace AresTrainerV3
             }
 
         }
-		public void SetCollectEnums()
-		{
-			if (CollectorComboBox.Text == "+Event")
-			{
-				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
-			}
-			else if (CollectorComboBox.Text == "+Jewelery")
-			{
-				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
-			}
-			else if (CollectorComboBox.Text == "+Stones")
-			{
-				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
-			}
-			else if (CollectorComboBox.Text == "+Stones+Jewelery")
-			{
-				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
-			}
-			else if (CollectorComboBox.Text == "+Seller")
-			{
-				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
-			}
-			else if (CollectorComboBox.Text == "AllItems")
-			{
-				Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
-			}
-
-		}
-        void SetBotEnums()
+        public void SetCollectEnums()
         {
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 150;
-
-			if (ExpBotComboBox.Text == "EtanaBuckerty")
-			{
-				Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
-			}
-			else if (ExpBotComboBox.Text == "SacredGiko")
-			{
-				Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
-			}
-			else if (ExpBotComboBox.Text == "SacredThieves")
+            if (CollectorComboBox.Text == "+Event")
             {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
             }
-            else if (ExpBotComboBox.Text == "SacredThievesSOD")
+            else if (CollectorComboBox.Text == "+Jewelery")
             {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SacredThievesSOD;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
             }
-            else if (ExpBotComboBox.Text == "HolinaGoblins")
+            else if (CollectorComboBox.Text == "+Stones")
             {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
             }
-            else if (ExpBotComboBox.Text == "HershalLowLvl")
+            else if (CollectorComboBox.Text == "+Stones+Jewelery")
             {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
             }
-            else if (ExpBotComboBox.Text == "HershalLeafMages")
+            else if (CollectorComboBox.Text == "+Seller")
             {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
             }
-            else if (ExpBotComboBox.Text == "HershalUWC1stFloor")
+            else if (CollectorComboBox.Text == "AllItems")
             {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
-            }
-            else if (ExpBotComboBox.Text == "KharonWolves")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
-            }
-            else if (ExpBotComboBox.Text == "KharonBigWolves")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonBigWolves;
-            }
-            else if (ExpBotComboBox.Text == "Sloth1stFloor")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
-            }
-            else if (ExpBotComboBox.Text == "SlothNoIcebergs")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
-            }
-            else if (ExpBotComboBox.Text == "SlothHorseFarm")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothHorseFarm;
-            }
-            else if (ExpBotComboBox.Text == "SlothAoe")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
-            }
-            else if (ExpBotComboBox.Text == "SlothAoe2spot")
-            {
-	            Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe2Spot;
+                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
             }
 
         }
-		void AssignBot()
-		{
+        void SetBotEnums()
+        {
+            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+            AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 150;
+
+            if (ExpBotComboBox.Text == "EtanaBuckerty")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
+            }
+            else if (ExpBotComboBox.Text == "SacredGiko")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+            }
+            else if (ExpBotComboBox.Text == "SacredThieves")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+            }
+            else if (ExpBotComboBox.Text == "SacredThievesSOD")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SacredThievesSOD;
+            }
+            else if (ExpBotComboBox.Text == "HolinaGoblins")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+            }
+            else if (ExpBotComboBox.Text == "HershalLowLvl")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
+            }
+            else if (ExpBotComboBox.Text == "HershalLeafMages")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+            }
+            else if (ExpBotComboBox.Text == "HershalUWC1stFloor")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
+            }
+            else if (ExpBotComboBox.Text == "KharonWolves")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
+            }
+            else if (ExpBotComboBox.Text == "KharonBigWolves")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonBigWolves;
+            }
+            else if (ExpBotComboBox.Text == "Sloth1stFloor")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
+            }
+            else if (ExpBotComboBox.Text == "SlothNoIcebergs")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
+            }
+            else if (ExpBotComboBox.Text == "SlothHorseFarm")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothHorseFarm;
+            }
+            else if (ExpBotComboBox.Text == "SlothAoe")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
+            }
+            else if (ExpBotComboBox.Text == "SlothAoe2spot")
+            {
+                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe2Spot;
+            }
+
+        }
+        void AssignBot()
+        {
             SetBotEnums();
             SetCollectEnums();
             Factory.SetExpBot();
-		}
+        }
 
 
-		private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void ClassChangeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
             if (ClassChangeComboBox.SelectedIndex == 0)
@@ -408,7 +391,7 @@ namespace AresTrainerV3
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            System.Environment.Exit(1); 
+            System.Environment.Exit(1);
         }
 
 
@@ -487,7 +470,7 @@ namespace AresTrainerV3
 
         private void SellItemsCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if(SellItemsCheckBox.Checked)
+            if (SellItemsCheckBox.Checked)
             {
                 HealBotAbstract.SellItems = true;
                 checkBox1.Checked = false;
@@ -508,6 +491,298 @@ namespace AresTrainerV3
         private void RunSellerCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             BuyerPotionsAbstract.SpeedPotionsToBuy = 3;
+
+            BuyerPotionsAbstract.BuyFromForm = true;
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 250;
+                BuyerPotionsAbstract.MpPotionsToBuy = 25;
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 333;
+                BuyerPotionsAbstract.MpPotionsToBuy = 35;
+                ExpBotComboBox.Text = "SlothAoe2spot";
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 250;
+                BuyerPotionsAbstract.MpPotionsToBuy = 45;
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 333;
+                BuyerPotionsAbstract.MpPotionsToBuy = 55;
+            }
+
+            HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
+            MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
+            SpeedPot.Text = BuyerPotionsAbstract.SpeedPotionsToBuy.ToString();
+            HealBotAbstract.SellItems = true;
+            SellItemsCheckBox.Checked = true;
+            DoScanAttackCollect.NumberOfCollectScans = 1;
+            NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
+            this.CollectorComboBox.Text = "AllItems";
+        }
+
+        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AssignBot();
+        }
+
+        private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            AssignBot();
+        }
+
+        private void ShutDownWhenInCity_CheckedChanged(object sender, EventArgs e)
+        {
+            if (ShutDownWhenInCity.Checked)
+            {
+                ExpBotManagerAbstract.shutDownOnRepot = true;
+            }
+            else
+            {
+                ExpBotManagerAbstract.shutDownOnRepot = false;
+            }
+        }
+
+        private void CollectItemsBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (CollectItemsBox.Checked)
+            {
+                DoScanAttackCollect.CollectItems = true;
+            }
+            else
+            {
+                DoScanAttackCollect.CollectItems = false;
+            }
+        }
+
+        private void RunExpBot_Click(object sender, EventArgs e)
+        {
+            AssignBot();
+            HealbotToRun.StartHealBotThread();
+            ProgramHandle.SetCameraForExpBot();
+            if (Factory.whichBotThreadToStart != Enums.EnumsList.MoverBotEnums.NoRepot)
+            {
+                HealbotToRun.RepotAndStartExpBot();
+            }
+            else
+            {
+                Factory.ExpBotMoverToRun.StartExpBotThread();
+            }
+        }
+
+
+
+        public void BlessItem()
+        {
+            ExpBotManagerAbstract.RequestStartExpBot();
+            ItemBlesser Blesser = new ItemBlesser();
+            Blesser.BlessItem(10);
+        }
+        public void StartBlessThread()
+        {
+            ExpBotManagerAbstract.RequestStartExpBot();
+            Thread.Sleep(10);
+            Thread ExpBotThread = new Thread(BlessItem);
+            ExpBotThread.Start();
+        }
+
+
+
+
+
+
+
+
+
+        private void fasttest_Click(object sender, EventArgs e)
+        {
+            AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+            ExpBotManagerAbstract.RequestStartExpBot();
+            HealBotAbstract.RequestStartStopHealBot();
+            SkillSelector asd = new SkillSelectorMageAlliance();
+            asd.Rebuff();
+
+
+            ProgramHandle.SetCameraForExpBot();
+            Thread.Sleep(150);
+
+
+
+            //PixelMobAttack.AttackSkillMobWhenSelected();
+
+
+            ///PixelItemCollector collect = new PixelItemCollector(new CollectSod());
+            // collect.ScanClickAndCollectItem();
+            /*           
+
+			*//*			Thread.Sleep(150);
+						Thread.Sleep(150);
+						PixelItemCollector collector = new PixelItemCollector(new CollectAllItems());
+						collector.ScanClickAndCollectItem();
+			*/            //			ProgramHandle.SetCameraLong();
+
+            //    ShopMoveUnbugger smu = new ShopMoveUnbugger();
+            //     smu.UnBugShop();
+
+            /*            PixelScanForNpc npc = new PixelScanForNpc();
+						npc.FindNpc();
+			*/            //ShopMoveUnbugger unb = new ShopMoveUnbugger();
+                          // unb.UnBugShop();
+                          // PixelScanForNpc npc = new PixelScanForNpc();
+                          // npc.FindNpc();
+                          //ProgramHandle.SetCameraLong();
+                          //     ItemSeller.MoveItemsToStorage();
+
+            /*            int g = ProgramHandle.isCurrentInventoryTabOppened;
+						ProgramHandle.SetCameraForExpBot();
+						HealBotAbstract.RequestStartStopHealBot();
+						ExpBotManagerAbstract.RequestStartExpBot();
+						AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+						//ProgramHandle.SetCameraLong();
+						Thread.Sleep(150);
+						Thread.Sleep(150);
+						PixelItemCollector ss = new PixelItemCollector(new CollectAllItems());
+						for (int i = 0; i < 5; i++)
+						{
+							ss.ClickAndCollectItem();
+
+						}
+			*/
+            /* 915 440 1015 565
+						HealBotAbstract.RequestStartStopHealBot();
+						ExpBotManagerAbstract.RequestStartExpBot();
+						PixelMobAttack.AttackSkillMobWhenSelected();
+
+			*//*			SkillSelector asd = SkillSelector.SelectPropperClass();
+						asd.Rebuff();
+			*/
+            //ItemSeller.MoveItemsToStorage();
+
+
+
+            //StartBlessThread();
+            /*			int i = ProgramHandle.ReadBless2RowValue();
+            */
+            /*			ExpBotClass.RequestStartStopMoveExpBot();
+						ExpBotManagerAbstract.RequestStartExpBot();
+
+						ExpBotClass.RunAndExpSquareUWC();
+			*/
+            /*            int i = ProgramHandle.GetCurrentMap;
+						ProgramHandle.SetCameraForExpBot();
+						ProgramHandle.SetCameraLong();
+
+						HealBotAbstract.RequestStartStopHealBot();
+						SkillSelector asd = SkillSelector.SelectPropperClass();
+						asd.Rebuff();
+			*/
+            /*            ProgramHandle.SetCameraForExpBot();
+                        Thread.Sleep(500);
+
+                        var date = DateTime.Now;
+                        if (date.Hour == 5)
+                        {
+                            Debug.WriteLine("zzzz");
+
+            */                /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
+                                        ProgramHandle.SetGameAsMainWindow();
+                                        ProgramHandle.SetCameraForExpBot();
+                                        ProgramHandle.SetCameraLong();
+                                        Thread.Sleep(500);
+                                        zzz.GoBackExp();
+                            *//*            while(true)
+                                        {
+                                            PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
+                                            Refresh();
+                                            //1073741824
+                                        }
+                            */            /*            int i;
+                                                    RepoterKharonExp zzz = new RepoterKharonExp();
+                                                    zzz.GoRepot();
+                                        *//*
+
+                                        ProgramHandle.AntiBlackScreener();
+                            */
+        }
+
+        private void GoToPos_Click_1(object sender, EventArgs e)
+        {
+            int x = 0;
+            int y = 0;
+            Int32.TryParse(PositionX.Text, out x);
+            Int32.TryParse(PositionY.Text, out y);
+            ProgramHandle.TeleportToPosition(x, y, 0);
+        }
+
+        private void ItemBlesserBtn_Click(object sender, EventArgs e)
+        {
+            int blessValue;
+            Int32.TryParse(HpToBuy.Text, out blessValue);
+            MessageBox.Show($"You are going to try bless item to {blessValue}");
+
+            ItemBlesser itemBlesser = new ItemBlesser();
+            itemBlesser.BlessItem(blessValue);
+        }
+
+        private void HPValueTextBox_TextChanged_1(object sender, EventArgs e)
+        {
+
+            int i = 100;
+            int.TryParse(HPValueTextBox.Text, out i);
+            HealBotAbstract.HpHealValue = i;
+
+        }
+
+        private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int i = 100;
+            int.TryParse(MannaValueTextBox.Text, out i);
+            HealBotAbstract.MpRestoreValue = i;
+        }
+
+        private void RunExpcheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            BuyerPotionsAbstract.SpeedPotionsToBuy = 6;
+
+            BuyerPotionsAbstract.BuyFromForm = true;
+            if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 333;
+                BuyerPotionsAbstract.MpPotionsToBuy = 99;
+                ExpBotComboBox.Text = "KharonBigWolves";
+
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 333;
+                BuyerPotionsAbstract.MpPotionsToBuy = 35;
+                ExpBotComboBox.Text = "SlothAoe2spot";
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 250;
+                BuyerPotionsAbstract.MpPotionsToBuy = 45;
+            }
+            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
+            {
+                BuyerPotionsAbstract.HpPotionsToBuy = 333;
+                BuyerPotionsAbstract.MpPotionsToBuy = 55;
+            }
+            HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
+            MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
+            SpeedPot.Text = BuyerPotionsAbstract.SpeedPotionsToBuy.ToString();
+            BuyMaxHp.Checked = true;
+            DoScanAttackCollect.NumberOfCollectScans = 1;
+            NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
+            this.CollectorComboBox.Text = "AllItems";
+        }
+    }
+    /*    
+                BuyerPotionsAbstract.SpeedPotionsToBuy = 3;
 
             BuyerPotionsAbstract.BuyFromForm = true;
 			if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
@@ -540,232 +815,7 @@ namespace AresTrainerV3
             DoScanAttackCollect.NumberOfCollectScans = 1;
             NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 			this.CollectorComboBox.Text = "AllItems";
-		}
 
-        private void ExpBotComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AssignBot();
-        }
-
-        private void CollectorComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            AssignBot();
-        }
-
-        private void ShutDownWhenInCity_CheckedChanged(object sender, EventArgs e)
-        {
-            if(ShutDownWhenInCity.Checked)
-            {
-                ExpBotManagerAbstract.shutDownOnRepot = true;
-            }
-            else
-            {
-                ExpBotManagerAbstract.shutDownOnRepot = false;
-            }
-        }
-
-        private void CollectItemsBox_CheckedChanged(object sender, EventArgs e)
-        {
-            if(CollectItemsBox.Checked)
-            {
-                DoScanAttackCollect.CollectItems = true;
-            }
-            else
-            {
-                DoScanAttackCollect.CollectItems = false;
-            }
-        }
-
-        private void RunExpBot_Click(object sender, EventArgs e)
-        {
-            AssignBot();
-            HealbotToRun.StartHealBotThread();
-            ProgramHandle.SetCameraForExpBot();
-            if (Factory.whichBotThreadToStart != Enums.EnumsList.MoverBotEnums.NoRepot)
-            {
-                HealbotToRun.RepotAndStartExpBot();
-            }
-            else
-            {
-                Factory.ExpBotMoverToRun.StartExpBotThread();
-            }
-        }
-
-
-
-		public void BlessItem()
-        {
-			ExpBotManagerAbstract.RequestStartExpBot();
-			ItemBlesser Blesser = new ItemBlesser();
-			Blesser.BlessItem(10);
-		}
-		public void StartBlessThread()
-		{
-			ExpBotManagerAbstract.RequestStartExpBot();
-			Thread.Sleep(10);
-				Thread ExpBotThread = new Thread(BlessItem);
-				ExpBotThread.Start();
-		}
-
-
-
-
-
-
-
-
-
-		private void fasttest_Click(object sender, EventArgs e)
-        {
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-    		ExpBotManagerAbstract.RequestStartExpBot();
-            HealBotAbstract.RequestStartStopHealBot();
-			SkillSelector asd = new SkillSelectorMageAlliance();
-			asd.Rebuff();
-
-
-			ProgramHandle.SetCameraForExpBot();
-			Thread.Sleep(150);
-
-
-
-			//PixelMobAttack.AttackSkillMobWhenSelected();
-
-
-			///PixelItemCollector collect = new PixelItemCollector(new CollectSod());
-			// collect.ScanClickAndCollectItem();
-			/*           
-
-			*//*			Thread.Sleep(150);
-						Thread.Sleep(150);
-						PixelItemCollector collector = new PixelItemCollector(new CollectAllItems());
-						collector.ScanClickAndCollectItem();
-			*/            //			ProgramHandle.SetCameraLong();
-
-			//    ShopMoveUnbugger smu = new ShopMoveUnbugger();
-			//     smu.UnBugShop();
-
-			/*            PixelScanForNpc npc = new PixelScanForNpc();
-						npc.FindNpc();
-			*/            //ShopMoveUnbugger unb = new ShopMoveUnbugger();
-						  // unb.UnBugShop();
-						  // PixelScanForNpc npc = new PixelScanForNpc();
-						  // npc.FindNpc();
-						  //ProgramHandle.SetCameraLong();
-						  //     ItemSeller.MoveItemsToStorage();
-
-			/*            int g = ProgramHandle.isCurrentInventoryTabOppened;
-						ProgramHandle.SetCameraForExpBot();
-						HealBotAbstract.RequestStartStopHealBot();
-						ExpBotManagerAbstract.RequestStartExpBot();
-						AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-						//ProgramHandle.SetCameraLong();
-						Thread.Sleep(150);
-						Thread.Sleep(150);
-						PixelItemCollector ss = new PixelItemCollector(new CollectAllItems());
-						for (int i = 0; i < 5; i++)
-						{
-							ss.ClickAndCollectItem();
-
-						}
-			*/
-			/* 915 440 1015 565
-						HealBotAbstract.RequestStartStopHealBot();
-						ExpBotManagerAbstract.RequestStartExpBot();
-						PixelMobAttack.AttackSkillMobWhenSelected();
-
-			*//*			SkillSelector asd = SkillSelector.SelectPropperClass();
-						asd.Rebuff();
-			*/
-			//ItemSeller.MoveItemsToStorage();
-
-
-
-			//StartBlessThread();
-			/*			int i = ProgramHandle.ReadBless2RowValue();
-            */
-			/*			ExpBotClass.RequestStartStopMoveExpBot();
-						ExpBotManagerAbstract.RequestStartExpBot();
-
-						ExpBotClass.RunAndExpSquareUWC();
-			*/
-			/*            int i = ProgramHandle.GetCurrentMap;
-						ProgramHandle.SetCameraForExpBot();
-						ProgramHandle.SetCameraLong();
-
-						HealBotAbstract.RequestStartStopHealBot();
-						SkillSelector asd = SkillSelector.SelectPropperClass();
-						asd.Rebuff();
-			*/
-			/*            ProgramHandle.SetCameraForExpBot();
-                        Thread.Sleep(500);
-
-                        var date = DateTime.Now;
-                        if (date.Hour == 5)
-                        {
-                            Debug.WriteLine("zzzz");
-
-            */                /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
-                                        ProgramHandle.SetGameAsMainWindow();
-                                        ProgramHandle.SetCameraForExpBot();
-                                        ProgramHandle.SetCameraLong();
-                                        Thread.Sleep(500);
-                                        zzz.GoBackExp();
-                            *//*            while(true)
-                                        {
-                                            PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
-                                            Refresh();
-                                            //1073741824
-                                        }
-                            */            /*            int i;
-                                                    RepoterKharonExp zzz = new RepoterKharonExp();
-                                                    zzz.GoRepot();
-                                        *//*
-
-                                        ProgramHandle.AntiBlackScreener();
-                            */
-		}
-
-		private void GoToPos_Click_1(object sender, EventArgs e)
-        {
-            int x = 0;
-            int y = 0;
-            Int32.TryParse(PositionX.Text, out x);
-            Int32.TryParse(PositionY.Text, out y);
-            ProgramHandle.TeleportToPosition(x, y, 0);
-        }
-
-		private void ItemBlesserBtn_Click(object sender, EventArgs e)
-		{
-            int blessValue;
-            Int32.TryParse(HpToBuy.Text, out blessValue);
-			MessageBox.Show($"You are going to try bless item to {blessValue}");
-
-			ItemBlesser itemBlesser = new ItemBlesser();
-            itemBlesser.BlessItem(blessValue);
-		}
-
-		private void HPValueTextBox_TextChanged_1(object sender, EventArgs e)
-		{
-
-			int i = 100;
-			int.TryParse(HPValueTextBox.Text, out i);
-			HealBotAbstract.HpHealValue = i;
-			
-		}
-
-		private void MannaValueTextBox_TextChanged(object sender, EventArgs e)
-		{
-			int i = 100;
-			int.TryParse(MannaValueTextBox.Text, out i);
-			HealBotAbstract.MpRestoreValue = i;
-		}
-	}
-	/*    
-
-		TODO
-
-		Mage power items sell SET there are only 1 stats
 
 
 	*/

@@ -1,15 +1,10 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManagement;
 using AresTrainerV3.MovePositions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AresTrainerV3.ExpBotManager
 {
-    public abstract class ExpBotManagerAbstract : IStartExpBotThread, IMoveToPositon
+    public abstract class ExpBotManagerAbstract : IStartExpBotThread, IMoveAttackCollect
 	{
        // public abstract MoveToPositionAbstract MoveToPosPlace { get; }
         public abstract void RunAndExp();

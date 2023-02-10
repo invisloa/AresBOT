@@ -1,5 +1,5 @@
-﻿using AresTrainerV3.Buyer;
-using AresTrainerV3.ItemInventory;
+﻿using AresTrainerV3.ItemInventory;
+using AresTrainerV3.ItemInventory.Buyer;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.ItemDelete
+namespace AresTrainerV3.ItemInventory
 {
-    // SOMETIMES HAPPENS AN INGAME BUG "COULD NOT FIND ITEM IN SLOT" 
-    // FOR NOW NOT WORTH TO RUN THIS
+	// SOMETIMES HAPPENS AN INGAME BUG "COULD NOT FIND ITEM IN SLOT" 
+	// FOR NOW NOT WORTH TO RUN THIS
 
 
-    public class ItemDeleter : IDeleteItem
+	public class ItemDeleter : IDeleteItem
 	{
 
 

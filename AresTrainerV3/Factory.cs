@@ -5,19 +5,13 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.HealBot.Repoter.Returner.kharon;
 using AresTrainerV3.ItemCollect;
-using AresTrainerV3.MovePositions;
-using AresTrainerV3.MoveRandom.Etana;
-using AresTrainerV3.MoveRandom.Hershal;
-using AresTrainerV3.MoveRandom.Holina;
-using AresTrainerV3.MoveRandom.Kharon;
-using AresTrainerV3.MoveRandom.SacredAlliance;
+using AresTrainerV3.MoveModels.MoveRandom.Etana;
+using AresTrainerV3.MoveModels.MoveRandom.Hershal;
+using AresTrainerV3.MoveModels.MoveRandom.Holina;
+using AresTrainerV3.MoveModels.MoveRandom.Kharon;
+using AresTrainerV3.MoveModels.MoveRandom.SacredAlliance;
 using AresTrainerV3.PixelScanNPC;
 using AresTrainerV3.ShopSellAntiBug;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3
@@ -42,6 +36,20 @@ namespace AresTrainerV3
 		{
 			expPlaceRepoterBotToStartSetter();
 		}
+
+		public static IWhatToCollect CreateSodCollector()
+		{
+			return new CollectSod();
+		}
+		public static IWhatToCollect CreateAllItemsCollector()
+		{
+			return new CollectAllItems();
+		}
+
+
+
+
+
 		public static void expPlaceRepoterBotToStartSetter()
 		{
 			if (whichBotThreadToStart == MoverBotEnums.NoRepot)

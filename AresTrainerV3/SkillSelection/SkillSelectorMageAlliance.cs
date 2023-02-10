@@ -27,7 +27,6 @@ namespace AresTrainerV3.SkillSelection
 					checkBuffAndClick(expScroll, 7);
                     checkIfAttackSkillIsSelected();
                 }
-                KeyPresser.PressKey(3, 50, 50);
 				Thread.Sleep(10000);
             }
              

@@ -83,6 +83,8 @@
 			this.ShowPosShort = new System.Windows.Forms.Button();
 			this.PositionZ = new System.Windows.Forms.TextBox();
 			this.ItemBlesserBtn = new System.Windows.Forms.Button();
+			this.label21 = new System.Windows.Forms.Label();
+			this.RunExpcheckBox = new System.Windows.Forms.CheckBox();
 			this.SuspendLayout();
 			// 
 			// ClassChangeComboBox
@@ -360,7 +362,7 @@
 			// label14
 			// 
 			this.label14.AutoSize = true;
-			this.label14.Location = new System.Drawing.Point(499, 32);
+			this.label14.Location = new System.Drawing.Point(467, 41);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(59, 15);
 			this.label14.TabIndex = 50;
@@ -369,7 +371,7 @@
 			// RunSellerCheckBox
 			// 
 			this.RunSellerCheckBox.AutoSize = true;
-			this.RunSellerCheckBox.Location = new System.Drawing.Point(520, 50);
+			this.RunSellerCheckBox.Location = new System.Drawing.Point(488, 59);
 			this.RunSellerCheckBox.Name = "RunSellerCheckBox";
 			this.RunSellerCheckBox.Size = new System.Drawing.Size(15, 14);
 			this.RunSellerCheckBox.TabIndex = 51;
@@ -627,11 +629,32 @@
 			this.ItemBlesserBtn.UseVisualStyleBackColor = true;
 			this.ItemBlesserBtn.Click += new System.EventHandler(this.ItemBlesserBtn_Click);
 			// 
+			// label21
+			// 
+			this.label21.AutoSize = true;
+			this.label21.Location = new System.Drawing.Point(529, 41);
+			this.label21.Name = "label21";
+			this.label21.Size = new System.Drawing.Size(51, 15);
+			this.label21.TabIndex = 87;
+			this.label21.Text = "Run EXP";
+			// 
+			// RunExpcheckBox
+			// 
+			this.RunExpcheckBox.AutoSize = true;
+			this.RunExpcheckBox.Location = new System.Drawing.Point(546, 59);
+			this.RunExpcheckBox.Name = "RunExpcheckBox";
+			this.RunExpcheckBox.Size = new System.Drawing.Size(15, 14);
+			this.RunExpcheckBox.TabIndex = 88;
+			this.RunExpcheckBox.UseVisualStyleBackColor = true;
+			this.RunExpcheckBox.CheckedChanged += new System.EventHandler(this.RunExpcheckBox_CheckedChanged);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(860, 450);
+			this.Controls.Add(this.RunExpcheckBox);
+			this.Controls.Add(this.label21);
 			this.Controls.Add(this.ItemBlesserBtn);
 			this.Controls.Add(this.PositionZ);
 			this.Controls.Add(this.ShowPosShort);
@@ -754,6 +777,8 @@
         private Button ShowPosShort;
         private TextBox PositionZ;
 		private Button ItemBlesserBtn;
+		private Label label21;
+		private CheckBox RunExpcheckBox;
 
 		public EventHandler Tester_Click_1 { get; private set; }
     }

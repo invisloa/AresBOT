@@ -1,13 +1,8 @@
-﻿using AresTrainerV3.Buyer;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AresTrainerV3.ItemInventory.Buyer;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-    internal class RepoterShutdown : RepotAbstract
+	internal class RepoterShutdown : RepotAbstract
 	{
 		protected override BuyerPotionsAbstract BuyerPotionsCity
 		{
