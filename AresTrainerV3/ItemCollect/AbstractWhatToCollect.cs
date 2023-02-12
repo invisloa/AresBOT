@@ -66,10 +66,6 @@ namespace AresTrainerV3.ItemCollect
             Debug.WriteLine("Collect"+ ProgramHandle.getCurrentItemHighlightedType);
             Thread.Sleep(50);
 
-/*            //make double LeftUp because somehow it didnt notice the click and bot bugged and stopped attacking
-            MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
-            Thread.Sleep(50);
-*/
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
             while (!ProgramHandle.isNowStandingOut() && !ProgramHandle.isNowStandingCity())
             {
@@ -79,7 +75,7 @@ namespace AresTrainerV3.ItemCollect
             }
             ItemCollectUnbuger.UnbugWhenCollecting(positionBeforeClick);
 			PixelItemCollector underCharPostScanner = new PixelItemCollector(this);
-            underCharPostScanner.PixelScanUnderChar();
+			underCharPostScanner.PixelScanUnderChar();
         }
 
     }

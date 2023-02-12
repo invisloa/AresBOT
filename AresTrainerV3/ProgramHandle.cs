@@ -59,15 +59,16 @@ namespace AresTrainerV3
 
         static IntPtr UIWindowMOffset;
         static IntPtr BuffWindowMOffset;
-        static IntPtr isCurrentSkillBar1Value;
-        static IntPtr isCurrentSkillBar2Value;
-        static IntPtr isCurrentSkillBar3Value;
-        public static IntPtr isItemHighlightedType;
-        public static IntPtr isAttackingMob;
+        static IntPtr isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
+		static IntPtr isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
+		static IntPtr isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
+		public static IntPtr isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
+		public static IntPtr isAttackingMob = (IntPtr)PointersAndValues.isAttackingMob;
 
+		public static IntPtr GetCurrentXMapPosAdress = (IntPtr)PointersAndValues.CurrentPosXMapAddress;
+		public static IntPtr GetCurrentYMapPosAdress = (IntPtr)PointersAndValues.CurrentPosYMapAddress;
 
-
-        static IntPtr shopWindowMOffset;
+		static IntPtr shopWindowMOffset;
         static IntPtr inventoryWindowMOffset;
         static IntPtr storageWindowMOffset;
 
@@ -193,11 +194,7 @@ namespace AresTrainerV3
             MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 
         }
-
-
-
-
-    private static volatile int _anim1 = 0;
+        private static volatile int _anim1 = 0;
         private static volatile int _anim2 = 0;
         private static volatile int _skillValue = 0;
 
@@ -284,11 +281,6 @@ namespace AresTrainerV3
 
 
 
-			isCurrentSkillBar1Value = (IntPtr)PointersAndValues.CurrentSkillBar1Address;
-            isCurrentSkillBar2Value = (IntPtr)PointersAndValues.CurrentSkillBar2Address;
-            isCurrentSkillBar3Value = (IntPtr)PointersAndValues.CurrentSkillBar3Address;
-            isItemHighlightedType = (IntPtr)PointersAndValues.CurrentItemHighlightedType;
-            isAttackingMob = (IntPtr)PointersAndValues.isAttackingMob;
             SetGamePosition();
         }
 
@@ -1043,8 +1035,14 @@ namespace AresTrainerV3
                 return ReadPositionShortZ();
             }
         }
-
-
+		public static int GetCurrentPositionXMap
+		{
+			get { return BitConverter.ToInt16((memScanner.readShort(proc.Handle, IntPtr.Add(GetCurrentXMapPosAdress, 0))), 0); }
+		}
+		public static int GetCurrentPositionYMap
+		{
+			get { return BitConverter.ToInt16((memScanner.readShort(proc.Handle, IntPtr.Add(GetCurrentYMapPosAdress, 0))), 0); }
+		}
 
 		public static byte GetBless2RowValue
 		{

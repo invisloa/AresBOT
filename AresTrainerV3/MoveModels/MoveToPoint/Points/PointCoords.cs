@@ -11,11 +11,6 @@
 		}
 
 		public CoordsPoint CurrentPosition { get { return new CoordsPoint(X, Y); } }
-		public void SetCurrentPosition(int x,int y)  /////////////// TO CHANGE IT WILL NO BE NEEDED WHEN POSITION WILL BE UPDATED AUTOMATICALLY
-		{
-			X = x;
-			Y = y;
-		}
 	}
 	public class Line
 	{

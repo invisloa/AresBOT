@@ -6,7 +6,7 @@
 		int howManyMovesForwardToCheck = 1;
 		public Line colissionLine = new Line(new CoordsPoint(0,0),new CoordsPoint(0,0));
 
-		ICurrentPosition currentPositionInterface = Factory.getCurrentPosition;								
+		ICurrentPosition currentPositionInterface = FactoryMoveToPoint.getCurrentPosition;								
 
 		public Line IntersectedLine { get => colissionLine;}
 
@@ -62,7 +62,7 @@
 			{
 				int moveNumber = 0;
 
-			 CoordsPoint abstractCurrentPosPoint = Factory.getCurrentPosition;
+			 CoordsPoint abstractCurrentPosPoint = FactoryMoveToPoint.getCurrentPosition;
 
 
 				while (moveNumber < routeCoordinates.Count && moveNumber <= howManyMovesForwardToCheck)

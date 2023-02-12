@@ -42,7 +42,8 @@ namespace AresTrainerV3
 		}
 		public static void MoveAndRightClickOperation(int xPos, int yPos)
 		{
-			int sleepTime = 60;
+			int sleepTime = 100;
+			Thread.Sleep(10);
 			MouseOperations.SetCursorPosition(xPos, yPos);
 			if ((Control.MouseButtons & MouseButtons.Right) == MouseButtons.Right)	// Right mouse button is pressed
 			{
@@ -50,11 +51,8 @@ namespace AresTrainerV3
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 
 			}
-			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightDown);
-			Thread.Sleep(sleepTime);
-			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			Thread.Sleep(sleepTime);
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 			Thread.Sleep(sleepTime);

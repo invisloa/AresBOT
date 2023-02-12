@@ -495,7 +495,7 @@ namespace AresTrainerV3
             BuyerPotionsAbstract.BuyFromForm = true;
             if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
             {
-                BuyerPotionsAbstract.HpPotionsToBuy = 250;
+                BuyerPotionsAbstract.HpPotionsToBuy = 311;
                 BuyerPotionsAbstract.MpPotionsToBuy = 25;
             }
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
@@ -604,10 +604,12 @@ namespace AresTrainerV3
             ExpBotManagerAbstract.RequestStartExpBot();
             HealBotAbstract.RequestStartStopHealBot();
             SkillSelector asd = new SkillSelectorMageAlliance();
-            asd.Rebuff();
+           // asd.Rebuff();
+            
+            int i = ProgramHandle.GetCurrentPositionXMap;
+            int y = ProgramHandle.GetCurrentPositionYMap;
 
-
-            ProgramHandle.SetCameraForExpBot();
+			ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(150);
 
 
@@ -759,8 +761,8 @@ namespace AresTrainerV3
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
             {
                 BuyerPotionsAbstract.HpPotionsToBuy = 333;
-                BuyerPotionsAbstract.MpPotionsToBuy = 35;
-                ExpBotComboBox.Text = "HershalLowLvl";
+                BuyerPotionsAbstract.MpPotionsToBuy = 70;
+                ExpBotComboBox.Text = "KharonBigWolves";
             }
             else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
             {

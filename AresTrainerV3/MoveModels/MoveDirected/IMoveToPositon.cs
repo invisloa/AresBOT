@@ -11,7 +11,7 @@ namespace AresTrainerV3.MovePositions
 {
     public interface IMoveAttackCollect
     {
-		public DoScanAttackCollect WhatToCollectWhileMoving
+		public IDoWhileMoving WhatToDoWhileMoving
         {
             get;
             set;

@@ -27,7 +27,7 @@
 
 				foreach (var obstaclePoint in obstaclePoints)
 				{
-					double distance = CalculateDistance(Factory.getCurrentPosition, obstaclePoint);
+					double distance = CalculateDistance(FactoryMoveToPoint.getCurrentPosition, obstaclePoint);
 					if (distance < closestDistance)
 					{
 						closestDistance = distance;

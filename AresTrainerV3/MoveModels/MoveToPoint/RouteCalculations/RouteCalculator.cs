@@ -8,17 +8,17 @@
 		bool isLineOnXAxis = false;
 
 
-		public List<CoordsPoint> CalculateMainRouteCoordinates(CoordsPoint startPoint, CoordsPoint endPoint)
+		public List<CoordsPoint> CalculateMainRouteCoordinates(CoordsPoint endPoint)
 		{
 			List<CoordsPoint> routeCoordinates = new List<CoordsPoint>();
-			int xDiff = endPoint.X - startPoint.X;
-			int yDiff = endPoint.Y - startPoint.Y;
+			int xDiff = endPoint.X - FactoryMoveToPoint.GetCurrentPositionX;
+			int yDiff = endPoint.Y - FactoryMoveToPoint.GetCurrentPositionY;
 
 			int xDirection = xDiff < 0 ? -1 : 1;
 			int yDirection = yDiff < 0 ? -1 : 1;
 
-			int x = startPoint.X;
-			int y = startPoint.Y;
+			int x = FactoryMoveToPoint.GetCurrentPositionX;
+			int y = FactoryMoveToPoint.GetCurrentPositionY;
 
 			while (x != endPoint.X || y != endPoint.Y)
 			{
@@ -60,7 +60,7 @@
 			}
 			return endPoint;
 		}
-		public CoordsPoint CalculateAlternateEndPoint(CoordsPoint startPoint, CoordsPoint endPointOrigin, Line intersectedLine)
+		public CoordsPoint CalculateAlternateEndPoint(CoordsPoint endPointOrigin, Line intersectedLine)
 		{
 			if ((intersectedLine.P2.X - intersectedLine.P1.X) != 0)
 			{
@@ -71,8 +71,8 @@
 				isLineOnXAxis = false;
 			}
 
-			int xDiff = endPointOrigin.X - startPoint.X;
-			int yDiff = endPointOrigin.Y - startPoint.Y;
+			int xDiff = endPointOrigin.X - FactoryMoveToPoint.GetCurrentPositionX;
+			int yDiff = endPointOrigin.Y - FactoryMoveToPoint.GetCurrentPositionY;
 
 			int xDirection = xDiff < 0 ? -1 : 1;
 			int yDirection = yDiff < 0 ? -1 : 1;
@@ -138,17 +138,3 @@
 
 
 }
-
-
-/*			if (Math.Abs(xDiff1) + Math.Abs(yDiff1) < Math.Abs(xDiff2) + Math.Abs(yDiff2))
-			{
-				endPoint = intersectedLine.P1;
-				endPoint = EndPointCorrection(endPoint, intersectedLine);
-			}
-			else
-			{
-				endPoint = intersectedLine.P2;
-				endPoint = EndPointCorrection(endPoint, intersectedLine);
-
-			}
-*/

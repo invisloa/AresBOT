@@ -16,10 +16,12 @@ namespace AresTrainerV3.ItemCollect
 {
 	public class PixelItemCollector : ICollectItems
 	{
-		IWhatToCollect whatToCollectToSet;         // TEMPORARY TO DO TO CHANGE
-		IWhatToCollect GetWhatToCollect { get { return currentCollect; } set { currentCollect = value; } }
-		IWhatToCollect CollectIgnoringWeight { get { return new CollectSod(); } }
+		IWhatToCollect whatToCollectSetter;         // TEMPORARY TO DO TO CHANGE
+		IWhatToCollect GetCurrentWhatToCollect { get { return currentCollect; } set { currentCollect = value; } }
+		IWhatToCollect CollectIgnoringWeight { get { return Factory.CreateSodCollector(); } }
+
 		IWhatToCollect currentCollect;
+		Bitmap bitmap = new Bitmap(1370, 840);
 		bool wasSodDetected = false;
 		int[] smallX = new int[2] { 850, 1170 };
 		int[] smallY = new int[2] { 410, 730 };
@@ -27,7 +29,7 @@ namespace AresTrainerV3.ItemCollect
 		int[] bigY = new int[2] { 290, 835 };
 		int[] underCharX = new int[2] { 930, 980 };
 		int[] underCharY = new int[2] { 500, 545 };
-		Bitmap bitmap = new Bitmap(1370, 840);
+
 		void BitmapCopyFromScreen()
         {
 			Graphics graphics = Graphics.FromImage(bitmap as Image);
@@ -74,14 +76,14 @@ namespace AresTrainerV3.ItemCollect
         }
         public PixelItemCollector(IWhatToCollect whatToCollect)
         {
-            whatToCollectToSet = whatToCollect;
+            whatToCollectSetter = whatToCollect;
         }
         bool ScanAndCollect()
         {
             if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
 			{
 				Debug.WriteLine($"SCAN NORMAL Weights {ProgramHandle.getCurrentWeight}   {AbstractWhatToCollect.MaxCollectWeight} ");
-				currentCollect = whatToCollectToSet;
+				currentCollect = whatToCollectSetter;
 				return PixelScan();
 			}
 			else if (ProgramHandle.isInCity != 1)
@@ -131,35 +133,35 @@ namespace AresTrainerV3.ItemCollect
 						{
 							waitMouseAttackPointedMob(x, y);
 							WasSodSelected();
-							if (GetWhatToCollect.ClickAndCollectWhatItem())
+							if (GetCurrentWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x+1, y+1);
 							WasSodSelected();
 
-							if (GetWhatToCollect.ClickAndCollectWhatItem())
+							if (GetCurrentWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x-1, y -1);
 							WasSodSelected();
 
-							if (GetWhatToCollect.ClickAndCollectWhatItem())
+							if (GetCurrentWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x + 1, y-1);
 							WasSodSelected();
 
-							if (GetWhatToCollect.ClickAndCollectWhatItem())
+							if (GetCurrentWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
 							waitMouseAttackPointedMob(x-1, y+1);
 							WasSodSelected();
 
-							if (GetWhatToCollect.ClickAndCollectWhatItem())
+							if (GetCurrentWhatToCollect.ClickAndCollectWhatItem())
 							{
 								return true;
 							}
@@ -189,7 +191,7 @@ namespace AresTrainerV3.ItemCollect
 							ProgramHandle.waitMouseInPosScanUnder();
 							AttackWhenPointedOnMob();
 
-							if (whatToCollectToSet.ClickAndCollectWhatItem())
+							if (whatToCollectSetter.ClickAndCollectWhatItem())
 							{
 								return CollectSucces();
 							}

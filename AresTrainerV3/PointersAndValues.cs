@@ -147,17 +147,32 @@ public static class PointersAndValues
             else { return 0x2AD318; }
         }
     }
-    public static int CurrentSkillBar1Address
-    {
-        get
-        {
-            if (isNostalgia) { return 0x6A9A3C; }
-            else { return 0x6A9B3C; }
-        }
-    }
+	public static int CurrentSkillBar1Address
+	{
+		get
+		{
+			if (isNostalgia) { return 0x6A9A3C; }
+			else { return 0x6A9B3C; }
+		}
+	}
+
+	public static int CurrentPosXMapAddress
+	{
+		get
+		{
+			return 0x697FD0;
+		}
+	}
+	public static int CurrentPosYMapAddress
+	{
+		get
+		{
+			return 0x697FD4;
+		}
+	}
 
 
-    public static int CurrentSkillBar2Address
+	public static int CurrentSkillBar2Address
     {
         get
         {

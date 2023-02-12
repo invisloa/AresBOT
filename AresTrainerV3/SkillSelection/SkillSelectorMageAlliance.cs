@@ -11,6 +11,8 @@ namespace AresTrainerV3.SkillSelection
 		int expScroll = 2489;
 		int mageShield = 3417;
 		int Rapid = 3416;
+		int mageFireBarrier = 3418;
+
 		int dontknowwhat = 1607; // ????? not sure this one
 		int candle = 1605;
 
@@ -24,7 +26,7 @@ namespace AresTrainerV3.SkillSelection
                 {
 					checkBuffAndClick(Rapid, 4);
 					checkBuffAndClick(mageShield, 5);
-					//checkBuffAndClick(expScroll, 7);
+					checkBuffAndClick(mageFireBarrier, 7);
                     checkIfAttackSkillIsSelected();
                 }
 				Thread.Sleep(10000);
