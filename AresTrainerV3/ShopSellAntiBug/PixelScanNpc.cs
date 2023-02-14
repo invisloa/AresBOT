@@ -42,16 +42,21 @@ namespace AresTrainerV3.PixelScanNPC
 						{
 							MouseOperations.SetCursorPosition(x, y);
 							ProgramHandle.waitMouseInPosScanUnder();
+							Thread.Sleep(10);
 							ProgramHandle.waitMouseInPosScanUnder();
 							if (isNPCTargeted())
 							{
-								Console.WriteLine($"NPC found right clicking");
-								MouseOperations.MoveAndRightClickOperation(x, y);
-								Thread.Sleep(50);
-								MouseOperations.MoveAndRightClickOperation(x, y);
+								Thread.Sleep(10);
+								if (isNPCTargeted())
+								{
+									Console.WriteLine($"NPC found right clicking");
+									MouseOperations.MoveAndRightClickOperation(x, y);
+									Thread.Sleep(50);
+									MouseOperations.MoveAndRightClickOperation(x, y);
 									Thread.Sleep(2000);
 									GC.Collect();
 									return true;
+								}
 							}
 						}
 					}

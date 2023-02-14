@@ -6,7 +6,6 @@ namespace AresTrainerV3.ExpBotManager
 {
     public abstract class ExpBotManagerAbstract : IStartExpBotThread, IMoveAttackCollect
 	{
-       // public abstract MoveToPositionAbstract MoveToPosPlace { get; }
         public abstract void RunAndExp();
         public static bool shutDownOnRepot = false;
         public void StartExpBotThread()
@@ -48,9 +47,9 @@ namespace AresTrainerV3.ExpBotManager
             }
         }
 
-		public bool MoveAttackCollect()
-		{
-			throw new NotImplementedException();
-		}
+        public virtual bool MoveAttackCollect()
+        {
+            return true;
+        }
 	}
 }

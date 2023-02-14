@@ -18,7 +18,20 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 		protected MoveRandomPositions positionsToMove = new MoveRandomPositions();
 		bool movedMainMove = true;
 		int bounceAntiRepeatCount = 0; public static bool AttackedOrCollected = false;
-		IDoWhileMoving _whatToDoWhileMoving = new DoScanAttackCollect(new PixelItemCollector(new CollectSod()));
+		IDoWhileMoving _whatToDoWhileMoving = Factory.CreateIDoWhileMoving();
+
+		public override IDoWhileMoving WhatToDoWhileMoving
+		{
+			get
+			{
+				return _whatToDoWhileMoving;
+
+			}
+			set
+			{
+				_whatToDoWhileMoving = value;
+			}
+		}
 
 		void mainMoveSet()
 		{
@@ -47,23 +60,6 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 		{
 			get;
 		}
-
-
-
-
-		public override IDoWhileMoving WhatToDoWhileMoving
-		{
-			get
-			{
-				return _whatToDoWhileMoving;
-
-			}
-			set
-			{
-				_whatToDoWhileMoving = value;
-			}
-		}
-
 		protected IUnstuckPosition unstuckPlace
 		{
 			get
@@ -217,7 +213,7 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 			}
 		}
 
-		public bool MoveAttackCollect()
+		public override bool  MoveAttackCollect()
 		{
 			while (isExpBotRunning)
 			{

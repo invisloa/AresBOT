@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AresTrainerV3.ItemCollect
+namespace AresTrainerV3.MoveModels.MoveToPoint.RouteCalculations.AlternateRoute
 {
-    public interface IScanAndCollect
+    internal interface IAlternateRouteCalculator
     {
-        public bool ScanClickAndCollectItem();
     }
 }

@@ -1,8 +1,13 @@
 ﻿using AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel;
+using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel;
+using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.LineChecker;
+using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.RangeChecker;
+using AresTrainerV3.MoveModels.MoveToPoint.RouteCalculations;
+using AresTrainerV3.MoveModels.MoveToPoint.RouteCalculations.MainRoute;
 
 namespace AresTrainerV3.MoveModels
 {
-	static class FactoryMoveToPoint
+    static class FactoryMoveToPoint
 	{
 		public static CoordsPoint GetCurrentCoordPointXY
 		{
@@ -13,6 +18,14 @@ namespace AresTrainerV3.MoveModels
 				return new CoordsPoint(x, y);
 			}
 		}
+		public static IMouseMoveToPosition CreateMouseMoveToPosition()
+		{
+			return new MouseMoveToPosition();
+		}
+		public static IRouteChunker CreateRouteChunker()
+		{
+			return new RouteChunker();
+		}
 		public static IMouseToPosRemapper CreateNewPosRemapper()
 		{
 			return new MouseToPosRemapper();
@@ -21,9 +34,15 @@ namespace AresTrainerV3.MoveModels
 		{
 			return new RouteCalculator();
 		}
-		public static ICheckRoute CreateNewRouteChecker()
+		public static IObstacleChecker CreateNewObstacleChecker()
 		{
-			return new ObstacleLineChecker();
+			return new ObstacleChecker();
+
+		}
+		public static IObstacleRangeChecker CreateNewRouteChecker()
+		{
+			return new ObstacleRangeChecker();
+
 		}
 		public static int GetCurrentPositionX
 		{
@@ -39,19 +58,6 @@ namespace AresTrainerV3.MoveModels
 				return ProgramHandle.GetCurrentPositionYMap;
 			}
 		}
-		static CoordsPoint currentPositionTests = new CoordsPoint(0,0);
-		public static CoordsPoint getCurrentPosition
-		{
-			get
-			{
-				return currentPositionTests;
-			}
-
-			set
-			{
-				currentPositionTests = value;
-			}
-		}
 		public static ICheckRoute CreateRouteChecker()
 		{
 			return new ObstacleLineChecker();
@@ -64,6 +70,7 @@ namespace AresTrainerV3.MoveModels
 		{
 			return new MoveToPointNew();
 		}
+		public static int MaxMoveDistance = 4;
 
 		
 	}

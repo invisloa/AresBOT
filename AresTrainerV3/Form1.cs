@@ -5,6 +5,7 @@ using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemCollect.ItemBlessing;
 using AresTrainerV3.ItemInventory;
 using AresTrainerV3.ItemInventory.Buyer;
+using AresTrainerV3.MoveModels;
 using AresTrainerV3.SkillSelection;
 using Utilities;
 
@@ -611,15 +612,26 @@ namespace AresTrainerV3
 
 			ProgramHandle.SetCameraForExpBot();
             Thread.Sleep(150);
+			CoordsPoint cp = new CoordsPoint(147, 146);
+			CoordsPoint cp2 = new CoordsPoint(114, 146);
+			CoordsPoint tl = new CoordsPoint(131, 153);
+			CoordsPoint bd = new CoordsPoint(139, 141);
+
+
+			List<Obstacle> obstacles = new List<Obstacle>();
+            obstacles.Add(new Obstacle(tl, bd));
+			MoveToPointNew mtp = new MoveToPointNew();
+			mtp.MoveToDestination(cp, obstacles);
+			mtp.MoveToDestination(cp2, obstacles);
 
 
 
-            //PixelMobAttack.AttackSkillMobWhenSelected();
+			//PixelMobAttack.AttackSkillMobWhenSelected();
 
 
-            ///PixelItemCollector collect = new PixelItemCollector(new CollectSod());
-            // collect.ScanClickAndCollectItem();
-            /*           
+			///PixelItemCollector collect = new PixelItemCollector(new CollectSod());
+			// collect.ScanClickAndCollectItem();
+			/*           
 
 			*//*			Thread.Sleep(150);
 						Thread.Sleep(150);
@@ -627,19 +639,19 @@ namespace AresTrainerV3
 						collector.ScanClickAndCollectItem();
 			*/            //			ProgramHandle.SetCameraLong();
 
-            //    ShopMoveUnbugger smu = new ShopMoveUnbugger();
-            //     smu.UnBugShop();
+			//    ShopMoveUnbugger smu = new ShopMoveUnbugger();
+			//     smu.UnBugShop();
 
-            /*            PixelScanForNpc npc = new PixelScanForNpc();
+			/*            PixelScanForNpc npc = new PixelScanForNpc();
 						npc.FindNpc();
 			*/            //ShopMoveUnbugger unb = new ShopMoveUnbugger();
-                          // unb.UnBugShop();
-                          // PixelScanForNpc npc = new PixelScanForNpc();
-                          // npc.FindNpc();
-                          //ProgramHandle.SetCameraLong();
-                          //     ItemSeller.MoveItemsToStorage();
+						  // unb.UnBugShop();
+						  // PixelScanForNpc npc = new PixelScanForNpc();
+						  // npc.FindNpc();
+						  //ProgramHandle.SetCameraLong();
+						  //     ItemSeller.MoveItemsToStorage();
 
-            /*            int g = ProgramHandle.isCurrentInventoryTabOppened;
+			/*            int g = ProgramHandle.isCurrentInventoryTabOppened;
 						ProgramHandle.SetCameraForExpBot();
 						HealBotAbstract.RequestStartStopHealBot();
 						ExpBotManagerAbstract.RequestStartExpBot();
@@ -654,7 +666,7 @@ namespace AresTrainerV3
 
 						}
 			*/
-            /* 915 440 1015 565
+			/* 915 440 1015 565
 						HealBotAbstract.RequestStartStopHealBot();
 						ExpBotManagerAbstract.RequestStartExpBot();
 						PixelMobAttack.AttackSkillMobWhenSelected();
@@ -662,19 +674,19 @@ namespace AresTrainerV3
 			*//*			SkillSelector asd = SkillSelector.SelectPropperClass();
 						asd.Rebuff();
 			*/
-            //ItemSeller.MoveItemsToStorage();
+			//ItemSeller.MoveItemsToStorage();
 
 
 
-            //StartBlessThread();
-            /*			int i = ProgramHandle.ReadBless2RowValue();
+			//StartBlessThread();
+			/*			int i = ProgramHandle.ReadBless2RowValue();
             */
-            /*			ExpBotClass.RequestStartStopMoveExpBot();
+			/*			ExpBotClass.RequestStartStopMoveExpBot();
 						ExpBotManagerAbstract.RequestStartExpBot();
 
 						ExpBotClass.RunAndExpSquareUWC();
 			*/
-            /*            int i = ProgramHandle.GetCurrentMap;
+			/*            int i = ProgramHandle.GetCurrentMap;
 						ProgramHandle.SetCameraForExpBot();
 						ProgramHandle.SetCameraLong();
 
@@ -682,7 +694,7 @@ namespace AresTrainerV3
 						SkillSelector asd = SkillSelector.SelectPropperClass();
 						asd.Rebuff();
 			*/
-            /*            ProgramHandle.SetCameraForExpBot();
+			/*            ProgramHandle.SetCameraForExpBot();
                         Thread.Sleep(500);
 
                         var date = DateTime.Now;
@@ -709,9 +721,9 @@ namespace AresTrainerV3
 
                                         ProgramHandle.AntiBlackScreener();
                             */
-        }
+		}
 
-        private void GoToPos_Click_1(object sender, EventArgs e)
+		private void GoToPos_Click_1(object sender, EventArgs e)
         {
             int x = 0;
             int y = 0;

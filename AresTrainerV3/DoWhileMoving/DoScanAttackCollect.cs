@@ -11,11 +11,11 @@ namespace AresTrainerV3.DoWhileMoving
 {
     public class DoScanAttackCollect : IDoWhileMoving
     {
-        ICollectItems ICollector;
+        IScanAndCollect ICollector = Factory.CreateScanAndCollectMethod();
         public static int NumberOfCollectScans = 1;
         public static bool CollectItems = true;
 
-        public DoScanAttackCollect(ICollectItems iCollector)
+        public DoScanAttackCollect(IScanAndCollect iCollector)
         {
             ICollector = iCollector;
         }

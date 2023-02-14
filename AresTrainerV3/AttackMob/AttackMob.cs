@@ -42,7 +42,7 @@ namespace AresTrainerV3.AttackMob
 			{
 				_SodCollector = Factory.CreateSodCollector(); // WHAT TO COLLECT WHEN ATTACKING 
 			}
-			ICollectItems pixelSodCollect = new PixelItemCollector(_SodCollector);
+			IScanAndCollect pixelSodCollect = new PixelItemCollector(_SodCollector);
 			UnstuckFromAnywhere anywhereUnstucker = new UnstuckFromAnywhere();
 
 			while (ProgramHandle.isAttacking())

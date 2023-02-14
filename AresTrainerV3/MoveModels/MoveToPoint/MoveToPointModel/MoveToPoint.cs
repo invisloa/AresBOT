@@ -1,17 +1,27 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel;
+using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.LineChecker;
+using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.RangeChecker;
+using AresTrainerV3.MoveModels.MoveToPoint.RouteCalculations.AlternateRoute;
+using AresTrainerV3.MoveModels.MoveToPoint.RouteCalculations.MainRoute;
+using System.Diagnostics;
 
 namespace AresTrainerV3.MoveModels
 {
     public class MoveToPointNew : IMoveToPoint
     {
-        IMouseToPosRemapper positionRammapper = FactoryMoveToPoint.CreateNewPosRemapper();
-        IRouteCalculator routeCalculator = FactoryMoveToPoint.CreateNewRouteCalculator();
-        ICheckRoute obstacleChecker = FactoryMoveToPoint.CreateNewRouteChecker();
+		IMouseMoveToPosition MoveToPosition = FactoryMoveToPoint.CreateMouseMoveToPosition();
+		IRouteCalculator routeCalculator = FactoryMoveToPoint.CreateNewRouteCalculator();
+		IObstacleRangeChecker obstacleRangeChecker = FactoryMoveToPoint.CreateNewRouteChecker();
+        IDoWhileMoving iDoWhileMoving = Factory.CreateIDoWhileMoving();
+
+
+		int moveAccuracy = 2;
+        int howManyMovesForwardToCheck = 4;
         //IDoWhileMoving DoWhileMoving = Factory.
 
 
-		public void MoveToDestination(CoordsPoint endPosition, List<Obstacle> obstacles)
+		public bool MoveToDestination(CoordsPoint endPosition, List<Obstacle> obstacles)
         {
             {
                 //bool isMainRoute = true;
@@ -21,22 +31,25 @@ namespace AresTrainerV3.MoveModels
                 {
                     int moveVectorX = routeCoordinates[0].X - FactoryMoveToPoint.GetCurrentPositionX;
                     int moveVectorY = routeCoordinates[0].Y - FactoryMoveToPoint.GetCurrentPositionY;
-
-                    if (!obstacleChecker.CheckForObstacles(routeCoordinates.GetRange(0, Math.Min(4, routeCoordinates.Count)), obstacles))
+                    if(Math.Abs(moveVectorX) < moveAccuracy && Math.Abs(moveVectorY) < moveAccuracy)
                     {
-						CoordsPoint MousePositionToMove =  positionRammapper.RemapVectorToMousePos(moveVectorX, moveVectorY);
-                        MouseOperations.MoveAndLeftClickOperation(MousePositionToMove.X, MousePositionToMove.Y);
+                        return true;
+                    }
 
+                    if (!obstacleRangeChecker.CheckForObstacles(routeCoordinates.GetRange(0, Math.Min(howManyMovesForwardToCheck, routeCoordinates.Count)), obstacles))
+                    {
+						MoveToPosition.MouseMove(moveVectorX, moveVectorY);
+                        iDoWhileMoving.DoThisWhileMoving();
 					}
 					else
                     {
-                        Console.WriteLine("Can't move to: " + routeCoordinates[0].X + "," + routeCoordinates[0].Y + " Need an alternate route");
-                        Console.WriteLine("WRITE AN ALTERNATE ROUTE METHOD!!!!!!!!!!!!!!!!!!");
-						MoveToDestination(routeCalculator.CalculateAlternateEndPoint(endPosition, obstacleChecker.IntersectedLine), obstacles);
+                        Debug.WriteLine("Can't move to: " + routeCoordinates[0].X + "," + routeCoordinates[0].Y + " Need an alternate route");
+						MoveToDestination(FindObstacleCorner.FindProperCorner(obstacleRangeChecker.ObstacleIntersected, endPosition),obstacles);
 					}
 
 					routeCoordinates = routeCalculator.CalculateMainRouteCoordinates(endPosition);
                 }
+                return false;
             }
         }
     }
