@@ -16,20 +16,13 @@ namespace AresTrainerV3.MoveModels
         IObstacleRangeChecker obstacleRangeChecker = FactoryMoveToPoint.CreateNewRouteChecker();
         IMovePlaceValidator validateMap = FactoryMoveToPoint.CreateMovePlaceValidator();
 		public List<Obstacle> Obstacles => FactoryMoveToPoint.AssignMapObstacles();
-
-		//  IDoWhileMoving iDoWhileMoving = Factory.CreateIDoWhileMovingAttack();
 		int moveAccuracy = 3;
         int howManyMovesForwardToCheck = 4;
-
-
 		public bool MoveToDestination(CoordsPoint endPosition)
         {
             List<CoordsPoint> routeCoordinates = routeCalculator.CalculateMainRouteCoordinates(endPosition);
-/*            while (routeCoordinates.Count != 0)
-            {
-*/                if (validateMap.ValidateMap())
+                if (validateMap.ValidateMap())
                 {
-
                     int moveVectorX = routeCoordinates[0].X - FactoryMoveToPoint.GetCurrentPositionX;
                     int moveVectorY = routeCoordinates[0].Y - FactoryMoveToPoint.GetCurrentPositionY;
                     if (Math.Abs(moveVectorX) <= moveAccuracy && Math.Abs(moveVectorY) <= moveAccuracy)
@@ -40,17 +33,13 @@ namespace AresTrainerV3.MoveModels
                     if (!obstacleRangeChecker.CheckForObstacles(routeCoordinates.GetRange(0, Math.Min(howManyMovesForwardToCheck, routeCoordinates.Count))))
                     {
                         MoveToPosition.MouseMove(moveVectorX, moveVectorY);
-                      //     iDoWhileMoving.DoThisWhileMoving();
                     }
                     else
                     {
                         Debug.WriteLine("Can't move to: " + routeCoordinates[0].X + "," + routeCoordinates[0].Y + " Need an alternate route");
                         MoveToDestination(FindObstacleCorner.FindProperCorner(obstacleRangeChecker.ObstacleIntersected, endPosition));
                     }
-
-                    routeCoordinates = routeCalculator.CalculateMainRouteCoordinates(endPosition);
                 }
-           // }
             return false;
         }
 
