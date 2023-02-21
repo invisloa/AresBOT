@@ -8,6 +8,6 @@
 			set;
 		}
 
-		bool CheckForObstacles(List<CoordsPoint> routeCoordinates, List<Obstacle> obstacles);
+		bool CheckForObstacles(List<CoordsPoint> routeCoordinates);
 	}
 }

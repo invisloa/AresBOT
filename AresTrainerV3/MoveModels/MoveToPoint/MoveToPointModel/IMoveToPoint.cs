@@ -2,8 +2,6 @@
 {
 	internal interface IMoveToPoint
     {
-        public bool MoveToDestination(CoordsPoint endPosition, List<Obstacle> obstacles);
-
-
+        public bool MoveToDestination(CoordsPoint endPosition);
 	}
 }

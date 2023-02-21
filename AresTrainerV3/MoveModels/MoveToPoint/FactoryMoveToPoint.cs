@@ -35,7 +35,13 @@ namespace AresTrainerV3.MoveModels
 				return new CoordsPoint(x, y);
 			}
 		}
-		public static IMovePlaceValidator CreateMovePlaceValidator() => new MovePlaceValidator(1);
+
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		public static IMovePlaceValidator CreateMovePlaceValidator() => new MovePlaceValidator(TeleportValues.Hollina);
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
+
 		public static IMouseMoveToPosition CreateMouseMoveToPosition() => new MouseMoveToPosition();
 		public static IRouteChunker CreateRouteChunker() => new RouteChunker();
 		public static IMouseToPosRemapper CreateNewPosRemapper() => new MouseToPosRemapper();
@@ -44,6 +50,11 @@ namespace AresTrainerV3.MoveModels
 		public static IObstacleRangeChecker CreateNewRouteChecker()=> new ObstacleRangeChecker();
 		public static IMoveToPoint CreateNewMoveToPoint()=> new MoveToPointPosition();
 
-		
+
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		public static List<Obstacle> AssignMapObstacles() => new List<Obstacle>() { new Obstacle(new CoordsPoint(1,1), new CoordsPoint (0,0)) }; ////////////////////////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE		///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		///////TO CHANGE///////TO CHANGE///////TO CHANGE		///////TO CHANGE///////TO CHANGE///////TO CHANGE
+
 	}
 }

@@ -12,6 +12,7 @@ namespace AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.RangeChecker
         {
             get;
         }
-        bool CheckForObstacles(CoordsPoint routeCoordinate, List<Obstacle> obstacles);
+        bool CheckForObstacles(CoordsPoint routeCoordinate);
+
     }
 }

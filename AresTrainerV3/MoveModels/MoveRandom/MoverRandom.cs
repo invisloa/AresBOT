@@ -20,19 +20,7 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 		int bounceAntiRepeatCount = 0; public static bool AttackedOrCollected = false;
 		IDoWhileMoving _whatToDoWhileMoving = Factory.CreateIDoWhileMovingAttack();
 
-		public override IDoWhileMoving WhatToDoWhileMoving
-		{
-			get
-			{
-				return _whatToDoWhileMoving;
-
-			}
-			set
-			{
-				_whatToDoWhileMoving = value;
-			}
-		}
-
+		public override IDoWhileMoving WhatToDoWhileMoving { get => _whatToDoWhileMoving; }
 		void mainMoveSet()
 		{
 			movedMainMove = true;

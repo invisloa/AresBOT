@@ -12,18 +12,18 @@ namespace AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.RangeChecker
 
         Obstacle _obstacleIntersected = new Obstacle();
         public Obstacle ObstacleIntersected { get => _obstacleIntersected; }
-
-        private IRouteChunker _routeChunker
+        List<Obstacle> obstaclesList = FactoryMoveToPoint.AssignMapObstacles();
+		private IRouteChunker _routeChunker
         {
             get
             {
                 return FactoryMoveToPoint.CreateRouteChunker();
             }
         }
-        public bool CheckForObstacles(CoordsPoint routeCoordinate, List<Obstacle> obstacles)
+        public bool CheckForObstacles(CoordsPoint routeCoordinate)
         {
             List<CoordsPoint> chunkedMove = _routeChunker.ChunkRouteCoordinates(routeCoordinate);
-            foreach (Obstacle obstacle in obstacles)
+            foreach (Obstacle obstacle in obstaclesList)
             {
                 if (IsMovePointInObstacle(chunkedMove, obstacle))
                 {

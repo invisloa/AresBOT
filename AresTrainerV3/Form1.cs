@@ -7,6 +7,8 @@ using AresTrainerV3.ItemCollect.ItemBlessing;
 using AresTrainerV3.ItemInventory;
 using AresTrainerV3.ItemInventory.Buyer;
 using AresTrainerV3.MoveModels;
+using AresTrainerV3.MoveModels.MoveToPoint;
+using AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel;
 using AresTrainerV3.SkillSelection;
 using Utilities;
 
@@ -606,28 +608,29 @@ namespace AresTrainerV3
         {
             AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
             ExpBotManagerAbstract.RequestStartExpBot();
-            HealBotAbstract.RequestStartStopHealBot();
-            SkillSelector asd = new SkillSelectorMageAlliance();
-           // asd.Rebuff();
-            
-            int i = ProgramHandle.GetCurrentPositionXMap;
-            int y = ProgramHandle.GetCurrentPositionYMap;
+           // HealBotAbstract.RequestStartStopHealBot();
+			HealbotToRun.StartHealBotThread();
 
-			ProgramHandle.SetCameraForExpBot();
-            Thread.Sleep(150);
-			CoordsPoint cp = new CoordsPoint(147, 146);
-			CoordsPoint cp2 = new CoordsPoint(114, 146);
-			CoordsPoint tl = new CoordsPoint(131, 153);
-			CoordsPoint bd = new CoordsPoint(139, 141);
-
-
-			List<Obstacle> obstacles = new List<Obstacle>();
-            obstacles.Add(new Obstacle(tl, bd));
-			MoveToPointPosition mtp = new MoveToPointPosition();
-			mtp.MoveToDestination(cp, obstacles);
-			mtp.MoveToDestination(cp2, obstacles);
+            List<CoordsPoint> HolinaGoblins = new List<CoordsPoint>()
+            {
+                new CoordsPoint(180,250),
+                new CoordsPoint(200,310),
+                new CoordsPoint(260,290),
+				new CoordsPoint(300,260),
+				new CoordsPoint(360,240),
+				new CoordsPoint(300,215),
+				new CoordsPoint(260,235),
+				new CoordsPoint(245,240)
+            };
 
 
+            MoveToPointRunAndExp moverToPoint = new MoveToPointRunAndExp(HolinaGoblins);
+            moverToPoint.StartExpBotThread();
+
+			/*            MouseToPosRemapper xxx = new MouseToPosRemapper();
+            CoordsPoint point = xxx.RemapVectorToMousePos(+1,+1);
+            MouseOperations.MoveAndLeftClickOperation(point.X, point.Y);
+*/
 
 			//PixelMobAttack.AttackSkillMobWhenSelected();
 
