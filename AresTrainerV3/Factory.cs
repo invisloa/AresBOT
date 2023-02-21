@@ -18,165 +18,148 @@ namespace AresTrainerV3
 {
 	public static class Factory
 	{
-		public static WhatToCollectEnums whatToCollect;
-		public static MoverBotEnums whichBotThreadToStart;
-		public static ExpBotManagerAbstract ExpBotMoverToRun;
-		public static IGoRepot RepoterCity;
-		public static IGoBackExpAbstract GoBackExpPlace;
+		private static WhatToCollectEnums whatToCollect;
+		private static MoverBotEnums whichBotThreadToStart;
+		private static IStartExpBotThread expBotMoverToRun;
+		private static IGoRepot repoterCity;
+		private static IGoBackExpAbstract goBackExpPlace;
 		static Thread blackScreenThread;
-		public static IStartExpBotThread ExpBotToStart
-		{
-			get
-			{
-				expPlaceRepoterBotToStartSetter();
-				return ExpBotMoverToRun;
-			}
-		}
-		public static void SetExpBot()
-		{
-			expPlaceRepoterBotToStartSetter();
-		}
 
-		public static IWhatToCollect CreateSodCollector()
-		{
-			return new CollectSod();
-		}
-		public static IWhatToCollect CreateAllItemsCollector()
-		{
-			return new CollectAllItems();
-		}
-		public static IGoRepot CreateShutdownOnRepot()
-		{
-			return new RepoterShutdown();
-		}
-		public static IGoRepot CreateRepoterHolinaTeleport()
-		{
-			return new RepoterHolinaTeleport();
-		}
-		public static IGoRepot CreateRepoterHershalLeafMages()
-		{
-			return new RepoterHershalLeafMages();
-		}
-		public static IGoRepot CreateRepoterKharonExp()
-		{
-			return new RepoterKharonExp();
-		}
 
+		public static IStartExpBotThread ExpBotToStart	{ get => expBotMoverToRun; set => expBotMoverToRun = value;}
+		public static IGoBackExpAbstract GoBackExpAbstract { get => GoBackExpPlace; set => GoBackExpPlace = value; }
+		public static IGoRepot RepoterCity { get => repoterCity; set => repoterCity = value; }
+		public static IGoBackExpAbstract GoBackExpPlace { get => goBackExpPlace; set => goBackExpPlace = value; }
+		public static WhatToCollectEnums WhatToCollect { get => whatToCollect; set => whatToCollect = value; }
+		public static MoverBotEnums WhichBotThreadToStart { get => whichBotThreadToStart; set => whichBotThreadToStart = value; }
+
+		public static IWhatToCollect CreateSodCollector() => new CollectSod();
+		public static IWhatToCollect CreateAllItemsCollector() => new CollectAllItems();
+		public static IGoRepot CreateShutdownOnRepot() => new RepoterShutdown();
 		
+		public static IGoRepot CreateRepoterHolinaTeleport() => new RepoterHolinaTeleport();
+		public static IGoRepot CreateRepoterHershalLeafMages() => new RepoterHershalLeafMages();
+		public static IGoRepot CreateRepoterKharonExp() =>new RepoterKharonExp();
+		public static IFindNPC CreateFindNPC() => new PixelScanForNpc();
+		public static IUnBugShop CreateUnbugShop() => new ShopMoveUnbugger();
+		public static IActionToUnbug CreateUnbugActionClass() => new MoveAwayFromShop();
+		public static IUnbugWhenCollecting CreateCollectItemUnbugger() => new CollectAntibug();
+		public static IScanAndCollect CreateScanAndCollectMethod() => new PixelItemCollector(CreateWhatToCollect());
+		public static IDoWhileMoving CreateIDoWhileMoving() => new DoScanAttackCollect(CreateScanAndCollectMethod());
 
 
 
-		public static void expPlaceRepoterBotToStartSetter()
+		public static void ExpPlaceRepoterBotToStartSetter()
 		{
-			if (whichBotThreadToStart == MoverBotEnums.NoRepot)
+			if (WhichBotThreadToStart == MoverBotEnums.NoRepot)
 			{
 				RepoterCity = CreateShutdownOnRepot();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
+			else if (WhichBotThreadToStart == MoverBotEnums.EtanaBuckerty)
 			{
-				ExpBotMoverToRun = new MoverEtanaBuckerty();
 				RepoterCity = CreateShutdownOnRepot();
+				expBotMoverToRun = new MoverEtanaBuckerty();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.SacredGiko)
+			else if (WhichBotThreadToStart == MoverBotEnums.SacredGiko)
 			{
-				ExpBotMoverToRun = new MoverGiko();
 				RepoterCity = CreateShutdownOnRepot();
+				expBotMoverToRun = new MoverGiko();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.SacredThievesSOD)
+			else if (WhichBotThreadToStart == MoverBotEnums.SacredThievesSOD)
 			{
-				ExpBotMoverToRun = new MoverThievesSOD();
 				RepoterCity = CreateShutdownOnRepot();
+				expBotMoverToRun = new MoverThievesSOD();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.HolinaGoblins)
+			else if (WhichBotThreadToStart == MoverBotEnums.HolinaGoblins)
 			{
 				RepoterCity = CreateRepoterHolinaTeleport();
 				GoBackExpPlace = new GoBackExpHolinaTeleport();
-				ExpBotMoverToRun = new MoverHolinaGoblins();
+				expBotMoverToRun = new MoverHolinaGoblins();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.HershalLowLvl)
+			else if (WhichBotThreadToStart == MoverBotEnums.HershalLowLvl)
 			{
 				RepoterCity = CreateRepoterHershalLeafMages();
 				GoBackExpPlace = new GoBackExpHershalLowLvl();
-				ExpBotMoverToRun = new MoverHershalLowLvl();
+				expBotMoverToRun = new MoverHershalLowLvl();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.HershalLeafMages)
+			else if (WhichBotThreadToStart == MoverBotEnums.HershalLeafMages)
 			{
 				RepoterCity = CreateRepoterHershalLeafMages();
 				GoBackExpPlace = new GoBackExpHershalTeleport();
-				ExpBotMoverToRun = new MoverHershalLeafMages();
+				expBotMoverToRun = new MoverHershalLeafMages();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.HershalUWC1stFloor)
+			else if (WhichBotThreadToStart == MoverBotEnums.HershalUWC1stFloor)
 			{
 				RepoterCity = CreateRepoterHershalLeafMages();
 				GoBackExpPlace = new GoBackExpUWC();
-				ExpBotMoverToRun = new MoverHershalUwc1stFloor();
+				expBotMoverToRun = new MoverHershalUwc1stFloor();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.KharonWolves)
+			else if (WhichBotThreadToStart == MoverBotEnums.KharonWolves)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpKharonWolves();
-				ExpBotMoverToRun = new MoverKharonWolves();
+				expBotMoverToRun = new MoverKharonWolves();
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
 					blackScreenThread.Start();
 				}
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.KharonBigWolves)
+			else if (WhichBotThreadToStart == MoverBotEnums.KharonBigWolves)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpKharonBigWolves();
-				ExpBotMoverToRun = new MoverKharonBigWolves();
+				expBotMoverToRun = new MoverKharonBigWolves();
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
 					blackScreenThread.Start();
 				}
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.Sloth1stFloor)
+			else if (WhichBotThreadToStart == MoverBotEnums.Sloth1stFloor)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSloth1stFloor();
-				ExpBotMoverToRun = new MoverSloth1stFloorEntrace();
+				expBotMoverToRun = new MoverSloth1stFloorEntrace();
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
+			else if (WhichBotThreadToStart == MoverBotEnums.SlothNoIcebergs)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSlothNoIcebergs();
-				ExpBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
+				expBotMoverToRun = new MoverSloth1stFloorNoIceBergs();
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
 					blackScreenThread.Start();
 				}
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothHorseFarm)
+			else if (WhichBotThreadToStart == MoverBotEnums.SlothHorseFarm)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSlothHorseFarm();
-				ExpBotMoverToRun = new SlothHorseFarm();
+				expBotMoverToRun = new SlothHorseFarm();
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
 					blackScreenThread.Start();
 				}
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothAoe)
+			else if (WhichBotThreadToStart == MoverBotEnums.SlothAoe)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSlothNoIcebergs();
-				ExpBotMoverToRun = new MoverSloth1stFloorAoe();
+				expBotMoverToRun = new MoverSloth1stFloorAoe();
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
 					blackScreenThread.Start();
 				}
 			}
-			else if (whichBotThreadToStart == MoverBotEnums.SlothAoe2Spot)
+			else if (WhichBotThreadToStart == MoverBotEnums.SlothAoe2Spot)
 			{
 				RepoterCity = CreateRepoterKharonExp();
 				GoBackExpPlace = new GoBackExpSloth1FloorAoe2Spot();
-				ExpBotMoverToRun = new MoverSloth1stFloorAoe2Spot();
+				expBotMoverToRun = new MoverSloth1stFloorAoe2Spot();
 				if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
@@ -185,54 +168,25 @@ namespace AresTrainerV3
 			}
 
 		}
-
-		public static IFindNPC CreateFindNPC()
-		{
-			return new PixelScanForNpc();
-		}
-		public static IUnBugShop CreateUnbugShop()
-		{
-			return new ShopMoveUnbugger(); 
-		}
-		public static IActionToUnbug CreateUnbugActionClass()
-		{
-			return new MoveAwayFromShop();
-		}
-		public static IUnbugWhenCollecting CreateCollectItemUnbugger()
-		{
-			return new CollectAntibug();
-		}
-		public static IScanAndCollect CreateScanAndCollectMethod()
-		{
-			return new PixelItemCollector(CreateWhatToCollect());
-
-		}
-		public static IDoWhileMoving CreateIDoWhileMoving()
-		{
-			return new DoScanAttackCollect(CreateScanAndCollectMethod());
-		}
-
-		 
-
 		public static AbstractWhatToCollect CreateWhatToCollect()
 		{
-			if (whatToCollect == WhatToCollectEnums.Event)
+			if (WhatToCollect == WhatToCollectEnums.Event)
 			{
 				return new CollectSodEvent();
 			}
-			else if (whatToCollect == WhatToCollectEnums.Stones)
+			else if (WhatToCollect == WhatToCollectEnums.Stones)
 			{
 				return new CollectSodStones();
 			}
-			else if (whatToCollect == WhatToCollectEnums.Jewelery)
+			else if (WhatToCollect == WhatToCollectEnums.Jewelery)
 			{
 				return new CollectSodJewelery();
 			}
-			else if (whatToCollect == WhatToCollectEnums.SellWeapons)
+			else if (WhatToCollect == WhatToCollectEnums.SellWeapons)
 			{
 				return new CollectSellerCry();
 			}
-			else if (whatToCollect == WhatToCollectEnums.SellAll)
+			else if (WhatToCollect == WhatToCollectEnums.SellAll)
 			{
 				return new CollectAllItems();
 			}

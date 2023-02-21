@@ -21,7 +21,7 @@ namespace AresTrainerV3.SkillSelection
 
 				if (ProgramHandle.isInCity != 1)
 				{
-					checkBuffAndClick(expScroll, 5);
+					//checkBuffAndClick(expScroll, 5);
 					checkIfAttackSkillIsSelected();
 				}
 				Thread.Sleep(10000);

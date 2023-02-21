@@ -1,6 +1,7 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot;
+using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemCollect.ItemBlessing;
 using AresTrainerV3.ItemInventory;
@@ -111,27 +112,27 @@ namespace AresTrainerV3
         {
             if (CollectorComboBox.Text == "+Event")
             {
-                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
+                Factory.WhatToCollect = Enums.EnumsList.WhatToCollectEnums.Event;
             }
             else if (CollectorComboBox.Text == "+Jewelery")
             {
-                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
+                Factory.WhatToCollect = Enums.EnumsList.WhatToCollectEnums.Jewelery;
             }
             else if (CollectorComboBox.Text == "+Stones")
             {
-                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
+                Factory.WhatToCollect = Enums.EnumsList.WhatToCollectEnums.Stones;
             }
             else if (CollectorComboBox.Text == "+Stones+Jewelery")
             {
-                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
+                Factory.WhatToCollect = Enums.EnumsList.WhatToCollectEnums.StonesAndJewelery;
             }
             else if (CollectorComboBox.Text == "+Seller")
             {
-                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
+                Factory.WhatToCollect = Enums.EnumsList.WhatToCollectEnums.SellWeapons;
             }
             else if (CollectorComboBox.Text == "AllItems")
             {
-                Factory.whatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
+                Factory.WhatToCollect = Enums.EnumsList.WhatToCollectEnums.SellAll;
             }
 
         }
@@ -142,63 +143,65 @@ namespace AresTrainerV3
 
             if (ExpBotComboBox.Text == "EtanaBuckerty")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.EtanaBuckerty;
             }
             else if (ExpBotComboBox.Text == "SacredGiko")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
             else if (ExpBotComboBox.Text == "SacredThieves")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
             }
             else if (ExpBotComboBox.Text == "SacredThievesSOD")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SacredThievesSOD;
+				//Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.NoRepot;
+
+				Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SacredThievesSOD;
             }
             else if (ExpBotComboBox.Text == "HolinaGoblins")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HolinaGoblins;
             }
             else if (ExpBotComboBox.Text == "HershalLowLvl")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLowLvl;
             }
             else if (ExpBotComboBox.Text == "HershalLeafMages")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalLeafMages;
             }
             else if (ExpBotComboBox.Text == "HershalUWC1stFloor")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.HershalUWC1stFloor;
             }
             else if (ExpBotComboBox.Text == "KharonWolves")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonWolves;
             }
             else if (ExpBotComboBox.Text == "KharonBigWolves")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonBigWolves;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.KharonBigWolves;
             }
             else if (ExpBotComboBox.Text == "Sloth1stFloor")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.Sloth1stFloor;
             }
             else if (ExpBotComboBox.Text == "SlothNoIcebergs")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothNoIcebergs;
             }
             else if (ExpBotComboBox.Text == "SlothHorseFarm")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothHorseFarm;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothHorseFarm;
             }
             else if (ExpBotComboBox.Text == "SlothAoe")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe;
             }
             else if (ExpBotComboBox.Text == "SlothAoe2spot")
             {
-                Factory.whichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe2Spot;
+                Factory.WhichBotThreadToStart = Enums.EnumsList.MoverBotEnums.SlothAoe2Spot;
             }
 
         }
@@ -206,7 +209,7 @@ namespace AresTrainerV3
         {
             SetBotEnums();
             SetCollectEnums();
-            Factory.SetExpBot();
+            Factory.ExpPlaceRepoterBotToStartSetter();
         }
 
 
@@ -565,13 +568,13 @@ namespace AresTrainerV3
             AssignBot();
             HealbotToRun.StartHealBotThread();
             ProgramHandle.SetCameraForExpBot();
-            if (Factory.whichBotThreadToStart != Enums.EnumsList.MoverBotEnums.NoRepot)
+            if (Factory.RepoterCity is not RepoterShutdown)
             {
                 HealbotToRun.RepotAndStartExpBot();
             }
             else
             {
-                Factory.ExpBotMoverToRun.StartExpBotThread();
+                Factory.ExpBotToStart.StartExpBotThread();
             }
         }
 

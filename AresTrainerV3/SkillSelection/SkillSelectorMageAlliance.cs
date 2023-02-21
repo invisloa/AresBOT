@@ -24,10 +24,11 @@ namespace AresTrainerV3.SkillSelection
 
 				if (ProgramHandle.isInCity != 1)
                 {
-					checkBuffAndClick(Rapid, 4);
-					checkBuffAndClick(mageShield, 5);
-					checkBuffAndClick(mageFireBarrier, 7);
-                    checkIfAttackSkillIsSelected();
+					//checkBuffAndClick(Rapid, 4);
+					//checkBuffAndClick(mageShield, 5);
+					//checkBuffAndClick(mageFireBarrier, 7);
+					checkBuffAndClick(expScroll, 7);
+					checkIfAttackSkillIsSelected();
                 }
 				Thread.Sleep(10000);
             }

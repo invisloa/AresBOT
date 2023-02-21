@@ -1,4 +1,5 @@
-﻿using AresTrainerV3.ExpBotManager;
+﻿using AresTrainerV3.ExpBotManagement;
+using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.ItemCollect;
@@ -22,11 +23,11 @@ namespace AresTrainerV3.HealBot
 				return Factory.GoBackExpPlace;
 			}
 		}
-		ExpBotManagerAbstract ExpBotToStart
+		IStartExpBotThread ExpBotToStart
 		{
 			get
 			{
-				return Factory.ExpBotMoverToRun;
+				return Factory.ExpBotToStart;
 			}
 		}
 		public static bool SelfSetHealValue = false;
