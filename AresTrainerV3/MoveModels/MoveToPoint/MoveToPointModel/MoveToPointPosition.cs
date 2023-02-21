@@ -9,21 +9,19 @@ using System.Diagnostics;
 
 namespace AresTrainerV3.MoveModels
 {
-    public class MoveToPointNew : IMoveToPoint
+    public class MoveToPointPosition : IMoveToPoint
     {
         IMouseMoveToPosition MoveToPosition = FactoryMoveToPoint.CreateMouseMoveToPosition();
         IRouteCalculator routeCalculator = FactoryMoveToPoint.CreateNewRouteCalculator();
         IObstacleRangeChecker obstacleRangeChecker = FactoryMoveToPoint.CreateNewRouteChecker();
         IMovePlaceValidator validateMap = FactoryMoveToPoint.CreateMovePlaceValidator();
-        IDoWhileMoving iDoWhileMoving = Factory.CreateIDoWhileMoving();
+      //  IDoWhileMoving iDoWhileMoving = Factory.CreateIDoWhileMovingAttack();
         int moveAccuracy = 2;
         int howManyMovesForwardToCheck = 4;
 
         public bool MoveToDestination(CoordsPoint endPosition, List<Obstacle> obstacles)
         {
-
             List<CoordsPoint> routeCoordinates = routeCalculator.CalculateMainRouteCoordinates(endPosition);
-
             while (routeCoordinates.Count != 0)
             {
                 if (validateMap.ValidateMap())
@@ -39,7 +37,7 @@ namespace AresTrainerV3.MoveModels
                     if (!obstacleRangeChecker.CheckForObstacles(routeCoordinates.GetRange(0, Math.Min(howManyMovesForwardToCheck, routeCoordinates.Count)), obstacles))
                     {
                         MoveToPosition.MouseMove(moveVectorX, moveVectorY);
-                        iDoWhileMoving.DoThisWhileMoving();
+                   //     iDoWhileMoving.DoThisWhileMoving();
                     }
                     else
                     {

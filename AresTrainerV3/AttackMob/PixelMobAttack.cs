@@ -49,7 +49,7 @@ namespace AresTrainerV3.AttackMob
 			wasMobSelected= false;
 			if (ProgramHandle.isInCity != 1)
 			{
-				if (ExpBotManagerAbstract.isExpBotRunning == true)
+				if (ExpBotManagerAbstract.isExpBotRunning)
 				{
 					RepotAbstract.IsScanRunning = true;
 					graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
@@ -75,7 +75,7 @@ namespace AresTrainerV3.AttackMob
 					}
 					ScanAgainWhenMobFound();
 				}
-				if (ExpBotManagerAbstract.isExpBotRunning == true)
+				if (ExpBotManagerAbstract.isExpBotRunning)
 				{
 					graphics.CopyFromScreen(0, 0, 0, 0, bitmap.Size);
 					for (int x = 527; x < 1332; x++)

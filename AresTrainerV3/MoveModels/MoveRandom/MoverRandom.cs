@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace AresTrainerV3.MoveModels.MoveRandom
 {
-	public abstract class MoverRandom : ExpBotManagerAbstract, IMoveAttackCollect
+	public abstract class MoverRandom : ExpBotManagerAbstract
 	{
 		int sideMoveCount = 4;
 		protected int _lastMouseMovePosition = 0;
@@ -18,7 +18,7 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 		protected MoveRandomPositions positionsToMove = new MoveRandomPositions();
 		bool movedMainMove = true;
 		int bounceAntiRepeatCount = 0; public static bool AttackedOrCollected = false;
-		IDoWhileMoving _whatToDoWhileMoving = Factory.CreateIDoWhileMoving();
+		IDoWhileMoving _whatToDoWhileMoving = Factory.CreateIDoWhileMovingAttack();
 
 		public override IDoWhileMoving WhatToDoWhileMoving
 		{
@@ -209,11 +209,11 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 				{
 					Process.Start("Shutdown", "-s -t 10");
 				}
-				MoveAttackCollect();
+				MoveAttackAndCollect();
 			}
 		}
 
-		public override bool  MoveAttackCollect()
+		public override bool  MoveAttackAndCollect()
 		{
 			while (isExpBotRunning)
 			{

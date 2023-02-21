@@ -13,10 +13,9 @@ namespace AresTrainerV3.MovePositions
     {
 		public IDoWhileMoving WhatToDoWhileMoving
         {
-            get;
-            set;
+            get ;
         }
 
-		public bool MoveAttackCollect();
+		public bool MoveAttackAndCollect();
     }
 }

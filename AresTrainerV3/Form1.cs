@@ -623,7 +623,7 @@ namespace AresTrainerV3
 
 			List<Obstacle> obstacles = new List<Obstacle>();
             obstacles.Add(new Obstacle(tl, bd));
-			MoveToPointNew mtp = new MoveToPointNew();
+			MoveToPointPosition mtp = new MoveToPointPosition();
 			mtp.MoveToDestination(cp, obstacles);
 			mtp.MoveToDestination(cp2, obstacles);
 

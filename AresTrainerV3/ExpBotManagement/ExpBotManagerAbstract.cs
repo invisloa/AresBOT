@@ -29,7 +29,6 @@ namespace AresTrainerV3.ExpBotManager
 		public abstract IDoWhileMoving WhatToDoWhileMoving
 		{
 			get;
-			set;
 		}
 
 		public static void RequestStopExpBot()
@@ -47,9 +46,6 @@ namespace AresTrainerV3.ExpBotManager
             }
         }
 
-        public virtual bool MoveAttackCollect()
-        {
-            return true;
-        }
+        public abstract bool MoveAttackAndCollect();
 	}
 }

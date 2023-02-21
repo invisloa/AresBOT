@@ -32,7 +32,6 @@ namespace AresTrainerV3
 		public static IGoBackExpAbstract GoBackExpPlace { get => goBackExpPlace; set => goBackExpPlace = value; }
 		public static WhatToCollectEnums WhatToCollect { get => whatToCollect; set => whatToCollect = value; }
 		public static MoverBotEnums WhichBotThreadToStart { get => whichBotThreadToStart; set => whichBotThreadToStart = value; }
-
 		public static IWhatToCollect CreateSodCollector() => new CollectSod();
 		public static IWhatToCollect CreateAllItemsCollector() => new CollectAllItems();
 		public static IGoRepot CreateShutdownOnRepot() => new RepoterShutdown();
@@ -45,7 +44,8 @@ namespace AresTrainerV3
 		public static IActionToUnbug CreateUnbugActionClass() => new MoveAwayFromShop();
 		public static IUnbugWhenCollecting CreateCollectItemUnbugger() => new CollectAntibug();
 		public static IScanAndCollect CreateScanAndCollectMethod() => new PixelItemCollector(CreateWhatToCollect());
-		public static IDoWhileMoving CreateIDoWhileMoving() => new DoScanAttackCollect(CreateScanAndCollectMethod());
+		public static IDoWhileMoving CreateIDoWhileMovingAttack() => new DoScanAttackCollect(CreateScanAndCollectMethod());
+		public static IDoWhileMoving CreateIDoWhileMovingNothing() => new DoNothing();
 
 
 

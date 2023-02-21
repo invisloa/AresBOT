@@ -42,7 +42,7 @@ namespace AresTrainerV3.MoveModels
 		public static IRouteCalculator CreateNewRouteCalculator() => new RouteCalculator();
 		public static IObstacleChecker CreateNewObstacleChecker() => new ObstacleChecker();
 		public static IObstacleRangeChecker CreateNewRouteChecker()=> new ObstacleRangeChecker();
-		public static IMoveToPoint CreateNewMoveToPoint()=> new MoveToPointNew();
+		public static IMoveToPoint CreateNewMoveToPoint()=> new MoveToPointPosition();
 
 		
 	}
