@@ -15,8 +15,6 @@ namespace AresTrainerV3.MoveModels
         IRouteCalculator routeCalculator = FactoryMoveToPoint.CreateNewRouteCalculator();
         IObstacleRangeChecker obstacleRangeChecker = FactoryMoveToPoint.CreateNewRouteChecker();
         IMovePlaceValidator validateMap = FactoryMoveToPoint.CreateMovePlaceValidator();
-		public List<Obstacle> Obstacles => FactoryMoveToPoint.AssignMapObstacles();
-		int moveAccuracy = 3;
         int howManyMovesForwardToCheck = 4;
 		public bool MoveToDestination(CoordsPoint endPosition)
         {
@@ -25,7 +23,7 @@ namespace AresTrainerV3.MoveModels
                 {
                     int moveVectorX = routeCoordinates[0].X - FactoryMoveToPoint.GetCurrentPositionX;
                     int moveVectorY = routeCoordinates[0].Y - FactoryMoveToPoint.GetCurrentPositionY;
-                    if (Math.Abs(moveVectorX) <= moveAccuracy && Math.Abs(moveVectorY) <= moveAccuracy)
+                    if (Math.Abs(moveVectorX) <= endPosition.MoveAccuracy && Math.Abs(moveVectorY) <= endPosition.MoveAccuracy)
                     {
                         return true;
                     }

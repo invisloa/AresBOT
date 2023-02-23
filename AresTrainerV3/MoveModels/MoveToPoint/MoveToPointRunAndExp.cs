@@ -2,6 +2,7 @@
 using AresTrainerV3.ExpBotManager;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -13,15 +14,16 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 	{
 		IMoveToPoint moveToPos = new MoveToPointPosition();
 		public override IDoWhileMoving WhatToDoWhileMoving { get =>Factory.CreateIDoWhileMovingAttack(); }
-		List<CoordsPoint> moveDestinations { get; set; }
+		ReadOnlyCollection<CoordsPoint> moveDestinations { get; set; }
 		int currentPointToMove = 0;
-		public MoveToPointRunAndExp(List<CoordsPoint> MoveDestinations)
+		public MoveToPointRunAndExp(ReadOnlyCollection<CoordsPoint> MoveDestinations)
 		{
 			moveDestinations = MoveDestinations;
 		}
 		public override void RunAndExp()
 		{
 			ProgramHandle.SetCameraForExpBot();
+
 			while (isExpBotRunning)
 			{
 				if (ProgramHandle.isInCity == 1 && shutDownOnRepot)

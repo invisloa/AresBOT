@@ -25,7 +25,7 @@ namespace AresTrainerV3.SkillSelection
 				if (ProgramHandle.isInCity != 1)
                 {
 					checkBuffAndClick(Rapid, 4);
-					//checkBuffAndClick(mageShield, 5);
+					checkBuffAndClick(mageShield, 5);
 					//checkBuffAndClick(mageFireBarrier, 7);
 					checkBuffAndClick(expScroll, 7);
 					checkIfAttackSkillIsSelected();

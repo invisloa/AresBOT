@@ -15,24 +15,30 @@
 
             int xDiff = endPoint.X - x;
             int yDiff = endPoint.Y - y;
-
-            int xDirection = xDiff < 0 ? -1 : 1;
-            int yDirection = yDiff < 0 ? -1 : 1;
-
-
-            while (x != endPoint.X || y != endPoint.Y)
-            {
-                int move = Math.Min(maxMoveDistance, Math.Abs(endPoint.X - x));
-                x += move * xDirection;
-
-                move = Math.Min(maxMoveDistance, Math.Abs(endPoint.Y - y));
-                y += move * yDirection;
+			if (xDiff == 0 && yDiff == 0)
+			{
+				routeCoordinates.Add(new CoordsPoint(x, y));
+			}
 
 
-                routeCoordinates.Add(new CoordsPoint(x, y));
-                if (x == endPoint.X && y == endPoint.Y)
+            else
+			{
+				int xDirection = xDiff < 0 ? -1 : 1;
+				int yDirection = yDiff < 0 ? -1 : 1;
+				while (x != endPoint.X || y != endPoint.Y)
                 {
-                    break;
+                    int move = Math.Min(maxMoveDistance, Math.Abs(endPoint.X - x));
+                    x += move * xDirection;
+
+                    move = Math.Min(maxMoveDistance, Math.Abs(endPoint.Y - y));
+                    y += move * yDirection;
+
+
+                    routeCoordinates.Add(new CoordsPoint(x, y));
+                    if (x == endPoint.X && y == endPoint.Y)
+                    {
+                        break;
+                    }
                 }
             }
             return routeCoordinates;

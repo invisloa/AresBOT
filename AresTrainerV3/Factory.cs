@@ -5,11 +5,14 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.HealBot.Repoter.Returner.kharon;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.MoveModels;
 using AresTrainerV3.MoveModels.MoveRandom.Etana;
 using AresTrainerV3.MoveModels.MoveRandom.Hershal;
 using AresTrainerV3.MoveModels.MoveRandom.Holina;
 using AresTrainerV3.MoveModels.MoveRandom.Kharon;
 using AresTrainerV3.MoveModels.MoveRandom.SacredAlliance;
+using AresTrainerV3.MoveModels.MoveToPoint;
+using AresTrainerV3.MoveModels.MoveToPoint.DestinationsCoords;
 using AresTrainerV3.PixelScanNPC;
 using AresTrainerV3.ShopSellAntiBug;
 using static AresTrainerV3.Enums.EnumsList;
@@ -24,7 +27,6 @@ namespace AresTrainerV3
 		private static IGoRepot repoterCity;
 		private static IGoBackExpAbstract goBackExpPlace;
 		static Thread blackScreenThread;
-
 
 		public static IStartExpBotThread ExpBotToStart	{ get => expBotMoverToRun; set => expBotMoverToRun = value;}
 		public static IGoBackExpAbstract GoBackExpAbstract { get => GoBackExpPlace; set => GoBackExpPlace = value; }
@@ -46,6 +48,23 @@ namespace AresTrainerV3
 		public static IScanAndCollect CreateScanAndCollectMethod() => new PixelItemCollector(CreateWhatToCollect());
 		public static IDoWhileMoving CreateIDoWhileMovingAttack() => new DoScanAttackCollect(CreateScanAndCollectMethod());
 		public static IDoWhileMoving CreateIDoWhileMovingNothing() => new DoNothing();
+
+
+
+		// TO CHANGE
+		// TO CHANGE
+		// TO CHANGE
+
+
+
+		public static IStartExpBotThread CreateMoverToPointHolinaGoblins() => new MoveToPointRunAndExp(new DestinationsCoordinator().HolinaGoblins);
+		public static IStartExpBotThread CreateMoverToPointBucksLowLVL() => new MoveToPointRunAndExp(new DestinationsCoordinator().BuckLowLVL);
+		// TO CHANGE
+		// TO CHANGE
+		// TO CHANGE
+		// TO CHANGE
+		// TO CHANGE
+
 
 
 
@@ -73,8 +92,14 @@ namespace AresTrainerV3
 			else if (WhichBotThreadToStart == MoverBotEnums.HolinaGoblins)
 			{
 				RepoterCity = CreateRepoterHolinaTeleport();
-				GoBackExpPlace = new GoBackExpHolinaTeleport();
-				expBotMoverToRun = new MoverHolinaGoblins();
+				GoBackExpPlace = new GoBackExpGoblinsTeleport();
+				expBotMoverToRun = CreateMoverToPointHolinaGoblins();
+			}
+			else if (WhichBotThreadToStart == MoverBotEnums.BucksLowLVL)
+			{
+				RepoterCity = CreateRepoterHolinaTeleport();
+				GoBackExpPlace = new GoBackExpGoblinsTeleport();
+				expBotMoverToRun = CreateMoverToPointBucksLowLVL();
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.HershalLowLvl)
 			{

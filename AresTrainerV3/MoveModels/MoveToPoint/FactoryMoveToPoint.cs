@@ -1,5 +1,6 @@
 ﻿using AresTrainerV3.MoveModels.MovePlaceValidation;
 using AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel;
+using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesList;
 using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel;
 using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.LineChecker;
 using AresTrainerV3.MoveModels.MoveToPoint.ObstaclesModel.RangeChecker;
@@ -52,9 +53,13 @@ namespace AresTrainerV3.MoveModels
 
 
 		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
-		public static List<Obstacle> AssignMapObstacles() => new List<Obstacle>() { new Obstacle(new CoordsPoint(1,1), new CoordsPoint (0,0)) }; ////////////////////////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
-		///////TO CHANGE///////TO CHANGE///////TO CHANGE		///////TO CHANGE///////TO CHANGE///////TO CHANGE
-		///////TO CHANGE///////TO CHANGE///////TO CHANGE		///////TO CHANGE///////TO CHANGE///////TO CHANGE
+		public static List<Obstacle> AssignMapObstacles()
+		{
+			ObstacleAsigner asigner = new ObstacleAsigner();
+			return asigner.GetMapObstacles();
+		}
+
+				
 
 	}
 }

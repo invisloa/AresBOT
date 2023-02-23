@@ -4,10 +4,17 @@
 	{
 		public int X = 0;
 		public int Y = 0;
+		public int MoveAccuracy = 6;
 		public CoordsPoint(int x, int y)
 		{
 			this.X = x;
 			this.Y = y;
+		}
+		public CoordsPoint(int x, int y, int moveAccuracy)
+		{
+			this.X = x;
+			this.Y = y;
+			this.MoveAccuracy = moveAccuracy;
 		}
 
 		public CoordsPoint CurrentPosition { get { return new CoordsPoint(X, Y); } }

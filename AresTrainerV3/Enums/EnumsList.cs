@@ -16,6 +16,7 @@ namespace AresTrainerV3.Enums
 			SacredThieves,
 			SacredThievesSOD,
 			HolinaGoblins,
+			BucksLowLVL,
 			HershalLowLvl,
             HershalLeafMages,
             HershalUWC1stFloor,
