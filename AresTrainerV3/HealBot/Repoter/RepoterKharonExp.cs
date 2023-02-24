@@ -26,8 +26,6 @@ namespace AresTrainerV3.HealBot.Repoter
 
 		protected override void MoveToRepot()
 		{
-			Thread.Sleep(1000 + randomizer.Next(1, 3000));
-			CheckIfNotRunning();
 			if (ProgramHandle.isNowStandingCity())
 			{
 				Thread.Sleep(500);

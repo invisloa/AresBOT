@@ -931,10 +931,10 @@ namespace AresTrainerV3.ItemInventory
 			KeyPresser.PressEnter(10, 10);
 		}
 		#region OldSellItems
-		void AssignWeight()
+		public void AssignWeight()
 		{
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 120;
-			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 120;
+			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 150;
 		}
 		static void LeftClickSellConfirmation(string debugMessage)
 		{

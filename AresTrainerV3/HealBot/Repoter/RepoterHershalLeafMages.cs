@@ -26,8 +26,7 @@ namespace AresTrainerV3.HealBot.Repoter
 
 		protected override void MoveToRepot()
 		{
-			Thread.Sleep(500);
-			CheckIfNotRunning();
+
 			if (ProgramHandle.isNowStandingCity())
 			{
 				if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)

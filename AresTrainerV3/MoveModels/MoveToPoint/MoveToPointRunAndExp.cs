@@ -12,7 +12,7 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 {
 	public class MoveToPointRunAndExp : ExpBotManagerAbstract
 	{
-		IMoveToPoint moveToPos = new MoveToPointPosition();
+		IMoveToPoint moveToPos = new MoveToPointPosition(); // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!!
 		public override IDoWhileMoving WhatToDoWhileMoving { get =>Factory.CreateIDoWhileMovingAttack(); }
 		ReadOnlyCollection<CoordsPoint> moveDestinations { get; set; }
 		int currentPointToMove = 0;

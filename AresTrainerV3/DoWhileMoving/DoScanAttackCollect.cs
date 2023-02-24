@@ -22,7 +22,7 @@ namespace AresTrainerV3.DoWhileMoving
 
         bool ScanAttackCollect()
         {
-            if (HealBotAbstract.SellItems == true)
+            if (HealBot.HealBotA.SellItems == true)
             {
                     for (int i = 0; i < NumberOfCollectScans; i++)
                     {

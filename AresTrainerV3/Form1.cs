@@ -11,6 +11,7 @@ using AresTrainerV3.MoveModels.MoveToPoint;
 using AresTrainerV3.MoveModels.MoveToPoint.DestinationsCoords;
 using AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel;
 using AresTrainerV3.SkillSelection;
+using System.Collections.ObjectModel;
 using Utilities;
 
 
@@ -27,7 +28,7 @@ namespace AresTrainerV3
 		static Thread animbotThread;
 		static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
 		public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
-		public static HealBotAbstract HealbotToRun = new HealBotOnlyHeal();
+		public static HealBotA HealbotToRun = new HealBotA();
 		globalKeyboardHook gkh = new globalKeyboardHook();
 		Random randomizer = new Random();
 		public ItemSeller Seller = new ItemSeller();
@@ -37,8 +38,8 @@ namespace AresTrainerV3
 			InitializeComponent();
 			ProgramHandle.InitializeProgram();
 			HealbotToRun.setHealbotValues();
-			HPValueTextBox.Text = HealBotAbstract.HpHealValue.ToString();
-			MannaValueTextBox.Text = HealBotAbstract.MpRestoreValue.ToString();
+			HPValueTextBox.Text = HealBot.HealBotA.HpHealValue.ToString();
+			MannaValueTextBox.Text = HealBot.HealBotA.MpRestoreValue.ToString();
 		}
 
 
@@ -69,23 +70,22 @@ namespace AresTrainerV3
 
 		void StartOnlyHealbotThread()
 		{
-			HealbotToRun = new HealBotOnlyHeal();
 			HealbotToRun.StartHealBotThread();
 		}
 		void StopAllBots()
 		{
 			ExpBotManagerAbstract.RequestStopExpBot();
-			HealBotAbstract.RequestStartStopHealBot();
+			HealBot.HealBotA.RequestStartStopHealBot();
 		}
 		private void checkBox1_CheckedChanged(object sender, EventArgs e)
 		{
 			if (checkBox1.Checked)
 			{
-				HealBotAbstract.SelfSetHealValue = true;
+				HealBot.HealBotA.SelfSetHealValue = true;
 			}
 			else
 			{
-				HealBotAbstract.SelfSetHealValue = false;
+				HealBot.HealBotA.SelfSetHealValue = false;
 
 			}
 		}
@@ -141,8 +141,7 @@ namespace AresTrainerV3
 		}
 		void SetBotEnums()
 		{
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-			AbstractWhatToCollect.MaxCollectWeightNormalValue = ProgramHandle.getMaxWeight - 150;
+			Seller.AssignWeight();
 
 			if (ExpBotComboBox.Text == "EtanaBuckerty")
 			{
@@ -483,12 +482,12 @@ namespace AresTrainerV3
 		{
 			if (SellItemsCheckBox.Checked)
 			{
-				HealBotAbstract.SellItems = true;
+				HealBot.HealBotA.SellItems = true;
 				checkBox1.Checked = false;
 			}
 			else
 			{
-				HealBotAbstract.SellItems = false;
+				HealBot.HealBotA.SellItems = false;
 			}
 		}
 
@@ -529,7 +528,7 @@ namespace AresTrainerV3
 			HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
 			MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
 			SpeedPot.Text = BuyerPotionsAbstract.SpeedPotionsToBuy.ToString();
-			HealBotAbstract.SellItems = true;
+			HealBot.HealBotA.SellItems = true;
 			SellItemsCheckBox.Checked = true;
 			DoScanAttackCollect.NumberOfCollectScans = 1;
 			NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
@@ -601,148 +600,6 @@ namespace AresTrainerV3
 			ExpBotThread.Start();
 		}
 
-
-
-
-
-
-
-
-
-		private void fasttest_Click(object sender, EventArgs e)
-		{
-			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-			ExpBotManagerAbstract.RequestStartExpBot();
-			// HealBotAbstract.RequestStartStopHealBot();
-			HealbotToRun.StartHealBotThread();
-
-			List<CoordsPoint> HolinaGoblins = new List<CoordsPoint>()
-			{
-				new CoordsPoint(180,250),
-				new CoordsPoint(200,310),
-				new CoordsPoint(260,290),
-				new CoordsPoint(300,260),
-				new CoordsPoint(360,240),
-				new CoordsPoint(300,215),
-				new CoordsPoint(260,235),
-				new CoordsPoint(245,240)
-			};
-
-
-			List<CoordsPoint> tester = new List<CoordsPoint>()
-			{
-				new CoordsPoint(240,206),
-				new CoordsPoint(242,208),
-				new CoordsPoint(250,216),
-
-			};
-
-
-			MoveToPointRunAndExp moverToPoint = new MoveToPointRunAndExp(new DestinationsCoordinator().BuckLowLVL);
-			moverToPoint.StartExpBotThread();
-
-			/*            MouseToPosRemapper xxx = new MouseToPosRemapper();
-            CoordsPoint point = xxx.RemapVectorToMousePos(+1,+1);
-            MouseOperations.MoveAndLeftClickOperation(point.X, point.Y);
-*/
-
-			//PixelMobAttack.AttackSkillMobWhenSelected();
-
-
-			///PixelItemCollector collect = new PixelItemCollector(new CollectSod());
-			// collect.ScanClickAndCollectItem();
-			/*           
-
-			*//*			Thread.Sleep(150);
-						Thread.Sleep(150);
-						PixelItemCollector collector = new PixelItemCollector(new CollectAllItems());
-						collector.ScanClickAndCollectItem();
-			*/            //			ProgramHandle.SetCameraLong();
-
-			//    ShopMoveUnbugger smu = new ShopMoveUnbugger();
-			//     smu.UnBugShop();
-
-			/*            PixelScanForNpc npc = new PixelScanForNpc();
-						npc.FindNpc();
-			*/            //ShopMoveUnbugger unb = new ShopMoveUnbugger();
-						  // unb.UnBugShop();
-						  // PixelScanForNpc npc = new PixelScanForNpc();
-						  // npc.FindNpc();
-						  //ProgramHandle.SetCameraLong();
-						  //     ItemSeller.MoveItemsToStorage();
-
-			/*            int g = ProgramHandle.isCurrentInventoryTabOppened;
-						ProgramHandle.SetCameraForExpBot();
-						HealBotAbstract.RequestStartStopHealBot();
-						ExpBotManagerAbstract.RequestStartExpBot();
-						AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-						//ProgramHandle.SetCameraLong();
-						Thread.Sleep(150);
-						Thread.Sleep(150);
-						PixelItemCollector ss = new PixelItemCollector(new CollectAllItems());
-						for (int i = 0; i < 5; i++)
-						{
-							ss.ClickAndCollectItem();
-
-						}
-			*/
-			/* 915 440 1015 565
-						HealBotAbstract.RequestStartStopHealBot();
-						ExpBotManagerAbstract.RequestStartExpBot();
-						PixelMobAttack.AttackSkillMobWhenSelected();
-
-			*//*			SkillSelector asd = SkillSelector.SelectPropperClass();
-						asd.Rebuff();
-			*/
-			//ItemSeller.MoveItemsToStorage();
-
-
-
-			//StartBlessThread();
-			/*			int i = ProgramHandle.ReadBless2RowValue();
-            */
-			/*			ExpBotClass.RequestStartStopMoveExpBot();
-						ExpBotManagerAbstract.RequestStartExpBot();
-
-						ExpBotClass.RunAndExpSquareUWC();
-			*/
-			/*            int i = ProgramHandle.GetCurrentMap;
-						ProgramHandle.SetCameraForExpBot();
-						ProgramHandle.SetCameraLong();
-
-						HealBotAbstract.RequestStartStopHealBot();
-						SkillSelector asd = SkillSelector.SelectPropperClass();
-						asd.Rebuff();
-			*/
-			/*            ProgramHandle.SetCameraForExpBot();
-                        Thread.Sleep(500);
-
-                        var date = DateTime.Now;
-                        if (date.Hour == 5)
-                        {
-                            Debug.WriteLine("zzzz");
-
-            */                /*            GoBackExpKharonWolves zzz = new GoBackExpKharonWolves();
-                                        ProgramHandle.SetGameAsMainWindow();
-                                        ProgramHandle.SetCameraForExpBot();
-                                        ProgramHandle.SetCameraLong();
-                                        Thread.Sleep(500);
-                                        zzz.GoBackExp();
-                            *//*            while(true)
-                                        {
-                                            PositionX.Text = ProgramHandle.getCurrentAttackSpeed.ToString();
-                                            Refresh();
-                                            //1073741824
-                                        }
-                            */            /*            int i;
-                                                    RepoterKharonExp zzz = new RepoterKharonExp();
-                                                    zzz.GoRepot();
-                                        *//*
-
-                                        ProgramHandle.AntiBlackScreener();
-                            */
-		}
-
 		private void GoToPos_Click_1(object sender, EventArgs e)
 		{
 			int x = 0;
@@ -767,7 +624,7 @@ namespace AresTrainerV3
 
 			int i = 100;
 			int.TryParse(HPValueTextBox.Text, out i);
-			HealBotAbstract.HpHealValue = i;
+			HealBot.HealBotA.HpHealValue = i;
 
 		}
 
@@ -775,7 +632,7 @@ namespace AresTrainerV3
 		{
 			int i = 100;
 			int.TryParse(MannaValueTextBox.Text, out i);
-			HealBotAbstract.MpRestoreValue = i;
+			HealBot.HealBotA.MpRestoreValue = i;
 		}
 
 		private void RunExpcheckBox_CheckedChanged(object sender, EventArgs e)
@@ -814,43 +671,29 @@ namespace AresTrainerV3
 			NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 			this.CollectorComboBox.Text = "AllItems";
 		}
+
+
+		private void fasttest_Click(object sender, EventArgs e)
+		{
+			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
+			//ExpBotManagerAbstract.RequestStartExpBot();
+			// HealBotAbstract.RequestStartStopHealBot();
+			//HealbotToRun.StartHealBotThread();
+
+
+
+			ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
+			{
+			new CoordsPoint(235,204,1),
+			new CoordsPoint(225,197,1),
+			new CoordsPoint(215,193,1),
+		});
+
+			MoveToPointRepoter moverToPoint = new MoveToPointRepoter(tester);
+			moverToPoint.MoveToRepotDestination();
+
+		}
+
 	}
-	/*    
-                BuyerPotionsAbstract.SpeedPotionsToBuy = 3;
-
-            BuyerPotionsAbstract.BuyFromForm = true;
-			if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
-			{
-				BuyerPotionsAbstract.HpPotionsToBuy = 250;
-				BuyerPotionsAbstract.MpPotionsToBuy = 25;
-			}
-			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
-			{
-				BuyerPotionsAbstract.HpPotionsToBuy = 333;
-				BuyerPotionsAbstract.MpPotionsToBuy = 35;
-                ExpBotComboBox.Text = "SlothAoe2spot";
-			}
-			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSpear)
-            {
-                BuyerPotionsAbstract.HpPotionsToBuy = 250;
-                BuyerPotionsAbstract.MpPotionsToBuy = 45;
-            }
-            else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassArcher)
-            {
-                BuyerPotionsAbstract.HpPotionsToBuy = 333;
-                BuyerPotionsAbstract.MpPotionsToBuy = 55;
-            }
-
-            HpToBuy.Text = BuyerPotionsAbstract.HpPotionsToBuy.ToString();
-            MpToBuy.Text = BuyerPotionsAbstract.MpPotionsToBuy.ToString();
-            SpeedPot.Text = BuyerPotionsAbstract.SpeedPotionsToBuy.ToString();
-            HealBotAbstract.SellItems = true;
-            SellItemsCheckBox.Checked = true;
-            DoScanAttackCollect.NumberOfCollectScans = 1;
-            NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
-			this.CollectorComboBox.Text = "AllItems";
-
-
-
-	*/
 }
+	

@@ -39,7 +39,7 @@ namespace AresTrainerV3.MoveModels
 
 		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
 		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
-		public static IMovePlaceValidator CreateMovePlaceValidator() => new MovePlaceValidator(TeleportValues.Hollina);
+		public static IMovePlaceValidator CreateMovePlaceValidator() => new MovePlaceValidator(ProgramHandle.GetCurrentMap);
 		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
 		///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE///////TO CHANGE
 

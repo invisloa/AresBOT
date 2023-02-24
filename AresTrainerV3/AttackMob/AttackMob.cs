@@ -34,7 +34,7 @@ namespace AresTrainerV3.AttackMob
 			Thread.Sleep(100);
 			IWhatToCollect _SodCollector;
 
-			if (HealBotAbstract.SellItems == true)
+			if (HealBot.HealBotA.SellItems == true)
 			{
 				_SodCollector = Factory.CreateAllItemsCollector(); // WHAT TO COLLECT WHEN ATTACKING 
 			}

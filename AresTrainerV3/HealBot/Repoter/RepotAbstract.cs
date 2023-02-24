@@ -2,6 +2,8 @@
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemInventory;
 using AresTrainerV3.ItemInventory.Buyer;
+using AresTrainerV3.MoveModels.MoveToPoint;
+using System.Diagnostics;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
@@ -9,6 +11,8 @@ namespace AresTrainerV3.HealBot.Repoter
 	{
 		protected Random randomizer = new Random();
 		ItemSeller Seller = new ItemSeller();
+		int badGoToRepotCounter = 0;
+		protected IMoveToPointRepoter moverToPoint{ get => Factory.CreateMoveToRepot; }
 
 		protected int isCurrentCity
 		{
@@ -56,7 +60,7 @@ namespace AresTrainerV3.HealBot.Repoter
 		}
 		public bool press1IfLowHp()
 		{
-			if (ProgramHandle.getCurrentHp < HealBotAbstract.HpHealValue && ProgramHandle.getFirstInvSlotValue > PointersAndValues.InvPotCount(1))
+			if (ProgramHandle.getCurrentHp < HealBotA.HpHealValue && ProgramHandle.getFirstInvSlotValue > PointersAndValues.InvPotCount(1))
 			{
 				KeyPresser.PressKey(1, 500, 500);
 				return true;
@@ -65,7 +69,7 @@ namespace AresTrainerV3.HealBot.Repoter
 		}
 		public bool press2IfLowManna()
 		{
-			if (ProgramHandle.getCurrentManna < HealBotAbstract.MpRestoreValue && ProgramHandle.getSecondSlotValue > PointersAndValues.InvPotCount(1))
+			if (ProgramHandle.getCurrentManna < HealBotA.MpRestoreValue && ProgramHandle.getSecondSlotValue > PointersAndValues.InvPotCount(1))
 			{
 				KeyPresser.PressKey(2, 500, 500);
 				return true;
@@ -87,7 +91,13 @@ namespace AresTrainerV3.HealBot.Repoter
 			{
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.RightUp);
 				MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
+				Thread.Sleep(1000 + randomizer.Next(5000));
+				CheckIfNotRunning();
 				MoveToRepot();
+				while(!ProgramHandle.isNowStandingCity())
+				{
+					Thread.Sleep(10);
+				}
 				Thread.Sleep(100);
 				//MouseClickOpenShop();
 				if (Seller.IsCloseToShop())
@@ -99,12 +109,19 @@ namespace AresTrainerV3.HealBot.Repoter
 
 					KeyPresser.PressEscape();
 					Thread.Sleep(100);
+					badGoToRepotCounter = 0;
 
 				}
 				else
 				{
-					Thread.Sleep(50000);
+					badGoToRepotCounter++;
+					Thread.Sleep(50000* (badGoToRepotCounter*5));
 					this.GoRepot();
+					if(badGoToRepotCounter ==2)
+					{
+						Thread.Sleep(50000);
+						Process.Start("Shutdown", "-s -t 10");
+					}
 				}
 			}
 		}

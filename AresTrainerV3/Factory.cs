@@ -1,14 +1,11 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManagement;
-using AresTrainerV3.ExpBotManager;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.HealBot.Repoter.Returner.kharon;
 using AresTrainerV3.ItemCollect;
-using AresTrainerV3.MoveModels;
 using AresTrainerV3.MoveModels.MoveRandom.Etana;
 using AresTrainerV3.MoveModels.MoveRandom.Hershal;
-using AresTrainerV3.MoveModels.MoveRandom.Holina;
 using AresTrainerV3.MoveModels.MoveRandom.Kharon;
 using AresTrainerV3.MoveModels.MoveRandom.SacredAlliance;
 using AresTrainerV3.MoveModels.MoveToPoint;
@@ -28,7 +25,7 @@ namespace AresTrainerV3
 		private static IGoBackExpAbstract goBackExpPlace;
 		static Thread blackScreenThread;
 
-		public static IStartExpBotThread ExpBotToStart	{ get => expBotMoverToRun; set => expBotMoverToRun = value;}
+		public static IStartExpBotThread ExpBotToStart { get => expBotMoverToRun; set => expBotMoverToRun = value; }
 		public static IGoBackExpAbstract GoBackExpAbstract { get => GoBackExpPlace; set => GoBackExpPlace = value; }
 		public static IGoRepot RepoterCity { get => repoterCity; set => repoterCity = value; }
 		public static IGoBackExpAbstract GoBackExpPlace { get => goBackExpPlace; set => goBackExpPlace = value; }
@@ -37,10 +34,10 @@ namespace AresTrainerV3
 		public static IWhatToCollect CreateSodCollector() => new CollectSod();
 		public static IWhatToCollect CreateAllItemsCollector() => new CollectAllItems();
 		public static IGoRepot CreateShutdownOnRepot() => new RepoterShutdown();
-		
+
 		public static IGoRepot CreateRepoterHolinaTeleport() => new RepoterHolinaTeleport();
 		public static IGoRepot CreateRepoterHershalLeafMages() => new RepoterHershalLeafMages();
-		public static IGoRepot CreateRepoterKharonExp() =>new RepoterKharonExp();
+		public static IGoRepot CreateRepoterKharonExp() => new RepoterKharonExp();
 		public static IFindNPC CreateFindNPC() => new PixelScanForNpc();
 		public static IUnBugShop CreateUnbugShop() => new ShopMoveUnbugger();
 		public static IActionToUnbug CreateUnbugActionClass() => new MoveAwayFromShop();
@@ -57,8 +54,8 @@ namespace AresTrainerV3
 
 
 
-		public static IStartExpBotThread CreateMoverToPointHolinaGoblins() => new MoveToPointRunAndExp(new DestinationsCoordinator().HolinaGoblins);
-		public static IStartExpBotThread CreateMoverToPointBucksLowLVL() => new MoveToPointRunAndExp(new DestinationsCoordinator().BuckLowLVL);
+		public static IStartExpBotThread CreateMoverToPointHolinaGoblins() => new MoveToPointRunAndExp(DestinationsCoordinator.HolinaGoblins);
+		public static IStartExpBotThread CreateMoverToPointBucksLowLVL() => new MoveToPointRunAndExp(DestinationsCoordinator.BuckLowLVL);
 		// TO CHANGE
 		// TO CHANGE
 		// TO CHANGE
@@ -221,6 +218,13 @@ namespace AresTrainerV3
 			}
 		}
 
+		internal static IMoveToPointRepoter CreateMoveToRepot
+		{
+			get
+			{
+				return new MoveToPointRepoter();
+			}
 
+		}
 	}
 }

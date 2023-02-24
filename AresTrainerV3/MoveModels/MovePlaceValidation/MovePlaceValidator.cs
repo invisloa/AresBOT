@@ -12,7 +12,7 @@ namespace AresTrainerV3.MoveModels.MovePlaceValidation
 		}
 		public bool ValidateMap()
 		{
-			if (ExpBotManagerAbstract.isExpBotRunning && ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
+			if ( ProgramHandle.GetCurrentMap == moveOnlyOnMapX)
 			{
 				return true;
 			}

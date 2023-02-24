@@ -13,7 +13,7 @@ namespace AresTrainerV3.ItemInventory.Buyer
     {
         public override void BuyPotions()
         {
-            BuyPotionsAbstract(120, false, 200, 30, ExpBotMovePositionsValues.mousePositionsForHolinaBuying);
+            BuyPotionsAbstract(120, true, 80, 10, ExpBotMovePositionsValues.mousePositionsForHolinaBuying);
         }
 
     }

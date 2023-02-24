@@ -9,8 +9,9 @@ namespace AresTrainerV3.SkillSelection
     public abstract class SkillSelector : ISelectSkill
     {
         protected int firstBuff, secondBuff, thirdBuff, fourthBuff;
+		protected int expScroll = 2489;
 
-        public static SkillSelector SelectPropperClass()
+		public static SkillSelector SelectPropperClass()
         {
             if (ProgramHandle.isCurrentClassSelected == 1)
             {

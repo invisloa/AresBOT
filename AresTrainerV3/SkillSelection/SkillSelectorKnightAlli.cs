@@ -15,7 +15,7 @@ namespace AresTrainerV3.SkillSelection
 
 		public override void Rebuff()
 		{
-			while (HealBotAbstract.IsHealBotRunning == true)
+			while (HealBot.HealBotA.IsHealBotRunning == true)
 			{
 				checkForWhiteRed();
 

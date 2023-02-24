@@ -141,7 +141,7 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 							if (ProgramHandle.GetCurrentMap != moveOnlyOnMapX && isExpBotRunning)
 							{
 								RequestStopExpBot();
-								HealBotAbstract.RequestStartStopHealBot();
+								HealBot.HealBotA.RequestStartStopHealBot();
 								Process.Start("Shutdown", "-s -t 60");
 							}
 						}

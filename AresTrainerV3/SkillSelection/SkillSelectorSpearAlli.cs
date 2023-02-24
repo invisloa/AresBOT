@@ -9,7 +9,7 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorSpearAlli : SkillSelector
     {
-        int buff1value = PointersAndValues.BuffSpearMeditationEmp;
+        int BuffSpearMeditationEmp = PointersAndValues.BuffSpearMeditationEmp;
         int buff2value = -1;
         int buff3value = -1;
 
@@ -25,29 +25,15 @@ namespace AresTrainerV3.SkillSelection
         }
         public override void Rebuff()
         {
-            while (HealBotAbstract.IsHealBotRunning == true)
+            while (HealBot.HealBotA.IsHealBotRunning == true)
             {
                 if (ProgramHandle.isInCity != 1)
                 {
-                    if (buffIsNotActive(buff1value))
-                    {
-						KeyPresser.PressKey(4, 50, 50);
-						KeyPresser.PressKey(4, 50, 50);
-						KeyPresser.PressKey(4, 50, 50);
-						KeyPresser.PressKey(5, 50, 50);
-						KeyPresser.PressKey(5, 50, 50);
-						KeyPresser.PressKey(5, 50, 50);
-						KeyPresser.PressKey(5, 50, 50);
-					}
-					if (buffIsNotActive(buff2value))
-                    {
-                    }
-                    if (buffIsNotActive(buff2value))
-                    {
-                    }
-                    checkIfAttackSkillIsSelected();
-                }
-                Thread.Sleep(5000);
+					checkBuffAndClick(BuffSpearMeditationEmp, 4);
+					checkBuffAndClick(expScroll, 5);
+					checkIfAttackSkillIsSelected();
+				}
+				Thread.Sleep(5000);
             }
 
         }

@@ -7,8 +7,20 @@ using AresTrainerV3.SkillSelection;
 
 namespace AresTrainerV3.HealBot
 {
-	public abstract class HealBotAbstract
+	public  class HealBotA
 	{
+
+		public static bool SelfSetHealValue = false;
+		public static bool SellItems = false;
+		protected static bool _isHealBotRunning = false;
+		protected static int hpHealValue = 0;
+		protected static int MannaRestoreValue = 0;
+		protected int myCurrentHp { get { return ProgramHandle.getCurrentHp; } }
+		protected int myCurrentManna { get { return ProgramHandle.getCurrentManna; } }
+		public static bool IsHealBotRunning
+		{
+			get { return _isHealBotRunning; }
+		}
 		IGoRepot repoterCity
 		{
 			get
@@ -30,18 +42,6 @@ namespace AresTrainerV3.HealBot
 				return Factory.ExpBotToStart;
 			}
 		}
-		public static bool SelfSetHealValue = false;
-		public static bool SellItems = false;
-		protected static bool _isHealBotRunning = false;
-		protected static int hpHealValue = 0;
-		protected static int MannaRestoreValue = 0;
-		protected int myCurrentHp { get { return ProgramHandle.getCurrentHp; } }
-		protected int myCurrentManna { get { return ProgramHandle.getCurrentManna; } }
-		public static bool IsHealBotRunning
-		{
-			get { return _isHealBotRunning; }
-		}
-
 		protected void StopExpBot()
 		{
 			if (ExpBotManagerAbstract.isExpBotRunning)
@@ -62,6 +62,95 @@ namespace AresTrainerV3.HealBot
 			{ return MannaRestoreValue; }
 			set
 			{ MannaRestoreValue = value; }
+		}
+
+
+
+		public static void RequestStartStopHealBot()
+		{
+			if (_isHealBotRunning)
+				_isHealBotRunning = false;
+			else
+				_isHealBotRunning = true;
+		}
+		protected void StartHealBot()
+		{
+			ProgramHandle.SetGameAsMainWindow();
+			RequestStartStopHealBot();
+
+			SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
+			ClassRebuffer.StartRebuffThread();
+
+			if (SelfSetHealValue)
+			{
+				setHealValue();
+				setMannaRestoreValue();
+			}
+			while (_isHealBotRunning)
+			{
+				if (myCurrentHp < hpHealValue && myCurrentHp != 0)
+				{
+					HealKeyPress();
+				}
+				else if (myCurrentHp == 0)
+				{
+					StopExpBot();
+					Thread.Sleep(60000);
+					RepotAndStartExpBot();
+				}
+				if (myCurrentManna < MannaRestoreValue)
+				{
+					MannaKeyPress();
+				}
+				if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
+				{
+					// try to make storage repot and items move
+					RepotAndStartExpBot();
+				}
+
+			}
+			return;
+
+		}
+
+		public void StartHealBotThread()
+		{
+			Thread HealbotThread = new Thread(StartHealBot);
+			HealbotThread.Start();
+		}
+
+
+		public void RepotAndStartExpBot()
+		{
+			repoterCity.GoRepot();
+			_goBackExpPlace.GoBackExp();
+			ExpBotToStart.StartExpBotThread();
+		}
+		protected void HealKeyPress()
+		{
+			if (ProgramHandle.getFirstInvSlotValue > PointersAndValues.InvPotCount(7))
+			{
+				KeyPresser.PressKey(1, 50, 50);
+			}
+			else
+			{
+				RepotAndStartExpBot();
+			}
+
+		}
+		protected void MannaKeyPress()
+		{
+			{
+				if (ProgramHandle.getSecondSlotValue > PointersAndValues.InvPotCount(3)) // if less then 5 use key 6 which is teleport
+				{
+					KeyPresser.PressKey(2, 100, 150);
+				}
+				else
+				{
+					RepotAndStartExpBot();
+				}
+			}
+
 		}
 		public void setHealbotValues()
 		{
@@ -183,93 +272,6 @@ namespace AresTrainerV3.HealBot
 			{
 				MannaRestoreValue = 200;
 			}
-		}
-
-		public static void RequestStartStopHealBot()
-		{
-			if (_isHealBotRunning)
-				_isHealBotRunning = false;
-			else
-				_isHealBotRunning = true;
-		}
-		protected void StartHealBot()
-		{
-			ProgramHandle.SetGameAsMainWindow();
-			RequestStartStopHealBot();
-
-			SkillSelector ClassRebuffer = SkillSelector.SelectPropperClass();
-			ClassRebuffer.StartRebuffThread();
-
-			if (SelfSetHealValue)
-			{
-				setHealValue();
-				setMannaRestoreValue();
-			}
-			while (_isHealBotRunning)
-			{
-				if (myCurrentHp < hpHealValue && myCurrentHp != 0)
-				{
-					HealKeyPress();
-				}
-				else if (myCurrentHp == 0)
-				{
-					StopExpBot();
-					Thread.Sleep(60000);
-					RepotAndStartExpBot();
-				}
-				if (myCurrentManna < MannaRestoreValue)
-				{
-					MannaKeyPress();
-				}
-				if (SellItems == true && ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
-				{
-					// try to make storage repot and items move
-					RepotAndStartExpBot();
-				}
-
-			}
-			return;
-
-		}
-
-		public void StartHealBotThread()
-		{
-			Thread HealbotThread = new Thread(StartHealBot);
-			HealbotThread.Start();
-		}
-
-		protected void HealKeyPress()
-		{
-			if (ProgramHandle.getFirstInvSlotValue > PointersAndValues.InvPotCount(7))
-			{
-				KeyPresser.PressKey(1, 50, 50);
-			}
-			else
-			{
-				RepotAndStartExpBot();
-			}
-
-		}
-		public void RepotAndStartExpBot()
-		{
-			repoterCity.GoRepot();
-			_goBackExpPlace.GoBackExp();
-			ExpBotToStart.StartExpBotThread();
-		}
-
-		protected void MannaKeyPress()
-		{
-			{
-				if (ProgramHandle.getSecondSlotValue > PointersAndValues.InvPotCount(3)) // if less then 5 use key 6 which is teleport
-				{
-					KeyPresser.PressKey(2, 100, 150);
-				}
-				else
-				{
-					RepotAndStartExpBot();
-				}
-			}
-
 		}
 	}
 }
