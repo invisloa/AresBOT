@@ -9,7 +9,7 @@ namespace AresTrainerV3.SkillSelection
 {
     internal class SkillSelectorSpearAlli : SkillSelector
     {
-        int BuffSpearMeditationEmp = PointersAndValues.BuffSpearMeditationEmp;
+        int BuffSpearMeditationEmp = PointersAndValues.BuffSpearMeditationAlli;
         int buff2value = -1;
         int buff3value = -1;
 
@@ -27,7 +27,9 @@ namespace AresTrainerV3.SkillSelection
         {
             while (HealBot.HealBotA.IsHealBotRunning == true)
             {
-                if (ProgramHandle.isInCity != 1)
+				checkForWhiteRed();
+
+				if (ProgramHandle.isInCity != 1)
                 {
 					checkBuffAndClick(BuffSpearMeditationEmp, 4);
 					checkBuffAndClick(expScroll, 5);

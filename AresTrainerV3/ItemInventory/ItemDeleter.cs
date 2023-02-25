@@ -1,4 +1,4 @@
-﻿using AresTrainerV3.ItemInventory;
+﻿/*using AresTrainerV3.ItemInventory;
 using AresTrainerV3.ItemInventory.Buyer;
 using System;
 using System.Collections.Generic;
@@ -107,7 +107,7 @@ namespace AresTrainerV3.ItemInventory
 				Thread.Sleep(delaytime);
 				MouseOperations.MoveAndLeftClickOperation(1000, 770, 50);
 				Thread.Sleep(delaytime);
-				ItemSeller.MouseLeftClickToSellAll();
+				ItemSeller.MouseConfirmSelling();
 				Thread.Sleep(delaytime);
 			}
 
@@ -144,3 +144,4 @@ namespace AresTrainerV3.ItemInventory
 					
 	}
 }
+*/

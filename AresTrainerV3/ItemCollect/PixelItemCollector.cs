@@ -17,20 +17,21 @@ namespace AresTrainerV3.ItemCollect
 	public class PixelItemCollector : IScanAndCollect
 	{
 		private IWhatToCollect currentCollect;
+		private readonly IWhatToCollect whatToCollectCtor;
+		public IWhatToCollect CollectIgnoringWeight => Factory.CreateSodCollector();
+		IItemsStorageMoverHack storageMover = Factory.CreateItemsStorageMoverHack();
+
 		public IWhatToCollect CurrentWhatToCollect
 		{
 			get => currentCollect;
 			set => currentCollect = value;
 		}
 
-		public IWhatToCollect CollectIgnoringWeight => Factory.CreateSodCollector();
 
-		private readonly IWhatToCollect whatToCollectCtor;
 		public PixelItemCollector(IWhatToCollect whatToCollect)
 		{
 			whatToCollectCtor = whatToCollect;
 		}
-
 		Bitmap bitmap = new Bitmap(1370, 840);
 		bool wasSodDetected = false;
 		int[] smallX = new int[2] { 850, 1170 };
@@ -186,7 +187,7 @@ namespace AresTrainerV3.ItemCollect
                 if (currentCollect == CollectIgnoringWeight || ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight)
 				{
 					RepotAbstract.IsScanRunning = true;
-					ItemSeller.MoveItemsToStorage();
+					storageMover.MoveItemsToStorage();
 					for (int x = 930; x < 980; x++)
 					{
 						for (int y = 500; y < 545; y++)

@@ -679,21 +679,23 @@ namespace AresTrainerV3
 			//ExpBotManagerAbstract.RequestStartExpBot();
 			// HealBotAbstract.RequestStartStopHealBot();
 			//HealbotToRun.StartHealBotThread();
+			int i = ProgramHandle.isWhatAnimationRunning;
+			
 
 
+			/*		ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
+					{
+					new CoordsPoint(235,204,1),
+					new CoordsPoint(225,197,1),
+					new CoordsPoint(215,193,1),
+				});
 
-			ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
-			{
-			new CoordsPoint(235,204,1),
-			new CoordsPoint(225,197,1),
-			new CoordsPoint(215,193,1),
-		});
+					MoveToPointRepoter moverToPoint = new MoveToPointRepoter(tester);
+					moverToPoint.MoveToRepotDestination();
 
-			MoveToPointRepoter moverToPoint = new MoveToPointRepoter(tester);
-			moverToPoint.MoveToRepotDestination();
+				}*/
 
 		}
-
 	}
 }
 	

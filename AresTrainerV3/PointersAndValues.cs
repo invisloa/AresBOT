@@ -414,6 +414,9 @@ public static class PointersAndValues
     public const int isAttackingKnightAlliAnimation = 4425728;
 	public const int isAttackingSpearAlliAnimation = 4510144;
 	public const int isAttackingSpearEmpAnimation = 4511616;
+	public const int isAttackingSpearAlliFirstAoeAnimation = 4508672;
+
+    
     
 
 

@@ -4,6 +4,7 @@ using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.HealBot.Repoter.Returner.kharon;
 using AresTrainerV3.ItemCollect;
+using AresTrainerV3.ItemInventory;
 using AresTrainerV3.MoveModels.MoveRandom.Etana;
 using AresTrainerV3.MoveModels.MoveRandom.Hershal;
 using AresTrainerV3.MoveModels.MoveRandom.Kharon;
@@ -217,6 +218,10 @@ namespace AresTrainerV3
 				return new CollectSod();
 			}
 		}
+
+		internal static IItemsOperationsGenerator ItemsOperationsGenerator() => new ItemsToOperateListGenerator();
+
+		internal static IItemsStorageMoverHack CreateItemsStorageMoverHack() => new ItemsStorageMoverHack();
 
 		internal static IMoveToPointRepoter CreateMoveToRepot
 		{
