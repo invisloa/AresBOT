@@ -2,7 +2,7 @@
 {
 	internal interface IItemsStorageMoverHack
 	{
-		void moveItemsFromStorage();
+		void MoveItemsFromStorage();
 		void MoveItemsToStorage();
 	}
 }

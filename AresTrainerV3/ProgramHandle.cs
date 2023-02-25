@@ -1160,7 +1160,7 @@ namespace AresTrainerV3
         public static void waitMouseInPos()
         {
             var sw = Stopwatch.StartNew();
-            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 20600)
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 5)
             {
                 Thread.Sleep(0);
             }
@@ -1168,7 +1168,7 @@ namespace AresTrainerV3
         public static void waitMouseInPosScanUnder()
         {
             var sw = Stopwatch.StartNew();
-            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 2000)
+            while (sw.ElapsedTicks < PointersAndValues.mouseWaitTimeMs * 2)
             {
                 Thread.Sleep(0);
             }

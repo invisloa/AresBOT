@@ -1,5 +1,6 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManagement;
+using AresTrainerV3.HealBot;
 using AresTrainerV3.HealBot.Repoter;
 using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.HealBot.Repoter.Returner.kharon;
@@ -13,6 +14,7 @@ using AresTrainerV3.MoveModels.MoveToPoint;
 using AresTrainerV3.MoveModels.MoveToPoint.DestinationsCoords;
 using AresTrainerV3.PixelScanNPC;
 using AresTrainerV3.ShopSellAntiBug;
+using AresTrainerV3.Unstuck;
 using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3
@@ -25,6 +27,7 @@ namespace AresTrainerV3
 		private static IGoRepot repoterCity;
 		private static IGoBackExpAbstract goBackExpPlace;
 		static Thread blackScreenThread;
+		internal static bool GoRepotFirst = true;
 
 		public static IStartExpBotThread ExpBotToStart { get => expBotMoverToRun; set => expBotMoverToRun = value; }
 		public static IGoBackExpAbstract GoBackExpAbstract { get => GoBackExpPlace; set => GoBackExpPlace = value; }
@@ -35,7 +38,7 @@ namespace AresTrainerV3
 		public static IWhatToCollect CreateSodCollector() => new CollectSod();
 		public static IWhatToCollect CreateAllItemsCollector() => new CollectAllItems();
 		public static IGoRepot CreateShutdownOnRepot() => new RepoterShutdown();
-
+		public static IUnstuckerMover CreateUstackerMover() => new UnstuckerMover();
 		public static IGoRepot CreateRepoterHolinaTeleport() => new RepoterHolinaTeleport();
 		public static IGoRepot CreateRepoterHershalLeafMages() => new RepoterHershalLeafMages();
 		public static IGoRepot CreateRepoterKharonExp() => new RepoterKharonExp();
@@ -47,6 +50,7 @@ namespace AresTrainerV3
 		public static IDoWhileMoving CreateIDoWhileMovingAttack() => new DoScanAttackCollect(CreateScanAndCollectMethod());
 		public static IDoWhileMoving CreateIDoWhileMovingNothing() => new DoNothing();
 
+		public static HealBotA HealbotToRun = new HealBotA();
 
 
 		// TO CHANGE

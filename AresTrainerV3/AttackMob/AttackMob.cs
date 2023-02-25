@@ -48,8 +48,6 @@ namespace AresTrainerV3.AttackMob
 			while (ProgramHandle.isAttacking())
 			{
 				attackUnstackCounter++;
-				Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
-
 				pixelSodCollect.ScanClickAndCollectItem();
 				Thread.Sleep(100);
 				Debug.WriteLine(attackUnstackCounter);
@@ -60,7 +58,6 @@ namespace AresTrainerV3.AttackMob
 			}
 			checkIfIsNowAttackingAnimation();
 			Debug.WriteLine("attacking stopped");
-			Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
 
 		}
 

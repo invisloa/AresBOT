@@ -1,5 +1,6 @@
 ﻿using AresTrainerV3.DoWhileMoving;
 using AresTrainerV3.ExpBotManager;
+using AresTrainerV3.Unstuck;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,6 +15,7 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 	{
 		IMoveToPoint moveToPos = new MoveToPointPosition(); // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!! // TO CHANGE!!!!!!!
 		public override IDoWhileMoving WhatToDoWhileMoving { get =>Factory.CreateIDoWhileMovingAttack(); }
+		IUnstuckerMover moveUnstucker = Factory.CreateUstackerMover();
 		ReadOnlyCollection<CoordsPoint> moveDestinations { get; set; }
 		int currentPointToMove = 0;
 		public MoveToPointRunAndExp(ReadOnlyCollection<CoordsPoint> MoveDestinations)
@@ -38,6 +40,7 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 			while (isExpBotRunning)
 			{
 				while (WhatToDoWhileMoving.DoThisWhileMoving()) ;
+				moveUnstucker.CheckIfMoveIsStucked();
 
 				if (moveToPos.MoveToDestination(moveDestinations[currentPointToMove]))
 				{

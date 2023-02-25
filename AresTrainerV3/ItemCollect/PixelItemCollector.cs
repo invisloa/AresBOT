@@ -87,13 +87,11 @@ namespace AresTrainerV3.ItemCollect
         {
             if (ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeight && ProgramHandle.isInCity != 1)
 			{
-				Debug.WriteLine($"SCAN NORMAL Weights {ProgramHandle.getCurrentWeight}   {AbstractWhatToCollect.MaxCollectWeight} ");
 				currentCollect = whatToCollectCtor;
 				return PixelScan();
 			}
 			else if (ProgramHandle.isInCity != 1)
             {
-				Debug.WriteLine("ignoring weight");
 				currentCollect = CollectIgnoringWeight;
 				return PixelScan();
             }

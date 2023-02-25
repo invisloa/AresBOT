@@ -70,7 +70,6 @@ namespace AresTrainerV3.ItemCollect
             while (!ProgramHandle.isNowStandingOut() && !ProgramHandle.isNowStandingCity())
             {
                 Debug.WriteLine("collecting while");
-                Debug.WriteLine(ProgramHandle.isWhatAnimationRunning);
                 Thread.Sleep(10);
             }
             ItemCollectUnbuger.UnbugWhenCollecting(positionBeforeClick);

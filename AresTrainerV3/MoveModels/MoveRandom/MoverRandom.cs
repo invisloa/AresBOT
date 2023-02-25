@@ -48,13 +48,6 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 		{
 			get;
 		}
-		protected IUnstuckPosition unstuckPlace
-		{
-			get
-			{
-				return new UnstuckFromAnywhere();
-			}
-		}
 
 		protected int MovePositionRandomizer(int i)
 		{

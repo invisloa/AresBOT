@@ -55,7 +55,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner.kharon
             if (ProgramHandle.isInCity == 1)
             {
                 Thread.Sleep(10000);
-                Form1.HealbotToRun.RepotAndStartExpBot();
+                Factory.HealbotToRun.RepotAndStartExpBot();
 
             }
 

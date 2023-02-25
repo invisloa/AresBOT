@@ -28,7 +28,6 @@ namespace AresTrainerV3
 		static Thread animbotThread;
 		static Thread expbotThread = new Thread(ProgramHandle.StartAttackWhenMobSelectedBot);
 		public SkillSelector CurrentlySelectedClass = SkillSelector.SelectPropperClass();
-		public static HealBotA HealbotToRun = new HealBotA();
 		globalKeyboardHook gkh = new globalKeyboardHook();
 		Random randomizer = new Random();
 		public ItemSeller Seller = new ItemSeller();
@@ -37,7 +36,7 @@ namespace AresTrainerV3
 		{
 			InitializeComponent();
 			ProgramHandle.InitializeProgram();
-			HealbotToRun.setHealbotValues();
+			Factory.HealbotToRun.setHealbotValues();
 			HPValueTextBox.Text = HealBot.HealBotA.HpHealValue.ToString();
 			MannaValueTextBox.Text = HealBot.HealBotA.MpRestoreValue.ToString();
 		}
@@ -70,7 +69,7 @@ namespace AresTrainerV3
 
 		void StartOnlyHealbotThread()
 		{
-			HealbotToRun.StartHealBotThread();
+			Factory.HealbotToRun.StartHealBotThread();
 		}
 		void StopAllBots()
 		{
@@ -572,11 +571,11 @@ namespace AresTrainerV3
 		private void RunExpBot_Click(object sender, EventArgs e)
 		{
 			AssignBot();
-			HealbotToRun.StartHealBotThread();
+			Factory.HealbotToRun.StartHealBotThread();
 			ProgramHandle.SetCameraForExpBot();
-			if (Factory.RepoterCity is not RepoterShutdown)
+			if (Factory.GoRepotFirst)
 			{
-				HealbotToRun.RepotAndStartExpBot();
+				Factory.HealbotToRun.RepotAndStartExpBot();
 			}
 			else
 			{
@@ -680,7 +679,7 @@ namespace AresTrainerV3
 			// HealBotAbstract.RequestStartStopHealBot();
 			//HealbotToRun.StartHealBotThread();
 			int i = ProgramHandle.isWhatAnimationRunning;
-			
+
 
 
 			/*		ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
@@ -696,6 +695,17 @@ namespace AresTrainerV3
 				}*/
 
 		}
+
+		private void GoRepotFirst_CheckedChanged(object sender, EventArgs e)
+		{
+			if(GoRepotFirst.Checked == true)
+			{ 
+				Factory.GoRepotFirst = true;
+			}
+			else
+			{
+				Factory.GoRepotFirst = false;
+			}
+		}
 	}
 }
-	

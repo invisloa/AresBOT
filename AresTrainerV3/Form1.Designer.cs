@@ -85,6 +85,8 @@
 			ItemBlesserBtn = new Button();
 			label21 = new Label();
 			RunExpcheckBox = new CheckBox();
+			GoRepotFirst = new CheckBox();
+			label22 = new Label();
 			SuspendLayout();
 			// 
 			// ClassChangeComboBox
@@ -509,7 +511,7 @@
 			// 
 			// FastTestWindow
 			// 
-			FastTestWindow.Location = new Point(594, 41);
+			FastTestWindow.Location = new Point(738, 66);
 			FastTestWindow.Name = "FastTestWindow";
 			FastTestWindow.Size = new Size(100, 23);
 			FastTestWindow.TabIndex = 74;
@@ -517,7 +519,7 @@
 			// label20
 			// 
 			label20.AutoSize = true;
-			label20.Location = new Point(594, 16);
+			label20.Location = new Point(738, 41);
 			label20.Name = "label20";
 			label20.Size = new Size(71, 15);
 			label20.TabIndex = 75;
@@ -622,11 +624,34 @@
 			RunExpcheckBox.UseVisualStyleBackColor = true;
 			RunExpcheckBox.CheckedChanged += RunExpcheckBox_CheckedChanged;
 			// 
+			// GoRepotFirst
+			// 
+			GoRepotFirst.AutoSize = true;
+			GoRepotFirst.Checked = true;
+			GoRepotFirst.CheckState = CheckState.Checked;
+			GoRepotFirst.Location = new Point(611, 59);
+			GoRepotFirst.Name = "GoRepotFirst";
+			GoRepotFirst.Size = new Size(15, 14);
+			GoRepotFirst.TabIndex = 90;
+			GoRepotFirst.UseVisualStyleBackColor = true;
+			GoRepotFirst.CheckedChanged += GoRepotFirst_CheckedChanged;
+			// 
+			// label22
+			// 
+			label22.AutoSize = true;
+			label22.Location = new Point(594, 41);
+			label22.Name = "label22";
+			label22.Size = new Size(81, 15);
+			label22.TabIndex = 89;
+			label22.Text = "Go Repot First";
+			// 
 			// Form1
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(860, 450);
+			Controls.Add(GoRepotFirst);
+			Controls.Add(label22);
 			Controls.Add(RunExpcheckBox);
 			Controls.Add(label21);
 			Controls.Add(ItemBlesserBtn);
@@ -752,6 +777,8 @@
 		private Button ItemBlesserBtn;
 		private Label label21;
 		private CheckBox RunExpcheckBox;
+		private CheckBox GoRepotFirst;
+		private Label label22;
 
 		public EventHandler Tester_Click_1 { get; private set; }
 	}

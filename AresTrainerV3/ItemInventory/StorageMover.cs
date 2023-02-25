@@ -17,9 +17,9 @@ namespace AresTrainerV3.ItemInventory
 		{
 			if (!isStorageFullCheck())
 			{
-				List<int> imtemsToOperate = itemOperations.ItemsToStorageMoveListGenerate();
+				/*List<int> imtemsToOperate = itemOperations.ItemsToStorageMoveListGenerate();
 				int itemsToMoveToStorageCount = imtemsToOperate.Count;
-				if (itemsToMoveToStorageCount > 3 &&
+				*//*if (itemsToMoveToStorageCount > 3 &&
 					ProgramHandle.getCurrentWeight > AbstractWhatToCollect.MaxCollectWeight - 200) // - 200 is at least 1 item less then needed for repot
 				{
 					ProgramHandle.OpenStorageWindow();
@@ -44,8 +44,8 @@ namespace AresTrainerV3.ItemInventory
 					}
 					Thread.Sleep(50);
 					KeyPresser.PressEscape();
-					KeyPresser.PressEscape();
-				}
+					KeyPresser.PressEscape();*//*
+				}*/
 			}
 		}
 		public bool isStorageFullCheck()
@@ -67,7 +67,7 @@ namespace AresTrainerV3.ItemInventory
 
 		#region ItemMoveFromStorage
 
-		public void moveItemsFromStorage()
+		public void MoveItemsFromStorage()
 		{
 			KeyPresser.PressEscape();
 			Thread.Sleep(200);

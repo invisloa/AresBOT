@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using AresTrainerV3.MoveModels;
+using AresTrainerV3.HealBot.Repoter;
 
 namespace AresTrainerV3.Unstuck
 {
@@ -11,9 +13,9 @@ namespace AresTrainerV3.Unstuck
     {
         Random random = new Random();
 
-        Tuple<int, int>[] tempUnstuckMousePositions = new Tuple<int, int>[]
+
+		Tuple<int, int>[] tempUnstuckMousePositions = new Tuple<int, int>[]
         {
-            
             new Tuple<int, int>(955+100,515+100),
             new Tuple<int, int>(955+100,515-100),
             new Tuple<int, int>(955-100,515+100),
@@ -46,8 +48,6 @@ namespace AresTrainerV3.Unstuck
                 MouseOperations.MoveAndLeftClickOperation(tempUnstuckMousePositions[movefromPositionRandomizer].Item1, tempUnstuckMousePositions[movefromPositionRandomizer].Item2, 15);
             }
         }
-
-
         protected bool UnstuckMoveBase(Tuple<int, int, int, int>[] stuckLockations)
         {
            // Debug.WriteLine("Check if is in stuck lockation");
@@ -60,7 +60,6 @@ namespace AresTrainerV3.Unstuck
 
             return false;
         }
-
         public abstract bool UnstuckMove();
     }
 }

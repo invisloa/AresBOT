@@ -11,6 +11,7 @@ namespace AresTrainerV3.ItemInventory
 		IUnBugShop ShopUnbugger = Factory.CreateUnbugShop();
 		int howManyTries = 0;
 		IItemsOperationsGenerator itemOperations = Factory.ItemsOperationsGenerator();
+		IItemsStorageMoverHack storageMover = Factory.CreateItemsStorageMoverHack();
 
 		public void SellItemsByMouseMove()
 		{
@@ -61,7 +62,7 @@ namespace AresTrainerV3.ItemInventory
 				if (itemOperations.ItemsFromStorageListGenerate().Count != 0 && ProgramHandle.isShopWindowStillOpen == 1 && ProgramHandle.getCurrentWeight < AbstractWhatToCollect.MaxCollectWeightNormalValue)
 				{
 					KeyPresser.PressEscape();
-					moveItemsFromStorage();
+					storageMover.MoveItemsFromStorage();
 					KeyPresser.PressEscape();
 					KeyPresser.PressEscape();
 					Thread.Sleep(500);
@@ -121,7 +122,6 @@ namespace AresTrainerV3.ItemInventory
 		{
 			KeyPresser.PressEnter(10, 10);
 		}
-		#region OldSellItems
 		public void AssignWeight()
 		{
 			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
@@ -142,11 +142,6 @@ namespace AresTrainerV3.ItemInventory
 			MouseOperations.MouseEvent(MouseOperations.MouseEventFlags.LeftUp);
 			Thread.Sleep(sleepTime);
 		}
-
-		//public void SellItemsByMouseMove(Action SellConfirmationDelegate)
-
-		#endregion
-
 	}
 }
 

@@ -16,7 +16,7 @@ public static class PointersAndValues
 	public static bool isNostalgia = true;
 	public static bool IsComputer = true;
 
-	public const int mouseWaitTimeMs = 1;
+	public const int mouseWaitTimeMs = 2000;
 
 
     public static string GameProcessName
