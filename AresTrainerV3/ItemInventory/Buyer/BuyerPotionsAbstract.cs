@@ -104,7 +104,7 @@ namespace AresTrainerV3.ItemInventory.Buyer
 						Thread.Sleep(200);
 						if (ProgramHandle.getSecondSlotValue < PointersAndValues.InvPotCount(mannaLimit))
 						{
-							if (howManyUnbugTriesCount == 5)
+							if (howManyUnbugTriesCount == 3)
 							{
 								throw new NotImplementedException();
 							}

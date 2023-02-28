@@ -4,7 +4,7 @@ using WindowsInput;
 
 namespace AresTrainerV3
 {
-	public static class ExpBotClass
+	public static class OLD_ExpBotClass
 	{
 		static InputSimulator inputSimulator = new InputSimulator();
 		static int moveRandomizer

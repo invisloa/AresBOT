@@ -253,9 +253,10 @@ public static class PointersAndValues
     public const int classSelected = 0x7d4;
     public const int visualSkillAttack = 0x64;
 
-    
-    public const int ShopWindow2MOffset = 0x90;
-    public const int CurrentSkillTabMOffset = 0x58;
+
+	public const int ShopWindow2MOffset = 0x90;
+	public const int SellerWindow2MOffset = 0xac;
+	public const int CurrentSkillTabMOffset = 0x58;
     public const int StorageWindow2MOffset = 0x94;
     public const int InventoryWindow2MOffset = 0x60;
     public const int Buff1FirstOffOffset = 0x15c;
@@ -269,7 +270,8 @@ public static class PointersAndValues
 	public const int CurrentSkillTabOffOffset = 0x174;
 
     public const int ShopWindowOffset1 = 0xc0;
-    public const int ShopWindowOffset2 = 0xd8;
+	public const int SellerWindowOffset1 = 0xc0;
+	public const int ShopWindowOffset2 = 0xd8;
     public const int StorageWindowOffset1 = 0xc0;
     public const int StorageWindowOffset2 = 0xd8;
     public const int inventoryWindowOffset1 = 0xc0;
@@ -323,8 +325,9 @@ public static class PointersAndValues
     
     
     public const int cameraDistanceAnimValue = 1127253120;
-    public const int cameraDistanceBotValue = 1112599680;
-    public const int cameraFogValue = 18000;
+	public const int cameraDistanceBotValue = 1112599680;
+	public const int cameraDistanceZoom = 1106247680;
+	public const int cameraFogValue = 18000;
     public const int cameraAngleYValue = 81853;
     public static int skill1AnimValue = 0;
     public static int skill2AnimValue = 0;

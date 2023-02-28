@@ -6,6 +6,7 @@ using AresTrainerV3.HealBot.Repoter.Returner;
 using AresTrainerV3.HealBot.Repoter.Returner.kharon;
 using AresTrainerV3.ItemCollect;
 using AresTrainerV3.ItemInventory;
+using AresTrainerV3.MoveModels;
 using AresTrainerV3.MoveModels.MoveRandom.Etana;
 using AresTrainerV3.MoveModels.MoveRandom.Hershal;
 using AresTrainerV3.MoveModels.MoveRandom.Kharon;
@@ -28,7 +29,7 @@ namespace AresTrainerV3
 		private static IGoBackExpAbstract goBackExpPlace;
 		static Thread blackScreenThread;
 		internal static bool GoRepotFirst = true;
-
+		internal static IOneMoveToDestinationPosition CreateOneMoveToDestinationPosition { get => new OneMoveToDestinationPosition(); }
 		public static IStartExpBotThread ExpBotToStart { get => expBotMoverToRun; set => expBotMoverToRun = value; }
 		public static IGoBackExpAbstract GoBackExpAbstract { get => GoBackExpPlace; set => GoBackExpPlace = value; }
 		public static IGoRepot RepoterCity { get => repoterCity; set => repoterCity = value; }
@@ -38,9 +39,9 @@ namespace AresTrainerV3
 		public static IWhatToCollect CreateSodCollector() => new CollectSod();
 		public static IWhatToCollect CreateAllItemsCollector() => new CollectAllItems();
 		public static IGoRepot CreateShutdownOnRepot() => new RepoterShutdown();
-		public static IUnstuckerMover CreateUstackerMover() => new UnstuckerMover();
-		public static IGoRepot CreateRepoterHolinaTeleport() => new RepoterHolinaTeleport();
-		public static IGoRepot CreateRepoterHershalLeafMages() => new RepoterHershalLeafMages();
+		public static IUnstuckerMover CreateUstuckerExp() => new UnstuckerMover();
+		public static IGoRepot CreateRepoterHolinaTeleport() => new RepoterHolina();
+		public static IGoRepot CreateRepoterHershal() => new RepoterHershal();
 		public static IGoRepot CreateRepoterKharonExp() => new RepoterKharonExp();
 		public static IFindNPC CreateFindNPC() => new PixelScanForNpc();
 		public static IUnBugShop CreateUnbugShop() => new ShopMoveUnbugger();
@@ -59,8 +60,7 @@ namespace AresTrainerV3
 
 
 
-		public static IStartExpBotThread CreateMoverToPointHolinaGoblins() => new MoveToPointRunAndExp(DestinationsCoordinator.HolinaGoblins);
-		public static IStartExpBotThread CreateMoverToPointBucksLowLVL() => new MoveToPointRunAndExp(DestinationsCoordinator.BuckLowLVL);
+		public static IStartExpBotThread CreateCoordsMover() => new CoordsMoveRunAndExp();
 		// TO CHANGE
 		// TO CHANGE
 		// TO CHANGE
@@ -95,29 +95,29 @@ namespace AresTrainerV3
 			{
 				RepoterCity = CreateRepoterHolinaTeleport();
 				GoBackExpPlace = new GoBackExpGoblinsTeleport();
-				expBotMoverToRun = CreateMoverToPointHolinaGoblins();
+				expBotMoverToRun = CreateCoordsMover();
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.BucksLowLVL)
 			{
 				RepoterCity = CreateShutdownOnRepot();
 				GoBackExpPlace = new GoBackExpGoblinsTeleport();
-				expBotMoverToRun = CreateMoverToPointBucksLowLVL();
+				expBotMoverToRun = CreateCoordsMover();
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.HershalLowLvl)
 			{
-				RepoterCity = CreateRepoterHershalLeafMages();
+				RepoterCity = CreateRepoterHershal(); 
 				GoBackExpPlace = new GoBackExpHershalLowLvl();
-				expBotMoverToRun = new MoverHershalLowLvl();
+				expBotMoverToRun = CreateCoordsMover();
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.HershalLeafMages)
 			{
-				RepoterCity = CreateRepoterHershalLeafMages();
+				RepoterCity = CreateRepoterHershal();
 				GoBackExpPlace = new GoBackExpHershalTeleport();
 				expBotMoverToRun = new MoverHershalLeafMages();
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.HershalUWC1stFloor)
 			{
-				RepoterCity = CreateRepoterHershalLeafMages();
+				RepoterCity = CreateRepoterHershal();
 				GoBackExpPlace = new GoBackExpUWC();
 				expBotMoverToRun = new MoverHershalUwc1stFloor();
 			}
@@ -195,6 +195,7 @@ namespace AresTrainerV3
 			}
 
 		}
+
 		public static AbstractWhatToCollect CreateWhatToCollect()
 		{
 			if (WhatToCollect == WhatToCollectEnums.Event)
@@ -227,13 +228,14 @@ namespace AresTrainerV3
 
 		internal static IItemsStorageMoverHack CreateItemsStorageMoverHack() => new ItemsStorageMoverHack();
 
-		internal static IMoveToPointRepoter CreateMoveToRepot
+		internal static IMoveToPoint CreateMoveToRepot
 		{
 			get
 			{
-				return new MoveToPointRepoter();
+				return new CoordsMoveRepoter();
 			}
 
 		}
+
 	}
 }

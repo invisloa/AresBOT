@@ -9,14 +9,14 @@ using System.Diagnostics;
 
 namespace AresTrainerV3.MoveModels
 {
-    public class MoveToPointPosition : IMoveToPoint
+    public class OneMoveToDestinationPosition : IOneMoveToDestinationPosition
     {
         IMouseMoveToPosition MoveToPosition = FactoryMoveToPoint.CreateMouseMoveToPosition();
         IRouteCalculator routeCalculator = FactoryMoveToPoint.CreateNewRouteCalculator();
         IObstacleRangeChecker obstacleRangeChecker = FactoryMoveToPoint.CreateNewRouteChecker();
         IMovePlaceValidator validateMap = FactoryMoveToPoint.CreateMovePlaceValidator();
         int howManyMovesForwardToCheck = 4;
-		public bool MoveToDestination(CoordsPoint endPosition)
+		public bool OneMoveToDestination(CoordsPoint endPosition)
         {
             List<CoordsPoint> routeCoordinates = routeCalculator.CalculateMainRouteCoordinates(endPosition);
                 if (validateMap.ValidateMap())
@@ -35,7 +35,7 @@ namespace AresTrainerV3.MoveModels
                     else
                     {
                         Debug.WriteLine("Can't move to: " + routeCoordinates[0].X + "," + routeCoordinates[0].Y + " Need an alternate route");
-                        MoveToDestination(FindObstacleCorner.FindProperCorner(obstacleRangeChecker.ObstacleIntersected, endPosition));
+                        OneMoveToDestination(FindObstacleCorner.FindProperCorner(obstacleRangeChecker.ObstacleIntersected, endPosition));
                     }
                 }
             return false;

@@ -6,31 +6,26 @@ namespace AresTrainerV3.ExpBotManager
 {
     public abstract class ExpBotManagerAbstract : IStartExpBotThread, IMoveAttackCollect
 	{
-        public abstract void RunAndExp();
-        public static bool shutDownOnRepot = false;
+		public abstract void MoveAttackAndCollect();
+
+		public static bool shutDownOnRepot = false;
         public void StartExpBotThread()
         {
             RequestStartExpBot();
-            Thread.Sleep(10);
-            if (isExpBotRunning)
-            {
-                Thread ExpBotThread = new Thread(RunAndExp);
-                ExpBotThread.Start();
-            }
+			ProgramHandle.SetCameraForExpBot();
+			Thread.Sleep(10);
+            Thread ExpBotThread = new Thread(MoveAttackAndCollect);
+            ExpBotThread.Start();  
         }
-
-
         protected static bool _isExpBotRunning = false;
-        public static bool isExpBotRunning
-        {
-            get { return _isExpBotRunning; }
-        }
-
 		public abstract IDoWhileMoving WhatToDoWhileMoving
 		{
 			get;
 		}
-
+		public static bool isExpBotRunning
+		{
+			get { return _isExpBotRunning; }
+		}
 		public static void RequestStopExpBot()
         {
             if (_isExpBotRunning)
@@ -46,6 +41,5 @@ namespace AresTrainerV3.ExpBotManager
             }
         }
 
-        public abstract bool MoveAttackAndCollect();
 	}
 }

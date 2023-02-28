@@ -16,6 +16,6 @@ namespace AresTrainerV3.MovePositions
             get ;
         }
 
-		public bool MoveAttackAndCollect();
+		public void MoveAttackAndCollect();
     }
 }

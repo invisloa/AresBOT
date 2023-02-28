@@ -10,7 +10,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
     {
         public override void GoBackExp()
         {
-            ExpBotClass.WalkIntoUWC();
+            OLD_ExpBotClass.WalkIntoUWC();
         }
 
     }

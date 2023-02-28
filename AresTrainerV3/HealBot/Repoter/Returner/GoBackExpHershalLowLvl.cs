@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AresTrainerV3.MoveModels.MoveToPoint;
+using AresTrainerV3.MoveModels.MoveToPoint.DestinationsCoords;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,9 +12,19 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
 	{
 		public override void GoBackExp()
 		{
-			ProgramHandle.SetCameraForExpBot();
-			ProgramHandle.TeleportToPositionTuple(TeleportValues.SpotExpHershalLowLvl);
-			ProgramHandle.SetCameraForExpBot();
+			// TEST TEST TEST
+			// TEST TEST TEST
+			// TEST TEST TEST
+			// TEST TEST TEST
+			CoordsMoveBase mover = new CoordsMoveBase(DestinationsCoordinator.GoBackExpHershalOutsideCity);
+			// TEST TEST TEST
+			// TEST TEST TEST
+			// TEST TEST TEST
+			// TEST TEST TEST
+			// TEST TEST TEST
+			// TEST TEST TEST
+
+			mover.MoveToDestination();
 		}
 	}
 }

@@ -376,7 +376,7 @@ namespace AresTrainerV3
 
                         }
             */
-			if (!ExpBotClass.isStopMoveExpBot)
+			if (!OLD_ExpBotClass.isStopMoveExpBot)
 			{
 				button3.Text = "OFF";
 				button3.BackColor = Color.Gray;
@@ -435,7 +435,7 @@ namespace AresTrainerV3
 		private void Tester_Click(object sender, EventArgs e)
 		{
 
-			TextBoxLog.Text = ExpBotClass.ExpBotLog;
+			TextBoxLog.Text = OLD_ExpBotClass.ExpBotLog;
 		}
 
 		private void SellItems_Click(object sender, EventArgs e)
@@ -691,8 +691,8 @@ namespace AresTrainerV3
 			//HealbotToRun.StartHealBotThread();
 
 			ProgramHandle.SetCameraForExpBot();
-			MoveToPointRepoter moverToPoint = new MoveToPointRepoter(DestinationsCoordinator.HershalRepot);
-			moverToPoint.MoveToRepotDestination();
+			CoordsMoveRepoter moverToPoint = new CoordsMoveRepoter();
+			moverToPoint.MoveToDestination();
 
 			/*		ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
 					{

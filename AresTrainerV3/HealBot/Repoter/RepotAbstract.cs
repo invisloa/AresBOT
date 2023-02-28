@@ -12,7 +12,7 @@ namespace AresTrainerV3.HealBot.Repoter
 		protected Random randomizer = new Random();
 		ItemSeller Seller = new ItemSeller();
 		int badGoToRepotCounter = 0;
-		protected IMoveToPointRepoter moverToPoint{ get => Factory.CreateMoveToRepot; }
+		protected IMoveToPoint moverToPointRepoter { get => Factory.CreateMoveToRepot; }
 
 		protected int isCurrentCity
 		{

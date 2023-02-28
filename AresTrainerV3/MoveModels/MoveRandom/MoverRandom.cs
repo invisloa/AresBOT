@@ -179,23 +179,10 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 			BorderLimitBounce(24, 2, 10);
 		}
 
-		public override void RunAndExp()
+		public override void  MoveAttackAndCollect()
 		{
 			ProgramHandle.SetCameraForExpBot();
-			RequestStartExpBot();
 
-			while (isExpBotRunning)
-			{
-				if (ProgramHandle.isInCity == 1 && shutDownOnRepot)
-				{
-					Process.Start("Shutdown", "-s -t 10");
-				}
-				MoveAttackAndCollect();
-			}
-		}
-
-		public override bool  MoveAttackAndCollect()
-		{
 			while (isExpBotRunning)
 			{
 				if (ProgramHandle.GetPositionX > DirectionsLimts.Item1 && ProgramHandle.GetPositionX < DirectionsLimts.Item3 && ProgramHandle.GetPositionY < DirectionsLimts.Item2 && ProgramHandle.GetPositionY > DirectionsLimts.Item4)
@@ -238,9 +225,7 @@ namespace AresTrainerV3.MoveModels.MoveRandom
 					MoveToPosRandom(_lastMouseMovePosition);
 					movedMainMove = false;
 				}
-				return true;
 			}
-			return false;
 		}
 	}
 }

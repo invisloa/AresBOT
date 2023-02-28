@@ -69,7 +69,8 @@ namespace AresTrainerV3
 		public static IntPtr GetCurrentYMapPosAdress = (IntPtr)PointersAndValues.CurrentPosYMapAddress;
 
 		static IntPtr shopWindowMOffset;
-        static IntPtr inventoryWindowMOffset;
+		static IntPtr sellerWindowMOffset;
+		static IntPtr inventoryWindowMOffset;
         static IntPtr storageWindowMOffset;
 
 
@@ -261,9 +262,11 @@ namespace AresTrainerV3
 
             isCurrentSkillTabMOffset = memSkill.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.CurrentSkillTabMOffset));
 
-            shopWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.ShopWindow2MOffset));
+			shopWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.ShopWindow2MOffset));
 
-            inventoryWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.InventoryWindow2MOffset));
+			sellerWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.SellerWindow2MOffset));
+
+			inventoryWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.InventoryWindow2MOffset));
             
             storageWindowMOffset = memSeller.readpointer(proc.Handle, IntPtr.Add(UIWindowMOffset, PointersAndValues.StorageWindow2MOffset));
 
@@ -425,6 +428,10 @@ namespace AresTrainerV3
             {
                 memNormal.writebytes(proc.Handle, IntPtr.Add(cameraFogOffsetLapt, PointersAndValues.cameraFogPointerLapt), BitConverter.GetBytes(PointersAndValues.cameraFogValue));
             }
+        }
+        public static void ZoomCameraForNpcScan()
+        {
+            memNormal.writebytes(proc.Handle, IntPtr.Add(cameraBaseOffset, PointersAndValues.cameraDistancePointer), BitConverter.GetBytes(PointersAndValues.cameraDistanceZoom));
         }
 
 		public static int isInCity
@@ -1129,6 +1136,10 @@ namespace AresTrainerV3
 		public static byte isShopWindowStillOpen
 		{
             get { return memSeller.readByte(proc.Handle, IntPtr.Add(shopWindowMOffset, PointersAndValues.ShopWindowOffset1)); }
+		}
+		public static byte isSellerWindowOpen
+		{
+			get { return memSeller.readByte(proc.Handle, IntPtr.Add(sellerWindowMOffset, PointersAndValues.SellerWindowOffset1)); }
 		}
 
 		public static void OpenInventoryWindow()

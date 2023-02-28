@@ -55,7 +55,7 @@ namespace AresTrainerV3.PixelScanNPC
 									MouseOperations.MoveAndRightClickOperation(x, y);
 									Thread.Sleep(2000);
 									GC.Collect();
-									return true;
+									return ProgramHandle.isSellerWindowOpen == 1 ? true :false;
 								}
 							}
 						}

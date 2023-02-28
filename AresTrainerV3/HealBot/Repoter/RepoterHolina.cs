@@ -6,7 +6,7 @@ using System.Diagnostics.Metrics;
 
 namespace AresTrainerV3.HealBot.Repoter
 {
-	internal class RepoterHolinaTeleport : RepotAbstract
+	internal class RepoterHolina : RepotAbstract
 	{
 
 		protected override BuyerPotionsAbstract BuyerPotionsCity
@@ -31,7 +31,7 @@ namespace AresTrainerV3.HealBot.Repoter
 
 		protected override void MoveToRepot()
 		{
-			moverToPoint.MoveToRepotDestination();
+			moverToPointRepoter.MoveToDestination();
 		}
 	}
 }
