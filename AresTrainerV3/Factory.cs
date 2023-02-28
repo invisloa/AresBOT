@@ -99,7 +99,7 @@ namespace AresTrainerV3
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.BucksLowLVL)
 			{
-				RepoterCity = CreateRepoterHolinaTeleport();
+				RepoterCity = CreateShutdownOnRepot();
 				GoBackExpPlace = new GoBackExpGoblinsTeleport();
 				expBotMoverToRun = CreateMoverToPointBucksLowLVL();
 			}

@@ -26,7 +26,7 @@ namespace AresTrainerV3.HealBot.Repoter
 
 		protected override void MoveToRepot()
 		{
-			//System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
+			System.Diagnostics.Process.Start("Shutdown", "-s -t 10");
 		}
 	}
 }

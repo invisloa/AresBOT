@@ -1,10 +1,10 @@
 ﻿namespace AresTrainerV3.MoveModels
 {
-	public struct CoordsPoint : ICurrentPosition
+	public struct CoordsPoint
 	{
-		public int X = 0;
-		public int Y = 0;
-		public int MoveAccuracy = 6;
+		private int x = 0;
+		private int y = 0;
+		int moveAccuracy = 6;
 		public CoordsPoint(int x, int y)
 		{
 			this.X = x;
@@ -16,8 +16,9 @@
 			this.Y = y;
 			this.MoveAccuracy = moveAccuracy;
 		}
-
-		public CoordsPoint CurrentPosition { get { return new CoordsPoint(X, Y); } }
+		public int X { get => x; set => x = value; }
+		public int Y { get => y; set => y = value; }
+		public int MoveAccuracy { get => moveAccuracy; set => moveAccuracy = value; }
 	}
 	public class Line
 	{

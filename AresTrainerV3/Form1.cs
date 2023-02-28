@@ -12,6 +12,7 @@ using AresTrainerV3.MoveModels.MoveToPoint.DestinationsCoords;
 using AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel;
 using AresTrainerV3.SkillSelection;
 using System.Collections.ObjectModel;
+using System.Diagnostics.Metrics;
 using Utilities;
 
 
@@ -670,17 +671,28 @@ namespace AresTrainerV3
 			NumberOfCollectScans.Text = DoScanAttackCollect.NumberOfCollectScans.ToString();
 			this.CollectorComboBox.Text = "AllItems";
 		}
-
+		private void GoRepotFirst_CheckedChanged(object sender, EventArgs e)
+		{
+			if (GoRepotFirst.Checked == true)
+			{
+				Factory.GoRepotFirst = true;
+			}
+			else
+			{
+				Factory.GoRepotFirst = false;
+			}
+		}
 
 		private void fasttest_Click(object sender, EventArgs e)
 		{
 			AbstractWhatToCollect.MaxCollectWeight = ProgramHandle.getMaxWeight - 150;
-			//ExpBotManagerAbstract.RequestStartExpBot();
+			ExpBotManagerAbstract.RequestStartExpBot();
 			// HealBotAbstract.RequestStartStopHealBot();
 			//HealbotToRun.StartHealBotThread();
-			int i = ProgramHandle.isWhatAnimationRunning;
 
-
+			ProgramHandle.SetCameraForExpBot();
+			MoveToPointRepoter moverToPoint = new MoveToPointRepoter(DestinationsCoordinator.HershalRepot);
+			moverToPoint.MoveToRepotDestination();
 
 			/*		ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
 					{
@@ -696,16 +708,6 @@ namespace AresTrainerV3
 
 		}
 
-		private void GoRepotFirst_CheckedChanged(object sender, EventArgs e)
-		{
-			if(GoRepotFirst.Checked == true)
-			{ 
-				Factory.GoRepotFirst = true;
-			}
-			else
-			{
-				Factory.GoRepotFirst = false;
-			}
-		}
+
 	}
 }

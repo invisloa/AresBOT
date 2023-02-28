@@ -5,9 +5,6 @@
     {
         int howManyMovesForwardToCheck = 3;
         public Line colissionLine = new Line(new CoordsPoint(0, 0), new CoordsPoint(0, 0));
-
-        ICurrentPosition currentPositionInterface = FactoryMoveToPoint.GetCurrentCoordPointXY;
-
         public Line IntersectedLine { get => colissionLine; }
 
         public bool IntersectsWith(CoordsPoint startPoint, CoordsPoint destinationPoint, Obstacle obstacle)

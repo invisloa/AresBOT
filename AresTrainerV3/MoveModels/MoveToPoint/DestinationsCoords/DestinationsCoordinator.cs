@@ -45,13 +45,12 @@ namespace AresTrainerV3.MoveModels.MoveToPoint.DestinationsCoords
 		new CoordsPoint(267, 414, 1),
 	});
 
-		public static readonly ReadOnlyCollection<CoordsPoint> BucksPitLeftSide = new ReadOnlyCollection<CoordsPoint>(new[]
+		public static readonly ReadOnlyCollection<CoordsPoint> HershalRepot = new ReadOnlyCollection<CoordsPoint>(new[]
 		{
-		new CoordsPoint(115, 310, 10),
-		new CoordsPoint(235, 389, 1),
-		new CoordsPoint(260, 390, 2),
-		new CoordsPoint(267, 397, 1),
-		new CoordsPoint(267, 414, 1),
+		new CoordsPoint(575, 560, 2),
+		new CoordsPoint(540, 546, 1),
+		new CoordsPoint(537, 537, 2),
+
 	});
 	}
 }
