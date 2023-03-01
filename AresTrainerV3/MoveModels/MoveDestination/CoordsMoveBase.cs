@@ -19,14 +19,14 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 		/// <summary>
 		/// TO DO MOVE USTACKER
 		/// </summary>
-		public CoordsMoveBase() 
+		public CoordsMoveBase()
 		{
 			moveDestinationsList = DestinationsCoordinator.NoMoveCoords;
 		}
 		protected override IUnstuckerMover moveUnstucker { get => Factory.CreateUstuckerExp(); }
 		protected override ReadOnlyCollection<CoordsPoint> moveDestinationsList { get; set; }
 
-		public CoordsMoveBase (ReadOnlyCollection<CoordsPoint> movePositions)
+		public CoordsMoveBase(ReadOnlyCollection<CoordsPoint> movePositions)
 		{
 			moveDestinationsList = movePositions;
 		}
