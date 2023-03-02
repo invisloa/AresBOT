@@ -643,8 +643,10 @@ namespace AresTrainerV3
 			if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassSorcerer)
 			{
 				BuyerPotionsAbstract.HpPotionsToBuy = 333;
-				BuyerPotionsAbstract.MpPotionsToBuy = 99;
-				ExpBotComboBox.Text = "KharonBigWolves";
+				BuyerPotionsAbstract.MpPotionsToBuy = 55;
+				BuyerPotionsAbstract.SpeedPotionsToBuy = 6;
+
+				ExpBotComboBox.Text = "KharonWolves";
 
 			}
 			else if (ProgramHandle.isCurrentClassSelected == PointersAndValues.ClassKnight)
@@ -689,9 +691,23 @@ namespace AresTrainerV3
 			ExpBotManagerAbstract.RequestStartExpBot();
 			// HealBotAbstract.RequestStartStopHealBot();
 			//HealbotToRun.StartHealBotThread();
-
+			ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]
+					{
+					new CoordsPoint(813,159,1),
+					new CoordsPoint(814,159,1),
+					new CoordsPoint(815,159,1),
+					new CoordsPoint(815,158,1),
+					new CoordsPoint(815,157,1),
+					new CoordsPoint(813,159,1),
+					new CoordsPoint(814,159,1),
+					new CoordsPoint(815,159,1),
+					new CoordsPoint(815,158,1),
+					new CoordsPoint(815,157,1),
+/*					new CoordsPoint(810,127,1),
+					new CoordsPoint(813,159,1),
+*/				});
 			ProgramHandle.SetCameraForExpBot();
-			CoordsMoveRepoter moverToPoint = new CoordsMoveRepoter();
+			IMoveToPoint moverToPoint = new CoordsMoveRunAndExp(tester);
 			moverToPoint.MoveToDestination();
 
 			/*		ReadOnlyCollection<CoordsPoint> tester = new ReadOnlyCollection<CoordsPoint>(new[]

@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 
 namespace AresTrainerV3.MoveModels.MoveToPoint
 {
-	public class CoordsMoveBase : AbstractCoordsMoveRepoter, IMoveToPoint
+	public class CoordsMoveOnly : AbstractCoordsMoveRepoter, IMoveToPoint
 	{
 
 		/// <summary>
@@ -19,25 +19,34 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 		/// <summary>
 		/// TO DO MOVE USTACKER
 		/// </summary>
-		public CoordsMoveBase()
+		public CoordsMoveOnly()
 		{
 			moveDestinationsList = DestinationsCoordinator.NoMoveCoords;
 		}
 		protected override IUnstuckerMover moveUnstucker { get => Factory.CreateUstuckerExp(); }
 		protected override ReadOnlyCollection<CoordsPoint> moveDestinationsList { get; set; }
 
-		public CoordsMoveBase(ReadOnlyCollection<CoordsPoint> movePositions)
+		public CoordsMoveOnly(ReadOnlyCollection<CoordsPoint> movePositions)
 		{
 			moveDestinationsList = movePositions;
 		}
 		public virtual bool MoveToDestination()
 		{
 			ProgramHandle.SetCameraForExpBot();
-			while (currentPointToMove < moveDestinationsList.Count)
+			int currentMap = ProgramHandle.GetCurrentMap;
+			while (currentPointToMove < moveDestinationsList.Count )
 			{
-				if (moveToNextPos.OneMoveToDestination(moveDestinationsList[currentPointToMove]))
+				if (currentMap == ProgramHandle.GetCurrentMap)
 				{
-					currentPointToMove++;
+
+					if (moveToNextPos.OneMoveToDestination(moveDestinationsList[currentPointToMove]))
+					{
+						currentPointToMove++;
+					}
+				}
+				else
+				{
+					Thread.Sleep(5000); break;
 				}
 			}
 			return true;

@@ -4,7 +4,7 @@
 	{
 		private int x = 0;
 		private int y = 0;
-		int moveAccuracy = 6;
+		int moveAccuracy = 5;
 		public CoordsPoint(int x, int y)
 		{
 			this.X = x;

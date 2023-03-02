@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace AresTrainerV3.MoveModels.MoveToPoint
 {
-	public class CoordsMoveRepoter : CoordsMoveBase
+	public class CoordsMoveRepoter : CoordsMoveOnly
 	{
 
 		/// <summary>
@@ -34,7 +34,11 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 			}
 			if (ProgramHandle.GetCurrentMap == TeleportValues.Hershal)
 			{
-				this.moveDestinationsList = DestinationsCoordinator.HershalRepot;
+				this.moveDestinationsList = DestinationsCoordinator.RepotHershal;
+			}
+			if (ProgramHandle.GetCurrentMap == TeleportValues.Kharon)
+			{
+				this.moveDestinationsList = DestinationsCoordinator.RepotKharon;
 			}
 		}
 

@@ -19,10 +19,19 @@ namespace AresTrainerV3.MoveModels.MoveToPoint.ObstaclesList
 			{
 				createObstacle(0,0,1,1)
 			};
-
-			if (ProgramHandle.GetCurrentMap == TeleportValues.Hollina)
+			if (ProgramHandle.GetCurrentMap == TeleportValues.AllianceSacredLand)
 			{
-				obstaclesList.Add(createObstacle(0,0,1,1));
+				obstaclesList.Add(createObstacle(802, 152, 816, 134));
+			}
+
+			else if (ProgramHandle.GetCurrentMap == TeleportValues.Hollina)
+			{
+				obstaclesList.Add(createObstacle(0, 0, 1, 1));
+			}
+			else if (ProgramHandle.GetCurrentMap == TeleportValues.KharonPlateau)
+			{
+				obstaclesList.Add(createObstacle(166, 180, 171, 177));
+				obstaclesList.Add(createObstacle(130, 200, 145, 189));
 			}
 			return obstaclesList;
 		}

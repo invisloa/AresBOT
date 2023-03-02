@@ -3,7 +3,7 @@
     public interface IRouteCalculator
     {
         List<CoordsPoint> CalculateMainRouteCoordinates(CoordsPoint end);
-        public CoordsPoint CalculateAlternateEndPoint(CoordsPoint endPointOrigin, Line intersectedLine);
+        public CoordsPoint CalculateAlternateLineEndPoint(CoordsPoint endPointOrigin, Line intersectedLine);
 
     }
 }

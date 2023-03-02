@@ -29,7 +29,7 @@ namespace AresTrainerV3.MoveModels.MoveToPoint.RouteCalculations.AlternateRoute
 				x += move * xDirection;
 				move = Math.Min(FactoryMoveToPoint.MaxMoveDistance, Math.Abs(newEndPoint.Y - y));
 				y += move * yDirection;
-				routeCoordinates.Add(new CoordsPoint(x, y));
+				routeCoordinates.Add(new CoordsPoint(x, y, 2));
 				if (x == newEndPoint.X && y == newEndPoint.Y)
 				{
 					break;

@@ -124,13 +124,13 @@ namespace AresTrainerV3
 			else if (WhichBotThreadToStart == MoverBotEnums.KharonWolves)
 			{
 				RepoterCity = CreateRepoterKharonExp();
-				GoBackExpPlace = new GoBackExpKharonWolves();
-				expBotMoverToRun = new MoverKharonWolves();
-				if (blackScreenThread == null)
+				GoBackExpPlace = new CoordsGoBackExpWolves();
+				expBotMoverToRun = CreateCoordsMover();
+				/*if (blackScreenThread == null)
 				{
 					blackScreenThread = new Thread(ProgramHandle.AntiBlackScreener);
 					blackScreenThread.Start();
-				}
+				}*/
 			}
 			else if (WhichBotThreadToStart == MoverBotEnums.KharonBigWolves)
 			{

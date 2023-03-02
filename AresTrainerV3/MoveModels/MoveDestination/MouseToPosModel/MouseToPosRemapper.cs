@@ -16,9 +16,9 @@ namespace AresTrainerV3.MoveModels.MoveToPoint.MouseToPosModel
 		public CoordsPoint RemapVectorToMousePos(int x, int y)
 		{
 			CoordsPoint MousePosition = CharCenterPoint;
-			if (x == 1 || x == -1) { MousePosition.X += x * 26; }
+			if (x == 1 || x == -1) { MousePosition.X += x * 28; }
 			else { MousePosition.X += x * 21; }
-			if (y == 1 || y == -1) { MousePosition.X += y * 26; }
+			if (y == 1 || y == -1) { MousePosition.Y += y * 28; }
 			else { MousePosition.Y += -(y * 21); }
 			return MousePosition;
 		}

@@ -12,9 +12,10 @@ using static AresTrainerV3.Enums.EnumsList;
 
 namespace AresTrainerV3.MoveModels.MoveToPoint
 {
-	public class CoordsMoveRunAndExp : CoordsMoveBase, IMoveAttackCollect, IStartExpBotThread
+	public class CoordsMoveRunAndExp : CoordsMoveOnly, IMoveAttackCollect, IStartExpBotThread
 	{
-		public IDoWhileMoving WhatToDoWhileMoving { get => Factory.CreateIDoWhileMovingAttack(); }
+		IDoWhileMoving whatToDoWhileMoving = Factory.CreateIDoWhileMovingAttack();
+		public IDoWhileMoving WhatToDoWhileMoving { get => whatToDoWhileMoving; }
 
 		public CoordsMoveRunAndExp()
 		{
@@ -28,13 +29,16 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 		{
 			while (ExpBotManagerAbstract.isExpBotRunning)
 			{
-				while (WhatToDoWhileMoving.DoThisWhileMoving()) ;
+				while (whatToDoWhileMoving.DoThisWhileMoving()) ;
 				moveUnstucker.CheckIfMoveIsStucked();
-
-				if (moveToNextPos.OneMoveToDestination(moveDestinationsList[currentPointToMove]))
+				if (ExpBotManagerAbstract.isExpBotRunning)
 				{
-					currentPointToMove++;
-					if (currentPointToMove == moveDestinationsList.Count) { currentPointToMove = 0; }
+
+					if (moveToNextPos.OneMoveToDestination(moveDestinationsList[currentPointToMove]))
+					{
+						currentPointToMove++;
+						if (currentPointToMove == moveDestinationsList.Count) { currentPointToMove = 0; }
+					}
 				}
 			}
 		}
@@ -62,6 +66,11 @@ namespace AresTrainerV3.MoveModels.MoveToPoint
 			{
 				moveDestinationsList = DestinationsCoordinator.HershalLowLVLExp;
 			}
+			else if (Factory.WhichBotThreadToStart == MoverBotEnums.KharonWolves)
+			{
+				moveDestinationsList = DestinationsCoordinator.KharonWolvesExp;
+			}
+
 		}
 	}
 }

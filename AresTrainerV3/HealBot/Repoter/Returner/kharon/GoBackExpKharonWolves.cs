@@ -20,18 +20,6 @@ namespace AresTrainerV3.HealBot.Repoter.Returner.kharon
             MouseOperations.MoveAndLeftClickOperation(1040 + randomizer.Next(100), 390, 200);
             ProgramHandle.SetCameraForExpBot();
 
-            /*            while (ProgramHandle.isNowStandingCity())
-                        {
-                            i++;
-                            Thread.Sleep(1);
-                            if(i >5000)
-                            {
-                                Debug.WriteLine("go repot stuck zagroda");
-                                RepoterKharonExp repotWhenStuck = new RepoterKharonExp();
-                                repotWhenStuck.GoRepot();
-                            }
-                        }
-            */
         }
         void PassTheStuckMountain()
         {

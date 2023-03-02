@@ -33,7 +33,7 @@
 				double x = startX;
 				double y = startY;
 
-				for (int i = 0; i <= maxSteps; i++)
+				for (int i = 0; i < maxSteps; i++)
 				{
 					x += xIncrement;
 					y += yIncrement;
@@ -46,7 +46,7 @@
 		}
 
 		// if any line was interected set a new endpoint to go to (at the end of intersected line)
-		public CoordsPoint CalculateAlternateEndPoint(CoordsPoint endPointOrigin, Line intersectedLine)
+		public CoordsPoint CalculateAlternateLineEndPoint(CoordsPoint endPointOrigin, Line intersectedLine)
 
         {
             if (intersectedLine.P2.X - intersectedLine.P1.X != 0)

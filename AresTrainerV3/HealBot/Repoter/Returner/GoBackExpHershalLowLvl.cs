@@ -16,7 +16,7 @@ namespace AresTrainerV3.HealBot.Repoter.Returner
 			// TEST TEST TEST
 			// TEST TEST TEST
 			// TEST TEST TEST
-			CoordsMoveBase mover = new CoordsMoveBase(DestinationsCoordinator.GoBackExpHershalOutsideCity);
+			CoordsMoveOnly mover = new CoordsMoveOnly(DestinationsCoordinator.GoBackExpHershalOutsideCity);
 			// TEST TEST TEST
 			// TEST TEST TEST
 			// TEST TEST TEST
