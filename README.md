@@ -1,11 +1,6 @@
 # AresBOT
-This is one of the first projects that started my journey with programming.
+This project marked the beginning of my journey with programming.
 
-I'm aware, that it contains a lot of bad practices.
-But I started it as a complete beginner and developed it in parallel with my learning 
-+ the flaws that it has help me to understand why good practices are so important.
-I'm facing alot of problems, because of things i made bad before.
-Some I refactor from time to time, but many of them would require too much time and effort so I leave them as they are- as long as they work as intended :)
+I'm aware that it contains many bad practices, as I started it as a complete beginner and developed it alongside my learning process.
 
-
-I constantly add new features trying to implement my newly learned skills and some good programming principles and practices :)
+The flaws within the project have helped me understand the importance of good practices. I've encountered numerous problems due to earlier mistakes. Some issues have been refactored over time, but many would require significant time and effort, so I've left them as they are, as long as they function as intended. I continue to add new features, incorporating newly learned skills and adhering to good programming principles and practices.
